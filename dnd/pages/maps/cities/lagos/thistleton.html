@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Thistleton</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+
+			.travel-brochure .location-info {
+				width:30%;
+				display:block;
+				position:absolute;
+				top:0px;
+				left:0px;
+				box-shadow: 1px 0px 10px black,
+				8px 0px 8px inset rgba(255,255,255,0.5);
+				z-index:6;
+				height:100%;
+				overflow-y:auto;
+				background-color:rgb(253, 243, 229);
+			}
+
+			.location-info h2 {
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin:2em 0.5em 1em 0.5em;
+				padding:7px 10px;
+				font-size:14pt;
+				text-align:center;
+				font-weight:600;
+				font-family: 'Merienda One', cursive;
+				color: #5ea04a;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+
+			.location-info h1 {
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin:0.5em 0.4em;
+				padding:7px 10px;
+				font-size:16pt;
+				text-align:center;
+				font-weight:600;
+				font-family: 'Merienda One', cursive;
+				color: #5ea04a;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+
+			.location-info h3 {
+				text-align-last: justify;
+				margin:0.5em 1em;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #555;
+				font-weight:900;
+				font-family:monospace;
+				color:#999;
+				text-transform: uppercase;
+			}
+
+			.location-info p {
+				text-align: justify;
+				margin:1em 1em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #eee;
+				font-weight:500;
+				color:rgba(17, 17, 17, 0.9);
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.location-info ul {
+				text-align: left;
+				margin:0em 1em 0.5em 0.5em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #111;
+				font-weight:500;
+				color:rgba(17, 17, 17, 0.9);
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.location-info ul li {
+				padding-top:0.5em;
+			}
+
+			.travel-brochure #map-body {
+				width:70%;
+				display:block;
+				float:right;
+			}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/map.js"></script>
+	</head>
+
+	<body class="travel-brochure">
+		<div class="location-info" style="background-color:#f4f0cb; background-image: url(/dnd/img/textures/parchment.jpg); background-repeat: repeat;">
+			<h3>Amarillo Airship Agency</h3>
+			<h1>Absolutely nothing!</h1>
+			<p>
+				I'm not even sure why you're looking at this brochure, because there's absolutely nothing here!
+			</p>
+			<p>
+				Thistleton is <span class="i">totally</span> nothing but a random section of the Great Life Forest. There's nothing to see here except nature. Absolutely nothing else. You probably shouldn't waste your time. Please don't come here.
+			</p>
+			<h2>Attractions</h2>
+			<p>
+				Deep in the Thistleton forest, you can expect to encounter such exciting mainstays as:
+				<ul>
+					<li>
+						Literally nothing!
+					</li>
+				</ul>
+			</p>
+
+			<!-- <p>
+				Population:
+				384 Grippli
+				Spread across 18 clusters of approximately 20 grippli each
+
+
+
+
+				Culture:
+				Very cheery and good-hearted. The Grippli relaxed almost to the point of laziness, but they are fiercely driven when given a religious directive.
+
+				Shops:
+				Ribbert's Remedies
+
+
+			</p> -->
+		</div>
+		<div id="map-body" style="overflow: hidden; background:#111111;">
+			<div class="map-controls" style="z-index: 2; padding-left:80px;">
+				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
+				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
+			</div>
+
+			<div class="map-container map" style="background-image:url('/dnd/img/maps/cities/Thistleton.png'); background-repeat: no-repeat; background-size: contain; width:2000px; height:2000px; text-align: center; transform-origin:center center; image-rendering: pixelated;">
+
+				<div class="dock" style="left:1089px; top:949px;">A<span class="city-preview"><h1>Airship Dock</h1></span></div>
+				<div class="dock" style="left:914px; top:1019px;">A<span class="city-preview"><h1>Airship Dock</h1></span></div>
+				<div class="pedestrian party" style="height:100px; width:100px; left:50%; top:92%;">
+					<img src="/dnd/img/maps/icons/Shamous.png" style="width:100%;" alt="image"/>
+					<span class="city-preview">
+						<h1>Shamous</h1>
+					</span>
+				</div>
+				<div class="pedestrian party" style="height:100px; width:100px; left:54%; top:93%;">
+					<img src="/dnd/img/maps/icons/jasper.png" style="width:100%;" alt="image"/>
+					<span class="city-preview">
+						<h1>Jasper</h1>
+					</span>
+				</div>
+				<!-- <div class="pedestrian party" style="height:100px; width:100px; left:48%; top:84%;">
+					<img src="/dnd/img/maps/icons/grippli.png" style="width:100%;" alt="image"/>
+					<span class="city-preview">
+						<h1>Ribbert</h1>
+					</span>
+				</div> -->
+				<div class="dock" style="left:115px; top:10px;">A<span class="city-preview"><h1>Airship Dock</h1></span></div>
+				<div class="dock" style="left:879px; top:1089px;">A<span class="city-preview"><h1>Airship Dock</h1></span></div>
+				<div class="dock" style="left:949px; top:1089px;">A<span class="city-preview"><h1>Airship Dock</h1></span></div>
+				<div class="dock" style="left:1053px; top:1089px;">A<span class="city-preview"><h1>Airship Dock</h1></span></div>
+				<div class="dock" style="left:1019px; top:1160px;">A<span class="city-preview"><h1>Airship Dock</h1></span></div>
+				<div class="dock" style="left:879px; top:1229px;">A<span class="city-preview"><h1>Airship Dock</h1></span></div>
+				<a href="#" class="smith village" style="position:absolute; top:1440px; left:500px;font-size:22px;">
+					Thistleton
+					<span class="city-preview">
+						<h1>Thistleton</h1>
+						<p>
+							Thistleton is home to a race of peculiar frog people known as Grippli. It was built to be a safe haven for the Grippli and their Fey allies, and is very well hidden deep within the trees. The existence and approximate location of Thistleton is widely known, but few outsiders know how to find it.
+						</p>
+
+						<h1>Culture.</h1>
+						<p>
+							Thistleton's residents often refer to themselves as "the good folk", and this largely holds true. An evil Grippli is almost unheard of.
+						</p>
+						<p>
+							The Grippli are a simple people. Most are content to live out their days under the rule of their queen, or "Tribe Mother", and remain in the forest. Many Grippli live their entire lives without ever leaving the forest or meeting other races. Because of this, they are very wary of outsiders. They will not attack unless provoked, but most Grippli will hide from any outsiders.
+						</p>
+						<!-- <p>
+							Humanoid frog races, fey, and those descended from fey (elves) are welcome in Thistleton. Other races are allowed entry, but will be met by nothing but silent stares from the treetops.
+						</p> -->
+					</span>
+				</a>
+			</div>
+		</div>
+	</body>
+
+</html>

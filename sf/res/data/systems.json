@@ -1,0 +1,407 @@
+{
+	"items": [
+		{
+			"name": "Pact Worlds",
+			"titles": ["The Pact Worlds"],
+			"space": "Near",
+			"x" : 0,
+			"y" : 0,
+			"stars": [
+				"Sun"
+			],
+			"planets": [
+				"Aballon",
+				"Castrovel",
+				"Absalom Station",
+				"Akiton",
+				"Verces",
+				"Idari",
+				"The Diaspora",
+				"Eox",
+				"Triaxus",
+				"Liavara",
+				"Bretheda",
+				"Apostae",
+				"Aucturn"
+			]
+		},
+		{
+			"name": "Veskarium",
+			"titles": ["The Veskarium"],
+			"space": "Near",
+			"x" : -50,
+			"y" : 2,
+			"stars": [],
+			"planets": [
+				"Vesk Prime",
+				"Vesk-2",
+				"Vesk-3",
+				"Vesk-4",
+				"Vesk-5",
+				"Vesk-6",
+				"Vesk-7",
+				"Vesk-8"
+			]
+		},
+		{
+			"name": "Azlanti Star Empire",
+			"titles": ["Azlanti Star Empire"],
+			"space": "Vast",
+			"x" : 80,
+			"y" : 80,
+			"stars": [
+				"Aristia"
+			],
+			"planets": [
+				"New Thespera",
+				"Eostrillon",
+				"Parin",
+				"Oyojii",
+				"Koshoria"
+			],
+			"notes": [
+				"Koshoria (AA3 pg.14)"
+			]
+		},
+		{
+			"name": "Daegox",
+			"titles": ["Space Prison"],
+			"space": "Near",
+			"x" : -100,
+			"y" : -100,
+			"stars": [],
+			"planets": [
+				"Daegox 1",
+				"Daegox 2",
+				"Daegox 3",
+				"Daegox 4"
+			]
+		},
+		{
+			"name": "Ferra",
+			"titles": ["Ferra"],
+			"space": "Vast",
+			"x" : -60,
+			"y" : -90,
+			"stars": [],
+			"planets": [
+				"Ursa Prime"
+			]
+		},
+		{
+			"name": "Ixo",
+			"titles": [],
+			"space": "Vast",
+			"x" : -100,
+			"y" : -100,
+			"stars": ["Ixo"],
+			"planets": [
+				"Pan"
+			],
+			"notes": [
+				"CRB pg.469"
+			]
+		},
+		{
+			"name": "Deepwater",
+			"titles": [],
+			"space": "Vast",
+			"x" : -100,
+			"y" : -100,
+			"stars": ["Deepwater"],
+			"planets": [
+				"Deepwater Prime"
+			],
+			"notes": [
+				"CRB pg.469"
+			]
+		},
+		{
+			"name": "Urran",
+			"titles": ["Urran"],
+			"space": "Vast",
+			"x" : -50,
+			"y" : -50,
+			"stars": [],
+			"planets": [
+				"Urrakar"
+			]
+		},
+		{
+			"name": "Nakon",
+			"titles": ["Nakon"],
+			"space": "Vast",
+			"x" : 43,
+			"y" : 20,
+			"stars": [],
+			"planets": [
+				"Nakondis"
+			]
+		},
+		{
+			"name": "Heicoron",
+			"titles": ["Heicoron"],
+			"space": "Near",
+			"x" : -10,
+			"y" : 20,
+			"stars": [],
+			"planets": [
+				"Heicoron I",
+				"Heicoron II",
+				"Heicoron III",
+				"Heicoron IV",
+				"Heicoron V"
+			]
+		},
+		{
+			"name": "Ferrantus",
+			"titles": ["Ferrantus"],
+			"space": "Vast",
+			"x" : 20,
+			"y" : -40,
+			"stars": [],
+			"planets": [
+				"Ferrantus-1",
+				"Ferrantus-2",
+				"Ferrantus-3",
+				"Ferrantus-5"
+			]
+		},
+		{
+			"name": "Sepres",
+			"titles": ["Sepres"],
+			"space": "Vast",
+			"x" : 60,
+			"y" : -10,
+			"stars": [],
+			"planets": [
+				"Sepres I",
+				"Sepres II",
+				"Sepres III",
+				"Sepres IV",
+				"Sepres V",
+				"Sepres VI",
+				"Sepres VII",
+				"Sepres VIII",
+				"Sepres IX",
+				"Sepres X",
+				"Sepres XI",
+				"Sepres XII",
+				"Sepres XIII",
+				"Sepres XIV",
+				"Sepres XV",
+				"Sepres XVI"
+			]
+		},
+		{
+			"name": "Orphene",
+			"titles": ["Orphene"],
+			"space": "Vast",
+			"x" : 70,
+			"y" : -50,
+			"stars": [],
+			"planets": [
+				"Orphene I",
+				"Orphene II",
+				"Orphene III",
+				"Nodethe",
+				"Orphene V"
+			]
+		},
+		{
+			"name": "Centus",
+			"titles": ["Centus"],
+			"space": "Vast",
+			"x" : 100,
+			"y" : -100,
+			"stars": [],
+			"planets": [
+				"Centus I",
+				"Centus II",
+				"Centus III",
+				"Centus IV",
+				"Centus V",
+				"Centus VI",
+				"Centus VII",
+				"Centus VIII",
+				"Centus IX",
+				"Centus X",
+				"Centus XI",
+				"Centus XII"
+			],
+			"notes": [
+				"Centus II (DoF 5)"
+			]
+		},
+		{
+			"name": "Suskillon",
+			"titles": ["Suskillon"],
+			"space": "Vast",
+			"x" : 100,
+			"y" : -100,
+			"stars": [],
+			"planets": [
+				"Utraneus",
+				"Suskillon"
+			]
+		},
+		{
+			"name": "Maurnak",
+			"titles": ["Maurnak"],
+			"space": "Vast",
+			"x" : 100,
+			"y" : -100,
+			"stars": ["No Star"],
+			"planets": [
+				"Maurnak"
+			],
+			"notes": [
+				"Maurnak (DoF 6)"
+			]
+		},
+		{
+			"name": "Zeres",
+			"titles": ["Zeres"],
+			"space": "Vast",
+			"x" : 100,
+			"y" : -100,
+			"stars": ["Yellow Star"],
+			"planets": [
+				"Utraneus",
+				"Zeres"
+			]
+		},
+		{
+			"name": "Orry",
+			"titles": [],
+			"space": "Near",
+			"x" : 75,
+			"y" : -75,
+			"stars": ["None"],
+			"planets": [
+				"Orry"
+			]
+		},
+		{
+			"name": "Shadari",
+			"titles": ["A Shrouded Confederacy"],
+			"space": "Vast",
+			"x" : -90,
+			"y" : 85,
+			"stars": [],
+			"planets": [
+				"First Shadari",
+				"Great Shadar",
+				"Third Shadari",
+				"Fourth Shadari",
+				"Fifth Shadari",
+				"Shadari-6"
+			]
+		},
+		{
+			"name": "Ash’Akan",
+			"titles": [],
+			"space": "Vast",
+			"x" : -100,
+			"y" : -100,
+			"stars": [],
+			"planets": [],
+			"notes": [
+				"Ash’Akan (AA3 pg.48)"
+			]
+		},
+		{
+			"name": "Vose",
+			"titles": [],
+			"space": "Vast",
+			"x" : -100,
+			"y" : -100,
+			"stars": [
+				"Vose 303"
+			],
+			"planets": [
+				"Jedarat"
+			]
+		},
+		{
+			"name": "Misc Vast",
+			"titles": ["The Not Yet Sorted"],
+			"space": "Vast",
+			"x" : -100,
+			"y" : -100,
+			"stars": [],
+			"planets": [
+				"Arniselle",
+				"Arquand",
+				"Astevint",
+				"Lothun",
+				"Orikolai",
+				"Kofeyn",
+				"Lajok",
+				"Ghorus Prime",
+				"Quorlosh",
+				"Shimrinsara",
+				"Arshalin",
+				"Elytrio",
+				"Primoria",
+				"Athaeum",
+				"Icefront",
+				"Varkulon 4",
+				"Rax"
+			],
+			"notes": [
+				"Astevint (DoF 4)",
+				"Athaeum (SFS 01-11)",
+				"Icefront (SFS 01-13)",
+				"Varkulon 4 (Skitter Crash)",
+				"Rax (SFS 01-34)"
+			]
+		},
+		{
+			"name": "Misc Near",
+			"titles": ["The Not Yet Sorted"],
+			"space": "Near",
+			"x" : -100,
+			"y" : -100,
+			"stars": [],
+			"planets": [
+				"Daimalko",
+				"Embroi",
+				"Preluria",
+				"Riven Shroud",
+				"Silselrik",
+				"Varturan",
+				"Luminar",
+				"Dromaritia",
+				"Neeroon",
+				"Tabrid Minor",
+				"Colony-753",
+				"Vabaimus"
+			],
+			"notes": [
+				"Dromaritia (AA3 pg.28)",
+				"Neeroon (AA3 pg.32)",
+				"Tabrid Minor (SFS 01-22)",
+				"Colony-753 (SFS 01-12)",
+				"Vabaimus (SFS 01-28)"
+			]
+		},
+		{
+			"name": "Scoured Stars",
+			"titles": [],
+			"space": "Vast",
+			"x" : -100,
+			"y" : -100,
+			"stars": [
+				"Saruuq",
+				"Ruaan"
+			],
+			"planets": [
+				"Saaruq 5"
+			],
+			"notes": [
+				"Saaruq 5 (SFS 01-29)"
+			]
+		}
+	]
+}

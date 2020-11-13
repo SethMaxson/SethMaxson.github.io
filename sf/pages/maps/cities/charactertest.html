@@ -1,0 +1,840 @@
+<html>
+
+	<head>
+		<title>CharTest</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/res/css/threedee.css" />
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<!-- <script src="/res/js/threedee.js"></script> -->
+		<!-- <script src="/res/js/three.min.js"></script> -->
+		<script src="/res/data/dialog.js"></script>
+		<script src="/sf/res/js/three.min.js"></script>
+		<script src="/res/js/generators/npc.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+		<script src="/sf/res/js/mechanics.js"></script>
+		<script src="/res/js/loaders/GLTFLoader.js"></script>
+		<script src="/res/js/utils/SkeletonUtils.js"></script>
+		<script src="/res/js/characters.js"></script>
+		<script src="/res/js/environment.js"></script>
+		<script src="/res/js/PointerLockControls.js"></script>
+		<script>
+			/** @namespace */
+			var THREEx	= THREEx || {}
+
+			/**
+			* Update renderer and camera when the window is resized
+			*
+			* @param {Object} renderer the renderer to update
+			* @param {Object} Camera the camera to update
+			* @param {Function} dimension callback for renderer size
+			*/
+			THREEx.WindowResize	= function(renderer, camera, dimension)
+			{
+				dimension 	= dimension || function(){ return { width: window.innerWidth, height: window.innerHeight } }
+				var callback	= function(){
+					// fetch target renderer size
+					var rendererSize = dimension();
+					// notify the renderer of the size change
+					renderer.setSize( rendererSize.width, rendererSize.height )
+					renderer.gammaFactor = 2.2;
+					renderer.gammaInput = true;
+					renderer.gammaOutput = true;
+					renderer.physicallyCorrectLights;
+					renderer.toneMapping = THREE.Uncharted2ToneMapping;
+					// update the camera
+					camera.aspect	= rendererSize.width / rendererSize.height
+					camera.updateProjectionMatrix()
+				}
+				// bind the resize event
+				window.addEventListener('resize', callback, false)
+				// return .stop() the function to stop watching window resize
+				return {
+					trigger	: function(){
+						callback()
+					},
+					/**
+					* Stop watching window resize
+					*/
+					destroy	: function(){
+						window.removeEventListener('resize', callback)
+					}
+				}
+			}
+		</script>
+		<script>
+			var onRenderFcts= [];
+			$(document).ready(function(){
+				var camera, controls, renderer, scene, sky, water, time=0, targetPerson, playerModel, firstPerson=true, fps = 30, sprinting = true;
+
+				var collisionSensors = {
+					front: 0,
+					rear: 0,
+					left: 0,
+					right: 0,
+					top: 0,
+					bottom: 0
+				};
+				var worldBounds = {
+					north: 1000,
+					south: -1000,
+					east: 1000,
+					west: -1000,
+					top: 200,
+					bottom: -10
+				};
+				var motion = {
+					airborne: false,
+					direction: new THREE.Vector3(),
+					velocity: new THREE.Vector3(),
+				};
+				var moveForward = false;
+				var moveBackward = false;
+				var moveLeft = false;
+				var moveRight = false;
+				var canJump = false;
+				var prevTime = performance.now();
+				var velocity = new THREE.Vector3();
+				var direction = new THREE.Vector3();
+				var vertex = new THREE.Vector3();
+				var interactRaycaster = new THREE.Vector3();
+				var color = new THREE.Color();
+				var talk = false;
+
+				var mixer;
+				var clock = new THREE.Clock();
+
+
+				const playerHeight = 0.50;
+				// const baseSpeed = 75;
+				const baseSpeed = 50;
+
+				var objects = [];
+				var interactive = [];
+				var flickeringLights = [];
+
+
+				/* Load Budopolis */
+
+				var budMaterial = new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						emissive: 0x000000,
+						metalness: 0,
+						roughness: 0.85,
+						map: new THREE.TextureLoader().load("/img/textures/budopolis_texture.png"),
+						side: THREE.FrontSide,
+					});
+				budMaterial.map.flipY = false;
+				var hutMaterial = new THREE.MeshPhysicalMaterial({
+					color: 0xffffff,
+					emissive: 0x000000,
+					metalness: 0,
+					roughness: 0.85,
+					map: new THREE.TextureLoader().load("/img/textures/cartoon_warped_boards.jpg"),
+					side: THREE.FrontSide,
+				});
+
+				//Prepare road material
+				var roadMaterial = new THREE.MeshPhysicalMaterial( {
+					color: 0xffffff,
+					emissive: 0x111111,
+					side: THREE.FrontSide,
+					map: new THREE.TextureLoader().load("/img/textures/dirt.png"),
+					roughnessMap: new THREE.TextureLoader().load("/img/textures/dirt.png"),
+					bumpMap: new THREE.TextureLoader().load("/img/textures/dirt.png"),
+				});
+				var textures = ['map', 'bumpMap', 'roughnessMap'];
+				textures.forEach((mapName) => {
+					roadMaterial[mapName].wrapS = THREE.RepeatWrapping;
+					roadMaterial[mapName].wrapT = THREE.RepeatWrapping;
+					roadMaterial[mapName].repeat.set(100, 100);
+				});
+				roadMaterial.roughness = 0.8;
+				roadMaterial.bumpScale = -0.1;
+				//end road material
+
+				var budManager = new THREE.LoadingManager();
+				budManager.onLoad = init;
+				var budLoader = new THREE.GLTFLoader(budManager);
+				var Budopolis = new THREE.Object3D();
+				var w = 100, h = 100;
+
+				budLoader.load( '/res/models/architecture/budopolis.gltf', function ( gltf ) {
+					gltf.scene.traverse( function ( thing ) {
+						if ( thing.material && ( thing.material.isMeshStandardMaterial) && thing.name !="Hut") {
+							var node = thing.clone();
+							node.material = budMaterial;
+							node.position.x = Math.floor(w/2);
+							node.position.z = Math.floor(h/2);
+							node.position.y = -0.001;
+							node.renderOrder = 0;
+							node.matrixAutoUpdate = false;
+							node.updateMatrix();
+							Budopolis.add(node);
+							if (node.name =="Huts") {
+								node.material = hutMaterial;
+							} else if (node.name == "Roads") {
+								node.material = roadMaterial;
+							};
+						};
+					} );
+				}, undefined, function ( error ) {
+					console.error( error );
+				} );
+				/* End Load Budopolis */
+
+				function init() {
+					scene = new THREE.Scene();
+					scene.background = new THREE.Color( 0x11aaff );
+					camera = new THREE.PerspectiveCamera(
+						45,
+						window.innerWidth/window.innerHeight,
+						0.4,
+						300
+					);
+
+					renderer = new THREE.WebGLRenderer( { antialias: true } );
+					renderer.setPixelRatio( window.devicePixelRatio );
+					renderer.sortObjects = true;
+					renderer.shadowMap.enabled = true;
+					// renderer.shadowMap.shadowSide = THREE.CullFaceFrontBack;
+					// renderer.shadowMap.type = THREE.BasicShadowMap;
+					document.getElementById('container').appendChild(renderer.domElement);
+					renderer.setSize(window.innerWidth, window.innerHeight);
+					renderer.gammaFactor = 2.2;
+					renderer.gammaInput = true;
+					renderer.gammaOutput = true;
+					renderer.physicallyCorrectLights;
+					renderer.toneMapping = THREE.Uncharted2ToneMapping;
+					renderer.toneMappingExposure = 3;
+					renderer.toneMappingWhitePoint = 5;
+
+
+
+					camera.position.x = 0;
+					camera.position.y = playerHeight;
+					camera.position.z = 0;
+					camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+
+					// controls = new THREE.OrbitControls(camera, renderer.domElement);
+					// controls.maxPolarAngle = Math.PI/2 - 0.01;
+					// controls.maxDistance = 500;
+					controls = new THREE.PointerLockControls( camera );
+					renderer.domElement.addEventListener( 'click', function () {
+						controls.lock();
+					}, false );
+
+					var onKeyDown = function ( event ) {
+					switch ( event.keyCode ) {
+						case 38: // up
+						case 87: // w
+							moveForward = true;
+							break;
+						case 37: // left
+						case 65: // a
+							moveLeft = true;
+							break;
+						case 40: // down
+						case 83: // s
+							moveBackward = true;
+							break;
+						case 39: // right
+						case 68: // d
+							moveRight = true;
+							break;
+						case 32: // space
+							if ( motion.airborne === false ) velocity.y = 0.2 * baseSpeed;
+							motion.airborne = true;
+							break;
+					}
+				};
+				var onKeyUp = function ( event ) {
+					switch ( event.keyCode ) {
+						case 38: // up
+						case 87: // w
+							moveForward = false;
+							break;
+						case 37: // left
+						case 65: // a
+							moveLeft = false;
+							break;
+						case 40: // down
+						case 83: // s
+							moveBackward = false;
+							break;
+						case 39: // right
+						case 68: // d
+							moveRight = false;
+							break;
+						case 81: // q
+							firstPerson = !firstPerson;
+							if (firstPerson == true) {
+								camera.position.z = 0;
+							} else {
+								camera.position.z = 5;
+							}
+							break;
+						case 84: // t
+							talk = true;
+							break;
+					}
+				};
+				document.addEventListener( 'keydown', onKeyDown, false );
+				document.addEventListener( 'keyup', onKeyUp, false );
+
+				collisionSensors = {
+					front: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, 0, 1 ), 0, 1 ),
+					rear: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, 0, -1 ), 0, 1 ),
+					left: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( -1, 0, 0 ), 0, 1 ),
+					right: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 1, 0, 0 ), 0, 1 ),
+					top: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, 1, 0 ), 0, 10),
+					bottom: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ))
+				};
+
+				interactRaycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, 0, 1 ), 0.1, 5 )
+
+					var plane = getPlane(100, 100);
+					//plane.position.x += 40;
+					scene.add(plane);
+
+					objects.push(plane);
+					plane.traverse(function(node) {
+						if (node.material) {
+							objects.push(node);
+						}
+					})
+
+
+					var wall = getWall(50, 10);
+					scene.add(wall);
+					wall.children.forEach(function(node) {
+						objects.push(node);
+					})
+					// var spotLight_01 = getSpotlight('rgb(255, 220, 180)', 0.6);
+					// var spotLight_01 = getSpotlight('rgb(255, 255, 255)', 0.6);
+					// spotLight_01.name = 'spotLight_01';
+					// scene.add(spotLight_01);
+					// spotLight_01.position.x = -520;
+					// spotLight_01.position.y = 1000;
+					// spotLight_01.position.z = -100;
+
+					var torchLight = getTorch('rgb(248, 195, 119)', 0.2);
+					scene.add(torchLight);
+					var torchLight2 = getTorch('rgb(248, 195, 119)', 0.2);
+					scene.add(torchLight2);
+					torchLight.position.set(-4, 1.5, 0);
+					torchLight2.position.set(4, 1.5, 0);
+
+					flickeringLights.push(torchLight);
+					flickeringLights.push(torchLight2);
+
+					var people = new THREE.Object3D();
+					people.castShadow = true;
+					var ldr = new PersonLoader(function() {
+						people.name="PeopleGroup"
+						// getParty(people, -2, 0, 1);
+						// people.add(getPC("Bud", -2, 0, 1));
+						// people.add(getNPC("Perrin", -2.5, 0, -2));
+						// people.add(getSprite(1,0,1, undefined, 1));
+						// people.add(getModron(-4, 0, -5));
+						// people.add(getRandom(-3, 0, -3));
+
+						// people.add(getPC("Shamous", 1, 0, 1));
+						people.add(getPC("Jasper", 0, 0, 0));
+						people.add(getNPC("Ribbert", -3, 0, 5));
+						people.add(getPC("Shamous", -2, 0, 2));
+						playerModel = getRandom(0, 0, 0, "human", "m");
+						scene.add(playerModel);
+						// people.add(getPC("Zenreya", -1, 0, 1));
+						// people.add(getPC("Seabern", -2, 0, 1));
+						// people.add(getNPC("Smith", -3, 0, 1));
+						// people.add(getNPC("Helja", -4, 0, 1));
+						// people.add(getNPC("Adrik", -5, 0, 1));
+
+						// people.add(getRandom(-4, 0, 10, "goblin", "m"));
+						// people.add(getRandom(-3, 0, 10, "goblin", "f"));
+						// people.add(getRandom(-2, 0, 10, "halforc", "m"));
+						// people.add(getRandom(-1, 0, 10, "halforc", "f"));
+						// people.add(getRandom(0, 0, 10, "halfling", "m"));
+						// people.add(getRandom(1, 0, 10, "halfling", "f"));
+						// people.add(getRandom(2, 0, 10, "bugbear", "m"));
+						// people.add(getRandom(3, 0, 10, "bugbear", "f"));
+						// people.add(getRandom(4, 0, 10, "orc", "m"));
+						// people.add(getRandom(5, 0, 10, "orc", "f"));
+						// people.add(getRandom(-4, 0, 12, "aarakocra", "m"));
+						// people.add(getRandom(-3, 0, 12, "aarakocra", "f"));
+						// people.add(getRandom(-2, 0, 12, "triton", "m"));
+						// people.add(getRandom(-1, 0, 12, "triton", "f"));
+						// people.add(getRandom(0, 0, 12, "human", "m"));
+						// people.add(getRandom(1, 0, 12, "human", "f"));
+						// people.add(getRandom(2, 0, 12, "gnome", "m"));
+						// people.add(getRandom(3, 0, 12, "gnome", "f"));
+						// people.add(getRandom(4, 0, 12, "tiefling", "m"));
+						// people.add(getRandom(5, 0, 12, "tiefling", "f"));
+						// people.add(getRandom(-4, 0, 14, "dwarf", "m"));
+						// people.add(getRandom(-3, 0, 14, "dwarf", "f"));
+						// people.add(getRandom(-2, 0, 14, "elf", "m"));
+						// people.add(getRandom(-1, 0, 14, "elf", "f"));
+						// people.add(getRandom(0, 0, 14, "aasimar", "m"));
+						// people.add(getRandom(1, 0, 14, "aasimar", "f"));
+						// people.add(getRandom(2, 0, 14, "firbolg", "m"));
+						// people.add(getRandom(3, 0, 14, "firbolg", "f"));
+						// people.add(getRandom(4, 0, 14, "tabaxi", "m"));
+						// people.add(getRandom(5, 0, 14, "tabaxi", "f"));
+						// people.add(getRandom(-4, 0, 16, "bloodfin", "m"));
+						// people.add(getRandom(-3, 0, 16, "bloodfin", "f"));
+						// people.add(getRandom(-2, 0, 16, "grung", "m"));
+						// people.add(getRandom(-1, 0, 16, "grung", "f"));
+						// people.add(getRandom(0, 0, 16, "grippli", "m"));
+						// people.add(getRandom(1, 0, 16, "grippli", "f"));
+						// people.add(getRandom(2, 0, 16, "kenku", "m"));
+						// people.add(getRandom(3, 0, 16, "kenku", "f"));
+						// people.add(getRandom(4, 0, 16, "drow", "m"));
+						// people.add(getRandom(5, 0, 16, "drow", "f"));
+						// people.add(getRandom(-4, 0, 18, "tortle", "m"));
+						// people.add(getRandom(-3, 0, 18, "tortle", "f"));
+						people.children.forEach(function(node) {
+							objects.push(node);
+							interactive.push(node.getObjectByName("Target"));
+						})
+
+						var dragControls = new THREE.DragControls( objects, camera, renderer.domElement );
+						dragControls.addEventListener( 'dragstart', function () {
+							controls.enabled = false;
+						} );
+						dragControls.addEventListener( 'dragend', function () {
+							controls.enabled = true;
+						} );
+
+
+						dragControls.activate();
+					});
+
+					scene.add(people);
+					controls.getObject().position.set(0,playerHeight,10);
+					scene.add( controls.getObject() );
+
+
+
+					// Planet Test Stuff
+
+					var geometry   = new THREE.SphereGeometry(0.5, 32, 32);
+					var planetMaterial  = new THREE.MeshPhongMaterial();
+					var planetMesh = new THREE.Mesh(geometry, planetMaterial);
+					planetMesh.position.set(2, 1, 2);
+					planetMaterial.map    = new THREE.TextureLoader().load('/img/textures/earthmap1k.jpg');
+					planetMaterial.bumpMap    = new THREE.TextureLoader().load('/img/textures/earthbump1k.jpg');
+					planetMaterial.bumpScale = 0.05;
+					planetMaterial.specularMap    = new THREE.TextureLoader().load('/img/textures/earthspec1k.jpg');
+					planetMaterial.specular  = new THREE.Color('grey');
+
+
+					material  = new THREE.MeshPhongMaterial({
+						map     : new THREE.TextureLoader().load('/img/textures/earthcloudmap.jpg'),
+						alphaMap     : new THREE.TextureLoader().load('/img/textures/earthcloudmaptrans.jpg'),
+						side        : THREE.DoubleSide,
+						opacity     : 0.8,
+						transparent : true,
+						depthWrite  : false,
+					});
+					var cloudMesh = new THREE.Mesh(new THREE.SphereGeometry(0.51, 32, 32), material);
+					// var cloudMesh = new THREE.Mesh(new THREE.SphereGeometry(0.55, 32, 32), new THREE.MeshPhongMaterial({
+					// 	color : 0xff0000
+					// }));
+					planetMesh.add(cloudMesh);
+
+					scene.add(planetMesh);
+
+
+					material  = new THREE.MeshPhongMaterial({
+						map     : new THREE.TextureLoader().load('/img/textures/earthcloudmap.jpg'),
+						alphaMap     : new THREE.TextureLoader().load('/img/textures/earthcloudmaptrans.jpg'),
+						side        : THREE.BackSide,
+						opacity     : 0.1,
+						transparent : true,
+					});
+					var cloudMesh2 = new THREE.Mesh(new THREE.SphereGeometry(199, 32, 32), material);
+					planetMesh.add(cloudMesh2);
+
+					// material  = new THREE.MeshPhongMaterial({
+					// 	map     : new THREE.TextureLoader().load('/img/textures/nyc_skyline.png'),
+					// 	side        : THREE.BackSide,
+					// 	opacity     : 0.9,
+					// 	transparent : true,
+					// });
+					// var skyline = new THREE.Mesh(new THREE.CylinderGeometry(199.5, 199.5, 32, 32, 1, true), material);
+					// skyline.position.y = 10
+					// textures = ['map'];
+					// textures.forEach((mapName) => {
+					// 	skyline.material[mapName].wrapS = THREE.RepeatWrapping;
+					// 	skyline.material[mapName].wrapT = THREE.RepeatWrapping;
+					// 	skyline.material[mapName].repeat.set(10, 1);
+					// });
+					// planetMesh.add(skyline);
+
+
+					// create the geometry sphere
+					// create the material, using a texture of startfield
+					var material  = new THREE.MeshLambertMaterial();
+					material.map   = new THREE.TextureLoader().load('/img/textures/galaxy_starfield.png');
+					material.emissiveMap = material.map;
+					material.color = 0x000000;
+					material.side  = THREE.BackSide;
+					// create the mesh based on geometry and material
+					sky  = new THREE.Mesh(
+						new THREE.SphereGeometry(200, 32, 32),
+						material
+					);
+					scene.add(sky);
+					onRenderFcts.push(function(delta, now){
+						cloudMesh.rotation.y  += 1/32 * delta
+						cloudMesh2.rotation.y  -= 1/64 * delta
+					})
+					// End Planet Test Stuff
+
+					var ambLight = new THREE.HemisphereLight(0xffffff, 0x222222, 1);
+					ambLight.position.set(0, 20, 0);
+					scene.add(ambLight);
+
+					// transform objects
+					var winResize = new THREEx.WindowResize(renderer, camera);
+					update();
+				}
+
+				function getPlane(w, h) {
+					var terrain = new THREE.Group();
+					var geo = new THREE.PlaneGeometry(w, h);
+
+					var grid = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({
+						color: 0x000000,
+						side: THREE.FrontSide,
+						roughness:1,
+						metalness:1,
+						transparent: true,
+						emissive: 0x000000,
+						opacity:0.4,
+					}));
+					grid.material.map = new THREE.TextureLoader().load("/img/textures/gridBump.png");
+					grid.material.alphaMap = new THREE.TextureLoader().load("/img/textures/gridAlpha.png");
+					textures = ['map', 'alphaMap'];
+					textures.forEach((mapName) => {
+						grid.material[mapName].wrapS = THREE.RepeatWrapping;
+						grid.material[mapName].wrapT = THREE.RepeatWrapping;
+						grid.material[mapName].repeat.set(w, h);
+					});
+
+					water = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						side: THREE.DoubleSide,
+						transparent: true,
+						emissive: 0x000000,
+						metalness:0.4,
+						opacity: 0.8,
+						map: new THREE.TextureLoader().load("/img/textures/ww_waves.gif"),
+						bumpMap: new THREE.TextureLoader().load("/img/textures/ww_waves.gif"),
+						bumpScale: 0.05,
+					}));
+					textures = ['map', 'bumpMap'];
+					textures.forEach((mapName) => {
+						water.material[mapName].wrapS = THREE.RepeatWrapping;
+						water.material[mapName].wrapT = THREE.RepeatWrapping;
+						water.material[mapName].repeat.set(w/5, h/5);
+					});
+					water.scale.set(1.5, 1.5, 1.5)
+					water.name = "water";
+					water.rotation.x = 3 * Math.PI/2;
+					water.position.set(Math.floor(w/2), -0.5, Math.floor(h/2));
+
+
+					grid.rotation.x = -Math.PI/2;
+					grid.position.x = Math.floor(w/2);
+					grid.position.z = Math.floor(h/2);
+					grid.matrixAutoUpdate = false;
+					grid.updateMatrix();
+					var board = new THREE.Object3D();
+					board.add(grid);
+					board.position.x = -Math.ceil(w/2);
+					board.position.z = -Math.ceil(h/2);
+					board.receiveShadow = true;
+					// return board;
+
+					board.add(Budopolis);
+
+					board.add(water);
+					return board;
+				}
+
+				function getWall(w, h) {
+					var geo = new THREE.PlaneGeometry(w, h);
+					var material = new THREE.MeshPhysicalMaterial({
+						color: 0xdddddd,
+						emissive: 0x000000,
+						metalness: 0.1,
+						roughness: 0.85,
+						map: new THREE.TextureLoader().load("/img/textures/Cartoon_Castle_Brick.jpg"),
+						bumpMap: new THREE.TextureLoader().load("/img/textures/Cartoon_Castle_Brick_Bump.png"),
+						bumpScale: 0.5,
+						side: THREE.DoubleSide,
+					});
+					var roofMat = new THREE.MeshPhysicalMaterial({
+						color: 0xdddddd,
+						emissive: 0x000000,
+						metalness: 0,
+						roughness: 0.85,
+						map: new THREE.TextureLoader().load("/img/textures/stone_tile.png"),
+						bumpMap: new THREE.TextureLoader().load("/img/textures/stone_tile_bump.png"),
+						bumpScale: 0.2,
+						side: THREE.FrontSide,
+					});
+					var mesh = new THREE.Mesh(geo, material);
+					mesh.material.map.flipY = true;
+					mesh.renderOrder = 0;
+					mesh.receiveShadow = true;
+					var roofGeo = new THREE.PlaneGeometry(w, w);
+					var roof = new THREE.Mesh(roofGeo, roofMat);
+
+					textures = ['map', 'bumpMap'];
+					textures.forEach((mapName) => {
+						mesh.material[mapName].wrapS = THREE.RepeatWrapping;
+						mesh.material[mapName].wrapT = THREE.RepeatWrapping;
+						mesh.material[mapName].repeat.set(w, h);
+						roof.material[mapName].wrapS = THREE.RepeatWrapping;
+						roof.material[mapName].wrapT = THREE.RepeatWrapping;
+						roof.material[mapName].repeat.set(w, w);
+					});
+
+					mesh.position.y = Math.ceil(h/2);
+					var mesh2 = mesh.clone();
+					var mesh3 = mesh.clone();
+					mesh2.rotation.y = -Math.PI/2;
+					mesh2.position.z = Math.ceil(w/2);
+					mesh2.position.x = Math.ceil(w/2);
+					var mesh3 = mesh.clone();
+					mesh3.rotation.y = Math.PI/2;
+					mesh3.position.z = Math.ceil(w/2);
+					mesh3.position.x = -Math.ceil(w/2);
+					roof.rotation.x = Math.PI/2;
+					roof.position.y = h;
+					roof.position.z = Math.ceil(w/2);
+
+					mesh.receiveShadow = true;
+					mesh.castShadow = true;
+					mesh.matrixAutoUpdate = false;
+					mesh2.matrixAutoUpdate = false;
+					mesh3.matrixAutoUpdate = false;
+					mesh.updateMatrix();
+					mesh2.updateMatrix();
+					mesh3.updateMatrix();
+					var box = new THREE.Object3D();
+					box.add(mesh);
+					box.add(mesh2);
+					box.add(mesh3);
+					box.add(roof);
+					return box;
+				}
+
+
+				function getSpotlight(color, intensity) {
+					var light = new THREE.SpotLight(color, intensity);
+					light.castShadow = true;
+
+					light.shadow.mapSize.x = 4096;
+					light.shadow.mapSize.y = 4096;
+
+					return light;
+				}
+
+				function getTorch(color, intensity) {
+					var geo = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+								var material = new THREE.MeshPhysicalMaterial({
+									color: color,
+									emissive: color,
+								});
+					var cylGeo = new THREE.CylinderGeometry(0.05, 0.01, 0.3, 6);
+					var cylMaterial = new THREE.MeshPhysicalMaterial({
+						color: 0x5e2e00,
+						emissive: 0x000000,
+					});
+					var torch = new THREE.Mesh(geo, material);
+					var sconce = new THREE.Mesh(cylGeo, cylMaterial);
+
+
+					torch.castShadow = false;
+					torch.receiveShadow = false;
+					sconce.castShadow = true;
+					sconce.receiveShadow = true;
+
+					torch.add(sconce);
+					sconce.position.y = -0.155;
+					var light = new THREE.PointLight(color, intensity);
+					light.castShadow = true;
+					light.userData.intensity = intensity;
+					light.shadow.mapSize.width = 512;  // default
+					light.shadow.mapSize.height = 512; // default
+					light.shadow.camera.near = 0.5;       // default
+					light.shadow.camera.far = 500      // default
+					// light.shadow.camera.far = 1      // default
+					light.shadow.bias = - 0.005;
+
+					light.add(torch);
+
+					return light;
+				}
+				function update() {
+					if ( controls.isLocked === true ) {
+						const mixTime = clock.getDelta();
+						objects.forEach(person => {
+							if (person.userData.mixer != undefined) {
+								person.userData.mixer.update(mixTime);
+							}
+						});
+						flickeringLights.forEach(light => {
+							light.intensity = light.userData.intensity + ((Math.random() - 0.5) * 0.1);
+						})
+						renderer.render(scene, camera);
+
+						var dir = new THREE.Vector3(), birdsEye = 5;
+						controls.getObject().getWorldDirection(dir).negate();
+						var pos = controls.getObject().position;
+						collisionSensors.bottom.ray.origin.copy( pos );
+						collisionSensors.bottom.ray.origin.y += birdsEye;
+						// collisionSensors.front.ray.origin.copy( controls.getObject().position );
+						collisionSensors.front.ray.set(pos, dir);
+						collisionSensors.rear.ray.set(pos, dir.negate());
+						collisionSensors.left.ray.set(pos, dir.applyMatrix4( new THREE.Matrix4().makeRotationY(- (Math.PI / 2) )));
+						collisionSensors.right.ray.set(pos, dir.applyMatrix4( new THREE.Matrix4().makeRotationY( Math.PI )));
+
+
+						var interactRay = new THREE.Vector3();
+						camera.getWorldDirection(interactRay);
+						interactRaycaster.ray.set(pos, interactRay);
+						interactRaycaster.ray.origin.y += playerHeight;
+						var bottomIntersections = collisionSensors.bottom.intersectObjects( objects );
+						var frontIntersections = collisionSensors.front.intersectObjects( objects );
+						var rearIntersections = collisionSensors.rear.intersectObjects( objects );
+						var leftIntersections = collisionSensors.left.intersectObjects( objects );
+						var rightIntersections = collisionSensors.right.intersectObjects( objects );
+
+						var interactIntersections = interactRaycaster.intersectObjects( interactive );
+						var onObject = bottomIntersections.length > 0;
+						var time = performance.now();
+						var delta = Math.min(( time - prevTime ) / 1000, 1/20);
+						velocity.x -= velocity.x * 10.0 * delta;
+						velocity.z -= velocity.z * 10.0 * delta;
+
+						direction.z = Number( moveForward ) - Number( moveBackward );
+						direction.x = Number( moveLeft ) - Number( moveRight );
+						direction.normalize(); // this ensures consistent movements in all directions
+						if (sprinting == true) {
+							if ( moveForward || moveBackward ) velocity.z -= direction.z * baseSpeed * delta * 2;
+							if ( moveLeft || moveRight ) velocity.x -= direction.x * baseSpeed * delta * 2;
+						} else {
+							if ( moveForward || moveBackward ) velocity.z -= direction.z * baseSpeed * delta;
+							if ( moveLeft || moveRight ) velocity.x -= direction.x * baseSpeed * delta;
+						}
+
+
+						var hits = bottomIntersections;
+						motion.airborne = true;
+						// are we above, or at most knee deep in, the platform?
+						if ( ( hits.length > 0 )) {
+							var actualHeight = hits[ 0 ].distance - birdsEye - playerHeight*2;
+							// collision: stick to the surface if landing on it
+							if ( ( velocity.y <= 0 ) && ( actualHeight < playerHeight ) ) {
+								controls.getObject().position.y -= actualHeight;
+								controls.getObject().position.y = Math.round(controls.getObject().position.y * 100)/100;
+								velocity.y = 0;
+								motion.airborne = false;
+							}
+						}
+						if (motion.airborne === true) {
+							velocity.y -= (6/fps) * delta * 100; // 100.0 = mass
+							velocity.y = Math.max(velocity.y, -128832/fps);
+						}
+
+						// Adjust velocity based on collisions
+						if (frontIntersections.length > 0) velocity.z = Math.max( 0, velocity.z );
+						if (rearIntersections.length > 0) velocity.z = Math.min( 0, velocity.z );
+						if (leftIntersections.length > 0) velocity.x = Math.max( 0, velocity.x );
+						if (rightIntersections.length > 0) velocity.x = Math.min( 0, velocity.x );
+
+
+						controls.getObject().translateX( velocity.x * delta );
+						controls.getObject().translateY( velocity.y * delta );
+						controls.getObject().translateZ( velocity.z * delta );
+						// if ( controls.getObject().position.y < playerHeight ) {
+						// 	velocity.y = 0;
+						// 	controls.getObject().position.y = playerHeight;
+						// 	canJump = true;
+						// }
+						prevTime = time;
+
+						if (talk == true) {
+							talk = false;
+							if (interactIntersections.length > 0) {
+								controls.unlock();
+								speak(getDialog(interactIntersections[0].object.parent.name));
+							}
+							controls.lock();
+						}
+						if (interactIntersections.length > 0) {
+							$(".charLabel").text(interactIntersections[0].object.parent.name);
+							var vector = new THREE.Vector3();
+							vector.setFromMatrixPosition( controls.getObject().matrixWorld );
+							vector.y +=0.2;
+							// var skull = interactIntersections[0].object.parent.getObjectByName("Skeleton_skull");
+							// if (skull.position.angleTo(skull.worldToLocal(vector)) < Math.PI/2) {
+							// 	skull.lookAt(vector);
+							// }
+						}
+						else
+						{
+							$(".charLabel").text("Doyle");
+							// $(".charLabel").text("Current Draw call count: " + renderer.info.render.calls);
+							// $(".charLabel").text("Altitude: " + controls.getObject().position.y + "\nIntersections: " + bottomIntersections.length);
+						}
+						playerModel.position.set(controls.getObject().position.x, controls.getObject().position.y - 1, controls.getObject().position.z);
+
+						playerModel.rotation.y = controls.getObject().rotation.y + Math.PI;
+
+						onRenderFcts.forEach(function(onRenderFct){
+							onRenderFct(delta, time/1000)
+						})
+					}
+					renderer.render( scene, camera );
+					setTimeout( function() {
+						requestAnimationFrame( update );
+					}, 1000 / fps );
+				}
+
+				// init();
+			});
+		</script>
+	</head>
+
+	<body style="margin:0px; padding:0px;">
+		<div id="MenuBar" style="position:absolute; top:0; left:0; z-index:9; background:none;">
+			<div id="hud">
+				<div class="characterInfo">
+					<div class="charLabel">
+						Doyle
+					</div>
+					<div class="charStats">
+						<div>HP: 105/80</div>
+						<div>AC: 16</div>
+						<div>Initiative: 16</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="width:10px; height:10px; position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); background:rgba(0,50,200,0.2); z-index:3; border-radius:50%;">
+			&#160;
+		</div>
+		<div id="container">
+			<!-- prevent null -->
+		</div>
+	</body>
+
+</html>

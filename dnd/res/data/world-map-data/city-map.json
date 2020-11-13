@@ -1,0 +1,98 @@
+[
+	{
+		"name": "Acfirth",
+		"image": "/dnd/img/maps/cities/Acfirth.svg"
+	},
+	{
+		"name": "Amarillo",
+		"image": "/dnd/img/maps/cities/Amarillo.svg"
+	},
+	{
+		"name": "Aphotia",
+		"image": "/dnd/img/maps/cities/Aphotia.png"
+	},
+	{
+		"name": "Becktoft",
+		"image": "/dnd/img/maps/cities/Becktoft.svg"
+	},
+	{
+		"name": "budopolis",
+		"image": "/dnd/img/maps/cities/Budopolis.png"
+	},
+	{
+		"name": "carriglean",
+		"image": "/dnd/img/maps/cities/carriglean.svg"
+	},
+	{
+		"name": "elmusk",
+		"image": "/dnd/img/maps/cities/elmusk.svg"
+	},
+	{
+		"name": "firelake",
+		"image": "/dnd/img/maps/cities/firelake.png"
+	},
+	{
+		"name": "Graisham",
+		"image": "/dnd/img/maps/cities/Graisham.png"
+	},
+	{
+		"name": "Ithcuil",
+		"image": "/dnd/img/maps/cities/ithcuil.svg"
+	},
+	{
+		"name": "Laketon",
+		"image": "/dnd/img/maps/cities/Laketon.svg"
+	},
+	{
+		"name": "pendale",
+		"image": "/dnd/img/maps/cities/pendale.svg"
+	},
+	{
+		"name": "Riverport",
+		"image": "/dnd/img/maps/cities/Riverport.svg"
+	},
+	{
+		"name": "rrostar",
+		"image": "/dnd/img/maps/cities/rrostar.svg"
+	},
+	{
+		"name": "salem",
+		"image": "/dnd/img/maps/cities/salem.svg"
+	},
+	{
+		"name": "Southport",
+		"image": "/dnd/img/maps/cities/southport.svg"
+	},
+	{
+		"name": "stonweald",
+		"image": "/dnd/img/maps/cities/stonweald.png"
+	},
+	{
+		"name": "Tahl Town",
+		"image": "/dnd/img/maps/cities/TahlTown.png"
+	},
+	{
+		"name": "Thistleton",
+		"image": "/dnd/img/maps/cities/Thistleton.png"
+	},
+	{
+		"name": "tilaporth",
+		"image": "/dnd/img/maps/cities/tilaporth.svg"
+	},
+	{
+		"name": "troutbeck",
+		"image": "/dnd/img/maps/cities/troutbeck.svg"
+	},
+	{
+		"name": "victarn",
+		"image": "/dnd/img/maps/cities/victarn.svg"
+	},
+	{
+		"name": "Vidan's Rest",
+		"image": "/dnd/img/maps/cities/VidansRest.png"
+	},
+	{
+		"name": "Wüstebie",
+		"image": "/dnd/img/maps/cities/Wustebie.png"
+	}
+]

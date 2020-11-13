@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron|Roboto&display=swap');
+
+html{
+	zoom:100%;
+	transform:scale(1);
+}
+
+body {
+	background-color: white;
+	color: black;
+	font-family: Verdana;
+	padding: 0px;
+	margin: 0px;
+}
+
+#container {
+	width:100vw;
+}
+
+.hud-wrapper {
+	width:100%;
+	height:100%;
+	pointer-events: none;
+	padding:none;
+	margin:none;
+	position: absolute;
+	top:0;
+	left:0;
+}
+
+div.speech {
+	border: solid 1px #424542;
+	width: 700px;
+	max-width: 95vw;
+	padding: 0.5vh 1vw;
+	margin-bottom: 1vh;
+	margin-top: auto;
+	-webkit-border-radius: 2em;
+	-moz-border-radius: 2em;
+	border-radius: 2em;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 1vh;
+	z-index: 1;
+	border:20px solid;
+	border-image:url("/img/uiborder.svg");
+	border-image-slice:50;
+	background:#245659;
+	border-radius:40px;
+	color:#f8ffff;
+	text-shadow:1px 1px 0px black,
+	1px 0px 0px black,
+	0px 1px 0px black,
+	-1px 1px 0px black,
+	-1px -1px 0px black,
+	-1px 0px 0px black,
+	1px -1px 0px black,
+	0px -1px 0px black;
+
+}
+
+div.speech * {
+	color: #eff1ff;
+	text-shadow: 2px 2px #212421, 1px 1px #212021;
+	/* font-family: Verdana, sans-serif; */
+	font-family: "Roboto", sans-serif;
+	font-size: 1em;
+	font-weight: normal;
+	margin: 0.4em 0.4em;
+}
+div.speech .next,
+div.speech .close {
+	height:25px;
+	width:25px;
+	position:absolute;
+	bottom:10px;
+	right:10px;
+	color: #eff1ff;
+	text-shadow: 2px 2px #212421, 1px 1px #212021;
+	font-family: "Orbitron", sans-serif;
+	font-size: 1em;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+div.speech button {
+	width:100%;
+	font-size:inherit;
+	border:2px solid rgba(100,100,100,0.4);
+	text-align:left;
+	padding-left:0.5em;
+	border-radius:0.3em 0 0 0.3em;
+	background:none;
+}
+
+div.speech button.selected{
+	border:2px solid #00eeff;
+}
+
+#hud {
+	position:absolute;
+	/* left:0.5em;
+	top:0.5em; */
+	left:0;
+	top:0;
+	z-index:1;
+	font-size:1.25em;
+	width:20vw;
+	min-width: 300px;
+}
+
+#target-label,
+.target-label {
+	color:white;
+	text-align: center;
+	position: absolute;
+	width:100vw;
+	left:50%;
+	top:0%;
+	transform:translate(-50%, -100%);
+	height:1.5em;
+}
+
+#reticle,
+.reticle {
+	width:15px;
+	height:15px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform:translate(-50%, -50%);
+	/* background:rgba(0,50,200,0.2); */
+	border:0.2em solid rgba(255,255,255, 0.4);
+	z-index:3;
+	border-radius:50%;
+	box-sizing: border-box;
+}
+
+#reticle.friend,
+.reticle.friend {
+	border-color: rgba(50,200,50,0.9);
+}
+
+#reticle.enemy,
+.reticle.enemy {
+	border-color: rgba(200,50,50,0.9);
+}
+
+div.characterInfo{
+	background: rgba(0, 0, 0, 0.25);
+	z-index: 1;
+	border:10px solid;
+	border-image:url("/img/uiborder.svg");
+	border-image-slice:80;
+	background:#245659;
+	border-radius:20px;
+	color:#f8ffff;
+	text-shadow:1px 1px 0px black,
+	1px 0px 0px black,
+	0px 1px 0px black,
+	-1px 1px 0px black,
+	-1px -1px 0px black,
+	-1px 0px 0px black,
+	1px -1px 0px black,
+	0px -1px 0px black;
+}
+#hud div.charLabel{
+	/* float:left;
+	width:40%; */
+	color:#EEE;
+	text-shadow:0px 0px 2px black;
+	font-size:14pt;
+}
+#hud img{
+	float:left;
+	height:60px;
+	color:#EEE;
+	text-shadow:0px 0px 2px black;
+	font-size:12pt;
+}
+#hud div.charStats{
+	display:flex;
+	flex-direction: row;
+	color:#EEE;
+	text-shadow:0px 0px 2px black;
+	font-size:12pt;
+}
+
+#hud div.charStats>div{
+	padding:2px;
+	flex:1 1 auto;
+}
+
+.hud-wrapper .hp {
+	display:block;
+	position:relative;
+	background:gray;
+	border-radius:10%;
+	height:20px;
+	width:20%;
+	font-size:15px;
+	color: 1px solid #eff1ff;
+	text-shadow: 2px 2px #212421, 1px 1px #212021;
+}
+
+.hud-wrapper .hp .bar {
+	position:absolute;
+	left:0;
+	top:0;
+	height:100%;
+	z-index:1;
+	background-color:green;
+}
+
+.hud-wrapper .hp .text {
+	position:absolute;
+	left:0;
+	top:0;
+	height:100%;
+	width:100%;
+	z-index:2;
+}

@@ -1,0 +1,914 @@
+<html>
+
+	<head>
+		<title>CharTest</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="/sf/res/css/threedee.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<script src="/res/data/dialog.js"></script>
+		<script src="/res/js/three.min.js"></script>
+		<script src="/res/js/generators/npc.js"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/res/js/loaders/GLTFLoader.js"></script>
+		<script src="/res/js/utils/SkeletonUtils.js"></script>
+		<script src="/sf/res/js/hud.js"></script>
+		<script src="/res/js/characters.js"></script>
+		<script src="/res/js/environment.js"></script>
+		<script src="/res/js/PointerLockControls.js"></script>
+		<script src="/sf/res/js/threex.proceduralcity2.js"></script>
+		<script>
+			/** @namespace */
+			var THREEx	= THREEx || {}
+
+			/**
+			* Update renderer and camera when the window is resized
+			*
+			* @param {Object} renderer the renderer to update
+			* @param {Object} Camera the camera to update
+			* @param {Function} dimension callback for renderer size
+			*/
+			THREEx.WindowResize	= function(renderer, camera, dimension)
+			{
+				dimension 	= dimension || function(){ return { width: window.innerWidth, height: window.innerHeight } }
+				var callback	= function(){
+					// fetch target renderer size
+					var rendererSize = dimension();
+
+					// notify the renderer of the size change
+					renderer.setSize( rendererSize.width, rendererSize.height )
+
+					// update the camera
+					camera.aspect	= rendererSize.width / rendererSize.height
+					camera.updateProjectionMatrix()
+				}
+				// bind the resize event
+				window.addEventListener('resize', callback, false)
+				// return .stop() the function to stop watching window resize
+				return {
+					trigger	: function(){
+						callback()
+					},
+					/**
+					* Stop watching window resize
+					*/
+					destroy	: function(){
+						window.removeEventListener('resize', callback)
+					}
+				}
+			}
+		</script>
+		<script>
+			class Component {
+				constructor(gameObject) {
+					this.gameObject = gameObject;
+				}
+				update() {
+				}
+			}
+			class SafeArray {
+				constructor() {
+					this.array = [];
+					this.addQueue = [];
+					this.removeQueue = new Set();
+				}
+				get isEmpty() {
+					return this.addQueue.length + this.array.length > 0;
+				}
+				add(element) {
+					this.addQueue.push(element);
+				}
+				remove(element) {
+					this.removeQueue.add(element);
+				}
+				forEach(fn) {
+					this._addQueued();
+					this._removeQueued();
+					for (const element of this.array) {
+						if (this.removeQueue.has(element)) {
+							continue;
+						}
+						fn(element);
+					}
+					this._removeQueued();
+				}
+				_addQueued() {
+					if (this.addQueue.length) {
+						this.array.splice(this.array.length, 0, ...this.addQueue);
+						this.addQueue = [];
+					}
+				}
+				_removeQueued() {
+					if (this.removeQueue.size) {
+						this.array = this.array.filter(element => !this.removeQueue.has(element));
+						this.removeQueue.clear();
+					}
+				}
+			}
+
+			class GameObjectManager {
+				constructor() {
+					this.gameObjects = new SafeArray();
+				}
+				createGameObject(parent, name) {
+					const gameObject = new GameObject(parent, name);
+					this.gameObjects.add(gameObject);
+					return gameObject;
+				}
+				removeGameObject(gameObject) {
+					this.gameObjects.remove(gameObject);
+				}
+				update() {
+					this.gameObjects.forEach(gameObject => gameObject.update());
+				}
+			}
+		</script>
+		<script>
+			class InputManager {
+				constructor() {
+					this.keys = {};
+					const keyMap = new Map();
+
+					const setKey = (keyName, pressed) => {
+						const keyState = this.keys[keyName];
+						keyState.justPressed = pressed && !keyState.down;
+						keyState.down = pressed;
+					};
+
+					const addKey = (keyCode, name) => {
+						this.keys[name] = { down: false, justPressed: false };
+						keyMap.set(keyCode, name);
+					};
+
+					const setKeyFromKeyCode = (keyCode, pressed) => {
+						const keyName = keyMap.get(keyCode);
+						if (!keyName) {
+							return;
+						}
+						setKey(keyName, pressed);
+					};
+
+					addKey(37, 'left'); // left
+					addKey(65, 'left'); // a
+					addKey(39, 'right'); // right
+					addKey(68, 'right'); // d
+					addKey(38, 'up'); // up
+					addKey(87, 'up'); // w
+					addKey(40, 'down'); // down
+					addKey(83, 'down'); // s
+					addKey(32, 'jump'); // spacebar
+					addKey(84, 'talk'); // t
+					addKey(77, 'magic'); // m
+					addKey(81, 'changeView'); // q
+					addKey(71, 'gun'); // g
+					addKey(90, 'a');
+					addKey(88, 'b');
+
+					window.addEventListener('keydown', (e) => {
+						setKeyFromKeyCode(e.keyCode, true);
+					});
+					window.addEventListener('keyup', (e) => {
+						setKeyFromKeyCode(e.keyCode, false);
+					});
+				}
+				update() {
+					for (const keyState of Object.values(this.keys)) {
+						if (keyState.justPressed) {
+							keyState.justPressed = false;
+						}
+					}
+				}
+			}
+		</script>
+		<script>
+			class HitPoints {
+				constructor(max) {
+					max = max || 20;
+					this.maxHP = max;
+					this.currentHP = max;
+					this.dead = false;
+				}
+				damage(damageAmount) {
+					damageAmount = damageAmount || 1;
+					this.currentHP -= damageAmount;
+					if (this.currentHP <= 0) {
+						this.dead = true;
+						this.currentHP = 0;
+					}
+				}
+				heal(healAmount) {
+					healAmount = healAmount || 1;
+					this.currentHP += healAmount;
+					this.currentHP = Math.min(this.currentHP, this.maxHP);
+					this.dead = false;
+				}
+			}
+			class PlayerControls {
+				constructor() {
+					this.model;
+					this.collisionSensors = {
+						front: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, 0, 1 ), 0, 1 ),
+						rear: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, 0, -1 ), 0, 1 ),
+						left: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( -1, 0, 0 ), 0, 1 ),
+						right: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 1, 0, 0 ), 0, 1 ),
+						top: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, 1, 0 ), 0, 10),
+						bottom: new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, - 1, 0 ))
+					};
+					this.canMove = true;
+					this.sprinting = true;
+					this.motion = {
+						airborne: false,
+						direction: new THREE.Vector3(),
+						velocity: new THREE.Vector3()
+					};
+					this.height = 0.50;
+					this.baseSpeed = 50;
+					this.birdsEye = 2;
+					this.interactRaycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, 0, 1 ), 0.1, 5 );
+					this.aimRaycaster = new THREE.Raycaster( new THREE.Vector3(), new THREE.Vector3( 0, 0, 1 ), 0.1, 50 );
+				}
+				update() {
+					for (const keyState of Object.values(this.keys)) {
+						if (keyState.justPressed) {
+							keyState.justPressed = false;
+						}
+					}
+				}
+				getCollisions(controls, objects, delta, fps) {
+					if (this.canMove === true) {
+
+						const moveForward = inputManager.keys.up.down;
+						const moveBackward = inputManager.keys.down.down;
+						const moveLeft = inputManager.keys.left.down;
+						const moveRight = inputManager.keys.right.down;
+						const jumped = inputManager.keys.jump.justPressed;
+						if (jumped) {
+							this.jump();
+						}
+
+						var bottomIntersections = this.collisionSensors.bottom.intersectObjects( objects );
+						var frontIntersections = this.collisionSensors.front.intersectObjects( objects );
+						var rearIntersections = this.collisionSensors.rear.intersectObjects( objects );
+						var leftIntersections = this.collisionSensors.left.intersectObjects( objects );
+						var rightIntersections = this.collisionSensors.right.intersectObjects( objects );
+
+
+						var hits = bottomIntersections;
+						this.motion.airborne = true;
+						// are we above, or at most knee deep in, the platform?
+						if ( ( hits.length > 0 )) {
+							var actualHeight = hits[ 0 ].distance - this.birdsEye - this.height*2;
+							// collision: stick to the surface if landing on it
+							if ( ( this.motion.velocity.y <= 0 ) && ( actualHeight < this.height ) ) {
+								controls.getObject().position.y -= actualHeight;
+								controls.getObject().position.y = Math.round(controls.getObject().position.y * 100)/100;
+								this.motion.velocity.y = 0;
+								this.motion.airborne = false;
+								if ( jumped === true ) {
+									this.motion.velocity.y = 0.2 * this.baseSpeed;
+								}
+							}
+						}
+						if (this.motion.airborne === true) {
+							this.motion.velocity.y -= (6/fps) * delta * 100; // 100.0 = mass
+							this.motion.velocity.y = Math.max(this.motion.velocity.y, -128832/fps);
+						}
+
+						this.motion.velocity.x -= this.motion.velocity.x * 10.0 * delta;
+						this.motion.velocity.z -= this.motion.velocity.z * 10.0 * delta;
+
+						this.motion.direction.z = Number( moveForward ) - Number( moveBackward );
+						this.motion.direction.x = Number( moveLeft ) - Number( moveRight );
+						this.motion.direction.normalize(); // this ensures consistent movements in all directions
+
+
+						// Calculate acceleration and new velocity
+						var accelerationModifier = (this.sprinting == true) ? 2 : 1;
+						if ( moveForward || moveBackward ) this.motion.velocity.z -= this.motion.direction.z * this.baseSpeed * delta * accelerationModifier;
+						if ( moveLeft || moveRight ) this.motion.velocity.x -= this.motion.direction.x * this.baseSpeed * delta * accelerationModifier;
+						this.motion.velocity.z = Math.round(this.motion.velocity.z * 100) / 100
+						this.motion.velocity.x = Math.round(this.motion.velocity.x * 100) / 100
+
+
+
+						// Adjust velocity based on collisions
+						if (frontIntersections.length > 0) this.motion.velocity.z = Math.max( 0, this.motion.velocity.z );
+						if (rearIntersections.length > 0) this.motion.velocity.z = Math.min( 0, this.motion.velocity.z );
+						if (leftIntersections.length > 0) this.motion.velocity.x = Math.max( 0, this.motion.velocity.x );
+						if (rightIntersections.length > 0) this.motion.velocity.x = Math.min( 0, this.motion.velocity.x );
+
+
+
+
+
+						controls.getObject().translateX( this.motion.velocity.x * delta );
+						controls.getObject().translateY( this.motion.velocity.y * delta );
+						controls.getObject().translateZ( this.motion.velocity.z * delta );
+						this.model.position.set(controls.getObject().position.x, controls.getObject().position.y - 1, controls.getObject().position.z);
+
+						if (Math.abs(this.motion.velocity.x) + Math.abs(this.motion.velocity.z) > 0.1) {
+							this.model.rotation.y = controls.getObject().rotation.y + Math.PI;
+						}
+					}
+				}
+
+				getInteractions(camera, controls, interactive, delta) {
+					this.updateRaycasters(camera, controls);
+					var interactIntersections = this.interactRaycaster.intersectObjects( interactive );
+					var aimIntersections = this.aimRaycaster.intersectObjects( interactive );
+
+					if (aimIntersections.length > 0) {
+						$("#reticle").addClass("enemy");
+						if (inputManager.keys.talk.down == true) {
+							inputManager.keys.talk.down = false;
+							if (interactIntersections.length > 0) {
+								var self = this;
+								this.canMove = false;
+								speak(getDialog(interactIntersections[0].object.parent.name),
+									0,
+									function(){
+										self.canMove = true;
+									}
+								);
+								// setGender(interactIntersections[0].object.parent, "f");
+								// interactIntersections[0].object.parent.getObjectByName("hair", true).scale.set(10, 10, 10);
+							}
+						} else if (inputManager.keys.magic.down == true) {
+							inputManager.keys.talk.down = false;
+							setGender(aimIntersections[0].object.parent, $("#spell-parameters select[index=1]").val());
+						}
+						if (interactIntersections.length > 0) {
+							$("#target-label").text(interactIntersections[0].object.parent.name);
+							// var vector = new THREE.Vector3();
+							// vector.setFromMatrixPosition( controls.getObject().matrixWorld );
+							// vector.y +=0.2;
+							// var skull = interactIntersections[0].object.parent.getObjectByName("Skeleton_skull");
+							// if (skull.position.angleTo(skull.worldToLocal(vector)) < Math.PI/2) {
+							// 	skull.lookAt(vector);
+							// }
+						}
+						else
+						{
+							$("#target-label").text("");
+							// $(".charLabel").text("Current Draw call count: " + renderer.info.render.calls);
+						}
+					}
+					else {
+						// $("#target-label").text("");
+						$("#target-label").text(Math.abs(this.motion.velocity.x) + Math.abs(this.motion.velocity.z));
+						// $("#reticle").css("background", "rgba(0,50,200,0.2)");
+						$("#reticle").removeAttr("class");
+					}
+
+
+				}
+
+				updateRaycasters(camera, controls) {
+					var dir = new THREE.Vector3();
+					controls.getObject().getWorldDirection(dir).negate();
+					var pos = controls.getObject().position;
+					this.collisionSensors.bottom.ray.origin.copy( pos );
+					this.collisionSensors.bottom.ray.origin.y += this.birdsEye;
+					this.collisionSensors.front.ray.set(pos, dir);
+					this.collisionSensors.rear.ray.set(pos, dir.negate());
+					this.collisionSensors.left.ray.set(pos, dir.applyMatrix4( new THREE.Matrix4().makeRotationY(- (Math.PI / 2) )));
+					this.collisionSensors.right.ray.set(pos, dir.applyMatrix4( new THREE.Matrix4().makeRotationY( Math.PI )));
+
+
+					var interactRay = new THREE.Vector3();
+					camera.getWorldDirection(interactRay);
+					this.interactRaycaster.ray.set(pos, interactRay);
+					this.aimRaycaster.ray.set(pos, interactRay);
+					this.interactRaycaster.ray.origin.y += this.height;
+					this.aimRaycaster.ray.origin.y += this.height;
+				}
+
+				jump() {
+					if ( this.motion.airborne === false ) this.motion.velocity.y = 0.2 * this.baseSpeed;
+					this.motion.airborne = true;
+				}
+			}
+		</script>
+		<script>
+			var onRenderFcts= [];
+			var rain, rainGeo, rainMaterial;
+			var raining = false;
+			const gameObjectManager = new GameObjectManager();
+			const playerControls = new PlayerControls();
+			const inputManager = new InputManager();
+			const hud = new HUD();
+
+			var renderer;
+			$(document).ready(function(){
+				$("body").append(hud.html);
+				var camera, controls, scene, sky, water, time=0, targetPerson, firstPerson=true, fps = 30;
+
+				var worldBounds = {
+					north: 1000,
+					south: -1000,
+					east: 1000,
+					west: -1000,
+					top: 200,
+					bottom: -10
+				};
+				var prevTime = performance.now();
+				var direction = new THREE.Vector3();
+				var color = new THREE.Color();
+
+				var mixer;
+				var clock = new THREE.Clock();
+
+
+
+				var objects = [];
+				var interactive = [];
+
+				function init() {
+					scene = new THREE.Scene();
+					scene.background = new THREE.Color( 0x11aaff );
+					camera = new THREE.PerspectiveCamera(
+						35,
+						window.innerWidth/window.innerHeight,
+						0.1,
+						300
+					);
+
+					renderer = new THREE.WebGLRenderer( { antialias: true } );
+					renderer.setPixelRatio( window.devicePixelRatio );
+					renderer.sortObjects = true;
+					renderer.shadowMap.enabled = true;
+					renderer.shadowMap.shadowSide = THREE.CullFaceFrontBack;
+					// renderer.shadowMap.type = THREE.BasicShadowMap;
+					renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+					document.getElementById('container').appendChild(renderer.domElement);
+					renderer.setSize(window.innerWidth, window.innerHeight);
+					// renderer.gammaFactor = 2.2;
+					renderer.gammaFactor = 1.5;
+					renderer.gammaInput = true;
+					renderer.gammaOutput = true;
+					renderer.physicallyCorrectLights;
+					renderer.toneMapping = THREE.Uncharted2ToneMapping;
+					renderer.toneMappingExposure = 3;
+					renderer.toneMappingWhitePoint = 5;
+
+
+
+					camera.position.x = 0;
+					camera.position.y = playerControls.height - 0.1;
+					camera.position.z = 0;
+					camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+					controls = new THREE.PointerLockControls( camera );
+					renderer.domElement.addEventListener( 'click', function () {
+						controls.lock();
+					}, false );
+
+				var onKeyUp = function ( event ) {
+					switch ( event.keyCode ) {
+						case 81: // q
+							firstPerson = !firstPerson;
+							if (firstPerson == true) {
+								camera.position.z = 0;
+								playerControls.model.visible = false;
+							} else {
+								camera.position.z = 5;
+								playerControls.model.visible = true;
+							}
+							break;
+					}
+				};
+				document.addEventListener( 'keyup', onKeyUp, false );
+
+
+
+
+					var city  = new THREEx.ProceduralCity().createSquareCity();
+					scene.add(city)
+
+					objects.push(city);
+					city.traverse(function(node) {
+						if (node.material) {
+							objects.push(node);
+						}
+					});
+
+					// var plane = getPlane(100, 100);
+					// scene.add(plane);
+					// objects.push(plane);
+					// plane.traverse(function(node) {
+					// 	if (node.material) {
+					// 		objects.push(node);
+					// 	}
+					// });
+
+
+					var people = new THREE.Object3D();
+					people.castShadow = true;
+					var ldr = new PersonLoader(function() {
+						people.name="PeopleGroup"
+
+						// people.add(getPC("Namfoodle", -1, 0, 0));
+						people.add(getPC("Sir Jasper", 5, 0.1, 20));
+						people.add(getPC("Kitsune", 0, 0.1, 20));
+						people.add(getPC("Kitsune", 0, 0, -30));
+						people.add(getNPC("Ribbert", -3, 0, 5));
+						people.add(getPC("Shamous", -2, 0, 2));
+						var playerModel = getPC("Player", 0, 0, 0);
+						people.add(getPC("Torque", 3, 0.1, 20));
+						scene.add(playerModel);
+						playerModel.visible = false;
+						playerControls.model = playerModel;
+						// people.add(getPC("Zenreya", -1, 0, 1));
+						// people.add(getPC("Seabern", -2, 0, 1));
+						// people.add(getNPC("Smith", -3, 0, 1));
+						// people.add(getNPC("Helja", -4, 0, 1));
+						// people.add(getNPC("Adrik", -5, 0, 1));
+
+						// people.add(getRandom(-4, 0, 10, "goblin", "m"));
+						// people.add(getRandom(-3, 0, 10, "goblin", "f"));
+						// people.add(getRandom(-2, 0, 10, "halforc", "m"));
+						// people.add(getRandom(-1, 0, 10, "halforc", "f"));
+						// people.add(getRandom(0, 0, 10, "halfling", "m"));
+						// people.add(getRandom(1, 0, 10, "halfling", "f"));
+						// people.add(getRandom(2, 0, 20, "bugbear", "m"));
+						// people.add(getRandom(3, 0, 10, "bugbear", "f"));
+						// people.add(getRandom(4, 0, 10, "orc", "m"));
+						// people.add(getRandom(5, 0, 10, "orc", "f"));
+						// people.add(getRandom(-4, 0, 12, "aarakocra", "m"));
+						// people.add(getRandom(-3, 0, 12, "aarakocra", "f"));
+						// people.add(getRandom(-2, 0, 12, "triton", "m"));
+						// people.add(getRandom(-1, 0, 12, "triton", "f"));
+						// people.add(getRandom(0, 0, 12, "human", "m"));
+						// people.add(getRandom(1, 0, 12, "human", "f"));
+						// people.add(getRandom(2, 0, 12, "gnome", "m"));
+						// people.add(getRandom(3, 0, 12, "gnome", "f"));
+						people.add(getRandom(4, 0.1, 22, "tiefling", "m"));
+						// people.add(getRandom(5, 0, 12, "tiefling", "f"));
+						// people.add(getRandom(-4, 0, 14, "dwarf", "m"));
+						// people.add(getRandom(-3, 0, 14, "dwarf", "f"));
+						people.add(getRandom(-2, 0.1, 24, "elf", "m"));
+						people.add(getRandom(-1, 0.1, 24, "elf", "f"));
+						people.add(getRandom(0, 0.1, 24, "aasimar", "m"));
+						people.add(getRandom(1, 0.1, 24, "aasimar", "f"));
+						// people.add(getRandom(2, 0, 14, "firbolg", "m"));
+						// people.add(getRandom(3, 0, 14, "firbolg", "f"));
+						// people.add(getRandom(4, 0, 14, "tabaxi", "m"));
+						// people.add(getRandom(5, 0, 14, "tabaxi", "f"));
+						// people.add(getRandom(-4, 0, 16, "bloodfin", "m"));
+						// people.add(getRandom(-3, 0, 16, "bloodfin", "f"));
+						// people.add(getRandom(-2, 0, 16, "grung", "m"));
+						// people.add(getRandom(-1, 0, 16, "grung", "f"));
+						// people.add(getRandom(0, 0, 16, "grippli", "m"));
+						// people.add(getRandom(1, 0, 16, "grippli", "f"));
+						// people.add(getRandom(2, 0, 16, "kenku", "m"));
+						// people.add(getRandom(3, 0, 16, "kenku", "f"));
+						// people.add(getRandom(4, 0, 16, "drow", "m"));
+						// people.add(getRandom(5, 0, 16, "drow", "f"));
+						// people.add(getRandom(-4, 0, 18, "tortle", "m"));
+						// people.add(getRandom(-3, 0, 18, "tortle", "f"));
+						people.children.forEach(function(node) {
+							objects.push(node);
+							interactive.push(node.getObjectByName("Target"));
+						})
+					}, true);
+
+					scene.add(people);
+					controls.getObject().position.set(0,playerControls.height,25);
+					// controls.getObject().rotation.y = Math.PI
+					scene.add( controls.getObject() );
+
+
+					// Planet Test Stuff
+
+					var geometry   = new THREE.SphereGeometry(0.5, 32, 32);
+					var planetMaterial  = new THREE.MeshPhongMaterial();
+					var planetMesh = new THREE.Mesh(geometry, planetMaterial);
+					planetMesh.position.set(2, 1, 2);
+					planetMaterial.map    = new THREE.TextureLoader().load('/img/textures/earthmap1k.jpg');
+					planetMaterial.bumpMap    = new THREE.TextureLoader().load('/img/textures/earthbump1k.jpg');
+					planetMaterial.bumpScale = 0.05;
+					planetMaterial.specularMap    = new THREE.TextureLoader().load('/img/textures/earthspec1k.jpg');
+					planetMaterial.specular  = new THREE.Color('grey');
+
+
+					material  = new THREE.MeshPhongMaterial({
+						map     : new THREE.TextureLoader().load('/img/textures/earthcloudmap.jpg'),
+						alphaMap     : new THREE.TextureLoader().load('/img/textures/earthcloudmaptrans.jpg'),
+						side        : THREE.DoubleSide,
+						opacity     : 0.8,
+						transparent : true,
+						depthWrite  : false,
+					});
+					var cloudMesh = new THREE.Mesh(new THREE.SphereGeometry(0.51, 32, 32), material);
+					// var cloudMesh = new THREE.Mesh(new THREE.SphereGeometry(0.55, 32, 32), new THREE.MeshPhongMaterial({
+					// 	color : 0xff0000
+					// }));
+					planetMesh.add(cloudMesh);
+
+					scene.add(planetMesh);
+
+
+					material  = new THREE.MeshPhongMaterial({
+						map     : new THREE.TextureLoader().load('/img/textures/earthcloudmap.jpg'),
+						alphaMap     : new THREE.TextureLoader().load('/img/textures/earthcloudmaptrans.jpg'),
+						side        : THREE.BackSide,
+						opacity     : 0.1,
+						transparent : true,
+					});
+					var cloudMesh2 = new THREE.Mesh(new THREE.SphereGeometry(199, 32, 32), material);
+					planetMesh.add(cloudMesh2);
+
+					// material  = new THREE.MeshPhongMaterial({
+					// 	map     : new THREE.TextureLoader().load('/img/textures/nyc_skyline.png'),
+					// 	side        : THREE.BackSide,
+					// 	opacity     : 0.9,
+					// 	transparent : true,
+					// });
+					// var skyline = new THREE.Mesh(new THREE.CylinderGeometry(199.5, 199.5, 32, 32, 1, true), material);
+					// skyline.position.y = 10
+					// textures = ['map'];
+					// textures.forEach((mapName) => {
+					// 	skyline.material[mapName].wrapS = THREE.RepeatWrapping;
+					// 	skyline.material[mapName].wrapT = THREE.RepeatWrapping;
+					// 	skyline.material[mapName].repeat.set(10, 1);
+					// });
+					// planetMesh.add(skyline);
+
+
+					// create the geometry sphere
+					// create the material, using a texture of startfield
+					var material  = new THREE.MeshLambertMaterial();
+					material.map   = new THREE.TextureLoader().load('/img/textures/galaxy_starfield.png');
+					material.emissiveMap = material.map;
+					material.color = 0x000000;
+					material.side  = THREE.BackSide;
+					// create the mesh based on geometry and material
+					sky  = new THREE.Mesh(
+						new THREE.SphereGeometry(200, 32, 32),
+						material
+					);
+					scene.add(sky);
+					onRenderFcts.push(function(delta, now){
+						cloudMesh.rotation.y  += 1/32 * delta
+						cloudMesh2.rotation.y  -= 1/64 * delta
+					})
+					// End Planet Test Stuff
+
+
+					// Rain test stuff
+
+
+					if (raining) {
+						var rainCount= 2500;
+						rainGeo = new THREE.Geometry();
+						for(let i=0;i<rainCount;i++) {
+							var rainDrop = new THREE.Vector3(
+								Math.random() * 200 -100,
+								Math.random() * 300 - 150,
+								Math.random() * 200 - 100
+							);
+							rainDrop.velocity = {};
+							rainDrop.velocity = 0;
+							rainGeo.vertices.push(rainDrop);
+						}
+
+						rainMaterial = new THREE.PointsMaterial({
+							color: 0xaaaaaa,
+							size: 0.2,
+							transparent: true
+						});
+						rain = new THREE.Points(rainGeo,rainMaterial);
+						sky.add(rain);
+						onRenderFcts.push(function(delta, now){
+							rainGeo.vertices.forEach(p => {
+								p.velocity -= 0.1 + Math.random() * 0.1;
+								p.y += p.velocity;
+								if (p.y < -200) {
+									p.y = 200;
+									p.velocity = 0;
+								}
+							});
+							rainGeo.verticesNeedUpdate = true;
+							rain.rotation.y +=0.002;
+						});
+					}
+					// End rain test stuff
+
+					var moon = new THREE.Mesh(new THREE.PlaneBufferGeometry(25, 25, 1, 1), new THREE.MeshStandardMaterial({
+						color: 0xdddddd,
+						// emissive: 0x6600aa,
+						emissive: 0x330055,
+						transparent: true,
+						map: new THREE.TextureLoader().load("/img/textures/moon.png"),
+						side: THREE.DoubleSide
+					}) );
+					moon.rotation.x = Math.PI / 2;
+					moon.rotation.y = Math.PI/8;
+					moon.position.set(-10,100,3);
+					sky.add(moon);
+
+					var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+					directionalLight.castShadow = true;
+					directionalLight.name = "Skylight";
+					directionalLight.target = controls.getObject();
+
+					//Set up shadow properties for the light
+					directionalLight.shadow.mapSize.width = 1024;
+					directionalLight.shadow.mapSize.height = 1024;
+					directionalLight.shadow.camera.right = 16;
+					directionalLight.shadow.camera.left = -16;
+					directionalLight.shadow.camera.top = 16;
+					directionalLight.shadow.camera.bottom = -16;
+					moon.add(directionalLight);
+
+					var building = getBuilding();
+					building.position.set(-20, 0, -1);
+
+					scene.add(building);
+
+
+
+
+					var ambLight = new THREE.HemisphereLight(0xffffff, 0x222222, 1);
+					ambLight.position.set(0, 20, 0);
+					scene.add(ambLight);
+
+					// transform objects
+					var winResize = new THREEx.WindowResize(renderer, camera);
+					update();
+				}
+
+				function cityBlock() {
+
+					// Average U.S. street lane width ~= 10ft.
+					// Average Manhattan city block ~= 264ft. by 900 ft.
+					// Alleyway width in current Seattle guidelines = 12ft - 20ft
+					// NYC lot size in 1879 = 25 x 100 ft
+
+					var block = new THREE.Object3D();
+
+
+					const minBuildingHeight = 200;
+					const maxBuildingHeight = 600;
+					const averageBuildingWidth = 100;
+					const averageBuildingDepth = 100;
+					const blockWidthInBuildings = 900/averageBuildingWidth;
+					const blockDepthInBuildings = 2;
+					const textures = ['map', 'emissiveMap', 'specularMap'];
+
+					for (let i = 0; i < blockDepthInBuildings; i++) {
+						for (let j = 0; j < blockWidthInBuildings; j++) {
+							const height=Math.floor(Math.random() * (maxBuildingHeight - minBuildingHeight + 1) + minBuildingHeight);
+							const width= averageBuildingWidth - (Math.floor(Math.random() * 5) + 1);
+							const depth= averageBuildingDepth - (Math.floor(Math.random() * 5) + 1);
+							let building = new THREE.Mesh(new THREE.BoxBufferGeometry( width, height, depth),
+								new THREE.MeshLambertMaterial({
+									color: 0xdddddd,
+									emissive: 0x0011aa,
+									emissiveIntensity:2,
+									side: THREE.FrontSide,
+									map: new THREE.TextureLoader().load('/img/textures/skyscraper.png'),
+									emissiveMap: new THREE.TextureLoader().load('/img/textures/skyscraper_emissive.png'),
+									specularMap: new THREE.TextureLoader().load('/img/textures/skyscraper_spec.png')
+								})
+							);
+							textures.forEach((mapName) => {
+								building.material[mapName].wrapS = THREE.RepeatWrapping;
+								building.material[mapName].wrapT = THREE.RepeatWrapping;
+								building.material[mapName].repeat.set(1, 3);
+							});
+							building.geometry.translate((averageBuildingWidth - width) / 2, height/2, (averageBuildingDepth - depth) / 2);
+							building.position.set(j * 100, 0, i * 120);
+							building.castShadow = true;
+							building.receiveShadow = true;
+							block.add(building);
+						}
+					}
+
+					block.scale.set(0.2, 0.2, 0.2);
+					return block;
+				}
+
+				function getBuilding() {
+
+					var building = new THREE.Mesh(new THREE.BoxBufferGeometry( 12, 72, 12),
+						new THREE.MeshLambertMaterial({
+							color: 0xdddddd,
+							emissive: 0x0011aa,
+							emissiveIntensity:2,
+							side: THREE.FrontSide,
+							map: new THREE.TextureLoader().load('/img/textures/skyscraper.png'),
+							emissiveMap: new THREE.TextureLoader().load('/img/textures/skyscraper_emissive.png'),
+							specularMap: new THREE.TextureLoader().load('/img/textures/skyscraper_spec.png')
+						})
+					);
+					textures = ['map', 'emissiveMap', 'specularMap'];
+					textures.forEach((mapName) => {
+						building.material[mapName].wrapS = THREE.RepeatWrapping;
+						building.material[mapName].wrapT = THREE.RepeatWrapping;
+						building.material[mapName].repeat.set(1, 3);
+					});
+					// scene.add(building);
+					var buildingBase = new THREE.Mesh(new THREE.BoxBufferGeometry( 12, 6, 12),
+						new THREE.MeshLambertMaterial({
+							color: 0xdddddd,
+							emissive: 0x0011aa,
+							emissiveIntensity:1,
+							side: THREE.FrontSide,
+							map: new THREE.TextureLoader().load('/img/textures/skyscraper_base.png'),
+							emissiveMap: new THREE.TextureLoader().load('/img/textures/skyscraper_base_emissive.png'),
+							specularMap: new THREE.TextureLoader().load('/img/textures/skyscraper_base_spec.png')
+						})
+					);
+					building.geometry.translate(6, 42, 6);
+					buildingBase.geometry.translate(6, 3, 6);
+					building.castShadow = true;
+					buildingBase.add(building);
+					buildingBase.castShadow = true;
+					return buildingBase;
+				}
+
+				function getPlane(w, h) {
+
+					var tronGrid = new THREE.Group();
+					var intensity = 0.01;
+					var rectLight = new THREE.RectAreaLight( 0xdd22ff, intensity, w, h );
+					rectLight.lookAt( 0, 0, 0 );
+					rectLight.rotation.x = -Math.PI / 2;
+					tronGrid.add( rectLight );
+
+					// rectLightHelper = new THREE.RectAreaLightHelper( rectLight );
+					// tronGrid.add( rectLightHelper );
+
+					var rectLightMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry(), new THREE.MeshBasicMaterial({color: 0xdd22ff,}) );
+					rectLightMesh.scale.x = rectLight.width;
+					rectLightMesh.scale.y = rectLight.height;
+					rectLight.position.y = -0.5;
+					rectLight.add( rectLightMesh );
+
+					// var rectLightGrid = new THREE.Mesh(new THREE.PlaneBufferGeometry(), new THREE.MeshLambertMaterial({color: 0x6600aa, transparent: true, }) );
+					var rectLightGrid = new THREE.Mesh(new THREE.PlaneBufferGeometry(), new THREE.MeshLambertMaterial({color: 0x110066, transparent: true, }) );
+					rectLightGrid.receiveShadow = true;
+					rectLightGrid.scale.x = rectLight.width;
+					rectLightGrid.scale.y = rectLight.height;
+					rectLightGrid.material.alphaMap = new THREE.TextureLoader().load("/img/textures/gridBump.png");
+					rectLightGrid.material.alphaMap.wrapS = THREE.RepeatWrapping;
+					rectLightGrid.material.alphaMap.wrapT = THREE.RepeatWrapping;
+					rectLightGrid.material.alphaMap.repeat.set(w, h);
+					rectLightGrid.rotation.x = -Math.PI / 2;
+					tronGrid.add( rectLightGrid );
+
+					return tronGrid;
+				}
+
+				function update() {
+					if ( controls.isLocked === true ) {
+						const mixTime = clock.getDelta();
+						objects.forEach(person => {
+							if (person.userData.mixer != undefined) {
+								person.userData.mixer.update(mixTime);
+							}
+						});
+
+						gameObjectManager.update();
+						renderer.render(scene, camera);
+
+
+
+						var time = performance.now();
+						var delta = Math.min(( time - prevTime ) / 1000, 1/20);
+
+						prevTime = time;
+						playerControls.getCollisions(controls, objects, delta, fps);
+						playerControls.getInteractions(camera, controls, interactive, delta);
+
+
+
+
+						sky.position.set(controls.getObject().position.x, controls.getObject().position.y - 1, controls.getObject().position.z);
+
+
+						inputManager.update();
+						onRenderFcts.forEach(function(onRenderFct){
+							onRenderFct(delta, time/1000)
+						})
+					}
+					renderer.render( scene, camera );
+					setTimeout( function() {
+						requestAnimationFrame( update );
+					}, 1000 / fps );
+				}
+
+				init();
+			});
+		</script>
+	</head>
+
+	<body style="margin:0px; padding:0px;">
+		<div id="container">
+			<!-- prevent null -->
+		</div>
+	</body>
+
+</html>

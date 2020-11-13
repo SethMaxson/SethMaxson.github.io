@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Paraelemental Plane of Ice</title>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+
+		<style>
+			h1, h2, h3, .name, .collapsible {
+				color:#58180d;
+			}
+
+			h2 {
+				margin-bottom:0px;
+				padding:0px;
+				line-height:100%;
+			}
+
+			h4 {
+				color:black;
+				margin:1em 0em 0.2em 0em;
+				font-size:1.1em;
+			}
+
+
+			table tr:nth-child(odd) td {
+				background-color:#e0e5c1;
+			}
+
+			table tr:nth-child(even) td {
+				background-color:#ebe2c5;
+			}
+			th {
+				font-weight: bold;
+			}
+			tr th:last-child {
+				text-align:left;
+				padding:5px;
+			}
+
+			tr td:first-child {
+				white-space: nowrap;
+				width:35px;
+				text-align:center;
+			}
+
+			.collapsible {
+				position:relative;
+				top:0;
+				left:0;
+				background:white;
+				cursor: pointer;
+				width: 100%;
+				border: none;
+				text-align: left;
+				outline: none;
+				border-bottom:5px solid #6a9bc9;
+				padding:5px;
+				font-size:20px;
+				font-weight:bold;
+				border-radius:10px 10px 0px 0px;
+				margin-top:5px;
+			}
+
+			.collapsible:after {
+				background:none;
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "+"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active:after {
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "-"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active, .collapsible:hover {
+				background-color: #e5e5e7;
+			}
+
+			.content, .item {
+				margin-top:0px;
+				max-height: 0;
+				padding:0px 20px;
+				font-size:0.9em;
+				overflow: hidden;
+				transition: max-height 0.2s ease-out;
+				background-color: hsl(209, 47%, 90%);
+				border-radius:0px 0px 15px 15px;
+				border:1px solid black;
+			}
+
+			table {
+				font-size:1.1em;
+				width:100%;
+			}
+
+			.aside {
+				background-color:#c1cbe5;
+				padding:10px;
+				margin-top:10px;
+				border-top:3px solid black;
+				border-bottom:3px solid black;
+			}
+
+			ul, ol {
+				font-size:inherit;
+			}
+
+			div.container>div {
+				background-color:#eeeeff;
+				padding:10px;
+				border:5px double gray;
+				border-radius:25px;
+				margin-top:10px;
+			}
+
+			.prerequisites {
+				padding-top:5px;
+				padding-bottom:20px;
+				font-style: italic;
+				color:#444;
+				font-size:0.9em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<h1>
+					Paraelemental Plane of Ice
+				</h1>
+				<p>
+					Physical Conditions
+					Located between the Elemental Planes of Air and Water, the Paraelemental Plane of Ice (or the Elemental Plane of Cold, as it's known to some Clueless with a skewed view of multiversal cosmology) is somewhat odd in not especially displaying characteristics of either. With neither the fluidity of Water nor the lightness of Air, it seems something of an odd manifestation in the Inner Planar structure. However, its relationship is somewhat more obvious upon closer examination. Ice itself consists of an infinite expanse of its titular material. Draw closer to Air, and the ice breaks away, forming massive blizzards atop the surface of the endless expanse in the region known as Precipice. Closer to Water, and the ice becomes less and less solid, eventually giving way to the ocean of motionless glaciers known as the Sea of Frozen Lives. Thus, it becomes more clear; Ice serves as the point of freezing transition between its parent planes.
+
+					Much as the material itself, the characteristics of the plane cannot be easily predicted from the characteristics of Air and Water. For one, Ice does have true gravity, pointing in the general direction of the border with Water. Thus, within Precipice, a person can walk along the "surface" of the plane as if it was nothing more than the arctic region of any number of Prime worlds. It's this fact that lends to the common nickname of the plane given by its natives, the Floating or Bobbing Plane; so named by the appearance this arrangement gives of the Plane of Ice floating "atop" the Plane of Water.
+
+					Of course, like most planes beyond Air, breathing can be a concern in Ice. On Precipice, there is no worry about breathable air, as the entire region is filled with it. In the solid mass of the plane, though, it can be troublesome. Pockets of elemental air are one relief, and though these are more common than in other planes of a single solid mass such as Earth, they're still hardly a reliable resource. Some fissures and cracks in the ice also emit breathable air from the ice itself, but this isn't always enough to sustain a person's life. Such features only produce enough air for those that require it perhaps 75% of the time; the rest, it's a slow suffocation rather than a quick one.
+
+					The pressure of the ice must also be kept in mind for those wishing to explore beyond Precipice. Tunnels cut into the ice are far from permanent, with the infinite extent of the plane slowly sealing any passages cut into it much as Earth or Mineral do. A tunnel not maintained by mystical means will usually seal itself in a matter of days, never lasting beyond a week or so. And as in the previously mentioned planes, this pressure even poses a danger to those traveling to the Floating Plane. Travelers that emerge into solid Ice are immediately constricted tightly by the pressure of the plane, which proceeds to eventually crush the life out of them if the traveler doesn't get himself more space quickly.
+
+					Vision, also, can be a problem, as unlike Air and Water there is no natural light in the majority of Ice. There are some exceptions; Precipice receives a thin amount of light filtering in from Air, about the equal of a Prime night, for example, and many of the other border regions have similar features. In general, however, Ice is a dark plane, a fact further aided by the danger of the most common source of light for travelers - fire. Though safe enough on the surface of the plane, for those tunneling below, bringing an extra heat source brings with it the obvious risk of tunnel collapse, or at least a dousing in quick-to-refreeze frigid water from the tunnel's ceiling. Further, in the coldest regions of Ice, fire itself can freeze, with about equal chance of giving its bearer either a useless chunk of blue fire-shaped ice, or the odd substance known as coldfire.
+
+					There are a few such regions throughout Ice, both in the innermost sections of the plane (known as Core Ice to natives), and the boundary regions. Though fire isn't the only substance at risk from freezing due to the chill, of course. In the coldest regions of the plane, even ice itself freezes, with the material of the plane constantly growing outwards at almost a foot a minute; here, even creatures immune to the cold are damaged by the environment of the plane, though of course those actually composed of ice are not.
+
+					Beyond even that, though, are the locations of "true cold", as they're known. Each such region is associated with the freezing of a specific substance or abstract concept. In some, the words freeze from a person's mouth before falling to the ground, rendering people silent. In others, love may freeze from a person's mind, rendering them as emotionally cold as the plane until they leave. Good, evil, left, right, happy, sad, red, green, it is said that somewhere in Ice there is a place where any idea may solidify, and even be collected from the plane by a brave enough basher. Many bazaars in Sigil or Tradegate are known for their sale of such odd items as frozen courage or solid truth, and these are usually obtained by brave miners on Ice risking their lives in areas of true cold. Such abstractions are often melted down and used in the creation of magical items. For obvious reasons, however, their "harvesting" can be quite dangerous, especially in those areas where the freezing concept is especially abstract; mining in an area where "near" freezes out of existence is a mind-bending thought few care to consider for long.
+
+					Of course, the dangers of Ice aren't all so strange. The natural hazards commonly associated with such natural regions can also be found here, though the cold is far greater than any natural environments. Precipice is safe enough for those dressed for winter conditions, but beyond it, any without special protection from cold take 1d6 damage every 10 rounds. In the most extreme areas where even ice can freeze, even those otherwise immune to the cold take such damage. In many places both on the surface and within the rare tunnels through Ice, sinkholes sit ready to suck in an unwary traveler. Almost indistinguishable from solid ice by the untrained eye, these slush-filled pits are even more dangerous than quicksand, as those in the heavy clothing most commonly required in Ice are at the most risk of either drowning, should the weight of their water-logged outfit pull them to the bottom, or freezing, should they try abandoning their protection to escape. Just as hazardous to those in Ice, however, is the avalanche. A sudden loud noise inside any of the larger interglacial crevices or the numerous frozen cliffs in Precipice can bring about a collapse of ice and snow, burying an unfortunate group in almost an instant. Either hazard can be deadly to even a prepared party.
+
+					Access to Ice is somewhat limited, as is the case for all the secondary Inner Planes, with portals to the Floating Plane being comparatively rare. Elemental vortices to Ice from the Prime tend to only occur in arctic or glacial areas, or in the centers of the harshest blizzards, and thus aren't often very accessible to planar travelers. As for other major portals, it's known that a two-way gate exists connecting Ice to Cania, and portals are believed to connect Ice to two especially frigid layers of the Abyss. Of these, only one is thought to be two-way, that between this plane and Soulfreeze, but the key for that portal is usually said to be a mortal soul, consumed in the transition; thus, few wish to investigate this claim in too much detail. A small few also claim the existence of a gate between Ice and the fiery layer of Muspelheim, but most consider such theories the ravings of barmies.
+
+					Magical Conditions
+					On the plane of Ice, spells of Earth or Fire are impeded, and spells of Cold or ice are maximized. Other spells are unaffected by the conditions except as the environment would dictate.
+
+					Locations
+					Boundary Regions
+					Fog of Unyielding Frost - Steam
+					Frigid Void - Vacuum
+					Precipice - Air
+					Sea of Frozen Lives - Water
+					Shimmering Drifts - Lightning
+					Stinging Storm - Salt
+					Sites
+					Arcolantha
+					Bloodmire
+					The Chiseled Estate
+					Mountain of Ultimate Winter
+					Cities
+					Teliggin
+					Tiera Minuut
+					See Also
+					Inhabitants of Ice
+					References
+					The Inner Planes, pp. 68-73
+					Manual of the Planes, pg.207
+				</p>
+
+
+
+
+				<div id="Section">
+					<h2>Section</h2>
+					<button class="collapsible">
+						Section
+					</button>
+					<div class="content">
+						<p>
+							Content
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+
+	<script>
+		$(document).ready(function() {
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.maxHeight){
+						content.style.maxHeight = null;
+						content.style.padding = "0px 20px";
+					} else {
+						content.style.maxHeight = content.scrollHeight + "px";
+						content.style.padding = "5px 20px";
+					}
+				});
+			}
+		})
+	</script>
+
+</html>

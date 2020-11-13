@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Tahl Town</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+
+			.travel-brochure .location-info {
+				width:30%;
+				display:block;
+				position:absolute;
+				top:0px;
+				left:0px;
+				box-shadow: 1px 0px 10px black,
+				8px 0px 8px inset rgba(255,255,255,0.5);
+				z-index:6;
+				height:100%;
+				overflow-y:auto;
+				background-color:rgb(253, 243, 229);
+			}
+
+			.location-info h2 {
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin:2em 0.5em 1em 0.5em;
+				padding:7px 10px;
+				font-size:14pt;
+				text-align:center;
+				font-weight:600;
+				font-family: 'Merienda One', cursive;
+				color: #5ea04a;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+
+			.location-info h1 {
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin:0.5em 0.4em;
+				padding:7px 10px;
+				font-size:16pt;
+				text-align:center;
+				font-weight:600;
+				font-family: 'Merienda One', cursive;
+				color: #5ea04a;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+
+			.location-info h3 {
+				text-align-last: justify;
+				margin:0.5em 1em;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #555;
+				font-weight:900;
+				font-family:monospace;
+				color:#999;
+				text-transform: uppercase;
+			}
+
+			.location-info p {
+				text-align: justify;
+				margin:1em 1em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #eee;
+				font-weight:500;
+				color:rgba(17, 17, 17, 0.9);
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.location-info ul {
+				text-align: left;
+				margin:0em 1em 0.5em 0.5em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #111;
+				font-weight:500;
+				color:rgba(17, 17, 17, 0.9);
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.location-info ul li {
+				padding-top:0.5em;
+			}
+
+			.travel-brochure #map-body {
+				width:70%;
+				display:block;
+				float:right;
+			}
+			.dock {
+				position:absolute;
+				width:3%;
+				height:3%;
+				transform:translate(-50%, -50%);
+				background:url("/dnd/img/maps/elements/hut1.png");
+				background-size: contain;
+				box-sizing: border-box;
+				text-align: center;
+				line-height: 26px;
+				font-size:26px;
+				font-weight: bold;
+				color:white;
+			}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/map.js"></script>
+	</head>
+
+	<body class="travel-brochure">
+		<div class="location-info" style="background-color:#f4f0cb; background-image: url(/dnd/img/textures/parchment.jpg); background-repeat: repeat;">
+			<h3>Amarillo Airship Agency</h3>
+			<h1>Tahl Town</h1>
+			<p>
+				Tahl Town is named after its founder, Joban Tahl. Once a simple farmer living outside of Amarillo, Tahl became frustrated with the rule of the Lims. He vowed to end the tyranny of the Lims. Many of his peers shared his views, and gladly followed him into the wilds to the west of the capital. The new alliance built a city to call their own, and declared themselves to be an independent kingdom.
+			</p>
+			<p>
+				Tahl Town is often referred to as "Bandit Town" by those loyal to Amarillo. Tahl Town has few modern conveniences, and its people have a gruffness about them. Most of the residents of Tahl Town are outcasts. Some are criminals on the lam, paupers who couldn't afford life in Amarillo, or mages hoping to perform magical experiments without government regulation. Regardless of each citizen's reason for living in Tahl Town, they almost universally share a hatred of larger governments.
+			</p>
+			<h2>Attractions</h2>
+			<p>
+				We got:
+				<ul>
+					<li>
+						Booze
+					</li>
+					<li>
+						Freedom
+					</li>
+					<li>
+						Did we mention booze?
+					</li>
+				</ul>
+			</p>
+
+			<!-- <p>
+				Population:
+				Tahl Town's laws are very minimalistic. Because of this, a traveler's experiences in Tahl Town are very dependent upon their strength. A weak traveler will likely be assaulted, robbed, or worse. A more formidable traveler may find that they enjoy the freedom offered by the city.
+
+				Tahl Town's has no formal education system, and most of its citizens come from humble backgrounds with little academic prowess. As a result, their view of the world is very skewed. Tahl Town's population is mostly human, but other races are welcomed as long as the citizens are already familiar with them. More exotic races are often mistrusted, if not outright driven out of town.
+			</p> -->
+		</div>
+		<div id="map-body" style="overflow: hidden; background:#111111;">
+			<div class="map-controls" style="z-index: 2; padding-left:80px;">
+				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
+				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
+			</div>
+
+			<div class="map-container map" style="background-image:url('/dnd/img/maps/cities/TahlTown.png'); background-repeat: no-repeat; background-size: contain; width:2500px; height:2500px; text-align: center; transform-origin:center center; image-rendering: pixelated;">
+				<div class="dock" style="left:1075px; top:1325px; width:4%; height:4%;"><span class="city-preview"><h1>"City Hall"</h1></span></div>
+				<div class="dock" style="left:850px; top:1475px; width:5%; height:5%;"><span class="city-preview"><h1>Laboratory</h1></span></div>
+				<div class="dock" style="left:51.5%; top:41.5%;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:54.9%; top:43.7%;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:58.1%; top:46.3%;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:51.1%; top:45.4%;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:54.1%; top:47.1%;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:1100px; top:1225px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:975px; top:1400px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:1075px; top:1450px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:975px; top:1500px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:30.5%; top:56.5%;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:1200px; top:1450px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:1300px; top:1425px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:1400px; top:1475px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:1250px; top:1525px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:1175px; top:1525px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:1350px; top:1550px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:1350px; top:1650px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock pedestrian party" style="left:54.1%; top:47.1%;"><span class="city-preview"><h1>House</h1></span></div>
+			</div>
+		</div>
+	</body>
+
+</html>

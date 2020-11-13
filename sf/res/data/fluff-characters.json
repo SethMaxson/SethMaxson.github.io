@@ -1,0 +1,298 @@
+{
+	"items": [
+		{
+			"id": "jasper",
+			"name": "Jasper Nightbreeze",
+			"titles": [
+				"Sir Jasper the Bold"
+			],
+			"images": {
+				"portrait": "party/jasper_portrait.png",
+				"headshot": "portrait/jasper2.jpg",
+				"body": "akiton.png",
+				"background": "akiton.jpg"
+			},
+			"properties": {
+				"species": "Elf",
+				"gender": "F",
+				"age": 25,
+				"birthDate": "06/06/292",
+				"homeworld": "Geoss"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Jasper was orphaned at an early age, and subsequently raised by her elder sister, Marage. Jasper spent her childhood years learning to value the greater good, and practicing arcane magic under the guidance of her sister. When Jasper was nearing adulthood, her sister was called away to war. Jasper used the resources in her sister's arcane study to undergo alterations in order to follow her to war.",
+						"Jasper proved to be a ferocious warrior with a strong moral compass. However, her commander discovered that she had undergone mutations in order to enlist. Learning that she was unqualified for service, the commander discharged her immediately.",
+						"Jasper continued to do her best to serve the public as a wandering adventurer. Her success was mixed, but she remained content in the knowledge that she served the greater good. Eventually her adventures saw her turned to stone. She spent roughly 5 centuries in this state before eventually being thawed by Cog to once again fight for the good of Geoss."
+					]
+				}
+			]
+		},
+		{
+			"id": "shamous",
+			"name": "Shamous",
+			"titles": [],
+			"images": {
+				"portrait": "party/jasper_portrait.png",
+				"headshot": "portrait/shamous.png",
+				"body": "akiton.png",
+				"background": "akiton.jpg"
+			},
+			"properties": {
+				"species": "Tortle",
+				"gender": "M",
+				"age": 43,
+				"birthDate": "06/06/292",
+				"homeworld": "Geoss"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Jasper was orphaned at an early age, and subsequently raised by her elder sister, Marage. Jasper spent her childhood years learning to value the greater good, and practicing arcane magic under the guidance of her sister. When Jasper was nearing adulthood, her sister was called away to war. Jasper used the resources in her sister's arcane study to undergo alterations in order to follow her to war.",
+						"Jasper proved to be a ferocious warrior with a strong moral compass. However, her commander discovered that she had undergone mutations in order to enlist. Learning that she was unqualified for service, the commander discharged her immediately.",
+						"Jasper continued to do her best to serve the public as a wandering adventurer. Her success was mixed, but she remained content in the knowledge that she served the greater good. Eventually her adventures saw her turned to stone. She spent roughly 5 centuries in this state before eventually being thawed by Cog to once again fight for the good of Geoss."
+					]
+				}
+			]
+		},
+		{
+			"id": "kevin",
+			"name": "Kevin Yu",
+			"titles": [],
+			"images": {
+				"portrait": "party/kevin.jpg",
+				"headshot": "portrait/kevin.jpg",
+				"body": "akiton.png",
+				"background": "apostae.jpg"
+			},
+			"properties": {
+				"species": "Astrazoan",
+				"gender": "F",
+				"age": 25,
+				"birthDate": "06/06/292",
+				"homeworld": "Apostae"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Kevin served as an assassin for several of the drow houses of Apostae early on in life. Upon saving enough credits to buy her freedom, she promptly set a course for more civilized society. She made her home on Absalom Station for the years that followed.",
+						"In the time since securing her freedom, Kevin has obtained a number of aliases, complete with fake identification and records. These are as follows: Kadie - Middle-Aged Male Nuar, Female Drow, Monet X. Constantineau - Young Adult Female Espraksa, Female Vlaka, Female Maraqoi, Elderly Male Phentomite",
+						"Hobbies include baking and murder."
+					]
+				}
+			]
+		},
+		{
+			"id": "paco",
+			"name": "Paco",
+			"titles": [],
+			"images": {
+				"portrait": "party/kevin.jpg",
+				"headshot": "portrait/nuar.png",
+				"body": "akiton.png",
+				"background": "apostae.jpg"
+			},
+			"properties": {
+				"species": "Nuar",
+				"gender": "M",
+				"age": 25,
+				"birthDate": "06/06/292",
+				"homeworld": "Apostae"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Middle-Aged Male Nuar. One of Kevin's aliases."
+					]
+				}
+			]
+		},
+		{
+			"id": "miracle",
+			"name": "Miracle Toshinori",
+			"titles": ["Raven", "The Raven"],
+			"images": {
+				"portrait": "party/kevin.jpg",
+				"headshot": "portrait/kevin_drow.png",
+				"body": "apostae.png",
+				"background": "apostae.jpg"
+			},
+			"properties": {
+				"species": "Drow",
+				"gender": "F",
+				"age": 25,
+				"birthDate": "06/06/292",
+				"homeworld": "Apostae"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"One of Kevin's aliases. This is the identity with which Kevin has spent the most time. Kevin spent a large amount of time as an assassin for hire on Apostae, and forged a reputation for ruthless efficiency."
+					]
+				}
+			]
+		},
+		{
+			"id": "monet",
+			"name": "Monet X Constantineau",
+			"titles": [],
+			"images": {
+				"portrait": "party/kevin.jpg",
+				"headshot": "portrait/birb.png",
+				"body": "apostae.png",
+				"background": "apostae.jpg"
+			},
+			"properties": {
+				"species": "Espraksa",
+				"gender": "F",
+				"age": 25,
+				"birthDate": "06/06/292",
+				"homeworld": "Apostae"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Female Espraksa. One of Kevin's aliases."
+					]
+				}
+			]
+		},
+		{
+			"id": "steel",
+			"name": "Joey Steel",
+			"titles": ["Captain Steel"],
+			"images": {
+				"portrait": "party/kevin.jpg",
+				"headshot": "portrait/kevin.jpg",
+				"body": "akiton.png",
+				"background": "apostae.jpg"
+			},
+			"properties": {
+				"species": "Raxilite",
+				"gender": "M",
+				"age": 25,
+				"birthDate": "06/06/292",
+				"homeworld": "Apostae"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"Was framed for murder, and subsequently imprisoned. Escaped from prison with the help of his newfound allies. Now plans to unravel the conspiracy resulting in his imprisonment, and exact revenge."
+					]
+				}
+			]
+		},
+		{
+			"id": "ursa",
+			"name": "Ursa",
+			"titles": ["Major Ursa"],
+			"images": {
+				"portrait": "party/kevin.jpg",
+				"headshot": "portrait/boo.png",
+				"body": "apostae.png",
+				"background": "apostae.jpg"
+			},
+			"properties": {
+				"species": "Uplifted Bear",
+				"gender": "M",
+				"age": 15,
+				"birthDate": "11/30/302",
+				"homeworld": "Unknown Laboratory"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"."
+					]
+				}
+			]
+		},
+		{
+			"id": "torque",
+			"name": "Torque",
+			"titles": [""],
+			"images": {
+				"portrait": "party/kevin.jpg",
+				"headshot": "portrait/boo.png",
+				"body": "apostae.png",
+				"background": "apostae.jpg"
+			},
+			"properties": {
+				"species": "Goblin",
+				"gender": "M",
+				"age": 15,
+				"birthDate": "11/30/302",
+				"homeworld": ""
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"."
+					]
+				}
+			]
+		},
+		{
+			"id": "4ndy",
+			"name": "4ndy",
+			"titles": ["Andy"],
+			"images": {
+				"portrait": "party/kevin.jpg",
+				"headshot": "portrait/boo.png",
+				"body": "apostae.png",
+				"background": "apostae.jpg"
+			},
+			"properties": {
+				"species": "SRO",
+				"gender": "-",
+				"age": 0,
+				"birthDate": "11/30/317",
+				"homeworld": "Daegox 4"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"."
+					]
+				}
+			]
+		},
+		{
+			"id": "boo",
+			"name": "Boo",
+			"titles": ["The Goodest Boy"],
+			"images": {
+				"portrait": "party/kevin.jpg",
+				"headshot": "portrait/boo.png",
+				"body": "apostae.png",
+				"background": "apostae.jpg"
+			},
+			"properties": {
+				"species": "Labrador Retreiver",
+				"gender": "M",
+				"age": 4,
+				"birthDate": "07/04/313",
+				"homeworld": "Castrovel"
+			},
+			"entries": [
+				{
+					"type": "entries",
+					"entries": [
+						"The goodest boy."
+					]
+				}
+			]
+		}
+	]
+}

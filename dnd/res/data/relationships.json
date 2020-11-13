@@ -1,0 +1,23 @@
+[
+	{
+		"characters": [
+			"boo",
+			"VillythKoehlanna"
+		],
+		"relationshipType": "Friend"
+	},
+	{
+		"characters": [
+			"althea",
+			"smith"
+		],
+		"relationshipType": "Friend"
+	},
+	{
+		"characters": [
+			"Bartholomew Potter",
+			"Cristina Sawyer"
+		],
+		"relationshipType": "Cousin"
+	}
+]

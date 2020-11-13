@@ -1,0 +1,54 @@
+.map-lagos {
+	width: 2500px;
+	height: 2500px;
+	position: relative;
+	top: 35%;
+	left: 47.42%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+}
+
+.map-bravagg {
+	width: 1168px;
+	height: 949px;
+	position: absolute;
+	top: 28.8%;
+	left: 56.4%;
+	z-index: 9;
+}
+
+.map-paros {
+	width: 2500px;
+	height: 7400px;
+	position: relative;
+	top: 11%;
+	left: 15.2%;
+	transform: translate(-50%, -50%);
+}
+
+.map-peku {
+	width: 1853px;
+	height: 2077px;
+	position: absolute;
+	top: 24.1%;
+	left: 89.23%;
+	transform: translate(-50%, -50%);
+}
+
+.map-terrapim {
+	width: 6000px;
+	height: 4240px;
+	position: absolute;
+	top: 70.5%;
+	left: 83.74%;
+	transform: translate(-50%, -50%);
+}
+
+.map-decapos {
+	width: 4750px;
+	height: 3160px;
+	position: absolute;
+	top: 55.6%;
+	left: 52.88%;
+	transform: translate(-50%, -50%);
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Aphotia</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+
+			.travel-brochure .location-info {
+				width:30%;
+				display:block;
+				position:absolute;
+				top:0px;
+				left:0px;
+				box-shadow: 1px 0px 10px black,
+				8px 0px 8px inset rgba(255,255,255,0.5);
+				z-index:6;
+				height:100%;
+				overflow-y:auto;
+				background-color:#112;
+			}
+
+			.location-info h2 {
+				box-shadow: 0 0 5px #fff,
+				0 0 20px #ff0080,
+				0 0 35px #ff0080,
+				0 0 5px #fff inset,
+				0 0 20px #ff0080 inset,
+				0 0 35px #ff0080 inset;
+				border:2px solid white;
+				border-radius:10px;
+				margin:2em 0.5em 1em 0.5em;
+				padding:7px 10px;
+				font-size:15pt;
+				text-align:center;
+				font-weight:600;
+				font-family:sans-serif;
+				background-color: #222;
+				color: #fff;
+				text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080, 0 0 55px #ff0080, 0 0 75px #ff0080;
+			}
+
+			.location-info h1 {
+				box-shadow: 0 0 5px #fff,
+				0 0 20px #228DFF,
+				0 0 35px #228DFF,
+				0 0 5px #fff inset,
+				0 0 20px #228DFF inset,
+				0 0 35px #228DFF inset;
+				border:2px solid white;
+				border-radius:10px;
+				margin:0.5em 0.4em;
+				padding:7px 10px;
+				font-size:16pt;
+				text-align:center;
+				font-weight:600;
+				font-family:sans-serif;
+				background-color: #222;
+				color: #fff;
+				text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #228DFF, 0 0 30px #228DFF, 0 0 45px #228DFF, 0 0 65px #228DFF;
+			}
+
+			.location-info h3 {
+				text-align-last: justify;
+				margin:0.5em 1em;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #555;
+				font-weight:900;
+				font-family:monospace;
+				color:#999;
+				text-transform: uppercase;
+			}
+
+			.location-info p {
+				text-align: justify;
+				margin:1em 1em;
+				font-size:1em;
+				font-weight:500;
+				color:#dde;
+				text-shadow: -1px 0px 0px #0000ff,
+				1px 0px 0px #aa0000;
+			}
+
+			.location-info ul {
+				text-align: left;
+				margin:0em 1em 0.5em 0.5em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #111;
+				font-weight:500;
+				color:#dde;
+				text-shadow: -1px 0px 0px #0000ff,
+				1px 0px 0px #aa0000;
+			}
+
+			.location-info ul li {
+				padding-top:0.5em;
+			}
+
+			.travel-brochure #map-body {
+				width:70%;
+				display:block;
+				float:right;
+			}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/map.js"></script>
+	</head>
+
+	<body class="travel-brochure">
+		<div class="location-info">
+			<h3>Aphotia Tourist Council</h3>
+			<h1>Aphotia</h1>
+			<p>
+				Unending darkness as far as the eye can see! Casinos, exotic entertainment, and fine cuisine! These are but a few of the wonders waiting for you in un-sunny Aphotia!
+			</p>
+			<h2>Attractions</h2>
+			<p>
+				Aphotia hosts many wondrous attractions within its walls, such as:
+				<ul>
+					<li>
+						The Monolith Casino
+					</li>
+					<li>
+						Fine Cuisine
+					</li>
+					<li>
+						Exotic Entertainment
+					</li>
+					<li>
+						Therapeutic Darkness
+					</li>
+				</ul>
+			</p>
+		</div>
+		<div id="map-body" style="overflow: hidden; background:#111111;">
+			<div class="map-controls" style="z-index: 2; padding-left:80px;">
+				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
+				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
+			</div>
+
+			<div class="map-container map" style="background-image:url('/dnd/img/maps/cities/Aphotia.png'); background-repeat: no-repeat; background-size: contain; width:2460px; height:1560px; text-align: center; transform-origin:center center; ">
+
+				<div class="dock" style="left:1089px; top:949px;">A<span class="city-preview"><h1>Airship Dock</h1></span></div>
+				<div class="dock" style="left:914px; top:1019px;">A<span class="city-preview"><h1>Airship Dock</h1></span></div>
+				<div class="pedestrian party" style="height:100px; width:100px; left:50%; top:92%;">
+					<img src="/dnd/img/maps/icons/Shamous.png" style="width:100%;" alt="image"/>
+					<span class="city-preview">
+						<h1>Shamous</h1>
+					</span>
+				</div>
+				<div class="pedestrian party" style="height:100px; width:100px; left:54%; top:93%;">
+					<img src="/dnd/img/maps/icons/jasper.png" style="width:100%;" alt="image"/>
+					<span class="city-preview">
+						<h1>Jasper</h1>
+					</span>
+				</div>
+				<a href="#" class="smith metropolis" style="position:absolute; top:48.8%; left:43.2%;font-size:42px; width:180px; height:180px; border:5px solid #333; box-sizing: border-box; border-radius: 50%; transform:translate(-50%, -50%);">
+					<span class="city-preview">
+						<h1>The Monolith</h1>
+						<p>
+							For most travelers, the Monolith is the first thing they notice when they enter Aphotia. The massive, ornate building is carved entirely out of a gargantuan stalagmite. The interior exudes a cultivated ambiance that was designed to separate fortunes from patrons.
+						</p>
+					</span>
+				</a>
+			</div>
+		</div>
+	</body>
+
+</html>

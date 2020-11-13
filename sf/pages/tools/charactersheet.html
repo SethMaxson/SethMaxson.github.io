@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Starfinder Character Sheet</title>
+		<link href="/sf/res/css/charactersheet.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/sf/res/css/character-modal.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/sf/res/css/modal-preview.css" rel="stylesheet" type="text/css" media="all">
+		<link rel="icon" href="/sf/favicon.png" />
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/sf/res/js/spells.js"></script>
+		<script src="/sf/res/js/feats.js"></script>
+		<script src="/sf/res/js/charactersheet.js"></script>
+		<script src="/sf/res/js/characterclasses.js"></script>
+		<script src="/sf/res/js/charactercreation.js"></script>
+		<script src="/sf/res/js/modal-preview.js"></script>
+		<script>
+			var races, characterClasses;
+			var character;
+
+			$(document).ready(function(){
+				character = new Character();
+
+				prepareCharacterCreationModal(character);
+				showMenu();
+				prepareCharacterSheet();
+			})
+		</script>
+	</head>
+	<body>
+		<span class="nonprinting fixedcontrols">
+			<button onclick="showMenu()">Menu</button>
+		</span>
+
+		<div id="CharacterSheet">
+			<div id="Page1">
+				<table class="fullwidth">
+					<tr>
+						<td><h2>Starfinder</h2></td>
+						<td><input type="text" id="Charname" class="input_ubig charname"><br />Character Name</td>
+						<td class="right-aligned"><h2>Page 1</h2></td>
+					</tr>
+				</table>
+				<table class="fullwidth">
+					<tr>
+						<td colspan="3"><input type="text" id="ClassLevels" class="input_u"><br />Class/Level</td>
+						<td>
+							<input type="text" id="Race" class="input_u" disabled>
+							<br />Race
+						</td>
+						<td>
+							<input type="text" id="Theme" class="input_u" disabled>
+							<br />Theme
+						</td>
+						<th rowspan=3>Description<br /><textarea rows="8" cols="30" id="CharDesc"></textarea></th>
+					</tr>
+					<tr>
+						<td><input type="text" id="Size" class="input_u"><br />Size</td>
+						<td><input type="text" id="Speed" class="input_u"><br />Speed</td>
+						<td><input type="text" id="Gender" class="input_u"><br />Gender</td>
+						<td colspan="2"><input type="text" id="Homeworld" class="input_u"><br />Homeworld</td>
+					</tr>
+					<tr>
+						<td>
+							<select id="Alignment" class="input_u">
+								<option value="Lawful Good">Lawful Good</option>
+								<option value="Neutral Good">Neutral Good</option>
+								<option value="Chaotic Good">Chaotic Good</option>
+								<option value="Lawful Neutral">Lawful Neutral</option>
+								<option value="True Neutral" selected>True Neutral</option>
+								<option value="Chaotic Neutral">Chaotic Good</option>
+								<option value="Lawful Evil">Lawful Evil</option>
+								<option value="Neutral Evil">Neutral Evil</option>
+								<option value="Chaotic Evil">Chaotic Evil</option>
+							</select>
+							<br />Alignment
+						</td>
+						<td colspan="2"><input type="text" id="Deity" class="input_u"><br />Deity</td>
+						<td colspan="2"><input type="text" id="Player" class="input_u"><br />Player</td>
+					</tr>
+				</table>
+				<table class="fullwidth">
+					<tr>
+						<td class="halfwidth">
+							<h3>Ability Scores</h3>
+							<table class="bordered">
+								<tr>
+									<th>&#160;</th>
+									<th>Score</th>
+									<th>Modifier</th>
+									<th>Upgraded<br />Score</th>
+									<th>Upgraded<br />Modifier</th>
+								</tr>
+								<tr>
+									<td><b>Str</b>ength</td>
+									<td><input type="text" id="StrScore" class="input_b"></td>
+									<td><input type="text" id="StrMod" class="input_b"></td>
+									<td><input type="text" id="StrUpScore" class="input_b"></td>
+									<td><input type="text" id="StrUpMod" class="input_b"></td>
+								</tr>
+								<tr>
+									<td><b>Dex</b>terity</td>
+									<td><input type="text" id="DexScore" class="input_b"></td>
+									<td><input type="text" id="DexMod" class="input_b"></td>
+									<td><input type="text" id="DexUpScore" class="input_b"></td>
+									<td><input type="text" id="DexUpMod" class="input_b"></td>
+								</tr>
+								<tr>
+									<td><b>Con</b>stitution</td>
+									<td><input type="text" id="ConScore" class="input_b"></td>
+									<td><input type="text" id="ConMod" class="input_b"></td>
+									<td><input type="text" id="ConUpScore" class="input_b"></td>
+									<td><input type="text" id="ConUpMod" class="input_b"></td>
+								</tr>
+								<tr>
+									<td><b>Int</b>elligence</td>
+									<td><input type="text" id="IntScore" class="input_b"></td>
+									<td><input type="text" id="IntMod" class="input_b"></td>
+									<td><input type="text" id="IntUpScore" class="input_b"></td>
+									<td><input type="text" id="IntUpMod" class="input_b"></td>
+								</tr>
+								<tr>
+									<td><b>Wis</b>dom</td>
+									<td><input type="text" id="WisScore" class="input_b"></td>
+									<td><input type="text" id="WisMod" class="input_b"></td>
+									<td><input type="text" id="WisUpScore" class="input_b"></td>
+									<td><input type="text" id="WisUpMod" class="input_b"></td>
+								</tr>
+								<tr>
+									<td><b>Cha</b>risma</td>
+									<td><input type="text" id="ChaScore" class="input_b"></td>
+									<td><input type="text" id="ChaMod" class="input_b"></td>
+									<td><input type="text" id="ChaUpScore" class="input_b"></td>
+									<td><input type="text" id="ChaUpMod" class="input_b"></td>
+								</tr>
+							</table>
+							<div id="Skills"></div>
+						</td>
+						<td class="halfwidth">
+							<table>
+								<tr>
+									<td rowspan="2" class="bottom-aligned"><h3>Initiative</h3></td>
+									<th>Total</th>
+									<th></th>
+									<th>Dex Modifier</th>
+									<th></th>
+									<th>Misc Modifier</th>
+								</tr>
+								<tr>
+									<td><input type="text" id="InitTotal" class="input_b"></td>
+									<td>=</td>
+									<td><input type="text" id="InitDexMod" class="input_b UseDexMod"></td>
+									<td>+</td>
+									<td><input type="text" id="InitMiscMod" class="input_b"></td>
+								</tr>
+							</table>
+							<h3>Health and Resolve</h3>
+							<table class="bordered">
+								<tr>
+									<th></th>
+									<th>Stamina Points</th>
+									<th>Hit Points</th>
+									<th>Resolve Points</th>
+								</tr>
+								<tr>
+									<th class="right-aligned">Total</th>
+									<td><input type="text" id="SPTotal" class="input_b"></td>
+									<td><input type="text" id="HPTotal" class="input_b"></td>
+									<td><input type="text" id="RPTotal" class="input_b"></td>
+								</tr>
+								<tr>
+									<th class="right-aligned">Current</th>
+									<td><input type="text" id="SPCurrent" class="input_b"></td>
+									<td><input type="text" id="HPCurrent" class="input_b"></td>
+									<td><input type="text" id="RPCurrent" class="input_b"></td>
+								</tr>
+							</table>
+							<h3>Armor Class</h3>
+							<table class="bordered">
+								<tr>
+									<th></th>
+									<th>Total</th>
+									<th></th>
+									<th>Armor<br />Bonus</th>
+									<th></th>
+									<th>Dex<br />Mod</th>
+									<th></th>
+									<th>Misc<br />Mod</th>
+								</tr>
+								<tr id="EAC">
+									<td><b>E</b>nergy <b>A</b>rmor <b>C</b>lass</td>
+									<td><input type="text" id="EACTotal" class="input_b"></td>
+									<td>= 10 +</td>
+									<td><input type="text" id="EACArmor" class="input_b"></td>
+									<td>+</td>
+									<td><input type="text" id="EACDexMod" class="input_b UseDexMod"></td>
+									<td>+</td>
+									<td><input type="text" id="EACMiscMod" class="input_b"></td>
+								</tr>
+								<tr>
+									<td><b>K</b>inetic <b>A</b>rmor <b>C</b>lass</td>
+									<td><input type="text" id="KACTotal" class="input_b"></td>
+									<td>= 10 +</td>
+									<td><input type="text" id="KACArmor" class="input_b"></td>
+									<td>+</td>
+									<td><input type="text" id="KACDexMod" class="input_b UseDexMod"></td>
+									<td>+</td>
+									<td><input type="text" id="KACMiscMod" class="input_b"></td>
+								</tr>
+								<tr>
+									<td>AC vs. Combat Maneuvers</td>
+									<td><input type="text" id="MACTotal" class="input_b"></td>
+									<td>= 8 +</td>
+									<td><b>KAC</b></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><input type="text" id="DR" class="input_u"><br />DR</td>
+									<td colspan="7"><input type="text" id="Resists" class="input_u"><br />Resistances</td>
+								</tr>
+							</table>
+							<h3>Saving Throws</h3>
+							<table class="bordered">
+								<tr>
+									<td></td>
+									<th>Total</th>
+									<td></td>
+									<th>Base Save</th>
+									<td></td>
+									<th>Ability Mod</th>
+									<td></td>
+									<th>Misc Mod</th>
+								</tr>
+								<tr>
+									<td>Fortitude (Con)</td>
+									<td><input type="text" id="FortTotal" class="input_b"></td>
+									<td>=</td>
+									<td><input type="text" id="FortBase" class="input_b"></td>
+									<td>+</td>
+									<td><input type="text" id="FortAbility" class="input_b UseConMod"></td>
+									<td>+</td>
+									<td><input type="text" id="FortMisc" class="input_b"></td>
+								</tr>
+								<tr>
+									<td>Reflex (Dex)</td>
+									<td><input type="text" id="RefTotal" class="input_b"></td>
+									<td>=</td>
+									<td><input type="text" id="RefBase" class="input_b"></td>
+									<td>+</td>
+									<td><input type="text" id="RefAbility" class="input_b UseDexMod ability"></td>
+									<td>+</td>
+									<td><input type="text" id="RefMisc" class="input_b"></td>
+								</tr>
+								<tr>
+									<td>Will (Wis)</td>
+									<td><input type="text" id="WillTotal" class="input_b"></td>
+									<td>=</td>
+									<td><input type="text" id="WillBase" class="input_b"></td>
+									<td>+</td>
+									<td><input type="text" id="WillAbility" class="input_b UseWisMod"></td>
+									<td>+</td>
+									<td><input type="text" id="WillMisc" class="input_b"></td>
+								</tr>
+								<tr>
+									<td colspan="8"><input type="text" id="SaveNotes" class="input_u"><br />Save Modifiers</td>
+								</tr>
+							</table>
+							<h3>Attack Bonuses</h3>
+							<table class="bordered">
+								<tr>
+									<td rowspan="2">Melee or<br>Thrown<br>Attack</td>
+									<th>Total</th>
+									<td></td>
+									<th>BAB</th>
+									<td></td>
+									<th>Str Mod</th>
+									<td></td>
+									<th>Misc Mod</th>
+								</tr>
+								<tr>
+									<td><input type="text" id="MeleeTotal" class="input_b"></td>
+									<td>=</td>
+									<td><input type="text" id="MeleeBAB" class="input_b bab"></td>
+									<td>+</td>
+									<td><input type="text" id="MeleeAbility" class="input_b UseStrMod"></td>
+									<td>+</td>
+									<td><input type="text" id="MeleeMisc" class="input_b"></td>
+								</tr>
+								<tr>
+									<td rowspan="2">Ranged<br>Attack</td>
+									<th>Total</th>
+									<td></td>
+									<th>BAB</th>
+									<td></td>
+									<th>Dex Mod</th>
+									<td></td>
+									<th>Misc Mod</th>
+								</tr>
+								<tr>
+									<td><input type="text" id="RangedTotal" class="input_b"></td>
+									<td>=</td>
+									<td><input type="text" id="RangedBAB" class="input_b bab"></td>
+									<td>+</td>
+									<td><input type="text" id="RangedAbility" class="input_b UseDexMod ability"></td>
+									<td>+</td>
+									<td><input type="text" id="RangedMisc" class="input_b"></td>
+								</tr>
+							</table>
+							<div id="Weapons"></div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<p style='overflow:hidden;page-break-before:always;'></p>
+			<div id="Page2"></div>
+
+			<p style='overflow:hidden;page-break-before:always;'></p>
+			<div id="Page3"></div>
+
+			<p style='overflow:hidden;page-break-before:always;'></p>
+			<div id="Page4"></div>
+		</div>
+	</body>
+</html>

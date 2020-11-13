@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tables</title>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<link rel="icon" href="/sf/favicon.png" />
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script src="/res/js/mechanics.js"></script>
+
+		<style>
+			body {
+				color: #00a1ed;
+			}
+
+			h1,
+			h2,
+			h3,
+			.name,
+			.collapsible {
+				color: #143f90;
+			}
+
+			#random-table {
+				margin-top:1em;
+			}
+
+
+
+			table tr:nth-child(odd) td {
+				background-color: #00202F;
+			}
+
+			table tr:nth-child(even) td {
+				background-color: #202020;
+			}
+
+			th {
+				font-weight: bold;
+			}
+
+			tr th:last-child {
+				text-align: left;
+				padding: 5px;
+			}
+
+			tr>th:first-child {
+				color: #113388;
+				;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+
+			tr td:first-child {
+				white-space: nowrap;
+				width: 35px;
+				text-align: center;
+			}
+
+			.collapsible {
+				position: relative;
+				top: 0;
+				left: 0;
+				background: white;
+				cursor: pointer;
+				/* width: 100%; */
+				border: none;
+				text-align: left;
+				outline: none;
+				padding: 5px;
+				font-size: 20px;
+				font-weight: bold;
+				border-radius: 10px 10px 10px 10px;
+				margin-top: 5px;
+			}
+
+			.content {
+				padding: 0px 20px 5px;
+				max-height: 0;
+				font-size: 0.9em;
+				overflow: hidden;
+				transition: max-height 0.2s ease-out;
+				background-color: hsl(209, 47%, 90%);
+				border-radius: 0px 0px 15px 15px;
+				border: 1px solid black;
+			}
+
+			table {
+				font-size: 1.1em;
+				width: 100%;
+				color: inherit;
+			}
+
+			.item {
+				margin-top: 0px;
+				color: #00a1ed;
+			}
+
+			.aside {
+				background-color: #c1cbe5;
+				padding: 10px;
+				margin-top: 10px;
+				border-top: 3px solid black;
+				border-bottom: 3px solid black;
+			}
+
+			ul,
+			ol {
+				font-size: inherit;
+			}
+
+			div.container>div {
+				background-color: #2f2f2F;
+				padding: 10px;
+				border: 5px double gray;
+				border-radius: 25px;
+				margin-top: 10px;
+			}
+		</style>
+		<script>
+			$(document).ready(function() {
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/random-tables.json",
+					dataType: 'json',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (items) {
+						for (let index = 0; index < items.length; index++) {
+							const e = items[index];
+							$("#table-list").append($(`
+								<option value="${e.name}">${e.name}</option>
+							`));
+						}
+						populateRows(items[0]);
+					}
+				});
+
+				$("#table-list").on("change", function() {
+					var newVal = $(this).val();
+					$.ajax({
+						crossDomain: true,
+						url: "/sf/res/data/random-tables.json",
+						dataType: 'json',
+						error: function (xmlHttpReq, status, err) {
+							var something = xmlHttpReq;
+						},
+						success: function (items) {
+							item = items.filter(function (entry) {
+								return entry.name == newVal;
+							})[0];
+							populateRows(item);
+						}
+					});
+				});
+
+				function populateRows(item) {
+					$("#roll-it").html("Roll 1d"+item.rows.length);
+					$("#description").html(item.description);
+					$("#result").html("");
+					$("#random-table>tbody").html("");
+					for (let index = 0; index < item.rows.length; index++) {
+						const e = item.rows[index];
+						$("#random-table>tbody").append($(`
+							<tr>
+								<td>${index+1}</td>
+								<td>${e}</td>
+							</tr>
+						`));
+					}
+				}
+
+				$("#roll-it").click(function(){
+					var die = $("#random-table tr").length;
+					var result = rollDie(die);
+					const el = $("#random-table tr")[result-1];
+					$("#result").html(result + ".<br/>" + el.children[1].innerText);
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container" style="background:#00202F; border-color:#00a1ed;">
+				<div>
+					<select name="table-list" id="table-list"></select>
+					<button id="roll-it">Roll 1d</button>
+					<div id="description"></div>
+					<div id="result" class="collapsible"></div>
+					<table id="random-table">
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

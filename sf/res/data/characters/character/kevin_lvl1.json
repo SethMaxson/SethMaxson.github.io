@@ -1,0 +1,131 @@
+{
+	"name": "Kevin",
+	"gender": "Yes",
+	"homeWorld": "Apostae",
+	"alignment": "True Neutral",
+	"deity": "",
+	"player": "",
+	"description": "",
+	"ability": {
+		"baseScore": {
+			"str": 10,
+			"dex": 10,
+			"con": 10,
+			"int": 10,
+			"wis": 10,
+			"cha": 10
+		},
+		"pointBuy": {
+			"str": 0,
+			"dex": 2,
+			"con": 2,
+			"int": 1,
+			"wis": 0,
+			"cha": 5
+		},
+		"score": {
+			"str": 10,
+			"dex": 14,
+			"con": 10,
+			"int": 11,
+			"wis": 10,
+			"cha": 17
+		},
+		"modifier": {
+			"str": 0,
+			"dex": 2,
+			"con": 0,
+			"int": 0,
+			"wis": 0,
+			"cha": 3
+		},
+		"upgradedScore": {
+			"str": 10,
+			"dex": 14,
+			"con": 10,
+			"int": 11,
+			"wis": 10,
+			"cha": 17
+		},
+		"upgradedModifier": {
+			"str": 0,
+			"dex": 2,
+			"con": 0,
+			"int": 0,
+			"wis": 0,
+			"cha": 3
+		}
+	},
+	"levels": [
+		{
+			"class": {
+				"name": "Envoy",
+				"choices": []
+			},
+			"feat": "Fleet",
+			"skillRanks": {
+				"ranks": [
+					1,
+					0,
+					0,
+					0,
+					1,
+					1,
+					1,
+					0,
+					0,
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					1,
+					0,
+					0,
+					1,
+					1,
+					0
+				],
+				"names": [
+					"Acrobatics",
+					"Athletics",
+					"Bluff",
+					"Computers",
+					"Culture",
+					"Diplomacy",
+					"Disguise",
+					"Engineering",
+					"Intimidate",
+					"Life Science",
+					"Medicine",
+					"Mysticism",
+					"Perception",
+					"Physical Science",
+					"Piloting",
+					"Profession",
+					"Profession2",
+					"Sense Motive",
+					"Sleight of Hand",
+					"Stealth",
+					"Survival"
+				]
+			},
+			"ability": {
+				"str": 0,
+				"dex": 0,
+				"con": 0,
+				"int": 0,
+				"wis": 0,
+				"cha": 0
+			}
+		}
+	],
+	"race": "Astrazoan",
+	"theme": "Icon",
+	"defaultClass": "Envoy",
+	"spells": [
+		"Charming Veneer",
+		"Mending"
+	]
+}

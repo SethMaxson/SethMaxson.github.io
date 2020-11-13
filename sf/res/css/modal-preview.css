@@ -1,0 +1,186 @@
+.modal * {
+	box-sizing: border-box;
+}
+
+.modal {
+	/* background:#f0f0f0; */
+	background-image:url("/sf/img/ui/page-background.png");
+	background-size: cover;
+	border-radius:1em;
+	font-size:1em;
+	height:95%;
+	width:95%;
+	/* height:100%;
+	width:100%; */
+	left:50%;
+	padding:1em;
+	position:fixed;
+	top:50%;
+	transform: translate(-50%, -50%);
+	z-index:5;
+	overflow:auto;
+	box-sizing: border-box;
+}
+
+
+.details.modal {
+	display:flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	overflow:hidden;
+	padding:0;
+}
+
+.modal .modal-header,
+.details.modal>.option-header{
+	flex-grow: 0;
+}
+
+.details.modal .body,
+.modal-content {
+	flex-grow:1;
+}
+
+.modal-footer {
+	/* position: fixed;
+	top:100%;
+	left:0px;
+	transform: translateY(-100%); */
+	width:calc(100% + 2em - 8px);
+	/* width:180%; */
+	position:relative;
+	left:-1em;
+	top:1em;
+	/* margin-left:-1em;
+	margin-right:-1em;
+	margin-bottom: -1em; */
+}
+
+.modal-footer,
+.modal-header,
+.details>.option-header {
+	background:#c0c0d0;
+	/* display:table; */
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: stretch;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	box-sizing: border-box;
+	padding:0;
+	margin:0;
+	font-size:1.5em;
+	height:2.5em;
+	/* position:absolute;
+	top:0;
+	left:0; */
+}
+
+.modal-header {
+	border-bottom:1px solid #001839;
+}
+
+.modal-header,
+.details .option-header {
+	width:100%;
+}
+
+.modal-content,
+.details .body {
+	width:100%;
+	margin:0;
+	border:none;
+	box-sizing: border-box;
+	overflow:auto;
+	padding:0.5em;
+}
+
+.details>.option-header div.preview-image {
+	/* display:table-cell; */
+	align-self: center;
+	flex: 0 0 2.5em;
+	box-sizing: border-box;
+	height:100%;
+}
+
+.details>.option-header div.preview-image img {
+	width:100%;
+	height:100%;
+}
+
+.modal-header>*,
+.modal-footer>*,
+.details>.option-header>*{
+	margin:0;
+	font-size:1em;
+	line-height:2.5em;
+}
+
+.modal-footer .button,
+.modal-header .button,
+.details .option-header .button,
+.details .option-header button {
+	/* height:100%; */
+	box-sizing: border-box;
+	padding-top:0;
+	padding-bottom:0;
+	padding-left:0.5em;
+	padding-right:0.5em;
+	border-radius: 0;
+	background:none;
+	border:none;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+.fancy-details {
+	display:flex;
+	flex-direction: row;
+}
+.fancy-details>div:nth-child(2){
+	padding-left:0.5em;
+}
+
+.modal-header button:not(:disabled):hover,
+.modal-header .button:hover,
+.modal.details button:not(:disabled):hover,
+.modal-footer .button:hover,
+.details .option-header .button:not(:disabled):hover,
+.details .option-header button:not(:disabled):hover {
+	border-color:blue;
+	color:white;
+	background:blueviolet;
+	cursor:pointer;
+}
+
+.modal-header .back,
+.modal-footer .back,
+.details .option-header .back{
+	white-space: nowrap;
+	min-width:25px;
+	border-right:0.1em solid #444;
+}
+
+.modal-header .next,
+.modal-header .select,
+.modal-footer .next,
+.details .option-header .select{
+	white-space: nowrap;
+	min-width:50px;
+	border-left:0.1em solid #444;
+}
+
+.modal-header h2,
+.modal-footer h2,
+.details .option-header h2 {
+	flex: 1 1 80%;
+	align-self: center;
+	padding:0;
+	padding-left:0.2em;
+}

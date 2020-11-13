@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Demiplane of Time</title>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+
+		<style>
+			h1, h2, h3, .name, .collapsible {
+				color:#58180d;
+			}
+
+			h2 {
+				margin-bottom:0px;
+				padding:0px;
+				line-height:100%;
+			}
+
+			h4 {
+				color:black;
+				margin:1em 0em 0.2em 0em;
+				font-size:1.1em;
+			}
+
+
+			table tr:nth-child(odd) td {
+				background-color:#e0e5c1;
+			}
+
+			table tr:nth-child(even) td {
+				background-color:#ebe2c5;
+			}
+			th {
+				font-weight: bold;
+			}
+			tr th:last-child {
+				text-align:left;
+				padding:5px;
+			}
+
+			tr td:first-child {
+				white-space: nowrap;
+				width:35px;
+				text-align:center;
+			}
+
+			.collapsible {
+				position:relative;
+				top:0;
+				left:0;
+				background:white;
+				cursor: pointer;
+				width: 100%;
+				border: none;
+				text-align: left;
+				outline: none;
+				border-bottom:5px solid #6a9bc9;
+				padding:5px;
+				font-size:20px;
+				font-weight:bold;
+				border-radius:10px 10px 0px 0px;
+				margin-top:5px;
+			}
+
+			.collapsible:after {
+				background:none;
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "+"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active:after {
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "-"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active, .collapsible:hover {
+				background-color: #e5e5e7;
+			}
+
+			.content, .item {
+				margin-top:0px;
+				max-height: 0;
+				padding:0px 20px;
+				font-size:0.9em;
+				overflow: hidden;
+				transition: max-height 0.2s ease-out;
+				background-color: hsl(209, 47%, 90%);
+				border-radius:0px 0px 15px 15px;
+				border:1px solid black;
+			}
+
+			table {
+				font-size:1.1em;
+				width:100%;
+			}
+
+			.aside {
+				background-color:#c1cbe5;
+				padding:10px;
+				margin-top:10px;
+				border-top:3px solid black;
+				border-bottom:3px solid black;
+			}
+
+			ul, ol {
+				font-size:inherit;
+			}
+
+			div.container>div {
+				background-color:#eeeeff;
+				padding:10px;
+				border:5px double gray;
+				border-radius:25px;
+				margin-top:10px;
+			}
+
+			.prerequisites {
+				padding-top:5px;
+				padding-bottom:20px;
+				font-style: italic;
+				color:#444;
+				font-size:0.9em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<h1>
+					Demiplane of Time
+				</h1>
+				<p>
+					The Demiplane of Time, also called the Temporal Energy Plane and Temporal Prime, is continually in motion. It is a gray windstorm with neither a base nor a top that buffets and overturns travelers who venture within. Everything that enters the plane is tossed and ground against itself until all that remains is more dust - the sands of time carried by the winds to erode new items.
+				</p>
+
+
+
+
+				<div id="Section">
+					<h2>Section</h2>
+					<button class="collapsible">
+						Section
+					</button>
+					<div class="content">
+						<p>
+							Content
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+
+	<script>
+		$(document).ready(function() {
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.maxHeight){
+						content.style.maxHeight = null;
+						content.style.padding = "0px 20px";
+					} else {
+						content.style.maxHeight = content.scrollHeight + "px";
+						content.style.padding = "5px 20px";
+					}
+				});
+			}
+		})
+	</script>
+
+</html>

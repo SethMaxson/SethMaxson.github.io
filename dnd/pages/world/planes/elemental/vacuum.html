@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Quasielemental Plane of Vacuum</title>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+
+		<style>
+			h1, h2, h3, .name, .collapsible {
+				color:#58180d;
+			}
+
+			h2 {
+				margin-bottom:0px;
+				padding:0px;
+				line-height:100%;
+			}
+
+			h4 {
+				color:black;
+				margin:1em 0em 0.2em 0em;
+				font-size:1.1em;
+			}
+
+
+			table tr:nth-child(odd) td {
+				background-color:#e0e5c1;
+			}
+
+			table tr:nth-child(even) td {
+				background-color:#ebe2c5;
+			}
+			th {
+				font-weight: bold;
+			}
+			tr th:last-child {
+				text-align:left;
+				padding:5px;
+			}
+
+			tr td:first-child {
+				white-space: nowrap;
+				width:35px;
+				text-align:center;
+			}
+
+			.collapsible {
+				position:relative;
+				top:0;
+				left:0;
+				background:white;
+				cursor: pointer;
+				width: 100%;
+				border: none;
+				text-align: left;
+				outline: none;
+				border-bottom:5px solid #6a9bc9;
+				padding:5px;
+				font-size:20px;
+				font-weight:bold;
+				border-radius:10px 10px 0px 0px;
+				margin-top:5px;
+			}
+
+			.collapsible:after {
+				background:none;
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "+"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active:after {
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "-"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active, .collapsible:hover {
+				background-color: #e5e5e7;
+			}
+
+			.content, .item {
+				margin-top:0px;
+				max-height: 0;
+				padding:0px 20px;
+				font-size:0.9em;
+				overflow: hidden;
+				transition: max-height 0.2s ease-out;
+				background-color: hsl(209, 47%, 90%);
+				border-radius:0px 0px 15px 15px;
+				border:1px solid black;
+			}
+
+			table {
+				font-size:1.1em;
+				width:100%;
+			}
+
+			.aside {
+				background-color:#c1cbe5;
+				padding:10px;
+				margin-top:10px;
+				border-top:3px solid black;
+				border-bottom:3px solid black;
+			}
+
+			ul, ol {
+				font-size:inherit;
+			}
+
+			div.container>div {
+				background-color:#eeeeff;
+				padding:10px;
+				border:5px double gray;
+				border-radius:25px;
+				margin-top:10px;
+			}
+
+			.prerequisites {
+				padding-top:5px;
+				padding-bottom:20px;
+				font-style: italic;
+				color:#444;
+				font-size:0.9em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<h1>
+					Quasielemental Plane of Vacuum
+				</h1>
+				<p>
+					Physical Conditions
+					The Quasielemental Plane of Vacuum has no distinguishable regions, areas, or realms. No deities dwell on the plane; few outsiders have the ability to survive here, and even fewer would wish to try. At the intersection of the plane of Air and the Negative Elemental Plane, this plane represents not merely an absence of air, but an absence of all. Nothing but an endless void bearing neither heat nor cold. No light to be found, but no endless darkness snuffing out that brought in. No past, no future. No change. The Plane of Vacuum is the plane of nothing at all.
+				</p>
+				<p>
+					However, despite its empty nature, the plane does still of course hold the elemental vortices common to all Inner Planes; here, though, those vortices connect to the deepest parts of Wildspace, those places most distant from any bit of long-term matter. As a side effect, the occasional spelljammer can be found floating in the plane as a result, both accidental and purposeful; though the locals aren't a fan of it, one of the few industries in which the plane of Vacuum is actually relevant is the transport of spelljammers onto the planes, transit through a natural elemental vortex often far more cost-effective than the use of more elaborate and powerful means even further accounting for the cost of further transport to their final destinations.
+				</p>
+				<p>
+					To those that journey to Vacuum, the only significant obstacle to survival, as key as it may be, is the lack of air. While some sages speak of the frigid cold of the vacuum, or the dangers of not having air floating about a person, the plane of Vacuum has no such things, as possessing such a significant feature would be contrary to the very nature of the plane. No, unlike many of the Inner Planes, there are no natural conditions that wreak havoc on a mortal body. So as long as a cutter can bring along something to breathe, they'll be just fine. Ignoring the locals that tend not to care much for outsiders, and the rumored natural-spawned spheres of annihilation floating free indistinguishable from the void itself.
+				</p>
+				<p>
+					Ironically, though, this plane is one of the few where constructs do far worse than the living: here, the lack of substance leads to a phenomenon known as "vacuum welding", where two surfaces of the same rigid material, with no air to fill the gaps between them, will bond for brief periods more rigidly than any glue could provide. Obviously, constructs of malleable material such as flesh or clay have nothing to fear. Of those constructed of more rigid materials, the less complicated constructs — those of nothing more than animate stone, metal, or the like — will occasionally lock up as they move, providing the equivalent of a -4 to dexterity and a -10' modifier to all movements speeds. But the most complicated sorts — clockwork devices, golems of detailed articulation, things of that nature — suffer the worst. In addition to the above penalties, such a construct must make a fortitude save at DC 15 whenever it attempts a skill check, attack, spellcasting with a somatic component, or any other action that requires detailed or sudden movement; failure indicates the construct is dazed for one round. (Obviously, this saving throw bypasses the normal immunity to fortitude saves.) If merely a clockwork device or similar, then treat it as simply having a 50% chance to fail/lock up/etc. with every attempted use.
+				</p>
+				<p>
+					Though an empty plane, the plane of Vacuum does bear a slight few inhabitants beyond that common to every inner plane (but for mephits, as the plane's native such kind was killed off long ago). Beyond the local spelljammer "industry" bringing about a slight few dock facilities, Vacuum is occasionally chosen as a home by powerful beings that have no real need to breathe, being an excellent location for the ultimate in privacy for such entities. Liches and beholders both seem to have a special yen for the place, as do incorporeal undead of all varieties.
+				</p>
+				<p>
+					Magical Conditions
+					On the plane of Vacuum, spells of Air or Fire cannot be cast. Other spells are unaffected by conditions except as the environment would dictate.
+				</p>
+				<p>
+					Locations
+					Sites
+					Citadel Exhalus
+					Lost Tomb of S'sarkth
+				</p>
+				<p>
+					References
+					Inner Planes, pp.122-125
+				</p>
+
+
+
+
+				<div id="Section">
+					<h2>Section</h2>
+					<button class="collapsible">
+						Section
+					</button>
+					<div class="content">
+						<p>
+							Content
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+
+	<script>
+		$(document).ready(function() {
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.maxHeight){
+						content.style.maxHeight = null;
+						content.style.padding = "0px 20px";
+					} else {
+						content.style.maxHeight = content.scrollHeight + "px";
+						content.style.padding = "5px 20px";
+					}
+				});
+			}
+		})
+	</script>
+
+</html>

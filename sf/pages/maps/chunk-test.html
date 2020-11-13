@@ -1,0 +1,181 @@
+<html>
+
+	<head>
+		<title>World Test</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="/sf/res/css/threedee.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<script src="/res/js/three.min.js"></script>
+		<script src="/res/js/generators/npc.js"></script>
+		<script src="/sf/res/js/mechanics.js"></script>
+		<script src="/sf/res/js/environment.js"></script>
+		<script src="/sf/res/js/toon-water.js"></script>
+		<script>
+
+		</script>
+		<script type="module">
+			import { Engine } from '../../../sf/res/js/engine.js';
+			import { Characters } from '../../../sf/res/js/characters.js';
+			import { ChunkLoader, ChunkManager, chunkScale } from '../../../sf/res/js/chunk-loader.js';
+			import { FOUR } from '../../../sf/res/js/four.js';
+			import { THREEx } from '../../../sf/res/js/threex.js';
+			var main;
+			$(document).ready(function() {
+				Engine.Initialize("");
+				main = Engine.main;
+				var chunkLoader = new ChunkLoader(main);
+				var chunkMapHandler;
+				function init() {
+					//#region Setup people
+					// chunkLoader.loadChunk("test");
+					// chunkLoader.loadChunk("grid1").position.set(0, 0, 0);
+					// chunkLoader.loadChunk("grid2", new THREE.Vector3(1, 0, 0));
+					// chunkLoader.loadChunk("grid3", new THREE.Vector3(1, 0, -1));
+					// chunkLoader.loadChunk("grid4", new THREE.Vector3(0, 0, -1));
+					let chunkMapHandler = new ChunkManager(chunkLoader, "test");
+
+					let playerModel = chunkLoader.getPerson("Sidhon", 0, 0, 0);
+					playerModel.Events.Died = function(){
+						alert("GAME OVER!");
+					};
+					playerModel.Events.HealthChanged = function(){
+						main.HUD.healthBar.update(playerModel.Health);
+					};
+					playerModel.Motion = main.Controls.motion;
+					playerModel.Model.visible = false;
+					main.Controls.mesh = playerModel.Model;
+					main.Motions = [];
+
+					// let testerMan = new Engine.Entity(Characters.getRandom(0, 2, -81, "halforc", "m");
+					// testerMan.Model.name = "TesterMan";
+					// testerMan.Events.Died = function(){
+					// 	alert("Died!");
+					// };
+
+					$(document).keyup(e => {
+						if (e.keyCode == 75) {
+							chunkMapHandler.unloadChunk(1, 1);
+						}
+						else if (e.keyCode == 76) {
+							chunkMapHandler.loadChunk(1, 1);
+						}
+					});
+
+					// let miracle = chunkLoader.getPerson("Miracle", 1, 2, 8);
+					let miracle = chunkLoader.getPerson("Saphy", 15, 2, 15);
+					// main.DebugHelper.addPerson(miracle.Model);
+					main.DebugHelper.addPerson(playerModel.Model);
+
+					main.onRenderFcts.push(function(delta, now){
+						miracle.Motion.face(playerModel);
+						if (main.Controls.cellChanged) {
+							main.Controls.cellChanged = false;
+							chunkMapHandler.update(main.Controls.lastCell.x, main.Controls.lastCell.y);
+						}
+						// miracle.Motion.velocity.z = 2;
+					})
+					//#endregion
+
+					main.HUD.setEntity(main.Entities.GetByModelID(main.Controls.mesh.uuid));
+					let startChunk = { x: 1, y: 1 };
+					main.Controls.motion.position.set((startChunk.x * chunkScale) + 1, 1, (startChunk.y * chunkScale) + 1);
+					chunkMapHandler.update(startChunk.x, startChunk.y);
+					main.Controls.motion.baseSpeed = main.Controls.motion.baseSpeed * 2;
+					main.Controls.getObject().rotation.y += Math.PI;
+
+					//#region Test
+					// var seaGeometry = new THREE.PlaneBufferGeometry( 20, 20, 1, 1 );
+					// seaGeometry.rotateX(-Math.PI/2);
+					// seaGeometry.translate(10, 0, 10);
+					// var sea = new THREE.Mesh( seaGeometry,
+					// 	FOUR.Material( {
+					// 		color: 0x2222ff,
+					// 		side: THREE.FrontSide,
+					// 		shininess:30,
+					// 		opacity:0.8
+					// 	} )
+					// );
+					// sea.position.set(10, 0.2, 10);
+					// main.Scene.add( sea );
+
+					var displacementMap = FOUR.Texture( "/img/textures/chunk-height-maps/test.height.png" );
+					var normalMap = FOUR.Texture( "/img/textures/chunk-height-maps/test.normal.png" );
+					var heightMaps = [
+						FOUR.Texture( "/img/textures/chunk-height-maps/map1.height.png", true ),
+						FOUR.Texture( "/img/textures/chunk-height-maps/map2.height.png", true ),
+						FOUR.Texture( "/img/textures/chunk-height-maps/map3.height.png", true ),
+						FOUR.Texture( "/img/textures/chunk-height-maps/map4.height.png", true )
+					]
+					var geometry = new THREE.PlaneBufferGeometry( 10, 10, 201, 201 );
+					geometry.rotateX(-Math.PI/2);
+					geometry.translate(5, 0, 5);
+					var material = FOUR.Material( {
+						color: 0xcccc00,
+						side: THREE.FrontSide,
+						normalMap: normalMap,
+						normalScale: new THREE.Vector2( 10, 10 ),
+						displacementMap: displacementMap,
+						displacementScale: 1,
+						shininess:2
+					} );
+					var plane = new THREE.Mesh( geometry, material );
+					// plane.rotation.x = -Math.PI/2;
+					main.Scene.add( plane );
+
+					// var map1 = new THREE.Mesh( geometry, FOUR.Material( {
+					// 	color: 0xff00ff,
+					// 	side: THREE.FrontSide,
+					// 	displacementMap: heightMaps[0],
+					// 	displacementScale: 1,
+					// 	shininess:2
+					// } ) );
+					// map1.position.set(10, 0, 10);
+					// // plane.rotation.x = -Math.PI/2;
+					// main.Scene.add( map1 );
+
+					// var map2 = new THREE.Mesh( geometry, FOUR.Material( {
+					// 	color: 0xff00ff,
+					// 	side: THREE.FrontSide,
+					// 	displacementMap: heightMaps[1],
+					// 	displacementScale: 1,
+					// 	shininess:2
+					// } ) );
+					// map2.position.set(20, 0, 10);
+					// // plane.rotation.x = -Math.PI/2;
+					// main.Scene.add( map2 );
+
+					// var map3 = new THREE.Mesh( geometry, FOUR.Material( {
+					// 	color: 0xff00ff,
+					// 	side: THREE.FrontSide,
+					// 	displacementMap: heightMaps[2],
+					// 	displacementScale: 1,
+					// 	shininess:2
+					// } ) );
+					// map3.position.set(10, 0, 20);
+					// // plane.rotation.x = -Math.PI/2;
+					// main.Scene.add( map3 );
+
+					//#endregion
+
+					// transform objects
+					new THREEx.WindowResize(main.renderer, main.Camera);
+					main.update();
+				}
+
+				chunkLoader.promise.done(() => {
+					init();
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="debug" style="width:100%; position:absolute; left:0; bottom:0; pointer-events: none; z-index: 11; padding-bottom:2em;"></div>
+			<!-- prevent null -->
+		</div>
+	</body>
+
+</html>

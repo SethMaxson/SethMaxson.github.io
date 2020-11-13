@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>World Map</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/page-specific/worldmap.css" rel="stylesheet" type="text/css" media="all">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+			.hideable{display:none;}
+			#Weather, #Calendar, #TripDistance, #TripTime {color:white; text-align: left;}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/mechanics.js"></script>
+		<script src="/dnd/res/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/dnd/res/js/map.js"></script>
+		<script src="/dnd/res/js/objects/calendar.js"></script>
+		<script src="/dnd/res/js/generators/weather.js"></script>
+		<script>
+			$(document).ready(function(){
+				var calendar;
+				if (localStorage.year !== undefined) {
+					calendar = new GeossCalendar(parseFloat(localStorage.year), parseFloat(localStorage.month), parseFloat(localStorage.day), parseFloat(localStorage.hour));
+					localStorage.removeItem("year");
+					localStorage.removeItem("month");
+					localStorage.removeItem("hour");
+					localStorage.removeItem("day");
+				} else {
+					calendar = new GeossCalendar(undefined, 11, 18);
+				}
+				var weather = new Weather();
+				$("#Corruption").click(function(){
+					if($("#Corruption").text() == 'Corruption Hidden'){
+						$("#Corruption").text('Corruption Shown');
+						$('#CorruptionMap').css("display","block");
+					} else {
+						$("#Corruption").text('Corruption Hidden');
+						$('#CorruptionMap').css("display","none");
+					}
+				});
+				$("#Airships").click(function(){
+					if($("#Airships").text() == 'Airships Hidden'){
+						$("#Airships").text('Airships Shown');
+						$('.airship.npc.hideable').css("display","block");
+					} else {
+						$("#Airships").text('Airships Hidden');
+						$('.airship.npc.hideable').css("display","none");
+					}
+				});
+				$("#NotableNPCs").click(function(){
+					if($("#NotableNPCs").text() == 'Notable NPCs Hidden'){
+						$("#NotableNPCs").text('Notable NPCs Shown');
+						$('.pedestrian.npc.hideable').css("display","block");
+					} else {
+						$("#NotableNPCs").text('Notable NPCs Hidden');
+						$('.pedestrian.npc.hideable').css("display","none");
+					}
+				});
+				$("body").on("dragstop", ".airship.party", function(){
+					let tripTime = parseFloat($("#TripTime").text());
+					if (!isNaN(tripTime)) {
+						calendar.addHours(tripTime);
+					}
+					$("#Calendar").text(calendar.getTime() + ' ' + calendar.getDisplayDate());
+					localStorage.year = calendar.getYear();
+					localStorage.month = calendar.getMonth();
+					localStorage.day = calendar.getDate();
+					localStorage.hour = calendar.getHours();
+					localStorage.minute = calendar.getMinutes();
+					setTimeout(() => {
+						if (!dragging) {
+							$("#TripTime").text("");
+							$("#TripDistance").text("");
+						}
+					}, 1500);
+				});
+				$("#Calendar").text(calendar.getTime() + ' ' + calendar.getDisplayDate());
+				$("#Weather").text(weather.weather + ', Wind: ' + weather.winds);
+				Airship("57%", "47%");
+				// Pedestrian("24.5%", "25%", "Seabern", "/dnd/img/maps/icons/seabern.png");
+				// Pedestrian("47.2%", "28.8%", "Jasper", "/dnd/img/maps/icons/jasper.png");
+				Pedestrian("49.6%", "38%", "Shamous", "/dnd/img/maps/icons/Shamous.png");
+				// Pedestrian("57.1%", "50%", ["Bud", "Namfoodle", "Redji", "Teomyr", "Zenrya"], ["/dnd/img/maps/icons/bud.png", "/dnd/img/maps/icons/namfoodle.png", "/dnd/img/maps/icons/redji.png", "/dnd/img/maps/icons/teomyr.png", "/dnd/img/maps/icons/zenerya.png"]);
+				// PedestrianNPC("47.2%", "28.7%", "Smith", "/dnd/img/maps/icons/smith.png");
+				// PedestrianNPC("47.3%", "31.8%", "Matthias", "/dnd/img/maps/icons/matthias.png");
+				// PedestrianNPC("47%", "27.7%", "Quintus", "/dnd/img/maps/icons/quintus.png");
+				$("#map-body").focus();
+			})
+		</script>
+		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
+		<script>
+			$(document).ready(() => {
+				getCitiesByContinent($(".map-decapos"), "Decapos");
+				getCitiesByContinent($(".map-lagos"), "Lagos");
+				getCitiesByContinent($(".map-notre"), "Notre");
+				getCitiesByContinent($(".map-paros"), "Paros");
+				getCitiesByContinent($(".map-peku"), "Peku");
+				getCitiesByContinent($(".map-sutre"), "Sutre");
+				getCitiesByContinent($(".map-terrapim"), "Terrapim");
+			})
+		</script>
+	</head>
+
+	<body id="map-body" style="overflow: hidden; background:#25325f;">
+		<div class="map-controls" style="z-index: 2; padding-left:20px;">
+			- <input type="range" min="10" max="125" value="50" class="slider" id="map-zoom"> +
+			<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
+			<!-- <button id="Corruption">Corruption Hidden</button> -->
+			<!-- <button id="Airships">Airships Hidden</button>
+			<button id="NotableNPCs">Notable NPCs Hidden</button> -->
+			<span id="Calendar"></span>
+			<span id="Weather" style="padding-left:10px;"></span>
+			<div id="TripDistance"></div>
+			<div id="TripTime"></div>
+		</div>
+		<div id="map-container" class="map-container map" style="background-image:url('/dnd/img/maps/WorldMap.png'); background-repeat: no-repeat; background-size: contain; width:18750px; height:11250px; text-align: center; transform-origin:center center;">
+			<!-- <div class="airship hover" style="height:150px; width:150px; left:44.4%; top:37.5%; animation-delay: 1s; box-shadow:0px 0px 2px rgba(250,100,0,0.5), 0px 0px 5px rgba(250,100,0,0.5), 10px 15px 5px rgba(0,0,0,0.4);">
+				<img class="scale-me" src="/dnd/img/maps/CrossShip.png" style="width:100%;" alt="image"/>
+				<span class="city-preview">
+					<h1>The Retaliator (Cross' Ship)</h1>
+				</span>
+			</div>
+			<div class="airship party" style="height:200px; width:200px; left:44.8%; top:31%;">
+				<img src="/dnd/img/maps/Budmobile.png" style="width:100%;" alt="image"/>
+				<span class="city-preview">
+					<h1>Budmobile III</h1>
+				</span>
+			</div>
+			<div class="airship npc hideable" style="height:100px; width:100px; left:50%; top:40%;">
+				<img src="/dnd/img/maps/Airship.png" style="width:100%;" alt="image"/>
+				<span class="city-preview">
+					<h1>The Impatient</h1>
+				</span>
+			</div>
+			<div class="airship npc hideable" style="height:80px; width:80px; left:45%; top:30%; animation-delay:1s;">
+				<img src="/dnd/img/maps/Airship.png" style="width:100%;" alt="image"/>
+				<span class="city-preview">
+					<h1>The Dauntless</h1>
+				</span>
+			</div>
+			<div class="airship npc anchored hideable" style="height:80px; width:80px; left:45.6%; top:35.5%; animation-delay:1s;">
+				<img src="/dnd/img/maps/pirateship.png" style="width:100%;" alt="image"/>
+				<span class="city-preview">
+					<h1>Decimator</h1>
+				</span>
+			</div>
+			<div class="airship npc hideable" style="height:40px; width:40px; left:55%; top:35%; animation-delay:-1s;">
+				<img src="/dnd/img/maps/Airship.png" style="width:100%;" alt="image"/>
+				<span class="city-preview">
+					<h1>The Stumpy Toe</h1>
+				</span>
+			</div>
+			<div class="airship npc hideable" style="height:80px; width:80px; left:44%; top:36%; animation-delay:-2s;">
+				<img src="/dnd/img/maps/Airship.png" style="width:100%;" alt="image"/>
+				<span class="city-preview">
+					<h1>The High Ground</h1>
+				</span>
+			</div> -->
+			<a href="#" class="smith continent" style="position:absolute; top:700px; left:10000px; z-index:6;">
+				Notre
+				<span class="city-preview">
+					<h1>Notre</h1>
+					<!-- <p>
+						Population:
+						Yeti
+						Walrus Folk
+
+						Culture:
+						The Yeti and Walrus tend to distance themselves from each other. The two cultures signed a peace treaty 38 years ago preventing war, but their cultures are too different to mingle effectively.
+
+							Yeti: Stoic and standoffish. Yeti speak only when necessary, and using only as many words as needed to convey their intended message. The yeti are herbivores. They subsist on the rare frostflower. This is incredibly rich in nutrients and curative power, but grows only in small numbers beneath the snow. Due to the limited food supply, the yeti population tends to remain small.
+
+							Walrusfolk: Boisterous and hearty. Walrusfolk are fond of large gatherings, and love nothing more than a good recreational fight, adult party, or feast. Their diet consists almost exclusively of seafood.
+					</p> -->
+				</span>
+			</a>
+			<a href="#" class="smith continent" style="position:absolute; top:9730px; left:9300px; z-index:6;">
+				Sutre
+				<span class="city-preview">
+					<h1>Sutre</h1>
+					<!-- <p>
+						Population:
+						Centaurs
+						The weird antler walrus things from TLoZ: Phantom Hourglass
+
+						Culture:
+						Both primary cultures on Sutre are welcoming to outsiders, but hate each other with a fiery passion. They are constantly at war over the few viable feeding grounds on Sutre.
+
+						Biome:
+						Sutre is the very definition of arctic. The handful of locations on Suture that are not covered in ice are coveted and fought over.
+					</p> -->
+				</span>
+			</a>
+			<a href="/dnd/pages/maps/noseyus.html" class="smith metropolis" style="position:absolute; top:4200px; left:15000px; font-size:80px; z-index:6;">
+				Noseyus Island
+				<span class="city-preview">
+					<h1>Noseyus Island</h1>
+					<!-- <p>
+						Population:
+						Erina
+
+						Culture:
+						This island is home to a small but fierce tribe of Erina. The tribe has only a few dozen members, and as such has no formal leader. Most of the tribe are foragers, but they have 12 warriors. The strongest of these, Hunnip, is often looked to for guidance by the rest of the tribe.
+
+						Biome:
+						The island is absolutely tiny, but has a very temperate climate. Coconuts and palm trees abound.
+
+						Plot Hook:
+						The Erina consider it their divine mission to protect a large pearl with an arcane sheen. This is enchanted with powerful chronomancy magic. A creature who activates the pearl is sent 1000 years back in time.
+					</p> -->
+				</span>
+			</a>
+			<div class="map-lagos">
+				<a href="/dnd/pages/maps/cities/lagos/lagos.html" class="smith continent" style="position:absolute; top:1130px; left:1040px;">
+					Lagos
+				</a>
+				<img src="/dnd/img/maps/landmasses/Lagos.png" style="z-index:1;">
+			</div>
+			<div class="map-bravagg">
+				<!-- <a href="#" class="smith continent" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);">
+					Bravagg
+				</a> -->
+				<a href="#" class="smith metropolis" style="position:absolute; font-size:110px; top:50%; left:50%; transform:translate(-50%, -50%);">
+					Bravagg&nbsp;Isle
+					<span class="city-preview">
+						<h1>Bravagg Isle</h1>
+						<p>
+							Despite it's welcoming appearance, few dare to tread upon the shores of Bravagg Isle. It is widely believed that the mountain is home to a civilization of dragons.
+						</p>
+					<!-- <p>
+							Watched over by the ancient dragon Bravagg, this island is a haven for flying creatures. Home to nigh-countless Aarakocra, Urds, and dragonspawn, visitors would be hardpressed to find a flightless creature anywhere.
+
+							Outsiders with feathers are usualy welcomed with open arms. A magical mark is required for any other outsiders. Those without the mark are fair game for the dragons inside.
+						</p> -->
+					</span>
+				</a>
+				<img src="/dnd/img/maps/landmasses/Bravagg.png" style="height:100%; z-index:1;">
+			</div>
+			<div class="map-paros">
+				<a href="cities/paros/paros.html" class="smith continent" style="position:absolute; top:2230px; left:2540px;">
+					Paros
+				</a>
+				<div class="marker-town" style="left:2490px; top:3460px;">
+					&#160;
+				</div>
+				<img src="/dnd/img/maps/landmasses/Paros.png" style="height:100%; z-index:1;">
+			</div>
+			<div class="map-peku">
+				<a href="/dnd/pages/maps/cities/peku/peku.html" class="smith continent" style="position:absolute; top:1140px; left:740px; transform:translate(-50%, -50%);">
+					Peku
+				</a>
+				<!--
+					Removed the animated version of the fog due to high GPU usage.
+					<div class="cloud" style="top:25%; left:50%; animation-delay: -4s;">&#160;</div>
+					<div class="cloud" style="top:50%; left:25%;">&#160;</div>
+					<div class="cloud" style="top:50%; left:48%; animation-delay: -2s;">&#160;</div>
+					<div class="cloud" style="top:50%; left:75%;">&#160;</div>
+					<div class="cloud" style="top:75%; left:50%; animation-delay: -4s;">&#160;</div>
+				-->
+
+				<div class="cloud-nonanimated" style="top:25%; left:50%;">&#160;</div>
+				<div class="cloud-nonanimated" style="top:50%; left:25%;">&#160;</div>
+				<div class="cloud-nonanimated" style="top:50%; left:48%;">&#160;</div>
+				<div class="cloud-nonanimated" style="top:50%; left:75%;">&#160;</div>
+				<div class="cloud-nonanimated" style="top:75%; left:50%;">&#160;</div>
+
+				<img src="/dnd/img/maps/landmasses/Peku.png" style="width:100%; z-index:1;">
+			</div>
+			<div class="map-terrapim">
+				<a href="cities/terrapim/terrapim.html" class="smith continent" style="position:absolute; top:40%; left:55%; transform:translate(-50%, -50%);">Terrapim</a>
+				<img src="/dnd/img/maps/landmasses/Terrapim.png" style="width:100%; z-index:1;">
+			</div>
+			<div class="map-decapos">
+				<a href="cities/decapos/decapos.html" class="smith continent" style="position:absolute; top:40%; left:55%; transform:translate(-50%, -50%);">Decapos</a>
+				<img src="/dnd/img/maps/landmasses/Decapos.png" style="width:100%; z-index:1;">
+			</div>
+			<div id="CorruptionMap" style="background-image:url('/dnd/img/maps/corruptionmap.png'); background-repeat: no-repeat; background-size: contain; width:100%; height:100%; z-index:1; position:absolute; top:0; left:0; opacity:0.6; pointer-events: none; display:none;">
+				<img src="/dnd/img/maps/corruptionmap.png" style="width:100%;" alt="image"/>
+			</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Spells</title>
+		<link rel="icon" href="/sf/favicon.png" />
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<style>
+			td.spell .content {display:none;}
+			td.spell.expanded .content {display:block;}
+			td.spell .content>* {padding-top:0.2em;}
+			td.spell .header {user-select: none; cursor: pointer; border-bottom:2px solid black; font-weight: bold; text-transform: uppercase; font-size: 1.2em;}
+			th {font-weight: bold; border:2px solid #eee; background:#333; color:floralwhite; padding:4px;}
+			td{border:2px solid #eee; padding:4px; font-family: Roboto;}
+		</style>
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/res/js/sort-table.js"></script>
+		<script src="/sf/res/js/spells.js"></script>
+		<script>
+			var spellManager;
+			$(document).ready(function(){
+				getSpells().done(function (returnedData) {
+					spellManager = new SpellManager(returnedData);
+					spellManager.parse();
+					renderSpells();
+				});
+			});
+			function renderSpells(lvl, classes, schools) {
+				spellManager.resetFilters();
+				lvl = lvl || undefined;
+				classes = classes || undefined;
+				schools = schools || undefined;
+				spellManager.filter(lvl, classes, schools);
+				spellManager.sort();
+				const container = $("#items tbody");
+				container.html("");
+				for (let index = 0; index < spellManager.filteredSpells.length; index++) {
+					let shouldRender = true;
+					const item = spellManager.filteredSpells[index];
+					// if (!item.hasOwnProperty("classes") || item.classes == undefined) console.log(item.name);
+					let row = $(`<tr>
+							<td class="spell" colspan="6"></td>
+						</tr>`);
+					row.find(".spell").append(getSpellPreview(item));
+					row.find(".header").attr("onclick", "$(this).parent().toggleClass('expanded')");
+					container.append(row);
+				}
+			}
+			function filter() {
+				var lvls = [];
+				var classes = [];
+				if($("#level-0").prop("checked") == true) lvls.push(0);
+				if($("#level-1").prop("checked") == true) lvls.push(1);
+				if($("#level-2").prop("checked") == true) lvls.push(2);
+				if($("#level-3").prop("checked") == true) lvls.push(3);
+				if($("#level-4").prop("checked") == true) lvls.push(4);
+				if($("#level-5").prop("checked") == true) lvls.push(5);
+				if($("#level-6").prop("checked") == true) lvls.push(6);
+				if($("#level-7").prop("checked") == true) lvls.push(7);
+				if($("#level-8").prop("checked") == true) lvls.push(8);
+				if($("#level-9").prop("checked") == true) lvls.push(9);
+
+				if($("#class-mystic").prop("checked") == true) classes.push("Mystic");
+				if($("#class-technomancer").prop("checked") == true) classes.push("Technomancer");
+				if($("#class-witchwarper").prop("checked") == true) classes.push("Witchwarper");
+				if($("#class-none").prop("checked") == true) classes.push("None");
+
+				renderSpells(lvls, classes);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<div id="filters">
+					<div class="levels">
+						Levels:
+						<input type="checkbox" name="level-0" id="level-0" checked><label for="level-0">Cantrip</label>
+						<input type="checkbox" name="level-1" id="level-1" checked><label for="level-1">1</label>
+						<input type="checkbox" name="level-2" id="level-2" checked><label for="level-2">2</label>
+						<input type="checkbox" name="level-3" id="level-3" checked><label for="level-3">3</label>
+						<input type="checkbox" name="level-4" id="level-4" checked><label for="level-4">4</label>
+						<input type="checkbox" name="level-5" id="level-5" checked><label for="level-5">5</label>
+						<input type="checkbox" name="level-6" id="level-6" checked><label for="level-6">6</label>
+						<input type="checkbox" name="level-7" id="level-7" checked><label for="level-7">7</label>
+						<input type="checkbox" name="level-8" id="level-8" checked><label for="level-8">8</label>
+						<input type="checkbox" name="level-9" id="level-9" checked><label for="level-9">9</label>
+					</div>
+					<div class="classes">
+						Classes:
+						<input type="checkbox" name="class-mystic" id="class-mystic" checked><label for="class-mystic">Mystic</label>
+						<input type="checkbox" name="class-technomancer" id="class-technomancer" checked><label for="class-technomancer">Technomancer</label>
+						<input type="checkbox" name="class-witchwarper" id="class-witchwarper" checked><label for="class-witchwarper">Witchwarper</label>
+						<input type="checkbox" name="class-none" id="class-none" checked><label for="class-none">None</label>
+					</div>
+					<button onclick="filter();">Filter</button>
+				</div>
+				<table style="width:100%; margin:auto; border-collapse: collapse;" id="items">
+					<thead>
+						<tr class="header-row">
+							<th>Name</th>
+							<th style="width:7%;">Level</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

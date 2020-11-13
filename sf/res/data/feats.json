@@ -1,0 +1,1983 @@
+{
+	"items": [
+		{
+			"name": "Adaptive Fighting",
+			"combatFeat": true,
+			"prerequisites":  "Three or more combat feats",
+			"shortDescription": "Once per day as a move action, gain the benefit of a combat feat you don't have.",
+			"description": "Select three combat feats that you do not have but whose prerequisites you meet. Once per day as a move action, you can gain the benefit of one of these feats for 1 minute. Each time you gain a level, you can replace one of these three selected feats with a different feat that you don’t have but meet the prerequisites for.",
+			"source": "CRB",
+			"page":154
+		},
+		{
+			"name": "Advanced Melee Weapon Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Proficiency in basic melee weapons",
+				"mappings": [
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Basic Melee Weapons"
+					},
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Advanced Melee Weapons"
+					}
+				]
+			},
+			"shortDescription": "No penalty to attacks with advanced melee weapons",
+			"description": "You gain proficiency in advanced melee weapons.",
+			"source": "CRB",
+			"page":154
+		},
+		{
+			"name": "Agile Casting",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Key ability score 15, Dex 15, Mobility, caster level 4th",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "key",
+						"value": 15
+					},
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 15
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Mobility"
+					}
+				]
+			},
+			"shortDescription": "Cast a spell at any point during movement",
+			"description": " As a full action, you can move up to your speed and cast a single spell with a casting time of one standard action or less at any point during your movement. If you have a supernatural ability that can be activated as a standard action or less, you can instead use that ability at any point during your movement.",
+			"source": "CRB",
+			"page":155
+		},
+		{
+			"name": "Amplified Glitch",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Computers 3 ranks, Intimidate 3 ranks",
+				"mappings": [
+					{
+						"type": "skill-rank",
+						"subType": "Computers",
+						"value": 3
+					},
+					{
+						"type": "skill-rank",
+						"subType": "Intimidate",
+						"value": 3
+					}
+				]
+			},
+			"shortDescription": "Disrupt devices, causing targets to become shaken for 1 round or more",
+			"description": "As a standard action, you can wirelessly introduce a fast-acting virus into nearby technological devices to briefly cause them to malfunction in loud, surprising ways. You can use this ability on one target creature per character level, no two of which can be more than 30 feet apart. Each target must either be carrying technological devices or be within sight and hearing of such devices. While the locations of such devices are up to the GM, most public spaces (aside from technologically underdeveloped areas) contain enough technology for this feat to function. Your glitch causes alarms to go off, automated devices to spin and flail, readouts to flash brightly, and so on. With a successful Computers check (DC = 15 + 1 per target + 1-1/2 × the CR of the highest-CR target), all targets are shaken for 1 round, plus 1 additional round for every 5 by which your result exceeds the DC. Once you have targeted a creature with this feat, that foe is immune to this ability for 24 hours.",
+			"source": "CRB",
+			"page":155
+		},
+		{
+			"name": "Antagonize",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Diplomacy 5 ranks, Intimidate 5 ranks",
+				"mappings": [
+					{
+						"type": "skill-rank",
+						"subType": "Diplomacy",
+						"value": 5
+					},
+					{
+						"type": "skill-rank",
+						"subType": "Intimidate",
+						"value": 5
+					}
+				]
+			},
+			"shortDescription": "Anger a foe, causing it to become off-target and take a -2 penalty to skill checks for 1 round or more",
+			"description": "You know how to make foes extremely angry with you. As a standard action, you can antagonize a foe that can see and hear you by attempting a Diplomacy or Intimidate check (DC = 10 + your opponent’s total Sense Motive skill bonus, or 15 + 1-1/2 × the opponent’s CR, whichever is higher). If you succeed, the foe is off-target and takes a –2 penalty to all skill checks for 1 round plus 1 additional round for every 5 by which your result exceeds the DC, or until it makes an attack against you, forces you to attempt a saving throw, or damages you (whichever comes first). Once you have attempted to antagonize a foe, that foe is immune to this ability for 24 hours. This is a language-dependent ability.",
+			"source": "CRB",
+			"page":155
+		},
+		{
+			"name": "Barricade",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Engineering 1 rank",
+				"mappings": [
+					{
+						"type": "skill-rank",
+						"subType": "Engineering",
+						"value": 1
+					}
+				]
+			},
+			"shortDescription": "Create your own fragile cover",
+			"description": "You are adept at creating quick, temporary cover. As a move action, you can stack and reinforce objects that are too small or too fragile to provide cover into a single square of adjacent cover. The GM has discretion over whether enough such objects are nearby to allow you to use this ability, but most urban and wilderness settings not specifically described as empty or barren have enough such material to allow at least one such temporary barricade to be built. The barricade grants partial cover against attacks with line of effect that pass through it. If the barricade is in a square that already granted partial cover, it instead grants normal cover. For more information about cover, see page 253. The barricade is temporary and not particularly durable. When determining its hardness and Hit Points, treat it as a piece of equipment with an item level equal to half your total ranks in Engineering (minimum 1st level). Additionally, once it or a creature adjacent to it is hit by an attack, the barricade collapses at the beginning of your turn in 1d4 rounds (unless the barricade is destroyed completely by the attack). There isn’t normally enough material for you to build a second barricade in exactly the same space unless you are in a particularly crowded area (as determined by the GM).",
+			"source": "CRB",
+			"page":155
+		},
+		{
+			"name": "Basic Melee Weapon Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "",
+				"mappings": [
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Basic Melee Weapons"
+					},
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Basic Melee Weapons"
+					}
+				]
+			},
+			"shortDescription": "No penalty to attacks with basic melee weapons",
+			"description": "You gain proficiency in basic melee weapons (see Weapon Proficiency on page 243).",
+			"source": "CRB",
+			"page":155
+		},
+		{
+			"name": "Blind-Fight",
+			"combatFeat": true,
+			"prerequisites":  "",
+			"shortDescription": "Reroll miss chances from concealment",
+			"description": "You are skilled at attacking opponents you can’t clearly see. In melee, every time you miss because of concealment (see page 253), you can reroll your miss chance percentile roll one time to see if you actually hit (see page 243). You aren’t flat-footed against melee attacks from creatures you can’t see, and you can withdraw from creatures you can’t perceive. You don’t need to attempt Acrobatics checks to move at full speed while blinded.",
+			"source": "CRB",
+			"page":155
+		},
+		{
+			"name": "Bodyguard",
+			"combatFeat": true,
+			"prerequisites":  "",
+			"shortDescription": "Add a +2 bonus to an adjacent ally’s AC as a reaction",
+			"description": "You can attempt to ward off attacks that target nearby allies. <p>Benefit: As a reaction when an adjacent ally is attacked, you can grant that ally a +2 circumstance bonus to its AC against that attack. If you do so, you take a –2 penalty to your own Armor Class until the beginning of your next turn.</p>",
+			"source": "CRB",
+			"page":155
+		},
+		{
+			"name": "Cleave",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Str 13, base attack bonus +1",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "str",
+						"value": 13
+					},
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"shortDescription": "Make an additional melee attack if the first one hits",
+			"description": ":As a standard action, you can make a single melee attack against a foe within reach. If you hit, you deal damage normally and can make an additional melee attack (using your full base attack bonus) against a foe that is adjacent to the first and also within reach. You can make only one additional attack per round with this feat. When you use this feat, you take a –2 penalty to your Armor Class until your next turn.",
+			"source": "CRB",
+			"page":155
+		},
+		{
+			"name": "Climbing Master",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Athletics 5 ranks",
+				"mappings": [
+					{
+						"type": "skill-rank",
+						"subType": "Athletics",
+						"value": 5
+					}
+				]
+			},
+			"shortDescription": "Gain a climb speed equal to your base speed",
+			"description": "You can climb as well as a monkey or a spider. You gain a climb speed equal to your land speed.",
+			"source": "CRB",
+			"page":155
+		},
+		{
+			"name": "Close Combat",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"shortDescription": "+2 bonus to AC against attacks from far away after melee attack",
+			"description": "When you are attacking a foe in melee, you know how to maneuver to make it more difficult for other foes to target you. When you hit an adjacent foe with a melee attack, as long as you are adjacent to that target, you gain a +2 circumstance bonus to your AC against attacks from other creatures that are not adjacent to you until the beginning of your next turn.",
+			"source": "PWD",
+			"page":190
+		},
+		{
+			"name": "Combat Casting",
+			"combatFeat": true,
+			"prerequisites":  "Ability to cast 2nd-level spells",
+			"shortDescription": "+2 bonus to AC and saves against attacks of opportunity when casting spells",
+			"description": "You leave fewer openings when casting a spell. You gain a +2 bonus to your Armor Class and saving throws against attacks of opportunity you provoked by casting a spell and against readied actions triggered by your spellcasting.",
+			"source": "CRB",
+			"page":156
+		},
+		{
+			"name": "Connection Inkling",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Wis 15, character level 5th, no levels in mystic.",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "wis",
+						"value": 15
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 5
+					}
+				]
+			},
+			"description": "Gain the ability to cast minor mystic spells",
+			"source": "CRB",
+			"page":156
+		},
+		{
+			"name": "Coordinated Shot",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"description": "Allies gain a +1 bonus to ranged attacks against foes you threaten",
+			"source": "CRB",
+			"page":156
+		},
+		{
+			"name": "Corruption’s Gift",
+			"combatFeat": false,
+			"prerequisites":  "One or more corruption manifestations (see pages 40-45 of Starfinder Adventure Path #10: The Diaspora Strain)",
+			"description": "Gain permanent manifestation gift",
+			"source": "SS3",
+			"page":52
+		},
+		{
+			"name": "Craven Ploy",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Cha 13",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "cha",
+						"value": 13
+					}
+				]
+			},
+			"description": "Willing ally takes -2 to AC to increase your AC by 2",
+			"source": "SS1",
+			"page":52
+		},
+		{
+			"name": "Deadly Aim",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"shortDescription": "Take a −2 penalty to weapon attacks to deal extra damage",
+			"description": "Your can strike your enemies’ weak points and deal more damage. When you take the attack or full attack action with weapons (including a solarian’s solar manifestation, but not spells or other special abilities of any kind), you can take a –2 penalty to your attack rolls. If you do, those attacks deal additional damage equal to half your base attack bonus (minimum 1).",
+			"source": "CRB",
+			"page":156
+		},
+		{
+			"name": "Deflect Projectiles",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +8",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 8
+					}
+				]
+			},
+			"description": "Spend 1 Resolve Point to attempt to avoid a ranged attack",
+			"source": "CRB",
+			"page":156
+		},
+		{
+			"name": "Diehard",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "You can spend Resolve Points to stabilize and to stay in the fight in the same round",
+			"source": "CRB",
+			"page":156
+		},
+		{
+			"name": "Dive for Cover",
+			"combatFeat": true,
+			"prerequisites":  "Base Reflex save bonus +2",
+			"description": "Fall prone in an adjacent square to roll a Reflex save twice",
+			"source": "CRB",
+			"page":156
+		},
+		{
+			"name": "Diversion",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "Use Bluff to create a distraction so that your allies can hide",
+			"source": "CRB",
+			"page":156
+		},
+		{
+			"name": "Divine Blessing",
+			"combatFeat": false,
+			"prerequisites":  "Worship a deity of an alignment within one step of your own alignment (Starfinder Core Rulebook 25).",
+			"description": "Gain a deity unique power based on who you worship",
+			"source": "PWD",
+			"page":190
+		},
+		{
+			"name": "Drag Down",
+			"combatFeat": true,
+			"prerequisites":  "",
+			"description": "When you are tripped, you can attempt to trip an adjacent foe",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Enhanced Resistance",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Base attack bonus +4",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 4
+					}
+				]
+			},
+			"description": "Gain damage reduction or energy resistance",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Extended Telepathy",
+			"combatFeat": false,
+			"prerequisites":  "Limited telepathy racial trait",
+			"description": "Increase range of limited telepathy",
+			"source": "PWD",
+			"page":191
+		},
+		{
+			"name": "Extra Resolve",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Character level 5th",
+				"mappings": [
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 5
+					}
+				]
+			},
+			"description": "Gain 2 additional Resolve Points",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Far Shot",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"description": "Reduce penalty due to range increments",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Fast Talk",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Bluff 5 ranks",
+				"mappings": [
+					{
+						"type": "skill-rank",
+						"subType": "Bluff",
+						"value": 5
+					}
+				]
+			},
+			"description": "Baffle a potential foe, causing it to be surprised when combat begins",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Fleet",
+			"combatFeat": true,
+			"prerequisites":  "",
+			"shortDescription": "Increase your base speed",
+			"description": "While you are wearing light or no armor, your land speed increases by 10 feet. When you are encumbered, your land speed instead increases by only 5 feet. When you are overburdened, your speed is reduced to 10 feet.",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Focused Spellcaster",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Combat Casting, ability to cast 4th-level spells",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Combat Casting"
+					}
+				]
+			},
+			"description": "Spend a resolve point to stop a spell from failing from taking damage",
+			"source": "PWD",
+			"page":191
+		},
+		{
+			"name": "Fusillade",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1, four or more arms",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"description": "Make an automatic-mode attack with multiple small arms",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Great Cleave",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Str 13, Cleave, base attack bonus +4",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "str",
+						"value": 13
+					},
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 4
+					}
+				]
+			},
+			"description": "Make an additional melee attack after each melee attack that hits",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Great Fortitude",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "+2 bonus to Fortitude saves",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Greater Feint",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Improved Feint, base attack bonus +6",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Improved Feint"
+					},
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 6
+					}
+				]
+			},
+			"description": "Foes you feint against are flat-footed for 1 round",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Greater Shadow Infusion",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Improved Shadow Infusion, Shadow Infusion, character level 13th",
+				"mappings": [
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 13
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Improved Shadow Infusion"
+					}
+				]
+			},
+			"description": "Become incorporeal and reduce physical and nonphysical damage",
+			"source": "SS3",
+			"page":52
+		},
+		{
+			"name": "Greater Spell Penetration",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Spell Penetration",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Spell Penetration"
+					}
+				]
+			},
+			"description": "Additional +2 bonus to caster level checks to overcome SR",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Grenade Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "",
+				"mappings": [
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Grenades"
+					}
+				]
+			},
+			"description": "No penalty to attacks made with grenades",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Harm Undead",
+			"combatFeat": false,
+			"prerequisites":  "Healing channel connection power, mystic level 1st",
+			"description": "Expend a spell slot for healing channel to also damage undead",
+			"source": "CRB",
+			"page":157
+		},
+		{
+			"name": "Heavy Armor Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Str 13, proficiency in light armor",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "str",
+						"value": 13
+					},
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Light Armor"
+					},
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Heavy Armor"
+					}
+				]
+			},
+			"shortDescription": "No penalty to attack rolls while wearing heavy armor",
+			"description": "You gain proficiency in heavy armor (see page 242).",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Heavy Weapon Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Str 13, proficiency in small arms and longarms",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "str",
+						"value": 13
+					},
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Small Arms"
+					},
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Longarms"
+					},
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Heavy Weapons"
+					}
+				]
+			},
+			"shortDescription": "No penalty to attacks with heavy weapons",
+			"description": "You gain proficiency in heavy weapons (see page 243).",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Improved Combat Maneuver",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"description": "+4 bonus to perform one combat maneuver",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Improved Critical",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +8",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 8
+					}
+				]
+			},
+			"description": "The DC to resist the critical effects of your critical hits increases by 2",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Improved Demoralize",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "You can use the Intimidate skill to demoralize as a move action.",
+			"source": "SS3",
+			"page":52
+		},
+		{
+			"name": "Improved Feint",
+			"combatFeat": true,
+			"prerequisites":  "",
+			"description": "Use Bluff to feint as a move action",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Improved Great Fortitude",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Great Fortitude, character level 5th",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Great Fortitude"
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 5
+					}
+				]
+			},
+			"description": "Spend 1 Resolve Point to reroll a Fortitude save",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Improved Initiative",
+			"combatFeat": true,
+			"prerequisites":  "",
+			"description": "+4 bonus to initiative checks",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Improved Iron Will",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Iron Will, character level 5th",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Iron Will"
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 5
+					}
+				]
+			},
+			"description": "Spend 1 Resolve Point to reroll a Will save",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Improved Lightning Reflexes",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Lightning Reflexes, character level 5th",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Lightning Reflexes"
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 5
+					}
+				]
+			},
+			"description": "Spend 1 Resolve Point to reroll a Reflex save",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Improved Shadow Infusion",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Shadow Infusion, character level 7th",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Shadow Infusion"
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 7
+					}
+				]
+			},
+			"description": "Become shrouded in shadow to gain concealment",
+			"source": "SS3",
+			"page":52
+		},
+		{
+			"name": "Improved Sidestep",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 17, Mobility or trick attack class feature, Sidestep",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 17
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Sidestep"
+					}
+				]
+			},
+			"description": "Reduce penalties from Sidestep",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Improved Stand Still",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Stand Still",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Stand Still"
+					}
+				]
+			},
+			"description": "+4 bonus to melee attacks with Stand Still",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Improved Unarmed Strike",
+			"combatFeat": true,
+			"prerequisites":  "",
+			"shortDescription": "Deal more damage and threaten squares with unarmed strikes",
+			"description": "Your unarmed attack damage increases to 1d6 at 4th level, 2d6 at 8th level, 3d6 at 12th level, 5d6 at 15th level, and 7d6 at 20th level. You threaten squares within your natural reach with your unarmed strikes even when you do not have a hand free for an unarmed strike. If you are immobilized, entangled, or unable to use both legs (or whatever appendages you have in place of legs, where appropriate), you lose the ability to make unarmed strikes without your hands. When making an unarmed strike without your hands, you can’t use such attacks for combat maneuvers or similar abilities—only to deal damage.",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "In Harm’s Way",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Bodyguard",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Bodyguard"
+					}
+				]
+			},
+			"description": "Take the damage of a successful attack against an adjacent ally",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Indirect Retreat",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 13, Mobility",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 13
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Mobility"
+					}
+				]
+			},
+			"description": "Allows you to turn during full action run",
+			"source": "SS1",
+			"page":52
+		},
+		{
+			"name": "Iron Will",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "+2 bonus to Will saves",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Jet Dash",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"shortDescription": "Move faster when running, double height and distance when jumping",
+			"description": "When running, you move six times your land speed. Whenever you jump, double the height and distance you can jump. While running, you don’t gain the flat-footed condition.",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Kasathan Battle Dance",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 13, Mobility or trick attack",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 13
+					}
+				]
+			},
+			"description": "Withdrawing with two hands free does not provoke attacks of opportunity",
+			"source": "PWD",
+			"page":191
+		},
+		{
+			"name": "Kip Up",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Acrobatics 1 rank",
+				"mappings": [
+					{
+						"type": "skill-rank",
+						"subType": "Acrobatics",
+						"value": 1
+					}
+				]
+			},
+			"description": "Stand from prone as a swift action",
+			"source": "CRB",
+			"page":158
+		},
+		{
+			"name": "Light Armor Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "",
+				"mappings": [
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Light Armor"
+					}
+				]
+			},
+			"description": "No penalty to attack rolls while wearing light armor",
+			"source": "CRB",
+			"page":159
+		},
+		{
+			"name": "Lightning Reflexes",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "+2 bonus to Reflex saves",
+			"source": "CRB",
+			"page":159
+		},
+		{
+			"name": "Longarm Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Proficiency in small arms",
+				"mappings": [
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Small Arms"
+					},
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Longarms"
+					}
+				]
+			},
+			"description": "No penalty to attacks with longarms",
+			"source": "CRB",
+			"page":159
+		},
+		{
+			"name": "Lunge",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +6",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 6
+					}
+				]
+			},
+			"description": "Increase reach of melee attacks by 5 feet until the end of your turn",
+			"source": "CRB",
+			"page":159
+		},
+		{
+			"name": "Major Psychic Power",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Cha 15, Minor Psychic Power, Psychic Power, character level 7th",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "cha",
+						"value": 15
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Psychic Power"
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 7
+					}
+				]
+			},
+			"description": "Cast a 2nd-level spell as a spell-like ability 1/day",
+			"source": "CRB",
+			"page":159
+		},
+		{
+			"name": "Major Stage Magic",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Cha 15, Minor Stage Magic, Stage Magic, character level 7th",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "cha",
+						"value": 15
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Stage Magic"
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 7
+					}
+				]
+			},
+			"description": "Gain a 2nd level spell to help distract foes or entertain crowds",
+			"source": "PWD",
+			"page":191
+		},
+		{
+			"name": "Master Crafter",
+			"combatFeat": false,
+			"prerequisites":  "Computers, Engineering, Life Science, Mysticism, Physical Science, or appropriate Profession 5 ranks",
+			"description": "Craft items in half the normal time",
+			"source": "CRB",
+			"page":159
+		},
+		{
+			"name": "Medical Expert",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Life Science 1 rank, Medicine 1 rank, Physical Science 1 rank",
+				"mappings": [
+					{
+						"type":"skill-rank",
+						"subType": "Life Science",
+						"value": 1
+					},
+					{
+						"type":"skill-rank",
+						"subType": "Medicine",
+						"value": 1
+					},
+					{
+						"type":"skill-rank",
+						"subType": "Physical Science",
+						"value": 1
+					}
+				]
+			},
+			"description": "Treat deadly wounds more quickly, and provide long-term care without a medical lab",
+			"source": "CRB",
+			"page":159
+		},
+		{
+			"name": "Minor Psychic Power",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Cha 11",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "cha",
+						"value": 11
+					}
+				]
+			},
+			"description": "Cast a 0-level spell as a spell-like ability 3/day",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Minor Stage Magic",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Cha 11",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "cha",
+						"value": 11
+					}
+				]
+			},
+			"description": "Gain a 0-level spell to help distract foes or entertain crowds",
+			"source": "PWD",
+			"page":191
+		},
+		{
+			"name": "Mobility",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 13",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 13
+					}
+				]
+			},
+			"description": "+4 bonus to AC against attacks of opportunity from movement",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Multi-Weapon Fighting",
+			"combatFeat": true,
+			"prerequisites":  "",
+			"description": "Reduce the penalty for full attacks when using multiple small arms or operative melee weapons",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Mystic Strike",
+			"combatFeat": true,
+			"prerequisites":  "Ability to cast spells",
+			"description": "Melee and ranged attacks count as magic",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Nimble Moves",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 15",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 15
+					}
+				]
+			},
+			"description": "Ignore 20 feet of difficult terrain when you move",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Opening Volley",
+			"combatFeat": true,
+			"prerequisites":  "",
+			"description": "+2 bonus to a melee attack against a target you damaged with a ranged attack",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Parting Shot",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 15, Mobility, Shot on the Run, base attack bonus +6",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 15
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Mobility"
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Shot on the Run"
+					},
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 6
+					}
+				]
+			},
+			"description": "Make a single ranged attack when withdrawing",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Penetrating Attack",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +12",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 12
+					}
+				]
+			},
+			"description": "Reduce enemy's DR and energy resistance against your weapons by 5",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Penetrating Spell",
+			"combatFeat": false,
+			"prerequisites":  "Ability to cast 4th-level spells",
+			"description": "Reduce enemy's DR and energy resistance against your spells by 5",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Polymorph Adept",
+			"combatFeat": false,
+			"prerequisites":  "You know the polymorph spell as a 3rd-level spell or higher.",
+			"description": "Allows you to change polymorph form as standard action without penalty",
+			"source": "AA2",
+			"page":145
+		},
+		{
+			"name": "Powered Armored Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Str 13, base attack bonus +5, proficiency in light and heavy armor",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "str",
+						"value": 13
+					},
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 5
+					},
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Light Armor"
+					},
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Heavy Armor"
+					},
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Powered Armor"
+					}
+				]
+			},
+			"description": "No penalty to attack rolls while wearing powered armor",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Protector of Kahlannal",
+			"combatFeat": false,
+			"prerequisites":  "Anassanoi, any non-chaotic and non-evil alignment",
+			"description": "You are one of the eight ordained Protectors of the anassanoi people of Kahlannal.",
+			"source": "DF05",
+			"page":45
+		},
+		{
+			"name": "Psychic Insight",
+			"combatFeat": false,
+			"prerequisites":  "Limited telepathy or telepathy",
+			"description": "Gain bonuses against creatures you communicate with telepathically",
+			"source": "DF01",
+			"page":44
+		},
+		{
+			"name": "Psychic Power",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Cha 13, Minor Psychic Power, character level 4th",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "cha",
+						"value": 13
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Minor Psychic Power"
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 4
+					}
+				]
+			},
+			"description": "Cast a 1st-level spell as a spell-like ability 1/day",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Psychic Sense",
+			"combatFeat": false,
+			"prerequisites":  "Limited telepathy or telepathy",
+			"description": "Gain blinsense using telepathy",
+			"source": "DF01",
+			"page":44
+		},
+		{
+			"name": "Pull the Pin",
+			"combatFeat": true,
+			"prerequisites":  "Improved Combat Maneuver (disarm)",
+			"description": "Perform a disarm to activate a foe’s grenade",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Quick Draw",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"description": "Draw a weapon as a swift action",
+			"source": "CRB",
+			"page":160
+		},
+		{
+			"name": "Reflect Projectiles",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Deflect Projectiles, base attack bonus +16",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Deflect Projectiles"
+					},
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 16
+					}
+				]
+			},
+			"description": "Spend 1 Resolve Point to attempt to redirect a ranged attack",
+			"source": "CRB",
+			"page":161
+		},
+		{
+			"name": "Shadow Infusion",
+			"combatFeat": false,
+			"prerequisites":  "You must spend a significant time on the Shadow Plane or otherwise become infused with its energies, such as by dying there or gaining shadow corruption. The GM determines whether you qualify for this feat",
+			"description": "Gain low-light vision and darkvision, or see in darkness",
+			"source": "SS3",
+			"page":53
+		},
+		{
+			"name": "Shot on the Run",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 15, Mobility, base attack bonus +4",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 15
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Mobility"
+					},
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 4
+					}
+				]
+			},
+			"description": "Make a ranged attack at any point during movement",
+			"source": "CRB",
+			"page":161
+		},
+		{
+			"name": "Sidestep",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 15, Mobility or trick attack class feature",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 15
+					}
+				]
+			},
+			"description": "Take guarded step as a reaction when a foe misses you with melee attack",
+			"source": "CRB",
+			"page":161
+		},
+		{
+			"name": "Skill Focus",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "+3 insight bonus to one skill",
+			"source": "CRB",
+			"page":161
+		},
+		{
+			"name": "Skill Synergy",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "Gain two new class skills or a +2 insight bonus to those skills",
+			"source": "CRB",
+			"page":161
+		},
+		{
+			"name": "Sky Jockey",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Piloting 5 ranks",
+				"mappings": [
+					{
+						"type": "skill-rank",
+						"subType": "Piloting",
+						"value": 5
+					}
+				]
+			},
+			"description": "Make jetpacks, vehicles, and starships go faster",
+			"source": "CRB",
+			"page":161
+		},
+		{
+			"name": "Slippery Shooter",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 15, base attack bonus +6",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 15
+					},
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 6
+					}
+				]
+			},
+			"description": "+3 bonus to AC against attacks of opportunity when making ranged attacks",
+			"source": "CRB",
+			"page":161
+		},
+		{
+			"name": "Small Arm Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "",
+				"mappings": [
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Small Arms"
+					}
+				]
+			},
+			"description": "No penalty to attacks with small arms",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Sniper Weapon Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "",
+				"mappings": [
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Sniper Weapons"
+					}
+				]
+			},
+			"description": "No penalty to attacks with sniper weapons",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Special Weapon Proficiency",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Proficiency in basic melee weapons or small arms",
+				"mappings": [
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Basic Melee Weapons"
+					},
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Small Arms"
+					},
+					{
+						"type": "prof",
+						"subType": "not",
+						"value": "Special Weapons"
+					}
+				]
+			},
+			"description": "No penalty to attacks with one special weapon",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Spell Focus",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Ability to cast spells, character level 3rd",
+				"mappings": [
+					{
+						"type": "can-cast",
+						"subType": "",
+						"value": ""
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 3
+					}
+				]
+			},
+			"description": "DCs of spells you cast increase",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Spell Penetration",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "+2 bonus to caster level checks to overcome SR",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Spellbane",
+			"combatFeat": false,
+			"prerequisites":  "Unable to cast spells or use spell-like abilities",
+			"description": "+2 insight bonus to saving throws against spells and spell-like abilities",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Spring Attack",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 15, Mobility, base attack bonus +4",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 15
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Mobility"
+					},
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 4
+					}
+				]
+			},
+			"description": "Move before and after a melee attack",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Spry Cover",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"description": "Covering fire grants a +4 bonus to an ally’s Acrobatics check to tumble",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Squox Companion",
+			"combatFeat": false,
+			"prerequisites":  "You own a trained squox that has an attitude of friendly or helpful toward you.",
+			"description": "Gain bonuses for having a pet sqoux",
+			"source": "AA2",
+			"page":119
+		},
+		{
+			"name": "Stage Magic",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Cha 13, Minor Stage Magic, character level 4th",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "cha",
+						"value": 13
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Minor Stage Magic"
+					},
+					{
+						"type":"character-level",
+						"subType": "",
+						"value": 4
+					}
+				]
+			},
+			"description": "Gain a 1st level spell to help distract foes or entertain crowds",
+			"source": "PWD",
+			"page":191
+		},
+		{
+			"name": "Stand Still",
+			"combatFeat": true,
+			"prerequisites":  "",
+			"description": "Make an attack of opportunity to stop a foe’s movement",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Startled Scream",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "Stops surprised allies from being flatfooted in surprise round",
+			"source": "SS1",
+			"page":52
+		},
+		{
+			"name": "Steel Nerves",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Wis 13, character level 3rd",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "wis",
+						"value": 13
+					},
+					{
+						"type":"character-level",
+						"subType":"",
+						"value":3
+					}
+				]
+			},
+			"description": "+2 bonus against fear and other bonuses against fear effects",
+			"source": "SS1",
+			"page":52
+		},
+		{
+			"name": "Step Up",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"description": "Take a guarded step as a reaction to an adjacent foe moving",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Step Up and Strike",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 13, Step Up, base attack bonus +6",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "",
+						"value": 13
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Step Up"
+					},
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 6
+					}
+				]
+			},
+			"description": "Make an attack of opportunity as part of Step Up",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Strike Back",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					}
+				]
+			},
+			"description": "Ready an action to make a melee attack against a foe with reach",
+			"source": "CRB",
+			"page":163
+		},
+		{
+			"name": "Suppressive Fire",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Base attack bonus +1, proficiency with heavy weapons",
+				"mappings": [
+					{
+						"type": "base-attack-bonus",
+						"subType": "",
+						"value": 1
+					},
+					{
+						"type": "prof",
+						"subType": "",
+						"value": "Heavy Weapons"
+					}
+				]
+			},
+			"description": "Provide covering fire or harrying fire in an area",
+			"source": "CRB",
+			"page":162
+		},
+		{
+			"name": "Swimming Master",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Athletics 5 ranks",
+				"mappings": [
+					{
+						"type": "skill-rank",
+						"subType": "Athletics",
+						"value": 5
+					}
+				]
+			},
+			"description": "Gain a swim speed equal to your base speed",
+			"source": "CRB",
+			"page":163
+		},
+		{
+			"name": "Technomantic Dabbler",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Intelligence 15, character level 5th, no levels in technomancer",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "int",
+						"value": 15
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 5
+					}
+				]
+			},
+			"description": "Gain the ability to cast minor technomancer spells",
+			"source": "CRB",
+			"page":163
+		},
+		{
+			"name": "Telepathic Spy",
+			"combatFeat": false,
+			"prerequisites":  "Limited telepathy or telepathy",
+			"description": "Intercept psychic communications with a sense motive check",
+			"source": "DF01",
+			"page":44
+		},
+		{
+			"name": "Toughness",
+			"combatFeat": false,
+			"prerequisites":  "",
+			"description": "+1 Stamina Point per character level and other bonuses",
+			"source": "CRB",
+			"page":163
+		},
+		{
+			"name": "Unfriendly Fire",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Bluff 5 ranks",
+				"mappings": [
+					{
+						"type": "skill-rank",
+						"subType": "Bluff",
+						"value": 5
+					}
+				]
+			},
+			"description": "Trick an attacker into shooting at another enemy adjacent to you",
+			"source": "CRB",
+			"page":163
+		},
+		{
+			"name": "Veiled Threat",
+			"combatFeat": false,
+			"prerequisites":  {
+				"description": "Cha 15",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "cha",
+						"value": 15
+					},
+					{
+						"type": "skill-rank",
+						"subType": "Intimidate",
+						"value": 1
+					}
+				]
+			},
+			"description": "Intimidated foe doesn’t become hostile",
+			"source": "CRB",
+			"page":163
+		},
+		{
+			"name": "Versatile Focus",
+			"combatFeat": true,
+			"prerequisites":  "Weapon Focus (any)",
+			"description": "+1 bonus to attack rolls with all weapon types you are proficient with",
+			"source": "CRB",
+			"page":163
+		},
+		{
+			"name": "Versatile Specialization",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Weapon Specialization, character level 3rd",
+				"mappings": [
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Weapon Specialization"
+					},
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 3
+					}
+				]
+			},
+			"description": "Deal extra damage with all weapon types you are proficient with",
+			"source": "CRB",
+			"page":163
+		},
+		{
+			"name": "Wary Withdrawal",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Dex 13, Wis 13, Mobility",
+				"mappings": [
+					{
+						"type": "ability-score",
+						"subType": "dex",
+						"value": 13
+					},
+					{
+						"type": "ability-score",
+						"subType": "wis",
+						"value": 13
+					},
+					{
+						"type": "feat",
+						"subType": "",
+						"value": "Mobility"
+					}
+				]
+			},
+			"description": "Allows withdraw during total defense action",
+			"source": "SS1",
+			"page":52
+		},
+		{
+			"name": "Weapon Focus",
+			"combatFeat": true,
+			"prerequisites":  "Proficiency with selected weapon type",
+			"description": "+1 bonus to attack rolls with selected weapon type",
+			"source": "CRB",
+			"page":163
+		},
+		{
+			"name": "Weapon Specialization",
+			"combatFeat": true,
+			"prerequisites":  {
+				"description": "Character level 3rd, proficiency with selected weapon type",
+				"mappings": [
+					{
+						"type": "character-level",
+						"subType": "",
+						"value": 3
+					}
+				]
+			},
+			"description": "Deal extra damage with selected weapon type",
+			"source": "CRB",
+			"page":163
+		}
+	]
+}

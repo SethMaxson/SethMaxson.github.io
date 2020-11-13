@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Guilds of Geoss</title>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous"></script>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<style>
+			.dmnotes {display:none; margin-top:10px;}
+			.playernotes {display:block;}
+
+			html,
+			body {
+				background: #F7F5E6;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				width: 100%;
+			}
+
+			.slider {
+				margin: 0 auto;
+				max-width: 940px;
+			}
+
+			.slide_viewer {
+				height: 500px;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.slide_group {
+				height: 100%;
+				position: relative;
+				width: 100%;
+			}
+
+			.slide {
+				display: none;
+				height: 94%;
+				box-sizing: border-box;
+				position: absolute;
+				width: 96%;
+				margin:2%;
+			}
+
+			.slide:first-child {
+				display: block;
+			}
+
+			.slide_buttons {
+				position:absolute;
+				bottom:2em;
+			}
+
+			a.slide_btn {
+				color: #474544;
+				font-size: 24px;
+				margin: 0 0.075em;
+				-webkit-transition: all 0.4s ease-in-out;
+				-moz-transition: all 0.4s ease-in-out;
+				-ms-transition: all 0.4s ease-in-out;
+				-o-transition: all 0.4s ease-in-out;
+				transition: all 0.4s ease-in-out;
+			}
+
+			.slide_btn.active,
+			.slide_btn:hover {
+				color: #428CC6;
+				cursor: pointer;
+			}
+
+			.directional_nav {
+				height: 130px;
+				margin: 0 auto;
+				max-width: 940px;
+				position: relative;
+				top: -130px;
+			}
+
+			.previous_btn {
+				bottom: 0;
+				left: 30px;
+				margin: auto;
+				position: absolute;
+				top: 0;
+			}
+
+			.next_btn {
+				bottom: 0;
+				margin: auto;
+				position: absolute;
+				right: 30px;
+				top: 0;
+			}
+
+			.previous_btn,
+			.next_btn {
+				cursor: pointer;
+				height: 65px;
+				opacity: 0.5;
+				-webkit-transition: opacity 0.4s ease-in-out;
+				-moz-transition: opacity 0.4s ease-in-out;
+				-ms-transition: opacity 0.4s ease-in-out;
+				-o-transition: opacity 0.4s ease-in-out;
+				transition: opacity 0.4s ease-in-out;
+				width: 65px;
+			}
+
+			.previous_btn:hover,
+			.next_btn:hover {
+				opacity: 1;
+			}
+
+			@media only screen and (max-width: 767px) {
+				.previous_btn {
+					left: 50px;
+				}
+
+				.next_btn {
+					right: 50px;
+				}
+			}
+		</style>
+		<script>
+			$(document).ready(function() {
+			$('.slider').each(function() {
+			var $this = $(this);
+			var $group = $this.find('.slide_group');
+			var $slides = $this.find('.slide');
+			var bulletArray = [];
+			var currentIndex = 0;
+			var timeout;
+
+			function move(newIndex) {
+				var animateLeft, slideLeft;
+
+				if ($group.is(':animated') || currentIndex === newIndex) {
+				return;
+				}
+
+				bulletArray[currentIndex].removeClass('active');
+				bulletArray[newIndex].addClass('active');
+
+				if (newIndex > currentIndex) {
+				slideLeft = '100%';
+				animateLeft = '-100%';
+				} else {
+				slideLeft = '-100%';
+				animateLeft = '100%';
+				}
+
+				$slides.eq(newIndex).css({
+				display: 'block',
+				left: slideLeft
+				});
+				$group.animate({
+				left: animateLeft
+				}, function() {
+				$slides.eq(currentIndex).css({
+					display: 'none'
+				});
+				$slides.eq(newIndex).css({
+					left: 0
+				});
+				$group.css({
+					left: 0
+				});
+				currentIndex = newIndex;
+				});
+			}
+
+			function advance() {
+				clearTimeout(timeout);
+				timeout = setTimeout(function() {
+				if (currentIndex < ($slides.length - 1)) {
+					move(currentIndex + 1);
+				} else {
+					move(0);
+				}
+				}, 4000);
+			}
+
+			$('.next_btn').on('click', function() {
+				if (currentIndex < ($slides.length - 1)) {
+				move(currentIndex + 1);
+				} else {
+				move(0);
+				}
+			});
+
+			$('.previous_btn').on('click', function() {
+				if (currentIndex !== 0) {
+				move(currentIndex - 1);
+				} else {
+				move(($slides.length - 1));
+				}
+			});
+
+			$.each($slides, function(index) {
+				var $button = $('<a class="slide_btn">&bull;</a>');
+
+				if (index === currentIndex) {
+				$button.addClass('active');
+				}
+				$button.on('click', function() {
+				move(index);
+				}).appendTo('.slide_buttons');
+				bulletArray.push($button);
+			});
+			});
+		});
+		</script>
+		<script>
+			$(document).ready(function(){
+				jQuery('tr td').css({'background-color': 'none'});
+				jQuery('tr:visible:odd td').css({'background-color': '#efefef'});
+				$("#NotesToggle").click(function(){
+					if($("#NotesToggle").text() == 'DM Notes: Hidden'){
+						$("#NotesToggle").text('DM Notes: Shown');
+						$('.dmnotes').css("display","block");
+						$('.playernotes').css("display","none");
+					} else {
+						$("#NotesToggle").text('DM Notes: Hidden');
+						$('.dmnotes').css("display","none");
+						$('.playernotes').css("display","block");
+					}
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<button id="NotesToggle">DM Notes: Hidden</button>
+				<div class="slider">
+					<div class="slide_viewer">
+						<div class="slide_group">
+
+							<div class="guild slide">
+								<div class="name">Bringers of Light</div>
+								<div class="properties">Heroism at its loudest.</div>
+								The Bringers of Light consider themselves the children of Lonic, Lord of the Champion.<br/>
+								<br/>
+								Their primary focus is grandstanding heroism for heroism sake. The guild has become notorious in recent years for some of its members' fame-hungry tendencies.
+							</div>
+							<div class="guild slide">
+								<div class="name">Bringers of Darkness</div>
+								<div class="properties">It turns out the truest form of power is... power.</div>
+								The Bringers of Darkness believe their purpose in life is to wreak villainous havoc in the name of Fouvil, Lord of the Vile.<br/>
+								<br/>
+								Despite their decidedly evil actions, their antics are performed for religious reasons. Many members are surprisingly personable when they are off-duty.
+							</div>
+							<div class="guild slide">
+								<div class="name">Brotherhood of Matthias</div>
+								<div class="properties">If you understand your cult's ideology, you need a new cult.</div>
+								<img src="/img/emblems/matthias.svg" alt="MarkOfMatthias" style="width:15%; float:right; margin-right:10px;" />
+
+							</div>
+							<div class="guild slide">
+								<div class="name">PolyForce</div>
+								<div class="properties">Protecting the little people.</div>
+								PolyForce is a young guild, having seemingly sprung up overnight. Relatively little is known about it, although rumors suggest that its goal is generally benevolent.
+								<div class="dmnotes">
+									PolyForce was founded by Smith after the extinction event on the Sky Island. Their goal is to be the heroes that Smith believes Geoss needs.<br/>
+									<br/>
+									Members:
+									<ul>
+										<li>Smith - Bullywug</li>
+										<li>Althea Holimion - Half-Elf</li>
+										<li>Amos Aldrin - Dragonborn</li>
+										<li>Howler - Kenku</li>
+										<li>Ost - Aarakocra</li>
+										<li>Koka - Aarakocra</li>
+										<li>Tuk - Aarakocra</li>
+										<li>Tarakona - Half-Orc</li>
+										<li>Da'Voe - Purple Grung</li>
+										<li>8 x Additional Kenku</li>
+									</ul>
+								</div>
+							</div>
+							<div class="guild slide">
+								<div class="name">The Swarm</div>
+								<div class="properties">Silent enforcers.</div>
+								The Swarm is spoken of only in frightened whispers. There are no recorded sightings of this guild, but it is believed to be behind an alarming number of disappearances.
+								<div class="dmnotes">
+									The Swarm is an elite force of assassins that operate out of Aphotia. Using the city's tunnels, they can strike nearly anywhere on Geoss.
+								</div>
+							</div>
+							<div class="guild slide">
+								<div class="name">The Razor's Edge</div>
+								<div class="properties">Warriors of science.</div>
+								Based out of Okham, The Razor's Edge is one of the best equipped guilds in the known world. Most of its members are either wizards or scientists, but some are simple warriors who joined the guild in exchange for residency within Okham's walls.<br/>
+								<br/>
+								The guild is known for making contact with unaffiliated scientists who have made important discoveries in an effort to advance their research. There have also been reports of the Razor practicing extreme violence to prevent the regulation of scientific study.
+							</div>
+							<div class="guild slide">
+								<div class="name">Reincarnis</div>
+								<div class="properties">Ascension through reinvention.</div>
+								Reincarnis was founded by a powerful transmutation wizard. He strongly believed that everyone deserves a second chance, and sought to provide that to anyone willing to seek it out.<br/>
+								<br/>
+								Reincarnis has magically bolstered programs for rehabilitating criminals and addicts. Any member reaching graduation is offered a fresh start via reincarnation or true polymorph. Violent criminals failing the program are usually polymorphed into something of use to the guild. It is believed that much of the guilds mounts and furniture were once members.
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="directional_nav">
+					<div class="previous_btn" title="Previous">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 width="65px" height="65px" viewBox="-11 -11.5 65 66">
+							<g>
+								<g>
+									<path fill="#474544" d="M-10.5,22.118C-10.5,4.132,4.133-10.5,22.118-10.5S54.736,4.132,54.736,22.118
+									c0,17.985-14.633,32.618-32.618,32.618S-10.5,40.103-10.5,22.118z M-8.288,22.118c0,16.766,13.639,30.406,30.406,30.406 c16.765,0,30.405-13.641,30.405-30.406c0-16.766-13.641-30.406-30.405-30.406C5.35-8.288-8.288,5.352-8.288,22.118z" />
+									<path fill="#474544" d="M25.43,33.243L14.628,22.429c-0.433-0.432-0.433-1.132,0-1.564L25.43,10.051c0.432-0.432,1.132-0.432,1.563,0	c0.431,0.431,0.431,1.132,0,1.564L16.972,21.647l10.021,10.035c0.432,0.433,0.432,1.134,0,1.564	c-0.215,0.218-0.498,0.323-0.78,0.323C25.929,33.569,25.646,33.464,25.43,33.243z" />
+								</g>
+							</g>
+						</svg>
+					</div>
+					<div class="slide_buttons">
+					</div>
+					<div class="next_btn" title="Next">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 width="65px" height="65px" viewBox="-11 -11.5 65 66">
+							<g>
+								<g>
+									<path fill="#474544" d="M22.118,54.736C4.132,54.736-10.5,40.103-10.5,22.118C-10.5,4.132,4.132-10.5,22.118-10.5	c17.985,0,32.618,14.632,32.618,32.618C54.736,40.103,40.103,54.736,22.118,54.736z M22.118-8.288	c-16.765,0-30.406,13.64-30.406,30.406c0,16.766,13.641,30.406,30.406,30.406c16.768,0,30.406-13.641,30.406-30.406 C52.524,5.352,38.885-8.288,22.118-8.288z" />
+									<path fill="#474544" d="M18.022,33.569c 0.282,0-0.566-0.105-0.781-0.323c-0.432-0.431-0.432-1.132,0-1.564l10.022-10.035 			L17.241,11.615c 0.431-0.432-0.431-1.133,0-1.564c0.432-0.432,1.132-0.432,1.564,0l10.803,10.814c0.433,0.432,0.433,1.132,0,1.564 L18.805,33.243C18.59,33.464,18.306,33.569,18.022,33.569z" />
+								</g>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

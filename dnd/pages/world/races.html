@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Peoples of Geoss</title>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous"></script>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<style>
+			html,
+			body {
+				background: #F7F5E6;
+				height: 100vh;
+				margin: 0;
+				padding: 0;
+				width: 100vw;
+			}
+
+			.slider {
+				margin: 0;
+				padding:0;
+				/* max-width: 940px; */
+				height:100%;
+				width:100%;
+			}
+
+			.slide_viewer {
+				height: 100%;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.slide_group {
+				height: 100%;
+				position: relative;
+				width: 100%;
+			}
+
+			.slide {
+				display: none;
+				/* height: 98%;
+				width: 98%;
+				margin:1%; */
+				height: 100%;
+				width: 100%;
+				margin:0%;
+				box-sizing: border-box;
+				position: absolute;
+			}
+
+			.slide:first-child {
+				display: block;
+			}
+
+			a.slide_btn {
+				color: #474544;
+				font-size: 24px;
+				margin: 0 0.075em;
+				-webkit-transition: all 0.4s ease-in-out;
+				-moz-transition: all 0.4s ease-in-out;
+				-ms-transition: all 0.4s ease-in-out;
+				-o-transition: all 0.4s ease-in-out;
+				transition: all 0.4s ease-in-out;
+			}
+
+			.slide_btn.active,
+			.slide_btn:hover {
+				color: #428CC6;
+				cursor: pointer;
+			}
+
+			.directional_nav {
+				height: 100%;
+				margin: 0 auto;
+				position: relative;
+				top: -100%;
+			}
+
+			.previous_btn {
+				bottom: 0;
+				left: 2%;
+				margin: auto;
+				position: absolute;
+				top: 0;
+			}
+
+			.next_btn {
+				bottom: 0;
+				margin: auto;
+				position: absolute;
+				right: 2%;
+				top: 0;
+			}
+
+			.previous_btn,
+			.next_btn {
+				cursor: pointer;
+				height: 65px;
+				opacity: 0.5;
+				-webkit-transition: opacity 0.4s ease-in-out;
+				-moz-transition: opacity 0.4s ease-in-out;
+				-ms-transition: opacity 0.4s ease-in-out;
+				-o-transition: opacity 0.4s ease-in-out;
+				transition: opacity 0.4s ease-in-out;
+				width: 65px;
+			}
+
+			.previous_btn:hover,
+			.next_btn:hover {
+				opacity: 1;
+			}
+
+			@media only screen and (max-width: 767px) {
+				.previous_btn {
+					left: 50px;
+				}
+
+				.next_btn {
+					right: 50px;
+				}
+			}
+
+			.background {
+				transition: background-image 0.5s ease-in-out;
+			}
+		</style>
+		<script>
+			$(document).ready(function() {
+				$('.slider').each(function() {
+					var $this = $(this);
+					var $group = $this.find('.slide_group');
+					var $slides = $this.find('.slide');
+					var bulletArray = [];
+					var currentIndex = 0;
+					var timeout;
+
+					function move(newIndex) {
+						var animateLeft, slideLeft;
+
+						if ($group.is(':animated') || currentIndex === newIndex) {
+							return;
+						}
+
+						bulletArray[currentIndex].removeClass('active');
+						bulletArray[newIndex].addClass('active');
+
+						if (newIndex > currentIndex) {
+							slideLeft = '100%';
+							animateLeft = '-100%';
+						} else {
+							slideLeft = '-100%';
+							animateLeft = '100%';
+						}
+
+						if ($slides.eq(newIndex).find("input.bg").length) {
+							$(".background").css({
+								backgroundImage: "url('" + $slides.eq(newIndex).find("input.bg").val() + "')",
+								backgroundRepeat: "no-repeat",
+								backgroundSize: "cover"
+							});
+						} else {
+							$(".background").css({
+								backgroundImage: "url('/img/textures/Scroll.png')",
+								backgroundRepeat: "repeat"
+							});
+						}
+
+						$slides.eq(newIndex).css({
+							display: 'block',
+							left: slideLeft
+						});
+
+						$group.animate(
+							{
+								left: animateLeft
+							},
+							function() {
+								$slides.eq(currentIndex).css({
+									display: 'none'
+								});
+								$slides.eq(newIndex).css({
+									left: 0
+								});
+								$group.css({
+									left: 0
+								});
+								currentIndex = newIndex;
+							}
+						);
+					}
+
+
+					$('.next_btn').on('click', function() {
+						if (currentIndex < ($slides.length - 1)) {
+							move(currentIndex + 1);
+						} else {
+							move(0);
+						}
+					});
+
+					$('.previous_btn').on('click', function() {
+						if (currentIndex !== 0) {
+						move(currentIndex - 1);
+						} else {
+						move(($slides.length - 1));
+						}
+					});
+
+					$.each($slides, function(index) {
+						var $button = $('<a class="slide_btn">&bull;</a>');
+
+						if (index === currentIndex) {
+							$button.addClass('active');
+						}
+						$button.on(
+							'click',
+							function() {
+								move(index);
+							}
+						).appendTo('.slide_buttons');
+						bulletArray.push($button);
+					});
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="background" style="padding:0px; height:100%;">
+			<div class="container" style="padding:0px; height:100%;">
+				<div class="slider">
+					<div class="slide_viewer">
+						<div class="slide_group">
+
+							<div class="race slide">
+								<div class="name">Aarakocra</div>
+								<div class="properties">Guardians of the sky.</div>
+								<input type="text" class="bg" value="/img/locales/mountaintop.jpg" style="display:none;" />
+								Aarakocra are a birdlike people, gifted with the power of flight. They usually prefer to live in small communities
+								in the wilderness, and have a particular fondness for mountaintop settlements.<br/>
+								<br/>
+								The most famous tribe of Aarakocra make their home at Notriven. Here they worship the goddess of wisdom, Notriv, and watch over the people below.
+							</div>
+							<div class="race slide">
+								<div class="name">Aasimar</div>
+								<div class="properties">Children of the gods.</div>
+								<input type="text" class="bg" value="/img/locales/maxime-castejon-vision-of-olympus-grand.jpg" style="display:none;" />
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its mortal parents,
+								there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Bugbear</div>
+								<div class="properties">Masters of the horde.</div>
+								<input type="text" class="bg" value="/img/locales/efflam-mercier-stone-quarry.jpg" style="display:none;" />
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its mortal parents,
+								there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Bullywug</div>
+								<div class="properties">Lords of the flies.</div>
+								<input type="text" class="bg" value="/img/locales/swamp.jpg" style="display:none;" />
+								Bullywugs are a race of toad-like humanoids who dwell primarily in swamps.<br/>
+								<br/>
+								Bullywugs can turn up in almost any environment, but are most common in the swamps of Paros.
+							</div>
+							<div class="race slide">
+								<div class="name">Changeling</div>
+								<div class="properties">Unknowable wanderers.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its mortal parents,
+								there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Dragonborn</div>
+								<div class="properties">Burninating the peasants.</div>
+								<p>
+									Born of dragons, as their name proclaims, the dragonborn walk proudly through a world that greets them with fearful incomprehension. Shaped by draconic gods or the dragons themselves, dragonborn originally hatched from dragon eggs as a unique race, combining the best attributes of dragons and humanoids. Some dragonborn are faithful servants to true dragons, others form the ranks of soldiers in great wars, and still others find themselves adrift, with no clear calling in life.
+								</p>
+							</div>
+							<div class="race slide">
+								<div class="name">Dwarf</div>
+								<div class="properties">Deep diggers.</div>
+								<input type="text" class="bg" value="/img/locales/mines.jpg" style="display:none;" />
+								<p>
+									Kingdoms rich in ancient grandeur, halls carved into the roots of mountains, the echoing of picks and hammers in deep mines and blazing forges, a commitment to clan and tradition, and a burning hatred of goblins and orcs-these common threads unite all dwarves.
+								</p>
+							</div>
+							<div class="race slide">
+								<div class="name">Elf</div>
+								<div class="properties">Aloof defenders.</div>
+								<input type="text" class="bg" value="/img/locales/elven_city.jpg" style="display:none;" />
+								<p>
+									Elves are a magical people of otherworldly grace, living in the world but not entirely part of it. They live in places of ethereal beauty, in the midst of ancient forests or in silvery spires glittering with faerie light, where soft music drifts through the air and gentle fragrances waft on the breeze. Elves love nature and magic, art and artistry, music and poetry, and the good things of the world.
+								</p>
+							</div>
+							<div class="race slide">
+								<div class="name">Firbolg</div>
+								<div class="properties">Forest folk.</div>
+								<input type="text" class="bg" value="/img/locales/efflam-mercier-woodlands-stream.jpg" style="display:none;" />
+								Firbolg tribes cloister in remote forest strongholds, preferring to spend their days in quiet harmony with the woods. When provoked, firbolgs demonstrate formidable skills with weapons and druidic magic.
+							</div>
+							<div class="race slide">
+								<div class="name">Firenewt</div>
+								<div class="properties">Lava-lubbers.</div>
+								<input type="text" class="bg" value="/img/locales/firelake.jpg" style="display:none;" />
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its mortal
+								parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Genasi</div>
+								<div class="properties">Elemental beings.</div>
+								<input type="text" class="bg" value="/img/locales/jacob-thompson-elements-edit3.jpg" style="display:none;" />
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its mortal
+								parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Gnome</div>
+								<div class="properties">Mad science is best science.</div>
+								<input type="text" class="bg" value="/img/locales/shawn-lee-744890701978360690.jpg" style="display:none;" />
+								A constant hum of busy activity pervades the warrens and neighborhoods where gnomes form their close-knit communities. Louder sounds punctuate the hum: a crunch of grinding gears here, a minor explosion there, a yelp of surprise or triumph, and especially bursts of laughter. Gnomes take delight in life, enjoying every moment of invention, exploration, investigation, creation, and play.
+							</div>
+							<div class="race slide">
+								<div class="name">Goblin</div>
+								<div class="properties">My fiends over you.</div>
+								Goblins are tiny, green humanoids with a penchant for arson. Most civilized races consider goblins frightening or disgusting. For this reason, they are seldom seen in cities.<br/>
+								<br/>
+								Goblins are prevalent throughout the entirety of the world, but most prefer to live somewhere with plenty of dark corners in which to hide.
+							</div>
+							<div class="race slide">
+								<div class="name">Goliath</div>
+								<div class="properties">Wrath and thunder.</div>
+								<input type="text" class="bg" value="/img/locales/jason-scheier-ice-cliffs-concept-panoramic.jpg" style="display:none;" />
+								At the highest mountain peaks-far above the slopes where trees grow and where the air is thin and the frigid winds howl-dwell the reclusive goliaths. Few folk can claim to have seen a goliath, and fewer still can claim friendship with them. Goliaths wander a bleak realm of rock, wind, and cold. Their bodies look as if they are carved from mountain stone and give them great physical power. Their spirits take after the wandering wind, making them nomads who wander from peak to peak. Their hearts are infused with the cold regard of their frigid realm, leaving each goliath with the responsibility to earn a place in the tribe or die trying.
+							</div>
+							<div class="race slide">
+								<div class="name">Grippli</div>
+								<div class="properties">The good folk.</div>
+								<input type="text" class="bg" value="/img/locales/redwood_forest.jpg" style="display:none;" />
+								Grippli are simple folk. They look like frogs, live in trees, and mostly keep to themselves. The majority of grippli go their entire lives without ever leaving their home forest, but it is not uncommon for a grippli to decide to broaden their horizons.<br/>
+								<br/>
+								Most grippli seldom stray far from the treeline, but grippli adventurers can turn up at any corner of the world.
+							</div>
+							<div class="race slide">
+								<div class="name">Grung</div>
+								<div class="properties">A rainbow of death.</div>
+								<input type="text" class="bg" value="/img/locales/jason-scheier-01bb.jpg" style="display:none;" />
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its mortal
+								parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Halfling</div>
+								<div class="properties">Half the height, twice the heart.</div>
+								Halflings may very well be the closest humanoid approximation of a Golden Retriever. Chipper, optimistic, and loyal to a fault, halflings are delightful traveling companions. While their physical size is well below average, their personalities are often larger than life.
+							</div>
+							<div class="race slide">
+								<div class="name">Half-Elf</div>
+								<div class="properties">Between two worlds.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its
+								mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Half-Orc</div>
+								<div class="properties">Perpetual outcasts.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its
+								mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Hobgoblin</div>
+								<div class="properties">Like goblins, but worse.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its
+								mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Human</div>
+								<div class="properties">Endless ambition.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its
+								mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Kenku</div>
+								<div class="properties">Forgemasters.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its
+								mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Kobold</div>
+								<div class="properties">Fun-size dragons.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles its
+								mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Lizardfolk</div>
+								<div class="properties">Weighers of the scales.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles
+								its mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Minotaur</div>
+								<div class="properties">Brutal mercenaries.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles
+								its mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Tabaxi</div>
+								<div class="properties">Graceful wanderers.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles
+								its mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Tiefling</div>
+								<div class="properties">Child of Hel.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child resembles
+								its mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Tortle</div>
+								<div class="properties">Curious artisans.</div>
+								On rare occasions, a child is born with the blessing of a god. While the child
+								resembles its mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Triton</div>
+								<div class="properties">Nobles of the sea.</div>
+								<input type="text" class="bg" value="/img/locales/christian-dimitrov-cultural-dev-artstation2.jpg" style="display:none;" />
+								On rare occasions, a child is born with the blessing of a god. While the child
+								resembles its mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Warforged</div>
+								<div class="properties">Heavy metal.</div>
+								<input type="text" class="bg" value="/img/locales/alessandro-paviolo-alessandro-paviolo-carim-artstation02.jpg" style="display:none;" />
+								On rare occasions, a child is born with the blessing of a god. While the child
+								resembles its mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+							<div class="race slide">
+								<div class="name">Yuan-Ti</div>
+								<div class="properties">Venomous tricksters.</div>
+								<input type="text" class="bg" value="/img/locales/mohammx-qureshi-1.jpg" style="display:none;" />
+								On rare occasions, a child is born with the blessing of a god. While the child
+								resembles its mortal parents, there is an undeniable aura of light surrounding them.<br/>
+								<br/>
+								Aasimar can be born to any race, but most recorded instances were born to humans.
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="slide_buttons">
+				</div>
+
+				<div class="directional_nav">
+					<div class="previous_btn" title="Previous">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 width="65px" height="65px" viewBox="-11 -11.5 65 66">
+							<g>
+								<g>
+									<path fill="#474544" d="M-10.5,22.118C-10.5,4.132,4.133-10.5,22.118-10.5S54.736,4.132,54.736,22.118
+									c0,17.985-14.633,32.618-32.618,32.618S-10.5,40.103-10.5,22.118z M-8.288,22.118c0,16.766,13.639,30.406,30.406,30.406 c16.765,0,30.405-13.641,30.405-30.406c0-16.766-13.641-30.406-30.405-30.406C5.35-8.288-8.288,5.352-8.288,22.118z" />
+									<path fill="#474544" d="M25.43,33.243L14.628,22.429c-0.433-0.432-0.433-1.132,0-1.564L25.43,10.051c0.432-0.432,1.132-0.432,1.563,0	c0.431,0.431,0.431,1.132,0,1.564L16.972,21.647l10.021,10.035c0.432,0.433,0.432,1.134,0,1.564	c-0.215,0.218-0.498,0.323-0.78,0.323C25.929,33.569,25.646,33.464,25.43,33.243z" />
+								</g>
+							</g>
+						</svg>
+					</div>
+					<div class="next_btn" title="Next">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						 width="65px" height="65px" viewBox="-11 -11.5 65 66">
+							<g>
+								<g>
+									<path fill="#474544" d="M22.118,54.736C4.132,54.736-10.5,40.103-10.5,22.118C-10.5,4.132,4.132-10.5,22.118-10.5	c17.985,0,32.618,14.632,32.618,32.618C54.736,40.103,40.103,54.736,22.118,54.736z M22.118-8.288	c-16.765,0-30.406,13.64-30.406,30.406c0,16.766,13.641,30.406,30.406,30.406c16.768,0,30.406-13.641,30.406-30.406 C52.524,5.352,38.885-8.288,22.118-8.288z" />
+									<path fill="#474544" d="M18.022,33.569c 0.282,0-0.566-0.105-0.781-0.323c-0.432-0.431-0.432-1.132,0-1.564l10.022-10.035 			L17.241,11.615c 0.431-0.432-0.431-1.133,0-1.564c0.432-0.432,1.132-0.432,1.564,0l10.803,10.814c0.433,0.432,0.433,1.132,0,1.564 L18.805,33.243C18.59,33.464,18.306,33.569,18.022,33.569z" />
+								</g>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

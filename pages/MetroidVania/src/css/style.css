@@ -1,0 +1,71 @@
+body {
+  background-color: rgb(34, 34, 34);
+  color: rgb(255, 255, 255);
+  font-family: 'Raleway', sans-serif;
+  height: 100%;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  height:100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#game {
+  border: 2px solid rgb(87, 87, 87);
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 12px;
+  vertical-align: top;
+  width: 245px;
+}
+
+#credits {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#controls ul {
+  list-style: disc outside url('../sprites/list-icon.png');
+}
+
+li {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 8px 20px;
+}
+
+h1 {
+  font-size: 54px;
+  margin: 20px 0;
+  text-align: center;
+  font-family: 'Patua One';
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+}
+
+* {
+	box-sizing: border-box;
+}

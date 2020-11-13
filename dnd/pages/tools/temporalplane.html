@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Temporal Plane Travel</title>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+
+		<style>
+			h1, h2, h3, .name, .collapsible {
+				color:#58180d;
+			}
+
+			h2 {
+				margin-bottom:0px;
+				padding:0px;
+				line-height:100%;
+			}
+
+			h3 {
+				margin:30px 0px 5px 0px;
+			}
+
+
+			table tr:nth-child(odd) td {
+				background-color:#e0e5c1;
+			}
+
+			table tr:nth-child(even) td {
+				background-color:#ebe2c5;
+			}
+			th {
+				font-weight: bold;
+			}
+			tr th:last-child {
+				text-align:left;
+				padding:5px;
+			}
+
+			tr td:first-child {
+				white-space: nowrap;
+				width:35px;
+				text-align:center;
+			}
+
+			.collapsible {
+				position:relative;
+				top:0;
+				left:0;
+				background:white;
+				cursor: pointer;
+				width: 100%;
+				border: none;
+				text-align: left;
+				outline: none;
+				border-bottom:5px solid #6a9bc9;
+				padding:5px;
+				font-size:20px;
+				font-weight:bold;
+				border-radius:10px 10px 0px 0px;
+				margin-top:5px;
+			}
+
+			.collapsible:after {
+				background:none;
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "+"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active:after {
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "-"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active, .collapsible:hover {
+				background-color: #e5e5e7;
+			}
+
+			.content, .item {
+				margin-top:0px;
+				max-height: 0;
+				padding:0px 20px;
+				font-size:0.9em;
+				overflow: hidden;
+				transition: max-height 0.2s ease-out;
+				background-color: hsl(209, 47%, 90%);
+				border-radius:0px 0px 15px 15px;
+				border:1px solid black;
+			}
+
+			table {
+				font-size:1.1em;
+				width:100%;
+			}
+
+			.aside {
+				background-color:#c1cbe5;
+				padding:10px;
+				margin-top:10px;
+				border-top:3px solid black;
+				border-bottom:3px solid black;
+			}
+
+			ul, ol {
+				font-size:inherit;
+			}
+
+			div.container>div {
+				background-color:#eeeeff;
+				padding:10px;
+				border:5px double gray;
+				border-radius:25px;
+				margin-top:10px;
+			}
+
+			div.calc-input {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: reverse;
+				-ms-flex-direction: column-reverse;
+				flex-direction: column-reverse;
+				width: 100%;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				align-items: center;
+			}
+
+			div.calc-input label {
+				text-align: center;
+				border: 1px solid black;
+				border-top: 0;
+				font-size: 10px;
+				width: calc(100% - 20px - 2px);
+				border-radius: 0 0 10px 10px;
+				padding: 4px 0;
+				font-weight: bold;
+				background:hsl(180, 2%, 92%);
+			}
+
+			div.calc-input input {
+				width:100%;
+				border: 1px solid black;
+				font-size: 12px;
+				text-align: left;
+				width: calc(100% - 20px - 2px);
+				border-radius: 10px;
+				padding: 10px;
+				resize: none;
+				overflow: hidden;
+			}
+
+			div.columns {
+				margin-top:5px;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-box-direction:normal;
+				-ms-flex-direction:column;
+				flex-direction: row;
+				-webkit-box-pack: end;
+				-ms-flex-pack: end;
+				justify-content: flex-end;
+				-ms-flex-preferred-size: 100%;
+				flex-basis: 100%;
+				flex:1;
+			}
+		</style>
+		<script>
+			$(document).ready(function() {
+				var coll = document.getElementsByClassName("collapsible");
+				var i;
+
+				for (i = 0; i < coll.length; i++) {
+					coll[i].addEventListener("click", function() {
+						this.classList.toggle("active");
+						var content = this.nextElementSibling;
+						if (content.style.maxHeight){
+							content.style.maxHeight = null;
+							content.style.padding = "0px 20px";
+						} else {
+							content.style.maxHeight = content.scrollHeight + "px";
+							content.style.padding = "5px 20px";
+						}
+					});
+				}
+				$("input").keyup(function() {
+					var total = 0.00;
+					var speed = parseFloat($("#speed").val()) * 10 || 30; // get speed per minute
+					var timeJumped = parseFloat($("#years").val()) * 365 || 0; // get years and convert to days
+					timeJumped += parseFloat($("#days").val()) || 0; // add loose days
+					timeJumped = timeJumped * 24; // convert to hours
+					timeJumped += parseFloat($("#hours").val()) || 0; // add loose hours
+					timeJumped = timeJumped * 60; // convert to minutes
+					timeJumped += parseFloat($("#minutes").val()) || 0; // add loose minutes
+
+					if ($(this).hasClass("calcsub")) {
+						if ($(this).val() != 0) {
+							total -= parseFloat($(this).val());
+						}
+					}
+					if ($(this).hasClass("calcmult")) {
+						if ($(this).val() != 0) {
+							total = total * parseFloat($(this).val());
+						}
+					}
+					if ($(this).hasClass("calctotal")) {
+						$(this).val(timeJumped.toFixed(2));
+					}
+					$("#miles").val(Math.round(timeJumped / 5280) + "");
+					$("#feet").val(Math.round(timeJumped % 5280) + "");
+
+					var timeTraveled = timeJumped/speed;
+					var ttMinutes = Math.ceil(timeTraveled % 60);
+					var ttHours = Math.floor(timeTraveled/60);
+					var ttDays = Math.floor(ttHours/8);
+					var ttYears = Math.floor(ttDays/365);
+					ttHours = ttHours % 8;
+					ttDays = ttDays % 365;
+
+					$("#walking-years").val(ttYears + "");
+					$("#walking-days").val(ttDays + "");
+					$("#walking-hours").val(ttHours + "");
+					$("#walking-minutes").val(ttMinutes + "");
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<!-- <h1>
+					Temporal Plane Time Travel Calculation
+				</h1> -->
+
+				<div id="TemporalTravel">
+					<h3>
+						Time Difference on Material Plane
+					</h3>
+					<div id="time-to-travel" class="columns">
+						<div class="calc-input">
+							<label for="years">Years</label>
+							<input id="years" name="years" type="text" class="calcadd" />
+						</div>
+						<div class="calc-input">
+							<label for="days">Days</label>
+							<input id="days" name="days" type="text" class="calcadd" />
+						</div>
+						<div class="calc-input">
+							<label for="hours">Hours</label>
+							<input id="hours" name="hours" type="text" class="calcadd" />
+						</div>
+						<div class="calc-input">
+							<label for="minutes">Minutes</label>
+							<input id="minutes" name="minutes" type="text" class="calcadd" />
+						</div>
+					</div>
+
+					<h3>
+						Walking Speed (Per Round)
+					</h3>
+					<div class="calc-input">
+						<label for="speed">Walk Speed</label>
+						<input id="speed" name="speed" type="text" class="calcadd" value="30" />
+					</div>
+
+					<h3>
+						Distance Traveled on Temporal Plane
+					</h3>
+					<div id="distance-traveled" class="columns">
+						<div class="calc-input">
+							<label for="miles">Miles</label>
+							<input id="miles" name="miles" type="text" class="calcadd" />
+						</div>
+						<div class="calc-input">
+							<label for="feet">Feet</label>
+							<input id="feet" name="feet" type="text" class="calcadd" />
+						</div>
+					</div>
+
+					<h3>
+						Time Traveled on Temporal Plane
+					</h3>
+					<div id="walking-time" class="columns">
+						<div class="calc-input">
+							<label for="walking-years">Years</label>
+							<input id="walking-years" name="walking-years" type="text" class="calcadd" />
+						</div>
+						<div class="calc-input">
+							<label for="walking-days">Days</label>
+							<input id="walking-days" name="walking-days" type="text" class="calcadd" />
+						</div>
+						<div class="calc-input">
+							<label for="walking-hours">Hours</label>
+							<input id="walking-hours" name="walking-hours" type="text" class="calcadd" />
+						</div>
+						<div class="calc-input">
+							<label for="walking-minutes">Minutes</label>
+							<input id="walking-minutes" name="walking-minutes" type="text" class="calcadd" />
+						</div>
+					</div>
+				</div>
+
+<!--
+				<div id="LevelsOfGodhood">
+					<h2>Levels of Godhood</h2>
+					<button class="collapsible">
+						Level 1
+					</button>
+					<div class="item content">
+						<div class="properties">Prerequisites: 1 Worshiper. An act of godly prowess.</div>
+						The faith of your first worshiper grants you better fortune
+						and health. Raise your HP by 1d4+1. If multiple characters in
+						the party earn this level at the same time, the highest roll of
+						the group is used by the whole group.
+					</div>
+
+					<button class="collapsible">
+						Level 2
+					</button>
+					<div class="content">
+						<div class="properties">
+							Prerequisites: 10 Worshipers. A shrine. Two acts of godly
+							prowess (in addition to your first); or a miracle.
+						</div>
+						The faith of your worshipers grants you greater influence
+						and confidence. Gain +1 Charisma (Minimum Charisma 10).
+						You also gain a portfolio of godly responsibilities and duties.
+					</div>
+
+					<button class="collapsible">
+						Level 3
+					</button>
+					<div class="content">
+						<div class="properties">
+							Prerequisites: 100 Worshipers. Five shrines or a temple.
+							Three acts of godly prowess; or a miracle.
+						</div>
+						Your ability to craft the world around you has grown
+						stronger, and the divine energies are beginning to flow
+						through you. Gain an additional spell slot of your highest level
+						(Minimum 2nd level). If you do not know any spells, you may
+						learn 3 sorcerer spells as well.
+						Grant Patronage
+						Once a day you may expend a spell slot to provide that number
+						of worshipers with 1/2 that number spell slots. For example: A
+						4th level spell slot can be used to grant 4 worshipers a 2nd
+						level spell slot. Their worship keeps the tie to you strong and
+						channels divine energy from you to them. You do not need to
+						do anything to maintain the spell slot. These beings are your
+						clerics or paladins.
+					</div>
+
+					<button class="collapsible">
+						Level 4
+					</button>
+					<div class="content">
+						<div class="properties">
+							Prerequisites: 1,000 worshipers. Fifty shrines or five temples.
+							Four acts of godly prowess; or a miracle.
+						</div>
+						You gain advantage on all checks made regarding your
+						portfolio. When you roll a natural 20 on such a check, you can
+						add, change, edit, or remove an aspect of the thing. For
+						example; if you need healing herbs and roll a 20 to identify a
+						species of healing herbs, you can choose to make herbs
+						already in your possession capable of healing, because you
+						said so.
+					</div>
+
+					<button class="collapsible">
+						Level 5
+					</button>
+					<div class="content">
+						<div class="properties">
+							Prerequisites: 10,000 worshipers. Five-hundred shrines or
+							fifty temples. Five acts of godly prowess; or a miracle.
+						</div>
+						Your followers are pervading the world and you are
+						recognized in many places you go. Add +2 to your charisma
+						score.
+						Holy Text
+						Your teachings and wisdom are being drafted for others to
+						read. Pick 3 spells that are linked to your portfolio. You and
+						your followers may cast them in addition to the normal spells
+						for your class, clerics, and paladins.
+						God Skills and Feats
+						You gain access to one Indomitable type feat. If your
+						alignment or portfolio change drastically, your DM may grant
+						you the ability to exchange the feat later in time.
+					</div>
+
+					<button class="collapsible">
+						Level 6
+					</button>
+					<div class="content">
+						<div class="properties">
+							Prerequisites: 100,000 worshipers. 5,000 shrines or 500
+							temples. Six acts of godly prowess; or a miracle. 200 paladins
+							or clerics under your patronage.
+						</div>
+						You are the god of your portfolio on your home plane. If
+						another god of your portfolio exists, you and they are seen as
+						parts of the same being. You may be called to provide aid to
+						your worshipers often. Their faith in your abilities grants you
+						capabilities you only dreamt of before. Gain one level in any
+						class.
+						Godly Blessing
+						You may spend a spell slot to provide ten times as many
+						worshipers with a bonus equal to the slot's level when they are
+						working on things in your portfolio. For example; A 9th level
+						slot may be used to grant 90 worshipers +9 on Animal
+						Handling checks if animals, wilderness, or similar is part of
+						your portfolio.
+					</div>
+
+					<button class="collapsible">
+						Level 7
+					</button>
+					<div class="content">
+						<div class="properties">Prerequisites: 1,000,000 worshipers. 50,000 shrines or 5,000 temples. 1,000 paladins or clerics at level three or higher. A creation tale.</div>
+						Your followers faith grants you long-lasting, possibly even
+						eternal, effects. Pick a second god feat. It may be an
+						Indomitable feat, or an Unending feat.
+					</div>
+
+					<button class="collapsible">
+						Level 8
+					</button>
+					<div class="content">
+						<div class="properties">Prerequisites: 10,000,000 worshipers. A theocratic state or enclave.</div>
+						Your worshipers have found their way across the multiverse
+						and their faith grants you vitality. You are immortal for as long
+						as you have 100,000 worshipers or legends of you are told
+						amongst creatures.
+						Omnipotence
+						You may cast plane shift, demiplane, astral projection, and
+						teleport at will. You may teleport to any location where a
+						worshiper of yours has been in the last year; or a temple or
+						shrine of yours has been.
+					</div>
+
+					<button class="collapsible">
+						Level 9
+					</button>
+					<div class="content">
+						<div class="properties">Prerequisites: 100,000,000 worshipers. Eat the heart of an ancient dragon that shares your alignment.</div>
+						You are a full deity. You may cause miracles at will in your
+						portfolio. Your word is law to your followers and in your
+						theocratic states. You may select three more god feats.
+						Godly Presence
+						Your charisma score is raised to thirty, you have advantage on
+						all charisma checks and god skills.
+					</div>
+
+					<button class="collapsible">
+						Level 10
+					</button>
+					<div class="content">
+						<div class="properties">Prerequisites: 1,000,000,000 worshipers. Be directly responsible for the death or downfall of another god.</div>
+						Your actions shape reality itself. The qualms of mortal
+						beings are meaningless when you can, and likely have, created
+						more realities than any living being could ever hope to visit.
+						You may designate lesser gods as subservient to you. They
+						answer to you and serve your desires. You can craft and build
+						new universes, planes, and multiverses at will.
+						Statless
+						You cannot lose your godhood or ever die as you have created
+						an entire multiverse filled with your worshipers.
+					</div>
+				</div>
+
+				<div id="OtherTables">
+					<h2>
+						Other Tables
+					</h2>
+					<button class="collapsible">
+						Animal Types
+					</button>
+					<div class="item content">
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Animal</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>Big Cat</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Bear</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Camel</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Deer/Elk/Stag</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>Dog</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>Snake</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>Lizard</td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>Crab/Lobster</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>Octopus</td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>Fish</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>Frog</td>
+								</tr>
+								<tr>
+									<td>12</td>
+									<td>Boar</td>
+								</tr>
+								<tr>
+									<td>13</td>
+									<td>Bird</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>Goat</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>Scorpion/Spider</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>Wasp</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>Rhino</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>Sea Horse</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>Wolf</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>Horse</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button class="collapsible">
+						Lycanthropy
+					</button>
+					<div class="item content">
+						<table>
+							<tbody>
+								<tr>
+									<th>1d6</th>
+									<th>Curse</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>Tiger</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Bear</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Wolf</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Boar</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>Rat</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>Raven</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div> -->
+
+
+			</div>
+		</div>
+	</body>
+</html>

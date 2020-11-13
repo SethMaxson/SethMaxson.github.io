@@ -1,0 +1,386 @@
+<html>
+
+	<head>
+		<title>Galaxy Map</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/res/css/threedee.css" />
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<!-- <script src="/res/js/threedee.js"></script> -->
+		<!-- <script src="/res/js/three.min.js"></script> -->
+		<script src="/res/data/dialog.js"></script>
+		<script src="/sf/res/js/three.min.js"></script>
+		<script src="/res/js/generators/npc.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+		<script src="/sf/res/js/mechanics.js"></script>
+		<script src="/res/js/loaders/GLTFLoader.js"></script>
+		<script src="/res/js/utils/SkeletonUtils.js"></script>
+		<script src="/res/js/characters.js"></script>
+		<script src="/res/js/environment.js"></script>
+		<script src="/res/js/PointerLockControls.js"></script>
+		<script>
+			/** @namespace */
+			var THREEx	= THREEx || {}
+
+			/**
+			* Update renderer and camera when the window is resized
+			*
+			* @param {Object} renderer the renderer to update
+			* @param {Object} Camera the camera to update
+			* @param {Function} dimension callback for renderer size
+			*/
+			THREEx.WindowResize	= function(renderer, camera, dimension)
+			{
+				dimension 	= dimension || function(){ return { width: window.innerWidth, height: window.innerHeight } }
+				var callback	= function(){
+					// fetch target renderer size
+					var rendererSize = dimension();
+					// notify the renderer of the size change
+					renderer.setSize( rendererSize.width, rendererSize.height )
+					renderer.gammaFactor = 2.2;
+					renderer.gammaInput = true;
+					renderer.gammaOutput = true;
+					renderer.physicallyCorrectLights;
+					renderer.toneMapping = THREE.Uncharted2ToneMapping;
+					// update the camera
+					camera.aspect	= rendererSize.width / rendererSize.height
+					camera.updateProjectionMatrix()
+				}
+				// bind the resize event
+				window.addEventListener('resize', callback, false)
+				// return .stop() the function to stop watching window resize
+				return {
+					trigger	: function(){
+						callback()
+					},
+					/**
+					* Stop watching window resize
+					*/
+					destroy	: function(){
+						window.removeEventListener('resize', callback)
+					}
+				}
+			}
+		</script>
+		<script>
+			THREEx._RingGeometry = function ( innerRadius, outerRadius, thetaSegments ) {
+
+				THREE.Geometry.call( this )
+
+				innerRadius	= innerRadius || 0
+				outerRadius	= outerRadius || 50
+				thetaSegments	= thetaSegments	|| 8
+
+				var normal	= new THREE.Vector3( 0, 0, 1 )
+
+				for(var i = 0; i < thetaSegments; i++ ){
+					var angleLo	= (i / thetaSegments) *Math.PI*2
+					var angleHi	= ((i+1) / thetaSegments) *Math.PI*2
+
+					var vertex1	= new THREE.Vector3(innerRadius * Math.cos(angleLo), innerRadius * Math.sin(angleLo), 0);
+					var vertex2	= new THREE.Vector3(outerRadius * Math.cos(angleLo), outerRadius * Math.sin(angleLo), 0);
+					var vertex3	= new THREE.Vector3(innerRadius * Math.cos(angleHi), innerRadius * Math.sin(angleHi), 0);
+					var vertex4	= new THREE.Vector3(outerRadius * Math.cos(angleHi), outerRadius * Math.sin(angleHi), 0);
+
+					this.vertices.push( vertex1 );
+					this.vertices.push( vertex2 );
+					this.vertices.push( vertex3 );
+					this.vertices.push( vertex4 );
+
+
+					var vertexIdx	= i * 4;
+
+					// Create the first triangle
+					var face = new THREE.Face3(vertexIdx + 0, vertexIdx + 1, vertexIdx + 2, normal);
+					var uvs = []
+
+					var uv = new THREE.Vector2(0, 0)
+					uvs.push(uv)
+					var uv = new THREE.Vector2(1, 0)
+					uvs.push(uv)
+					var uv = new THREE.Vector2(0, 1)
+					uvs.push(uv)
+
+					this.faces.push(face);
+					this.faceVertexUvs[0].push(uvs);
+
+					// Create the second triangle
+					var face = new THREE.Face3(vertexIdx + 2, vertexIdx + 1, vertexIdx + 3, normal);
+					var uvs = []
+
+					var uv = new THREE.Vector2(0, 1)
+					uvs.push(uv)
+					var uv = new THREE.Vector2(1, 0)
+					uvs.push(uv)
+					var uv = new THREE.Vector2(1, 1)
+					uvs.push(uv)
+
+					this.faces.push(face);
+					this.faceVertexUvs[0].push(uvs);
+				}
+
+				// this.computeCentroids();
+				this.computeFaceNormals();
+
+				this.boundingSphere = new THREE.Sphere( new THREE.Vector3(), outerRadius );
+
+			};
+			THREEx._RingGeometry.prototype = Object.create( THREE.Geometry.prototype );
+		</script>
+		<script>
+			var onRenderFcts= [];
+			$(document).ready(function(){
+				var camera, controls, renderer, scene, sky, time=0, fps = 30;
+				var prevTime = performance.now();
+
+				var mixer;
+				var clock = new THREE.Clock();
+				var flickeringLights = [];
+
+
+
+				function init() {
+					scene = new THREE.Scene();
+					scene.background = new THREE.Color( 0x11aaff );
+					camera = new THREE.PerspectiveCamera(
+						45,
+						window.innerWidth/window.innerHeight,
+						0.4,
+						1000
+					);
+
+					renderer = new THREE.WebGLRenderer( { antialias: true } );
+					renderer.setPixelRatio( window.devicePixelRatio );
+					renderer.sortObjects = true;
+					renderer.shadowMap.enabled = true;
+					// renderer.shadowMap.shadowSide = THREE.CullFaceFrontBack;
+					// renderer.shadowMap.type = THREE.BasicShadowMap;
+					document.getElementById('container').appendChild(renderer.domElement);
+					renderer.setSize(window.innerWidth, window.innerHeight);
+					renderer.gammaFactor = 2.2;
+					renderer.gammaInput = true;
+					renderer.gammaOutput = true;
+					renderer.physicallyCorrectLights;
+					renderer.toneMapping = THREE.Uncharted2ToneMapping;
+					renderer.toneMappingExposure = 3;
+					renderer.toneMappingWhitePoint = 5;
+
+
+
+					camera.position.x = 0;
+					camera.position.y = 0;
+					camera.position.z = 0;
+					camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+					// controls = new THREE.PointerLockControls( camera );
+
+
+					// renderer.domElement.addEventListener( 'click', function () {
+					// 	controls.lock();
+					// }, false );
+
+
+					var controls = new THREE.OrbitControls( camera, renderer.domElement );
+					camera.position.set( 0, 0, 100 );
+					controls.update();
+
+
+					// Planet Test Stuff
+					const sunSize = 100;
+
+					var sun = getSimplePlanet("Sun", '/sf/img/textures/worlds/sun.jpg', sunSize);
+					var aballon = getSimplePlanet("Aballon", '/sf/img/textures/worlds/aballon_stretch.png', 0.33);
+					var castrovel = getSimplePlanet("Castrovel", '/sf/img/textures/worlds/castrovel2.png', 1);
+					var akiton = getSimplePlanet("Akiton", '/sf/img/textures/worlds/akiton.png', 0.5);
+					var verces = getSimplePlanet("Verces", '/sf/img/textures/worlds/verces2.png', 1);
+					var eox = getSimplePlanet("Eox", '/sf/img/textures/worlds/eox.png', 0.67);
+					var triaxus = getSimplePlanet("Triaxus", '/sf/img/textures/worlds/triaxus.png', 1);
+					var liavara = getSimplePlanet("liavara", '/sf/img/textures/worlds/liavara.png', 10);
+					var bretheda = getSimplePlanet("Bretheda", '/sf/img/textures/worlds/bretheda.png', 11);
+					var apostae = getSimplePlanet("Apostae", '/sf/img/textures/worlds/4k_ceres_fictional.jpg', 0.2);
+					var aucturn = getSimplePlanet("Aucturn", '/sf/img/textures/worlds/aucturn.png', 1.2);
+					// var ring = getPlanetRing();
+					// aballon.add(ring);
+
+					sun.position.set(-120, 0, 0);
+					aballon.position.set(2, 0, 0);
+					castrovel.position.set(4, 0, 0);
+					akiton.position.set(6, 0, 0);
+					verces.position.set(8, 0, 0);
+					eox.position.set(10, 0, 0);
+					triaxus.position.set(12, 0, 0);
+					liavara.position.set(14, 0, 0);
+					bretheda.position.set(20, 0, 0);
+					apostae.position.set(26, 0, 0);
+					aucturn.position.set(28, 0, 0);
+
+					scene.add(sun);
+					scene.add(aballon);
+					scene.add(castrovel);
+					scene.add(akiton);
+					scene.add(verces);
+					scene.add(eox);
+					scene.add(triaxus);
+					scene.add(bretheda);
+					scene.add(apostae);
+					scene.add(aucturn);
+
+
+
+					material  = new THREE.MeshPhongMaterial({
+						map     : new THREE.TextureLoader().load('/sf/img/textures/worlds/sun.jpg'),
+						side        : THREE.FrontSide,
+						opacity     : 0.6,
+						transparent : true,
+						depthWrite  : false,
+					});
+					var sunCloudMesh = new THREE.Mesh(new THREE.SphereGeometry(sunSize * 0.505, 32, 32), material);
+					var sunCloudMesh2 = new THREE.Mesh(new THREE.SphereGeometry(sunSize * 0.504, 32, 32), material);
+					sun.add(sunCloudMesh);
+					sun.add(sunCloudMesh);
+
+
+					var geometry   = new THREE.SphereGeometry(0.5, 32, 32);
+					var planetMaterial  = new THREE.MeshPhongMaterial();
+					var planetMesh = new THREE.Mesh(geometry, planetMaterial);
+					planetMesh.position.set(-6, 0, 0);
+					planetMaterial.map    = new THREE.TextureLoader().load('/img/textures/earthmap1k.jpg');
+					planetMaterial.bumpMap    = new THREE.TextureLoader().load('/img/textures/earthbump1k.jpg');
+					planetMaterial.bumpScale = 0.05;
+					planetMaterial.specularMap    = new THREE.TextureLoader().load('/img/textures/earthspec1k.jpg');
+					planetMaterial.specular  = new THREE.Color('grey');
+					planetMesh.name = "Earth";
+
+
+					material  = new THREE.MeshPhongMaterial({
+						map     : new THREE.TextureLoader().load('/img/textures/earthcloudmap.jpg'),
+						alphaMap     : new THREE.TextureLoader().load('/img/textures/earthcloudmaptrans.jpg'),
+						side        : THREE.DoubleSide,
+						opacity     : 0.8,
+						transparent : true,
+						depthWrite  : false,
+					});
+					var cloudMesh = new THREE.Mesh(new THREE.SphereGeometry(0.52, 32, 32), material);
+					// var cloudMesh = new THREE.Mesh(new THREE.SphereGeometry(0.55, 32, 32), new THREE.MeshPhongMaterial({
+					// 	color : 0xff0000
+					// }));
+					planetMesh.add(cloudMesh);
+
+					scene.add(planetMesh);
+
+					material  = new THREE.MeshPhongMaterial({
+						map     : new THREE.TextureLoader().load('/img/textures/earthcloudmap.jpg'),
+						alphaMap     : new THREE.TextureLoader().load('/img/textures/earthcloudmaptrans.jpg'),
+						side        : THREE.BackSide,
+						opacity     : 0.1,
+						transparent : true,
+					});
+					var cloudMesh2 = new THREE.Mesh(new THREE.SphereGeometry(198, 32, 32), material);
+
+
+
+					// create the geometry sphere
+					// create the material, using a texture of startfield
+					var material  = new THREE.MeshLambertMaterial();
+					// material.map   = new THREE.TextureLoader().load('/sf/img/textures/galaxy_starfield.png')
+					material.map   = new THREE.TextureLoader().load('/sf/img/textures/worlds/8k_stars.jpg');;
+					material.emissiveMap = material.map;
+					material.color = 0x000000;
+					material.side  = THREE.BackSide;
+					// create the mesh based on geometry and material
+					sky  = new THREE.Mesh(
+						new THREE.SphereGeometry(500, 32, 32),
+						material
+					);
+					// sky.add(cloudMesh2);
+					scene.add(sky);
+					onRenderFcts.push(function(delta, now){
+						cloudMesh.rotation.y  += 1/32 * delta;
+						sunCloudMesh.rotation.y  += 1/32 * delta;
+						sunCloudMesh2.rotation.y  -= 1/32 * delta;
+						sunCloudMesh2.rotation.z  += 1/32 * delta;
+						// cloudMesh2.rotation.y  -= 1/64 * delta
+					})
+					// End Planet Test Stuff
+
+					var ambLight = new THREE.HemisphereLight(0xffffff, 0x222222, 1);
+					ambLight.position.set(0, 20, 0);
+					scene.add(ambLight);
+
+					// transform objects
+					var winResize = new THREEx.WindowResize(renderer, camera);
+					update();
+				}
+
+				function update() {
+					// if ( controls.isLocked === true ) {
+					if ( true ) {
+						flickeringLights.forEach(light => {
+							light.intensity = light.userData.intensity + ((Math.random() - 0.5) * 0.1);
+						})
+						renderer.render(scene, camera);
+
+						var time = performance.now();
+						var delta = Math.min(( time - prevTime ) / 1000, 1/20);
+						prevTime = time;
+
+						onRenderFcts.forEach(function(onRenderFct){
+							onRenderFct(delta, time/1000)
+						})
+					}
+					renderer.render( scene, camera );
+					setTimeout( function() {
+						requestAnimationFrame( update );
+					}, 1000 / fps );
+				}
+
+				function getSimplePlanet(name, texture, diameter) {
+					diameter = diameter || 1;
+					var geometry   = new THREE.SphereGeometry(0.5 * diameter, 32, 32);
+					var planetMaterial  = new THREE.MeshPhongMaterial();
+					var planetMesh = new THREE.Mesh(geometry, planetMaterial);
+					planetMesh.position.set(0, 0, 0);
+					planetMaterial.map    = new THREE.TextureLoader().load(texture);
+					planetMaterial.bumpScale = 0.05;
+					planetMaterial.specular  = new THREE.Color('grey');
+					planetMesh.name = name;
+					return planetMesh;
+				}
+				function getPlanetRing(innerRadius, outerRadius){
+					// var geometry = new THREE.RingGeometry( 1, 5, 32, 1 );
+					var geometry = new THREEx._RingGeometry( innerRadius, outerRadius, 32 );
+					var material  = new THREE.MeshPhongMaterial({
+						alphaMap : new THREE.TextureLoader().load('/sf/img/textures/worlds/8k_saturn_ring_alpha.png'),
+						side: THREE.DoubleSide,
+						transparent: true
+					});
+					var mesh	= new THREE.Mesh(geometry, material);
+					mesh.position.set(0, 0, 0);
+					// material.map    = new THREE.TextureLoader().load(texture);
+					mesh.lookAt(new THREE.Vector3(0.5,-4,1));
+					return mesh;
+				}
+
+				init();
+			});
+		</script>
+	</head>
+
+	<body style="margin:0px; padding:0px;">
+		<div id="MenuBar" style="position:absolute; top:0; left:0; z-index:9; background:none;">
+			<div id="hud">
+				<div class="characterInfo">
+					<div class="charLabel"></div>
+				</div>
+			</div>
+		</div>
+		<div style="width:10px; height:10px; position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); background:rgba(0,50,200,0.2); z-index:3; border-radius:50%;">
+			&#160;
+		</div>
+		<div id="container">
+			<!-- prevent null -->
+		</div>
+	</body>
+
+</html>

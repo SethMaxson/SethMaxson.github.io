@@ -1,0 +1,88 @@
+{
+	"name": "",
+	"gender": "",
+	"homeWorld": "",
+	"alignment": "True Neutral",
+	"deity": "",
+	"player": "",
+	"description": "",
+	"ability": {
+		"pointBuy": {
+			"str": 4,
+			"dex": 0,
+			"con": 4,
+			"int": 0,
+			"wis": 0,
+			"cha": 2
+		}
+	},
+	"levels": [
+		{
+			"class": {
+				"name": "Mechanic",
+				"choices": [
+					"Drone"
+				]
+			},
+			"feat": "Bodyguard",
+			"skillRanks": {
+				"ranks": [
+					0,
+					1,
+					0,
+					0,
+					0,
+					0,
+					0,
+					1,
+					1,
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"names": [
+					"Acrobatics",
+					"Athletics",
+					"Bluff",
+					"Computers",
+					"Culture",
+					"Diplomacy",
+					"Disguise",
+					"Engineering",
+					"Intimidate",
+					"Life Science",
+					"Medicine",
+					"Mysticism",
+					"Perception",
+					"Physical Science",
+					"Piloting",
+					"Profession",
+					"Profession2",
+					"Sense Motive",
+					"Sleight of Hand",
+					"Stealth",
+					"Survival"
+				]
+			},
+			"ability": {
+				"str": 0,
+				"dex": 0,
+				"con": 0,
+				"int": 0,
+				"wis": 0,
+				"cha": 0
+			}
+		}
+	],
+	"race": "Orc",
+	"theme": "Biotechnician"
+}

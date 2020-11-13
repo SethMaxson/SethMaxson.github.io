@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<link rel="icon" href="/elead.ico" />
+		<title>Desking Tools Test</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Fira+Sans|Roboto+Slab&display=swap');
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: 'Roboto', Arial, Helvetica, sans-serif;
+				font-weight: normal;
+				font-style: normal;
+				font-size: 24px;
+			}
+
+			html, body, #calcs, .calc-container {
+				height: 100%;
+				width:100%;
+				margin:0;
+				padding:0;
+			}
+
+			#calcs {
+				display: flex;
+				flex-direction: row;
+			}
+
+			.calc-container {
+				display: flex;
+				flex-direction: column;
+				border:1px solid black;
+			}
+
+			.calc-container div.header {
+				font-size: 2em;
+				/* line-height:2em;
+				height:2em; */
+				text-align: center;
+				font-weight: bold;
+				margin:0;
+				flex-grow: 0;
+				flex-shrink: 0;
+				/* border-bottom:3px outset; */
+			}
+
+			.row {
+				font-size: 1em;
+				margin:0;
+				flex-grow: 1;
+				position:relative;
+				top:0;
+				left:0;
+				border:3px outset;
+			}
+
+			input {
+				font-size: inherit;
+				position:absolute;
+				top:0;
+				left: 0;
+				text-align: right;
+				margin:0;
+				padding-right:1em;
+				width:100%;
+				height:100%;
+				border:none;
+			}
+
+			label {
+				position:absolute;
+				top:50%;
+				left: 0;
+				padding-left:1em;
+				font-style: italic;
+				margin:0;
+				transform:translateY(-50%);
+			}
+
+			input[disabled] {
+				color:inherit;
+				background: none;
+				font-weight: bold;
+			}
+
+			.calc-container.folded { flex-grow:0; flex-shrink: 10;}
+			.folded .row{
+				display:none;
+			}
+			.folded div.header {
+				font-size:1em;
+			}
+		</style>
+		<script>
+			$(document).ready(function(){
+				$("#calcs input").on("keyup", function(){
+					var ncc = parseFloat($("#ncc").val()) || 0;
+					var res = parseFloat($("#res").val()) || 0;
+					var term = parseFloat($("#term").val()) || 1;
+					var rate = parseFloat($("#rate").val()) || 0;
+					var dep = (ncc - res) / term;
+					var lc = (ncc + res) * rate;
+					var basePayment = dep + lc;
+					$("#base-payment").val(basePayment.toFixed(2));
+					var utr = parseFloat($("#use-tax-rate").val()) || 0;
+					var monthlyUseTax = basePayment * (utr);
+					var payment = basePayment + monthlyUseTax;
+					$("#lease-payment").val(payment.toFixed(2));
+					$("#monthly-use-tax").val(monthlyUseTax.toFixed(2));
+					$("#total-use-tax").val((monthlyUseTax * term).toFixed(2));
+					var totalPayments = payment * term;
+					$("#total-payments").val(totalPayments.toFixed(2));
+				})
+			})
+			function fold(sender) {
+				var target = $(sender).closest(".calc-container");
+				if (target.hasClass("folded")) {
+					target.removeClass("folded");
+				}
+				else {
+					target.addClass("folded");
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="calcs">
+			<div id="finance-calcs" class="calc-container">
+				<div class="header">
+					Finance
+					<button onclick="fold(this);">&lt;&lt;</button>
+				</div>
+				<div class="row">
+					<input type="text" id="price" placeholder="Vehicle Price" autocomplete="off" />
+					<label for="price">Vehicle Price</label>
+				</div>
+				<div class="row">
+					<input type="text" id="discount" placeholder="Discount" autocomplete="off" />
+					<label for="discount">Discount</label>
+				</div>
+				<div class="row">
+					<input type="text" id="rebate" placeholder="Rebate" autocomplete="off" />
+					<label for="rebate">Rebate</label>
+				</div>
+				<div class="row">
+					<input type="text" id="addons" placeholder="Add Ons" autocomplete="off" />
+					<label for="addons">Add Ons</label>
+				</div>
+				<div class="row">
+					<input type="text" id="net-price" disabled placeholder="Net Price" autocomplete="off" />
+					<label for="net-price">Net Price</label>
+				</div>
+				<div class="row">
+					<input type="text" id="sales-tax-rate" placeholder="Sales Tax Rate" autocomplete="off" />
+					<label for="sales-tax-rate">Sales Tax Rate</label>
+				</div>
+				<div class="row">
+					<input type="text" id="sales-tax" disabled placeholder="Sales Tax" autocomplete="off" />
+					<label for="sales-tax">Sales Tax</label>
+				</div>
+				<div class="row">
+					<input type="text" id="fees" disabled placeholder="Fees" autocomplete="off" />
+					<label for="fees">Fees</label>
+				</div>
+				<div class="row">
+					<input type="text" id="backends" disabled placeholder="Back End Add Ons" autocomplete="off" />
+					<label for="backends">Back End Add Ons</label>
+				</div>
+				<div class="row">
+					<input type="text" id="trade-allowance" disabled placeholder="Trade Allowance" autocomplete="off" />
+					<label for="trade-allowance">Trade Allowance</label>
+				</div>
+			</div>
+			<div id="lease-calcs" class="calc-container">
+				<div class="header">
+					Lease
+				</div>
+				<div class="row">
+					<input type="text" id="ncc" placeholder="Net Cap Cost" autocomplete="disabled" />
+					<label for="ncc">Net Cap Cost</label>
+				</div>
+				<div class="row">
+					<input type="text" id="res" placeholder="Residual" autocomplete="off" />
+					<label for="res">Residual</label>
+				</div>
+				<div class="row">
+					<input type="text" id="term" placeholder="Term" autocomplete="off" />
+					<label for="term">Term</label>
+				</div>
+				<div class="row">
+					<input type="text" id="rate" placeholder="Money Factor" autocomplete="off" />
+					<label for="rate">Money Factor</label>
+				</div>
+				<div class="row">
+					<input type="text" id="base-payment" disabled placeholder="Base Payment" autocomplete="off" />
+					<label for="base-payment">Base Payment</label>
+				</div>
+				<div class="row">
+					<input type="text" id="use-tax-rate" placeholder="Use Tax Rate" autocomplete="off" />
+					<label for="use-tax-rate">Use Tax Rate</label>
+				</div>
+				<div class="row">
+					<input type="text" id="monthly-use-tax" disabled placeholder="Monthly Use Tax" autocomplete="off" />
+					<label for="monthly-use-tax">Monthly Use Tax</label>
+				</div>
+				<div class="row">
+					<input type="text" id="total-use-tax" disabled placeholder="Total Use Tax" autocomplete="off" />
+					<label for="total-use-tax">Total Use Tax</label>
+				</div>
+				<div class="row">
+					<input type="text" id="lease-payment" disabled placeholder="Payment" autocomplete="off" />
+					<label for="lease-payment">Payment</label>
+				</div>
+				<div class="row">
+					<input type="text" id="total-payments" disabled placeholder="Total Payments" autocomplete="off" />
+					<label for="total-payments">Total Payments</label>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

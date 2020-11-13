@@ -1,0 +1,442 @@
+[
+	{
+		"name": "Vox Laudis",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			""
+		]
+	},
+	{
+		"name": "Pro Omnibus",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			""
+		]
+	},
+	{
+		"name": "PWWF",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			"Pact Worlds Wrestling Federation"
+		]
+	},
+	{
+		"name": "Verday",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			"Green Day. Members:Enialis Faire, Seirgol, Koseemo"
+		]
+	},
+	{
+		"name": "Darklight",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			"Blackpink"
+		]
+	},
+	{
+		"name": "ET Bois",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			"Beastie Boys. Members:Altronus Rumbling River, Dexar, Enzo"
+		]
+	},
+	{
+		"name": "The Murderers",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			"The Killers"
+		]
+	},
+	{
+		"name": "Asthmatic",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			"Wheezer"
+		]
+	},
+	{
+		"name": "Velox",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			"Star Fox"
+		]
+	},
+	{
+		"name": "Canis Dirus",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			"Star Wolf"
+		]
+	},
+	{
+		"name": "Murder Inc.",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			""
+		]
+	},
+	{
+		"name": "The Plague",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			""
+		]
+	},
+	{
+		"name": "Nuclear Ninjas",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			""
+		]
+	},
+	{
+		"name": "The Firm",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			""
+		]
+	},
+	{
+		"name": "Space Cowboys",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			""
+		]
+	},
+	{
+		"name": "The Disposables",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			"The Expendables"
+		]
+	},
+	{
+		"name": "Battlewugs",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			"Battletoads"
+		]
+	},
+	{
+		"name": "The Swarm",
+		"images": {
+			"logo": "",
+			"background": "apostae.jpg"
+		},
+		"description": [
+			""
+		]
+	},
+	{
+		"name": "12th Dimension",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"D12"
+		]
+	},
+	{
+		"name": "Steel Balloon",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Led Zepplin"
+		]
+	},
+	{
+		"name": "Legal Aliens",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Foreigner"
+		]
+	},
+	{
+		"name": "Skalding Red Reaper",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Red Hot Chili Peppers"
+		]
+	},
+	{
+		"name": "Expedition",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Journey"
+		]
+	},
+	{
+		"name": "Scarab",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"The Beatles"
+		]
+	},
+	{
+		"name": "Our Elemental Friendship",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"MCR"
+		]
+	},
+	{
+		"name": "Fear at the Dance Hall",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Panic"
+		]
+	},
+	{
+		"name": "Two Lefts",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"One Direction"
+		]
+	},
+	{
+		"name": "BAD C",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"AC/DC"
+		]
+	},
+	{
+		"name": "Whipping Maggie",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Flogging Molly"
+		]
+	},
+	{
+		"name": "Peculiar Group",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Motlëy Crüe"
+		]
+	},
+	{
+		"name": "Plastico",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Metallica"
+		]
+	},
+	{
+		"name": "Superlife",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Megadeth"
+		]
+	},
+	{
+		"name": "Tower Major",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Fort Minor"
+		]
+	},
+	{
+		"name": "Jatimbe Park",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Linkin Park"
+		]
+	},
+	{
+		"name": "Garlicnaut",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Italian Slipknot"
+		]
+	},
+	{
+		"name": "Pedestrian 12",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"21 pilots"
+		]
+	},
+	{
+		"name": "Everything+Kitch",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"N-Sync"
+		]
+	},
+	{
+		"name": "Radioactive Men",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"FOB"
+		]
+	},
+	{
+		"name": "Dope and the Homies",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Kool and the Gang"
+		]
+	},
+	{
+		"name": "Sikk",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"KISS"
+		]
+	},
+	{
+		"name": "Blind Tiger",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Def Leppard"
+		]
+	},
+	{
+		"name": "Pennyfront",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Nickelback"
+		]
+	},
+	{
+		"name": "Royale",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Queen"
+		]
+	},
+	{
+		"name": "Blast Processing",
+		"images": {
+			"logo": "",
+			"background": ""
+		},
+		"description": [
+			"Sonic the Hedgehog and friends. Members: Zoomer (Sonic), Boomer (Knuckles), (Amy), (Tails)"
+		]
+	}
+]

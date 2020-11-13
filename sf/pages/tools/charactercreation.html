@@ -1,0 +1,415 @@
+<html style="padding:none; margin:none; box-sizing: border-box;">
+
+	<head>
+		<title>Character Creation</title>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<!-- <script src="/res/js/threedee.js"></script> -->
+		<script src="/res/js/three.min.js"></script>
+		<script src="/res/js/utils/SkeletonUtils.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+		<script src="/res/js/generators/npc.js"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/res/js/game-engine.js"></script>
+		<script src="/res/js/loaders/GLTFLoader.js"></script>
+		<script src="/res/js/characters.js"></script>
+		<script src="/res/js/environment.js"></script>
+		<script>
+			/** @namespace */
+			var THREEx	= THREEx || {}
+
+			/**
+			* Update renderer and camera when the window is resized
+			*
+			* @param {Object} renderer the renderer to update
+			* @param {Object} Camera the camera to update
+			* @param {Function} dimension callback for renderer size
+			*/
+			THREEx.WindowResize	= function(renderer, camera, dimension)
+			{
+				dimension = dimension || function(){ return { width: document.getElementById('container').clientWidth, height: window.innerHeight } }
+				var callback	= function(){
+					// fetch target renderer size
+					var rendererSize = dimension();
+					// notify the renderer of the size change
+					renderer.setSize( rendererSize.width, rendererSize.height )
+					// update the camera
+					camera.aspect	= rendererSize.width / rendererSize.height
+					camera.updateProjectionMatrix()
+				}
+				// bind the resize event
+				window.addEventListener('resize', callback, false)
+				// return .stop() the function to stop watching window resize
+				return {
+					trigger	: function(){
+						callback()
+					},
+					/**
+					* Stop watching window resize
+					*/
+					destroy	: function(){
+						window.removeEventListener('resize', callback)
+					}
+				}
+			}
+		</script>
+		<script>
+			$(document).ready(function(){
+				var camera, controls, renderer, scene, sky, ground, time=0, newChar;
+				var clock = new THREE.Clock();
+				var objects = [];
+				function init() {
+					main.Scene = new THREE.Scene();
+					scene = main.Scene;
+					renderer = main.renderer;
+					main.Scene.background = new THREE.Color( 0x11aaff );
+					main.Scene.add(main.Light);
+					camera = new THREE.PerspectiveCamera(
+						50,
+						document.getElementById('container').clientWidth/document.getElementById('container').clientHeight,
+						1,
+						100
+					);
+
+					// document.getElementById('container').appendChild(renderer.domElement);
+
+
+					camera.position.x = 0;
+					camera.position.y = 0.8;
+					camera.position.z = 3;
+					camera.lookAt(new THREE.Vector3(0, 1, 0));
+
+					controls = new THREE.OrbitControls(camera, renderer.domElement);
+					controls.maxPolarAngle = Math.PI/2 - 0.01;
+					controls.maxDistance = 5;
+
+					var people = new THREE.Object3D();
+					var ldr = new PersonLoader(function() {
+						people.name="PeopleGroup"
+						newChar = getRandom(0, 0, 0, "human", "m");
+						people.add(newChar);
+						// people.add(getPC("Jasper", -1, 0, 0));
+
+						people.traverse(function(node) {
+							objects.push(node);
+						})
+
+						for (let i = 0; i < newChar.animations.length; i++) {
+							const anim = newChar.animations[i];
+							$("#animation-select").append($("<option value=\"" + anim.name + "\">" + anim.name + "</option>"));
+						}
+						hairOptions.sort();
+						for (let i = 0; i < hairOptions.length; i++) {
+							const hairs = hairOptions[i];
+							$("#hair-select").append($("<option value=\"" + hairs + "\">" + hairs + "</option>"));
+						}
+						setTimeout( function() {
+							$("#hair-select").val(newChar.userData.hairStyle);
+							$("#hair-color-select").val("#" + newChar.userData.hairColor.toString(16));
+							updateSliders();
+						}, 100 );
+
+					});
+
+
+					scene.add(people);
+
+					// create geometric objects
+					var plane = getPlane(100, 100);
+
+					// add objects to the scene
+					// sky = getSky(camera);
+					// scene.add(sky);
+
+					scene.add(plane);
+					var ambLight = new THREE.HemisphereLight(0xffffff, 0x000200, 1);
+					ambLight.position.set(0, 20, 0);
+					scene.add(ambLight);
+					scene.position.x = -0.5;
+					scene.position.y = -1;
+					scene.position.z = -0.5;
+					// transform objects
+					var winResize = new THREEx.WindowResize(main.renderer, camera);
+					winResize.trigger();
+
+					update();
+				}
+
+
+				function getPlane(w, h) {
+					var tronGrid = new THREE.Group();
+					var intensity = 0.01;
+					var rectLight = new THREE.RectAreaLight( 0xdd22ff, intensity, w, h );
+					rectLight.lookAt( 0, 0, 0 );
+					rectLight.rotation.x = -Math.PI / 2;
+					tronGrid.add( rectLight );
+
+					// rectLightHelper = new THREE.RectAreaLightHelper( rectLight );
+					// tronGrid.add( rectLightHelper );
+
+					var rectLightMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry(), new THREE.MeshBasicMaterial({color: 0xdd22ff,}) );
+					rectLightMesh.scale.x = rectLight.width;
+					rectLightMesh.scale.y = rectLight.height;
+					rectLight.position.y = -0.5;
+					rectLight.add( rectLightMesh );
+
+					var rectLightGrid = new THREE.Mesh(new THREE.PlaneBufferGeometry(), new THREE.MeshLambertMaterial({color: 0x110066, transparent: true, }) );
+					rectLightGrid.receiveShadow = true;
+					rectLightGrid.scale.x = rectLight.width;
+					rectLightGrid.scale.y = rectLight.height;
+					rectLightGrid.material.alphaMap = new THREE.TextureLoader().load("/img/textures/gridBump.png");
+					rectLightGrid.material.alphaMap.wrapS = THREE.RepeatWrapping;
+					rectLightGrid.material.alphaMap.wrapT = THREE.RepeatWrapping;
+					rectLightGrid.material.alphaMap.repeat.set(w, h);
+					rectLightGrid.rotation.x = -Math.PI / 2;
+					tronGrid.add( rectLightGrid );
+
+					return tronGrid;
+				}
+
+
+				function update() {
+					// renderer.render(scene, camera);
+					main.renderer.render( main.Scene, camera );
+					controls.update();
+					time++;
+					const mixTime = clock.getDelta();
+					objects.forEach(person => {
+						if (person.userData.mixer != undefined) {
+							person.userData.mixer.update(mixTime);
+						}
+					});
+					setTimeout( function() {
+
+					requestAnimationFrame( update );
+
+					}, 1000 / 40 );
+				}
+
+
+
+				$("#race-select").change(function(){
+					changeRace(newChar, $(this).val());
+					updateSliders();
+				});
+				$("input[name='gender-select']").click(function(){
+					var newGender=$("input[name='gender-select']:checked").val();
+					newChar.userData.texture = undefined;
+					changeGender(newChar, newGender);
+					updateSliders();
+				});
+				$("#hair-select").change(function(){
+					setHair(newChar, $(this).val());
+				});
+				$("#hair-color-select").change(function(){
+					setHair(newChar, $("#hair-select").val(), $(this).val());
+				});
+				$("#animation-select").change(function(){
+					const clip = THREE.AnimationClip.findByName( newChar.animations, $(this).val() );
+					newChar.userData.mixer.stopAllAction();
+					newChar.userData.mixer.clipAction( clip ).play();
+				});
+				$("#weight-slider").change(function(){
+					updateMorph(this, "Weight");
+				});
+				$("#caboose-slider").change(function(){
+					updateMorph(this, "Caboose");
+				});
+				$("#chest-slider").change(function(){
+					updateMorph(this, "LadyChest");
+				});
+				$("#waist-slider").change(function(){
+					updateMorph(this, "Waist");
+				});
+				$("#chin-slider").change(function(){
+					updateMorph(this, "Chin_Height");
+				});
+				$("#pants-slider").change(function(){
+					updateMorph(this, "Pants");
+				});
+				$("#headless-slider").change(function(){
+					updateMorph(this, "Headless");
+				});
+				$("#birdhead-slider").change(function(){
+					updateMorph(this, "BirdHead");
+				});
+
+				function updateMorph(slider, key) {
+					let node = newChar.getObjectByName("Torso");
+					node.morphTargetInfluences[node.morphTargetDictionary[key]] = $(slider).val();
+
+
+					let vals = node.morphTargetInfluences;
+					let mtd = node.morphTargetDictionary;
+				}
+
+				function updateSliders() {
+					let node = newChar.getObjectByName("Torso");
+					let vals = node.morphTargetInfluences;
+					let mtd = node.morphTargetDictionary;
+					$("#weight-slider").val(vals[mtd.Weight]);
+					$("#caboose-slider").val(vals[mtd.Caboose]);
+					$("#chest-slider").val(vals[mtd.LadyChest]);
+					$("#waist-slider").val(vals[mtd.Waist]);
+					$("#chin-slider").val(vals[mtd.Chin_Height]);
+					$("#pants-slider").val(vals[mtd.Pants]);
+					$("#headless-slider").val(vals[mtd.Headless]);
+					$("#birdhead-slider").val(vals[mtd.BirdHead]);
+				}
+
+				init();
+			});
+		</script>
+
+		<style>
+			body {
+				font-family:Arial, Helvetica, sans-serif;
+				color: #f0f0ff;
+				font-size:12pt;
+			}
+			h1 {
+				box-shadow: 0px 2px 0px #000033,
+				2px 0px 0px #000033,
+				2px 2px 0px #000033,
+				2px -2px 0px #000033,
+				-2px -2px 0px #000033,
+				-2px 2px 0px #000033;
+				margin:0.5em 0.4em;
+				padding:0.2em;
+				font-size:13pt;
+				text-align:center;
+				font-weight:bold;
+				background-color: #5932E6;
+				/* background-color: #1C0658; */
+				color:#020314;
+				/* text-shadow: 0px -2px 0px rgba(0,0,0,.2), -2px 0px 0px rgba(0,0,0,.2), 0px 2px 0px rgba(0,0,0,.2), 2px 0px 0px rgba(0,0,0,.2); */
+			}
+			h2 {
+				box-shadow: 0px 2px 0px #000033,
+				2px 0px 0px #000033,
+				2px 2px 0px #000033,
+				2px -2px 0px #000033,
+				-2px -2px 0px #000033,
+				-2px 2px 0px #000033;
+				margin:0.5em 0.4em;
+				padding:0.2em;
+				font-size:12pt;
+				text-align:center;
+				font-weight:bold;
+				background-color: #5932E6;
+				color:#020314;
+			}
+			select {
+				border:none;
+				color:inherit;
+				display:block;
+				margin-left:auto;
+				margin-right:auto;
+				width:90%;
+				padding:0.1em;
+				text-align:center;
+				background-color: #8632E6;
+			}
+			div.option {
+				display:block;
+				margin-left:auto;
+				margin-right:auto;
+				width:90%;
+				padding:0.1em;
+				text-align:center;
+				background-color: #8632E6;
+			}
+		</style>
+	</head>
+
+	<body style="margin:0px; padding:0px; overflow:hidden; box-sizing: border-box;">
+		<table style="width:100vw; height:100vh; margin:0px; box-sizing: border-box; border-collapse: collapse; table-layout: fixed;">
+			<tr>
+				<td id="container" style="padding:0px; margin:0px; box-sizing: border-box; overflow:hidden;">
+					<!-- prevent null -->
+				</td>
+				<td style="width:30%; border-left:2px solid black; background:#020314;">
+					<h1>Race:</h1>
+
+					<select id="race-select">
+						<option value="aarakocra">Aarakocra</option>
+						<option value="aasimar">Aasimar</option>
+						<option value="dwarf">Dwarf</option>
+						<option value="elf">Elf</option>
+						<option value="halfling">Halfing</option>
+						<option value="halforc">Half-Orc</option>
+						<option value="human" selected="selected">Human</option>
+						<option value="grung">Grung</option>
+						<option value="tiefling">Tiefling</option>
+					</select>
+
+
+					<h1>Animation:</h1>
+					<div style="padding:5px;">
+						<div>
+							<label for="animation-select">Animation:</label>
+							<select id="animation-select">
+							</select>
+						</div>
+					</div>
+
+					<h1>Gender:</h1>
+					<div class="option">
+						Female: <input type="radio" name="gender-select" value="f" />
+						Male: <input type="radio" name="gender-select" value="m" checked="checked" />
+					</div>
+					<h1>Hair:</h1>
+					<div style="padding:5px;">
+						<div>
+							<label for="hair-select">Style:</label>
+							<select id="hair-select">
+							</select>
+						</div>
+						<div>
+							<label for="hair-color-select">Color:</label>
+							<input type="color" id="hair-color-select" />
+						</div>
+					</div>
+
+					<h1>Body:</h1>
+					<div style="padding:5px;">
+						<div>
+							<label for="weight-slider">Weight:</label>
+							<input type="range" min="0" max="3" step="0.1" id="weight-slider" />
+						</div>
+						<div>
+							<label for="caboose-slider">Caboose:</label>
+							<input type="range" min="0" max="3" step="0.1" id="caboose-slider" />
+						</div>
+						<div>
+							<label for="chest-slider">Chest:</label>
+							<input type="range" min="0" max="2" step="0.1" id="chest-slider" />
+						</div>
+						<div>
+							<label for="waist-slider">Waist:</label>
+							<input type="range" min="0" max="2" step="0.1" id="waist-slider" />
+						</div>
+						<div>
+							<label for="chin-slider">Chin:</label>
+							<input type="range" min="0" max="2" step="0.1" id="chin-slider" />
+						</div>
+						<div>
+							<label for="pants-slider">Pants:</label>
+							<input type="range" min="0" max="2" step="0.1" id="pants-slider" />
+						</div>
+						<div>
+							<label for="headless-slider">Headless:</label>
+							<input type="range" min="0" max="2" step="0.1" id="headless-slider" />
+						</div>
+						<div>
+							<label for="birdhead-slider">BirdHead:</label>
+							<input type="range" min="0" max="2" step="0.1" id="birdhead-slider" />
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+	</body>
+
+</html>

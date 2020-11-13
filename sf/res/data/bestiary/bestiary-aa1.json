@@ -1,0 +1,484 @@
+{
+	"monster": [
+		{
+			"name": "Chaos Quadrapod",
+			"size": "L",
+			"page": 209,
+			"type": "aberration",
+			"source": "AI",
+			"alignment": [
+				"C",
+				"E"
+			],
+			"ac": [
+				{
+					"ac": 14,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 52,
+				"formula": "7d10 + 14"
+			},
+			"speed": {
+				"walk": 40,
+				"climb": 40
+			},
+			"str": 18,
+			"dex": 13,
+			"con": 15,
+			"int": 6,
+			"wis": 10,
+			"cha": 4,
+			"skill": {
+				"acrobatics": "+5",
+				"perception": "+4"
+			},
+			"passive": 14,
+			"cr": "4",
+			"senses": [
+				"blindsight 120 ft. (blind beyond this radius)"
+			],
+			"trait": [
+				{
+					"name": "Magic Resistance",
+					"entries": [
+						"The chaos quadrapod has advantage on saving throws against spells and other magical effects."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Multiattack",
+					"entries": [
+						"The chaos quadrapod makes up to two tentacle attacks."
+					]
+				},
+				{
+					"name": "Tentacle",
+					"entries": [
+						"{@atk mw} {@hit 6} to hit, reach 15 ft., one target. {@h}11 ({@damage 2d6 + 4}) bludgeoning damage. If the target is a creature, it is {@condition grappled} (escape {@dc 14}). Until this grapple ends, the target is {@condition restrained}. The chaos quadrapod can grapple no more than two targets at a time."
+					]
+				},
+				{
+					"name": "Chaos Cloud (Recharges after a Short or Long Rest)",
+					"entries": [
+						"The chaos quadrapod shoots forth a knot of roiling ethereal light that explodes at a point it can see within 60 feet of it. Each creature in a 20-foot-radius sphere centered on that point must succeed on a {@dc 14} Charisma saving throw or be {@condition stunned} until the end of its next turn."
+					]
+				}
+			],
+			"damageTags": [
+				"B"
+			],
+			"miscTags": [
+				"MW",
+				"RCH",
+				"AOE"
+			],
+			"senseTags": [
+				"B"
+			],
+			"traitTags": [
+				"Magic Resistance"
+			],
+			"actionTags": [
+				"Multiattack",
+				"Tentacles"
+			]
+		},
+		{
+			"name": "Clockwork Dragon",
+			"size": "M",
+			"type": "construct",
+			"source": "AI",
+			"page": 209,
+			"alignment": [
+				"N"
+			],
+			"ac": [
+				{
+					"ac": 16,
+					"from": [
+						"natural armor"
+					]
+				}
+			],
+			"hp": {
+				"average": 22,
+				"formula": "4d8 + 4"
+			},
+			"speed": {
+				"walk": 30,
+				"fly": 60
+			},
+			"str": 14,
+			"dex": 10,
+			"con": 12,
+			"int": 10,
+			"wis": 11,
+			"cha": 13,
+			"skill": {
+				"acrobatics": "+2",
+				"perception": "+4"
+			},
+			"immune": [
+				"poison",
+				"psychic"
+			],
+			"conditionImmune": [
+				"blinded",
+				"charmed",
+				"deafened",
+				"exhaustion",
+				"frightened",
+				"paralyzed",
+				"petrified",
+				"poisoned"
+			],
+			"passive": 14,
+			"languages": [
+				"Common",
+				"Draconic"
+			],
+			"cr": "1",
+			"senses": [
+				"blindsight 60 ft.",
+				"darkvision 60 ft."
+			],
+			"trait": [
+				{
+					"name": "False Appearance",
+					"entries": [
+						"While the clockwork dragon remains motionless, it is indistinguishable from a metal statue."
+					]
+				}
+			],
+			"action": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d10 + 2}) piercing damage."
+					]
+				},
+				{
+					"name": "Fire Breath {@recharge 5}",
+					"entries": [
+						"The clockwork dragon exhales fire in a 15-foot cone. Each creature in that area must make a {@dc 11} Dexterity saving throw, taking 14 ({@damage 4d6}) fire damage on a failed save, or half as much damage on a successful one."
+					]
+				}
+			],
+			"damageTags": [
+				"P",
+				"F"
+			],
+			"miscTags": [
+				"MW",
+				"AOE"
+			],
+			"languageTags": [
+				"C",
+				"DR"
+			],
+			"senseTags": [
+				"B",
+				"D"
+			],
+			"traitTags": [
+				"False Appearance"
+			]
+		}
+	],
+	"notYetSorted": {
+		"alienArchive": [
+			"Aeon Guard 6",
+			"AHAV 8",
+			"Anacite 10",
+			"Angel, Barachius 12",
+			"Apari 14",
+			"Assembly Ooze 16",
+			"Asteray 18",
+			"Barathu* 20",
+			"Bloodbrother 22",
+			"Bryrvath 24",
+			"Caypin 26",
+			"Contemplative* 28",
+			"Crest-Eater 30",
+			"Deh-Nolo 32",
+			"Devil, Endbringer 34",
+			"Draelik* 36",
+			"Dragon 38",
+			"Dragonkin* 40",
+			"Drow* 42",
+			"Electrovore 44",
+			"Elemental 46",
+			"Ellicoth 48",
+			"Formian* 50",
+			"Frujai 52",
+			"Goblin, Space* 54",
+			"Gray* 56",
+			"Haan* 58",
+			"Hallajin 60",
+			"Hesper 62",
+			"Ikeshti* 64",
+			"Inevitable, Anhamut 66",
+			"Kalo* 68",
+			"Ksarik 70",
+			"Kyokor 72",
+			"Maraquoi* 74",
+			"Marooned One 76",
+			"Mountain Eel 78",
+			"Necrovite 80",
+			"Nihili 82",
+			"Novaspawn 84",
+			"Nuar* 86",
+			"Oma 88",
+			"Orocoran 90",
+			"Reptoid* 92",
+			"Robot, Security 94",
+			"Ryphorian* 96",
+			"Sarcesian* 98",
+			"Scavenger Slime 100",
+			"Sharpwing 102",
+			"Shobhad* 104",
+			"Skittermander* 106",
+			"Surnoch 108",
+			"The Swarm 110",
+			"Symbiend 112",
+			"Undead Minion 114",
+			"Urog* 116",
+			"Verthani* 118",
+			"Void Hag 120",
+			"Witchwyrd* 122",
+			"Wrikreechee* 124"
+		],
+		"alienArchive2": [
+			"Aeon, Tekhoinos 6",
+			"Akata 8",
+			"Anacite 10",
+			"Arquand Gazelle 12",
+			"Azata, Tritidair 14",
+			"Bear, Uplifted 16",
+			"Bodysnatcher Slime 18",
+			"Bolida 20",
+			"Bone Trooper 22",
+			"Calecor 24",
+			"Cerebric Fungus 26",
+			"Colour Out of Space 28",
+			"Corpsefolk 30",
+			"Damai 32",
+			"Demon, Pluprex 34",
+			"Devil, Warmonger 36",
+			"Dinosaur 38",
+			"Dragon, Metallic 40",
+			"Dragon, Outer 42",
+			"Dreamer 44",
+			"Dust Manta 46",
+			"Embri 48",
+			"Emotivore 50",
+			"Formian 52",
+			"Garaggakal 54",
+			"Ghoran 56",
+			"Ghost 58",
+			"Ghoul 60",
+			"Giant 62",
+			"Glass Serpent 64",
+			"Golem 66",
+			"Gremlin, Glitch 68",
+			"Haeshi-Shaa 70",
+			"Hashukayak 72",
+			"Herd Animal 74",
+			"Hobgoblin 76",
+			"Khefak 78",
+			"Living Apocalypse 80",
+			"Mi-Go 82",
+			"Moonflower 84",
+			"Nyssholora 86",
+			"Oni 88",
+			"Orc 90",
+			"Osharu 92",
+			"Pahtra 94",
+			"Phentomite 96",
+			"Planar Scion 98",
+			"Plasma Ooze 100",
+			"Predator 102",
+			"Quorlu 104",
+			"Ravai 106",
+			"Robot 108",
+			"Shantak 110",
+			"Shipmind 112",
+			"Shotalashu 114",
+			"Solar Wisp 116",
+			"Squox 118",
+			"Stellar Protozoa 120",
+			"The Swarm 122",
+			"Tashtari 124",
+			"Trox 126",
+			"Velstrac, Anchorite 128",
+			"Vermelith 130",
+			"Vermin, Space 132",
+			"Vlaka 134"
+		],
+		"alienArchive3": [
+			{
+				"name": "Clockwork Dragon",
+				"size": "M",
+				"type": "construct",
+				"source": "AA3",
+				"page": 6,
+				"alignment": [
+					"N"
+				],
+				"eac": 17,
+				"kac": 19,
+				"hp": 70,
+				"speed": {
+					"walk": 30,
+					"fly": 60
+				},
+				"str": 14,
+				"dex": 10,
+				"con": 12,
+				"int": 10,
+				"wis": 11,
+				"cha": 13,
+				"skill": {
+					"acrobatics": "+2",
+					"perception": "+4"
+				},
+				"immune": [
+					"poison",
+					"psychic"
+				],
+				"conditionImmune": [
+					"blinded",
+					"charmed",
+					"deafened",
+					"exhaustion",
+					"frightened",
+					"paralyzed",
+					"petrified",
+					"poisoned"
+				],
+				"passive": 14,
+				"languages": [
+					"Common",
+					"Draconic"
+				],
+				"cr": "1",
+				"senses": [
+					"blindsight 60 ft.",
+					"darkvision 60 ft."
+				],
+				"trait": [
+					{
+						"name": "False Appearance",
+						"entries": [
+							"While the clockwork dragon remains motionless, it is indistinguishable from a metal statue."
+						]
+					}
+				],
+				"action": [
+					{
+						"name": "Bite",
+						"entries": [
+							"{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}7 ({@damage 1d10 + 2}) piercing damage."
+						]
+					},
+					{
+						"name": "Fire Breath {@recharge 5}",
+						"entries": [
+							"The clockwork dragon exhales fire in a 15-foot cone. Each creature in that area must make a {@dc 11} Dexterity saving throw, taking 14 ({@damage 4d6}) fire damage on a failed save, or half as much damage on a successful one."
+						]
+					}
+				],
+				"damageTags": [
+					"P",
+					"F"
+				],
+				"miscTags": [
+					"MW",
+					"AOE"
+				],
+				"languageTags": [
+					"C",
+					"DR"
+				],
+				"senseTags": [
+					"B",
+					"D"
+				],
+				"traitTags": [
+					"False Appearance"
+				]
+			},
+			"Animated Armor 6",
+			"Brenneri 8",
+			"Cephalume 10",
+			"Defrex 12",
+			"Dessamar 14",
+			"Diaspora Wyrm 16",
+			"Diatha 18",
+			"Dirindi 20",
+			"Dragon, Starmetal 22",
+			"Drift Native 24",
+			"Driftdead 26",
+			"Dromada 28",
+			"Equinoxian 30",
+			"Espraksa 32",
+			"Ferrofluid Ooze 34",
+			"Flayer Leech 36",
+			"Formian 38",
+			"Giant Space Tardigrade 40",
+			"Golem 42",
+			"Gremlin 44",
+			"Gwahled 46",
+			"Hanakan 48",
+			"Hortus 50",
+			"Hound of Tindalos 52",
+			"Ijtikri 54",
+			"Irokiroi 56",
+			"Izalguun 58",
+			"Jinsul 60",
+			"Kami 62",
+			"Kothama 64",
+			"Living Hologram 66",
+			"Lucandrian 68",
+			"Lurker in Light 70",
+			"Morlamaw 72",
+			"Oracle of Oras 74",
+			"Paraforan 76",
+			"Philosopher Worm 78",
+			"Quantum Slime 80",
+			"Raxilite 82",
+			"Rendalairn 84",
+			"Robot 86",
+			"Rogue Drone 88",
+			"Sazaron 90",
+			"Shakalta 92",
+			"Shatori 94",
+			"Shimreen 96",
+			"Skreesire 98",
+			"Spathinae 100",
+			"Spectra 102",
+			"Stridermander 104",
+			"The Swarm 106",
+			"Tekenki 108",
+			"Telelith 110",
+			"Telia 112",
+			"Thorgothrel 114",
+			"Time Dimensional 116",
+			"Tripod 118",
+			"Troll 120",
+			"Tzitzimitl 122",
+			"Valkyrie 124",
+			"Varculak 126",
+			"Vorthuul 128",
+			"Vracinea 130",
+			"Weaponized Toy 132",
+			"Wolliped 134",
+			"Yithian 136"
+		]
+	}
+}

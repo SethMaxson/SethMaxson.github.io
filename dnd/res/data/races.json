@@ -1,0 +1,175 @@
+[
+	{
+		"name": "Aarakocra",
+		"ID": "aarakocra",
+		"size": "Medium",
+		"type": "Humanoid"
+	},
+	{
+		"name": "Aasimar",
+		"ID": "aasimar",
+		"size": "Medium",
+		"type": "Humanoid"
+	},
+	{
+		"name": "Bearfolk",
+		"ID": "bear"
+	},
+	{
+		"name": "Bloodfin",
+		"ID": "bloodfin"
+	},
+	{
+		"name": "Brokkos",
+		"ID": "brokkos"
+	},
+	{
+		"name": "Bugbear",
+		"ID": "bugbear"
+	},
+	{
+		"name": "Burrowfolk",
+		"ID": "burrowfolk",
+		"size": "Medium",
+		"type": "Humanoid (Burrowfolk)"
+	},
+	{
+		"name": "Dragonborn",
+		"ID": "dragonborn",
+		"size": "Medium",
+		"type": "Humanoid"
+	},
+	{
+		"name": "Drow",
+		"ID": "drow",
+		"size": "Medium",
+		"type": "Humanoid (Elf)"
+	},
+	{
+		"name": "Dwarf",
+		"ID": "dwarf",
+		"size": "Medium",
+		"type": "Humanoid (Dwarf)"
+	},
+	{
+		"name": "Elf",
+		"ID": "elf",
+		"size": "Medium",
+		"type": "Humanoid (Elf)"
+	},
+	{
+		"name": "Firbolg",
+		"ID": "firbolg"
+	},
+	{
+		"name": "Firenewt",
+		"ID": "firenewt"
+	},
+	{
+		"name": "Genasi",
+		"ID": "genasi",
+		"size": "Medium",
+		"type": "Humanoid"
+	},
+	{
+		"name": "Gnome",
+		"ID": "gnome",
+		"size": "Small",
+		"type": "Humanoid (Gnome)"
+	},
+	{
+		"name": "Goblin",
+		"ID": "goblin",
+		"type": "Humanoid (Goblinoid)"
+	},
+	{
+		"name": "Grippli",
+		"ID": "grippli",
+		"size": "Small",
+		"type": "Humanoid (Grippli)",
+		"description": "Gripplis are a diminutive race of froglike humanoids known for their stealthy tactics in combat, their hunter-gatherer practices, and their insular natures."
+	},
+	{
+		"name": "Grung",
+		"ID": "grung"
+	},
+	{
+		"name": "Half-elf",
+		"ID": "halfelf",
+		"size": "Medium",
+		"type": "Humanoid (Elf/Human)"
+	},
+	{
+		"name": "Half-orc",
+		"ID": "halforc",
+		"size": "Medium",
+		"type": "Humanoid (Human/Orc)"
+	},
+	{
+		"name": "Halfling",
+		"ID": "halfling",
+		"size": "Small",
+		"type": "Humanoid (Halfling)"
+	},
+	{
+		"name": "Hobgoblin",
+		"ID": "hobgoblin",
+		"size": "Medium",
+		"type": "humanoid (Goblinoid)"
+	},
+	{
+		"name": "Human",
+		"ID": "human",
+		"size": "Medium",
+		"type": "Humanoid (Human)"
+	},
+	{
+		"name": "Lizardfolk",
+		"ID": "lizardfolk"
+	},
+	{
+		"name": "Kenku",
+		"ID": "kenku"
+	},
+	{
+		"name": "Kitsune",
+		"ID": "kitsune",
+		"size": "Medium",
+		"type": "Humanoid (Kitsune, Shapechanger)",
+		"description": "Capricious and playful, kitsune are rarely encountered in the Inner Sea region—and when they are, they tend to be mistaken for lycanthropes."
+	},
+	{
+		"name": "Kobold",
+		"ID": "kobold",
+		"size": "Small"
+	},
+	{
+		"name": "Kuo-Toa",
+		"ID": "kuotoa",
+		"size": "Medium"
+	},
+	{
+		"name": "Orc",
+		"ID": "orc",
+		"size": "Medium",
+		"type": "Humanoid (Orc)"
+	},
+	{
+		"name": "Tabaxi",
+		"ID": "tabaxi"
+	},
+	{
+		"name": "Tiefling",
+		"ID": "tiefling",
+		"size": "Medium",
+		"type": "Outsider (Native)"
+	},
+	{
+		"name": "Tortle",
+		"ID": "tortle"
+	},
+	{
+		"name": "Triton",
+		"ID": "triton"
+	}
+]

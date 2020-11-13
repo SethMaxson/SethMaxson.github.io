@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Systems</title>
+		<link rel="icon" href="/sf/favicon.png" />
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/sf/res/css/viewplanet.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/res/js/sort-table.js"></script>
+		<script src="/sf/res/js/starmap.js"></script>
+		<script>
+			function GetURLParameter(sParam)
+			{
+				var sPageURL = window.location.search.substring(1);
+				var sURLVariables = sPageURL.split('&');
+				for (var i = 0; i < sURLVariables.length; i++)
+				{
+					var sParameterName = sURLVariables[i].split('=');
+					if (sParameterName[0] == sParam)
+					{
+						return decodeURIComponent(sParameterName[1]);
+					}
+				}
+				return null;
+			};
+
+			$(document).ready(function(){
+				const target = GetURLParameter("planet");
+				const planet = {
+					data: null,
+					fluff: null
+				};
+
+
+				if (target !== null) {
+					$.ajax({
+						crossDomain: true,
+						url: "/sf/res/data/planets.json",
+						dataType: 'json',
+						error: function (xmlHttpReq, status, err) {
+							var something = xmlHttpReq;
+						},
+						success: function (returnedData) {
+							var items = returnedData.items;
+							planet.data = new PlanetData(items.filter(function (entry) {
+								return entry.name === target;
+							})[0]);
+							renderPlanet(planet);
+						}
+					});
+
+
+					// Load fluff
+					$.ajax({
+						crossDomain: true,
+						url: "/sf/res/data/fluff-planets.json",
+						dataType: 'html',
+						error: function (xmlHttpReq, status, err) {
+							var something = xmlHttpReq;
+						},
+						success: function (returnedData) {
+							var items = JSON.parse(returnedData).items;
+							planet.fluff = items.filter(function (entry) {
+								return entry.name === target;
+							})[0];
+							planet.fluff = planet.fluff || new PlanetFluff();
+							renderPlanet(planet);
+						}
+					});
+				}
+				else {
+					alert("No world specified!");
+				}
+
+				$("#bg-button").click(function(){
+					if ($(this).hasClass("push-down")) {
+						$(this).attr("class", "push-up");
+						$(this).html("&uarr; &uarr; &uarr;");
+						$(".background").css("padding-top", "100vh");
+					} else {
+						$(this).attr("class", "push-down");
+						$(this).html("&darr; &darr; &darr;");
+						$(".background").css("padding-top", "0");
+					}
+				})
+			})
+
+			function renderPlanet(planet) {
+				if (planet.data !== null && planet.fluff !== null) {
+					getBackground(planet.fluff);
+					getDataBlock(planet);
+					getPlanetImage(planet.fluff);
+					getInfoText(planet);
+				}
+			}
+
+			function getBackground(item) {
+				const bg = "url(/sf/img/locales/planets/" + item.images.background + ")";
+				$(".background-div").css("background-image", bg);
+			}
+
+			function getPlanetImage(item) {
+				const bg = "url(/sf/img/locales/planets/preview/" + item.images.body + ")";
+				const ps = $(".planet-smol");
+				ps.css("height", ps.innerWidth() + "px");
+				ps.css("background-image", bg);
+			}
+
+			function getDataBlock(planet) {
+				const space = planet.data.space == 'Near'? "Near Space": "The Vast";
+				const title = planet.data.titles[0]? planet.data.titles[0] : "";
+				let db = $(`
+					<div class="data-block bg-blue">
+						<div class="name">${planet.data.name}</div>
+						<div class="title">${title}</div>
+						<div class="planet-smol"></div>
+						<div class="stats">
+							<div><span>Location:</span> ${space}</div>
+							<div><span>Diameter:</span> &times;${planet.data.diameter}</div>
+							<div><span>Mass:</span> &times;${planet.data.mass}</div>
+							<div><span>Gravity:</span> &times;${planet.data.gravity}</div>
+							<div><span>Atmosphere:</span> ${planet.data.atmosphere}</div>
+							<div>
+								<span>Day:</span> ${planet.data.day};
+								<span>Year:</span> ${planet.data.year}
+							</div>
+						</div>
+					</div>
+					<div class="container bg">
+					</div>
+				`);
+				$(".background").append(db);
+			}
+
+			function getInfoText(planet) {
+				for (let i = 0; i < planet.fluff.entries[0].entries.length; i++) {
+					const entry = planet.fluff.entries[0].entries[i];
+					$(".container").append($(`<p>${entry}</p>`));
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="background-div">
+			</div>
+			<div id="bg-button" class="push-down">&darr; &darr; &darr;</div>
+		</div>
+	</body>
+
+</html>

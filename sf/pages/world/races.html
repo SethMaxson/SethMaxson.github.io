@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Species</title>
+		<link rel="icon" href="/sf/favicon.png" />
+		<!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<style>
+			th {font-weight: bold; border:2px solid #ccc; background:#333; color:floralwhite; padding:4px;}
+			td{border:2px solid #ccc; padding:4px;}
+			.container {overflow:auto;}
+			.standee {
+				float:left;
+			}
+		</style>
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/sf/res/css/modal-preview.css" rel="stylesheet" type="text/css" media="all">
+		<!-- <link href="/sf/res/css/character-modal.css" rel="stylesheet" type="text/css" media="all"> -->
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/res/js/sort-table.js"></script>
+		<script src="/sf/res/js/modal-preview.js"></script>
+		<script>
+			var traits = [];
+			var races = [];
+			var racialFluff = {};
+			$(document).ready(function(){
+				const container = $("#items");
+
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/races.json",
+					dataType: 'json',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (returnedData) {
+						races = returnedData.items;
+						for (let index = 0; index < races.length; index++) {
+							const item = races[index];
+							if (!item.hasOwnProperty("subraces")) {
+								traits = traits.concat(item.features);
+							} else {
+								for (let i = 0; i < item.subraces.length; i++) {
+									const sr = item.subraces[i];
+									traits = traits.concat(sr.features);
+								}
+							}
+							const tr = $(`
+							<tr>
+								<td>${index + 1}</td>
+								<td><a onclick="displayRace('${item.ID}');">${item.name}</a></td>
+								<td>${item.type}</td>
+								<td>${item.size}</td>
+								<td>${item.source}</td>
+							</tr>
+							`);
+							container.append(tr);
+						}
+					}
+				});
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/fluff-races.json",
+					dataType: 'json',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (fluff) {
+						racialFluff = fluff;
+					}
+				});
+			})
+
+			function displayRace(raceID) {
+				if (racialFluff.hasOwnProperty(raceID)) {
+					let item = racialFluff[raceID];
+					item.images = item.images || {};
+					var standee = item.images.standee? `<img src="/sf/img/${item.images.standee}" />` : "";
+					if (item.images.background) {
+						$(".background").css({
+							backgroundImage: "url('/sf/img/" + item.images.background + "')",
+							backgroundRepeat: "no-repeat"
+						});
+					} else {
+						$(".background").css({
+							backgroundImage: "none",
+							backgroundRepeat: "repeat"
+						});
+					}
+					var flavorText = "";
+					if (item.hasOwnProperty("entries")) {
+						for (let i = 0; i < item.entries.length; i++) {
+							flavorText += `<p>${item.entries[i]}</p>`
+						}
+					}
+
+					var race = races.filter(function (entry) {
+						return entry.ID === raceID;
+					})[0];
+
+					const newpage = new PreviewModal(race.name, `
+						${standee}
+						${flavorText}
+					`);
+
+					$("body").append(newpage.element);
+					$(".container").addClass("no-scroll");
+				}
+			}
+		</script>
+	</head>
+
+	<body style="overflow: hidden;">
+		<div class="background" style="height:100%;">
+			<div class="container" style="height:100%;">
+				<table style="width:100%; margin:auto; border-collapse: collapse;" id="items">
+					<tr class="header-row">
+						<th>Row</th>
+						<th onclick="sortTable(this, 1)">Name</th>
+						<th style="width:13%;" onclick="sortTable(this, 2)">Type</th>
+						<th style="width:15%;" onclick="sortTable(this, 3)">Size</th>
+						<th style="width:15%;" onclick="sortTable(this, 4)">Source</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,324 @@
+* {box-sizing: border-box;}
+/* entry reader */
+.entry-reader {
+	padding:0 !important;
+	width:100%;
+	height:100%;
+	overflow-y: hidden;
+	display:flex;
+	flex-direction: row;
+}
+
+.entry-reader>.menu {
+	background:#e0e0f0;
+	display: flex;
+	flex-direction: column;
+	padding-top:0;
+	margin-top:0;
+	padding-bottom:0;
+	margin-bottom:0;
+	flex-basis: 1;
+	flex-grow: 0;
+	height:100%;
+	width:20%;
+	min-width:300px;
+	overflow-y:auto;
+}
+
+.entry-reader>.menu>*{
+	margin:0;
+	width:100%;
+}
+
+.entry-reader li:not(.uncharted):hover {
+	color:var(--ui-bg-dark);
+	background: var(--blue);
+}
+
+.entry-reader li.uncharted {
+	font-style: italic;
+	border-color: var(--gray);
+	color: var(--gray);
+}
+
+.entry-reader li {
+	font-size:1em;
+	border:2px solid var(--blue);
+	margin:0;
+	border-bottom:1px solid black;
+    color: inherit;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 1px 5px;
+	text-decoration: none;
+	font-variant:normal;
+}
+
+.entry-reader .preview-pane{
+	flex-grow: 1;
+	width:300px;
+	height:100%;
+	overflow:show;
+	/* background:#b5d8e9; */
+	background-image:url('/sf/img/textures/galaxy_starfield.png');
+	font-variant: normal;
+	box-sizing: border-box;
+	/* padding:0.5em; */
+	display:flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.entry-reader .label .name,
+.entry-reader li .name {
+	width: 31.66666666666667%;
+	flex-grow:1;
+}
+
+.entry-reader .label .space,
+.entry-reader li .space {
+	width: 4em;
+	text-align: center;
+}
+
+.entry-reader .menu .label{
+	color: inherit;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    /* overflow: hidden; */
+    /* padding: 1px 5px; */
+	text-decoration: none;
+	font-variant:normal;
+
+	padding:0.1em 0em 0.1em 0.3em;
+	box-sizing: border-box;
+	border-bottom:0.1em solid black;
+	background:#001839;
+	color:white;
+}
+
+.entry-reader .menu .label input {
+	background:none;
+	border:none;
+	font-weight: bold;
+	font-weight: 1.1em;
+}
+
+.entry-reader .menu{
+	overflow-y:hidden;
+	display:flex;
+	flex-direction: column;
+	height:100%;
+	padding: 0;
+	overflow-x: hidden;
+	color:var(--blue);
+	background-color:var(--ui-bg-dark);
+}
+
+.entry-reader .menu>.options {
+	overflow-x: hidden;
+	overflow-y:auto;
+	padding:0;
+}
+
+.entry-reader .menu>.options li {
+	width:100%;
+	list-style-type: none;
+	transition:100ms;
+}
+
+
+/*
+::-webkit-scrollbar {
+	width: 10px;
+}
+::-webkit-scrollbar-track {
+background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+background: #555;
+} */
+
+
+
+
+/* Menu label stuff */
+#current-system-name {font-weight: bold;}
+
+#back-to-systems {
+	width:100%;
+	border:1px solid white;
+	border-radius:0.5em;
+	color:inherit;
+	text-decoration:none;
+	cursor: pointer;
+	padding:0.1em;
+}
+/* Menu label stuff */
+
+/* Space window */
+/* .background,
+#background-div {
+	height:100%;
+	width:100%;
+} */
+
+
+.system {
+	position:absolute;
+	border-radius:50%;
+	transform:translate(-50%, -50%);
+	background-color:none;
+	border:0.05em dashed #ddd;
+	background:rgba(100, 100, 255, 0.2);
+	cursor:pointer;
+}
+
+.system .label  {
+	color:white;
+	position:absolute;
+	top:50%;
+	left:50%;
+	font-size:0.2em;
+	text-align: center;
+	transform:translate(-50%, -50%);
+	z-index:6;
+}
+
+.system:hover .label {display:block !important;}
+
+.bg-blue {
+	background:rgba(5, 22, 38, 0.5);
+	color:#f5fbd5;
+}
+
+.data-block {
+	display:flex;
+	flex-direction: column;
+	width:100%;
+	min-width:350px;
+	height:100vh;
+	font-family:Arial, sans-serif;
+	z-index:3;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+}
+
+.data-block .name {
+	flex-grow: 0;
+	flex-shrink: 0;
+	font-variant: small-caps;
+	font-size:1.2em;
+	line-height: 1.5em;
+	font-weight: bold;
+	text-align: center;
+	border-bottom:0.1em solid #246298;
+}
+
+.data-block .stats {
+	flex-grow: 1;
+	flex-shrink: 0;
+	overflow-y:auto;
+}
+
+.stats div {
+	border-top:0.1em solid #246298;
+	padding-left:0.5em;
+	line-height:2em;
+}
+
+.stats div span {
+	font-weight: bold;
+}
+
+.space-preview {
+	/* background-repeat: no-repeat; */
+	background-image:url('/sf/img/textures/galaxy_starfield.png');
+	overflow:show;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+}
+
+#system-preview {
+	/* background-image:url('/sf/img/textures/galaxy_starfield.png'); */
+	background:black;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	z-index: 5;
+}
+
+#system-strip {
+	position:absolute;
+	top:50%;
+	transform:translate(0%, -50%);
+	height:1px;
+	overflow:show;
+	width: 100%;
+}
+
+#system-strip img{
+	position:relative;
+	top:0%;
+	left:0%;
+	transform:translate(0%, -50%);
+	margin-left:20px;
+}
+
+.background-div {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color:transparent;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+}
+
+.data-block .stats .data {
+	height:100%;
+	padding:0.5em;
+	overflow:auto;
+	font-size:1em;
+	line-height:1em;
+}
+
+.data-block .stats .data p {
+	font-size: inherit;
+}
+
+#bg-button {
+	position:absolute;
+	top:0px;
+	right:3vw;
+	width:5vw;
+	text-align: center;
+	padding:0.1em;
+	padding-bottom:0.2em;
+	color:white;
+	background:rgba(60,60,60,1);
+	z-index:9;
+	user-select: none;
+	cursor:pointer;
+	border-radius:0 0 0.5em 0.5em;
+}
+/* Space window */

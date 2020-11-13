@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- base.html -->
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Starfinder Monster Builder</title>
+		<meta name="description" content="NPC and monster creator for starfinder roleplaying game" />
+
+		<link rel="icon" href="/sf/favicon.png" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/navbar-fixed-left.v2.2.css">
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/base.v2.11.css">
+
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/monsterPrint.v2.2.css">
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/summernote.css">
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/bootstrap-wizard.css">
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/bootstrap-select.min.css">
+
+		<!-- header colours -->
+		<!-- Chrome, Firefox OS and Opera -->
+		<meta name="theme-color" content="#2EC4B6">
+		<!-- Windows Phone -->
+		<meta name="msapplication-navbutton-color" content="#2EC4B6">
+		<!-- iOS Safari -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="#2EC4B6">
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="content">
+				<div class="top-spacer" style="height: 20px;"></div>
+
+				<div class="jumbotron">
+					<h1>Monster Builder</h1>
+					<p class="lead">This wizard will step through the creation of Starfinder NPCs and monsters.</p>
+					<p></p>
+					<div class="alert-this" style="display: none;">
+						<button type="button" class="close" aria-label="Close" onclick="dismissAlert()"><span aria-hidden="true">&times;</span></button>
+						<p><strong>Heads up!</strong> Special abilities are not yet fully integrated into the builder. Currently any special abilities you choose will be printed below the stat block but any additions to the stat block (e.g. special attacks or senses) will need to be added manually.<br><br>Additionally not all template grafts have been added yet. Only simple/dragon grafts are available.</p>
+					</div>
+					<div class="container">
+						<!--      Wizard container        -->
+						<div class="wizard-container">
+							<div class="card wizard-card" id="wizard">
+								<form action="" method="">
+									<div class="wizard-navigation" hidden>
+										<ul>
+											<li><a href="#step1" data-toggle="tab">Step1</a></li>
+											<li><a href="#step2" data-toggle="tab">Step2</a></li>
+											<li><a href="#step3" data-toggle="tab">Step3</a></li>
+											<li><a href="#step4" data-toggle="tab">Step4</a></li>
+											<li><a href="#step5" data-toggle="tab">Step5</a></li>
+											<li><a href="#step6" data-toggle="tab">Step6</a></li>
+											<li><a href="#step7" data-toggle="tab">Step7</a></li>
+											<li><a href="#step8" data-toggle="tab">Step8</a></li>
+											<li><a href="#step9" data-toggle="tab">Step9</a></li>
+											<li><a href="#step10" data-toggle="tab">Step10</a></li>
+											<li><a href="#step11" data-toggle="tab">Step11</a></li>
+											<li><a href="#step12" data-toggle="tab">Step12</a></li>
+										</ul>
+									</div>
+									<div id="bar" class="progress">
+										<div class="progress-bar progress-bar-grn" role="progressbar" style="width: 0%"></div>
+									</div>
+									<div class="tab-content">
+										<div class="tab-pane" id="step1">
+											<span id="stepOneSave" hidden>0</span>
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Base array</h4>
+												</div>
+												<div class="col-sm-6">
+													<hr class="dontPrint">
+													<div id="CRDropdown"></div>
+													<div id="arrayDropdown"></div>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="stepOneDescription wizardp">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step2">
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Creature type graft</h4>
+												</div>
+												<div class="col-sm-6">
+													<hr class="dontPrint">
+													<div id="creatureTypeDropdown"></div>
+													<div id="stepTwoOptionalDropdown"></div>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="stepTwoDescription wizardp">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step3">
+											<span id="stepThreeSave" hidden>none</span>
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Creature subtype graft</h4>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div id="creatureSubtypeDropdown"></div>
+													<div id="stepThreeOptionalDropdown"></div>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="stepThreeDescription wizardp">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step4">
+											<span id="stepFourSave" hidden>None:None</span>
+											<span id="stepFourSave2" hidden>None</span>
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Class graft</h4>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div id="classDropdown"></div>
+													<div id="stepFourOptionalDropdown"></div>
+													<div id="stepFourOptionalDropdownTwo"></div>
+													<div id="stepFourOptionalDropdownThree"></div>
+													<div id="stepFourOptionalDropdownFour"></div>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="stepFourDescription wizardp">
+													</div>
+													<div class="classFeaturesDescription wizardp">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step5">
+											<span id="stepFiveSave" hidden>None</span>
+											<span id="stepFiveSave2" hidden>None:None:None</span>
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Template graft</h4>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div id="graftDropdown"></div>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="stepFiveDescription wizardp">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step6">
+											<span id="stepSixSave" hidden>None</span>
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Special abilities</h4>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="stepSixFreeAbilities wizardp">
+														<p>Free abilities can be taken as needed for the NPC concept without counting towards special abilities</p>
+													</div>
+													<div id="freeAbilityDropdown"></div>
+													<div class="stepSixAbilities wizardp"></div>
+													<div id="specialAbilityDropdown"></div>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div id="burrowTextInput"></div>
+													<div id="climbTextInput"></div>
+													<div id="flyTextInput"></div>
+													<div id="swimTextInput"></div>
+													<br>
+													<div id="dependencyTextInput"></div>
+													<div id="weaknessTextInput"></div>
+													<div id="vulnerabilityTextInput"></div>
+													<br>
+													<div id="saveBoostDropdown"></div>
+													<br>
+													<div class="stepSixDescription wizardp">
+													</div>
+													<div class="stepSixDescriptionTwo wizardp">
+													</div>
+													<div class="stepSixDescriptionThree wizardp">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step7">
+											<span id="stepSevenMasterSave" hidden></span>
+											<span id="stepSevenGoodSave" hidden></span>
+											<span id="masterNumSave" hidden></span>
+											<span id="goodNumSave" hidden></span>
+											<span id="stepSevenSave" hidden>None</span>
+											<span id="stepSevenSaveTwo" hidden>None</span>
+											<span id="stepSevenSaveThree" hidden></span>
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Skills</h4>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="stepSevenAbility wizardp"></div>
+													<div id="AbilityScoresDropdown"></div>
+													<div class="stepSevenMaster wizardp"></div>
+													<div id="masterSkillsDropdown"></div>
+													<div id="masterProfessionDropdown"></div>
+													<div class="stepSevenGood wizardp"></div>
+													<div id="goodSkillsDropdown"></div>
+													<div id="goodProfessionDropdown"></div>
+													<div class="wizardp">
+														<p>(Perception is a good skill by default)</p>
+													</div>
+													<p></p>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="stepSevenAbilityDescription wizardp">
+													</div>
+													<div class="stepSevenMasterDescription wizardp">
+													</div>
+													<div class="stepSevenGoodDescription wizardp">
+													</div>
+													<div class="stepSevenAsterix wizardp">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step8">
+											<span id="stepEightGearSave" hidden>None</span>
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Gear</h4>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="gearLevelDescription wizardp"></div>
+													<div id="armorGearDropdown"></div>
+													<div id="weaponGearDropdown"></div>
+													<div id="equipmentGearDropdown"></div>
+													<div class="form-group">
+														<label for="inputGear">Other gear</label>
+														<input type="text" class="form-control" id="inputGear" placeholder="Custom entries">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="stepEightGearDescription wizardp">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step9">
+											<span id="stepNineAttackSave" hidden>None</span>
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Attacks</h4>
+												</div>
+												<div class="col-sm-4">
+													<hr>
+													<div id="MainAttackDropdown"></div>
+													<hr>
+													<button type="button" onclick='generateGearAttackEntries()' class="btn btn-default btn-block btn-wrap">Generate attacks from gear</button>
+													<p></p>
+													<div class="row">
+														<div class="col-xs-6">
+															<button type="button" onclick='generateAttackEntry("Melee","")' class="btn btn-default btn-block btn-wrap">Add melee attack</button>
+														</div>
+														<div class="col-xs-6">
+															<button type="button" onclick='generateAttackEntry("Ranged","")' class="btn btn-default btn-block btn-wrap">Add ranged attack</button>
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-8">
+													<hr>
+													<div class="attackContainer"></div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step10">
+											<span id="stepEightSave" hidden></span>
+											<span id="stepEightTwoSave" hidden>None</span>
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Spells</h4>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="casterTypeDescription wizardp"></div>
+													<div id="casterTypeDropdown"></div>
+													<div class="stepEight1 wizardp"></div>
+													<div id="spells1Dropdown"></div>
+													<div class="stepEight2 wizardp"></div>
+													<div id="spells2Dropdown"></div>
+													<div class="stepEight3 wizardp"></div>
+													<div id="spells3Dropdown"></div>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="stepEight1Description wizardp">
+													</div>
+													<div class="stepEight2Description wizardp">
+													</div>
+													<div class="stepEight3Description wizardp">
+													</div>
+													<div class="stepEight0Description wizardp">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step11">
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Final checks</h4>
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div class="form-group">
+														<label for="inputName">Creature name</label>
+														<input type="text" class="form-control" id="inputName" placeholder="Name">
+													</div>
+													<div class="form-group">
+														<label for="inputGender">Gender</label>
+														<input type="text" class="form-control" id="inputGender" placeholder="Not specified">
+													</div>
+													<div class="row">
+														<div class="col-xs-6">
+															<div id="Alignment1Dropdown"></div>
+														</div>
+														<div class="col-xs-6">
+															<div id="Alignment2Dropdown"></div>
+														</div>
+													</div>
+													<div id="sizeDropdown"></div>
+													<div class="row">
+														<div class="col-xs-10">
+															<div class="form-group">
+																<label for="inputSpeed">Speed</label>
+																<input type="text" class="form-control" id="inputSpeed" placeholder="speed" value="30">
+															</div>
+														</div>
+														<div class="col-xs-2">
+															<div class="form-group">
+																<label for="inputSpeed">&nbsp;</label>
+																<p>ft.<p>
+															</div>
+														</div>
+													</div>
+
+													<!--<div class="form-group">
+                                      <label for="inputWeakness" >Weaknesses</label>
+                                      <input type="text" class="form-control" id="inputWeakness" placeholder="None">
+                                  </div>-->
+												</div>
+												<div class="col-sm-6">
+													<hr>
+													<div id="precedenceDropdown"></div>
+													<div id="languageDropdown"></div>
+													<div id="optionalSectionsDropdown"></div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane" id="step12">
+											<div class="row">
+												<div class="col-sm-12">
+													<h4 class="info-text">Stat Block</h4>
+													<hr class="dontPrint">
+													<button type="button" style="margin-left: 20px;" class="btn btn-edit btn-grn" onclick="editBlock()" type="button">Edit statblock</button>
+													<button type="button" style="margin-left: 20px;" class="btn btn-save btn-grn" onclick="saveBlock()" type="button">Save statblock</button>
+													<button type="button" style="margin-left: 20px;" class="btn btn-image btn-grn" onclick="blockToImage()" type="button">Save statblock as image</button>
+													<button type="button" style="margin-left: 20px;" class="btn btn-print btn-grn" onclick="printBlock()" type="button">Print statblock</button>
+													<p></p>
+													<div id="capture" style="max-width: 600px;">
+														<div id="overEdit" style="margin-left: 4.5em; margin-right: 1em;">
+															<div class="summernoteEdit edit-block" style="padding-top: 15px; padding-bottom: 15px; padding-right: 15px;">
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="wizard-footer">
+										<div class="pull-right">
+											<input type='button' class='btn btn-next btn-grn' name='next' value='Next' />
+											<input type='button' class='btn btn-finish btn-grn' name='finish' value='Reset' />
+										</div>
+										<div class="pull-left">
+											<input type='button' class='btn btn-previous btn-default' name='previous' value='Previous' />
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</form>
+							</div>
+							<div class="alert-this-red" style="display: none;">
+								<button type="button" class="close" aria-label="Close" onclick="dismissErrorAlert()"><span aria-hidden="true">&times;</span></button>
+								<div id="errorMessage"></div>
+							</div>
+						</div>
+						<!-- wizard container -->
+					</div>
+					<div class="output area">
+
+					</div>
+				</div>
+
+				<!-- Modal pop up html-->
+
+				<!-- Change required for grft Modal -->
+				<div class="modal fade" id="classModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header" style="padding: 10px 15px 0px 15px;">
+								<h4 class="modal-title">Change required</h4>
+							</div>
+							<div class="modal-body classModal" style="padding: 5px 15px;">
+
+							</div>
+							<div class="modal-footer" style="padding: 0px 10px 10px 10px;">
+								<button type="button" class="btn-change btn btn-grn" data-dismiss="modal">Change</button>
+								<button type="button" class="btn-change btn btn-default pull-left" data-dismiss="modal">No thanks</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="modal fade" id="graftModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Change required for graft Modal -->
+						<div class="modal-content">
+							<div class="modal-header" style="padding: 10px 15px 0px 15px;">
+								<h4 class="modal-title">Change required</h4>
+							</div>
+							<div class="modal-body graftModal" style="padding: 5px 15px;">
+
+							</div>
+							<div class="modal-footer" style="padding: 0px 10px 10px 10px;">
+								<button type="button" class="btn-graft btn btn-grn" data-dismiss="modal">Change</button>
+								<button type="button" class="btn-graft btn btn-default pull-left" data-dismiss="modal">No thanks</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="modal fade" id="crModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- condition not met Modal -->
+						<div class="modal-content">
+							<div class="modal-header" style="padding: 10px 15px 0px 15px;">
+								<h4 class="modal-title">Condition not met</h4>
+							</div>
+							<div class="modal-body crModal" style="padding: 5px 15px;">
+
+							</div>
+							<div class="modal-footer" style="padding: 0px 10px 10px 10px;">
+								<button type="button" class="btn-graft btn btn-grn" data-dismiss="modal">Ok</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="modal fade" id="ResetModal" role="dialog">
+					<div class="modal-dialog modal-sm">
+
+						<!-- condition not met Modal -->
+						<div class="modal-content">
+							<div class="modal-header" style="padding: 10px 15px 0px 15px;">
+								<h4 class="modal-title">Reset builder</h4>
+							</div>
+							<div class="modal-body crModal" style="padding: 5px 15px;">
+								<p>Are you sure? your stat block will be lost.</p>
+							</div>
+							<div class="modal-footer" style="padding: 0px 10px 10px 10px;">
+								<button type="button" class="btn-reset btn btn-grn" data-dismiss="modal">Reset</button>
+								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">No thanks</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<!-- /container -->
+		<!-- JavaScript -->
+		<!-- jQuery first, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/sf/res/js/sfrpg-tools.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/common.v2.5.js"></script>
+
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/bootstrap-select.min.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/bootstrap-wizard.js"></script>
+		<script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/summernote.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/html2canvas.alpha12.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/spellData.v2.2.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/equipmentData.v2.2.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/classData.v2.0.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/monsterGenData.v2.4.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/monsterGen.v2.8.js"></script>
+
+	</body>
+
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Tenets of Godhood</title>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+
+		<style>
+			h1, h2, h3, .name, .collapsible {
+				color:#58180d;
+			}
+
+			h2 {
+				margin-bottom:0px;
+				padding:0px;
+				line-height:100%;
+			}
+
+			h4 {
+				color:black;
+				margin:1em 0em 0.2em 0em;
+				font-size:1.1em;
+			}
+
+
+			table tr:nth-child(odd) td {
+				background-color:#e0e5c1;
+			}
+
+			table tr:nth-child(even) td {
+				background-color:#ebe2c5;
+			}
+			th {
+				font-weight: bold;
+			}
+			tr th:last-child {
+				text-align:left;
+				padding:5px;
+			}
+
+			tr td:first-child {
+				white-space: nowrap;
+				width:35px;
+				text-align:center;
+			}
+
+			.collapsible {
+				position:relative;
+				top:0;
+				left:0;
+				background:white;
+				cursor: pointer;
+				width: 100%;
+				border: none;
+				text-align: left;
+				outline: none;
+				border-bottom:5px solid #6a9bc9;
+				padding:5px;
+				font-size:20px;
+				font-weight:bold;
+				border-radius:10px 10px 0px 0px;
+				margin-top:5px;
+			}
+
+			.collapsible:after {
+				background:none;
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "+"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active:after {
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "-"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active, .collapsible:hover {
+				background-color: #e5e5e7;
+			}
+
+			.content, .item {
+				margin-top:0px;
+				max-height: 0;
+				padding:0px 20px;
+				font-size:0.9em;
+				overflow: hidden;
+				transition: max-height 0.2s ease-out;
+				background-color: hsl(209, 47%, 90%);
+				border-radius:0px 0px 15px 15px;
+				border:1px solid black;
+			}
+
+			table {
+				font-size:1.1em;
+				width:100%;
+			}
+
+			.aside {
+				background-color:#c1cbe5;
+				padding:10px;
+				margin-top:10px;
+				border-top:3px solid black;
+				border-bottom:3px solid black;
+			}
+
+			ul, ol {
+				font-size:inherit;
+			}
+
+			div.container>div {
+				background-color:#eeeeff;
+				padding:10px;
+				border:5px double gray;
+				border-radius:25px;
+				margin-top:10px;
+			}
+
+			.prerequisites {
+				padding-top:5px;
+				padding-bottom:20px;
+				font-style: italic;
+				color:#444;
+				font-size:0.9em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<h1>
+					Tenets of Godhood
+				</h1>
+				<p>
+					Being a god requires just one thing, a worshiper. How many, and how active the worshipers are greatly enhances the god's abilities though. It may be that the god has more influence over a small group of followers, or they may create and destroy planes with a modicum of will.
+				</p>
+				<p>
+					For players, the journey to godhood can be a long, arduous process requiring dedication across multiple adventures and years of work. It can also be the central tenet of a campaign as players seek to build their religion's prominence across the multiverse, or a way of extending your campaign beyond Level 20.
+				</p>
+				<div id="LevelsOfGodhood">
+					<h2>Levels of Godhood</h2>
+					<button class="collapsible">
+						Level 1
+					</button>
+					<div class="item content">
+						<div class="prerequisites">Prerequisites: 1 Worshiper. An act of godly prowess.</div>
+						The faith of your first worshiper grants you better fortune and health. Raise your HP by 1d4+1. If multiple characters in the party earn this level at the same time, the highest roll of the group is used by the whole group.
+					</div>
+
+					<button class="collapsible">
+						Level 2
+					</button>
+					<div class="content">
+						<div class="prerequisites">
+							Prerequisites: 10 Worshipers. A shrine. Two acts of godly prowess (in addition to your first); or a miracle.
+						</div>
+						The faith of your worshipers grants you greater influence and confidence. Gain +1 Charisma (Minimum Charisma 10). You also gain a portfolio of godly responsibilities and duties.
+					</div>
+
+					<button class="collapsible">
+						Level 3
+					</button>
+					<div class="content">
+						<div class="prerequisites">
+							Prerequisites: 100 Worshipers. Five shrines or a temple. Three acts of godly prowess; or a miracle.
+						</div>
+						Your ability to craft the world around you has grown stronger, and the divine energies are beginning to flow through you. Gain an additional spell slot of your highest level (Minimum 2nd level). If you do not know any spells, you may learn 3 sorcerer spells as well.
+
+						<h4>Grant Patronage</h4>
+						Once a day you may expend a spell slot to provide that number of worshipers with 1/2 that number spell slots. For example: A 4th level spell slot can be used to grant 4 worshipers a 2nd level spell slot. Their worship keeps the tie to you strong and channels divine energy from you to them. You do not need to do anything to maintain the spell slot. These beings are your clerics or paladins.
+					</div>
+
+					<button class="collapsible">
+						Level 4
+					</button>
+					<div class="content">
+						<div class="prerequisites">
+							Prerequisites: 1,000 worshipers. Fifty shrines or five temples. Four acts of godly prowess; or a miracle.
+						</div>
+						You gain advantage on all checks made regarding your portfolio. When you roll a natural 20 on such a check, you can add, change, edit, or remove an aspect of the thing. For example; if you need healing herbs and roll a 20 to identify a species of healing herbs, you can choose to make herbs already in your possession capable of healing, because you said so.
+					</div>
+
+					<button class="collapsible">
+						Level 5
+					</button>
+					<div class="content">
+						<div class="prerequisites">
+							Prerequisites: 10,000 worshipers. Five-hundred shrines or fifty temples. Five acts of godly prowess; or a miracle.
+						</div>
+						Your followers are pervading the world and you are recognized in many places you go. Add +2 to your charisma score.
+						<h4>Holy Text</h4>
+						Your teachings and wisdom are being drafted for others to read. Pick 3 spells that are linked to your portfolio. You and your followers may cast them in addition to the normal spells for your class, clerics, and paladins.
+						<h4>God Skills and Feats</h4>
+						You gain access to one Indomitable type feat. If your alignment or portfolio change drastically, your DM may grant you the ability to exchange the feat later in time.
+					</div>
+
+					<button class="collapsible">
+						Level 6
+					</button>
+					<div class="content">
+						<div class="prerequisites">
+							Prerequisites: 100,000 worshipers. 5,000 shrines or 500 temples. Six acts of godly prowess; or a miracle. 200 paladins or clerics under your patronage.
+						</div>
+						You are the god of your portfolio on your home plane. If another god of your portfolio exists, you and they are seen as parts of the same being. You may be called to provide aid to your worshipers often. Their faith in your abilities grants you capabilities you only dreamt of before. Gain one level in any class.
+
+						<h4>Godly Blessing</h4>
+						You may spend a spell slot to provide ten times as many worshipers with a bonus equal to the slot's level when they are working on things in your portfolio. For example; A 9th level slot may be used to grant 90 worshipers +9 on Animal Handling checks if animals, wilderness, or similar is part of your portfolio.
+					</div>
+
+					<button class="collapsible">
+						Level 7
+					</button>
+					<div class="content">
+						<div class="prerequisites">Prerequisites: 1,000,000 worshipers. 50,000 shrines or 5,000 temples. 1,000 paladins or clerics at level three or higher. A creation tale.</div>
+						Your followers faith grants you long-lasting, possibly even eternal, effects. Pick a second god feat. It may be an Indomitable feat, or an Unending feat.
+					</div>
+
+					<button class="collapsible">
+						Level 8
+					</button>
+					<div class="content">
+						<div class="prerequisites">Prerequisites: 10,000,000 worshipers. A theocratic state or enclave.</div>
+						Your worshipers have found their way across the multiverse and their faith grants you vitality. You are immortal for as long as you have 100,000 worshipers or legends of you are told amongst creatures.
+
+						<h4>Omnipotence</h4>
+						You may cast plane shift, demiplane, astral projection, and teleport at will. You may teleport to any location where a worshiper of yours has been in the last year; or a temple or shrine of yours has been.
+					</div>
+
+					<button class="collapsible">
+						Level 9
+					</button>
+					<div class="content">
+						<div class="prerequisites">Prerequisites: 100,000,000 worshipers. Eat the heart of an ancient dragon that shares your alignment.</div>
+						You are a full deity. You may cause miracles at will in your portfolio. Your word is law to your followers and in your theocratic states. You may select three more god feats.
+						<h4>Godly Presence</h4>
+						Your charisma score is raised to thirty, you have advantage on all charisma checks and god skills.
+					</div>
+
+					<button class="collapsible">
+						Level 10
+					</button>
+					<div class="item content">
+						<div class="prerequisites">Prerequisites: 1,000,000,000 worshipers. Be directly responsible for the death or downfall of another god.</div>
+						Your actions shape reality itself. The qualms of mortal beings are meaningless when you can, and likely have, created more realities than any living being could ever hope to visit.
+						You may designate lesser gods as subservient to you. They answer to you and serve your desires. You can craft and build new universes, planes, and multiverses at will.
+						<h4>Statless</h4>
+						You cannot lose your godhood or ever die as you have created an entire multiverse filled with your worshipers.
+					</div>
+				</div>
+				<div id="GodAbilities">
+					<h2>God Abilities</h2>
+					<p>
+						Being a god grants you a number of abilities that mere mortals cannot hope to emulate. You can also attempt to shape reality and beings in ways that normal people cannot.
+					</p>
+					<button class="collapsible">
+						God Skills
+					</button>
+					<div class="item content">
+						<p>
+							All gods have access to these skills and may make checks using them. All god skills are charisma skills.
+							Unlike normal skills, god skills utilize your proficiency bonus when the check deals with your godly portfolio. For instance; a Bless check by a god who has "Fields and Harvests" in their portfolio would add their proficiency bonus when attempting to bless a field of grain, but not when attempting to bless a chariot or weapon.
+						</p>
+
+						Inspire
+						You inspire one of a variety of emotions amongst your target. Select Heroism, Lust, Joy, or Anger before you roll the check. On a successful check, your target is overcome by the emotion and acts upon it. If the target is a worshiper of yours, you have advantage on the check.
+
+						Guide
+						Give guidance to a worshiper of yours. On a successful check, you gain insight into possible futures and your worshiper's best path forward. AFter hearing your guidance, they have advantage on checks made to follow your guidance.
+
+						Lead
+						Push or pull a being to actions they would not take on their own. You do not force them to do anything, but place obstacles in their way to prompt them to act in certain ways. On a successful check, the target has disadvantage on checks made to perform actions that go against your leadership.
+
+						Frighten
+						Cause fear to take hold in a creature. You learn their weaknesses and exploit them to put thoughts of their fears in their mind. For example; you may lead them to think spiders are swarming around them, or that their friends are conspiring against them. On a successful check the target cowers and follows your will.
+
+						Punish
+						You poke at your target's most cherished things and learn how to remove or change them. On a successful check, gain advantage on all Sculpt Reality checks related to the target's cherished items for one minute. Sometimes, just the fear of losing a cherished thing can be enough to punish the target.
+
+						Bless
+						You grant your target a gift or boon from your power. On a success, you may give a portion of your power to the target.
+						You may grant them temporary hit points, wealth, or something else that benefits them. The same is taken from you for as long as you give it. For instance, if you bless a worshiper by granting them one of your class abilities, you cannot use that ability.
+
+						Curse
+						You place a burden upon your target from your power. On a success, you may use your power to make the target's life more difficult. You may cause them to have disadvantage, lower their hit points, remove their wealth, or something else that is a detriment to them.
+
+						Condemn
+						You condemn a worshiper to life without you. They are anathema and anytime they seek you out, you can readily grant them the opposite of their request, or a bastardised version of their request. The further a worshiper's behavior is from your ideals, the easier it is for you to condemn them.
+
+						Redeem
+						You redeem a worshiper from another force. You accept them as one of your worshipers and their deepest requests are easier for you to understand. You have advantage on Bless checks made regarding that worshiper for as long as they remain your worshiper.
+
+						Commune with Worshipper
+						You may speak with a worshiper openly and readily. If they are seeking you out, you have advantage on the check to commune with them. On a failed check, you can only get a handful of words through, or a simple phrase. On a successful check, you can appear to them and carry on an extended conversation.
+
+						Sculpt Reality
+						The skill needed to make miracles occur. The change can be as simple as changing the color of a cup or as extreme as removing an entire world from existence and history. On a successful Sculpt Reality check, your charisma changes reality to suit your wishes. Not all of these acts are considered miracles though.
+					</div>
+					<button class="collapsible">
+						God Feats
+					</button>
+					<div class="item content">
+						<p>
+							Being a god means the faith of your followers has granted you access to special abilities and powers. You gain access to an Indomitable feat at God Level 5 and to an Unending feat at God Level 7. Your DM may choose to limit feats to ones that fit your alignment or portfolio.
+						</p>
+
+						<div id="IndomitableFeats">
+							Indomitable Feats
+
+							<h4>Indomitable Will</h4>
+							Once a day you may ignore a d20 roll and choose to make it a 20.
+
+							<h4>Indomitable Might</h4>
+							Once a day you may inflict a critical hit against a target as a bonus action.
+
+							<h4>Indomitable Love</h4>
+							Once a day you may resurrect one allied creature or worshiper for free. You may choose to resurrect a non-worshiper or non-ally by expending a spell slot of Level 4 or higher instead.
+
+							<h4>Indomitable Hate</h4>
+							Once a day you may force a creature with less than 30 max HP to go to 0 HP. It has disadvantage on death saving throws, if it has any.
+
+							<h4>Indomitable Passion</h4>
+							Once a day you may sense the emotion of every creature within 1 mile of you. You can enflame or deaden the emotions readily. For 1 hour, you may try to change their emotion entirely too. Non-worshipers make a charisma save of to avoid the effect. Worshipers readily accept your emotional push.
+							This is not a charm effect. The saving throw DC is calculated as follows: Charisma Save DC=8+ your proficiency bonus + your Charisma modifier
+						</div>
+
+						<div id="UnendingFeats">
+							Unending Feats
+
+							<h4>Unending Love</h4>
+							You may resurrect any creature with less than 30 HP max as an action and at will. The creature must have been alive after you attained godhood. If it was not, you may spend a 4th level spell slot in order to resurrect the creature.
+
+							<h4>Unending Torment</h4>
+							You may capture a creature's soul if it has less than 20 HP when you kill it. You gain a spell slot of your highest level for every 100 HP of souls captured. Resurrection may redeem souls from your capture.
+
+							<h4>Unending Life</h4>
+							You may craft a demiplane outside the material planes for your worshipers to go upon their death. It is one acre for each worshiper in it, and ten acres for each paladin or cleric level a dead worshiper had at their death.
+
+							<h4>Unending Battle</h4>
+							You followers join you in battle. As an action, you may summon 1d6 + your charisma modifier shades to fight alongside you each day. You may use this feature a number of times equal to your charisma modifier each day. You may use this feature at will when you reach God Level 8.
+						</div>
+					</div>
+				</div>
+
+
+				<div id="BuildingAReligion">
+					<h2>Building a Religion</h2>
+					<button class="collapsible">
+						Building a Religion
+					</button>
+					<div class="content">
+						<p>
+							Bringing worshipers to your temples and shrines is wonderful, but without a religion for them to practice, it is meaningless. Your actions as a god dictate what type of worshipers you attract, the prayers they make to you, and what sort of abilities their belief grants you.
+						</p>
+						Building a Portfolio
+						<p>
+							Your portfolio dictates what your proficiency bonus applies to when attempting miracles or God Skill checks. These vary but are most easily figured out through gameplay and role-playing.
+							Your acts of godly prowess and character class can also help influence your portfolio. A druid is more likely to be a god of the forest than a fighter for example. There are no hard limits though, so if the fighter's Acts of Godly Prowess are linked to the forest, they may be a god of the forest.
+						</p>
+
+						Acts of Godly Prowess
+						<p>
+							These actions highlight your godly abilities for your followers.
+							They may be real, legend, or real actions mistaken for those of legend. It's rare to plan an act of godly prowess though. Often, such actions occur naturally and are identified after they occur. For instance, players besting a dragon in combat without taking damage may be an act of godly prowess.
+							Likewise, resurrection spells may be misconstrued by worshipers unfamiliar with magic.
+						</p>
+
+						Miracles
+
+						<p>
+						Miracles demonstrate a god's powers by shaping reality into something fitting their whims. To create a miracle, players describe a change to reality they want to make and the DM determines the proper DC for a Sculpt Reality check.
+						Generally, a miracle should be at least DC 35 in order to reflect the impossibility of the task at hand. Something like turning all water in a room into wine, raising a corpse to life, regrowing an amputated limb, or calming a storm would readily constitute a miracle.
+						For every twenty followers witnessing the miracle, the DC reduces by one.
+						</p>
+
+						<div class="aside">
+						Variant: Spells as Miracles
+						If your players seek changes that may radically change your game (like turning all books into fish), you may have them select a spell from outside of their class' list to cast and let the sculpt reality check be to achieve the spell's effects. If so, the DC should generally be 30 + 5 times the spell level. For instance, a Cleric using Sculpt Reality to cast Animate Objects would need to pass a DC 55 sculpt reality check to cast the 5th level spell.
+						</div>
+
+						Worshipers
+						<p>
+							Followers and worshipers provide the lifeblood for your religion, sometimes literally. It is their collective faith that grants you your powers and ability to shape reality.
+							Worshipers need not worship you alone. You may be part of a pantheon, or just worshiped at the times your skills are needed. It only matters that a worshiper believes you are able to grant aid through their worship of you.
+						</p>
+						<p>
+							While the idea that worshipers primarily seek aid may lead to easier godhood for good, or neutral, characters, evil characters can still become gods. Their worshipers will likely pray for selfish reasons though. A character who constantly steals and cheats their way through life may become a god of trickery and deceit for instance. Their worshipers could then pray to them for help with a con or heist.
+						</p>
+
+						Shrines &amp; Temples
+						<p>
+							Worshipers need a place to worship. Shrines sprinkled across the countryside grant travelers with a place to practice your rites. As you grow shrines will give way to temples with edifices of you and clergy of their own. What these look like and are made of varies according to your believers. Gods of nature may have temples built of living wood sculpted into spires, while a god of the mines may have temples built of obsidian or marble blocks.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+
+	<script>
+		$(document).ready(function() {
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.maxHeight){
+						content.style.maxHeight = null;
+						content.style.padding = "0px 20px";
+					} else {
+						content.style.maxHeight = content.scrollHeight + "px";
+						content.style.padding = "5px 20px";
+					}
+				});
+			}
+		})
+	</script>
+
+</html>

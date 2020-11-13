@@ -1,0 +1,732 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+html{
+	zoom:100%;
+	transform:scale(1);
+}
+
+body {
+	background-color: white;
+	color: black;
+	font-family: Verdana;
+	padding: 0px;
+	margin: 0px;
+}
+
+.i {
+	font-style: italic;
+}
+
+.bold {
+	font-style: bold;
+}
+
+.no-overflow {
+	overflow: hidden;
+}
+
+p {
+	font-size: 10pt;
+}
+
+iframe[name="mainFrame"] {
+	box-sizing: border-box;
+	width: 100%;
+	height: calc(100vh - 40px);
+}
+
+.container {
+	box-sizing: border-box;
+	width: 95%;
+	max-width: 1000px;
+	min-height: 100vh;
+	padding: 25px 50px;
+	background: white;
+	border-left: 3px double gray;
+	border-right: 3px double gray;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media handheld {
+	.container {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 1000px;
+		min-height: 100vh;
+		padding: 25px 50px;
+		background: white;
+		border-left: 3px double gray;
+		border-right: 3px double gray;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.background {
+	background-image: url('https://maxquest.neocities.org/img/textures/Scroll.png');
+	background-repeat: repeat;
+}
+
+/* The navigation bar */
+.navbar {
+	/* overflow: hidden; */
+	background-color: #333;
+	position: fixed;
+	/* Set the navbar to fixed position */
+	top: 0;
+	/* Position the navbar at the top of the page */
+	width: 100%;
+	/* Full width */
+	box-sizing: border-box;
+}
+
+.map-controls {
+	overflow: hidden;
+	position: fixed;
+	/* Set the navbar to fixed position */
+	top: 0;
+	/* Position the navbar at the top of the page */
+	width: 100%;
+	/* Full width */
+	box-sizing: border-box;
+}
+
+/* Links inside the navbar */
+.dropdown>a {
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 0px 16px;
+	line-height: 40px;
+	text-decoration: none;
+}
+.navbar>a{
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 0px 16px;
+	line-height: 40px;
+	text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.navbar>a:hover,
+.dropdown>a:hover,
+.dropdown:hover>a{
+	background: #ddd;
+	color: black;
+}
+
+/* Main content */
+.main {
+	margin-top: 39px;
+	/* Add a top margin to avoid content overlay */
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+@font-face {
+    font-family: Smith;
+    src: url(/res/fonts/vineritc.ttf);
+}
+@font-face {
+    font-family: Cartophile;
+    src: url(/res/fonts/PRISTINA.ttf);
+}
+
+a.smith {
+	cursor: pointer;
+}
+.smith {
+	font-family: Smith;
+	text-decoration: none;
+	color:white;
+	text-shadow: 2px 2px 3px black,
+	0px 2px 3px black,
+	-2px 2px 3px black,
+	-2px 0px 3px black,
+	2px -2px 3px black,
+	-2px -2px 3px black,
+	0px -2px 3px black;
+}
+
+.cartophile {
+	font-family: Cartophile;
+	text-decoration: none;
+	font-weight:500;
+	color:white;
+	text-shadow: 2px 2px 3px black,
+	0px 2px 3px black,
+	-2px 2px 3px black,
+	-2px 0px 3px black,
+	2px -2px 3px black,
+	-2px -2px 3px black,
+	0px -2px 3px black;
+}
+
+.cartophile:hover {
+	font-family: Cartophile;
+	text-decoration: none;
+	font-weight:500;
+	color:black;
+	text-shadow: 2px 2px 3px yellow,
+	0px 2px 3px yellow,
+	-2px 2px 3px yellow,
+	-2px 0px 3px yellow,
+	2px -2px 3px yellow,
+	-2px -2px 3px yellow,
+	0px -2px 3px yellow;
+}
+
+.smith.city  {
+	color:black;
+	text-shadow: 2px 2px 3px white,
+	0px 2px 3px white,
+	-2px 2px 3px white,
+	-2px 0px 3px white,
+	2px -2px 3px white,
+	-2px -2px 3px white,
+	0px -2px 3px white;
+}
+.continent  {
+	color:black;
+	text-shadow: 10px 10px 30px white,
+	0px 10px 30px white,
+	-10px 10px 30px white,
+	-10px 0px 30px white,
+	10px 0px 30px white,
+	10px -10px 30px white,
+	-10px -10px 30px white,
+	0px -10px 30px white,
+	20px 20px 20px black,
+	0px 20px 20px black,
+	-20px 20px 20px black,
+	-20px 0px 20px black,
+	20px 0px 20px black,
+	20px -20px 20px black,
+	-20px -20px 20px black,
+	0px -20px 20px black;
+	z-index:6;
+}
+
+
+.smith:hover {
+	font-family: Smith;
+	color:black;
+	text-decoration: none;
+	text-shadow: 2px 2px 3px yellow,
+	0px 2px 3px yellow,
+	-2px 2px 3px yellow,
+	-2px 0px 3px yellow,
+	2px -2px 3px yellow,
+	-2px -2px 3px yellow,
+	0px -2px 3px yellow;
+}
+
+.item {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color:black;
+	font-size:9pt;
+	margin-top:20px;
+	padding: 10px 10px 10px 20px;
+	background-color:#fafafa;
+	border:1px solid #eaeaea;
+	border-radius: 10px;
+}
+
+.race {
+	width:calc(44% - 50px);
+	margin-left:4%;
+	min-height:250px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color:black;
+	font-size:9pt;
+	margin-top:20px;
+	padding: 10px 10px 10px 20px;
+	background-color:#dada99;
+	border:5px double #caaa33;
+	border-radius: 3px;
+}
+
+.guild {
+	margin-left:4%;
+	min-height:250px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color:black;
+	font-size:9pt;
+	margin-top:20px;
+	padding: 10px 10px 10px 20px;
+	background-color:#99c0da;
+	border:5px double #33acca;
+	border-radius: 3px;
+}
+.race .name,
+.guild .name,
+.item .name {
+	font-size:11pt;
+	font-weight: bold;
+	margin-left:-10px;
+}
+
+.race .properties,
+.item .properties {
+	font-style: italic;
+	color:#999;
+}
+
+.guild .properties {
+	font-style: italic;
+	color:#553300;
+	padding-bottom:10px;
+}
+
+.race table,
+.item table {
+	border-collapse: collapse;
+}
+
+.race td,
+.item td {
+	vertical-align: top;
+	border:1px solid #aaa;
+	padding:5px;
+}
+
+.map-container {
+	cursor: move;
+}
+
+.pixels {
+	image-rendering: pixelated;
+}
+
+.pedestrian {
+	height:20px;
+	width:20px;
+	/* transform: translate(-50%, -50%); */
+}
+
+.pedestrian img{
+	height:50px;
+	width:50px;
+	/* transform: translate(-50%, -50%); */
+}
+
+.battle-token .wide-shot {
+	display:unset;
+}
+.battle-token .close-up {
+	display:none;
+}
+.z50 .battle-token .wide-shot {
+	display:none;
+}
+.z50 .battle-token .close-up {
+	display:unset;
+}
+
+.stay-visible .scale-me {
+	position: absolute;
+	left:50%;
+	top:50%;
+	transform:translate(-50%, -50%);
+	text-align: center;
+}
+.stay-visible .scale-me img{
+	position:relative;
+	/* float:left; */
+	margin-right:-50%;
+	z-index:1;
+	transition: margin-right 0.5s;
+}
+
+.stay-visible:hover .scale-me img{
+	float: none;
+	margin-right:0;
+}
+
+.stay-visible .scale-me img:first-child{
+	z-index:2;
+	/* margin:0%; */
+}
+
+.city-preview {
+	white-space: normal;
+	visibility: hidden;
+	background-color: rgba(68,43,28,0.9);
+	color: #f0f0ff;
+	font-size:20pt;
+	font-family: sans-serif;
+	text-align: justify;
+	border-radius: 6px;
+	padding: 10px;
+	position: absolute;
+	z-index: 3;
+	top: calc(105% + 15px);
+	left: 0%;
+	text-shadow: none;
+	pointer-events: none;
+	width:30vw;
+	/* transition: visibility 1s; */
+	/* min-width:900px; */
+}
+
+.city-preview h1 {
+	font-size:30pt;
+	font-weight: bold;
+}
+
+.city-preview p,
+.character-list,
+.map-container .smol {
+	font-size:26pt;
+}
+
+ul.character-list {
+	padding-left:0.5em;
+}
+
+.city-preview::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 20px;
+	margin-left: -5px;
+	border-width: 15px;
+	border-style: solid;
+	border-color: transparent transparent rgba(68,43,28,0.9) transparent;
+	pointer-events: none;
+}
+.cartophile:hover .city-preview,
+.smith:hover .city-preview,
+.airship:hover .city-preview,
+*:hover>.city-preview,
+.city-preview:hover,
+*:hover>.manage-crew {
+	visibility: visible;
+}
+
+.marker-town {
+	width:16px;
+	height:16px;
+	position:absolute;
+	background-color:#ff00f6;
+}
+
+.marker-city {
+	width:25px;
+	height:25px;
+	position:absolute;
+	background-color:#888888;
+	border-radius: 50%;
+	border:5px solid #ffff00;
+	box-shadow: 2px 2px 3px #888888,
+	0px 2px 3px #888888,
+	-2px 2px 3px #888888,
+	-2px 0px 3px #888888,
+	2px -2px 3px #888888,
+	-2px -2px 3px #888888,
+	0px -2px 3px #888888,
+	2px 2px 4px #000000,
+	0px 2px 4px #000000,
+	-2px 2px 4px #000000,
+	-2px 0px 4px #000000,
+	2px -2px 4px #000000,
+	-2px -2px 4px #000000,
+	0px -2px 4px #000000;
+	transform-origin:center center;
+	transform:translate(-50%,-50%);
+}
+#map-body * {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+#map-body:after {
+	display:block;
+	content: '';
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-image: url("/img/textures/parchment.jpg");
+	background-repeat: repeat;
+	background-size:500px, 500px;
+	mix-blend-mode: luminosity;
+	pointer-events: none;
+	opacity:0.1;
+	z-index:9;
+}
+
+.paper:after {
+	display:block;
+	content: '';
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-image: url("/img/textures/parchment.jpg");
+	background-repeat: repeat;
+	background-size:500px, 500px;
+	mix-blend-mode: overlay;
+	pointer-events: none;
+	opacity:0.3;
+	z-index:9;
+}
+.slide_buttons {
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	margin-top:-55px;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.airship {position:absolute; z-index:10;}
+.pedestrian {position:absolute; z-index:11;}
+.airship.npc:not(.anchored) {
+	animation: sail 16s linear 0s infinite normal;
+}
+.airship.npc.anchored img{
+	animation: bob 4s linear 0s infinite alternate;
+}
+.airship.npc {
+	transform:translate(-50%, -50%);
+}
+.airship.party {
+	width:240px;
+	height:240px;
+
+}
+.airship.party img {
+	animation: bob 4s linear 0s infinite alternate;
+}
+
+.pedestrian.party {
+	width:100px;
+	height:100px;
+}
+.party img,
+.airship img {
+	/* position:absolute;
+	left:0;
+	top:0; */
+	width:100%;
+}
+/* .airship.party .city-preview {
+	animation: reversebob 4s linear 0s infinite alternate;
+} */
+
+.cloud {
+	position:absolute;
+	width:1500px;
+	height:1500px;
+	background-image: url("/img/maps/Cloud.png");
+	background-size:contain;
+	animation: fog 8s linear 0s infinite alternate;
+	transform: translate(-50%, -50%);
+}
+
+.hover {
+	animation: hover 4s linear 0s infinite alternate;
+}
+
+span.party {
+	color:#006494;
+}
+
+span.ally {
+	color:#007A70;
+}
+
+span.enemy {
+	color:#4C1024;
+}
+
+span.brass {
+	color:#B7AA45;
+}
+
+span.purple {
+	color:#3A015C;
+}
+
+span.ally,
+span.party,
+span.enemy,
+span.brass,
+span.purple {
+	font-weight: 700;
+	text-shadow: 0px 0px 4px black,;
+}
+
+@keyframes sail {
+	0% {margin-left: 0px; margin-top:0px;}
+	12% {margin-top:100px;}
+	25% {margin-top:0px;}
+	37% {margin-top:-100px;}
+	50% {margin-left: 200px;  margin-top:0px;}
+	62% {margin-top:100px;}
+	75% {margin-top:0px;}
+	87% {margin-top:-100px;}
+	100% {margin-left: 0px;  margin-top:0px;}
+}
+
+@keyframes bob {
+	0% {margin-left: 0px;  margin-top:0px; transform:rotate(10deg);}
+	25% {margin-top:5px;}
+	50% {margin-left: 10px; margin-top:0px; transform:rotate(0deg);}
+	75% {margin-top:-5px;}
+	100% {margin-left: 0px;  margin-top:0px; transform:rotate(-10deg);}
+}
+@keyframes reversebob {
+	0% {margin-left: 0px;  margin-top:0px; transform:rotate(-10deg);}
+	25% {margin-top:-5px;}
+	50% {margin-left: 0px; margin-top:0px; transform:rotate(0deg);}
+	75% {margin-top:5px;}
+	100% {margin-left: 0px;  margin-top:0px; transform:rotate(10deg);}
+}
+
+@keyframes fog {
+	0% {margin-left: 0px; margin-top:0px;}
+	25% {margin-top:25px;}
+	50% {margin-left: 25px; margin-top:0px;}
+	75% {margin-top:-25px;}
+	100% {margin-left: 0px; margin-top:0px;}
+}
+
+@keyframes hover {
+	0% {margin-left: 0px;  margin-top:0px; transform:rotate(1deg);}
+	25% {margin-top:2px;}
+	50% {margin-left: 4px; margin-top:0px; transform:rotate(0deg);}
+	75% {margin-top:-2px;}
+	100% {margin-left: 0px;  margin-top:0px; transform:rotate(-1deg);}
+}
+
+.party-transfer {
+	width:50vw;
+	height:60vh;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	background:#999;
+	border-radius:2em;
+}
+.party-transfer table {
+	width:90%;
+	height:90%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:5%;
+}
+
+.transfer-header {
+	width:49.5%;
+	font-size:1.5em;
+	font-weight:bold;
+	height:1.7em;
+	line-height:1.7em;
+}
+
+.transfer-left,
+.transfer-right {
+	background:#eee;
+	border:5px inset #ddd;
+	border-radius:0.5em;
+}
+
+.party-transfer div.buttons {
+	padding-top:1em;
+	text-align: right;
+}
+
+.party-transfer div.buttons button {
+	border:0.1em solid #ddd;
+	border-radius:1em;
+	box-sizing: border-box;
+	text-align:center;
+	padding:0.25em 0.5em;
+	color:#ddd;
+}
+.party-transfer div.buttons button.cancel {
+	background:red;
+}
+.party-transfer div.buttons button.accept {
+	background:greenyellow;
+}
+
+button.manage-crew {
+	border:0.1em solid #ddd;
+	border-radius:1em;
+	box-sizing: border-box;
+	text-align:center;
+	padding:0.25em 0.5em;
+	background:brown;
+	color:#ddd;
+	position:absolute;
+	top:-20%;
+	left:5%;
+	white-space: nowrap;
+	visibility: hidden;
+}
+
+.jasper-battle {
+	width:100px !important;
+	height:100px !important;
+	background: url("/img/maps/icons/jasper_blink.png") no-repeat;
+	background-size: 1500px 100px;
+	background-position: 0px, 0px;
+	background-attachment: scroll;
+	overflow: hidden;
+	position: absolute;
+	left:0px;
+	top:0px;
+	z-index: 2;
+	image-rendering: pixelated;
+}
+
+.idle {
+	-webkit-animation: idle 2s steps(15) infinite;
+	-moz-animation: idle 2s steps(15) infinite;
+	-ms-animation: idle 2s steps(15) infinite;
+	-o-animation: idle 2s steps(15) infinite;
+	animation: idle 2s steps(15) infinite;
+}
+
+
+@-webkit-keyframes idle {
+	from { background-position-x:  0px; }
+	to { background-position-x: -1500px; }
+  }
+  @-moz-keyframes idle {
+	from { background-position-x:  0px; }
+	to { background-position-x: -1500px; }
+  }
+  @-ms-keyframes idle {
+	from { background-position-x:  0px; }
+	to { background-position-x: -1500px; }
+  }
+  @-o-keyframes idle {
+	from { background-position-x:  0px; }
+	to { background-position-x: -1500px; }
+  }
+  @keyframes idle {
+	from { background-position-x:  0%; }
+	to { background-position-x: -1500px; }
+  }

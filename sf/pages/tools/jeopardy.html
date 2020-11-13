@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Money Peril Live!</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<style>
+			@-webkit-keyframes daily-double {
+				0% {
+					-webkit-transform: rotateY(810deg) translateX(-50%) translateY(-50%);
+					transform: rotateY(810deg) translateX(-50%) translateY(-50%);
+				}
+
+				100% {
+					-webkit-transform: rotateY(0) translateX(-50%) translateY(-50%);
+					transform: rotateY(0) translateX(-50%) translateY(-50%);
+				}
+			}
+
+			@keyframes daily-double {
+				0% {
+					-webkit-transform: rotateY(810deg) translateX(-50%) translateY(-50%);
+					transform: rotateY(810deg) translateX(-50%) translateY(-50%);
+				}
+
+				100% {
+					-webkit-transform: rotateY(0) translateX(-50%) translateY(-50%);
+					transform: rotateY(0) translateX(-50%) translateY(-50%);
+				}
+			}
+
+			body {
+				height: 100vh;
+				width: 100vw;
+				background-color: #044475;
+				box-sizing: border-box;
+				font-size: calc(9px + (96vw * .01));
+				margin: 0;
+				overflow: hidden;
+				psotion: relative;
+			}
+
+			body * {
+				box-sizing: border-box;
+				font-family: 'Open Sans', Helvetica, sans-serif;
+			}
+
+			p {
+				margin: 0;
+			}
+
+			.category {
+				display: -webkit-box;
+				display: flex;
+				flex-basis: calc(100% / 6);
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: normal;
+				flex-direction: column;
+				text-align: center;
+				width: calc(100% / 6);
+			}
+
+			.category>* {
+				-webkit-box-align: center;
+				align-items: center;
+				border: 1px solid #044475;
+				display: -webkit-box;
+				display: flex;
+				flex-basis: 0;
+				-webkit-box-flex: 1;
+				flex-grow: 1;
+				-webkit-box-pack: center;
+				justify-content: center;
+			}
+
+			.category__price {
+				/* color: #ffeb3b; */
+				color: #ffebeb;
+				cursor: help;
+				font-size: 2em;
+				font-weight: 900;
+				text-shadow: 0 0 0.25em #000;
+				-webkit-transition: background-color 0.2s ease-in-out;
+				transition: background-color 0.2s ease-in-out;
+				text-transform: none;
+			}
+
+			.category__price:hover {
+				background-color: rgba(252, 255, 255, 0.1);
+			}
+
+			.category__price--hidden {
+				color: transparent;
+				text-shadow: none;
+			}
+
+			.category__title,
+			.question__question {
+				color: #fcffff;
+				font-weight: 600;
+				text-shadow: 0 0 0.25em #000;
+			}
+
+			.category__title span {
+				opacity: 0;
+				padding: 0 1em;
+			}
+
+			.category__title--active span {
+				opacity: 1;
+			}
+
+			.categories {
+				height: 100%;
+				width: 100%;
+				background-image: radial-gradient(#2196f3, #0b62a6);
+				border: 1px solid #000;
+				display: -webkit-box;
+				display: flex;
+			}
+
+			.categories--hidden {
+				opacity: 0;
+			}
+
+			.jeop {
+				height: 96vh;
+				width: 96vw;
+				margin: 0 auto;
+				position: relative;
+				text-transform: uppercase;
+			}
+
+			.question {
+				height: 96vh;
+				width: 96vw;
+				background-color: #2196f3;
+				background-image: radial-gradient(#2196f3, #0b62a6);
+				border: 1px solid #000;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-webkit-transform: translateX(100%) translateY(-50%);
+				transform: translateX(100%) translateY(-50%);
+			}
+
+			.question--active {
+				-webkit-transform: translateX(-50%) translateY(-50%);
+				transform: translateX(-50%) translateY(-50%);
+			}
+
+			.question--dd .question__dd {
+				-webkit-animation: daily-double 0.6s ease-in-out;
+				animation: daily-double 0.6s ease-in-out;
+				-webkit-transform: rotateY(0) translateX(-50%) translateY(-50%);
+				transform: rotateY(0) translateX(-50%) translateY(-50%);
+			}
+
+			.question__dd {
+				height: 100%;
+				width: 100%;
+				-o-object-fit: cover;
+				object-fit: cover;
+				pointer-events: none;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-webkit-transform: rotateY(810deg) translateX(-50%) translateY(-50%);
+				transform: rotateY(810deg) translateX(-50%) translateY(-50%);
+				-webkit-transform-origin: center left;
+				transform-origin: center left;
+			}
+
+			.question__question {
+				font-size: 2em;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				text-align: center;
+				-webkit-transform: translateX(-50%) translateY(-50%);
+				transform: translateX(-50%) translateY(-50%);
+				width: 70%;
+			}
+
+			.question__toggle {
+				height: 1em;
+				width: 1em;
+				background-color: rgba(252, 255, 255, 0.1);
+				border:1px solid #2196f3;
+				border-radius:10%;
+				position: absolute;
+				top: 1em;
+				right: 1em;
+			}
+
+			.question__toggle:hover {
+				background-color: rgba(252, 255, 255, 0.25);
+			}
+
+			.toggle {
+				height: 1em;
+				width: 4em;
+				display: -webkit-box;
+				display: flex;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+
+			.toggle__toggle {
+				height: 1em;
+				width: 1em;
+				background-color: rgba(252, 255, 255, 0.1);
+				margin-right: 1em;
+			}
+
+			.toggle__toggle--active {
+				background-color: rgba(252, 255, 255, 0.25);
+			}
+		</style>
+	</head>
+
+	<body translate="no">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+		<div class="jeop">
+			<categories-component :categories="categories" :is-double="isDouble" :is-final="isFinal" @click-question="onClickQ">
+			</categories-component>
+
+			<toggle :is-double="isDouble" :is-final="isFinal" @click-double="onClickIsDouble" @click-final="onClickIsFinal">
+			</toggle>
+
+			<question :content="qContent" :is-daily-double="!!activeQ.isDailyDouble" @click="onClickQToggle">
+			</question>
+		</div>
+
+		<script id="tmpl-category" type="text/x-template">
+
+  <div class="category">
+
+    <p class="category__title"
+      :class="{
+        'category__title--active': isActive
+      }"
+      @click="onClickTitle">
+      <span v-html="title"></span>
+    </p>
+
+    <p class="category__price"
+      :class="{
+        'category__price--hidden': q.isAnswered
+      }"
+      v-for="q in qs"
+      v-html="q.val*600 +'cr'"
+      @click="onClickQ(q)" >
+    </p>
+
+  </div>
+
+</script>
+
+		<script id="tmpl-categories" type="text/x-template">
+
+  <div class="categories"
+    :class="{
+      'categories--hidden': isFinal
+    }" >
+
+    <category
+      :qs="qs"
+      :title="title"
+      v-for="(qs, title) in categories[round]"
+      @click-question="onClickQ" >
+    </category>
+
+  </div>
+
+</script>
+
+		<script id="tmpl-question" type="text/x-template">
+			<div class="question"
+				:class="{
+				'question--active': !!content,
+				'question--dd': isDailyDouble
+				}" >
+				<p class="question__question" v-html="content"></p>
+				<img class="question__dd" src="https://www.nicepng.com/png/detail/225-2256802_super-smash-bros-smash-bros-japanese-logo.png" />
+				<div class="question__toggle" @click="onClick"></div>
+			</div>
+		</script>
+
+		<script id="tmpl-toggle" type="text/x-template">
+			<div class="toggle">
+				<div class="toggle__toggle toggle__toggle--double"
+				:class="{ 'toggle__toggle--active': isDouble }"
+				@click="onClickDouble" >
+				</div>
+				<div class="toggle__toggle toggle__toggle--final"
+				:class="{ 'toggle__toggle--active': isFinal }"
+				@click="onClickFinal" >
+				</div>
+			</div>
+		</script>
+
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js'></script>
+
+		<script id="rendered-js" >
+			class Question {
+				constructor(id, props) {
+					this._vm = {};
+					this.id = id;
+					this.isAnswered = false;
+					Object.assign(this, props);
+				}
+			}
+
+
+var rawCategories = {
+	'single': {
+		'Biology': [
+			{
+				a: '2',
+				img: '',
+				q: 'A bipedal creature has this many legs.',
+				val: 1
+			},
+			{
+				a: 'Invertebrate',
+				img: '',
+				q: 'This term applies to creatures that neither possess or develop a spine.',
+				val: 2
+			},
+			{
+				a: 'Mutation',
+				img: '',
+				q: 'This is the term for a new trait resulting from a change in an organism\'s DNA.',
+				val: 3
+			},
+			{
+				a: 'Bioluminescence',
+				img: '',
+				q: 'This term refers to the production and emission of light by a living organism.',
+				val: 4
+			},
+			{
+				a: '4',
+				img: '',
+				q: 'A quadrupedal creature has this many legs.',
+				val: 5
+			}
+		],
+		'Pact Worlds Landmarks': [
+			{
+				a: 'Absalom Station',
+				img: '',
+				q: '"The Spike" houses both most of the life support systems, and the less fortunate population on this station.',
+				val: 1
+			},
+			{
+				a: 'The Armada',
+				img: '',
+				q: 'This gathering of shady starships is located just outside Absalom Station.',
+				val: 2
+			},
+			{
+				a: 'Nightarch',
+				img: '',
+				q: 'This Apostaean city is named for the massive, ancient gate at its center.',
+				val: 3
+			},
+			{
+				a: 'The Diaspora',
+				img: '',
+				q: 'This asteroid belt is one of the Pact Worlds\' most infamous hives of scum and villainy.',
+				val: 4
+			},
+			{
+				a: '',
+				img: '',
+				q: 'Who would win in a fight: a Kalo-Mahoian Water Weasel (you), or a an Aucturnian Vine Viper (your opponent)?',
+				val: 5
+			}
+		],
+		'Pop Culture': [
+			{
+				a: 'Strawberry Machine Cake',
+				img: '',
+				q: 'This pop supergroup currently holds the top spot in the Pact Worlds 100, with their new album "Star Sugar Heartlove!!!"',
+				val: 1
+			},
+			{
+				a: '',
+				img: '',
+				isDailyDouble: true,
+      			q: 'Who would come out on top in a duel using only traditional clubs: you, or your opponent?',
+				val: 2
+			},
+			{
+				a: 'Elvis',
+				img: '',
+				q: 'Often credited with inciting the rise of rockabilly, many fans believe this artist faked their own death.',
+				val: 3
+			},
+			{
+				a: 'Pact Worlds Wrestling Federation',
+				img: '',
+				q: 'Often abbreviated as "PWWF", this entertainment company is famous for its bloodsport holos.',
+				val: 4
+			},
+			{
+				a: 'The Black Eyed Harpies',
+				img: '',
+				q: 'This disgraced "band" of mercenaries was killed by Jason Knight after being discovered attempting to smuggle drugs into Absalom Station.',
+				val: 5
+			}
+		],
+		'Homeworlds': [
+			{
+				a: 'Skittermander',
+				img: '',
+				q: 'This fuzzy, 6-armed species is native to Vesk-3.',
+				val: 1
+			},
+			{
+				a: 'Triaxus',
+				img: '',
+				q: 'The Drakelands, a continent ruled by chromatic dragons, is located on this planet.',
+				val: 2
+			},
+			{
+				a: 'Ursa Prime',
+				img: '',
+				q: 'In an effort to establish a homeworld for future generations, a society of uplifted bears have colonized this planet.',
+				val: 3
+			},
+			{
+				a: 'Golarian',
+				img: '',
+				q: 'It is thought by historians that this lost world would be the holy grail of archaeological finds for a great many reasons, not least of which would be explaining where the phrase "holy grail" of something comes from.',
+				val: 4
+			},
+			{
+				a: 'Anacites',
+				img: '',
+				q: 'These Aballonian entities are entirely synthetic, but often built to resemble organic life.',
+				val: 5
+			}
+		],
+		'The Wild Black Yonder': [
+			{
+				a: 'Drift Drive',
+				img: '',
+				q: 'This type of starship engine allows faster-than-light travel.',
+				val: 1
+			},
+			{
+				a: 'Near Space',
+				img: '',
+				q: 'This term describes sectors in space that can be easily traveled to due to their high concentration of Drift Beacons.',
+				val: 2
+			},
+			{
+				a: '',
+				img: '',
+				isDailyDouble: true,
+				q: 'Who would come out on top in a death match: you, or a Bone Trooper?',
+				val: 3
+			},
+			{
+				a: 'The Vast',
+				img: '',
+				q: 'Locations in this space take considerably longer to reach, due to the scarcity of Drift Beacons.',
+				val: 4
+			},
+			{
+				a: 'Absalom Station',
+				img: '',
+				q: 'Due to as-of-yet unknown ancient technology, this specific location can be traveled to more quickly than any other on record.',
+				val: 5
+			}
+		],
+		'You 2.0': [
+			{
+				a: 'Biotech',
+				img: '',
+				q: 'These personal upgrades are at least partially organic.',
+				val: 1
+			},
+			{
+				a: 'Cybernetics',
+				img: '',
+				q: 'These technological personal upgrades are usually entirely synthetic.',
+				val: 2
+			},
+			{
+				a: 'Magitech',
+				img: '',
+				q: 'These personal upgrades are infused with arcane magics.',
+				val: 3
+			},
+			{
+				a: 'Necrografts',
+				img: '',
+				q: 'These augmentations have questionable legality, and are made with organs salvaged from the deceased.',
+				val: 4
+			},
+			{
+				a: '',
+				img: '',
+				isDailyDouble: true,
+      			q: 'Who would come out on top in an unarmed duel with no gravity: you, or your opponent?',
+				val: 5
+			}
+		]
+},
+'double': {
+    'Crackle Culture': [
+    {
+      a: 'Skinless and Afraid',
+      img: '',
+      q: 'This Eoxian dark-humor comedy opened at number one at the Pact Worlds box office last summer.',
+	  val: 2
+	},
+
+    {
+      a: 'A Finn',
+      img: '',
+      q: 'Someone from Helsinki',
+      val: 4 },
+
+    {
+      a: 'spree',
+      img: '',
+      isDailyDouble: true,
+      q: 'This sudden indulgence in an activity may follow "spending"',
+      val: 6 },
+
+    {
+      a: 'Farewell<br/>(toodle&amp;#8209;oo)',
+      img: '',
+      q: 'Goodbye!',
+      val: 8 },
+
+    {
+      a: 'morass',
+      img: '',
+      q: 'A marsh or bog, or any muddled situation',
+      val: 10 }],
+
+
+
+    'Pop Culture': [
+    {
+      a: 'Nike',
+      img: '',
+      q: 'Air Pegasus Sneakers',
+      val: 2 },
+
+    {
+      a: 'Amazon',
+      img: '',
+      q: 'Kindle Paperwhite E-reader',
+      val: 4 },
+
+    {
+      a: 'Purina',
+      img: '',
+      q: 'Dog&amp;nbsp;Chow &amp; Cat&amp;nbsp;Chow',
+      val: 6 },
+
+    {
+      a: 'Samsung',
+      img: '',
+      q: 'Galaxy Tablets',
+      val: 8 },
+
+    {
+      a: 'Hershey\'s',
+      img: '',
+      q: 'Krackel candy bars',
+      val: 10 }],
+
+
+
+    'State Capitals': [
+    {
+      a: 'Phoenix',
+      img: '',
+      q: 'Legendary rising bird',
+      val: 2 },
+
+    {
+      a: 'St. Paul',
+      img: '',
+      q: 'A later apostle',
+      val: 4 },
+
+    {
+      a: 'Montgomery',
+      img: '',
+      q: 'On the Simpsons, it comes between C. &amp; Burns',
+      val: 6 },
+
+    {
+      a: 'Olympia',
+      img: '',
+      q: 'Ancient Greek site of athletic fame',
+      val: 8 },
+
+    {
+      a: 'Cheyenne',
+      img: '',
+      q: 'A plains-dwelling Native American tribe',
+      val: 10 }],
+
+
+
+    'Measure for Measure': [
+    {
+      a: '180',
+      img: '',
+      q: 'It\'s the number of degrees in half of a circle',
+	  val: 2
+	},
+    {
+      a: '',
+      img: '',
+      isDailyDouble: true,
+      q: 'Who would come out on top in an unarmed brawl: you, or your opponent?',
+	  val: 4
+	},
+    {
+      a: 'kilogram',
+      img: '',
+      q: 'One of these metric units equals 2.2 pounds',
+      val: 6 },
+
+    {
+      a: 'an acre',
+      img: '',
+      q: 'In a square mile there are 640 of these',
+      val: 8 },
+
+    {
+      a: '300,000',
+      img: '',
+      q: 'A 150-ton blue whale weighs this many pounds',
+      val: 10 }],
+
+
+
+    '"J" Walking': [
+    {
+      a: 'juggling',
+      img: '',
+      q: 'This activity done with balls or plates can also mean to deal with several things at one time',
+      val: 2 },
+
+    {
+      a: 'joint',
+      img: '',
+      q: 'Anatomically, an elbow or a knee',
+      val: 4 },
+
+    {
+      a: 'a jury',
+      img: '',
+      q: 'This group of 12 people is sworn to render a verdict',
+      val: 6 },
+
+    {
+      a: 'journalism',
+      img: '',
+      q: 'It\'s another word for news writing',
+      val: 8 },
+
+    {
+      a: 'a jumping jack',
+      img: '',
+      q: 'The U.S. military calls this 2-word exercise using the arms &amp; legs a "side-straddle hop"',
+      val: 10 }],
+
+
+
+    'TV Moms &amp; Dads': [
+    {
+      a: 'Homer Simpson',
+      img: '',
+      q: 'In 2010 Entertainment Weekly named this dad the greatest character of the last 20 years--D\'oh!',
+      val: 2 },
+
+    {
+      a: 'Tony Soprano',
+      img: '',
+      q: 'This dad had a rather large extended family but only 2 kids, Meadow &amp; A.J.',
+      val: 4 },
+
+    {
+      a: 'About a Boy',
+      img: '',
+      q: 'Minnie Driver plays Fiona, mom to young Marcus on this series based on a novel &amp; movie',
+      val: 6 },
+
+    {
+      a: 'Jon Voight',
+      img: '',
+      q: 'On Showtime this Oscar winner plays Ray Donovan\'s charismatic ex-con father, Mickey',
+      val: 8 },
+
+    {
+      a: 'The Carol Burnett Show',
+      img: '',
+      q: 'In the \'80s Vicki Lawrence was the matriarch on "Mama\'s Family", based on a skit from this variety show',
+	  val: 10 }]
+	},
+
+
+
+
+	'final': {
+		'Who Would Win': {
+			a: 'The person still conscious enough to read this!',
+			id: '30-0',
+			q: 'Who would be the last competitor standing in a free-for-all, no-holds-barred, bar fight?'
+		}
+	}
+	};
+
+
+
+
+var categories = {
+  double: _processCategory(Object.keys(rawCategories.double), rawCategories.double, 20, {}),
+  final: rawCategories.final,
+  single: _processCategory(Object.keys(rawCategories.single), rawCategories.single, 10, {}) };
+
+
+console.log('Jeopardy Assets', categories);
+
+function _processCategory(keys, rawCats, catIndex, cats) {
+  var key = keys.shift();
+
+  cats[key] = rawCats[key].map((q, qIndex) => new Question(catIndex + '-' + qIndex, q));
+
+  catIndex += 1;
+
+  return keys.length ? _processCategory(keys, rawCats, catIndex, cats) : cats;
+}
+
+
+/**
+   * Components
+   */
+
+// --- Category
+
+var CategoryComponent = Vue.extend({
+  name: 'Category',
+
+  data() {
+    return {
+      isActive: false };
+
+  },
+
+  methods: {
+    onChangeTitle() {
+      this.isActive = false;
+    },
+
+    onClickQ(q) {
+      this.$emit('click-question', q);
+    },
+
+    onClickTitle() {
+      this.isActive = true;
+    } },
+
+
+  mounted() {
+    console.log('CategoryComponent mounted', this);
+  },
+
+  props: {
+    qs: {
+      required: true,
+      type: Object },
+
+
+    title: {
+      required: true,
+      type: String } },
+
+
+
+  template: '#tmpl-category',
+
+  watch: {
+    title: 'onChangeTitle' } });
+
+
+
+// --- Categories
+
+
+var CategoriesComponent = Vue.extend({
+  name: 'Categories',
+
+  components: {
+    'category': CategoryComponent },
+
+
+  computed: {
+    round() {
+      if (this.isFinal) return 'final';
+
+      return this.isDouble ? 'double' : 'single';
+    } },
+
+
+  methods: {
+    onClickQ(q) {
+      this.$emit('click-question', q);
+    } },
+
+
+  props: {
+    categories: {
+      required: true,
+      type: Object },
+
+
+    isDouble: {
+      required: true,
+      type: Boolean },
+
+    isFinal: {
+      required: true,
+      type: Boolean } },
+
+
+
+  template: '#tmpl-categories' });
+
+
+// --- Question
+
+var QuestionComponent = Vue.extend({
+  name: 'Question',
+
+  methods: {
+    onClick() {
+      this.$emit('click');
+    } },
+
+
+  mounted() {
+    console.log('QuestionComponent mounted', this);
+  },
+
+  props: {
+    content: {
+      required: true,
+      type: String },
+
+
+    isDailyDouble: {
+      required: true,
+      type: Boolean } },
+
+
+
+  template: '#tmpl-question' });
+
+
+// --- Toggle
+
+var ToggleComponent = Vue.extend({
+  name: 'Toggle',
+
+  methods: {
+    onClickDouble() {
+      this.$emit('click-double');
+    },
+    onClickFinal() {
+      this.$emit('click-final');
+    } },
+
+
+  props: {
+    isDouble: {
+      required: true,
+      type: Boolean },
+
+    isFinal: {
+      required: true,
+      type: Boolean } },
+
+
+
+  template: '#tmpl-toggle' });
+
+
+/**
+                                * App
+                                */
+
+var jeop = new Vue({
+  el: document.querySelector('.jeop'),
+
+  components: {
+    'categories-component': CategoriesComponent,
+    'question': QuestionComponent,
+    'toggle': ToggleComponent },
+
+
+  data() {
+    return {
+      activeQ: {},
+      categories: categories,
+      isDouble: false,
+      isFinal: false,
+      qContent: '' };
+
+  },
+
+  methods: {
+    killQ(qId) {
+      var qFound = false;
+
+      for (let cat in this.categories.single) {
+        this.categories.single[cat].forEach(q => {
+          if (q.id === qId) {
+            q.isAnswered = true;
+            qFound = true;
+          }
+        });
+      }
+
+      if (qFound) return;
+
+      for (let cat in this.categories.double) {
+        this.categories.double[cat].forEach(q => {
+          if (q.id === qId) {
+            q.isAnswered = true;
+            qFound = true;
+          }
+        });
+      }
+
+      if (qFound) return;
+
+      for (let cat in this.categories.final) {
+        if (this.categories.final[cat].id === qId) {
+          this.categories.final[cat].isAnswered = true;
+          qFound = true;
+        }
+      }
+    },
+
+    onClickIsDouble() {
+      this.isDouble = !this.isDouble;
+    },
+
+    onClickIsFinal() {
+      this.isFinal = !this.isFinal;
+
+      if (this.isFinal) {
+        let keys = Object.keys(categories.final);
+
+        let keyIndex = Math.floor(Math.random() * keys.length);
+
+        this.activeQ = categories.final[keys[keyIndex]];
+
+        this.qContent = keys[keyIndex];
+
+        return;
+      }
+
+      this.activeQ = {};
+    },
+
+    onClickQ(q) {
+      this.activeQ = q;
+
+      this.qContent = this.activeQ.q;
+    },
+
+    onClickQToggle() {
+      if (this.isFinal) {
+        if (this.qContent !== this.activeQ.q && this.qContent !== this.activeQ.a) {
+          this.qContent = this.activeQ.q;
+        } else {
+          this.qContent = this.activeQ.a;
+        }
+
+        return;
+      }
+
+      if (this.activeQ.isDailyDouble) {
+        this.activeQ.isDailyDouble = false;
+
+        return;
+      }
+
+      if (this.activeQ.isAnswered) {
+        this.activeQ = {};
+        this.qContent = '';
+
+        return;
+      }
+
+      this.killQ(this.activeQ.id);
+
+      this.qContent = this.activeQ.a;
+    } } });
+    </script>
+	</body>
+
+</html>

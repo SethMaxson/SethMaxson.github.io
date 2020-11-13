@@ -1,0 +1,1 @@
+{"version":3,"file":"hud.d.ts","sourceRoot":"","sources":["../../ts/engine/hud.ts"],"names":[],"mappings":";AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,kBAAkB,CAAC;AAE3C,qBAAa,GAAG;IAEf,IAAI,EAAE,MAAM,CAAC,WAAW,CAAC,CAAC;IAC1B,OAAO,EAAE,OAAO,CAAC;gBACL,IAAI,GAAE,MAAiB;IAgDnC,CAAC,CAAC,QAAQ,EAAE,MAAM;CAIlB"}

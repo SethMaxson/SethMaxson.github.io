@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>System Viewer</title>
+		<link rel="icon" href="/sf/favicon.png" />
+		<!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/sf/res/css/system-viewer.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/sf/res/js/starmap.js"></script>
+		<script src="/res/js/panzoom.js"></script>
+		<script src="/res/js/sort-table.js"></script>
+		<script>
+			var panzoom;
+			var systems, planets, planetFluff, targetSystem, targetPlanet;
+			function GetURLParameter(sParam)
+			{
+				var sPageURL = window.location.search.substring(1);
+				var sURLVariables = sPageURL.split('&');
+				for (var i = 0; i < sURLVariables.length; i++)
+				{
+					var sParameterName = sURLVariables[i].split('=');
+					if (sParameterName[0] == sParam)
+					{
+						return decodeURIComponent(sParameterName[1]);
+					}
+				}
+				return null;
+			};
+
+			$(document).ready(function(){
+				panzoom = Panzoom($('.space-preview')[0], {
+					maxScale: 5
+				})
+				// panzoom.pan(10, 10);
+				panzoom.zoom(1, { animate: true })
+				targetSystem = GetURLParameter("system");
+
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/planets.json",
+					dataType: 'json',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (returnedData) {
+						planets = returnedData.items;
+					}
+				});
+
+				// Load fluff
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/fluff-planets.json",
+					dataType: 'json',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (returnedData) {
+						planetFluff = returnedData.items;
+					}
+				});
+
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/systems.json",
+					dataType: 'json',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (returnedData) {
+						systems = returnedData.items;
+						renderSystems();
+						if (targetSystem == null) {
+							getAllSystems();
+						}
+						else {
+							getSingleSystem(targetSystem);
+						}
+					}
+				});
+
+				$("#bg-button").click(function(){
+					if ($(this).hasClass("push-down")) {
+						$(this).attr("class", "push-up");
+						$(this).html("&uarr; &uarr; &uarr;");
+						$(".data-block").hide();
+					} else {
+						$(this).attr("class", "push-down");
+						$(this).html("&darr; &darr; &darr;");
+						$(".data-block").show();
+					}
+				})
+			})
+			function getSystemPreview(targetSystem) {
+				$("#system-strip").html("");
+				$("#system-preview").show();
+				sys = systems.filter(function (entry) {
+					return entry.name === targetSystem;
+				})[0];
+				var length = sys.stars.length + sys.planets.length;
+				var size = $("#system-preview")[0].clientWidth/(length * 2);
+				var totalSize = 0;
+
+				for (let i = 0; i < sys.stars.length; i++) {
+					totalSize += parseFloat(new PlanetData(planets.filter(function (entry) {
+						return entry.name === sys.stars[i];
+					})[0]).diameter);
+				}
+				for (let i = 0; i < sys.planets.length; i++) {
+					totalSize += parseFloat(new PlanetData(planets.filter(function (entry) {
+						return entry.name === sys.planets[i];
+					})[0]).diameter);
+				}
+
+				for (let i = 0; i < sys.stars.length; i++) {
+					const item = sys.stars[i];
+					let star = getSystemPreviewElement(item, $("#system-preview")[0].clientWidth);
+					star.css("transform", "translate(-80%, -50%)");
+					$("#system-strip").append(star);
+				}
+				for (let i = 0; i < sys.planets.length; i++) {
+					const item = sys.planets[i];
+					// getSystemPreviewElement(item, totalSize)
+					$("#system-strip").append(
+						getSystemPreviewElement(item, size)
+					);
+				}
+			}
+			function getSystemPreviewElement(target, size) {
+				var planet = {};
+				// get planet fluff
+				planet.fluff = planetFluff.filter(function (entry) {
+					return entry.name === target;
+				})[0];
+				planet.fluff = planet.fluff || new PlanetFluff();
+				planet.data = new PlanetData(planets.filter(function (entry) {
+					return entry.name === target;
+				})[0]);
+				// return $(`
+				// 	<img src="/sf/img/locales/planets/preview/${planet.fluff.images.body}" style="width:${size}px; height:${size}px;" />
+				// `);
+				// size = (parseFloat(planet.data.diameter)/size)*100;
+				return $(`
+					<img src="/sf/img/locales/planets/preview/${planet.fluff.images.body}" style="height:${size}px;" />
+				`);
+			}
+			function getAllSystems() {
+				clearPlanetDisplay();
+				$("#system-preview").hide();
+				$("#back-to-systems").hide();
+				$("#items").html("");
+				for (let index = 0; index < systems.length; index++) {
+					const item = systems[index];
+					let href = `getSingleSystem('${item.name}')`;
+					let hover = `hoverSystem('${item.name}')`;
+					createViewerRow(item.name, item.space, href, hover);
+				}
+			}
+			function hoverSystem(targetSystem) {
+				sys = systems.filter(function (entry) {
+					return entry.name === targetSystem;
+				})[0];
+				panzoomFocus(sys.x, sys.y);
+				// panzoom.reset()
+			}
+			function renderSystems() {
+				$('.space-preview').html("");
+				for (let index = 0; index < systems.length; index++) {
+					const sys = systems[index];
+					const x = ((100 + sys.x)/2) + '%';
+					const y = ((100 + sys.y)/2) + '%';
+					// const size = ((sys.stars.length * 100) + (sys.planets.length)) * 2;
+					const size = 20;
+					const classes = sys.space == 'Near'? "system near-space" : "system";
+					const div = $(`
+					<div name="${sys.name}" class="${classes}" style="left:${x}; top:${y}; width: ${size}px; height:${size}px;">
+						<div class="system-label label">${sys.name}</div>
+					</div>`);
+					$('.space-preview').append(div);
+				}
+			}
+			function getSingleSystem(targetSystem) {
+				$("#back-to-systems").show();
+				$("#items").html("");
+				sys = systems.filter(function (entry) {
+					return entry.name === targetSystem;
+				})[0];
+
+				panzoomFocus(sys.x, sys.y);
+
+				if (sys.stars.length > 0) {
+					for (let index = 0; index < sys.stars.length; index++) {
+						const item = sys.stars[index];
+						createPlanetRow(sys, item);
+					}
+				} else {
+					createPlanetRow(sys, sys.name + " Sun");
+				}
+
+
+				for (let index = 0; index < sys.planets.length; index++) {
+					const item = sys.planets[index];
+					createPlanetRow(sys, item);
+				}
+				// getSystemPreview(targetSystem);
+			}
+			function panzoomFocus(x, y) {
+				const newX = ((-x)/200) * $('.space-preview')[0].clientWidth;
+				const newY = ((-y)/200) * $('.space-preview')[0].clientHeight;
+				panzoom.pan(newX, newY);
+				// setTimeout(() => panzoom.pan(newX, newY))
+				panzoom.zoom(5, { animate: true });
+			}
+			function createPlanetRow(sys, item) {
+				const planet = planets.filter(function (entry) {
+					return entry.name === item;
+				})[0];
+				// const href = planet !== undefined? `/sf/pages/world/viewplanet.html?planet=${item}` : "";
+				const href = planet !== undefined? `renderPlanet('${item}')` : "";
+				createViewerRow(item, sys.space, href);
+			}
+			function createViewerRow(name, space, href, hover) {
+				href = href || "";
+				var onclick = href!=""? ` onclick="${href}"` : ` class="uncharted"`;
+				hover = hover || false;
+				let newRow = $(`
+					<li${onclick}>
+						<div class="name">${name}</div>
+						<div class="space">${space}</div>
+					</li>
+				`)
+				$("#items").append(newRow);
+				if (hover) {
+					newRow.on("mouseover", function() {
+						hoverSystem(name);
+					})
+					newRow.on("mouseout", function() {
+						panzoom.reset();
+					})
+				}
+			}
+			function renderPlanet(target) {
+				var planet = {};
+				// get planet fluff
+				planet.fluff = planetFluff.filter(function (entry) {
+					return entry.name === target;
+				})[0];
+				planet.fluff = planet.fluff || new PlanetFluff();
+				planet.data = new PlanetData(planets.filter(function (entry) {
+					return entry.name === target;
+				})[0]);
+
+				getDataBlock(planet);
+				getPlanetImage(planet.fluff);
+				getInfoText(planet);
+			}
+			function getPlanetImage(item) {
+				const bg = "url(/sf/img/locales/planets/preview/" + item.images.body + ")";
+				$(".background-div").css("background-image", bg);
+			}
+			function getDataBlock(planet) {
+				clearPlanetDisplay();
+				$("#bg-button").show();
+				$(".data-block").show();
+				let inhab = planet.data.inhabitants.length > 0? `<div><span>Inhabitants:</span> ${planet.data.inhabitants.join(", ")}</div>` : "";
+				let db = $(`
+					<div class="name">${planet.data.name}</div>
+					<div class="stats">
+						${inhab}
+						<div>
+							<span>Diameter:</span> &times;${planet.data.diameter};
+							<span>Mass:</span> &times;${planet.data.mass}
+						</div>
+						<div><span>Gravity:</span> &times;${planet.data.gravity}</div>
+						<div><span>Atmosphere:</span> ${planet.data.atmosphere}</div>
+						<div>
+							<span>Day:</span> ${planet.data.day};
+							<span>Year:</span> ${planet.data.year}
+						</div>
+						<div class="data"></div>
+					</div>
+				`);
+				$(".data-block").append(db);
+			}
+			function getInfoText(planet) {
+				for (let i = 0; i < planet.fluff.entries[0].entries.length; i++) {
+					const entry = planet.fluff.entries[0].entries[i];
+					$(".data-block .data").append($(`<p>${entry}</p>`));
+				}
+			}
+			function clearPlanetDisplay() {
+				$(".data-block").html("");
+				$(".data-block").hide();
+				$(".background-div").css("background-image", "none");
+				$("#bg-button").hide();
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="entry-reader">
+			<div class="menu">
+				<div id="back-to-systems" onclick="getAllSystems();">Back</div>
+				<div class="label">
+					<div class="name">System Name</div>
+					<div class="space">Space</div>
+				</div>
+				<div id="system-label" style="display:none">
+					System: <span id="current-system-name"></span>
+				</div>
+				<ul class="options" id="items">
+				</ul>
+			</div>
+			<div class="preview-pane">
+				<div id="system-preview" class="system-preview" style="display:none;"">
+					<div id="system-strip"></div>
+				</div>
+				<div id="space-preview" class="space-preview"></div>
+				<div id="background-div" class="background-div"></div>
+				<div id="bg-button" class="push-down">&darr; &darr; &darr;</div>
+				<div class="data-block bg-blue"></div>
+			</div>
+		</div>
+	</body>
+
+</html>

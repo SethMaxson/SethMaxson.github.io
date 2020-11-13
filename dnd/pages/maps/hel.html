@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Hel</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+
+			.travel-brochure .location-info {
+				width:30%;
+				display:block;
+				position:absolute;
+				top:0px;
+				left:0px;
+				box-shadow: 1px 0px 10px black,
+				8px 0px 8px inset rgba(255,255,255,0.5);
+				z-index:6;
+				height:100%;
+				overflow-y:auto;
+				background-color:rgb(253, 243, 229);
+			}
+
+			.location-info h2 {
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin:2em 0.5em 1em 0.5em;
+				padding:7px 10px;
+				font-size:14pt;
+				text-align:center;
+				font-weight:600;
+				font-family: 'Merienda One', cursive;
+				color: #5ea04a;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+
+			.location-info h1 {
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin:0.5em 0.4em;
+				padding:7px 10px;
+				font-size:16pt;
+				text-align:center;
+				font-weight:600;
+				font-family: 'Merienda One', cursive;
+				color: #5ea04a;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+
+			.location-info h3 {
+				text-align-last: justify;
+				margin:0.5em 1em;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #555;
+				font-weight:900;
+				font-family:monospace;
+				color:#999;
+				text-transform: uppercase;
+			}
+
+			.location-info p {
+				text-align: justify;
+				margin:1em 1em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #eee;
+				font-weight:500;
+				color:rgba(17, 17, 17, 0.9);
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.location-info ul {
+				text-align: left;
+				margin:0em 1em 0.5em 0.5em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #111;
+				font-weight:500;
+				color:rgba(17, 17, 17, 0.9);
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.poi {
+				position:absolute;
+				width:31px;
+				height:31px;
+				background:#00755e;
+				border:1px solid black;
+				box-sizing: border-box;
+				text-align: center;
+				line-height: 26px;
+				font-size:26px;
+				font-weight: bold;
+				color:white;
+			}
+
+			.location-info ul li {
+				padding-top:0.5em;
+			}
+
+			.travel-brochure #map-body {
+				width:70%;
+				display:block;
+				float:right;
+			}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/map.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				Pedestrian("47.1%", "38.5%", ["Jasper", "Shamous"], ["/dnd/img/maps/icons/jasper.png", "/dnd/img/maps/icons/Shamous.png"]);
+			})
+		</script>
+	</head>
+
+	<body>
+		<div id="map-body" style="overflow: hidden; background:#000;">
+			<div class="map-controls" style="z-index: 2; padding-left:80px;">
+				- <input type="range" min="1" max="150" value="50" class="slider" id="map-zoom"> +
+				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
+			</div>
+
+			<div class="map-container map" style="background-image:url('/dnd/img/maps/Hel.svg'); background-repeat: no-repeat; background-size: contain; width:51200px; height:51200px; text-align: center; transform-origin:center center; image-rendering: pixelated;">
+			</div>
+		</div>
+	</body>
+
+</html>

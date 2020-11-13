@@ -1,0 +1,33 @@
+{
+  "bundle": {
+    "commonSourceDirectory": "../ts/engine",
+    "sourceFiles": [
+      "../ts/engine/engine.ts"
+    ],
+    "js": {
+      "sections": [
+        {
+          "pos": 0,
+          "end": 65243,
+          "kind": "text"
+        }
+      ]
+    },
+    "dts": {
+      "sections": [
+        {
+          "pos": 0,
+          "end": 32,
+          "kind": "type",
+          "data": "jquery"
+        },
+        {
+          "pos": 34,
+          "end": 11189,
+          "kind": "text"
+        }
+      ]
+    }
+  },
+  "version": "3.8.3"
+}

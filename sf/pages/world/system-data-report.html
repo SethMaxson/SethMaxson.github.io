@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Data Report</title>
+		<link rel="icon" href="/sf/favicon.png" />
+		<!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<script
+		src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous"></script>
+		<script crossorigin="anonymous" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+		<script crossorigin="anonymous" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/sf/res/js/starmap.js"></script>
+		<script src="/res/js/sort-table.js"></script>
+		<script type="text/babel">
+			var dataStuff = {
+				systems: [],
+				planets: [],
+				planetFluff: []
+			}
+
+			class Planet extends React.Component {
+				render() {
+					var planet = {
+						name: this.props.planet
+					};
+					// get planet fluff
+					planet.fluff = dataStuff.planetFluff.filter(function (entry) {
+						return entry.name === planet.name;
+					})[0];
+					planet.fluff = planet.fluff || new PlanetFluff();
+					let pd = dataStuff.planets.filter(function (entry) {
+						return entry.name === planet.name;
+					})[0];
+					planet.data = new PlanetData(pd);
+
+					let inhab = planet.data.inhabitants.length > 0? true : false;
+					let planData = pd? true : false;
+					let fluff = planet.fluff.entries[0].entries.length > 0? true: false;
+					let passed = (inhab && fluff)? "passed" : "failed";
+
+					return (
+					<tr className={passed}>
+						<td>{planet.name}</td>
+						<td className={inhab? "data-bool passed": "data-bool failed"}>{inhab.toString()}</td>
+						<td className={planData? "data-bool passed": "data-bool failed"}>{planData.toString()}</td>
+						<td className={fluff? "data-bool passed": "data-bool failed"}>{fluff.toString()}</td>
+						<td className="source">{planet.data.source}</td>
+					</tr>
+					);
+				}
+			}
+
+			class System extends React.Component {
+				render() {
+					return (
+					<div className="data-section">
+						<div className="data-header">
+							{this.props.system.name} ({this.props.system.space})
+						</div>
+						<table className="data-report-table">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Inhabited</th>
+									<th>Has Data</th>
+									<th>Has Fluff</th>
+									<th>Source</th>
+								</tr>
+							</thead>
+							<tbody>
+								{this.renderChildren()}
+								{this.renderStars()}
+							</tbody>
+						</table>
+					</div>
+					);
+				}
+				renderChildren() {
+					return this.props.system.planets.map((planet, index) => {
+						return (<Planet key={planet} planet={planet} />)
+					})
+				}
+				renderStars() {
+					return this.props.system.stars.map((planet, index) => {
+						return (<Planet key={planet} planet={planet} />)
+					})
+				}
+			}
+
+			class DataReport extends React.Component {
+				constructor(props) {
+					super(props);
+					this.state = {
+						systems: []
+					};
+					let target = this;
+					var sysDat = $.ajax({ crossDomain: true, url: "/sf/res/data/systems.json", dataType: 'json' });
+					var planD = $.ajax({ crossDomain: true, url: "/sf/res/data/planets.json", dataType: 'json' });
+					// Load fluff
+					var planF = $.ajax({ crossDomain: true, url: "/sf/res/data/fluff-planets.json", dataType: 'json' });
+					$.when(sysDat, planD, planF).done(function(sys, pd, pf){
+						dataStuff.planets = pd[0].items;
+						dataStuff.planetFluff = pf[0].items;
+						target.setState({
+							systems: sys[0].items,
+							planets: pd[0].items,
+							planetFluff: pf[0].items
+						});
+					});
+				}
+				renderChildren() {
+					return this.state.systems.map((sys, index) => {
+						return (<System key={sys.name} system={sys} />)
+					})
+				}
+				render() {
+					return (
+					<div className="container">
+						{this.renderChildren()}
+					</div>
+					);
+				}
+			}
+
+			// ========================================
+			ReactDOM.render(
+				<DataReport />,
+				document.getElementById('items')
+			);
+		</script>
+		<style>
+			:root {
+				--good:#14ff00;
+				--bad:#ff073a;
+			}
+			.data-report-table {width:100%; border-collapse: collapse;}
+			.data-report-table td {
+				border:1px solid black;
+				background:#3f3f3f;
+			}
+			.data-report-table th {
+				border:1px solid black;
+				color:white;
+				background:#444;
+				font-size:0.9em;
+			}
+			.data-header {
+				color:white;
+				background:black;
+				padding:0.2em;
+				font-size:1em;
+			}
+			.data-bool {
+				text-align: right;
+				width:10%;
+			}
+			.passed { color:var(--good); }
+			.failed { color:var(--bad); }
+			.source {width:12%; text-align: right;}
+		</style>
+	</head>
+
+	<body>
+		<div class="background" id="items">
+		</div>
+	</body>
+
+</html>

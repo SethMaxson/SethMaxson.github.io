@@ -1,0 +1,408 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+@import url('https://fonts.googleapis.com/css?family=Orbitron|Roboto&display=swap');
+
+html{
+	zoom:100%;
+	transform:scale(1);
+}
+
+body {
+	background-color: white;
+	color: black;
+	font-family: Verdana;
+	padding: 0px;
+	margin: 0px;
+}
+
+.i {
+	font-style: italic;
+}
+
+.bold {
+	font-style: bold;
+}
+
+.no-overflow {
+	overflow: hidden;
+}
+
+p {
+	font-size: 10pt;
+}
+
+/* The navigation bar */
+.navbar {
+	/* overflow: hidden; */
+	background-color: #333;
+	position: fixed;
+	/* Set the navbar to fixed position */
+	top: 0;
+	/* Position the navbar at the top of the page */
+	width: 100%;
+	/* Full width */
+	box-sizing: border-box;
+}
+
+.map-controls {
+	overflow: hidden;
+	position: fixed;
+	/* Set the navbar to fixed position */
+	top: 0;
+	/* Position the navbar at the top of the page */
+	width: 100%;
+	/* Full width */
+	box-sizing: border-box;
+}
+
+/* Main content */
+.main {
+	margin-top: 39px;
+	/* Add a top margin to avoid content overlay */
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+a.smith {
+	cursor: pointer;
+}
+
+.smith {
+	font-family: 'Roboto', sans-serif;
+	text-transform:uppercase;
+	text-decoration: none;
+	color:white;
+	text-shadow: 2px 2px 3px black,
+	0px 2px 3px black,
+	-2px 2px 3px black,
+	-2px 0px 3px black,
+	2px -2px 3px black,
+	-2px -2px 3px black,
+	0px -2px 3px black;
+}
+
+.smith:hover {
+	color:lime;
+	text-decoration: none;
+	text-shadow: 2px 2px 3px black,
+	0px 2px 3px black,
+	-2px 2px 3px black,
+	-2px 0px 3px black,
+	2px -2px 3px black,
+	-2px -2px 3px black,
+	0px -2px 3px black;
+}
+
+#map-container .city  {
+	color:black;
+	text-shadow: 2px 2px 3px white,
+	0px 2px 3px white,
+	-2px 2px 3px white,
+	-2px 0px 3px white,
+	2px -2px 3px white,
+	-2px -2px 3px white,
+	0px -2px 3px white;
+}
+
+#map-container .continent  {
+	color:black;
+	text-shadow: 10px 10px 30px white,
+	0px 10px 30px white,
+	-10px 10px 30px white,
+	-10px 0px 30px white,
+	10px 0px 30px white,
+	10px -10px 30px white,
+	-10px -10px 30px white,
+	0px -10px 30px white,
+	20px 20px 20px black,
+	0px 20px 20px black,
+	-20px 20px 20px black,
+	-20px 0px 20px black,
+	20px 0px 20px black,
+	20px -20px 20px black,
+	-20px -20px 20px black,
+	0px -20px 20px black;
+	z-index:6;
+}
+
+.system {
+	position:absolute;
+	border-radius:50%;
+	transform:translate(-50%, -50%);
+	background-color:none;
+	border:0.1em dashed #ddd;
+	background:rgba(100, 100, 255, 0.4);
+	cursor:pointer;
+}
+
+.system .label  {
+	color:white;
+	position:absolute;
+	bottom:100%;
+	left:50%;
+	font-size:300px;
+	transform:translate(-50%, 0%);
+	z-index:6;
+}
+
+.system:hover .label {display:block !important;}
+
+.system .sun {
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	border-radius:50%;
+	background-color:#ffaa00;
+}
+
+.system .planet-orbit {
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	border-radius:50%;
+	border:0.05em solid #ddd;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+	/* animation-name:orbit;
+	animation-duration:20s; */
+}
+
+.system .planet-orbit:nth-child(odd) {
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+	/* animation-name:orbit;
+	animation-duration:24s; */
+}
+
+.system .planet-orbit:nth-child(odd) .planet {
+	background-color:#00aaff;
+}
+
+.system .planet-orbit:nth-child(even) .planet {
+	background-color:#00ffaa;
+}
+
+.system .planet-orbit .planet {
+	position:absolute;
+	top:50%;
+	left:0%;
+	transform:translate(-50%, -50%);
+	border-radius:50%;
+}
+
+.map-container {
+	cursor: move;
+	background-repeat: repeat;
+	background-size: 8192px 4096px;
+}
+
+.hover-preview {
+	white-space: normal;
+	visibility: hidden;
+	background-color: rgba(68,43,28,0.9);
+	color: #f0f0ff;
+	font-size:20pt;
+	/* font-family: sans-serif; */
+	text-transform: none;
+	text-align: justify;
+	border-radius: 6px;
+	padding: 10px;
+	position: absolute;
+	z-index: 3;
+	top: calc(105% + 15px);
+	left: 0%;
+	text-shadow: none;
+	pointer-events: none;
+	width:30vw;
+	/* transition: visibility 1s; */
+	/* min-width:900px; */
+}
+
+.hover-preview h1 {
+	font-size:30pt;
+	font-weight: bold;
+}
+
+.hover-preview p,
+.character-list,
+.map-container .smol {
+	font-size:26pt;
+}
+
+ul.character-list {
+	padding-left:0.5em;
+}
+
+.hover-preview::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 20px;
+	margin-left: -5px;
+	border-width: 15px;
+	border-style: solid;
+	border-color: transparent transparent rgba(68,43,28,0.9) transparent;
+	pointer-events: none;
+}
+
+.smith:hover .hover-preview,
+.airship:hover .hover-preview,
+*:hover>.hover-preview,
+.hover-preview:hover {
+	visibility: visible;
+}
+
+.marker-town {
+	width:16px;
+	height:16px;
+	position:absolute;
+	background-color:#ff00f6;
+}
+
+.marker-city {
+	width:25px;
+	height:25px;
+	position:absolute;
+	background-color:#888888;
+	border-radius: 50%;
+	border:5px solid #ffff00;
+	box-shadow: 2px 2px 3px #888888,
+	0px 2px 3px #888888,
+	-2px 2px 3px #888888,
+	-2px 0px 3px #888888,
+	2px -2px 3px #888888,
+	-2px -2px 3px #888888,
+	0px -2px 3px #888888,
+	2px 2px 4px #000000,
+	0px 2px 4px #000000,
+	-2px 2px 4px #000000,
+	-2px 0px 4px #000000,
+	2px -2px 4px #000000,
+	-2px -2px 4px #000000,
+	0px -2px 4px #000000;
+	transform-origin:center center;
+	transform:translate(-50%,-50%);
+}
+#map-body * {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+/* #map-body:after {
+	display:block;
+	content: '';
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-image: url("/img/textures/parchment.jpg");
+	background-repeat: repeat;
+	background-size:500px, 500px;
+	mix-blend-mode: luminosity;
+	pointer-events: none;
+	opacity:0.1;
+	z-index:9;
+} */
+
+@-webkit-keyframes orbit { from { -webkit-transform:rotate(0deg) translate(-50%, -50%) } to { -webkit-transform:rotate(360deg) translate(-50%, -50%) } }
+@-moz-keyframes orbit { from { -moz-transform:rotate(0deg) translate(-50%, -50%) } to { -moz-transform:rotate(360deg) translate(-50%, -50%) } }
+@-o-keyframes orbit { from { -webkit-transform:rotate(0deg) translate(-50%, -50%)} to { -webkit-transform:rotate(360deg) translate(-50%, -50%)} }
+@keyframes orbit { from {transform:translate(-50%, -50%) rotate(0deg)} to { transform:translate(-50%, -50%) rotate(360deg)} }
+
+.popup {
+	width:100vw;
+	height:100vh;
+	position:fixed;
+	top:0;
+	left:0;
+	background-image: url("/img/sf/PactWorlds.jpg");
+	background-size: 100vw 100vh;
+	background-repeat: no-repeat;
+	z-index:10;
+}
+
+.popup .exit {
+	position:absolute;
+	top:0.5em;
+	right:0.5em;
+	cursor: pointer;
+	color:red;
+	font-weight: bold;
+}
+
+.slider {
+	position:relative;
+	top:0;
+	left:0;
+	-webkit-appearance: none;  /* Override default CSS styles */
+	appearance: none;
+	width: 25%; /* Full-width */
+	height: 25px; /* Specified height */
+	background: #d3d3d3; /* Grey background */
+	outline: none; /* Remove outline */
+	opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+	-webkit-transition: .2s; /* 0.2 seconds transition on hover */
+	transition: opacity .2s;
+}
+
+.slider::before {
+	display:block;
+	width:25px;
+	content:"-";
+	position:absolute;
+	text-align: center;
+	font-weight:bold;
+	font-size:1.5em;
+	color:white;
+	left:0;
+	top:50%;
+	transform:translate(0, -50%);
+	pointer-events: none;
+}
+
+.slider::after {
+	display:block;
+	width:25px;
+	content:"+";
+	position:absolute;
+	text-align: center;
+	font-weight:bold;
+	font-size:1.5em;
+	color:white;
+	right:0;
+	top:50%;
+	transform:translate(0, -50%);
+	pointer-events: none;
+}
+
+.slider:hover {
+	opacity: 1; /* Fully shown on mouse-over */
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none; /* Override default look */
+	appearance: none;
+	width: 25px; /* Set a specific slider handle width */
+	height: 25px; /* Slider handle height */
+	/* background: #4CAF50; */
+	background: #4C50AF;
+	border:1px solid black;
+	box-sizing: border-box;
+	cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+	width: 25px; /* Set a specific slider handle width */
+	height: 25px; /* Slider handle height */
+	background: #4CAF50; /* Green background */
+	cursor: pointer; /* Cursor on hover */
+}

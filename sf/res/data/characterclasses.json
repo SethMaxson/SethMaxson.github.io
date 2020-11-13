@@ -1,0 +1,2290 @@
+{
+	"items": [
+		{
+			"name": "Envoy",
+			"SP": 6,
+			"HP": 6,
+			"skillRanks": 8,
+			"bab": "partial",
+			"fsb": "half",
+			"rsb": "full",
+			"wsb": "full",
+			"spellCasting": "none",
+			"shortDescription" : "The envoy uses her personal magnetism and intelligence to help her allies and baffle her enemies, often in the service of negotiation or politics.",
+			"description": "You make your way in the universe with a charming smile, quick wit, and keen sense of self-preservation, and excel at getting others to do what you want. You might be a trickster, hustler, or con artist, or you might serve as an actor, ambassador, or businessperson, paving the way for negotiation through kind words or the occasional dirty trick. You are often the group’s strategist, using your quick wit and tactical acumen to push your friends to greater heights. You may also be skilled in diplomacy, serving as the face for a starship crew, talking your way into restricted systems or gaining audiences with local politicians or warlords.",
+			"skills": [
+				"Acrobatics",
+				"Athletics",
+				"Bluff",
+				"Computers",
+				"Culture",
+				"Diplomacy",
+				"Disguise",
+				"Engineering",
+				"Intimidate",
+				"Medicine",
+				"Perception",
+				"Piloting",
+				"Profession",
+				"Sense Motive",
+				"Sleight of Hand",
+				"Stealth"
+			],
+			"proficiencies" : {
+				"armor" : [
+					"Light Armor"
+				],
+				"weapon" : [
+					"Basic Melee Weapons",
+					"Grenades",
+					"Small Arms"
+				]
+			},
+			"levels": [
+				{
+					"level": 1,
+					"classFeatures": "Envoy improvisation, expertise (1d6), skill expertise",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						},
+						{
+							"name": "Expertise",
+							"type": "ex",
+							"description": [
+								"You are an expert at dealing with challenges that test your skills, be the challenges social or otherwise. At 1st level, when attempting a Sense Motive check, you can roll 1d6 (your expertise die) and add the result of the roll to your check as an insight bonus. You can use this and other expertise abilities as long as you have at least 1 Resolve Point remaining. At 5th level, anytime you roll your expertise die, you gain a +1 bonus to the result. At 9th, 17th, and 20th levels, this bonus increases by 1. At 13th level, you roll 1d8 as your expertise die instead of 1d6.",
+								"Beginning at 9th level, you have even greater expertise with skills to which you can add your expertise die that you have also selected with the Skill Focus feat. For each such skill, once per day when rolling your expertise die to add to that skill, you may roll the expertise die twice and take the better of the two results."
+							]
+						},
+						{
+							"name": "Skill Expertise",
+							"type": "ex",
+							"description": [
+								"At 1st level and every 4 levels thereafter, you can use expertise with one additional class skill. You must have at least 1 rank in a skill to select it, and it must come from the following list: Bluff (Cha), Computers (Int), Culture (Int), Diplomacy (Cha), Disguise (Cha), Engineering (Int), Intimidate (Cha), and Medicine (Int)."
+							]
+						}
+					]
+				},
+				{
+					"level": 2,
+					"classFeatures": "Envoy improvisation",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						}
+					]
+				},
+				{
+					"level": 3,
+					"classFeatures": "Expertise talent, weapon specialization",
+					"features": [
+						{
+							"name": "Expertise Talent",
+							"type": "ex",
+							"description": [
+								"At 3rd level and every 4 levels thereafter, you choose an expertise talent, which gives you an extra option when using a skill with which you have expertise. The list of expertise talents appears on pages 269–270."
+							]
+						},
+						{
+							"name": "Weapon Specialization",
+							"type": "ex",
+							"description": [
+								"You gain the Weapon Specialization feat as a bonus feat for each weapon type with which this class grants you proficiency."
+							]
+						}
+					]
+				},
+				{
+					"level": 4,
+					"classFeatures": "Envoy improvisation",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						}
+					]
+				},
+				{
+					"level": 5,
+					"classFeatures": "Expertise (1d6+1), skill expertise",
+					"features": [
+						{
+							"name": "Expertise",
+							"type": "ex",
+							"description": [
+								"You are an expert at dealing with challenges that test your skills, be the challenges social or otherwise. At 1st level, when attempting a Sense Motive check, you can roll 1d6 (your expertise die) and add the result of the roll to your check as an insight bonus. You can use this and other expertise abilities as long as you have at least 1 Resolve Point remaining. At 5th level, anytime you roll your expertise die, you gain a +1 bonus to the result. At 9th, 17th, and 20th levels, this bonus increases by 1. At 13th level, you roll 1d8 as your expertise die instead of 1d6.",
+								"Beginning at 9th level, you have even greater expertise with skills to which you can add your expertise die that you have also selected with the Skill Focus feat. For each such skill, once per day when rolling your expertise die to add to that skill, you may roll the expertise die twice and take the better of the two results."
+							]
+						},
+						{
+							"name": "Skill Expertise",
+							"type": "ex",
+							"description": [
+								"At 1st level and every 4 levels thereafter, you can use expertise with one additional class skill. You must have at least 1 rank in a skill to select it, and it must come from the following list: Bluff (Cha), Computers (Int), Culture (Int), Diplomacy (Cha), Disguise (Cha), Engineering (Int), Intimidate (Cha), and Medicine (Int)."
+							]
+						}
+					]
+				},
+				{
+					"level": 6,
+					"classFeatures": "Envoy improvisation",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						}
+					]
+				},
+				{
+					"level": 7,
+					"classFeatures": "Expertise talent",
+					"features": [
+						{
+							"name": "Expertise Talent",
+							"type": "ex",
+							"description": [
+								"At 3rd level and every 4 levels thereafter, you choose an expertise talent, which gives you an extra option when using a skill with which you have expertise. The list of expertise talents appears on pages 269–270."
+							]
+						}
+					]
+				},
+				{
+					"level": 8,
+					"classFeatures": "Envoy improvisation",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						}
+					]
+				},
+				{
+					"level": 9,
+					"classFeatures": "Expertise (1d6+2), skill expertise",
+					"features": [
+						{
+							"name": "Expertise",
+							"type": "ex",
+							"description": [
+								"You are an expert at dealing with challenges that test your skills, be the challenges social or otherwise. At 1st level, when attempting a Sense Motive check, you can roll 1d6 (your expertise die) and add the result of the roll to your check as an insight bonus. You can use this and other expertise abilities as long as you have at least 1 Resolve Point remaining. At 5th level, anytime you roll your expertise die, you gain a +1 bonus to the result. At 9th, 17th, and 20th levels, this bonus increases by 1. At 13th level, you roll 1d8 as your expertise die instead of 1d6.",
+								"Beginning at 9th level, you have even greater expertise with skills to which you can add your expertise die that you have also selected with the Skill Focus feat. For each such skill, once per day when rolling your expertise die to add to that skill, you may roll the expertise die twice and take the better of the two results."
+							]
+						},
+						{
+							"name": "Skill Expertise",
+							"type": "ex",
+							"description": [
+								"At 1st level and every 4 levels thereafter, you can use expertise with one additional class skill. You must have at least 1 rank in a skill to select it, and it must come from the following list: Bluff (Cha), Computers (Int), Culture (Int), Diplomacy (Cha), Disguise (Cha), Engineering (Int), Intimidate (Cha), and Medicine (Int)."
+							]
+						}
+					]
+				},
+				{
+					"level": 10,
+					"classFeatures": "Envoy improvisation",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						}
+					]
+				},
+				{
+					"level": 11,
+					"classFeatures": "Expertise talent",
+					"features": [
+						{
+							"name": "Expertise Talent",
+							"type": "ex",
+							"description": [
+								"At 3rd level and every 4 levels thereafter, you choose an expertise talent, which gives you an extra option when using a skill with which you have expertise. The list of expertise talents appears on pages 269–270."
+							]
+						}
+					]
+				},
+				{
+					"level": 12,
+					"classFeatures": "Envoy improvisation",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						}
+					]
+				},
+				{
+					"level": 13,
+					"classFeatures": "Expertise (1d8+2), skill expertise",
+					"features": [
+						{
+							"name": "Expertise",
+							"type": "ex",
+							"description": [
+								"You are an expert at dealing with challenges that test your skills, be the challenges social or otherwise. At 1st level, when attempting a Sense Motive check, you can roll 1d6 (your expertise die) and add the result of the roll to your check as an insight bonus. You can use this and other expertise abilities as long as you have at least 1 Resolve Point remaining. At 5th level, anytime you roll your expertise die, you gain a +1 bonus to the result. At 9th, 17th, and 20th levels, this bonus increases by 1. At 13th level, you roll 1d8 as your expertise die instead of 1d6.",
+								"Beginning at 9th level, you have even greater expertise with skills to which you can add your expertise die that you have also selected with the Skill Focus feat. For each such skill, once per day when rolling your expertise die to add to that skill, you may roll the expertise die twice and take the better of the two results."
+							]
+						},
+						{
+							"name": "Skill Expertise",
+							"type": "ex",
+							"description": [
+								"At 1st level and every 4 levels thereafter, you can use expertise with one additional class skill. You must have at least 1 rank in a skill to select it, and it must come from the following list: Bluff (Cha), Computers (Int), Culture (Int), Diplomacy (Cha), Disguise (Cha), Engineering (Int), Intimidate (Cha), and Medicine (Int)."
+							]
+						}
+					]
+				},
+				{
+					"level": 14,
+					"classFeatures": "Envoy improvisation",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						}
+					]
+				},
+				{
+					"level": 15,
+					"classFeatures": "Expertise talent",
+					"features": [
+						{
+							"name": "Expertise Talent",
+							"type": "ex",
+							"description": [
+								"At 3rd level and every 4 levels thereafter, you choose an expertise talent, which gives you an extra option when using a skill with which you have expertise. The list of expertise talents appears on pages 269–270."
+							]
+						}
+					]
+				},
+				{
+					"level": 16,
+					"classFeatures": "Envoy improvisation",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						}
+					]
+				},
+				{
+					"level": 17,
+					"classFeatures": "Expertise (1d8+3), skill expertise",
+					"features": [
+						{
+							"name": "Expertise",
+							"type": "ex",
+							"description": [
+								"You are an expert at dealing with challenges that test your skills, be the challenges social or otherwise. At 1st level, when attempting a Sense Motive check, you can roll 1d6 (your expertise die) and add the result of the roll to your check as an insight bonus. You can use this and other expertise abilities as long as you have at least 1 Resolve Point remaining. At 5th level, anytime you roll your expertise die, you gain a +1 bonus to the result. At 9th, 17th, and 20th levels, this bonus increases by 1. At 13th level, you roll 1d8 as your expertise die instead of 1d6.",
+								"Beginning at 9th level, you have even greater expertise with skills to which you can add your expertise die that you have also selected with the Skill Focus feat. For each such skill, once per day when rolling your expertise die to add to that skill, you may roll the expertise die twice and take the better of the two results."
+							]
+						},
+						{
+							"name": "Skill Expertise",
+							"type": "ex",
+							"description": [
+								"At 1st level and every 4 levels thereafter, you can use expertise with one additional class skill. You must have at least 1 rank in a skill to select it, and it must come from the following list: Bluff (Cha), Computers (Int), Culture (Int), Diplomacy (Cha), Disguise (Cha), Engineering (Int), Intimidate (Cha), and Medicine (Int)."
+							]
+						}
+					]
+				},
+				{
+					"level": 18,
+					"classFeatures": "Envoy improvisation",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						}
+					]
+				},
+				{
+					"level": 19,
+					"classFeatures": "Expertise talent",
+					"features": [
+						{
+							"name": "Expertise Talent",
+							"type": "ex",
+							"description": [
+								"At 3rd level and every 4 levels thereafter, you choose an expertise talent, which gives you an extra option when using a skill with which you have expertise. The list of expertise talents appears on pages 269–270."
+							]
+						}
+					]
+				},
+				{
+					"level": 20,
+					"classFeatures": "Envoy improvisation, expertise (1d8+4), true expertise",
+					"features": [
+						{
+							"name": "Envoy Improvisation",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn envoy improvisations—little tricks that bolster allies, confound enemies, or change the ebb and flow of battle using guile, inspiration, or luck. You learn your first envoy improvisation at 1st level, and you learn an additional improvisation at 2nd level and every 2 levels thereafter. The list of envoy improvisations appears on page 62.",
+								"If an improvisation allows you to grant an effect to an ally, you cannot grant yourself that effect unless the improvisation states otherwise. If an envoy improvisation allows a saving throw to resist its effects or requires an enemy to attempt a skill check, the DC is equal to 10 + half your envoy level + your Charisma modifier. ",
+								"Some envoy improvisations are language-dependent, mindaffecting, sense-dependent, or some combination of any or all of these. These terms are defined on page 270."
+							]
+						},
+						{
+							"name": "Expertise",
+							"type": "ex",
+							"description": [
+								"You are an expert at dealing with challenges that test your skills, be the challenges social or otherwise. At 1st level, when attempting a Sense Motive check, you can roll 1d6 (your expertise die) and add the result of the roll to your check as an insight bonus. You can use this and other expertise abilities as long as you have at least 1 Resolve Point remaining. At 5th level, anytime you roll your expertise die, you gain a +1 bonus to the result. At 9th, 17th, and 20th levels, this bonus increases by 1. At 13th level, you roll 1d8 as your expertise die instead of 1d6.",
+								"Beginning at 9th level, you have even greater expertise with skills to which you can add your expertise die that you have also selected with the Skill Focus feat. For each such skill, once per day when rolling your expertise die to add to that skill, you may roll the expertise die twice and take the better of the two results."
+							]
+						},
+						{
+							"name": "True Expertise",
+							"type": "ex",
+							"description": [
+								"You gain total mastery over one of your envoy improvisations and can use it with but a thought. When you gain this ability, choose one improvisation you know that has an effect when you spend 1 Resolve Point.",
+								"As long as you have at least 1 Resolve Point remaining, you can gain the improvisation’s effect without spending the Resolve Point. This ability has no benefit if the improvisation requires more than 1 Resolve Point.",
+								"In addition, when you roll your expertise die, you can add 2d8 rather than 1d8+4 to the result of your skill check. If, for some reason, your bonus gained from expertise isn’t 1d8+4, you can’t use this option. "
+							]
+						}
+					]
+				}
+			],
+			"source": "CRB",
+			"page": 60
+		},
+		{
+			"name": "Mechanic",
+			"SP": 6,
+			"HP": 6,
+			"skillRanks": 4,
+			"bab": "partial",
+			"fsb": "full",
+			"rsb": "full",
+			"wsb": "half",
+			"spellCasting": "none",
+			"shortDescription" : "Adept at building and modifying machinery, the mechanic has either an advanced artificial intelligence or a cutting-edge robot drone as his constant companion.",
+			"description": "You are a master of machines, from advanced supercomputers to simple magnetic engines. Understanding how these devices work gives you insight into the world around you, allowing you to make the most of your gear, circumvent hardened defenses, and even take over remote systems. Your programming skill also gives you the ability to create a powerful ally, in the form of either an implanted artificial intelligence or a robotic drone, which can assist you with a variety of tasks. If there’s a computer or machine that needs to be fixed, bypassed, or destroyed, you’re the first on the scene. Whether you’re a skilled scientist, a starship engineer, or a battlefield technician, you’re no stranger to combat—but you find it much more reasonable to have your AI or drone do the fighting for you.",
+			"skills": [
+				"Athletics",
+				"Computers",
+				"Engineering",
+				"Medicine",
+				"Perception",
+				"Physical Science",
+				"Piloting",
+				"Profession"
+			],
+			"proficiencies" : {
+				"armor" : [
+					"Light Armor"
+				],
+				"weapon" : [
+					"Basic Melee Weapons",
+					"Grenades",
+					"Small Arms"
+				]
+			},
+			"levels": [
+				{
+					"level": 1,
+					"classFeatures": "Artificial intelligence, bypass +1, custom rig",
+					"features": [
+						{
+							"name": "Artificial Intelligence",
+							"type": "ex",
+							"description": [
+								"You construct an artificial intelligence (or AI), a sophisticated program of self-motivated code that you can access for help in a variety of endeavors. This AI is the product of your own genius, far more advanced and complicated than any available for sale to consumers (though it falls short of being truly self-aware), and only you know the secrets of its creation and operation. Your AI can take one of two forms: a drone or an exocortex. You must pick one of these forms upon taking your first level of mechanic, and once this choice is made, it cannot be changed."
+							],
+							"choice": {
+								"id": "Subclass",
+								"options": [
+									{
+										"name": "Drone",
+										"description": [
+											"You begin play with a powerful robotic drone to house your AI. You build and control this drone, which accompanies you on your adventures and is capable of combat, espionage, and other specialized tasks. As you gain levels, your drone advances in sophistication and gain additional abilities. While the value of your drone is immense, only you, with your extensive knowledge of its quirks and security measures, can ever hope to operate or repair it. Drones are detailed in Drones beginning on page 74."
+										]
+									},
+									{
+										"name": "Exocortex",
+										"description": [
+											"You begin play with an exocortex, an artificial processor that interacts with and augments your biological brain’s cognitive functions, which can aid you in a variety of tasks, from combat to digital infiltration. Your exocortex is implanted within your physical body or brain, similar to a piece of cybernetic hardware, allowing your AI to access your mind and feed you information. As you gain levels, your exocortex advances in sophistication and processing power—see Exocortex on page 79. Only you can access or interact with your exocortex."
+										]
+									},
+									{
+										"name": "Experimental Armor Prototype",
+										"description": [
+											"You have designed and built a sophisticated suit of armor, which you are constantly optimizing and upgrading with the latest technological breakthroughs. You begin play with one suit of armor with an item level of 1 for free, or you can buy any armor normally and designate it as your armor prototype. You design and build this armor and, while it may be similar in aesthetics and function to an existing type of armor, it is fundamentally unique from any mass-produced product. Due to its experimental design and custom fitting, you are the only one who can benefit from wearing this armor. As you gain levels, your armor prototype advances in sophistication. If you acquire a different suit of armor, you can disassemble your existing prototype and turn the new armor into your prototype with 8 hours of work."
+										]
+									},
+									{
+										"name": "Experimental Weapon Prototype",
+										"description": [
+											"You have designed and built, and are constantly upgrading, a sophisticated weapon. You begin play with one weapon with an item level of 1 for free, or you can buy any weapon normally and designated it as your weapon prototype. You design and build this weapon and, while it may be similar in aesthetics and function to an existing type of weapon, it is fundamentally unique from any mass-produced product. Due to its experimental design and custom safety features, you are the only one who can make attacks with this weapon."
+										]
+									}
+								]
+							}
+						},
+						{
+							"name": "Bypass",
+							"type": "ex",
+							"description": [
+								"You are skilled at getting inside computer systems and electronic devices. At 1st level, you gain a +1 insight bonus to Computers and Engineering skill checks. At 5th level, every 4 levels thereafter, and at 20th level, this bonus increases by 1."
+							]
+						},
+						{
+							"name": "Custom Rig",
+							"type": "ex",
+							"description": [
+								"You have created a customized toolkit you can use to hack systems and items. Your custom rig can be configured to take up an upgrade slot on your armor or can be installed as a cybernetic augmentation system in your brain (though it can be combined with a datajack for the same price as installing a datajack normally), your eyes, or an arm. For more information on augmentations, see Chapter 7: Equipment. Alternatively, you can configure it to be a handheld device, meaning that you must retrieve it and hold it to use it effectively. While using this rig, you always count as having the appropriate tool or basic kit for any Computers or Engineering skill check you attempt. Some mechanic tricks (see page 71) and drone mods (see page 77) require the use of a custom rig. In addition, you can use your custom rig as a Mk I comm unit (see Chapter 7: Equipment). Finally, if you have a drone, you can use your custom rig to communicate over an encrypted channel with your drone to issue commands to its AI or directly control it at a range of 2,500 feet.",
+								"If your custom rig is damaged, destroyed, lost, or stolen, you can kitbash a new one from any engineering kit, hacking kit, or other technological toolkit, reconfiguring the materials into a new custom rig with 1 hour of work. You can have only one custom rig at a time. If you create a new custom rig, your old one functions as a normal toolkit of whatever type you made it from and can no longer be used with your mechanic tricks."
+							]
+						}
+					]
+				},
+				{
+					"level": 2,
+					"classFeatures": "Mechanic trick",
+					"features": [
+						{
+							"name": "Mechanic Trick",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn tricks that allow you to perform wonders of engineering, aid in electronic infiltrations, and optimize gear. While some of these are things you learn, others are small cybernetic enhancements you make to yourself (none of which have a price or count against your augmentation limits). Some tricks require the use of a custom rig or other gear.",
+								"You learn your first mechanic trick at 2nd level, and you learn an additional mechanic trick at 4th level and every 2 levels thereafter. If a mechanic trick allows an opponent a saving throw to resist its effects, the DC is equal to 10 + half your mechanic level + your Intelligence modifier. If a mechanic trick requires an opponent to attempt a skill check, the DC is equal to 10 + 1-1/2 × your class level + your Intelligence modifier.",
+								"Unless otherwise specified, you can’t learn mechanic tricks more than once. The list of mechanic tricks appears on page 71"
+							]
+						}
+					]
+				},
+				{
+					"level": 3,
+					"classFeatures": "Overload, weapon specialization",
+					"features": [
+						{
+							"name": "Overload",
+							"type": "ex",
+							"description": [
+								"As a standard action, you can cause a short in an electronic device, including most ranged energy weapons, melee weapons with the powered special property, or a single armor upgrade. This makes the device nonfunctional for 1 round. Overload doesn’t cause a locked door, safe, or other device to open, but it prevents anyone from opening it for 1 round. You must be adjacent to the device to use this ability. If you have a drone, you can instead use this ability on an electronic device adjacent to your drone. If you have an exocortex with the wireless hack ability, you can instead use this ability on any electronic device within range of your exocortex’s wireless hack. If you use overload on an item or armor upgrade in someone’s possession, the owner can attempt a Reflex saving throw to negate the effect (DC = 10 + half your mechanic level + your Intelligence modifier). Overload doesn’t affect androids, cybernetics, drones, powered armor, robots, or creatures with the technological subtype (all of which have shielding against this sort of attack), or items larger than Medium. Once a device has been successfully overloaded, a residual static charge prevents that device from being overloaded again for 1 minute."
+							]
+						},
+						{
+							"name": "Weapon Specialization",
+							"type": "ex",
+							"description": [
+								"You gain the Weapon Specialization feat as a bonus feat for each weapon type this class grants you proficiency with."
+							]
+						}
+					]
+				},
+				{
+					"level": 4,
+					"classFeatures": "Mechanic trick",
+					"features": [
+						{
+							"name": "Mechanic Trick",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn tricks that allow you to perform wonders of engineering, aid in electronic infiltrations, and optimize gear. While some of these are things you learn, others are small cybernetic enhancements you make to yourself (none of which have a price or count against your augmentation limits). Some tricks require the use of a custom rig or other gear.",
+								"You learn your first mechanic trick at 2nd level, and you learn an additional mechanic trick at 4th level and every 2 levels thereafter. If a mechanic trick allows an opponent a saving throw to resist its effects, the DC is equal to 10 + half your mechanic level + your Intelligence modifier. If a mechanic trick requires an opponent to attempt a skill check, the DC is equal to 10 + 1-1/2 × your class level + your Intelligence modifier.",
+								"Unless otherwise specified, you can’t learn mechanic tricks more than once. The list of mechanic tricks appears on page 71"
+							]
+						}
+					]
+				},
+				{
+					"level": 5,
+					"classFeatures": "Bypass +2, remote hack",
+					"features": [
+						{
+							"name": "Bypass",
+							"type": "ex",
+							"description": [
+								"You are skilled at getting inside computer systems and electronic devices. At 1st level, you gain a +1 insight bonus to Computers and Engineering skill checks. At 5th level, every 4 levels thereafter, and at 20th level, this bonus increases by 1."
+							]
+						},
+						{
+							"name": "Remote Hack",
+							"type": "ex",
+							"description": [
+								"You can use your custom rig to attempt Computers and Engineering skill checks at a range of 20 feet. At 7th level and every 2 levels thereafter, this range increases by 10 feet. A target of this ability (or a creature attending or observing your target) can attempt a Perception or Sense Motive check (DC = 10 + 1-1/2 × your mechanic level + your Intelligence modifier) to determine that you are the origin of this activity"
+							]
+						}
+					]
+				},
+				{
+					"level": 6,
+					"classFeatures": "Mechanic trick",
+					"features": [
+						{
+							"name": "Mechanic Trick",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn tricks that allow you to perform wonders of engineering, aid in electronic infiltrations, and optimize gear. While some of these are things you learn, others are small cybernetic enhancements you make to yourself (none of which have a price or count against your augmentation limits). Some tricks require the use of a custom rig or other gear.",
+								"You learn your first mechanic trick at 2nd level, and you learn an additional mechanic trick at 4th level and every 2 levels thereafter. If a mechanic trick allows an opponent a saving throw to resist its effects, the DC is equal to 10 + half your mechanic level + your Intelligence modifier. If a mechanic trick requires an opponent to attempt a skill check, the DC is equal to 10 + 1-1/2 × your class level + your Intelligence modifier.",
+								"Unless otherwise specified, you can’t learn mechanic tricks more than once. The list of mechanic tricks appears on page 71"
+							]
+						}
+					]
+				},
+				{
+					"level": 7,
+					"classFeatures": "Expert rig, miracle worker 1/day",
+					"features": [
+						{
+							"name": "Expert Rig",
+							"type": "ex",
+							"description": [
+								"Your custom rig has improved. Whenever you use your custom rig to successfully hack into a computer, you can also disable one countermeasure installed in the system (except firewalls). In addition, your custom rig can now be used as any engineering or hacking specialty kit of item level 6th or lower, and it has the features of a computer with a tier equal to half your level with the artificial personality, hardened, or security I upgrade module. It also has an audio/video recorder. You can add extra modules or countermeasures to your custom rig at the normal prices. See page 213 for more information on computers.",
+								"You can also use your custom rig to communicate over an encrypted channel with your ship, allowing you to access your ship’s downloaded data sets and transponder (see page 430) at a range of 5 miles. If you have a drone, you can issue commands to or directly control your drone at the same range."
+							]
+						},
+						{
+							"name": "Miracle Worker",
+							"type": "ex",
+							"description": [
+								"As a move action, you can repair damage to a starship’s systems or modify a suit of armor or weapon to function more efficiently. To use this ability, you must be able to handle the item affected without impediment. You can use this ability once per day at 7th level, plus one additional time per day for every 4 mechanic levels you have beyond 7th. The exact effect of this ability depends on the object or system you are modifying.",
+								"<b>Armor</b>: You grant a +2 enhancement bonus to a suit of armor’s EAC and KAC for 1 minute.",
+								"<b>Weapon</b>: You grant a +2 enhancement bonus to a weapon’s attack and damage rolls for 1 minute.",
+								"<b>Damaged Ship</b>: You restore a number of Hull Points equal to the starship's base frame HP increment. If this raises the ship’s HP over a multiple of its Critical Threshold, you can repair critical damage to one system per multiple, reducing its severity by one step. For example, if your starship’s Critical Threshold is 8 and you restore 10 HP, reducing the damage to the hull from 17 HP to 7 HP, you could restore one system from wrecked to glitching. Using this ability during starship combat is your action for the turn, and you can do it only during the engineering phase. See page 292 for more on ship construction and page 320 for more on damage to ships."
+							]
+						}
+					]
+				},
+				{
+					"level": 8,
+					"classFeatures": "Mechanic trick",
+					"features": [
+						{
+							"name": "Mechanic Trick",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn tricks that allow you to perform wonders of engineering, aid in electronic infiltrations, and optimize gear. While some of these are things you learn, others are small cybernetic enhancements you make to yourself (none of which have a price or count against your augmentation limits). Some tricks require the use of a custom rig or other gear.",
+								"You learn your first mechanic trick at 2nd level, and you learn an additional mechanic trick at 4th level and every 2 levels thereafter. If a mechanic trick allows an opponent a saving throw to resist its effects, the DC is equal to 10 + half your mechanic level + your Intelligence modifier. If a mechanic trick requires an opponent to attempt a skill check, the DC is equal to 10 + 1-1/2 × your class level + your Intelligence modifier.",
+								"Unless otherwise specified, you can’t learn mechanic tricks more than once. The list of mechanic tricks appears on page 71"
+							]
+						}
+					]
+				},
+				{
+					"level": 9,
+					"classFeatures": "Bypass +3, override",
+					"features": [
+						{
+							"name": "Bypass",
+							"type": "ex",
+							"description": [
+								"You are skilled at getting inside computer systems and electronic devices. At 1st level, you gain a +1 insight bonus to Computers and Engineering skill checks. At 5th level, every 4 levels thereafter, and at 20th level, this bonus increases by 1."
+							]
+						},
+						{
+							"name": "Override",
+							"type": "ex",
+							"description": [
+								"Your overload class feature now affects androids, drones, robots, and creatures with the technological subtype, which must succeed at a Will saving throw (DC = 10 + half your mechanic level + your Intelligence modifier) or be dazed for 1 round. If the target fails its saving throw by 10 or more, it is not dazed and you can dictate its actions for 1 round, though these actions can’t be obviously self-destructive. Once a creature has attempted a saving throw against this attack (regardless of the result), it is immune to this attack for 24 hours."
+							]
+						}
+					]
+				},
+				{
+					"level": 10,
+					"classFeatures": "Mechanic trick",
+					"features": [
+						{
+							"name": "Mechanic Trick",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn tricks that allow you to perform wonders of engineering, aid in electronic infiltrations, and optimize gear. While some of these are things you learn, others are small cybernetic enhancements you make to yourself (none of which have a price or count against your augmentation limits). Some tricks require the use of a custom rig or other gear.",
+								"You learn your first mechanic trick at 2nd level, and you learn an additional mechanic trick at 4th level and every 2 levels thereafter. If a mechanic trick allows an opponent a saving throw to resist its effects, the DC is equal to 10 + half your mechanic level + your Intelligence modifier. If a mechanic trick requires an opponent to attempt a skill check, the DC is equal to 10 + 1-1/2 × your class level + your Intelligence modifier.",
+								"Unless otherwise specified, you can’t learn mechanic tricks more than once. The list of mechanic tricks appears on page 71"
+							]
+						}
+					]
+				},
+				{
+					"level": 11,
+					"classFeatures": "Coordinated assault +1, miracle worker 2/day",
+					"features": [
+						{
+							"name": "Coordianted Assault",
+							"type": "ex",
+							"description": [
+								""
+							]
+						},
+						{
+							"name": "Miracle Worker",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 12,
+					"classFeatures": "Mechanic trick",
+					"features": [
+						{
+							"name": "Mechanic Trick",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn tricks that allow you to perform wonders of engineering, aid in electronic infiltrations, and optimize gear. While some of these are things you learn, others are small cybernetic enhancements you make to yourself (none of which have a price or count against your augmentation limits). Some tricks require the use of a custom rig or other gear.",
+								"You learn your first mechanic trick at 2nd level, and you learn an additional mechanic trick at 4th level and every 2 levels thereafter. If a mechanic trick allows an opponent a saving throw to resist its effects, the DC is equal to 10 + half your mechanic level + your Intelligence modifier. If a mechanic trick requires an opponent to attempt a skill check, the DC is equal to 10 + 1-1/2 × your class level + your Intelligence modifier.",
+								"Unless otherwise specified, you can’t learn mechanic tricks more than once. The list of mechanic tricks appears on page 71"
+							]
+						}
+					]
+				},
+				{
+					"level": 13,
+					"classFeatures": "Advanced rig, bypass +4",
+					"features": [
+						{
+							"name": "Advanced Rig",
+							"type": "ex",
+							"description": [
+								"Your custom rig’s computer functions gain a bonus firewall countermeasure (see page 217). This firewall has no additional cost, does not count against the maximum number of countermeasures your custom rig can have, and can block off a module or group of modules already protected by a firewall.",
+								"In addition, you can use your custom rig to communicate over an encrypted channel with your ship, allowing you to access the ship’s sensors, control its security systems, and prepare its engines for takeoff (as well as use the encrypted communications functions of your expert rig) at a range of 50 miles. If you have a drone, you can issue commands to or directly control your drone over an encrypted channel at the same range."
+							]
+						},
+						{
+							"name": "Bypass",
+							"type": "ex",
+							"description": [
+								"You are skilled at getting inside computer systems and electronic devices. At 1st level, you gain a +1 insight bonus to Computers and Engineering skill checks. At 5th level, every 4 levels thereafter, and at 20th level, this bonus increases by 1."
+							]
+						}
+					]
+				},
+				{
+					"level": 14,
+					"classFeatures": "Mechanic trick",
+					"features": [
+						{
+							"name": "Mechanic Trick",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn tricks that allow you to perform wonders of engineering, aid in electronic infiltrations, and optimize gear. While some of these are things you learn, others are small cybernetic enhancements you make to yourself (none of which have a price or count against your augmentation limits). Some tricks require the use of a custom rig or other gear.",
+								"You learn your first mechanic trick at 2nd level, and you learn an additional mechanic trick at 4th level and every 2 levels thereafter. If a mechanic trick allows an opponent a saving throw to resist its effects, the DC is equal to 10 + half your mechanic level + your Intelligence modifier. If a mechanic trick requires an opponent to attempt a skill check, the DC is equal to 10 + 1-1/2 × your class level + your Intelligence modifier.",
+								"Unless otherwise specified, you can’t learn mechanic tricks more than once. The list of mechanic tricks appears on page 71"
+							]
+						}
+					]
+				},
+				{
+					"level": 15,
+					"classFeatures": "Miracle worker 3/day",
+					"features": [
+						{
+							"name": "Miracle Worker",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 16,
+					"classFeatures": "Mechanic trick",
+					"features": [
+						{
+							"name": "Mechanic Trick",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn tricks that allow you to perform wonders of engineering, aid in electronic infiltrations, and optimize gear. While some of these are things you learn, others are small cybernetic enhancements you make to yourself (none of which have a price or count against your augmentation limits). Some tricks require the use of a custom rig or other gear.",
+								"You learn your first mechanic trick at 2nd level, and you learn an additional mechanic trick at 4th level and every 2 levels thereafter. If a mechanic trick allows an opponent a saving throw to resist its effects, the DC is equal to 10 + half your mechanic level + your Intelligence modifier. If a mechanic trick requires an opponent to attempt a skill check, the DC is equal to 10 + 1-1/2 × your class level + your Intelligence modifier.",
+								"Unless otherwise specified, you can’t learn mechanic tricks more than once. The list of mechanic tricks appears on page 71"
+							]
+						}
+					]
+				},
+				{
+					"level": 17,
+					"classFeatures": "Bypass +5, control net, coordinated assault +2",
+					"features": [
+						{
+							"name": "Bypass",
+							"type": "ex",
+							"description": [
+								"You are skilled at getting inside computer systems and electronic devices. At 1st level, you gain a +1 insight bonus to Computers and Engineering skill checks. At 5th level, every 4 levels thereafter, and at 20th level, this bonus increases by 1."
+							]
+						},
+						{
+							"name": "Control Net",
+							"type": "ex",
+							"description": [
+								""
+							]
+						},
+						{
+							"name": "Coordinated Assault",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 18,
+					"classFeatures": "Mechanic trick",
+					"features": [
+						{
+							"name": "Mechanic Trick",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn tricks that allow you to perform wonders of engineering, aid in electronic infiltrations, and optimize gear. While some of these are things you learn, others are small cybernetic enhancements you make to yourself (none of which have a price or count against your augmentation limits). Some tricks require the use of a custom rig or other gear.",
+								"You learn your first mechanic trick at 2nd level, and you learn an additional mechanic trick at 4th level and every 2 levels thereafter. If a mechanic trick allows an opponent a saving throw to resist its effects, the DC is equal to 10 + half your mechanic level + your Intelligence modifier. If a mechanic trick requires an opponent to attempt a skill check, the DC is equal to 10 + 1-1/2 × your class level + your Intelligence modifier.",
+								"Unless otherwise specified, you can’t learn mechanic tricks more than once. The list of mechanic tricks appears on page 71"
+							]
+						}
+					]
+				},
+				{
+					"level": 19,
+					"classFeatures": "Ghost in the machine, miracle worker 4/day, superior rig",
+					"features": [
+						{
+							"name": "Ghost in the Machine",
+							"type": "ex",
+							"description": [
+								"When using your override class feature to affect an android, drone, robot, or creature with the technological subtype, a target that fails its saving throw by any amount is not dazed, and you can instead dictate its actions for the next round. These actions can’t be obviously self-destructive. Once a creature has attempted a saving throw against this attack (regardless of the result), it is immune to this attack for 24 hours unless you spend 1 Resolve Point. You can continue to spend Resolve Points in this manner each round to make the creature susceptible to override again."
+							]
+						},
+						{
+							"name": "Miracle Worker",
+							"type": "ex",
+							"description": [
+								""
+							]
+						},
+						{
+							"name": "Superior Rig",
+							"type": "ex",
+							"description": [
+								"Your custom rig’s computer functions now gain bonus lockout and wipe countermeasures. You can use your custom rig normally even when its lockout is active (you have special authorization no one else can access under any circumstances), and while any wiped data cannot be recovered by anyone else (as if the data module were destroyed), you can automatically recover it with 8 hours of work. These countermeasures have no additional cost and do not count against the maximum number of countermeasures your custom rig can have.",
+								"Additionally, you can use your custom rig to communicate over an encrypted channel with your ship at a range encompassing a planet and its close orbit, allowing you to remotely pilot your starship from point to point on the same planet or to and from orbit (as well as use the encrypted communications functions of your expert and advanced rig at the same range). If you have a drone, you can issue commands to or directly control your drone over an encrypted channel at the same range"
+							]
+						}
+					]
+				},
+				{
+					"level": 20,
+					"classFeatures": "Bypass +6, mechanic trick, tech master",
+					"features": [
+						{
+							"name": "Bypass",
+							"type": "ex",
+							"description": [
+								"You are skilled at getting inside computer systems and electronic devices. At 1st level, you gain a +1 insight bonus to Computers and Engineering skill checks. At 5th level, every 4 levels thereafter, and at 20th level, this bonus increases by 1."
+							]
+						},
+						{
+							"name": "Mechanic Trick",
+							"type": "ex",
+							"description": [
+								"As you gain experience, you learn tricks that allow you to perform wonders of engineering, aid in electronic infiltrations, and optimize gear. While some of these are things you learn, others are small cybernetic enhancements you make to yourself (none of which have a price or count against your augmentation limits). Some tricks require the use of a custom rig or other gear.",
+								"You learn your first mechanic trick at 2nd level, and you learn an additional mechanic trick at 4th level and every 2 levels thereafter. If a mechanic trick allows an opponent a saving throw to resist its effects, the DC is equal to 10 + half your mechanic level + your Intelligence modifier. If a mechanic trick requires an opponent to attempt a skill check, the DC is equal to 10 + 1-1/2 × your class level + your Intelligence modifier.",
+								"Unless otherwise specified, you can’t learn mechanic tricks more than once. The list of mechanic tricks appears on page 71"
+							]
+						},
+						{
+							"name": "Tech Master",
+							"type": "ex",
+							"description": [
+								"You are a master of technology. You can spend 1 Resolve Point to craft any technological weapon, armor, or item at a rate of 1 minute per item level or spend 1 Resolve Point to convert any existing technological armor or weapon into another suit of armor or another weapon of equal or lesser value at a rate of 1 minute per item level. This uses the normal crafting rules presented on page 235, but the item being converted counts as its full value in crafting components. You cannot convert a onehanded weapon into a two-handed weapon. When converting an item into a cheaper item, any excess value is lost and cannot be reclaimed by converting the item back. "
+							]
+						}
+					]
+				}
+			],
+			"subclasses": [
+				{
+					"id":"Drone",
+					"levels": []
+				},
+				{
+					"id":"Exocortex",
+					"levels": [
+						{
+							"level": 1,
+							"features": [
+								{
+									"name": "Combat Tracking",
+									"type": "ex",
+									"description": [
+										"Your exocortex provides you with enhanced combat ability, granting you proficiency with heavy armor and longarms. At 3rd level, you gain weapon specialization in longarms just as if your class granted proficiency. As a move action during combat, you can designate a foe for your exocortex to track. As long as that target is in sight, the exocortex feeds you telemetry, vulnerabilities, and combat tactics, allowing you to make attacks against that target as if your base attack bonus from your mechanic levels were equal to your mechanic level. Designating another target causes you to immediately lose this bonus against the previous target. You are skilled at getting inside computer systems and electronic devices. At 1st level, you gain a +1 insight bonus to Computers and Engineering skill checks. At 5th level, every 4 levels thereafter, and at 20th level, this bonus increases by 1."
+									]
+								},
+								{
+									"name": "Memory Module",
+									"type": "ex",
+									"description": [
+										"You can use your exocortex’s memory module to enhance your own knowledge. Once per day, as a reaction while not in combat, you can reroll a failed skill check (see page 243) to recall knowledge (see page  143). In addition, your exocortex grants you the Skill Focus feat as a bonus feat. You can’t use your exocortex’s memory module while combat tracking is activated. Every time you gain a mechanic level, you can rebuild your exocortex’s memory module, replacing the exocortex’s bonus Skill Focus feat with Skill Focus in a different skill."
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"id":"Experimental Armor Prototype",
+					"levels": []
+				},
+				{
+					"id":"Experimental Weapon Prototype",
+					"levels": []
+				}
+			],
+			"source": "CRB",
+			"page": 68
+		},
+		{
+			"name": "Mystic",
+			"SP": 6,
+			"HP": 6,
+			"skillRanks": 6,
+			"bab": "partial",
+			"fsb": "half",
+			"rsb": "half",
+			"wsb": "full",
+			"spellCasting": "full",
+			"shortDescription" : "The mystic magically channels the energy connecting all things, often through a focus on the divine or intuitive understanding of biological systems. ",
+			"description": "You understand that what most people call magic is simply an expression of the innate connection between all things, and you intuitively tap into this unseen power to create strange effects. You may conceptualize the source of your magic as divine grace, a manipulation of fundamental energy, or an unlocking of psychic potential, but always with the knowledge that you are a conduit channeling forces greater than yourself. Though you may study, you understand that spellcasting—like all existence—is messy and intuitive, and you specialize in biology and mental systems too complex to be perfectly understood by science. You sense the intangible and exploit your bonds with others, whether to bolster them or bend them to your will.",
+			"skills": [
+				"Bluff",
+				"Culture",
+				"Diplomacy",
+				"Disguise",
+				"Intimidate",
+				"Life Science",
+				"Medicine",
+				"Mysticism",
+				"Perception",
+				"Profession",
+				"Sense Motive",
+				"Survival"
+			],
+			"proficiencies" : {
+				"armor" : [
+					"Light Armor"
+				],
+				"weapon" : [
+					"Basic Melee Weapons",
+					"Small Arms"
+				]
+			},
+			"levels": [
+				{
+					"level": 1,
+					"classFeatures": "Connection, connection power, connection spell, healing touch",
+					"spellsKnown" : [4,2],
+					"features": [
+						{
+							"name": "Connection",
+							"type": "su",
+							"description": [
+								"You have a mysterious connection with some force that grants you magical powers. The exact nature of your connection can vary widely, and even mystics who share the same connection may interpret it differently. You must pick one connection upon taking your first level of mystic—once made, this choice can’t be changed. Connections you can choose from begin on page 85.",
+								"Many mystics serve as priests of various gods, and while you can theoretically choose any type of connection with any entity or concept, deities rarely grant connections that don’t fit within their ethos (for example, Weydan, the god of freedom, is unlikely to look kindly on overlords). As such, each connection lists the deities and philosophies commonly associated with it."
+							]
+						},
+						{
+							"name": "Connection Power",
+							"type": "ex",
+							"description": [
+								"At 1st level, 3rd level, and every 3 levels thereafter, you gain a connection power unique to your connection. If a connection power allows a saving throw to resist its effects, the DC is equal to 10 + half your mystic level + your Wisdom modifier. If the power requires an enemy to attempt a skill check, the DC is equal to 10 + 1-1/2 × your mystic level + your Wisdom modifier."
+							]
+						},
+						{
+							"name": "Connection Power",
+							"type": "ex",
+							"description": [
+								"Your connection grants you additional spells known, one for each level of mystic spell you can cast, starting at 1st level and at any level when you normally gain access to a new spell level. These spells are in addition to the spells known listed on Table 4–6: Mystic Spells Known. These spells can’t be exchanged for different spells at higher levels (except in specific cases; see below). The spell level of each spell is listed in your connection’s entry.",
+								"If your connection lists a single variable-level spell (see page 330) for all spell levels at the start of its spells entry, you gain that variable-level spell when you first get your connection spell for each level. The next time you gain a connection spell, add the next higher level of the variable-level spell to your list of spells known. You immediately lose the lower-level version of that variable-level spell and replace it with the listed connection spell for that lower level."
+							]
+						},
+						{
+							"name": "Healing Touch",
+							"type": "su",
+							"description": [
+								"Once per day, you can spend 10 minutes to magically heal an ally up to 5 Hit Points per mystic level."
+							]
+						}
+					]
+				},
+				{
+					"level": 2,
+					"classFeatures": "Channel skill +1, mindlink",
+					"spellsKnown" : [5,3]
+				},
+				{
+					"level": 3,
+					"classFeatures": "Connection power, weapon specialization",
+					"spellsKnown" : [6,4]
+				},
+				{
+					"level": 4,
+					"classFeatures": "Connection spell",
+					"spellsKnown" : [6,4,2]
+				},
+				{
+					"level": 5,
+					"classFeatures": "Channel skill +2",
+					"spellsKnown" : [6,4,3]
+				},
+				{
+					"level": 6,
+					"classFeatures": "Connection power",
+					"spellsKnown" : [6,4,4]
+				},
+				{
+					"level": 7,
+					"classFeatures": "Connection spell",
+					"spellsKnown" : [6,5,4,2]
+				},
+				{
+					"level": 8,
+					"classFeatures": "Channel skill +3",
+					"spellsKnown" : [6,5,4,3]
+				},
+				{
+					"level": 9,
+					"classFeatures": "Connection power",
+					"spellsKnown" : [6,5,4,4]
+				},
+				{
+					"level": 10,
+					"classFeatures": "Connection spell",
+					"spellsKnown" : [6,5,5,4,2]
+				},
+				{
+					"level": 11,
+					"classFeatures": "Channel skill +4, telepathic bond",
+					"spellsKnown" : [6,6,5,4,3]
+				},
+				{
+					"level": 12,
+					"classFeatures": "Connection power",
+					"spellsKnown" : [6,6,5,4,4]
+				},
+				{
+					"level": 13,
+					"classFeatures": "Connection spell",
+					"spellsKnown" : [6,6,5,5,4,2]
+				},
+				{
+					"level": 14,
+					"classFeatures": "Channel skill +5",
+					"spellsKnown" : [6,6,6,5,4,3]
+				},
+				{
+					"level": 15,
+					"classFeatures": "Connection power",
+					"spellsKnown" : [6,6,6,5,4,4]
+				},
+				{
+					"level": 16,
+					"classFeatures": "Connection spell",
+					"spellsKnown" : [6,6,6,5,5,4,2]
+				},
+				{
+					"level": 17,
+					"classFeatures": "Channel skill +6",
+					"spellsKnown" : [6,6,6,6,5,4,3]
+				},
+				{
+					"level": 18,
+					"classFeatures": "Connection power",
+					"spellsKnown" : [6,6,6,6,5,4,4]
+				},
+				{
+					"level": 19,
+					"classFeatures": "Transcendence",
+					"spellsKnown" : [6,6,6,6,5,5,4]
+				},
+				{
+					"level": 20,
+					"classFeatures": "Channel skill +7, enlightenment",
+					"spellsKnown" : [6,6,6,6,6,5,5]
+				}
+			],
+			"source": "CRB p.82"
+		},
+		{
+			"name": "Operative",
+			"SP": 6,
+			"HP": 6,
+			"skillRanks": 8,
+			"bab": "partial",
+			"fsb": "half",
+			"rsb": "full",
+			"wsb": "full",
+			"spellCasting": "none",
+			"shortDescription" : "The operative has the skills to complete almost any mission requiring stealth and discretion, whether it be simple espionage or messy wet work.",
+			"description": "You’re a shadow. You move swiftly, strike suddenly, and always have an escape plan. You’re a consummate professional, and you always get the job done, whether it’s scouting enemy lines, hunting down criminals, stealing and smuggling items, or assassinating key figures. As an operative, you're skilled in a wide variety of disciplines and specialties, and use speed, mobility, and your quick wits rather than relying on heavy weapons. You excel at the art of surprise, whether it’s sniping targets from cover or striking while their backs are turned. Your cause may be righteous, but you have no problem fighting dirty—achieving your objective is all that matters.",
+			"skills": [
+				"Acrobatics",
+				"Athletics",
+				"Bluff",
+				"Computers",
+				"Culture",
+				"Disguise",
+				"Engineering",
+				"Intimidate",
+				"Medicine",
+				"Perception",
+				"Piloting",
+				"Profession",
+				"Sense Motive",
+				"Sleight of Hand",
+				"Stealth",
+				"Survival"
+			],
+			"proficiencies" : {
+				"armor" : [
+					"Light Armor"
+				],
+				"weapon" : [
+					"Basic Melee Weapons",
+					"Small Arms",
+					"Sniper Weapons"
+				]
+			},
+			"levels": [
+				{
+					"level": 1,
+					"classFeatures": "Operative’s edge +1, specialization, trick attack +1d4",
+					"features": [
+						{
+							"name": "Operative's Edge",
+							"type": "ex",
+							"description": [
+								"Your diverse training as an operative grants you a +1 insight bonus to initiative checks and to skill checks. This bonus increases by 1 at 3rd level and every 4 levels thereafter."
+							]
+						},
+						{
+							"name": "Specialization",
+							"type": "ex",
+							"description": [
+								"Your specialization represents your primary area of expertise. Pick one specialization upon taking your 1st level of the operative class. Once made, this choice cannot be changed. Descriptions of the specializations appear on page 94. Your specialization grants you the Skill Focus feat (see page 161) in your specialization’s associated skills, and you gain a free skill rank in each of those skills at each operative level (this does not allow you to exceed the maximum number of skill ranks in a single skill)."
+							]
+						},
+						{
+							"name": "Trick Attack",
+							"type": "ex",
+							"description": [
+								"You can trick or startle a foe and then attack when she drops her guard. As a full action, you can move up to your speed. Whether or not you moved, you can then make an attack with a melee weapon with the operative special property or with any small arm. Just before making your attack, attempt a Bluff, Intimidate, or Stealth check (or a check associated with your specialization; see page 94) with a DC equal to 20 + your target’s CR. If you succeed at the check, you deal 1d4 additional damage and the target is flat-footed. This damage increases to 1d8 at 3rd level, to 3d8 at 5th level, and by an additional 1d8 every 2 levels thereafter. You can’t use this ability with a weapon that has the unwieldy special property or that requires a full action to make a single attack."
+							]
+						}
+					]
+				},
+				{
+					"level": 2,
+					"classFeatures": "Evasion, operative exploit"
+				},
+				{
+					"level": 3,
+					"classFeatures": "Operative’s edge +2, quick movement (+10 ft.), trick attack +1d8, weapon specialization"
+				},
+				{
+					"level": 4,
+					"classFeatures": "Debilitating trick, operative exploit"
+				},
+				{
+					"level": 5,
+					"classFeatures": "Specialization exploit, trick attack +3d8"
+				},
+				{
+					"level": 6,
+					"classFeatures": "Operative exploit"
+				},
+				{
+					"level": 7,
+					"classFeatures": "Operative’s edge +3, specialization skill mastery, trick attack +4d8, uncanny agility"
+				},
+				{
+					"level": 8,
+					"classFeatures": "Operative exploit, triple attack"
+				},
+				{
+					"level": 9,
+					"classFeatures": "Quick movement (+20 ft.), trick attack +5d8"
+				},
+				{
+					"level": 10,
+					"classFeatures": "Operative exploit"
+				},
+				{
+					"level": 11,
+					"classFeatures": "Operative’s edge +4, specialization power, trick attack +6d8"
+				},
+				{
+					"level": 12,
+					"classFeatures": "Operative exploit"
+				},
+				{
+					"level": 13,
+					"classFeatures": "Quad attack, trick attack +7d8"
+				},
+				{
+					"level": 14,
+					"classFeatures": "Operative exploit"
+				},
+				{
+					"level": 15,
+					"classFeatures": "Operative’s edge +5, quick movement (+30 ft.), trick attack +8d8"
+				},
+				{
+					"level": 16,
+					"classFeatures": "Operative exploit"
+				},
+				{
+					"level": 17,
+					"classFeatures": "Double debilitation, trick attack +9d8"
+				},
+				{
+					"level": 18,
+					"classFeatures": "Operative exploit"
+				},
+				{
+					"level": 19,
+					"classFeatures": "Operative’s edge +6, trick attack +10d8"
+				},
+				{
+					"level": 20,
+					"classFeatures": "Operative exploit, supreme operative"
+				}
+			],
+			"source": "CRB",
+			"page": 92
+		},
+		{
+			"name": "Solarian",
+			"SP": 7,
+			"HP": 7,
+			"skillRanks": 4,
+			"bab": "full",
+			"fsb": "full",
+			"rsb": "half",
+			"wsb": "full",
+			"spellCasting": "none",
+			"shortDescription" : "The solarian contemplates and gains power from the life cycles of stars. His techniques allow him to create a weapon or suit of armor from a mote of stellar energy",
+			"description": "The stars guide the planets with gravity, create life with light and heat, and utterly consume worlds in supernovas and black holes. You understand that these acts of creation and destruction are not opposites, but rather two parts of a natural, dualistic cycle. You seek to be an agent of that cycle, an enlightened warrior with the ability to manipulate the forces of the stars themselves. Constantly accompanied by a mote of fundamental energy or entropy, you can shape this essence in combat to create weapons and armor of gleaming stellar light or pure, devouring darkness. Whether you apprenticed in a temple or came to your powers through personal revelation, you recognize yourself as part of an ancient tradition—a force of preservation and annihilation.",
+			"skills": [
+				"Acrobatics",
+				"Athletics",
+				"Diplomacy",
+				"Intimidate",
+				"Mysticism",
+				"Perception",
+				"Physical Science",
+				"Profession",
+				"Sense Motive",
+				"Stealth"
+			],
+			"proficiencies" : {
+				"armor" : [
+					"Light Armor"
+				],
+				"weapon" : [
+					"Basic Melee Weapons",
+					"Advanced Melee Weapons",
+					"Small Arms"
+				]
+			},
+			"levels": [
+				{
+					"level": 1,
+					"classFeatures": "Skill adept, solar manifestation, stellar mode, stellar revelation (black hole, supernova)",
+					"features": [
+						{
+							"name": "Skill Adept",
+							"type": "ex",
+							"description": [
+								"As part of the process that led you to become a solarian, you gained additional insight and training. Choose two additional skills and add them to your list of class skills."
+							]
+						},
+						{
+							"name": "Solar Manifestation",
+							"type": "su",
+							"description": [
+								"At 1st level, you gain a physical manifestation of your stellar power. The base form of your solar manifestation, when not actively in use, is a mote of stellar energy slightly smaller than your fist that hovers near your head. Beyond the solar mote, your manifestation can take one of two additional forms: armor or a weapon. You must pick one solar manifestation (either armor or a weapon) upon taking your first level of solarian. You also choose whether your solar manifestation (in any form) either glows brightly with one color common to stars (including blue, red, white, or yellow) or is the perfect darkness of a black hole. A glowing solar manifestation, regardless of its form, sheds dim light in a 20-foot radius. You can shut off the light or darkness as a standard action in order to blend in or assist in stealth, but whenever you enter a stellar mode (see page 102), the glow or darkness returns immediately. Once made, these choices cannot be changed.",
+								"Only you can interact with your solar manifestation, whether in mote, armor, or weapon form. No other creature or effect can affect your solar manifestation in any way, including disarming or sundering it."
+							]
+						},
+						{
+							"name": "Stellar Mode",
+							"type": "su",
+							"description": [
+								"The stellar forces you call on are attuned to either photons (representing the power of stars to emit heat, light, and plasma) or gravitons (representing the power of stars to attract and imprison objects through gravity). The ultimate expression of photon power is the supernova, when all of a star’s energy is exerted outward, while the ultimate expression of graviton power is the black hole, where gravity is so strong that nothing, not even light, can escape it. The balance between these two opposing cosmic forces is the source of your power, and your stellar mode represents the strength of your connection with one or both of these forces—a relationship that shifts from one moment to the next as you use your stellar revelations."
+							]
+						},
+						{
+							"name": "Stellar Revelation",
+							"type": "su",
+							"description": [
+								"As you gain experience, you uncover new secrets about the powers of energy, gravity, stars, and other fundamental sources of cosmic power that grant you the ability to channel these forces and manifest potent preternatural powers. At 1st level, you automatically learn the black hole and supernova stellar revelations. At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode (see Disproportionate Revelations on page 104). The list of stellar revelations begins on page 103."
+							]
+						}
+					],
+					"solarArmor":"+1 AC",
+					"solarWeapon":"1d6"
+				},
+				{
+					"level": 2,
+					"classFeatures": "Stellar revelation",
+					"features": [
+						{
+							"name": "Stellar Revelation",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode."
+							]
+						}
+					],
+					"solarArmor":"+1 AC",
+					"solarWeapon":"1d6"
+				},
+				{
+					"level": 3,
+					"classFeatures": "Sidereal influence (2 skills), weapon specialization",
+					"features": [
+						{
+							"name": "Sidereal Influence",
+							"type": "su",
+							"description": [
+								"You can tap into stellar forces outside of battle, using the properties of gravitons or photons to affect your skill use. At 3rd level, choose two skills from the lists below, one from the graviton list and one from the photon list. At 11th level and again at 19th level, choose two more skills. Each time you pick skills, choose one from the graviton list and one from the photon list. To use your sidereal influence, you must spend 1 minute in meditation, then choose either graviton skills or photon skills. When attempting a skill check with one of your selected skills of the chosen type (either graviton or photon), you can roll 1d6 and add the result as an insight bonus to your check. This ability lasts until you enter combat, fall unconscious, sleep, or meditate again to choose a different skill type. You can reactivate this ability by meditating again for 1 minute. <ul><li>Graviton Skills: Bluff (Cha), Disguise (Cha), Mysticism (Wis), Sense Motive (Wis), Stealth (Dex)</li><li>Photon Skills: Culture (Int), Diplomacy (Cha), Intimidate (Cha), Medicine (Int), Survival (Wis)</li></ul>"
+							]
+						},
+						{
+							"name": "Weapon Specialization",
+							"type": "ex",
+							"description": [
+								"You gain Weapon Specialization as a bonus feat for each weapon type for which this class grants you proficiency. If you selected solar weapon as your solar manifestation, it gains the benefit of Weapon Specialization as if it were an advanced melee weapon."
+							]
+						}
+					],
+					"solarArmor":"+1 AC",
+					"solarWeapon":"1d6"
+				},
+				{
+					"level": 4,
+					"classFeatures": "Stellar revelation",
+					"features": [
+						{
+							"name": "Stellar Revelation",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode."
+							]
+						}
+					],
+					"solarArmor":"+1 AC",
+					"solarWeapon":"1d6"
+				},
+				{
+					"level": 5,
+					"classFeatures": "-",
+					"features": [],
+					"solarArmor":"+1 AC, resistance 5",
+					"solarWeapon":"1d6"
+				},
+				{
+					"level": 6,
+					"classFeatures": "Stellar revelation",
+					"features": [
+						{
+							"name": "Stellar Revelation",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode."
+							]
+						}
+					],
+					"solarArmor":"+1 AC, resistance 5",
+					"solarWeapon":"2d6"
+				},
+				{
+					"level": 7,
+					"classFeatures": "Flashing strikes",
+					"features": [
+						{
+							"name": "Flashing Strikes",
+							"type": "ex",
+							"description": [
+								"Your mastery of melee combat allows you to make multiple attacks more accurately. When making a full attack entirely with melee weapons, you take a –3 penalty to each attack roll instead of the normal –4 penalty"
+							]
+						}
+					],
+					"solarArmor":"+1 AC, resistance 5",
+					"solarWeapon":"2d6"
+				},
+				{
+					"level": 8,
+					"classFeatures": "Stellar revelation",
+					"features": [
+						{
+							"name": "Stellar Revelation",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode."
+							]
+						}
+					],
+					"solarArmor":"+1 AC, resistance 5",
+					"solarWeapon":"2d6"
+				},
+				{
+					"level": 9,
+					"classFeatures": "Zenith revelations",
+					"features": [
+						{
+							"name": "Zenith Revelations",
+							"type": "ex",
+							"description": [
+								"At 9th level and again at 17th level, you gain two powerful stellar revelations. Choose two revelations from the zenith revelations list: one graviton revelation and one photon revelation. The list of zenith revelations begins on page 107.",
+								"Zenith revelations are powerful stellar revelations that require you to be fully attuned in a stellar mode. After using a zenith revelation, your stellar mode immediately becomes unattuned."
+							]
+						}
+					],
+					"solarArmor":"+1 AC, resistance 5",
+					"solarWeapon":"3d6"
+				},
+				{
+					"level": 10,
+					"classFeatures": "Stellar revelation",
+					"features": [
+						{
+							"name": "Stellar Revelation",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode."
+							]
+						}
+					],
+					"solarArmor":"+2 AC, resistance 10",
+					"solarWeapon":"3d6"
+				},
+				{
+					"level": 11,
+					"classFeatures": "Sidereal influence (4 skills)",
+					"features": [],
+					"solarArmor":"+2 AC, resistance 10",
+					"solarWeapon":"3d6"
+				},
+				{
+					"level": 12,
+					"classFeatures": "Stellar revelation",
+					"features": [
+						{
+							"name": "Stellar Revelation",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode."
+							]
+						}
+					],
+					"solarArmor":"+2 AC, resistance 10",
+					"solarWeapon":"4d6"
+				},
+				{
+					"level": 13,
+					"classFeatures": "Solarian's onslaught",
+					"features": [
+						{
+							"name": "Solarian's Onslaught",
+							"type": "ex",
+							"description": [
+								"When making a full attack, you can make up to three attacks instead of two attacks. You take a –6 penalty to these attacks instead of a –4 penalty. If you have the flashing strikes class feature, you instead take a –5 penalty to these attacks as long as they are all melee attacks."
+							]
+						}
+					],
+					"solarArmor":"+2 AC, resistance 10",
+					"solarWeapon":"5d6"
+				},
+				{
+					"level": 14,
+					"classFeatures": "Stellar revelation",
+					"features": [
+						{
+							"name": "Stellar Revelation",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode."
+							]
+						}
+					],
+					"solarArmor":"+2 AC, resistance 10",
+					"solarWeapon":"6d6"
+				},
+				{
+					"level": 15,
+					"classFeatures": "-",
+					"features": [],
+					"solarArmor":"+2 AC, resistance 15",
+					"solarWeapon":"7d6"
+				},
+				{
+					"level": 16,
+					"classFeatures": "Stellar revelation",
+					"features": [
+						{
+							"name": "Stellar Revelation",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode."
+							]
+						}
+					],
+					"solarArmor":"+2 AC, resistance 15",
+					"solarWeapon":"8d6"
+				},
+				{
+					"level": 17,
+					"classFeatures": "Zenith revelations",
+					"features": [
+						{
+							"name": "Zenith Revelations",
+							"type": "ex",
+							"description": [
+								"At 9th level and again at 17th level, you gain two powerful stellar revelations. Choose two revelations from the zenith revelations list: one graviton revelation and one photon revelation. The list of zenith revelations begins on page 107.",
+								"Zenith revelations are powerful stellar revelations that require you to be fully attuned in a stellar mode. After using a zenith revelation, your stellar mode immediately becomes unattuned."
+							]
+						}
+					],
+					"solarArmor":"+2 AC, resistance 15",
+					"solarWeapon":"9d6"
+				},
+				{
+					"level": 18,
+					"classFeatures": "Stellar revelation",
+					"features": [
+						{
+							"name": "Stellar Revelation",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode."
+							]
+						}
+					],
+					"solarArmor":"+2 AC, resistance 15",
+					"solarWeapon":"10d6"
+				},
+				{
+					"level": 19,
+					"classFeatures": "Sidereal influence (6 skills)",
+					"features": [],
+					"solarArmor":"+2 AC, resistance 15",
+					"solarWeapon":"11d6"
+				},
+				{
+					"level": 20,
+					"classFeatures": "Stellar paragon, stellar revelation",
+					"features": [
+						{
+							"name": "Stellar Paragon",
+							"type": "ex",
+							"description": [
+								"You are the spiritual kin of the stars themselves. As a move action, you can raise or lower light levels within 30 feet of yourself by one step. When you enter a stellar mode, you gain 2 attunement points of the corresponding type immediately and are considered attuned, and when you keep your current stellar mode at the start of your turn, you can gain 2 attunement points instead of 1, allowing you to become fully attuned after 2 rounds. In addition, you can spend 1 Resolve Point to gain enough attunement points to be fully attuned on the first round of combat (but not after using a zenith revelation), or spend 1 Resolve Point at the start of your turn in combat to exchange all of your attunement points in one stellar mode for an equal number of attunement points in the other mode. For example, you can switch from being fully attuned in graviton mode to being fully attuned in photon mode."
+							]
+						},
+						{
+							"name": "Stellar Revelation",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you learn an additional stellar revelation. You cannot select the same stellar revelation more than once unless it says otherwise. You can choose any stellar revelations you wish, but if you have more photon revelations than graviton revelations, or vice versa, it is more difficult to become fully attuned in either mode."
+							]
+						}
+					],
+					"solarArmor":"+2 AC, resistance 20",
+					"solarWeapon":"12d6"
+				}
+			],
+			"subclasses": [
+				{
+					"id":"Solar Armor",
+					"levels": []
+				},
+				{
+					"id":"Solar Flare",
+					"levels": []
+				},
+				{
+					"id":"Solar Shield",
+					"levels": []
+				},
+				{
+					"id":"Solar Weapon",
+					"levels": []
+				}
+			],
+			"source": "CRB",
+			"page":100
+		},
+		{
+			"name": "Soldier",
+			"SP": 7,
+			"HP": 7,
+			"skillRanks": 4,
+			"bab": "full",
+			"fsb": "full",
+			"rsb": "half",
+			"wsb": "full",
+			"spellCasting": "none",
+			"shortDescription" : "Thoroughly familiar with weapons of war, the soldier is ready to wreak havoc when force is called for, and specializes in a particular fighting style.",
+			"description": "Conflict is an inevitable result of life. On every world that harbors complex living organisms, creatures battle one another for dominance, resources, territory, or ideals. Whether you’ve taken up arms to protect others, win glory, exact revenge, or simply earn a living, you are the perfect embodiment of this truth. You’re an expert at combat of all types but tend to prefer heavy armor and weapons—the bigger, the better. You may be a career soldier, a fresh mercenary recruit, or a lone wolf who rejects authority, but whether rushing in for hand-to-hand combat or firing tactical barrages, you’re a consummate warrior, never hesitating to put yourself in the line of fire to protect your friends. ",
+			"skills": [
+				"Acrobatics",
+				"Athletics",
+				"Engineering",
+				"Intimidate",
+				"Medicine",
+				"Piloting",
+				"Profession",
+				"Survival"
+			],
+			"proficiencies" : {
+				"armor" : [
+					"Light Armor",
+					"Heavy Armor"
+				],
+				"weapon" : [
+					"Basic Melee Weapons",
+					"Advanced Melee Weapons",
+					"Small Arms",
+					"Longarms",
+					"Heavy Weapons",
+					"Sniper Weapons",
+					"Grenades"
+				]
+			},
+			"levels": [
+				{
+					"level": 1,
+					"classFeatures": "Primary Fighting Style, Primary Style Technique",
+					"features": [
+						{
+							"name": "Primary Fighting Style",
+							"type": "ex",
+							"description": [
+								"You have a preferred fighting style that represents the type of soldier you are. Each fighting style is composed of various style techniques that you learn as you gain experience. You must pick one fighting style upon taking your first soldier level, and once made, this choice cannot be changed. Descriptions of the fighting styles you can choose from appear on pages 112–115."
+							]
+						},
+						{
+							"name": "Primary Style Technique",
+							"type": "ex",
+							"description": [
+								"At 1st level and every 4 levels thereafter, you gain a style technique unique to your primary fighting style."
+							]
+						}
+					]
+				},
+				{
+					"level": 2,
+					"classFeatures": "Combat Feat",
+					"features": [
+						{
+							"name": "Combat Feat",
+							"type": "ex",
+							"description": [
+								"At 2nd level and every 2 levels thereafter, you gain a bonus feat in addition to those gained from normal advancement. These bonus feats must be selected from those listed as combat feats.",
+								"Whenever you gain a new bonus feat, you can also choose to replace one of the bonus feats you have already learned with a different bonus feat. The feat you replace can’t be one that was used as a prerequisite for another feat or other ability. You can change only one feat at any given level, and you must choose whether or not to swap the feat at the time you gain the new bonus feat."
+							]
+						}
+					]
+				},
+				{
+					"level": 3,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 4,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 5,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 6,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 7,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 8,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 9,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 10,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 11,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 12,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 13,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 14,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 15,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 16,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 17,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 18,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 19,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				},
+				{
+					"level": 20,
+					"classFeatures": "Features",
+					"features": [
+						{
+							"name": "Name",
+							"type": "ex",
+							"description": [
+								""
+							]
+						}
+					]
+				}
+			],
+			"source": "CRB p.110"
+		},
+		{
+			"name": "Technomancer",
+			"SP": 5,
+			"HP": 5,
+			"skillRanks": 4,
+			"bab": "partial",
+			"fsb": "half",
+			"rsb": "half",
+			"wsb": "full",
+			"spellCasting": "full",
+			"shortDescription" : "The technomancer understands the connections between technology and magic, and exploits them by bending reality to suit her needs.",
+			"description": "To the uninitiated, magic and technology are completely unrelated, but you know there are more correlations between the two than most suspect. Magic and technology are just tools, and when combined into one discipline, called technomancy, they can be far more powerful than one or the other on its own. You utilize tech to empower, harness, and manipulate magic, and you wield magic to augment, control, and modify technology. You are an expert at hacking the underlying structure of the universe itself, bending the laws of science and nature to your will. Your technomancy— which is gained from scientific study and experimentation— manipulates the physical world, weaves illusions, allows you to peer through time and space, and if necessary, can blast a foe into atoms.",
+			"skills": [
+				"Computers",
+				"Engineering",
+				"Life Science",
+				"Mysticism",
+				"Physical Science",
+				"Piloting",
+				"Profession",
+				"Sleight of Hand"
+			],
+			"proficiencies" : {
+				"armor" : [
+					"Light Armor"
+				],
+				"weapon" : [
+					"Basic Melee Weapons",
+					"Small Arms"
+				]
+			},
+			"levels": [
+				{
+					"level": 1,
+					"classFeatures": "Spell Cache",
+					"features": [
+						{
+							"name": "Spell Cache",
+							"type": "su",
+							"description": [
+								"As the culmination of your early study of the fundamental forces of the galaxy, you have created a spell cache that allows you to store and access spells. Your spell cache could be a device such as a handheld computer or technological implant; an item such as a ring or staff; or a symbol such as a brand, tattoo, or other permanent modification to your body. While you don’t need your spell cache to cast your spells, once per day, you can activate your spell cache to cast any one spell you know and are capable of casting, even if you’ve expended all your spell slots for that spell’s level.",
+								"If your spell cache is damaged, it is restored to full Hit Points the next time you prepare spells. If the spell cache is lost or destroyed, you can replace it after 1 week with a special ritual that takes 8 hours to complete."
+							]
+						}
+					]
+				},
+				{
+					"level": 2,
+					"classFeatures": "Magic Hack",
+					"features": [
+						{
+							"name": "Magic Hack",
+							"type": "su",
+							"description": [
+								"You have carefully studied the forces that define magic and can manipulate them. You learn your first magic hack at 2nd level, and you learn an additional magic hack every 3 levels thereafter. When casting a spell, you can apply no more than one magic hack that affects the attributes of a spell (such as distant spell or extended spell). If a magic hack allows a saving throw to resist its effects, the DC is equal to 10 + half your technomancer level + your Intelligence modifier. The list of magic hacks appears starting on page 120."
+							]
+						}
+					]
+				},
+				{
+					"level": 3,
+					"classFeatures": "Spell Focus, techlore +1, weapon specialization",
+					"features": [
+						{
+							"name": "Spell Focus",
+							"type": "su",
+							"description": [
+								"You gain Spell Focus as a bonus feat."
+							]
+						},
+						{
+							"name": "Techlore",
+							"type": "ex",
+							"description": [
+								"You rewire your mind to give you greater insight into the nature of magic and technology. You gain a +1 insight bonus to Computers and Mysticism checks. This bonus increases by 1 at 6th level and every 3 levels thereafter. "
+							]
+						},
+						{
+							"name": "Weapon Specialization",
+							"type": "su",
+							"description": [
+								"You gain the Weapon Specialization feat as a bonus feat for each weapon type this class grants you proficiency with."
+							]
+						}
+					]
+				},
+				{
+					"level": 4,
+					"classFeatures": "-",
+					"features": []
+				},
+				{
+					"level": 5,
+					"classFeatures": "Magic hack",
+					"features": [
+						{
+							"name": "Magic Hack",
+							"type": "su",
+							"description": [
+								"You have carefully studied the forces that define magic and can manipulate them. You learn your first magic hack at 2nd level, and you learn an additional magic hack every 3 levels thereafter. When casting a spell, you can apply no more than one magic hack that affects the attributes of a spell (such as distant spell or extended spell). If a magic hack allows a saving throw to resist its effects, the DC is equal to 10 + half your technomancer level + your Intelligence modifier. The list of magic hacks appears starting on page 120."
+							]
+						}
+					]
+				},
+				{
+					"level": 6,
+					"classFeatures": "Cache capacitor 1, techlore +2",
+					"features": [
+						{
+							"name": "Cache Capacitor",
+							"type": "su",
+							"description": [
+								"You expand your spell cache into a cache capacitor. As part of regaining your spells each day, you can cast a single spell into your spell cache and have it affect you continuously for 24 hours. The cache capacitor can hold any of the following spells: detect radiation, disguise self, keen senses, or unseen servant. You must know a spell to store it in your cache capacitor. When you cast the spell into your cache capacitor, you expend the spell slot normally and make any decisions required for that spell, but the duration doesn’t expire for 24 hours. If the spell in your cache capacitor is dispelled or dismissed, you can spend 5 minutes of uninterrupted concentration to reestablish it, keeping the same decisions you made when you cast it, and gaining whatever duration the spell had remaining. You can’t exchange the stored spell for another spell until you again regains your spells.",
+								"At 12th level, your cache capacitor gains a second slot that can hold darkvision, lesser resistant armor, life bubble, or spider climb.",
+								"At 18th level, your cache capacitor gains a third slot that can hold arcane sight, flight (spell level 3rd or lower), see invisibility, or tongues."
+							]
+						},
+						{
+							"name": "Techlore",
+							"type": "ex",
+							"description": [
+								"You rewire your mind to give you greater insight into the nature of magic and technology. You gain a +1 insight bonus to Computers and Mysticism checks. This bonus increases by 1 at 6th level and every 3 levels thereafter. "
+							]
+						}
+					]
+				},
+				{
+					"level": 7,
+					"classFeatures": "-",
+					"features": []
+				},
+				{
+					"level": 8,
+					"classFeatures": "Magic hack",
+					"features": [
+						{
+							"name": "Magic Hack",
+							"type": "su",
+							"description": [
+								"You have carefully studied the forces that define magic and can manipulate them. You learn your first magic hack at 2nd level, and you learn an additional magic hack every 3 levels thereafter. When casting a spell, you can apply no more than one magic hack that affects the attributes of a spell (such as distant spell or extended spell). If a magic hack allows a saving throw to resist its effects, the DC is equal to 10 + half your technomancer level + your Intelligence modifier. The list of magic hacks appears starting on page 120."
+							]
+						}
+					]
+				},
+				{
+					"level": 9,
+					"classFeatures": "Techlore +3",
+					"features": [
+						{
+							"name": "Techlore",
+							"type": "ex",
+							"description": [
+								"You rewire your mind to give you greater insight into the nature of magic and technology. You gain a +1 insight bonus to Computers and Mysticism checks. This bonus increases by 1 at 6th level and every 3 levels thereafter. "
+							]
+						}
+					]
+				},
+				{
+					"level": 10,
+					"classFeatures": "-",
+					"features": []
+				},
+				{
+					"level": 11,
+					"classFeatures": "Magic hack",
+					"features": [
+						{
+							"name": "Magic Hack",
+							"type": "su",
+							"description": [
+								"You have carefully studied the forces that define magic and can manipulate them. You learn your first magic hack at 2nd level, and you learn an additional magic hack every 3 levels thereafter. When casting a spell, you can apply no more than one magic hack that affects the attributes of a spell (such as distant spell or extended spell). If a magic hack allows a saving throw to resist its effects, the DC is equal to 10 + half your technomancer level + your Intelligence modifier. The list of magic hacks appears starting on page 120."
+							]
+						}
+					]
+				},
+				{
+					"level": 12,
+					"classFeatures": "Cache capacitor 2, techlore +4",
+					"features": [
+						{
+							"name": "Cache Capacitor",
+							"type": "su",
+							"description": [
+								"You expand your spell cache into a cache capacitor. As part of regaining your spells each day, you can cast a single spell into your spell cache and have it affect you continuously for 24 hours. The cache capacitor can hold any of the following spells: detect radiation, disguise self, keen senses, or unseen servant. You must know a spell to store it in your cache capacitor. When you cast the spell into your cache capacitor, you expend the spell slot normally and make any decisions required for that spell, but the duration doesn’t expire for 24 hours. If the spell in your cache capacitor is dispelled or dismissed, you can spend 5 minutes of uninterrupted concentration to reestablish it, keeping the same decisions you made when you cast it, and gaining whatever duration the spell had remaining. You can’t exchange the stored spell for another spell until you again regains your spells.",
+								"At 12th level, your cache capacitor gains a second slot that can hold darkvision, lesser resistant armor, life bubble, or spider climb.",
+								"At 18th level, your cache capacitor gains a third slot that can hold arcane sight, flight (spell level 3rd or lower), see invisibility, or tongues."
+							]
+						},
+						{
+							"name": "Techlore",
+							"type": "ex",
+							"description": [
+								"You rewire your mind to give you greater insight into the nature of magic and technology. You gain a +1 insight bonus to Computers and Mysticism checks. This bonus increases by 1 at 6th level and every 3 levels thereafter. "
+							]
+						}
+					]
+				},
+				{
+					"level": 13,
+					"classFeatures": "-",
+					"features": []
+				},
+				{
+					"level": 14,
+					"classFeatures": "Magic hack",
+					"features": [
+						{
+							"name": "Magic Hack",
+							"type": "su",
+							"description": [
+								"You have carefully studied the forces that define magic and can manipulate them. You learn your first magic hack at 2nd level, and you learn an additional magic hack every 3 levels thereafter. When casting a spell, you can apply no more than one magic hack that affects the attributes of a spell (such as distant spell or extended spell). If a magic hack allows a saving throw to resist its effects, the DC is equal to 10 + half your technomancer level + your Intelligence modifier. The list of magic hacks appears starting on page 120."
+							]
+						}
+					]
+				},
+				{
+					"level": 15,
+					"classFeatures": "Techlore +5",
+					"features": [
+						{
+							"name": "Techlore",
+							"type": "ex",
+							"description": [
+								"You rewire your mind to give you greater insight into the nature of magic and technology. You gain a +1 insight bonus to Computers and Mysticism checks. This bonus increases by 1 at 6th level and every 3 levels thereafter. "
+							]
+						}
+					]
+				},
+				{
+					"level": 16,
+					"classFeatures": "-",
+					"features": []
+				},
+				{
+					"level": 17,
+					"classFeatures": "Magic hack",
+					"features": [
+						{
+							"name": "Magic Hack",
+							"type": "su",
+							"description": [
+								"You have carefully studied the forces that define magic and can manipulate them. You learn your first magic hack at 2nd level, and you learn an additional magic hack every 3 levels thereafter. When casting a spell, you can apply no more than one magic hack that affects the attributes of a spell (such as distant spell or extended spell). If a magic hack allows a saving throw to resist its effects, the DC is equal to 10 + half your technomancer level + your Intelligence modifier. The list of magic hacks appears starting on page 120."
+							]
+						}
+					]
+				},
+				{
+					"level": 18,
+					"classFeatures": "Cache capacitor 3, techlore +6",
+					"features": [
+						{
+							"name": "Cache Capacitor",
+							"type": "su",
+							"description": [
+								"You expand your spell cache into a cache capacitor. As part of regaining your spells each day, you can cast a single spell into your spell cache and have it affect you continuously for 24 hours. The cache capacitor can hold any of the following spells: detect radiation, disguise self, keen senses, or unseen servant. You must know a spell to store it in your cache capacitor. When you cast the spell into your cache capacitor, you expend the spell slot normally and make any decisions required for that spell, but the duration doesn’t expire for 24 hours. If the spell in your cache capacitor is dispelled or dismissed, you can spend 5 minutes of uninterrupted concentration to reestablish it, keeping the same decisions you made when you cast it, and gaining whatever duration the spell had remaining. You can’t exchange the stored spell for another spell until you again regains your spells.",
+								"At 12th level, your cache capacitor gains a second slot that can hold darkvision, lesser resistant armor, life bubble, or spider climb.",
+								"At 18th level, your cache capacitor gains a third slot that can hold arcane sight, flight (spell level 3rd or lower), see invisibility, or tongues."
+							]
+						},
+						{
+							"name": "Techlore",
+							"type": "ex",
+							"description": [
+								"You rewire your mind to give you greater insight into the nature of magic and technology. You gain a +1 insight bonus to Computers and Mysticism checks. This bonus increases by 1 at 6th level and every 3 levels thereafter. "
+							]
+						}
+					]
+				},
+				{
+					"level": 19,
+					"classFeatures": "Resolve attunement",
+					"features": [
+						{
+							"name": "Resolve Attunement",
+							"type": "ex",
+							"description": [
+								"You recover Resolve Points when you use powerful magic. Each time you cast a 6th-level spell, you regain 1 Resolve Point, up to your normal maximum. This applies only to spells you cast using your normal 6th-level spell slots, not to those you cast using magic items or other methods such as fuse spells."
+							]
+						}
+					]
+				},
+				{
+					"level": 20,
+					"classFeatures": "Fuse spells, magic hack",
+					"features": [
+						{
+							"name": "Fuse Spells",
+							"type": "ex",
+							"description": [
+								"You can combine lower-level spell slots to cast higher-level spells. As part of casting a spell, you can spend 1 Resolve Point to exchange a number of unused spell slots for a single spell slot of a higher level; this expends the lower-level spell slots. Add up the levels of the expended slots to determine which higher level of spell you can cast (maximum 6th). For instance, you could exchange three 1st-level slots to cast a 3rd-level spell, or you could exchange two 3rd-level slots to cast a 6th-level spell. If you combine spell slots to cast a 6th-level spell, it doesn’t count as such for resolve attunement.",
+								"Furthermore, you can spend 2 Resolve Points to combine two 6th-level spell slots to cast wish."
+							]
+						},
+						{
+							"name": "Magic Hack",
+							"type": "su",
+							"description": [
+								"You have carefully studied the forces that define magic and can manipulate them. You learn your first magic hack at 2nd level, and you learn an additional magic hack every 3 levels thereafter. When casting a spell, you can apply no more than one magic hack that affects the attributes of a spell (such as distant spell or extended spell). If a magic hack allows a saving throw to resist its effects, the DC is equal to 10 + half your technomancer level + your Intelligence modifier. The list of magic hacks appears starting on page 120."
+							]
+						}
+					]
+				}
+			],
+			"source": "CRB p.118"
+		},
+		{
+			"name": "Witchwarper",
+			"SP": 5,
+			"HP": 5,
+			"skillRanks": 4,
+			"bab": "partial",
+			"fsb": "half",
+			"rsb": "full",
+			"wsb": "half",
+			"spellCasting": "full",
+			"shortDescription" : "",
+			"description": "Most people believe that reality is limited to their physical surroundings. You know the truth: that everything around you is merely a thin veil draped across the infinite tapestry of existence. Your reality is a palimpsest, with all possible worlds and all alternate existences at your disposal. Through your magic and force of personality, you can peer into these time lines and pull from them as you see fit, using their dimensional echoes to twist and reshape your own world.",
+			"skills": [
+				"Acrobatics",
+				"Bluff",
+				"Culture",
+				"Diplomacy",
+				"Intimidate",
+				"Mysticism",
+				"Physical Science",
+				"Profession"
+			],
+			"proficiencies" : {
+				"armor" : [
+					"Light Armor"
+				],
+				"weapon" : [
+					"Basic Melee Weapons",
+					"Small Arms",
+					"Grenades"
+				]
+			},
+			"levels": [
+				{
+					"level": 1,
+					"classFeatures": "Infinite Worlds, Spellcasting",
+					"spellsKnown" : [4,2],
+					"features": [
+						{
+							"name": "Infinite Worlds",
+							"type": "su",
+							"description": [
+								"As a standard action, you can create a bubble of altered reality, projecting elements of parallel existences into your current universe. You expend a witchwarper spell slot of 1st level or higher to create an environmental effect, such as summoning fog or thick vines from other realities, which lasts for a number of rounds equal to your class level unless specified otherwise. Alternatively, you can create an instantaneous effect, such a flash of fire from an explosion that occurred in a parallel universe. The particular effects depend on the level of the spell slot expended.",
+								"All effects created by infinite worlds use the following rules unless they say otherwise. They have a range of 100 feet + 10 feet per witchwarper level and affect a 10-foot-radius spread. If you create multiple effects with one use of infinite worlds, they all originate at the same point. If an effect calls for a saving throw, the DC is equal to 10 + the spell level expended to create the effect + your Charisma modifier. You can define the cause and appearance of infinite worlds however you wish (subject to GM approval), but the effects themselves are only quasi-real and have no effects beyond the game mechanics listed as options for this ability.",
+								"You can instead create multiple, milder effects in place of a single, more powerful effect. When you do this, you select two effects available to any version of this ability created by expending a lower-level spell slot than that you actually expend. For calculations based on spell level, use the level of the spell slot you expend.",
+								"For example, a 10th-level witchwarper could expend a 3rd‑level spell slot and select either a 3rd-level effect or any two abilities normally created by expending 1st- or 2nd-level spells.",
+								"The environmental and instantaneous effects you can create by sacrificing a witchwarper spell slot of a given level are as follows:<ul><li>1st (Environmental): You cause the affected area to become difficult terrain. This might mean that metal flooring becomes rickety and bowed, a waterway is choked by roots and seaweed, or the air is flooded with floating strands of web-like filaments. You can affect a single movement type (land speed, burrow speed, climb speed, fly speed, or swim speed) or any combination of those movement types. When you create difficult terrain in this way, it is considered magically altered terrain for the purposes of other effects.</li><li>1st (Instantaneous): You cause a bright flash of light to fill the area. Each creature within the area must succeed at a Fortitude saves or be dazzled for 1 round per witchwarper level. If a creature rolls a natural 1 on its saving throw (meaning the d20 shows a “1”), it is also blinded for 1 round.</li><li>2nd (Environmental): You cause a hazard that deals damage each round equal to the level of the spell slot expended, with a successful Fortitude save reducing the damage by half. A creature attempts this save when it first takes damage from this effect, and its result applies for the duration of the effect. You select the damage type each time you use this ability (acid, bludgeoning, cold, electricity, fire, piercing, slashing, or sonic).</li><li>2nd (Instantaneous): You cause a destabilizing event, such as a brief earthquake, a split-second reversal of gravity, or a blast of icy wind. Each creature within the area must succeed at a Reflex save or be knocked prone. If a creature rolls a natural 1 on its saving throw, it is also moved 5 feet per level of the spell slot expended in a direction of your choice.</li><li>3rd (Environmental): You cause the area to grant concealment against one sense—vision, emotion, life, scent, sound, thought, or vibration (Core Rulebook 260).</li><li>3rd (Instantaneous): You cause a disorienting event, such as bursts of flashing colors and loud sounds, or rain falling upward in spirals. Each creature within the area must succeed at a Will save or be knocked off-target for a number of rounds equal to the level of the spell expended. If a creature rolls a natural 1 on its saving throw, it is also staggered for 1 round.</li><li>4th (Environmental): You create a barrier, the entirety of which must be within the range and area of infinite worlds’ environmental effects. The barrier is a number of 5-foot cubes no greater than double the level of the spell slot expended. The cubes must each connect along one side with at least one other cube, have hardness equal to double the level of the spell expended, and each have HP equal to 5 × the level of spell expended. Barriers you could summon might include old rusting barricades, slabs of ice, and so forth.</li><li>4th (Instantaneous): You create a burst of damage affecting everything in the area. You select the type of damage each time you use this ability (acid, bludgeoning, cold, electricity, fire, piercing, slashing, or sonic), and it deals 2d6 damage per level of the spell expended (Reflex half).</li><li>5th (Environmental): You make the air thicker or thinner, or fill it with toxic vapors. Each creature breathing the air must succeed at a Fortitude save or be sickened as long as it remains in the area. A creature attempts a single save when it is first exposed to the infinite worlds, which determines for the duration of the ability whether breathing within the area sickens that creature.</li><li>5th (Instantaneous): You attempt to entangle all targets within the area. You might fill the area with chains, viscous glue, or quick-hardening cement. Each target must succeed at a Reflex save or be entangled and anchored in place for a number of rounds equal to the level of the spell slot expended. Creatures that enter the area after you use this ability are not entangled.</li><li>6th (Environmental): You reduce the hardness of objects within the area by 50% (Fortitude negates), or increase their hardness by 10 (to a maximum of double their normal hardness).</li></ul>"
+							]
+						},
+						{
+							"name": "Spellcasting",
+							"type": "su",
+							"description": [
+								"You cast spells drawn from the witchwarper spell list. To learn or cast a spell, you must have a Charisma score equal to at least 10 + the spell’s level. The Difficulty Class for a saving throw against your spell is 10 + the spell’s level + your Charisma modifier.",
+								"You can cast only a certain number of spells of each spell level per day. Your number of spells per day is given on Table 2–3: Witchwarper. In addition, you receive bonus spells per day if you have a Charisma modifier of +1 or higher, as shown on Table 2–4: Witchwarper Bonus Spells—note that you receive these bonus spells only once you can cast spells of that level normally. You can also cast 0-level spells—these spells are cast like any other spell, but there is no limit to how many 0-level spells you can cast each day.",
+								"Your selection of spells is limited. You begin play knowing four 0-level spells and two 1st-level spells of your choice. At each new witchwarper level, you learn one or more new spells, as indicated on Table 2–5: Witchwarper Spells Known. Unlike your spells per day, the number of spells you know isn’t affected by your Charisma modifier.",
+								"Every time you gain a new level, you can swap out one spell you already know and learn a single new spell of the same level in its place. In effect, you lose the old spell in exchange for the new one. You must choose whether or not to swap a spell at the same time you gain new spells known for the level.",
+								"You can cast any witchwarper spell you know at any time, assuming you have not yet used up your allotment of spells per day for the spell’s level. You can also cast a spell using a higherlevel spell slot. For instance, if you want to cast a 1st-level spell but have used up all your 1st-level spells for the day, you can use a 2nd-level spell slot instead, if you have one.",
+								"You can also decipher magical inscriptions that would otherwise be unintelligible or, as a full action, identify any spells encoded in a spell gem. This does not normally invoke the magic contained within, although it may do so in the case of a cursed or trapped spell gem."
+							]
+						}
+					]
+				},
+				{
+					"level": 2,
+					"classFeatures": "Infinite Worlds, Spellcasting",
+					"spellsKnown" : [5,3],
+					"features": [
+						{
+							"name": "Paradigm Shift",
+							"type": "su",
+							"description": [
+								"Paradigm shifts represent your ability to briefly install pieces of alternate realities into your own, subtly or radically changing your surroundings for a time. You learn your first paradigm shift at 2nd level, and an additional paradigm shift every 3 levels thereafter. Unless otherwise stated, the effects of a paradigm shift last for a number of rounds equal to your witchwarper level. If a paradigm shift allows a saving throw to resist its effects, the DC is equal to 10 + half your witchwarper level + your Charisma modifier.",
+								"Starting at 4th level, your ability to shuffle these realities improves. Upon gaining a witchwarper level (including at 4th level), you can swap out one paradigm shift you know for a different paradigm shift of the same level. You can instead select a paradigm shift of a lower level, but note the level of the original paradigm shift so that when you later swap out the same paradigm shift at later levels, you can select any paradigm shift of the original level or lower.)"
+							]
+						}
+					]
+				},
+				{
+					"level": 3,
+					"classFeatures": "Compound Sight, Weapon Specialization",
+					"spellsKnown" : [6,4],
+					"features": [
+						{
+							"name": "Compound Sight",
+							"type": "su",
+							"description": [
+								"You can sift through many realities, gaining understanding of a task by seeing it attempted dozens of different ways. Choose a skill. You gain a +1 insight bonus to checks using that skill. This bonus increases by +1 at 6th level and every 3 levels thereafter. You can change your chosen skill every time you gain a witchwarper level. At 9th level, you become more adept with your compound sight and can choose two skills to apply it to."
+							]
+						},
+						{
+							"name": "Weapon Specialization",
+							"type": "ex",
+							"description": [
+								"You gain the Weapon Specialization feat as a bonus feat for each weapon type this class grants you proficiency with."
+							]
+						}
+					]
+				}
+			],
+			"source": "COM",
+			"page": 60
+		}
+	]
+}

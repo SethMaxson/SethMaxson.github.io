@@ -1,0 +1,94 @@
+<doc>
+	<tileset src="images/tilesets/ff1_tileset.png" default-tile="1">
+		<tile x="9" y="11" />
+		<tile x="5" y="8" />
+		<tile x="10" y="12" />
+		<tile x="11" y="11" />
+		<tile x="10" y="11" />
+		<tile x="7" y="8" />
+		<tile x="1" y="1" />
+	</tileset>
+	<map width="21" height="15">
+		<tiles>
+111111111111111111111
+100000000000000000001
+100033333000000005551
+100044444000000000001
+100000222222000000001
+100000022222220000001
+100000022112222000001
+100000022112200000001
+100000002222000000001
+100000000000444000001
+100000000044400000001
+100004444440000000001
+100003333000000000001
+100000000000000000001
+111111111111111111111
+		</tiles>
+		<collision>
+111111111111111111111
+100000000000000002321
+100000000000000003331
+100011111000000000001
+100000000000000000001
+100000000000000000001
+100000000110000000001
+100000000110000000001
+100000000000000000001
+100000000000111000001
+100000000011100000001
+100001111110000000001
+100000000000000000001
+100000000000000000001
+111111111111111111111
+		</collision>
+	</map>
+	<event>
+		<character>
+			<name>Minister</name>
+			<x>3</x>
+			<y>1</y>
+			<direction>0</direction>
+			<moveType>1</moveType>
+			<message>I am a minister.</message>
+			<sprite>knight</sprite>
+		</character>
+		<character>
+			<name>King</name>
+			<x>2</x>
+			<y>1</y>
+			<direction>0</direction>
+			<moveType>0</moveType>
+			<message>I am a King.</message>
+			<sprite>Kevin</sprite>
+		</character>
+		<character>
+			<name>Soldier</name>
+			<x>4</x>
+			<y>1</y>
+			<direction>0</direction>
+			<moveType>1</moveType>
+			<message>I am a soldier.</message>
+			<sprite>knight</sprite>
+		</character>
+		<character>
+			<name>Dudette</name>
+			<x>5</x>
+			<y>1</y>
+			<direction>0</direction>
+			<moveType>1</moveType>
+			<message>I am a soldier.</message>
+			<sprite>Dudette_SpriteSheet</sprite>
+		</character>
+		<character>
+			<name>Dudette</name>
+			<x>15</x>
+			<y>10</y>
+			<direction>0</direction>
+			<moveType>1</moveType>
+			<message>I am a soldier.</message>
+			<sprite>Drow_f</sprite>
+		</character>
+	</event>
+</doc>

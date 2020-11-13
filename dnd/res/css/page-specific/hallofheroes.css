@@ -1,0 +1,64 @@
+.background {
+	width:100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: space-around;
+	justify-content: space-around;
+	background-image: url("/dnd/img/textures/tavernwall.png");
+	background-size: 30% 30%;
+}
+
+.portrait-frame {
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: 13%;
+	align-self: center;
+	/* width:20%; */
+	/* margin-top:15px; */
+	position:relative;
+	border:20px solid;
+	border-image:url("/img/renn_frame2.png");
+	border-image-slice:50;
+	box-sizing: border-box;
+	box-shadow:5px 2px 15px 5px black;
+	z-index:5;
+	padding:0px;
+	text-align: center;
+	color:white;
+	background:black;
+}
+
+.portrait-frame::after {
+	box-shadow: inset 2px 2px 5px 0 black,
+	inset -2px -2px 5px 0 black;
+	content: '';
+	margin:0;
+	line-height: 0px;
+	display: block;
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	z-index:6;
+}
+
+.portrait-frame-container {
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: 13%;
+	box-sizing: border-box;
+	padding:0;
+}
+
+.portrait-frame-container > .portrait-frame{
+	width: 100%;
+}
+
+.portrait-frame img {
+	box-sizing: border-box;
+	margin:0px;
+	width:100%;
+}

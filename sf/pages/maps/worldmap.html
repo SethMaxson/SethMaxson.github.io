@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>World Map</title>
+		<link rel="icon" href="/sf/favicon.png" />
+		<link href="/sf/res/css/galaxymap.css" rel="stylesheet" type="text/css" media="all">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+			.hideable{display:none;}
+			#Weather, #Calendar, #TripDistance, #TripTime, #CenterX {color:white; text-align: left;}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<!-- <script
+			src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+		<script
+			src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script> -->
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+		<script src="/sf/res/js/mechanics.js"></script>
+		<script src="/sf/res/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/sf/res/js/galaxymap.js"></script>
+		<script src="/sf/res/js/objects/calendar.js"></script>
+		<script src="/sf/res/js/generators/weather.js"></script>
+		<script src="/res/js/panzoom.js"></script>
+		<script>
+			var dragStartX, dragStartY, dragStopX, dragStoptY;
+			const focal = {
+				x:0,
+				y:0
+			};
+			var centerX;
+
+			const scale = 1;
+			$(document).ready(function(){
+				const container = $("#map-container");
+				const panzoom = Panzoom(container[0], {
+				maxScale: 5
+				})
+				panzoom.pan(10, 10)
+				panzoom.zoom(2, { animate: true })
+				var calendar;
+				if (localStorage.year !== undefined) {
+					calendar = new GeossCalendar(parseFloat(localStorage.year), parseFloat(localStorage.month), parseFloat(localStorage.day), parseFloat(localStorage.hour));
+					localStorage.removeItem("year");
+					localStorage.removeItem("month");
+					localStorage.removeItem("hour");
+					localStorage.removeItem("day");
+				} else {
+					calendar = new StardateCalendar(undefined, 11, 18);
+				}
+
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/systems.json",
+					dataType: 'html',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (returnedData) {
+						var items = JSON.parse(returnedData).items;
+						for (let index = 0; index < items.length; index++) {
+							const sys = items[index];
+
+							const div = getSystemPreviewMarker(sys);
+
+							let distanceFromCenter = 0;
+							let planetsSoFar = 0;
+							let totalPlanets = sys.planets.length;
+
+							for (let i = 0; i < sys.stars.length; i++) {
+								const planet = sys.stars[i];
+								// var planetSize = getPlanetSize(planet) * 0.8;
+								var planetSize = 10;
+
+								div.append(
+									$(`<div class="sun" style="width: 10%; height:10%;"></div>`)
+								);
+
+								distanceFromCenter += planetSize;
+							}
+							for (let i = 0; i < sys.planets.length; i++) {
+								const planet = sys.planets[i];
+								// var planetSize = getPlanetSize(planet);
+
+								var planetSize = 1*scale;
+
+								planetsSoFar++;
+								const s = planetsSoFar * (90/totalPlanets) + 10;
+								const pr = (150/s).toString() + '%';
+
+								div.append(
+									$(`<div class="planet-orbit" style="width: ${s}%; height:${s}%;">
+										<div class="planet" style="width:${pr}; height:${pr};"></div>
+									</div>`)
+								);
+								distanceFromCenter += planetSize * 2;
+							}
+							container.append(div);
+						}
+					}
+				});
+
+				function componentToHex(c) {
+					var hex = c.toString(16);
+					return hex.length == 1 ? "0" + hex : hex;
+				}
+
+				function rgbToHex(r, g, b) {
+					return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+				}
+
+				function deprecatedAjaxSuccess(result) {
+					// only works with "/sf/res/data/planets-backup.json"
+					var items = JSON.parse(result).items;
+					for (let index = 0; index < items.length; index++) {
+						const sys = items[index];
+
+						const div = getSystemPreviewMarker(sys);
+
+						let distanceFromCenter = 0;
+						let planetsSoFar = 0;
+						let totalPlanets = 0;
+						for (let i = 0; i < sys.planets.length; i++) {
+							if (sys.planets[i].type == "Planet") totalPlanets++;
+						}
+
+						for (let i = 0; i < sys.planets.length; i++) {
+							const planet = sys.planets[i];
+							var planetSize = getPlanetSize(planet);
+							if (planet.type == "Star") {
+								planetSize = getPlanetSize(planet) * 0.8;
+								// div.append(
+								// 	$(`<div class="sun" style="width: ${planetSize}px; height:${planetSize}px;">
+								// 	</div>`)
+								// );
+								div.append(
+									$(`<div class="sun" style="width: 10%; height:10%;"></div>`)
+								);
+								distanceFromCenter += planetSize;
+							} else if (planet.type == "Planet") {
+								// div.append(
+								// 	$(`<div class="planet" style="left: ${distanceFromCenter + size/2}px; width: ${planetSize}px; height:${planetSize}px;">
+								// 		<a href="/pages/maps/cities/lagos/lagos.html" class="smith planet-label">${planet.Name}</a>
+								// 		<div>${planet.Name}</div>
+								// 		<div>${planet.Titles.toString()}</div>
+								// 	</div>`);
+								// );
+								planetsSoFar++;
+								const s = planetsSoFar * (90/totalPlanets) + 10;
+								const pr = (150/s).toString() + '%';
+
+								// const s = i * (90/sys.Planets.length) + 10;
+								// const s = distanceFromCenter + planetSize * 2;
+								div.append(
+									$(`<div class="planet-orbit" style="width: ${s}%; height:${s}%;">
+										<div class="planet" style="width:${pr}; height:${pr};"></div>
+									</div>`)
+								);
+								distanceFromCenter += planetSize * 2;
+							}
+						}
+						container.append(div);
+					}
+				}
+
+				function hexToRgb(hex) {
+					var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+					return result ? {
+						r: parseInt(result[1], 16),
+						g: parseInt(result[2], 16),
+						b: parseInt(result[3], 16)
+					} : null;
+				}
+
+				$("body").on("click", ".system", function(){
+					// $("body").append($(
+					// 	`<div class="popup">
+					// 		<div class="exit">X</div>
+					// 	</div>
+					// 	`
+					// ))
+					systemPreview($(this).attr("name"));
+				});
+
+				$("body").on("click", ".popup .exit", function(){
+					$(this).closest(".popup").remove();
+				});
+
+				$("body").on("dragstop", ".airship.party", function(){
+					calendar.addHours(parseFloat($("#TripTime").text()));
+					$("#Calendar").text(calendar.getTime() + ' ' + calendar.getStarDate());
+					localStorage.year = calendar.getYear();
+					localStorage.month = calendar.getMonth();
+					localStorage.day = calendar.getDate();
+					localStorage.hour = calendar.getHours();
+					localStorage.minute = calendar.getMinutes();
+					setTimeout(() => {
+						$("#TripTime").text("");
+						$("#TripDistance").text("");
+					}, 1500);
+				});
+
+				$("#Calendar").text(calendar.getTime() + ' ' + calendar.getStarDate());
+				$("#map-body").focus();
+
+				$("#map-zoom").change(function() {
+					var zoom = $(this).val() * 0.01;
+					panzoom.zoom(zoom);
+					// keepMapInBoundaries(zoom);
+					scaleMapObjects(zoom);
+				});
+
+				$('#map-body').on('wheel mousewheel', function(e){
+					var delta;
+					var startZoom = $("#map-zoom").val() * 1;
+					var newZoom = startZoom;
+					if (e.originalEvent.wheelDelta !== undefined)
+						delta = e.originalEvent.wheelDelta;
+					else
+						delta = e.originalEvent.deltaY * -1;
+
+					if(delta > 0) {
+						newZoom += 5;
+					}
+					else{
+						newZoom -= 5;
+					}
+					$("#map-zoom").val(newZoom);
+					$("#map-zoom").change();
+				});
+			})
+
+			function getSystemPreviewMarker(sys){
+				const x = ((100 + sys.x)/2) + '%';
+				const y = ((100 + sys.y)/2) + '%';
+				// const size = getSystemSize(sys);
+				const size = ((sys.stars.length * 100 * scale) + (sys.planets.length * scale)) * 2;
+
+				const classes = sys.space == 'Near'? "system near-space" : "system";
+				// const div = $(`
+				// <div name="${sys.Name}" class="${classes}" style="left:${x}; top:${y}; width: ${size}px; height:${size}px;">
+				// 	<div class="smith system-label label">${sys.Name}</div>
+				// 	<div>${sys.Titles.toString()}</div>
+				// 	<div>${sys.Space}</div>
+				// </div>`);
+				const div = $(`
+				<div name="${sys.name}" class="${classes}" style="left:${x}; top:${y}; width: ${size}px; height:${size}px;">
+					<div class="smith system-label label">${sys.name}</div>
+				</div>`);
+				return div;
+			}
+		</script>
+	</head>
+
+	<body id="map-body" style="overflow: hidden; background:#000000;">
+		<div class="map-controls" style="z-index: 2; padding-left:20px;">
+			<input type="range" min="3" max="250" value="50" class="slider" id="map-zoom">
+			<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
+			<span id="Calendar"></span>
+			<!-- <span id="Weather" style="padding-left:10px;"></span>
+			<div id="TripDistance"></div>
+			<div id="TripTime"></div>
+			<div id="CenterX"></div> -->
+		</div>
+		<div id="map-container" class="map-container map" style="background-image:url('/sf/img/textures/galaxy_starfield.png'); width:12000px; height:10000px; text-align: center; transform-origin:center center;"></div>
+	</body>
+
+</html>

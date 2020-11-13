@@ -1,0 +1,1 @@
+{"version":3,"file":"modal-preview.d.ts","sourceRoot":"","sources":["../ts/modal-preview.ts"],"names":[],"mappings":";AAAA,cAAM,YAAY;IAEjB,OAAO,EAAE,MAAM,CAAC,WAAW,CAAC,CAAC;gBACjB,MAAM,GAAE,MAAW,EAAE,OAAO,GAAE,MAAW;IAgBrD,IAAI,MAAM,CAAC,GAAG,EAAE,MAAM,EAErB;IACD,IAAI,OAAO,CAAC,GAAG,EAAE,MAAM,EAEtB;CACD"}

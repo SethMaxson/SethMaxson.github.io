@@ -1,0 +1,323 @@
+<html style="padding:none; margin:none; box-sizing: border-box;">
+
+	<head>
+		<title>Character Creation</title>
+		<link rel="stylesheet" href="/res/css/threedee.css" />
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<!-- <script src="/res/js/threedee.js"></script> -->
+		<script src="/res/js/three.js"></script>
+		<script src="/res/js/utils/SkeletonUtils.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+		<script src="/res/js/generators/npc.js"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/res/js/loaders/GLTFLoader.js"></script>
+		<script src="/res/js/characters.js"></script>
+		<script src="/res/js/environment.js"></script>
+		<script>
+			/** @namespace */
+			var THREEx	= THREEx || {}
+
+			/**
+			* Update renderer and camera when the window is resized
+			*
+			* @param {Object} renderer the renderer to update
+			* @param {Object} Camera the camera to update
+			* @param {Function} dimension callback for renderer size
+			*/
+			THREEx.WindowResize	= function(renderer, camera, dimension)
+			{
+				dimension 	= dimension || function(){ return { width: document.getElementById('container').clientWidth, height: window.innerHeight } }
+				var callback	= function(){
+					// fetch target renderer size
+					var rendererSize = dimension();
+					// notify the renderer of the size change
+					renderer.setSize( rendererSize.width, rendererSize.height )
+					// update the camera
+					camera.aspect	= rendererSize.width / rendererSize.height
+					camera.updateProjectionMatrix()
+				}
+				// bind the resize event
+				window.addEventListener('resize', callback, false)
+				// return .stop() the function to stop watching window resize
+				return {
+					trigger	: function(){
+						callback()
+					},
+					/**
+					* Stop watching window resize
+					*/
+					destroy	: function(){
+						window.removeEventListener('resize', callback)
+					}
+				}
+			}
+		</script>
+		<script>
+			$(document).ready(function(){
+				var camera, controls, renderer, scene, sky, ground, time=0, newChar;
+				var clock = new THREE.Clock();
+				var objects = [];
+				function init() {
+					scene = new THREE.Scene();
+					camera = new THREE.PerspectiveCamera(
+						50,
+						document.getElementById('container').clientWidth/document.getElementById('container').clientHeight,
+						1,
+						100
+					);
+					renderer = new THREE.WebGLRenderer({ antialias: true });
+					renderer.setPixelRatio( window.devicePixelRatio );
+
+					// renderer.sortObjects = false;
+					// renderer.shadowMap.enabled = true;
+					document.getElementById('container').appendChild(renderer.domElement);
+
+					renderer.setSize(document.getElementById('container').clientWidth, document.getElementById('container').clientHeight);
+					renderer.gammaFactor = 2.2;
+					renderer.gammaInput = true;
+					renderer.gammaOutput = true;
+					renderer.physicallyCorrectLights;
+
+
+					camera.position.x = 0;
+					camera.position.y = 0.8;
+					camera.position.z = 3;
+					camera.lookAt(new THREE.Vector3(0, 1, 0));
+
+					controls = new THREE.OrbitControls(camera, renderer.domElement);
+					controls.maxPolarAngle = Math.PI/2 - 0.01;
+					controls.maxDistance = 5;
+
+					var people = new THREE.Object3D();
+					var ldr = new PersonLoader(function() {
+						people.name="PeopleGroup"
+						newChar = getRandom(0, 0, 0, "human", "m");
+						people.add(newChar);
+						// people.add(getPC("Jasper", -1, 0, 0));
+
+						people.traverse(function(node) {
+							objects.push(node);
+						})
+
+						hairOptions.sort();
+						for (let i = 0; i < hairOptions.length; i++) {
+							const hairs = hairOptions[i];
+							$("#hair-select").append($("<option value=\"" + hairs + "\">" + hairs + "</option>"));
+						}
+						setTimeout( function() {
+							$("#hair-select").val(newChar.userData.hairStyle);
+							$("#hair-color-select").val("#" + newChar.userData.hairColor.toString(16));
+						}, 100 );
+
+					});
+
+
+					scene.add(people);
+
+					// create geometric objects
+					var plane = getPlane(1024, 1024);
+
+					// add objects to the scene
+					sky = getSky(camera);
+					scene.add(sky);
+
+					scene.add(plane);
+					var ambLight = new THREE.HemisphereLight(0xffffff, 0x000200, 1);
+					ambLight.position.set(0, 20, 0);
+					scene.add(ambLight);
+					scene.position.x = -0.5;
+					scene.position.y = -1;
+					scene.position.z = -0.5;
+
+					// transform objects
+					var winResize = new THREEx.WindowResize(renderer, camera);
+
+					update();
+				}
+
+
+				function getPlane(w, h) {
+					var terrain = new THREE.Group();
+					var geo = new THREE.PlaneGeometry(w, h);
+
+
+
+					ground = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						side: THREE.DoubleSide,
+						transparent: true,
+						emissive: 0x000000,
+						metalness:0.4,
+						opacity: 0.8,
+						map: new THREE.TextureLoader().load("/img/textures/Cartoon_Grass.jpg"),
+					}));
+					textures = ['map'];
+					textures.forEach((mapName) => {
+						ground.material[mapName].wrapS = THREE.RepeatWrapping;
+						ground.material[mapName].wrapT = THREE.RepeatWrapping;
+						ground.material[mapName].repeat.set(w/5, h/5);
+					});
+					ground.scale.set(1.5, 1.5, 1.5)
+					ground.name = "Ground";
+					ground.rotation.x = Math.PI/2;
+					ground.position.set(Math.floor(w/2), 0, Math.floor(h/2));
+
+					var board = new THREE.Object3D();
+					board.position.x = -Math.ceil(w/2);
+					board.position.z = -Math.ceil(h/2);
+					// board.receiveShadow = true;
+					board.add(ground);
+					return board;
+				}
+
+
+				function update() {
+					renderer.render(scene, camera);
+					controls.update();
+					time++;
+					const mixTime = clock.getDelta();
+					objects.forEach(person => {
+						if (person.userData.mixer != undefined) {
+							person.userData.mixer.update(mixTime);
+						}
+					});
+					setTimeout( function() {
+
+					requestAnimationFrame( update );
+
+					}, 1000 / 40 );
+				}
+
+
+
+				$("#race-select").change(function(){
+					changeRace(newChar, $(this).val());
+				});
+				$("input[name='gender-select']").click(function(){
+					var newGender=$("input[name='gender-select']:checked").val();
+					newChar.userData.texture = undefined;
+					changeGender(newChar, newGender);
+				});
+				$("#hair-select").change(function(){
+					setHair(newChar, $(this).val());
+				});
+				$("#hair-color-select").change(function(){
+					setHair(newChar, $("#hair-select").val(), $(this).val());
+				});
+				$("#weight-slider").change(function(){
+					var node = newChar.getObjectByName("Torso");
+					node.morphTargetInfluences[node.morphTargetDictionary.Weight] = $(this).val();
+				});
+
+				init();
+			});
+		</script>
+
+		<style>
+			h1 {
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin:0.5em 0.4em;
+				padding:0.1em;
+				font-size:14pt;
+				text-align:center;
+				font-weight:600;
+				font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+				color: #eeefe0;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+			select {
+				display:block;
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin-left:auto;
+				margin-right:auto;
+				width:90%;
+				padding:0.1em;
+				font-size:14pt;
+				text-align:center;
+				font-weight:600;
+				font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+				color: #eeefe0;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+			div.option {
+				display:block;
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin-left:auto;
+				margin-right:auto;
+				width:90%;
+				padding:0.1em;
+				font-size:14pt;
+				text-align:center;
+				font-weight:600;
+				font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+				color: #eeefe0;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+		</style>
+	</head>
+
+	<body style="margin:0px; padding:0px; overflow:hidden; box-sizing: border-box;">
+		<table style="width:100vw; height:100vh; margin:0px; box-sizing: border-box;">
+			<tr>
+				<td id="container" style="padding:0px; margin:0px; box-sizing: border-box;">
+					<!-- prevent null -->
+				</td>
+				<td style="width:30%; border-left:2px solid black; background-image:url(/img/textures/Scroll.png);">
+					<h1>Race:</h1>
+
+					<select id="race-select">
+						<option value="aarakocra">Aarakocra</option>
+						<option value="aasimar">Aasimar</option>
+						<option value="dwarf">Dwarf</option>
+						<option value="elf">Elf</option>
+						<option value="halfling">Halfing</option>
+						<option value="halforc">Half-Orc</option>
+						<option value="human" selected="selected">Human</option>
+						<option value="grung">Grung</option>
+						<option value="tiefling">Tiefling</option>
+					</select>
+
+
+
+					<h1>Gender:</h1>
+					<div class="option">
+						Female: <input type="radio" name="gender-select" value="f" />
+						Male: <input type="radio" name="gender-select" value="m" checked="checked" />
+					</div>
+
+					<h1>Hair Style:</h1>
+
+					<select id="hair-select">
+					</select>
+
+					<h1>Hair Color:</h1>
+					<input type="color" id="hair-color-select" />
+
+					<h1>Weight:</h1>
+					<input type="range" min="0" max="5" value="0.1" id="weight-slider" />
+				</td>
+			</tr>
+		</table>
+
+	</body>
+
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Noseyus</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+
+			.travel-brochure .location-info {
+				width:30%;
+				display:block;
+				position:absolute;
+				top:0px;
+				left:0px;
+				box-shadow: 1px 0px 10px black,
+				8px 0px 8px inset rgba(255,255,255,0.5);
+				z-index:6;
+				height:100%;
+				overflow-y:auto;
+				background-color:rgb(253, 243, 229);
+			}
+
+			.location-info h2 {
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin:2em 0.5em 1em 0.5em;
+				padding:7px 10px;
+				font-size:14pt;
+				text-align:center;
+				font-weight:600;
+				font-family: 'Merienda One', cursive;
+				color: #5ea04a;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+
+			.location-info h1 {
+				box-shadow: 0px 2px 0px #342b24,
+				2px 0px 0px #342b24,
+				2px 2px 0px #342b24,
+				2px -2px 0px #b0a59c,
+				-2px -2px 0px #b0a59c,
+				-2px 2px 0px #b0a59c;
+				margin:0.5em 0.4em;
+				padding:7px 10px;
+				font-size:16pt;
+				text-align:center;
+				font-weight:600;
+				font-family: 'Merienda One', cursive;
+				color: #5ea04a;
+				background-color: #665343;
+				text-shadow: 0px -1px 0px rgba(255,255,255,.2), -1px 0px 0px rgba(255,255,255,.2), 0px 2px 0px rgba(0,0,0,.7), 2px 0px 0px rgba(0,0,0,.7);
+			}
+
+			.location-info h3 {
+				text-align-last: justify;
+				margin:0.5em 1em;
+				font-size:18pt;
+				padding:13px 20px;
+				text-shadow: 0px 0px 2px #820;
+				font-weight:900;
+				font-family:monospace;
+				color:#555555;
+				text-transform: uppercase;
+			}
+
+			.location-info p {
+				text-align: justify;
+				margin:1em 1em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #eee;
+				font-weight:500;
+				color:rgba(17, 17, 17, 0.9);
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.location-info ul {
+				text-align: left;
+				margin:0em 1em 0.5em 0.5em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #111;
+				font-weight:500;
+				color:rgba(17, 17, 17, 0.9);
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.poi {
+				position:absolute;
+				width:31px;
+				height:31px;
+				background:#00755e;
+				border:1px solid black;
+				box-sizing: border-box;
+				text-align: center;
+				line-height: 26px;
+				font-size:26px;
+				font-weight: bold;
+				color:white;
+			}
+
+			.location-info ul li {
+				padding-top:0.5em;
+			}
+
+			.travel-brochure #map-body {
+				width:70%;
+				display:block;
+				float:right;
+			}
+
+
+
+			.temple-label {
+				position:absolute;
+				transform-origin:center center;
+				font-size:20px;
+				color:rgb(102, 91, 72);
+
+			}
+
+			.decks .pedestrian {
+				z-index: 0;
+			}
+
+			.decks>div {
+				z-index:1;
+				width:100%;
+				height:100%;
+				position:absolute;
+				top:0px;
+				left:0px;
+				background-size:contain;
+				display:none;
+			}
+
+			.decks>div:last-child {
+				display:unset;
+			}
+
+			.decks>div>* {
+				pointer-events:auto;
+			}
+
+			.pearl {
+				width:100%;
+				height:100%;
+			}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/map.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				airshipGrid = 40;
+				const groundLevel = 5;
+				PartyBattle("21", "12", "Jasper", ["/dnd/img/maps/icons/jasper.png", "/dnd/img/maps/icons/jasper_full.png"], "#f1");
+				PartyBattle("22", "11", "Teomyr", ["/dnd/img/maps/icons/teomyr.png", "/dnd/img/maps/icons/teomyr_full.png"], "#f1");
+				PartyBattle("23", "10", "Redji", ["/dnd/img/maps/icons/redji.png", "/dnd/img/maps/icons/redji_full.png"], "#f1");
+				PartyBattle("23", "12", "Namfoodle", ["/dnd/img/maps/icons/namfoodle.png", "/dnd/img/maps/icons/namfoodle_full.png"], "#f1");
+				PartyBattle("24", "11", "Shamous", ["/dnd/img/maps/icons/Shamous.png", "/dnd/img/maps/icons/Shamous_full.png"], "#f1");
+				PartyBattle("22", "13", "Bud", ["/dnd/img/maps/icons/bud.png", "/dnd/img/maps/icons/bud_full.png"], "#f1");
+
+				PartyBattle("55", "20", "Brokkos", ["/dnd/img/maps/icons/brokkos.png", "/dnd/img/maps/icons/brokkos3.png"], "#b1");
+
+				PartyBattle("50", "30", "Brokkos", ["/dnd/img/maps/icons/brokkos.png", "/dnd/img/maps/icons/brokkos1.png"], "#b2");
+				PartyBattle("55", "30", "Brokkos", ["/dnd/img/maps/icons/brokkos.png", "/dnd/img/maps/icons/brokkos2.png"], "#b3");
+
+				$("#map-body").focus();
+
+				$("#map-deck-show").on('input', function() {
+					var topDeck = parseInt($(this).val());
+
+					if (topDeck < groundLevel) {
+						$("#map-body").css("background-color", "#4b3e2b");
+					} else {
+						$("#map-body").css("background-color", "#25325f");
+					};
+					$(".decks").each(function(){
+						var deck = 1;
+						$(this).children().each(function(){
+							if (deck != topDeck) {
+								$(this).hide();
+							} else {
+								$(this).show();
+							};
+							deck += 1;
+						});
+					});
+				});
+
+
+				$("#what-is").click(function(){
+					$("#pearl").show();
+					$("#pearl-blue").hide();
+					$("#pearl-gold").hide();
+					$("#pearl-green").hide();
+				})
+				$("#what-was").click(function(){
+					$("#pearl").hide();
+					$("#pearl-blue").hide();
+					$("#pearl-gold").show();
+					$("#pearl-green").hide();
+				})
+				$("#what-will-be").click(function(){
+					$("#pearl").hide();
+					$("#pearl-blue").show();
+					$("#pearl-gold").hide();
+					$("#pearl-green").hide();
+				})
+				$("#what-might-have-been").click(function(){
+					$("#pearl").hide();
+					$("#pearl-blue").hide();
+					$("#pearl-gold").hide();
+					$("#pearl-green").show();
+				})
+			})
+		</script>
+	</head>
+
+	<body class="travel-brochure">
+		<div class="location-info decks">
+			<div>
+				<h1>Earthaven B4</h1>
+			</div>
+			<div>
+				<h1>Earthaven B3</h1>
+			</div>
+			<div>
+				<h1>Earthaven B2</h1>
+			</div>
+			<div>
+				<h1>Earthaven B1</h1>
+			</div>
+			<div>
+				<h1>Noseyus Isle</h1>
+				<h3>M A R E</h3>
+				<h3>C E L U</h3>
+				<h3>T A R R A</h3>
+			</div>
+		</div>
+		<div id="map-body" style="overflow: hidden; background:#25325f;">
+			<div class="map-controls" style="z-index: 2; padding-left:80px;">
+				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
+				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
+			</div>
+			<div class="map-controls" style="right:0px; top:0px; height:100vw; width:30px; z-index: 2; padding-top:0.5em;">
+				<input type="range" step="1" min="1" max="5" value="5" class="slider" id="map-deck-show" style="writing-mode: bt-lr; /* IE */
+				-webkit-appearance: slider-vertical; /* WebKit */
+				width: 8px;
+				height: 100px;
+				padding: 5px;"  orient="vertical">
+			</div>
+
+			<div class="map-container map" style="width:4000px; height:4000px;">
+
+				<!--
+					Population:
+					Brokkos
+				-->
+				<div class="decks" id="decks" style="width:100%; height:100%; position:absolute; top:0px; left:0px;">
+					<div id="b4" style="background-image:url('/dnd/img/maps/earthaven/b4.png');">
+						<a href="#" class="smith" style="position:absolute; top:0em; left:0em; font-size:6em; pointer-events: none;">
+							Earthaven B4
+						</a>
+					</div>
+					<div id="b3" style="background-image:url('/dnd/img/maps/earthaven/b3.png');">
+						<a href="#" class="smith" style="position:absolute; top:0em; left:0em; font-size:6em; pointer-events: none;">
+							Earthaven B3
+						</a>
+
+					</div>
+					<div id="b2" style="background-image:url('/dnd/img/maps/earthaven/b2.png');">
+						<a href="#" class="smith" style="position:absolute; top:0em; left:0em; font-size:6em; pointer-events: none;">
+							Earthaven B2
+						</a>
+
+					</div>
+					<div id="b1" style="background-image:url('/dnd/img/maps/earthaven/b1.png');">
+						<a href="#" class="smith" style="position:absolute; top:0em; left:0em; font-size:6em; pointer-events: none;">
+							Earthaven B1
+						</a>
+
+						<a href="#" class="smith village" style="position:absolute; top:49%; left:57%; font-size:2em;">
+							Temple
+							<span class="city-preview">
+								<h1>Temple</h1>
+								<p>
+									Religious stuff probably happens here.
+								</p>
+							</span>
+						</a>
+					</div>
+					<div id="f1" style="background-image:url('/dnd/img/maps/landmasses/Noseyus.svg');">
+						<a href="#" class="smith" style="width:5.5%; height:5.5%; transform:translate(-50%, -50%); position:absolute; top:50%; left:50%;" id="pearl">
+							<img src="/dnd/img/maps/earthaven/pearl.png" class="pearl" alt="image"/>
+							<span class="city-preview">
+								<h1>Giant Pearl</h1>
+								<p>
+									This thing is absolutely massive. It must be at least 25' in diameter!
+								</p>
+							</span>
+						</a>
+						<a href="#" class="smith" style="display:none; width:5.5%; height:5.5%; transform:translate(-50%, -50%); position:absolute; top:50%; left:50%;" id="pearl-blue">
+							<img src="/dnd/img/maps/earthaven/pearl_blue.png" class="pearl" alt="image"/>
+							<span class="city-preview">
+								<h1>Giant Pearl</h1>
+								<p>
+									The pearl has turned blue for some reason.
+								</p>
+							</span>
+						</a>
+						<a href="#" class="smith" style="display:none; width:5.5%; height:5.5%; transform:translate(-50%, -50%); position:absolute; top:50%; left:50%;" id="pearl-gold">
+							<img src="/dnd/img/maps/earthaven/pearl_gold.png" class="pearl" alt="image"/>
+							<span class="city-preview">
+								<h1>Giant Pearl</h1>
+								<p>
+									The pearl has turned yellow for some reason.
+								</p>
+							</span>
+						</a>
+						<a href="#" class="smith" style="display:none; width:5.5%; height:5.5%; transform:translate(-50%, -50%); position:absolute; top:50%; left:50%;" id="pearl-green">
+							<img src="/dnd/img/maps/earthaven/pearl_green.png" class="pearl" alt="image"/>
+							<span class="city-preview">
+								<h1>Giant Pearl</h1>
+								<p>
+									The pearl has turned green for some reason.
+								</p>
+							</span>
+						</a>
+
+						<div class="temple-label" style="top:29%; left:71%; transform:translate(-50%, -50%) rotate(45deg); width:400px; height:300px; text-align: center;" id="what-is">
+							<span style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%)">
+								WHAT IS
+							</span>
+						</div>
+						<div class="temple-label" style="top:29%; left:29%; transform:translate(-50%, -50%) rotate(-45deg); width:400px; height:300px; text-align: center;" id="what-was">
+							<span style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%)">
+								WHAT WAS
+							</span>
+						</div>
+						<div class="temple-label" style="top:71%; left:71%; transform:translate(-50%, -50%) rotate(-45deg); width:400px; height:300px; text-align: center;" id="what-will-be">
+							<span style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%)">
+								WHAT WILL BE
+							</span>
+						</div>
+						<div class="temple-label" style="top:71%; left:29%; transform:translate(-50%, -50%) rotate(45deg); width:400px; height:300px; text-align: center;" id="what-might-have-been">
+							<span style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%)">
+								WHAT MIGHT<br/>
+								HAVE BEEN
+							</span>
+						</div>
+						<a href="#" class="smith village" style="position:absolute; top:49%; left:57%; font-size:2em;">
+							Temple
+							<span class="city-preview">
+								<h1>Temple</h1>
+								<p>
+									Religious stuff probably happens here.
+								</p>
+							</span>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

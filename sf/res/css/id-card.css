@@ -1,0 +1,290 @@
+@font-face {
+    font-family: Alien;
+    src: url(/sf/res/fonts/Galactico-Basic.otf);
+}
+
+body {
+	height:100vh;
+	overflow:hidden;
+}
+
+.page {
+	background:white;
+	width:100%;
+	height:100%;
+	display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content:space-between;
+}
+
+@media print {
+	@page {
+		size: letter auto;
+		margin: 0.25in;
+		padding:0in;
+	}
+}
+
+.alien {
+	font-family:Alien;
+	text-transform: uppercase;
+	font-size:0.8em;
+}
+
+.container p{
+	color:white;
+}
+
+th {
+	font-weight: bold;
+	border:2px solid #ccc;
+	background:#333;
+	color:floralwhite;
+	padding:4px;
+}
+td {
+	border:2px solid #ccc;
+	padding:4px;
+}
+.bg-blue {
+	/* background:#051626;
+	color:#f50000; */
+}
+.border-blue {
+	border-top:0.1em solid #246298;
+}
+
+.data-block {
+	display:flex;
+	flex-direction: column;
+	width:100%;
+	padding-top:0.87in;
+	padding-left:1em;
+	/* min-width:350px; */
+	/* height:740px; */
+	/* height:100vh; */
+	/* position:relative;
+	top:0px;
+	left:0px; */
+	font-family:Arial, sans-serif;
+	z-index:3;
+}
+
+.data-block .name {
+	flex-grow: 0;
+	flex-shrink: 0;
+	/* background:#255981;
+	border:0.2em solid #6ddaf8; */
+	font-variant: small-caps;
+	font-size:1em;
+	line-height: 1em;
+	font-weight: bold;
+	padding-bottom:0.04in;
+}
+
+.data-block .title {
+	flex-grow: 0;
+	flex-shrink: 0;
+	line-height: 1.5em;
+	padding-left:1em;
+	padding-top:0.5em;
+}
+
+
+.data-block .stats {
+	flex-grow: 0;
+	flex-shrink: 0;
+	font-size:0.6em;
+	line-height:1em;
+	/* position:absolute;
+	left:0;
+	bottom:0;
+	width:100%; */
+}
+
+.stats .half {
+	display: inline-block;
+	width:48%;
+	box-sizing: border-box;
+}
+
+.stats div {
+	/* border-top:0.1em solid #246298; */
+	/* padding-left:0.5em; */
+	/* line-height:2em; */
+	padding-top:0.05in;
+	position: relative;
+	top:0;
+	left:0;
+}
+
+.stats div span {
+	font-size:0.75em;
+	line-height:1em;
+	font-variant: small-caps;
+	display:block;
+	width:100%;
+}
+
+.bg {
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color:rgba(0, 0, 50, 0.8);
+	position:relative;
+	top:0;
+	left:0;
+}
+
+.background {
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color:black;
+	overflow:hidden;
+	height:100%;
+}
+
+.background-div {
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color:black;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+}
+
+.headshot-container {
+	width:1.25in;
+	height:100%;
+	flex-grow: 0;
+	flex-shrink: 0;
+	position:relative;
+}
+
+.headshot {
+	position:absolute;
+	top:48%;
+	left:63%;
+	transform:translate(-50%, -50%);
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height:1in;
+	width:1in;
+}
+
+.container {
+	height:100%;
+	padding:0.5em;
+	overflow:auto;
+}
+
+.background {
+	display:flex;
+	flex-direction: row;
+	padding:none;
+	height:100%;
+}
+
+#bg-button {
+	position:absolute;
+	top:0px;
+	right:3vw;
+	width:5vw;
+	text-align: center;
+	padding:0.1em;
+	padding-bottom:0.2em;
+	color:white;
+	background:rgba(60,60,60,1);
+	z-index:9;
+	user-select: none;
+	cursor:pointer;
+	border-radius:0 0 0.5em 0.5em;
+}
+
+
+.id-card {
+	flex-grow: 0;
+	flex-shrink: 0;
+	display:flex;
+	flex-direction: row;
+	/* position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%); */
+	position:relative;
+	/* margin:0.1in; */
+	margin:0.05in;
+	width:3.375in;
+	height:2.125in;
+	border-radius:3mm;
+	border:1px dashed gray;
+	background-image: url("/sf/img/Corporate-Card.png");
+	background-size:contain;
+	background-repeat: no-repeat;
+}
+
+.header-section {
+	width:100%;
+	height:0.765in;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.header{
+	position:absolute;
+	border-collapse: collapse;
+	font-variant: small-caps;
+	right:0in;
+	top:0.10in;
+	width:1.5in;
+	color:white;
+	font-size:0.6em;
+	font-weight: normal;
+}
+
+.header td {
+	border:0;
+	padding:0in 0.02in;
+	min-height:0;
+}
+
+.header tr:first-child td:first-child {
+	width:0.4in;
+}
+.header tr:nth-child(2) td{
+	height:0.2in;
+	font-size:0.6em;
+	padding-left:0;
+	/* padding-right:0.25in; */
+	/* text-align: right; */
+}
+
+.logo {
+	background-image:url("/sf/img/PactWorldsEmblem.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	width:0.4in;
+	height:0.35in;
+}
+
+.disclaimer {
+	position:absolute;
+	font-variant: small-caps;
+	right:0in;
+	bottom:0in;
+	padding:0.05in;
+	width:1.1in;
+	height:0.15in;
+	color:white;
+	font-size:0.4em;
+	font-weight: normal;
+}

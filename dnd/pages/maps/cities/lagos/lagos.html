@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Lagos</title>
+		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+
+			.travel-brochure .location-info {
+				width:30%;
+				display:block;
+				position:absolute;
+				top:0px;
+				left:0px;
+				box-shadow: 1px 0px 10px black,
+				8px 0px 8px inset rgba(255,255,255,0.5);
+				z-index:6;
+				height:100%;
+				overflow-y:auto;
+				background-color:#121212;
+			}
+
+			.location-info h2 {
+				background-color:#cc0000;
+				box-shadow:0px 0px 1px #770000;
+				margin:2em 0.5em 1em 0.5em;
+				padding:7px 10px;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #ad9300;
+				text-align:center;
+				font-weight:600;
+				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+				color:#ffd700
+			}
+
+			.location-info h1 {
+				background-color:#cc0000;
+				box-shadow:0px 0px 1px #770000;
+				margin:0.5em 0.4em;
+				padding:7px 10px;
+				font-size:16pt;
+				text-shadow: 0px 0px 1px #ad9300;
+				text-align:center;
+				font-weight:600;
+				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+				color:#ffd700
+			}
+
+			.location-info h3 {
+				text-align-last: justify;
+				margin:0.5em 1em;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #555;
+				font-weight:900;
+				font-family:monospace;
+				color:#999;
+				text-transform: uppercase;
+			}
+
+			.location-info h3 {
+				text-align-last: justify;
+				margin:0.5em 1em;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #555;
+				font-weight:900;
+				font-family:monospace;
+				color:#999;
+				text-transform: uppercase;
+			}
+
+			.location-info p {
+				text-align: justify;
+				margin:1em 1em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #111;
+				font-weight:500;
+				color:#eee;
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.location-info ul {
+				text-align: left;
+				margin:0em 1em 0.5em 0.5em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #111;
+				font-weight:500;
+				color:#eee;
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.location-info ul li {
+				padding-top:0.5em;
+			}
+
+			.travel-brochure #map-body {
+				width:70%;
+				display:block;
+				float:right;
+			}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/map.js"></script>
+		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
+		<script>
+			$(document).ready(() => {
+				getCitiesByContinent($(".map-lagos"), "Lagos", true);
+			})
+		</script>
+	</head>
+
+	<body class="travel-brochure">
+		<div class="location-info" style="background-color:#121212;">
+			<h3>Amarillo Airship Agency</h3>
+			<h1>Luxurious Lagos!!</h1>
+			<p>
+				Welcome, comrade, to a land where the keesh and honey flows like blood of our enemies.
+			</p>
+			<p>
+				Overseen by great king Pehr Lim, Lagos government is best in all of Geoss. If you can make it here, you can make it anywhere. If not, we feed you to alligator-persons.
+			</p>
+			<h2>Fun for the all of family!</h2>
+			<p>
+				Here in sunny Lagos, you can participate in such entertainment activity as:
+				<ul>
+					<li>
+						Mourn dead ruler hero, Osbeck Lim!
+					</li>
+					<li>
+						Read book from library for to gain knowledge.
+					</li>
+					<li>
+						Fight in world-famous Keesh Day bake off, for glory of family.
+					</li>
+					<li>
+						And many mores!
+					</li>
+				</ul>
+			</p>
+		</div>
+		<div id="map-body" style="overflow: hidden; background:#25325f;">
+			<div class="map-controls" style="z-index: 20; padding-left:80px;">
+				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
+				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
+			</div>
+			<div class="map-container map" style="background-repeat: no-repeat; background-size: contain; width:2600px; height:3600px; text-align: center; transform-origin:center center; image-rendering: pixelated;">
+
+				<div class="map-lagos" style="width:2500px; height:2500px; position:relative; top:50%; left:50%; transform:translate(-50%, -50%); z-index:2;">
+					<a href="#" class="smith continent" style="position:absolute; top:1130px; left:1040px;font-size:300px;">
+						Lagos
+					</a>
+					<img src="/dnd/img/maps/landmasses/Lagos.png" style="z-index:1;">
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Reincarnation</title>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<link rel="icon" href="/sf/favicon.png" />
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script src="/res/js/mechanics.js"></script>
+
+		<style>
+			body {
+				color:#00a1ed;
+			}
+
+			h1, h2, h3, .name, .collapsible {
+				color:#143f90;
+			}
+
+			h2 {
+				margin-bottom:0px;
+				padding:0px;
+				line-height:100%;
+			}
+
+
+			table tr:nth-child(odd) td {
+				background-color:#00202F;
+			}
+
+			table tr:nth-child(even) td {
+				background-color:#202020;
+			}
+			th {
+				font-weight: bold;
+			}
+			tr th:last-child {
+				text-align:left;
+				padding:5px;
+			}
+			tr>th:first-child {
+				color:#113388;;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+
+			tr td:first-child {
+				white-space: nowrap;
+				width:35px;
+				text-align:center;
+			}
+
+			.collapsible {
+				position:relative;
+				top:0;
+				left:0;
+				background:white;
+				cursor: pointer;
+				width: 100%;
+				border: none;
+				text-align: left;
+				outline: none;
+				border-bottom:5px solid #6a9bc9;
+				padding:5px;
+				font-size:20px;
+				font-weight:bold;
+				border-radius:10px 10px 0px 0px;
+				margin-top:5px;
+			}
+
+			.collapsible:after {
+				background:none;
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "+"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active:after {
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "-"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active, .collapsible:hover {
+				background-color: #e5e5e7;
+			}
+
+			.content {
+				padding: 0px 20px 5px;
+				max-height: 0;
+				font-size:0.9em;
+				overflow: hidden;
+				transition: max-height 0.2s ease-out;
+				background-color: hsl(209, 47%, 90%);
+				border-radius:0px 0px 15px 15px;
+				border:1px solid black;
+			}
+
+			table {
+				font-size:1.1em;
+				width:100%;
+				color:inherit;
+			}
+
+			.item {
+				margin-top:0px;
+				color:#00a1ed;
+			}
+
+			.aside {
+				background-color:#c1cbe5;
+				padding:10px;
+				margin-top:10px;
+				border-top:3px solid black;
+				border-bottom:3px solid black;
+			}
+
+			ul, ol {
+				font-size:inherit;
+			}
+
+			div.container>div {
+				background-color:#2f2f2F;
+				padding:10px;
+				border:5px double gray;
+				border-radius:25px;
+				margin-top:10px;
+			}
+		</style>
+		<script>
+			$(document).ready(function() {
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/races.json",
+					dataType: 'html',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (returnedData) {
+						let items = (JSON.parse(returnedData)).items;
+						let probability = 100 / items.length;
+						let racesString = "";
+						$("#race-table>tbody th").first().text("1d"+items.length);
+						// alert("Races: " + items.length + ", Probability=" + probability + "%.");
+						for (let index = 0; index < items.length; index++) {
+							const e = items[index];
+							let subraces = e.hasOwnProperty('subraces')? "*":"";
+							racesString += e.name + subraces + "\n";
+							$("#race-table>tbody").append($(`
+								<tr>
+									<td>${index+1}</td>
+									<td>${e.name}${subraces}</td>
+								</tr>
+							`));
+							// $("#race-table>tbody").append($("<ul class=\"options\"></ul>"));
+						}
+						// $("body").html(racesString);
+					}
+				});
+
+				var coll = document.getElementsByClassName("collapsible");
+				var i;
+
+				for (i = 0; i < coll.length; i++) {
+					coll[i].addEventListener("click", function() {
+						this.classList.toggle("active");
+						var content = this.nextElementSibling;
+						if (content.style.maxHeight){
+							content.style.maxHeight = null;
+						} else {
+							content.style.maxHeight = content.scrollHeight + "px";
+						}
+					});
+				}
+
+				$("tr>th:first-child").click(function(){
+					var target = this;
+					var str = this.innerText;
+					var die = parseInt(str.substring(str.lastIndexOf('d') + 1));
+
+					do {
+						target = target.parentNode;
+					} while (target.nodeName !=='TABLE');
+
+					var result = rollDie(die);
+					if (target.childElementCount == 1 && target.children[0].nodeName == 'TBODY') target = target.children[0];
+					for (let i = 1; i < target.children.length; i++) {
+						const el = target.children[i];
+						str = el.children[0].innerText;
+						if (str.includes('-')) {
+							var nStart = parseInt(str.substring(0, str.lastIndexOf('-')));
+							// var nStart = str.substring(0, str.lastIndexOf('-'));
+							var nEnd = parseInt(str.substring(str.lastIndexOf('-') + 1));
+							if (result >= nStart && result <= nEnd) {
+								alert(result + ".\n" + el.children[1].innerText);
+								break;
+							}
+						} else {
+							if (parseInt(str) == result) {
+								alert(result + ".\n" + el.children[1].innerText);
+								break;
+							}
+						}
+					}
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container" style="background:#00202F; border-color:#00a1ed;">
+				<h1>
+					Reincarnation Expanded
+				</h1>
+				<p>
+					The version of reincarnate found in the standard
+					Player's Handbook may be enough to sate
+					some adventurers... well, at least the BORING
+					ones that is! This document outlines an
+					alternate version of the spell reincarnate. One
+					that any DM leading a party of powergamers
+					would best avoid using. For all else, enjoy.
+				</p>
+				<div id="Start">
+					<h4>
+						The Steps to Reincarnation!
+					</h4>
+					<ol>
+						<li>Roll on the Base Table</li>
+						<li>Roll on the Sex Table (result has no effect on a character's gender)</li>
+						<li>Roll on the Successfulness Table and follow instructions from there</li>
+						<li>Roll on any additional applicable tables</li>
+						<li>Finish up by rolling on any applicable subrace tables for your race</li>
+					</ol>
+					<h4>
+						Subraces!
+					</h4>
+					<p>
+						An asterisk next to a race indicates that there is a
+						matching subrace table to roll on. For instance, the
+						Elements table would be used to determine what
+						kind of Genasi, elemental, etc. a character ends up
+						as. There are also tables for dragon types, tiefling
+						types, and many more. Find these tables in the
+						Subraces section at the end of the book.
+					</p>
+					<button class="collapsible">
+						<div class="name">Table 1: Base Table</div>
+					</button>
+					<div class="item content">
+						<table id="race-table">
+							<tbody>
+								<tr>
+									<th>1d100</th>
+									<th>Result</th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button class="collapsible">
+						<div class="name">Table 2: Sex (Optional)</div>
+					</button>
+					<div class="item content">
+						<table>
+							<tbody>
+								<tr>
+									<th>1d100</th>
+									<th>Result</th>
+								</tr>
+								<tr>
+									<td>1-50</td>
+									<td>Female</td>
+								</tr>
+								<tr>
+									<td>51-100</td>
+									<td>Male</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button class="collapsible">
+						<div class="name">Table 3: Successfulness</div>
+					</button>
+					<div class="item content">
+						<p>
+							Even the most powerful spellcasters make mistakes! Roll on this table even when the caster is using optimal conditions. If something is VERY wrong, jump ahead to the following tables:
+							<ul style="font-size:inherit; font-weight: inherit">
+								<li>
+									If the caster uses sub-optimal component pieces, roll on the Mutation table 1-3 times depending on how bad the components are as determined by the DM
+								</li>
+								<li>
+									If the caster uses the wrong component pieces, learned the spell wrong, or the spell is interrupted or sabotaged, roll on the Whoops! table
+								</li>
+								<li>
+									If there is some kind of outside magical influence, such as a fiend, fey, powerful undead, or deity affecting the weave of the area, or the spell is being cast in a plane such as Shadowfell or the Feywilds, roll of the table that best matches that kind of influence in the Magical Distortions section.
+								</li>
+							</ul>
+						</p>
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Result</th>
+								</tr>
+								<tr>
+									<td>1-15</td>
+									<td>
+										Success. Take result from Base table
+									</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>
+										Mixed Success. Roll on the Mutation table once and add results to base race
+									</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>
+										Mixed Success. Roll on the Mutation table twice and add results to base race
+									</td>
+								</tr>
+								<tr>
+									<td>18-19</td>
+									<td>
+										Mixed Success. Roll on the Mutation table thrice and add results to base race
+									</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>
+										Failure. Roll on the Whoops! table and add results to base race unless the result asks for you to roll on the Exotic Races table
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div id="Mistakes">
+					<h2>Mistakes</h2>
+
+					<button class="collapsible">
+						Mutations
+					</button>
+					<div id="Mutations" class="content">
+						<p>
+							Well... something went a little awry, but it could be worse! Roll
+							away! If your base race already has the feature that the
+							mutation describes, tough luck, roll again!
+						</p>
+						<div class="item">
+							<div class="name">Mutations</div>
+							<table>
+								<tbody>
+									<tr>
+										<th>1d100</th>
+										<th>Mutation</th>
+									</tr>
+									<tr>
+										<td>1-2</td>
+										<td>You have twice the normal amount of eyes as your race</td>
+									</tr>
+									<tr>
+										<td>3-4</td>
+										<td>You have twice the normal amount of arms as your race</td>
+									</tr>
+									<tr>
+										<td>5-6</td>
+										<td>You grow wings and a flying speed equal to your land speed</td>
+									</tr>
+									<tr>
+										<td>7-8</td>
+										<td>You develop fiendish traits including horns, glowing eyes, and sharp teeth</td>
+									</tr>
+									<tr>
+										<td>9-10</td>
+										<td>You are half the size your race normally is and your Strength score decreases by 2</td>
+									</tr>
+									<tr>
+										<td>11-12</td>
+										<td>You are twice the size that your race normally is and your Strength score increases by 2</td>
+									</tr>
+									<tr>
+										<td>13-14</td>
+										<td>You are covered in horrible scars or deformities and your Charisma score is reduced by 1</td>
+									</tr>
+									<tr>
+										<td>15-16</td>
+										<td>Chimera! Roll on the Base race table again. You are now a mixture of those two races. The DM decides how these mix</td>
+									</tr>
+									<tr>
+										<td>17-18</td>
+										<td>You are blind, but have blindsight up to a 30 ft radius</td>
+									</tr>
+									<tr>
+										<td>19-20</td>
+										<td>You are deaf, but have extraordinary eyesight and gain advantage on perception and investigation checks that rely on sight.</td>
+									</tr>
+									<tr>
+										<td>21-22</td>
+										<td>Your Strength score decreases by 4 but your Intelligence score increases by 4</td>
+									</tr>
+									<tr>
+										<td>23-24</td>
+										<td>You resemble your base race, but are made completely out of plant matter and are vulnerable to fire damage but you do not need to eat</td>
+									</tr>
+									<tr>
+										<td>25-26</td>
+										<td>You are an amphibious version of your race, can breathe underwater, and gain a swimming speed equal to your land speed</td>
+									</tr>
+									<tr>
+										<td>27-28</td>
+										<td>You age at half the speed of your base race</td>
+									</tr>
+									<tr>
+										<td>29-30</td>
+										<td>You age at twice the speed of your base race</td>
+									</tr>
+									<tr>
+										<td>31-32</td>
+										<td>You are mute, but can communicate telepathically to intelligent creatures within 30 ft of you. You can only do this to one creature at a time, but they need not share a language with you to understand you</td>
+									</tr>
+									<tr>
+										<td>33-34</td>
+										<td>Bad luck! You have a degenerative disease that will kill you unless it is cured with a greater restoration or wish spell! Your Constitution score is 7 and reduces by 1 every 24 hours until you die! How fun!</td>
+									</tr>
+									<tr>
+										<td>35-36</td>
+										<td>You're a natural-born lycanthrope... sort of. Roll on the lycanthropy subrace chart</td>
+									</tr>
+									<tr>
+										<td>37-38</td>
+										<td>Your tongue is like a frog's and is as long as you are tall</td>
+									</tr>
+									<tr>
+										<td>39-40</td>
+										<td>Your body is translucent</td>
+									</tr>
+									<tr>
+										<td>41-42</td>
+										<td>You are an unnaturally beautiful specimen, your Charisma increases by 1</td>
+									</tr>
+									<tr>
+										<td>43-44</td>
+										<td>You curse everyone who touches you with mummy rot! Hope you didn't have an SO!</td>
+									</tr>
+									<tr>
+										<td>45-46</td>
+										<td>You glow in the dark</td>
+									</tr>
+									<tr>
+										<td>47-48</td>
+										<td>Your skin is a strange and unnatural color for your race</td>
+									</tr>
+									<tr>
+										<td>49-50</td>
+										<td>You are covered in scales</td>
+									</tr>
+									<tr>
+										<td>51-52</td>
+										<td>You are paralyzed from the waist down</td>
+									</tr>
+									<tr>
+										<td>53-54</td>
+										<td>You have an exoskeleton which grants you a natural AC of 13</td>
+									</tr>
+									<tr>
+										<td>55-56</td>
+										<td>You have an eye in the middle of your forehead and can cast scrying once per long rest without the use of a crystal ball or mirror</td>
+									</tr>
+									<tr>
+										<td>57-58</td>
+										<td>You are reincarnated as a skeletal version of your base race</td>
+									</tr>
+									<tr>
+										<td>59-60</td>
+										<td>You are reincarnated as a child</td>
+									</tr>
+									<tr>
+										<td>61-62</td>
+										<td>You are reincarnated as an elderly person</td>
+									</tr>
+									<tr>
+										<td>63-64</td>
+										<td>You have a tail</td>
+									</tr>
+									<tr>
+										<td>65-66</td>
+										<td>Your arms are dexterous prehensile tentacles. Your reach increases by 5 ft</td>
+									</tr>
+									<tr>
+										<td>67-68</td>
+										<td>Your body is made out of crystal</td>
+									</tr>
+									<tr>
+										<td>69-70</td>
+										<td>Your fingers end in long, sharp claws which do 1d6 slashing damage</td>
+									</tr>
+									<tr>
+										<td>71-72</td>
+										<td>You are an albino</td>
+									</tr>
+									<tr>
+										<td>73-74</td>
+										<td>Shifter! Roll again on the Base race table. You can now shift between your base races whenever you complete a long rest</td>
+									</tr>
+									<tr>
+										<td>75-76</td>
+										<td>You do not need to blink and do not have eyelids</td>
+									</tr>
+									<tr>
+										<td>77-78</td>
+										<td>You mimic sounds in the same way as a Kenku, but cannot speak normally</td>
+									</tr>
+									<tr>
+										<td>79-80</td>
+										<td>You are repulsed by the taste of vegetable matter and can only eat meat</td>
+									</tr>
+									<tr>
+										<td>81-82</td>
+										<td>You are repulsed by the taste of meat and can only eat vegetable matter</td>
+									</tr>
+									<tr>
+										<td>83-84</td>
+										<td>You gain empathic abilities that lets you intuitively know the surface emotions of those around you</td>
+									</tr>
+									<tr>
+										<td>85-86</td>
+										<td>Your legs are replaced by a mass of tentacles. Your land speed stays the same</td>
+									</tr>
+									<tr>
+										<td>87-88</td>
+										<td>Centaur-ish! You have the lower half of a random animal from the animal types table</td>
+									</tr>
+									<tr>
+										<td>89-90</td>
+										<td>You have a mass of boney spines growing from your back</td>
+									</tr>
+									<tr>
+										<td>91-92</td>
+										<td>Your genitalia is... unusual in some way</td>
+									</tr>
+									<tr>
+										<td>93-94</td>
+										<td>You have the antlers of a deer</td>
+									</tr>
+									<tr>
+										<td>95-96</td>
+										<td>You have mouths on your palms</td>
+									</tr>
+									<tr>
+										<td>97-98</td>
+										<td>You can change your hair color and style at will</td>
+									</tr>
+									<tr>
+										<td>99-00</td>
+										<td>Congratulations! You're magic! Roll on the Sorcery and Other Powers table!</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
+					<button class="collapsible">
+						Whoops!
+					</button>
+					<div id="Whoops" class="content">
+						<p>
+							Well son, you done fucked up. Something really bad
+							happened. Your spell was sabotaged, those expensive
+							components you bought were actually just made of paper
+							mache, you mumbled the last word of the incantation and
+							now all you can say is "Whoops!"
+						</p>
+						<div class="item">
+							<div class="name">Whoops!</div>
+							<table>
+								<tbody>
+									<tr>
+										<th>1d20</th>
+										<th>Mishap</th>
+									</tr>
+									<tr>
+										<td>1-10</td>
+										<td>The target is brought back as a race from the Exotic Races table</td>
+									</tr>
+									<tr>
+										<td>11-13</td>
+										<td>The target is brought back as a race from the Exotic Races table with one mutation from the Mutations table</td>
+									</tr>
+									<tr>
+										<td>14</td>
+										<td>The target is brought back as a zombie of the base race they rolled and retains their personality, mental ability scores, class levels, etc.</td>
+									</tr>
+									<tr>
+										<td>15</td>
+										<td>The target is brought back as a skeleton of the base race they rolled and retains their personality, mental ability scores, class levels, etc.</td>
+									</tr>
+									<tr>
+										<td>16</td>
+										<td>The target is brought back as a vampiric version of their old self. The DM chooses whether or not they are in control of this vampire, if the player retains their alignment and personality, etc.</td>
+									</tr>
+									<tr>
+										<td>17</td>
+										<td>The target is brought back under the effects of the feeblemind spell</td>
+									</tr>
+									<tr>
+										<td>18</td>
+										<td>The target is brought back as a familiar to the caster as described in the find familiar spell. They retain their personality, mental ability scores, and knowledge but cannot use their class features</td>
+									</tr>
+									<tr>
+										<td>19</td>
+										<td>The target's soul is brought back and instead of going into the new body created by reincarnate, goes into the nearest full suit of plate armor and becomes animated armor. They retain their personality, mental ability scores, class levels, etc.</td>
+									</tr>
+									<tr>
+										<td>20</td>
+										<td>The target's soul is brought back and instead of going into the new body created by reincarnate, goes into the nearest tree, shrub, etc. and becomes an awakened plant. They retain their personality, mental ability scores, class levels, etc.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<button class="collapsible">
+						Exotic Races
+					</button>
+					<div id="ExoticRaces" class="content">
+						<p>
+							Well, you ended up here one way or another. Someone's life is
+							about to seriously change. Are you ready for that? No matter
+							what is rolled the person being reincarnated still remembers
+							their previous life as they would normally, retains their
+							mental ability scores, their class levels, their alignment, and
+							their personality.
+						</p>
+						<div class="item">
+							<table>
+								<tbody>
+									<tr>
+										<th>1d100</th>
+										<th>Race</th>
+									</tr>
+									<tr>
+										<td>1-2</td>
+										<td>Dryad</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Nymph</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Satyr</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>Selkie</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>Troglodyte</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>Doppelganger</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>Myconid</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td>Cambion</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td>Half-Dragon*</td>
+									</tr>
+									<tr>
+										<td>11</td>
+										<td>Rakshasa</td>
+									</tr>
+									<tr>
+										<td>12</td>
+										<td>Half-Demon*</td>
+									</tr>
+									<tr>
+										<td>13</td>
+										<td>Half- Devil*</td>
+									</tr>
+									<tr>
+										<td>14</td>
+										<td>Spriggan</td>
+									</tr>
+									<tr>
+										<td>15</td>
+										<td>Awakened Golem*</td>
+									</tr>
+									<tr>
+										<td>16</td>
+										<td>Shardmind</td>
+									</tr>
+									<tr>
+										<td>17</td>
+										<td>Oni</td>
+									</tr>
+									<tr>
+										<td>18</td>
+										<td>Yeti</td>
+									</tr>
+									<tr>
+										<td>19</td>
+										<td>Half-Dryad</td>
+									</tr>
+									<tr>
+										<td>20</td>
+										<td>Pixie</td>
+									</tr>
+									<tr>
+										<td>21</td>
+										<td>Dragon Wyrmling*</td>
+									</tr>
+									<tr>
+										<td>22</td>
+										<td>Illithid</td>
+									</tr>
+									<tr>
+										<td>23</td>
+										<td>Demon*</td>
+									</tr>
+									<tr>
+										<td>24</td>
+										<td>Devil*</td>
+									</tr>
+									<tr>
+										<td>25</td>
+										<td>Hag*</td>
+									</tr>
+									<tr>
+										<td>26</td>
+										<td>Elemental*</td>
+									</tr>
+									<tr>
+										<td>27</td>
+										<td>Drider</td>
+									</tr>
+									<tr>
+										<td>28</td>
+										<td>Darkling</td>
+									</tr>
+									<tr>
+										<td>29</td>
+										<td>Quickling</td>
+									</tr>
+									<tr>
+										<td>30</td>
+										<td>Ghoul</td>
+									</tr>
+									<tr>
+										<td>31</td>
+										<td>Medusa</td>
+									</tr>
+									<tr>
+										<td>32</td>
+										<td>Mimic</td>
+									</tr>
+									<tr>
+										<td>33</td>
+										<td>Gargoyle</td>
+									</tr>
+									<tr>
+										<td>34</td>
+										<td>Giant*</td>
+									</tr>
+									<tr>
+										<td>35</td>
+										<td>Slaad*</td>
+									</tr>
+									<tr>
+										<td>36</td>
+										<td>Boggle</td>
+									</tr>
+									<tr>
+										<td>37</td>
+										<td>Firenewt</td>
+									</tr>
+									<tr>
+										<td>38</td>
+										<td>Deep Scion</td>
+									</tr>
+									<tr>
+										<td>39</td>
+										<td>Flumph</td>
+									</tr>
+									<tr>
+										<td>40</td>
+										<td>Galeb Duhr</td>
+									</tr>
+									<tr>
+										<td>41</td>
+										<td>Ooze*</td>
+									</tr>
+									<tr>
+										<td>42</td>
+										<td>Gnoll</td>
+									</tr>
+									<tr>
+										<td>43</td>
+										<td>Grung*</td>
+									</tr>
+									<tr>
+										<td>44</td>
+										<td>Harpy</td>
+									</tr>
+									<tr>
+										<td>45</td>
+										<td>Redcap</td>
+									</tr>
+									<tr>
+										<td>46</td>
+										<td>Siren</td>
+									</tr>
+									<tr>
+										<td>47</td>
+										<td>Sprite</td>
+									</tr>
+									<tr>
+										<td>48</td>
+										<td>Lamia</td>
+									</tr>
+									<tr>
+										<td>49</td>
+										<td>Merperson</td>
+									</tr>
+									<tr>
+										<td>50</td>
+										<td>Tlincalli</td>
+									</tr>
+									<tr>
+										<td>51</td>
+										<td>Yuan-Ti (non-pureblood of player's choice)</td>
+									</tr>
+									<tr>
+										<td>52</td>
+										<td>Vegepygmy</td>
+									</tr>
+									<tr>
+										<td>53</td>
+										<td>Wood Woad</td>
+									</tr>
+									<tr>
+										<td>54</td>
+										<td>Banshee</td>
+									</tr>
+									<tr>
+										<td>55</td>
+										<td>Beholder</td>
+									</tr>
+									<tr>
+										<td>56</td>
+										<td>Half-Giant*</td>
+									</tr>
+									<tr>
+										<td>57</td>
+										<td>Brokkos</td>
+									</tr>
+									<tr>
+										<td>58</td>
+										<td>Ratfolk</td>
+									</tr>
+									<tr>
+										<td>59</td>
+										<td>Giff</td>
+									</tr>
+									<tr>
+										<td>60</td>
+										<td>Loxodon</td>
+									</tr>
+									<tr>
+										<td>61</td>
+										<td>Wilkoss</td>
+									</tr>
+									<tr>
+										<td>62</td>
+										<td>Bloodfin</td>
+									</tr>
+									<tr>
+										<td>63</td>
+										<td>Icenewt</td>
+									</tr>
+									<tr>
+										<td>64</td>
+										<td>Bearfolk</td>
+									</tr>
+									<tr>
+										<td>65</td>
+										<td>Simian</td>
+									</tr>
+									<tr>
+										<td>66</td>
+										<td>Vedalken</td>
+									</tr>
+									<tr>
+										<td>67</td>
+										<td>Mind-Flayer</td>
+									</tr>
+									<tr>
+										<td>68</td>
+										<td>Thri-Keen</td>
+									</tr>
+									<tr>
+										<td>69</td>
+										<td>Bullywug</td>
+									</tr>
+									<tr>
+										<td>70</td>
+										<td>Nsoki</td>
+									</tr>
+									<tr>
+										<td>71</td>
+										<td>Sahuagin</td>
+									</tr>
+									<tr>
+										<td>72</td>
+										<td>Merfolk</td>
+									</tr>
+									<tr>
+										<td>73</td>
+										<td>Kuo-toa</td>
+									</tr>
+									<tr>
+										<td>74</td>
+										<td>Nereid</td>
+									</tr>
+									<tr>
+										<td>75</td>
+										<td>Khenra</td>
+									</tr>
+									<tr>
+										<td>76</td>
+										<td>Naga</td>
+									</tr>
+									<tr>
+										<td>77</td>
+										<td>Aven</td>
+									</tr>
+									<tr>
+										<td>78</td>
+										<td>Kor</td>
+									</tr>
+									<tr>
+										<td>79</td>
+										<td>Aetherborn</td>
+									</tr>
+									<tr>
+										<td>80</td>
+										<td>Vampire</td>
+									</tr>
+									<tr>
+										<td>81-99</td>
+										<td>Reroll</td>
+									</tr>
+									<tr>
+										<td>100</td>
+										<td>DM chooses</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<button class="collapsible">
+						Sorcery and Other Powers
+					</button>
+					<div id="SorceryAndOtherPowers" class="content">
+						<div class="item">
+							<table>
+								<tbody>
+									<tr>
+										<th>1d20</th>
+										<th>Powers</th>
+									</tr>
+									<tr>
+										<td>1d20</td>
+										<td>Powers</td>
+									</tr>
+									<tr>
+										<td>1-2</td>
+										<td>Draconic Sorcery*</td>
+									</tr>
+									<tr>
+										<td>3-4</td>
+										<td>Wild Sorcery</td>
+									</tr>
+									<tr>
+										<td>5-6</td>
+										<td>Divine Soul</td>
+									</tr>
+									<tr>
+										<td>7-8</td>
+										<td>Storm Sorcery</td>
+									</tr>
+									<tr>
+										<td>9-10</td>
+										<td>Phoenix Sorcery</td>
+									</tr>
+									<tr>
+										<td>11-12</td>
+										<td>Stone Sorcery</td>
+									</tr>
+									<tr>
+										<td>13-14</td>
+										<td>Sea Sorcery</td>
+									</tr>
+									<tr>
+										<td>15-16</td>
+										<td>Shadow Magic</td>
+									</tr>
+									<tr>
+										<td>17-18</td>
+										<td>Psionic Powers</td>
+									</tr>
+									<tr>
+										<td>19-20</td>
+										<td>Player Choice of Power</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						*roll on the dragon types table
+
+						<div id="PowerElaboration" class="aside">
+							<h4>
+								Power Elaboration
+							</h4>
+							<p>
+								For the most part, the powers in the previous table simply correspond to sorcerer classes, but if the player rolls psionic powers there are a few options. They could gain access to mystic levels, or could gain the ability to speak telepathically, or gain a use of rary's telepathic bond twice per long rest, or the ability to lift objects telekinetically, using their Intelligence to calculate the amount they can lift instead of Strength. It's really up to the player and their DM to collaborate on.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div id="Subraces">
+					<h2>
+						Subraces
+					</h2>
+					<p>
+						The following section contains tables for
+						randomly generating various subraces such as
+						dragon type, tiefling ancestry, goblinoid kind,
+						elf race, demon or devil type, etc.
+					</p>
+					<button class="collapsible">
+						Standard Subraces
+					</button>
+					<div id="StandardSubraces" class="content">
+
+						<div class="item">
+							<div class="name">Elf</div>
+							<table>
+								<tbody>
+									<tr>
+										<th>1d8</th>
+										<th>Subrace</th>
+									</tr>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>High Elf</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Wood Elf</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Drow</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Eladrin</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>Sea Elf</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>Avariel</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>Grugach</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>Shadar-Kai</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="item">
+							<div class="name">Geniekin/Genasi</div>
+							<table>
+								<tbody>
+									<tr>
+										<th>1d10</th>
+										<th>Subrace</th>
+									</tr>
+									<tr>
+										<td>1-2</td>
+										<td>Oread (Earth)</td>
+									</tr>
+									<tr>
+										<td>3-4</td>
+										<td>Ifrit (Fire)</td>
+									</tr>
+									<tr>
+										<td>5-6</td>
+										<td>Undine (Water)</td>
+									</tr>
+									<tr>
+										<td>7-8</td>
+										<td>Sylph (Air)</td>
+									</tr>
+									<tr>
+										<td>9-10</td>
+										<td>Suli (All)</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="item">
+							<div class="name">Gnome</div>
+							<table>
+								<tbody>
+									<tr>
+										<th>1d4</th>
+										<th>Subrace</th>
+									</tr>
+									<tr>
+										<td>1-2</td>
+										<td>Bleachling</td>
+									</tr>
+									<tr>
+										<td>3-4</td>
+										<td>Feychild</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<button class="collapsible">
+						Exotic Subraces
+					</button>
+					<div id="ExoticSubraces" class="content">
+						<div class="item">
+							<div class="name">Demon Types</div>
+							<table>
+								<tbody>
+									<tr>
+										<th>1d12</th>
+										<th>Subrace</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>Armanite</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Babau</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Barlgura</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Bulezau</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>Dybbuk</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>Hezrou</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>Marilith</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>Maurezhi</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td>Nabassu</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td>Shadow Demon</td>
+									</tr>
+									<tr>
+										<td>11</td>
+										<td>Tanarukk</td>
+									</tr>
+									<tr>
+										<td>12</td>
+										<td>Vrock</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="item">
+							<div class="name">Devil Types</div>
+							<table>
+								<tbody>
+									<tr>
+										<th>1d12</th>
+										<th>Subrace</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>Abishai (roll on kobold subclass table for chromatic type)</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Barbed Devil</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Bearded Devil</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Bone Devil</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>Chain Devil</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>Erinyes</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>Horned Devil</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>Narzugon</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td>Orthon</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td>Pit Fiend</td>
+									</tr>
+									<tr>
+										<td>11</td>
+										<td>Spined Devil</td>
+									</tr>
+									<tr>
+										<td>12</td>
+										<td>Succubus/Incubus</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="item">
+							<div class="name">Golem</div>
+							<table>
+								<tbody>
+									<tr>
+										<th>1d6</th>
+										<th>Subrace</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>Bone</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Clay</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Flesh</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Gemstone</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>Glass</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>Metal</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td>Stone</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td>Wood</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="item">
+							<div class="name">Hag</div>
+							<table>
+								<tbody>
+									<tr>
+										<th>1d6</th>
+										<th>Subrace</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>Annis Hag</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Bheur Hag</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Green Hag</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Night Hag</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>Red Hag</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td>Void Hag</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="item">
+							<div class="name">Ooze</div>
+							<table>
+								<tbody>
+									<tr>
+										<th>1d10</th>
+										<th>Subrace</th>
+									</tr>
+									<tr>
+										<td>1-2</td>
+										<td>Adult Oblex</td>
+									</tr>
+									<tr>
+										<td>3-4</td>
+										<td>Black Pudding</td>
+									</tr>
+									<tr>
+										<td>5-6</td>
+										<td>Gray Ooze</td>
+									</tr>
+									<tr>
+										<td>7-8</td>
+										<td>Ochre Jelly</td>
+									</tr>
+									<tr>
+										<td>9-10</td>
+										<td>Slithering Tracker</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div id="MagicalDistortions">
+					<h2>
+						Magical Distortions
+					</h2>
+					<p>
+						This section is meant to be used when a
+						character has casted reincarnate in an unusual
+						place, be it a plane of existence which is not
+						the material plane, or in the heart of a
+						vampire's lair. Find the table in this section
+						that best fits the magics affecting the spell and
+						roll on it, applying the results as needed. If the
+						description on the table matches a trait your race already has
+						(for example, if you've already rolled an Elf and then roll on
+						the Fey table to add the fey ancestry and trance traits) roll
+						again.
+					</p>
+					<p>
+						No matter what is rolled the person being reincarnated still
+						remembers their previous life as they would normally, retains
+						their mental ability scores, their class levels, their alignment,
+						and their personality.
+					</p>
+					<button class="collapsible">
+						Necrotic
+					</button>
+					<div class="item content">
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Result</th>
+								</tr>
+								<tr>
+									<td>1-6</td>
+									<td>
+										The target is reincarnated as a skeletal version of what they rolled on the base table
+									</td>
+								</tr>
+								<tr>
+									<td>7-11</td>
+									<td>
+										The target is reincarnated as a zombie version of what they rolled on the base table
+									</td>
+								</tr>
+								<tr>
+									<td>12</td>
+									<td>
+										The target is reincarnated as a vampiric version of what they rolled on the base table
+									</td>
+								</tr>
+								<tr>
+									<td>13</td>
+									<td>
+										The target is reincarnated as a ghoulish version of what they rolled on the base table
+									</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>
+										Roll on the Exotic Races table, the target is brought back as a skeletal version of that race
+									</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>
+										The target is reincarnated as a wight version of what they rolled on the base table
+									</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>
+										The target is reincarnated as a revenant version of what they rolled on the base table
+									</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but with a powerful undead taking an interest in them
+									</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but with a level in shadow magic sorcery
+									</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but with pure black eyes and grey skin. They have darkvision up to 120 ft
+									</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but is healed by necrotic energy (such as inflict wounds) and harmed by positive energy (such as cure wounds)
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button class="collapsible">
+						Fey
+					</button>
+					<div class="item content">
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Result</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>
+										The target is reincarnated as a pixie or sprite
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>
+										The target is reincarnated as an awakened plant
+									</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>
+										The target is reincarnated as an Eladrin
+									</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>
+										The target is reincarnated as a Satyr
+									</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>
+										The target is reincarnated as a Spriggan
+									</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>
+										The target is reincarnated as a Doppelganger
+									</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but with a powerful fey taking an interest in them
+									</td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but with a set of antlers
+									</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but with a set of butterfly or dragonfly wings, granting them a 30 ft flying speed
+									</td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they gain the fey ancestry and trance traits
+									</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they learn Sylvan
+									</td>
+								</tr>
+								<tr>
+									<td>12</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they gain physical traits resembling those of a type of hag, such as green skin, warts, or slimey skin
+									</td>
+								</tr>
+								<tr>
+									<td>13</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they can speak to animals
+									</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they can speak to plants
+									</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but with a strange and detrimental fey curse determined by the DM
+									</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they are made completely out of plant matter and are vulnerable to fire damage and do not need to eat
+									</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but the lower half of their body is that of a deer or stag
+									</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but their eyes are an unusual color and twinkle like stars at twilight
+									</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>
+										The caster grows a set of butterfly or dragonfly wings, but the target is not reincarnated
+									</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>
+										The caster grows a set of antlers, but the target is not reincarnated
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button class="collapsible">
+						Celestial
+					</button>
+					<div class="item content">
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Result</th>
+								</tr>
+								<tr>
+									<td>1-10</td>
+									<td>
+										The target is reincarnated as an aasimar*
+									</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they gain a set of angelic wings, granting them a 30 ft flying speed
+									</td>
+								</tr>
+								<tr>
+									<td>12</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they are exceptionally beautiful and gain 2 charisma
+									</td>
+								</tr>
+								<tr>
+									<td>13</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they are marked with the symbol of a god, goddess, or powerful angel
+									</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they gain the Scourge Aasimar's Radiant Consumption ability
+									</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they gain a selection of celestial traits typical to aasimar, such as clear skin, white hair, glowing eyes, feathers instead of hair, or glowing patterns across their skin
+									</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they gain the paladin's Divine Sense power
+									</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they learn Celestial
+									</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but can cast cure wounds once per short rest without expending a spell slot
+									</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but can cast zone of truth once per short rest without expending a spell slot
+									</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>
+										The target is reincarnated as an angel
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button class="collapsible">
+						Fiendish Distortions
+					</button>
+					<div class="item content">
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Result</th>
+								</tr>
+								<tr>
+									<td>1-10</td>
+									<td>
+										The target is reincarnated as a tiefling*
+									</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>
+										The target is reincarnated as a half-devil*
+									</td>
+								</tr>
+								<tr>
+									<td>12</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they gain a set of devilish wings, granting them a 30 ft flying speed
+									</td>
+								</tr>
+								<tr>
+									<td>13</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they are exceptionally beautiful and gain 2 charisma
+									</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they are exceptionally hideous and lose 2 charisma (to a minimum of 1)
+									</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they are marked with the symbol of a powerful fiend
+									</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they gain a selection of fiendish traits typical to tieflings, such as horns, golden or red eyes, scales, cloven feet, six fingers, no cast shadow, no reflection, a tail, a forked tongue or smelling of brimstone
+									</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they learn Infernal
+									</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but they learn Abyssal
+									</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but gains resistance to fire damage and is vulnerable to radiant damage
+									</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>
+										The target is reincarnated as a demon or devil* (player choice)
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div id="ElementalDistortions">
+					<h2>
+						Elemental Distortions
+					</h2>
+					<button class="collapsible">
+						Fire
+					</button>
+					<div class="item content">
+						<div class="name">Fire</div>
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Result</th>
+								</tr>
+								<tr>
+									<td>1-10</td>
+									<td>
+										The target is reincarnated as a fire Genasi
+									</td>
+								</tr>
+								<tr>
+									<td>11-13</td>
+									<td>
+										The target is reincarnated as a fire elemental
+									</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but gains resistance to fire damage
+									</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but their eyes glow with the flames of an endless furnace
+									</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but becomes vulnerable to cold damage
+									</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but can cast burning hands at will as a first level spell can cast burning hands at will as a first level spell
+									</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but has hair made of fire and is immune to fire damage
+									</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but has veins that glow like magma
+									</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but gains a level in phoenix sorcery
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button class="collapsible">
+						Water
+					</button>
+					<div class="item content">
+						<div class="name">Water</div>
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Result</th>
+								</tr>
+								<tr>
+									<td>1-10</td>
+									<td>
+										The target is reincarnated as a water Genasi
+									</td>
+								</tr>
+								<tr>
+									<td>11-13</td>
+									<td>
+										The target is reincarnated as a water elemental
+									</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but gains resistance to cold damage
+									</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but their eyes look like deep, endless pools of water
+									</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but must submerge in water once every three days or gain one level of exhaustion as they dry up
+									</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but can cast ice knife at will as a first level spell
+									</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but gains webbed toes and fingers, gaining a swimming speed equal to their land speed
+									</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but has fish scales and a few vestigal fins
+									</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but gains a level in sea sorcery
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button class="collapsible">
+						Earth
+					</button>
+					<div class="item content">
+						<div class="name">Earth</div>
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Result</th>
+								</tr>
+								<tr>
+									<td>1-10</td>
+									<td>
+										The target is reincarnated as an earth Genasi
+									</td>
+								</tr>
+								<tr>
+									<td>11-13</td>
+									<td>
+										The target is reincarnated as an earth elemental
+									</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but gains resistance to bludgeoning damage
+									</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but their eyes appear to be made of gemstones
+									</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but is abnormally dense and heavy, their base land speed is lowered by 5 ft
+									</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but can cast earth tremor at will as a first level spell
+									</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but is made of crystal, and has resistance to piercing, slashing, and bludgeoning damage from non-magical weapons
+									</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but has skin textured like marble or layers of sandstone
+									</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>
+										The target is reincarnated as the race they rolled on the base table, but gains a level in stone sorcery
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button class="collapsible">
+						Air
+					</button>
+					<div class="item content">
+						<div class="name">Air</div>
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Result</th>
+								</tr>
+								<tr>
+									<td>1-10</td>
+									<td>
+										The target is reincarnated as an air Genasi
+									</td>
+								</tr>
+								<tr>
+									<td>11-13</td>
+									<td>
+										The target is reincarnated as an air elemental
+									</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>
+										The target is reincarnated as the race they rolled on
+										the base table, but gains resistance to lightning
+										damage
+									</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>
+										The target is reincarnated as the race they rolled on
+										the base table, but their eyes appear to crackle with
+										electricity
+
+									</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>
+										The target is reincarnated as the race they rolled on
+										the base table, but gains a severe fear of being
+										underground, and has disadvantage on all skill
+										checks and saving throws while underground.
+									</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>
+										The target is reincarnated as the race they rolled on
+										the base table, but can cast feather fall at will
+									</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>
+										The target is reincarnated as the race they rolled on
+										the base table, but gains power over the winds,
+										gifting them with a flying speed equal to their land
+										speed. They also can hover up to a foot in the air
+										and travel this way instead of walking
+									</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>
+										The target is reincarnated as the race they rolled on
+										the base table, but has feathers instead of hair and
+										weighs half as much as they appear they should
+									</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>
+										The target is reincarnated as the race they rolled on
+										the base table, but gains a level in storm sorcery
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div id="OtherTables">
+					<h2>
+						Other Tables
+					</h2>
+					<button class="collapsible">
+						Animal Types
+					</button>
+					<div class="item content">
+						<table>
+							<tbody>
+								<tr>
+									<th>1d20</th>
+									<th>Animal</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>Big Cat</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Bear</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Camel</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Deer/Elk/Stag</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>Dog</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>Snake</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>Lizard</td>
+								</tr>
+								<tr>
+									<td>8</td>
+									<td>Crab/Lobster</td>
+								</tr>
+								<tr>
+									<td>9</td>
+									<td>Octopus</td>
+								</tr>
+								<tr>
+									<td>10</td>
+									<td>Fish</td>
+								</tr>
+								<tr>
+									<td>11</td>
+									<td>Frog</td>
+								</tr>
+								<tr>
+									<td>12</td>
+									<td>Boar</td>
+								</tr>
+								<tr>
+									<td>13</td>
+									<td>Bird</td>
+								</tr>
+								<tr>
+									<td>14</td>
+									<td>Goat</td>
+								</tr>
+								<tr>
+									<td>15</td>
+									<td>Scorpion/Spider</td>
+								</tr>
+								<tr>
+									<td>16</td>
+									<td>Wasp</td>
+								</tr>
+								<tr>
+									<td>17</td>
+									<td>Rhino</td>
+								</tr>
+								<tr>
+									<td>18</td>
+									<td>Sea Horse</td>
+								</tr>
+								<tr>
+									<td>19</td>
+									<td>Wolf</td>
+								</tr>
+								<tr>
+									<td>20</td>
+									<td>Horse</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<button class="collapsible">
+						Lycanthropy
+					</button>
+					<div class="item content">
+						<table>
+							<tbody>
+								<tr>
+									<th>1d6</th>
+									<th>Curse</th>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>Tiger</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Bear</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Wolf</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Boar</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>Rat</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>Raven</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

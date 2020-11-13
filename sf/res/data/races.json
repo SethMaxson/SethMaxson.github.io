@@ -1,0 +1,3567 @@
+{
+	"items": [
+		{
+			"name": "Aasimar",
+			"ID": "aasimar",
+			"ability": {
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Outsider (Native)",
+			"source": "AA2",
+			"page": 99,
+			"description": "More imposing and beautiful than their mundane kin, an aasimar has celestial ancestry. Aasimar are placed in the world to serve as guardians of law and good. Their patrons expect them to strike at evil, lead by example, and further the cause of justice. Whereas tieflings have fiendish blood in their veins, aasimar are the descendants of celestial beings. These folk generally appear as glorious humans with lustrous hair, flawless skin, and piercing eyes. Aasimar often attempt to pass as humans in order to right wrongs and defend goodness on the Material Plane without drawing undue attention to their celestial heritage. They strive to fit into society, although they usually rise to the top, becoming revered leaders and honorable heroes.",
+			"features": [
+				{
+					"name": "Celestial Radiance",
+					"description": "As a standard action, an aasimar can shed light, causing light within 10 feet of him to increase two steps, up to bright, and light for 10 more feet beyond that to increase one step, up to normal. This lasts for 1 minute, but the aasimar can dismiss it as a swift action. Magical darkness can decrease the light level in this area only if it’s from an item or creature of a level or CR higher than that of the aasimar. An aasimar can use this ability once per day, plus a number of times equal to half his CR or level."
+				},
+				{
+					"name": "Celestial Resistance",
+					"description": "Aasimars have resistance 5 to acid, cold, and electricity."
+				},
+				{
+					"name": "Skilled",
+					"description": "Naturally eloquent and perceptive, aasimars gain a +2 racial bonus to Diplomacy and Perception checks.",
+					"properties": [
+						{
+							"type": "skillModifier",
+							"properties": [
+								{
+									"name": "Diplomacy",
+									"value": 2
+								},
+								{
+									"name": "Perception",
+									"value": 2
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Anassanoi",
+			"ID": "anassanoi",
+			"ability": {
+				"con": -2,
+				"wis": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Anassanoi)",
+			"source": "DF05",
+			"page": 55,
+			"description": "The typical anassanoi is staunchly loyal, sympathetic, and effusive with friends. However, by human standards, anassanoi body language and facial expressions lack animation and emotion, despite the fact that an anassnoi has three eyes and two (vertical) mouths. Anassanois are natural telepaths and extremely open when communicating with telepathy, suffusing such exchanges with the feelings their physical gestures lack. This openness translates into emotional honesty, offering others a ready sense of who the speaking anassanoi is. An anassanoi who wants to avoid this openness can learn to suppress it by becoming practiced in deception, but few anassanois do so.",
+			"features": [
+				{
+					"name": "Blindsense",
+					"description": "Anassanois can sense thinking creatures with a range of 30 feet. They cannot sense mindless creatures or those immune to mind-affecting magic with this awareness."
+				},
+				{
+					"name": "Low-Light Blindness",
+					"description": " Anassanois treat dim light as if it were darkness."
+				},
+				{
+					"name": "Open",
+					"description": "Other creatures receive a +6 bonus to Sense Motive checks against an anassanoi who is using telepathy to communicate with them. Anassanois gain a +2 bonus to Diplomacy checks when using telepathy to communicate."
+				},
+				{
+					"name": "Telepathy",
+					"description": "Anassanois have telepathy with a range of 30 feet."
+				},
+				{
+					"name": "Third Eye",
+					"description": "Anassanois gain a +2 racial bonus to Perception and Sense Motive checks."
+				}
+			]
+		},
+		{
+			"name": "Android",
+			"ID": "android",
+			"ability": {
+				"dex": 2,
+				"int": 2,
+				"cha": -2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Android)",
+			"source": "CRB",
+			"page": 42,
+			"description": "Androids are artificial creatures with both biological and mechanical elements, originally created by humanity as servants and now free to chart their own destiny among the stars. ",
+			"features": [
+				{
+					"name": "Constructed",
+					"description": "For effects targeting creatures by type, androids count as both humanoids and constructs (whichever effect is worse). They receive a +2 racial bonus to saving throws against disease, mind-affecting effects, poison, and sleep, unless those effects specifically target constructs. In addition, androids do not breathe or suffer the normal environmental effects of being in a vacuum."
+				},
+				{
+					"name": "Exceptional Vision",
+					"description": "Androids have low-light vision and darkvision. As a result, they can see in dim light as if it were normal light, and they can see with no light source at all to a range of 60 feet in black and white only. See low-light vision and darkvision on pages 264 and 263."
+				},
+				{
+					"name": "Flat Affect",
+					"description": "Androids find emotions confusing and keep them bottled up. They take a –2 penalty to Sense Motive checks, but the DCs of Sense Motive checks attempted against them increase by 2."
+				},
+				{
+					"name": "Upgrade Slot",
+					"description": "Androids have a single armor upgrade slot in their bodies. Regardless of whether androids are wearing physical armor, they can use this slot to install any one armor upgrade that could be installed into light armor."
+				}
+			]
+		},
+		{
+			"name": "Astrazoan",
+			"ID": "astrazoan",
+			"ability": {
+				"dex": 2,
+				"con": -2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Aberration (Shapeshifter)",
+			"source": "PWD",
+			"page": 209,
+			"description": "The shapeshifting astrazoans have lived as humans, lashuntas, verthani and many other races for the past few centuries, but their origins are shrouded in mystery. As even they have no records of their beginnings, it is widely assumed they came into being at some point during the Gap. They have little in the way of their own culture and strive to find their place in the galaxy.",
+			"features": [
+				{
+					"name": "Change Form",
+					"description": "As a standard action, an astrazoan can physically alter their form to look like any Medium creature, as long as they have seen a similar creature before. They can attempt to either mimic a specific creature or look like a general creature of the chosen type. The astrazoan gains a +10 bonus to Disguise checks to appear as a creature of the type and subtype of the new form. The DC of the astrazoan’s Disguise check is not modified as a result of altering major features or if they disguise themself as an aberration or a humanoid (though the DC is still modified if the astrazoan attempts to disguise themself as a different creature type). The astrazoan can remain in an alternate form indefinitely (or until they take another form).",
+					"properties": [
+						{
+							"type": "skillModifier",
+							"properties": [
+								{
+									"name": "Disguise",
+									"value": 10
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Compression",
+					"description": "An astrazoan can move through an area as small as one-quarter their space without squeezing or one-eighth their space when squeezing."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Astrazoans can see up to 60 feet in the dark."
+				},
+				{
+					"name": "Many Forms",
+					"description": "For effects targeting creatures by type, astrazoans count as both aberrations and humanoids."
+				},
+				{
+					"name": "Rapid Revival",
+					"description": "Once per day, when an astrazoan takes a 10-minute rest to regain Stamina Points, they can additionally recover Hit Points as though they had taken a full night’s rest."
+				}
+			]
+		},
+		{
+			"name": "Bantrid",
+			"ID": "bantrid",
+			"ability": {
+				"dex": 2,
+				"con": 2,
+				"int": -2
+			},
+			"hp": 4,
+			"size": "Small",
+			"type": "Aberration",
+			"source": "PWD",
+			"page": 210,
+			"description": "Bantrid culture revolves around motion, from their ramped tower-dwellings to their treadmill-chairs. A bantrid who isn’t moving starts to feel an overwhelming dread akin to claustrophobia. If this lasts too long, the bantrid will simply leave wherever they are at the moment, despite the social consequences. A restrained bantrid will keen wildly and hyperventilate, usually passing out.",
+			"features": [
+				{
+					"name": "Anosmatic",
+					"description": "Bantrids have no sense of smell and are immune to sense-dependent effects that rely on smell."
+				},
+				{
+					"name": "Balanced",
+					"description": "Bantrids receive a +2 racial bonus to AC against trip combat maneuvers and can stand up from prone as a swift action."
+				},
+				{
+					"name": "Daredevil",
+					"description": "Bantrids receive a +2 racial bonus to Acrobatics checks."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Bantrids can see up to 60 feet in the dark."
+				},
+				{
+					"name": "Swift",
+					"description": "Bantrids have a land speed of 40 feet."
+				}
+			]
+		},
+		{
+			"name": "Barathu, early stage",
+			"ID": "barathu",
+			"ability": {
+				"dex": -2,
+				"con": 2,
+				"wis": 2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Aberration",
+			"source": "AA1",
+			"page": 21,
+			"features": [
+				{
+					"name": "Floaters",
+					"description": "Early stage barathus have a base speed of 0  feet and an extraordinary fly speed of 30 feet with average maneuverability."
+				},
+				{
+					"name": "Limited Telepathy",
+					"description": "Early stage barathus can communicate telepathically with any creatures within 30 feet with whom they share a language in common."
+				},
+				{
+					"name": "Strange Anatomy",
+					"description": "Early stage barathus gain a +1 racial bonus to Fortitude saving throws."
+				}
+			]
+		},
+		{
+			"name": "Bear, uplifted",
+			"ID": "bear",
+			"ability": {
+				"str": 2,
+				"int": 2,
+				"wis": -2
+			},
+			"hp": 6,
+			"size": "Large",
+			"type": "Magical Beast",
+			"source": "AA2",
+			"page": 17,
+			"description": "Uplifted animals are nonsapient creatures modified to increase their cognitive ability to full self-awareness, and sometimes also to make their physical forms better able to manipulate tools. Uplifted bears are among the most common uplifted animals, although who uplifted them and how are details lost to the Gap.",
+			"features": [
+				{
+					"name": "Climber",
+					"description": "Uplifted bears have a climb speed of 20 feet."
+				},
+				{
+					"name": "Ferocious Charge",
+					"description": "When the creature charges, it can attempt a trip combat maneuver in place of the normal melee attack. In addition, the creature can charge without taking the normal charge penalties to its attack roll or AC. If the creature has another ability that allows it to charge without taking these penalties (such as the charge attack ability from the soldier’s blitz fighting style), it also gains the ability to charge through difficult terrain."
+				},
+				{
+					"name": "Limited Augmentation",
+					"description": "The only augmentations that can be installed in an uplifted bear’s brain are datajacks and the mechanic’s custom rig."
+				},
+				{
+					"name": "Limited Telepathy",
+					"description": "Uplifted bears have limited telepathy with a range of 30 feet."
+				},
+				{
+					"name": "Low-light Vision",
+					"description": "Uplifted bears have low-light vision."
+				},
+				{
+					"name": "Natural Survivor",
+					"description": "Uplifted bears have a +2 racial bonus to Life Science and Survival checks.",
+					"properties": [
+						{
+							"type": "skillModifier",
+							"properties": [
+								{
+									"name": "Life Science",
+									"value": 2
+								},
+								{
+									"name": "Survival",
+									"value": 2
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Natural Weapons",
+					"description": "Uplifted bears have natural weapons that function like those of vesk (Starfinder Core Rulebook 52), except the bears’ natural weapons deal slashing damage."
+				},
+				{
+					"name": "Swift",
+					"description": "Uplifted bears have a land speed of 40 feet."
+				}
+			]
+		},
+		{
+			"name": "Bolida",
+			"ID": "bolida",
+			"ability": {
+				"str": 2,
+				"dex": -2,
+				"con": 2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Vermin",
+			"source": "AA2",
+			"page": 21,
+			"description": "Bolidas are arthropodan creatures that dwell not on the faces of the planets they inhabit, but far underground, in cave systems that are so deep below the surface that they are blasted by the unforgiving heat of the planets’ molten cores. The centipede-like creatures are protected from these extreme environs by metallic, chitinous plates that cover the entirety of their backs, from head to tail tip. This innate armor also protects them from subterranean hazards such as rock falls and the friction of traveling through cramped cave tunnels. Bolidas support themselves on their many sets of legs, holding only the uppermost portion of their bodies upright to wield weapons or manipulate objects. They have evolved over millions of years to thrive in darkness, and they therefore tend to avoid traveling up to the surface world; if they choose to live on a planet’s surface or a space station, they prefer to maintain nocturnal schedules, as sunlight blinds them if they’re not wearing protective eyewear.",
+			"features": [
+				{
+					"name": "Bolida Movement",
+					"description": "Bolidas have a land speed of 30 feet and a burrow speed of 30 feet."
+				},
+				{
+					"name": "Bolida Senses",
+					"description": "Bolidas have blindsense (vibration) with a range of 30 feet, darkvision with a range of 60 feet, and low-light vision."
+				},
+				{
+					"name": "Chitinous Plates",
+					"description": "Bolidas are covered in metallic plates that grant them a +1 racial bonus to AC."
+				},
+				{
+					"name": "Defensive Ball",
+					"description": "See page 20."
+				},
+				{
+					"name": "Fire Affinity",
+					"description": "Bolidas have resistance to fire 5, which stacks with one other source of fire resistance."
+				},
+				{
+					"name": "Light Blindness",
+					"description": "See page 151."
+				},
+				{
+					"name": "Rolling Charge",
+					"description": "See page 20."
+				}
+			]
+		},
+		{
+			"name": "Borai",
+			"ID": "borai",
+			"ability": {
+				"con": 2,
+				"wis": -2,
+				"cha": 2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Undead",
+			"source": "PWD",
+			"page": 211,
+			"description": "Borais are an unusual form of corporeal undead. Instead of being a dead body animated by negative energy, a borai has a mostly dead body that retains the smallest sliver of its soul. The two are inexorably bound, as the body draws vitality from the soul while the soul uses the body to remain on the Material Plane. Some borais are the results of partially botched resurrection attempts, either magical or technological, while others were people who were simply too stubborn to fully die when their time came.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Borais can see up to 60 feet in the dark."
+				},
+				{
+					"name": "Deathly",
+					"description": "For effects targeting creatures by type, borais count as both humanoids and undead (whichever effect is worse). They are immune to negative energy damage and gain a +1 racial bonus to saving throws against disease, exhaustion, fatigue, mind-affecting effects, paralysis, poison, sleep effects, and stunning."
+				},
+				{
+					"name": "Living Shell",
+					"description": "A borai counts as a living creature for the purposes of what can affect him (such as magic healing). If destroyed, a borai can be brought back to his normal undead state by spells (such as raise dead) that restore life to his body as if he were alive."
+				},
+				{
+					"name": "Old Talents",
+					"description": "Borais’ not-quite-dead bodies still have some of their old racial traits. At character creation, a borai selects one of the following races as his original living form and gains the racial trait indicated in parenthesis for the selected race: android (upgrade slot), human (skilled), kasatha (four-armed), lashunta (limited telepathy), shirren (blindsense), vesk (natural weapons), or ysoki (cheek pouches). A GM can, at her discretion, allow a borai to choose another humanoid race, along with an appropriate racial trait. Additionally, when a borai attempts to disguise himself as a member of his selected race, the DC of his Disguise check is not modified as a result of disguising himself as a different creature type."
+				},
+				{
+					"name": "Resist Energy Drain",
+					"description": "A borai takes no penalties from energy drain effects, but he can still be destroyed if he accrues more negative levels then he has class levels. After 24 hours, any negative levels a borai has taken are removed without the need for an additional saving throw."
+				}
+			]
+		},
+		{
+			"name": "Brakim",
+			"ID": "brakim",
+			"ability": {
+				"dex": 2,
+				"con": 2,
+				"cha": -2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Humanoid (Brakim)",
+			"source": "AT02",
+			"page": 48,
+			"description": "The brakims native to Bortan II live in small tribal groups. A planetwide war that occurred during the Gap reduced their numbers and left their world an irradiated wasteland where the brakims survive, organized into nomadic scavenger tribes. These tribes battle each other across blasted deserts and ruined cities",
+			"features": [
+				{
+					"name": "Jerry Rigger",
+					"description": "Brakims have a +2 racial bonus to Engineering checks."
+				},
+				{
+					"name": "Malleable Limbs",
+					"description": "Lacking an internal skeleton, a brakim can change her limbs easily. This adaptability grants a brakim a +4 racial bonus to Athletics checks to climb and to swim. If a brakim loses a limb or digit, it regrows in 1d4 hours. In addition, as a full action, a brakim can change up to all four of her limbs to give herself one of the following advantages. • A brakim can stretch her limbs. A stretched arm has 5 feet of additional reach. A stretched leg gives 5 feet of additional height. Stretched limbs are weak for combat, so a brakim takes a –2 penalty to attack rolls and gains no Strength bonus to damage with them. In addition, while her legs are stretched, a brakim can’t run or charge. • A brakim can modify her arms for locomotion, moving as a quadruped and gaining a 10-foot enhancement bonus to her speed. While a brakim’s arms are modified this way, she can’t wield or hold objects that require two hands. • A brakim can modify her legs and feet to be manipulators like arms and hands, respectively. In this mode, a brakim can wield or hold up to four hands worth of weapons or equipment. However, while a brakim holds an object with her modified foot, she takes a 10-foot penalty to her speed. While she holds an object that requires two hands with her feet and legs, she can move only by crawling. If a brakim wants to hold an object with every hand and foot, she must be prone. • As a move action, or a reaction when grabbed or otherwise held by a limb, a brakim can detach her limbs. She takes 1 damage directly to her Hit Points for each limb she sheds."
+				},
+				{
+					"name": "Wasteland Dweller",
+					"description": "Brakims are immune to low radiation. They also gain a +2 racial bonus to Survival checks, to Fortitude saving throws against radiation and extreme weather, and to Constitution checks against starvation and thirst"
+				}
+			]
+		},
+		{
+			"name": "Brenneri",
+			"ID": "brenneri",
+			"ability": {
+				"con": 2,
+				"int": -2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Brenneri)",
+			"source": "AA3",
+			"page": 8,
+			"description": "Brenneris are a mostly peaceful species that hail from Varturan, a planet in Near Space covered in vast waterways. These 5-foot-tall mammalian humanoids resemble otters, though they have slightly longer legs that allow them to walk upright. Brenneris are particularly adept at detecting subtle physical and emotional reactions. This makes them especially skilled at understanding the emotions of others, and they are naturally talented diplomats.",
+			"features": [
+				{
+					"name": "Astute",
+					"description": "Brenneris gain a +2 racial bonus to Diplomacy and Sense Motive checks."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Brenneris have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Favored Object",
+					"description": "A brenneri can designate any object they own of negligible bulk as a favored object. Once per day, when a brenneri spends a Resolve Point and takes a 10 minute rest to regain Stamina Points, they can focus on a favored object during the rest and recover Hit Points equal to half their level (minimum 1)."
+				},
+				{
+					"name": "Hold Breath",
+					"description": "Brenneris can hold their breath for 10 minutes, and taking actions does not reduce this duration (see Suffocation and Drowning on page 404 of the Starfinder Core Rulebook)."
+				},
+				{
+					"name": "Swimmer",
+					"description": "Brenneris have a swim speed of 20 feet."
+				}
+			]
+		},
+		{
+			"name": "Contemplative",
+			"ID": "contemplative",
+			"ability": {
+				"str": -2,
+				"con": -2,
+				"int": 4,
+				"cha": 2
+			},
+			"hp": 2,
+			"size": "Medium",
+			"type": "Monstrous Humanoid",
+			"source": "AA1",
+			"page": 29,
+			"description": "The beings known through the Pact Worlds as contemplatives of Ashok were once humanoids of extreme intelligence living on Akiton. Upon unlocking exceptional psychic powers, they deliberately evolved their brains, to the detriment of their bodies. Now, contemplatives float along using telekinesis, their atrophied bodies dangling from pulsating brain-sacs.",
+			"features": [
+				{
+					"name": "Applied Knowledge",
+					"description": "Once per day before attempting a skill check or saving throw against a creature, a contemplative can use its bonus for the skill associated with that creature’s type (such as Life Science for an ooze or Mysticism for an outsider) in place of its normal bonus."
+				},
+				{
+					"name": "Atrophied",
+					"description": "A contemplative’s limbs are practically vestigial. A contemplative can manipulate most tools and one-handed weapons (including small arms) without difficulty. A contemplative can’t properly wield a two-handed weapon without dedicating its telekinetic powers to supporting the weapon, and even then it takes a –4 penalty to attack rolls. It also can’t use its spell-like abilities or fly until it is no longer wielding that weapon."
+				},
+				{
+					"name": "Psychic Flight",
+					"description": "Contemplatives fly supernaturally at a speed of 30 feet with average maneuverability, but their base speed is only 5 feet."
+				},
+				{
+					"name": "Psychic Senses",
+					"description": "Contemplatives have blindsense (thought) out to 30 feet and darkvision to a range of 60 feet."
+				}
+			]
+		},
+		{
+			"name": "Copaxi",
+			"ID": "copaxi",
+			"ability": {
+				"con": 2,
+				"wis": -2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Copaxi)",
+			"source": "SFS1#22",
+			"page": 21,
+			"description": "Copaxis are complex colonies of coral-like polyps that develop into anthropomorphic forms.",
+			"features": [
+				{
+					"name": "Blindsense",
+					"description": "Copaxis’ sensitive polyps grant them blindsense (scent)—the ability to detect trace chemicals and scents in their environment—out to 30 feet. A copaxi ignores the Stealth bonuses from any form of visual camouflage, invisibility, and the like when attempting a Perception check opposed by a creature’s Stealth check. Even on a successful Perception check, any foe that can’t be seen still has total concealment (50% miss chance) against a copaxi, and the copaxi still has the normal miss chance when attacking foes that have concealment. A copaxi is still flat-footed against attacks from creatures it can’t see."
+				},
+				{
+					"name": "Gravity Adjustment",
+					"description": "Copaxis retain some of their ancient connection to the gravitational forces of the universe. A copaxi can adjust their personal gravity as a standard action. This adjustment remains in effect until the copaxi spends another standard action to return to their environment’s natural gravity. Entering an environment with a different gravity also cancels the copaxi’s ongoing adjustment. A copaxi can treat high or low gravity as standard gravity or treat standard gravity as high or low gravity. These adjustments only affect the copaxi and anything the copaxi is carrying; they do not affect thrown weapons. The copaxi cannot adjust to or from extreme or zero gravity."
+				},
+				{
+					"name": "Regenerative Evolution",
+					"description": "A copaxi gradually reshapes its body and neural networks to overcome new challenges. Each time a copaxi gains a level, it can retrain all the choices of one previous character level, as though it had used a mnemonic editor (Starfinder Core Rulebook 226). They must have qualified for any new selections at the retrained level."
+				},
+				{
+					"name": "Natural Communicator",
+					"description": "A copaxi quickly adapts to and adopts new forms of communication. Each time a copaxi gains a rank in Culture, they learn 2 languages rather than 1 language."
+				}
+			]
+		},
+		{
+			"name": "Damai",
+			"ID": "damai",
+			"ability": {
+				"dex": 2,
+				"wis": -2,
+				"cha": 2
+			},
+			"hp": 2,
+			"size": "Medium",
+			"type": "Humanoid (Damai)",
+			"source": "AA2",
+			"page": 33,
+			"description": "The people known throughout the galaxy as damais are survivors of a shattered planet who are at once hardy yet fragile, savvy yet foolish, prescient yet solipsistic. Their planet is ancient even on the scale of the vast universe, and yet for damais, modern history is merely 200 years old. ",
+			"features": [
+				{
+					"name": "Low-Light Vision",
+					"description": "Damais have low-light vision."
+				},
+				{
+					"name": "Scrappy",
+					"description": "Generations of living together in underground shelters and under the constant threat of enormous creatures have taught damais to work together against all odds. Once per day, as long as an ally is within 10 feet, a damai can reroll a failed attack roll or saving throw."
+				},
+				{
+					"name": "Survivor",
+					"description": "Damais have ingrained survivalist senses and gain a +2 racial bonus to Stealth and Survival checks. This bonus increases to +3 when a damai is underground."
+				}
+			]
+		},
+		{
+			"name": "Draelik",
+			"ID": "draelik",
+			"ability": {
+				"con": 2,
+				"wis": 2,
+				"cha": -2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Draelik)",
+			"source": "AA1",
+			"page": 37,
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Draeliks gain darkvision out to 60 feet."
+				},
+				{
+					"name": "Draelik Magic",
+					"description": "Draeliks gain the spells listed below as spell-like abilities. The caster level for these effects is equal to the draelik’s character level. 1/day—wisp ally At will—fatigue, ghost sound"
+				},
+				{
+					"name": "Lurker",
+					"description": "Draeliks receive a +4 bonus to Stealth checks in dim light or darker conditions."
+				},
+				{
+					"name": "Necromancy Resistance",
+					"description": "Draeliks receive a +2 racial bonus to saving throws against necromancy effects."
+				}
+			]
+		},
+		{
+			"name": "Dragonkin",
+			"ID": "dragonkin",
+			"ability": {
+				"str": 4,
+				"dex": -2
+			},
+			"hp": 6,
+			"size": "Large",
+			"type": "Dragon",
+			"source": "AA1",
+			"page": 41,
+			"description": "Native to Triaxus, dragonkin are smaller and more humanoid than their true dragon cousins, yet more intelligent than brutish drakes and wyverns.",
+			"features": [
+				{
+					"name": "Breath Weapon",
+					"description": "As a standard action, a dragonkin can breathe a 30-foot cone of flame that deals 1d6 fire damage. At 3rd level, a dragonkin adds 1-1/2 × his character level to the damage. A creature in the cone can attempt a Reflex save for half damage (DC = 10 + half the dragonkin’s character level + his Constitution modifier). A dragonkin can’t use this ability again until he has taken a 10-minute rest to recover Stamina Points."
+				},
+				{
+					"name": "Draconic Immunities",
+					"description": "Dragonkin are immune to sleep effects and gain a +2 racial bonus to saving throws against effects that cause paralysis."
+				},
+				{
+					"name": "Draconic Vision",
+					"description": "Dragonkin gain darkvision with a range of 60 feet and low-light vision, meaning they can see in dim light as if it were normal light."
+				},
+				{
+					"name": "Flight",
+					"description": "A dragonkin gains an extraordinary flight speed of 30 feet with average maneuverability. Until a dragonkin is 5th level, he must end his movement on the ground at the end of each turn or fall."
+				},
+				{
+					"name": "Partner Bond",
+					"description": "A dragonkin can form a permanent bond with one willing non-dragonkin creature. Once this bond is made, a dragonkin cannot form another partner bond unless its current partner dies. A dragonkin and its partner can communicate with each other as if they both had telepathy with a range of 100 feet. In combat, when a dragonkin is within 30 feet of its partner, both creatures roll initiative checks separately and treat the higher result as the result for both of them."
+				}
+			]
+		},
+		{
+			"name": "Drow",
+			"ID": "drow",
+			"ability": {
+				"dex": 2,
+				"con": -2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Elf)",
+			"source": "AA1",
+			"page": 43,
+			"description": "With purple skin and white hair, drow are physically beautiful but merciless. Common drow form the majority of civilian and military forces and are governed by more powerful drow nobles. This strictly matriarchal culture leaves few opportunities for a common male, and training as an enforcer for a noble house or arms dealer is one of only a few ways a drow male can secure a somewhat comfortable life—if not necessarily a long one.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Drow have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Drow Immunities",
+					"description": "Drow are immune to magical sleep effects and receive a +2 racial bonus to saving throws against enchantment spells and effects."
+				},
+				{
+					"name": "Drow Magic",
+					"description": "Drow gain the following spell-like abilities. The caster level for these effects is equal to the drow’s level. At will—dancing lights, detect magic In addition, drow count as having the Minor Psychic Power feat for the purpose of meeting prerequisites, and if a drow takes the Psychic Power feat, she can add the drow noble’s limning light supernatural ability to the list of spell-like abilities available to her."
+				},
+				{
+					"name": "Keen Senses",
+					"description": "Drow receive a +2 racial bonus to their Perception checks."
+				},
+				{
+					"name": "Light Blindness",
+					"description": "A drow exposed to bright light is blinded for 1 round, and dazzled as long as she remains in areas of bright light."
+				}
+			]
+		},
+		{
+			"name": "Dwarf",
+			"ID": "dwarf",
+			"ability": {
+				"con": 2,
+				"wis": 2,
+				"cha": -2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Humanoid (Dwarf)",
+			"source": "CRB",
+			"page": 506,
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Dwarves can see up to 60 feet in the dark."
+				},
+				{
+					"name": "Slow But Steady",
+					"description": "Dwarves have a land speed of 20 feet, which is never modified when they are encumbered or wearing heavy armor. They also gain a +2 racial bonus to saving throws against poisons, spells, and spell-like abilities, and when standing on the ground they gain a +4 racial bonus to their KAC against bull rush and trip combat maneuvers."
+				},
+				{
+					"name": "Stonecunning",
+					"description": "Dwarves gain a +2 bonus to Perception checks to notice unusual stonework, such as traps and hidden doors located in stone walls or floors. They receive a check to notice such features whenever they pass within 10 feet of them, whether or not they are actively looking."
+				},
+				{
+					"name": "Traditional Enemies",
+					"description": "Dwarves still train to fight their ancient enemies. A dwarf gains a +1 racial bonus to attack rolls against a creature with the goblinoid or orc subtype and a +4 racial bonus to AC against an attack from a creature with the giant subtype."
+				},
+				{
+					"name": "Weapon Familiarity",
+					"description": "Dwarves are proficient with basic and advanced melee weapons and gain specialization with those weapons at 3rd level."
+				}
+			]
+		},
+		{
+			"name": "Elebrian",
+			"ID": "elebrian",
+			"ability": {
+				"con": 2,
+				"int": 2,
+				"wis": -2
+			},
+			"hp": 2,
+			"size": "Medium",
+			"type": "Humanoid (Elebrian)",
+			"source": "DS03",
+			"page": 53,
+			"description": "Elebrians, the native race of Eox, were nearly wiped out in the calamity that ravaged the planet. Only a tiny population of living elebrians now remain",
+			"features": [
+				{
+					"name": "Find Weakness",
+					"description": "Elebrians can instinctively find and take advantage of other creatures’ weak points. An elebrian can make a single melee or ranged attack as a full action, and if she hits, she can add half her level to the damage dealt (minimum +1 damage). Whether successful or not, once an elebrian has used this ability on a creature, that creature is immune to it for 24 hours."
+				},
+				{
+					"name": "Intellectual Knack",
+					"description": "Elebrians can easily comprehend complex issues and remember minutia. An elebrian can attempt a skill check to recall knowledge untrained, regardless of the DC, and can always take 20 to do so (though this takes 2 minutes), even without access to an information network or data set."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "Elebrians can see in dim light as if it were normal light."
+				}
+			]
+		},
+		{
+			"name": "Elf",
+			"ID": "elf",
+			"ability": {
+				"dex": 2,
+				"con": -2,
+				"int": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Elf)",
+			"source": "CRB",
+			"page": 507,
+			"description": "Lithe, long-lived humanoids, elves are easily recognized by their pointed ears and pupils so large that their eyes seem to be all one color. Possessed of an inherent bond with the natural world, they tend to subtly take on the coloration of their surroundings over the course of many years and have a deep spiritual regard for nature.",
+			"features": [
+				{
+					"name": "Elven Immunities",
+					"description": "Elves are immune to magic sleep effects and receive a +2 racial bonus to saving throws against enchantment spells and effects."
+				},
+				{
+					"name": "Elven Magic",
+					"description": "Elves receive a +2 racial bonus to caster level checks to overcome spell resistance. In addition, elves receive a +2 racial bonus to Mysticism skill checks."
+				},
+				{
+					"name": "Keen Senses",
+					"description": "Elves receive a +2 racial bonus to Perception skill checks."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "Elves can see in dim light as if it were normal light. See Vision and Light on page 261."
+				}
+			]
+		},
+		{
+			"name": "Embri",
+			"ID": "embri",
+			"ability": {
+				"con": 2,
+				"int": 2,
+				"cha": -2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Aberration",
+			"source": "AA2",
+			"page": 49,
+			"description": "The embri are highly evolved mollusks with an exceptionally rigid social order. Every embri knows its place among the hierarchy of embri society and performs the duties of its station without complaint. The society’s few rebels or free thinkers, when discovered, are exiled or executed.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Embri have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Masked Emotions",
+					"description": "An embri loses its immunity to charm effects and its +2 racial bonus to saving throws against enchantment spells and effects when it isn’t wearing a mask over its face. In addition, while unmasked, it must roll twice for any Sense Motive check it attempts and take the lower result."
+				},
+				{
+					"name": "Shielded Thoughts",
+					"description": "Embri are immune to magical charm effects and receive a +2 racial bonus to saving throws against enchantment spells and effects."
+				},
+				{
+					"name": "Wary",
+					"description": "Embri gain a +2 racial bonus to Sense Motive checks."
+				}
+			]
+		},
+		{
+			"name": "Endiffian",
+			"ID": "endiffian",
+			"ability": {
+				"dex": -2,
+				"int": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Endiffian/Shapechanger)",
+			"source": "AT01",
+			"page": 56,
+			"description": "Endiffians have humanoid skeletons, with two arms and two legs, but their flesh is incredibly elastic, allowing them to re-form their appearances at a cellular level. They can even modify the shape of individual cells to absorb or reflect visible light, allowing them to reproduce a wide variety of colors. This allows endiffians to reshape themselves into simulacra of virtually any humanoid. Endiffian hands are also extremely malleable, allowing them to easily mold their grip to suit their purposes, whether scaling a cliff face or maintaining a solid grip on a favorite pistol.",
+			"features": [
+				{
+					"name": "Detail Oriented",
+					"description": "Endiffians gain a +2 racial bonus to Perception checks."
+				},
+				{
+					"name": "Enveloping Grip",
+					"description": "Endiffians gain a +2 racial bonus to grapple combat maneuvers and Athletics checks to climb, and they gain a +2 racial bonus to AC against disarm combat maneuvers."
+				},
+				{
+					"name": "Simulacrum",
+					"description": "An endiffian can spend 1 minute to physically alter her form to look like any Medium humanoid with two arms and two legs, as long as she has seen a similar creature before. She can attempt to either mimic a specific creature she has seen or appear as a creature of her own design of that chosen species. The endiffian gains a +10 bonus to Disguise checks to appear as that creature, and the DC of this Disguise check is not modified as a result of altering major features or being disguised as a different race of humanoid. The endiffian can remain in her altered form indefinitely."
+				}
+			]
+		},
+		{
+			"name": "Espraksa",
+			"ID": "espraksa",
+			"ability": {
+				"con": -2,
+				"wis": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Espraksa)",
+			"source": "AA3",
+			"page": 33,
+			"description": "Espraksas consider themselves the offspring of the deities Desna and Weydan, unified in a pairing called the Wings. Their open, sociable, and free-spirited society reflects this origin story. Though the rule of law is important to espraksas, the application of wisdom and compassion is equally so. Espraksa settlements often have shrines dedicated to the Wings.",
+			"features": [
+				{
+					"name": "Espraksa Movement",
+					"description": "Espraksas have a land speed of 30 feet and an extraordinary fly speed of 30 feet with average maneuverability."
+				},
+				{
+					"name": "Cold Inured",
+					"description": "An espraksa treats severe cold as cold and extreme cold as severe cold (Starfinder Core Rulebook 400)."
+				},
+				{
+					"name": "Empathic",
+					"description": "Espraksas gain a +2 racial bonus to Diplomacy and Sense Motive checks. They take a –2 penalty to saving throws against mind-affecting effects, but the DC of any mind-affecting effect they create is increased by 1."
+				},
+				{
+					"name": "Multicultural",
+					"description": "Esprakas learn an additional language for every even-numbered rank gained in the Culture skill."
+				},
+				{
+					"name": "Natural Weapons (P)",
+					"description": "See page 152."
+				},
+				{
+					"name": "Snatch",
+					"description": "This functions as the grab universal creature rule, except the espraksa must hit with two talon attacks during the same turn to grab. Only one talon must hit the target’s KAC + 4 (or + 13) to trigger the free grab (or pin), but both must hit."
+				}
+			]
+		},
+		{
+			"name": "Ferran",
+			"ID": "ferran",
+			"ability": {
+				"dex": -2,
+				"con": 2,
+				"int": 2
+			},
+			"hp": 4,
+			"size": "Small",
+			"type": "Humanoid (Ferran)",
+			"source": "DS02",
+			"page": 55,
+			"description": "Ferrans are short, squat humanoids with constantly furrowed brows and bald heads. Much of ferran tradition is rooted in science, and as such, they tend to be agnostics and atheists.",
+			"features": [
+				{
+					"name": "Low-Light Vision",
+					"description": "Ferrans can see twice as far as humans in conditions of dim light. "
+				},
+				{
+					"name": "Momentum",
+					"description": "A ferran deals an additional amount of damage equal to its character level with its first melee attack after it moves at least 10 feet in the same round."
+				},
+				{
+					"name": "Radiation Resistant",
+					"description": "Ferrans receive a +4 racial bonus to saving throws against radiation effects. "
+				},
+				{
+					"name": "Sturdy",
+					"description": "Ferrans receive a +2 racial bonus to KAC against attempts to bull rush or reposition them."
+				}
+			]
+		},
+		{
+			"name": "Formian",
+			"ID": "formian",
+			"ability": {
+				"str": 2,
+				"con": 2,
+				"wis": -2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Monstrous Humanoid",
+			"source": "AA1",
+			"page": 51,
+			"description": "Formians resemble giant ants with humanoid upper bodies, and carve their chitinous plates with insignias reflecting their individual names and achievements. Members of a hive all share a telepathic link, allowing them to coordinate efficiently.",
+			"features": [
+				{
+					"name": "Formian Senses",
+					"description": "Formians have darkvision with a range of 60 feet, and they have blindsense (scent) with a range of 30 feet."
+				},
+				{
+					"name": "Limited Telepathy",
+					"description": "Formians can communicate telepathically with any creatures within 30 feet with whom they share a language."
+				},
+				{
+					"name": "Natural Weapons",
+					"description": "Formians are always considered armed. They can deal 1d3 lethal piercing damage with unarmed strikes, and those attacks don’t count as archaic. Formians gain a unique weapon specialization with their natural weapons at 3rd level, allowing them to add 1-1/2 × their character level to their damage rolls for their natural weapons (instead of just adding their character level)."
+				},
+				{
+					"name": "Sonic Resistance",
+					"description": "Thanks to the chitinous plates that cover them, formians have sonic resistance 5."
+				}
+			]
+		},
+		{
+			"name": "Geniekin (Genasi)",
+			"ID": "geniekin",
+			"ability": {
+				"con": -2,
+				"int": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Lashunta)",
+			"source": "DF01",
+			"page": 60,
+			"subraces": [
+				{
+					"name": "Ifrit",
+					"ID": "ifrit",
+					"ability": {
+						"dex": 2,
+						"wis": -2,
+						"cha": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Outsider (Native)",
+					"source": "DF01",
+					"page": 60,
+					"description": "Ifrits are the descendants of mortal species and creatures from the Plane of Fire, usually efreet. These native outsiders are fiercely independent and many see even their friends as tools to be used.",
+					"features": [
+						{
+							"name": "Darkvision",
+							"description": "Ifrits have darkvision with a range of 60 feet."
+						},
+						{
+							"name": "Fire Affinity",
+							"description": "Ifrits have an instinctive affinity for fire, subtly bending it to their will. Once per day, an ifrit making an attack that deals fire damage can roll a single attack roll twice and use the higher result."
+						},
+						{
+							"name": "Fire Resistance",
+							"description": "The supernatural fire in ifrit blood grants them resistance 5 to fire."
+						},
+						{
+							"name": "Spell-Like Ability",
+							"description": "Once per day, an ifrit can cast overheat as a spell-like ability. At 8th level, he can use this ability one additional time per day, and he gains a third use per day at 16th level. His caster level equals his level, and the save DC is equal to 11 + his Charisma modifier. "
+						}
+					]
+				},
+				{
+					"name": "Oread",
+					"ID": "oread",
+					"ability": {
+						"str": 2,
+						"wis": 2,
+						"cha": -2
+					},
+					"hp": 6,
+					"size": "Medium",
+					"type": "Outsider (Native)",
+					"source": "DF05",
+					"page": 60,
+					"description": "Oreads are humanoids whose bloodline is infused with power from the Plane of Earth, such as from a shaitan. Oreads usually have skin of a dark neutral tone, and some have features that appear to be made of stone, crystal, or packed earth. Oreads are generally calm to the point of stoicism.",
+					"features": [
+						{
+							"name": "Acid Resistance",
+							"description": "Oreads have acid resistance 5."
+						},
+						{
+							"name": "Darkvision",
+							"description": "Oreads have darkvision with a range of 60 feet."
+						},
+						{
+							"name": "Earth Affinity",
+							"description": "Whenever an oread deals acid damage (including with spells such as energy ray), the oread can change it to bludgeoning damage instead. This doesn’t change anything else about the effect dealing the damage."
+						},
+						{
+							"name": "Spell-Like Ability",
+							"description": "An oread can use energy ray as a spelllike ability at will but can deal only acid damage with the ray. The oread’s caster level is equal to their level."
+						}
+					]
+				},
+				{
+					"name": "Suli",
+					"ID": "suli",
+					"ability": {
+						"str": 2,
+						"int": -2,
+						"cha": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Outsider (Native)",
+					"source": "DF02",
+					"page": 58,
+					"description": "Also called suli-jann, sulis are often the descendants of planehopping jann (see page 55) and mortal beings, although some sulis have elemental origins that are more mysterious. Sulis are difficult to recognize by sight, since they resemble ordinary humanoids with, perhaps, an occasional flash of elemental light in their eyes. Most manifest their otherworldly heritage at adolescence. Strong of body and personality, sulis readily survive and assimilate, making them one of the most widespread planar scions.",
+					"features": [
+						{
+							"name": "Darkvision",
+							"description": "Sulis have low-light vision."
+						},
+						{
+							"name": "Elemental Assault",
+							"description": "As a swift action, a suli can cause half the damage dealt by a weapon she wields to be acid, cold, electricity, or fire damage for 1 round. A suli can use this ability on her unarmed strikes, causing them to be neither archaic nor nonlethal while the damage alteration persists. She can use this ability a number of times per day equal to her level or CR."
+						},
+						{
+							"name": "Elemental Resistance",
+							"description": "Their elemental nature grants sulis resistance 5 to acid, cold, electricity, and fire."
+						}
+					]
+				},
+				{
+					"name": "Sylph",
+					"ID": "sylph",
+					"ability": {
+						"dex": 2,
+						"con": -2,
+						"int": 2
+					},
+					"hp": 2,
+					"size": "Medium",
+					"type": "Outsider (Native)",
+					"source": "DF02",
+					"page": 59,
+					"description": "Slyphs are descendants of species and creatures from the Material Plane that have strong connections to the Plane of Air, such as djinn. They can also arise in areas that have strong influences from the Plane of Air. Though sylphs can pass for other kinds of humanoids, they tend to be slender, and all have complex blue markings swirling across their skin. Sylphs are naturally reserved and they avoid attention.",
+					"features": [
+						{
+							"name": "Air Affinity",
+							"description": "Sylphs have a +2 racial bonus to Acrobatics checks and, if able to fly, maneuverability one step better than normal."
+						},
+						{
+							"name": "Darkvision",
+							"description": "Sylphs have darkvision with a range of 60 feet."
+						},
+						{
+							"name": "Electricity Resistance",
+							"description": "Sylphs have electricity resistance 5."
+						},
+						{
+							"name": "Spell-Like Ability",
+							"description": "Once per day, a sylph can use flight (1st level) on herself as a spell-like ability. At 6th level, she can cast the 2nd-level version of the spell, and at 12th level, she cast the 3rd-level version of the spell. Her caster level is equal to her level. "
+						}
+					]
+				},
+				{
+					"name": "Undine",
+					"ID": "undine",
+					"ability": {
+						"str": -2,
+						"dex": 2,
+						"wis": 2
+					},
+					"hp": 2,
+					"size": "Medium",
+					"type": "Outsider (Native)",
+					"source": "DF06",
+					"page": 58,
+					"features": [
+						{
+							"name": "Cold Resistance",
+							"description": "Undines have cold resistance 5."
+						},
+						{
+							"name": "Darkvision",
+							"description": "Undines have darkvision with a range of 60 feet."
+						},
+						{
+							"name": "Spell-Like Ability",
+							"description": "An undine can cast energy ray as a spell-like ability at will but can deal only cold damage with the ray. Their caster level is equal to their level."
+						},
+						{
+							"name": "Undine Movement",
+							"description": "Undines have both a land speed and a swim speed of 30 feet."
+						},
+						{
+							"name": "Water Affinity",
+							"description": "Whenever an undine deals cold damage while either the undine or her target is swimming, or in precipitation or storms heavy enough to reduce visibility ranges (see page 398 of the Starfinder Core Rulebook), they deal an amount of additional damage equal to twice their level."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Ghibrani",
+			"ID": "ghibrani",
+			"ability": {
+				"con": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Ghibrani)",
+			"source": "DS05",
+			"page": 55,
+			"description": "Ghibranis are beetle-like humanoids native to the planet Elytrio. After the ghibranis devastated their world with nuclear war, some of the survivors fended for themselves in the wastes, while the rest lived comfortably in a city protected by a bubble of force. The lingering radiation (even within the city) caused a rapid change in their biology, leading to two subspecies: husks, who have lost the use of their wings, and membranes, who have grown idle in  their luxury.",
+			"subraces": [
+				{
+					"name": "Husk",
+					"ID": "ghibrani",
+					"ability": {
+						"con": 2,
+						"int": -2,
+						"wis": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Humanoid (Ghibrani)",
+					"source": "DS05",
+					"page": 55,
+					"features": [
+						{
+							"name": "Affable",
+							"description": "Ghibranis receive a +2 racial bonus to Diplomacy skill checks."
+						},
+						{
+							"name": "Ghibrani Movement",
+							"description": "All ghibranis have a land speed of 30 feet. Husk ghibranis have a climb speed of 20 feet."
+						},
+						{
+							"name": "Low-Light Vision",
+							"description": "Ghibranis can see twice as far as humans in conditions of dim light."
+						},
+						{
+							"name": "Sturdy",
+							"description": "Husk ghibranis receive a +2 racial bonus to KAC against attempts to bull rush or reposition them. "
+						}
+					]
+				},
+				{
+					"name": "Membrane",
+					"ID": "ghibrani",
+					"ability": {
+						"str": -2,
+						"dex": 2,
+						"wis": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Humanoid (Ghibrani)",
+					"source": "DS05",
+					"page": 55,
+					"features": [
+						{
+							"name": "Affable",
+							"description": "Ghibranis receive a +2 racial bonus to Diplomacy skill checks."
+						},
+						{
+							"name": "Ghibrani Movement",
+							"description": "All ghibranis have a land speed of 30 feet. Membrane ghibranis have an extraordinary fly speed of 20 feet with average maneuverability."
+						},
+						{
+							"name": "Distracting Buzz",
+							"description": "As a standard action, a membrane ghibrani can vibrate her wings fast enough to produce an almost imperceptible hum. All creatures within 15 feet of the membrane ghibrani that hear this buzz must attempt a Will saving throw (DC = 10 + half the ghibrani’s character level or CR + her Wisdom modifier) or gain the off-target condition for 1 round. This is a mind-affecting, sense-dependent ability. The membrane ghibrani can’t use her wings to fly in the same round in which she uses this ability."
+						},
+						{
+							"name": "Low-Light Vision",
+							"description": "Ghibranis can see twice as far as humans in conditions of dim light."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Ghoran",
+			"ID": "ghoran",
+			"ability": {
+				"con": 2,
+				"int": -2,
+				"cha": 2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Plant",
+			"source": "AA2",
+			"page": 57,
+			"description": "Originally created by an obsessive druid from lost Golarion long before the Gap, ghorans are an ancient race whose ancestry is steeped in tragedy. Every aspect of ghoran physiology was designed to be perfect.",
+			"subraces": [
+				{
+					"name": "Oakling",
+					"ID": "ghoran",
+					"ability": {
+						"con": 2,
+						"int": -2,
+						"cha": 2
+					},
+					"hp": 6,
+					"size": "Medium",
+					"type": "Plant",
+					"source": "AA2",
+					"page": 57,
+					"features": [
+						{
+							"name": "Delicious",
+							"description": "Ghorans take a –2 penalty to attack rolls and Acrobatics checks to escape a grapple against a creature that uses the grab ability with a bite natural weapon."
+						},
+						{
+							"name": "Limited Plant Benefits",
+							"description": "Despite being plant creatures, ghorans don’t gain the standard immunities associated with creatures of the plant type. Instead, they gain a +2 racial bonus on saving throws against mindaffecting effects, paralysis, poison, polymorph, sleep, and stunning effects, unless the effect specifies that it is effective against plants."
+						},
+						{
+							"name": "Past-Life Knowledge",
+							"description": "Choose two skills from the following list: Computers, Culture, Engineering, Life Science, Medicine, Mysticism, Physical Science, and Profession (each Profession chosen separately). The ghoran adds the chosen skills to their list of class skills or gains a +2 racial bonus to checks with those skills if they are already class skills."
+						},
+						{
+							"name": "Photosynthesis",
+							"description": "Ghorans undergo photosynthesis to gain nutrition instead of eating (although they can eat if they so wish). A ghoran can go without light (either sunlight or UV light, such as from starships) for 3 days, after which they must attempt Constitution checks to avoid starvation (Starfinder Core Rulebook 404)."
+						}
+					]
+				},
+				{
+					"name": "Sapling",
+					"ID": "ghoran",
+					"ability": {
+						"dex": 2,
+						"int": -2,
+						"cha": 2
+					},
+					"hp": 6,
+					"size": "Small",
+					"type": "Plant",
+					"source": "AA2",
+					"page": 57,
+					"features": [
+						{
+							"name": "Delicious",
+							"description": "Ghorans take a –2 penalty to attack rolls and Acrobatics checks to escape a grapple against a creature that uses the grab ability with a bite natural weapon."
+						},
+						{
+							"name": "Limited Plant Benefits",
+							"description": "Despite being plant creatures, ghorans don’t gain the standard immunities associated with creatures of the plant type. Instead, they gain a +2 racial bonus on saving throws against mindaffecting effects, paralysis, poison, polymorph, sleep, and stunning effects, unless the effect specifies that it is effective against plants."
+						},
+						{
+							"name": "Past-Life Knowledge",
+							"description": "Choose two skills from the following list: Computers, Culture, Engineering, Life Science, Medicine, Mysticism, Physical Science, and Profession (each Profession chosen separately). The ghoran adds the chosen skills to their list of class skills or gains a +2 racial bonus to checks with those skills if they are already class skills."
+						},
+						{
+							"name": "Photosynthesis",
+							"description": "Ghorans undergo photosynthesis to gain nutrition instead of eating (although they can eat if they so wish). A ghoran can go without light (either sunlight or UV light, such as from starships) for 3 days, after which they must attempt Constitution checks to avoid starvation (Starfinder Core Rulebook 404)."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Gnome",
+			"ID": "gnome",
+			"ability": {
+				"str": -2,
+				"con": 2,
+				"int": 2
+			},
+			"hp": 4,
+			"size": "Small",
+			"type": "Humanoid (Gnome)",
+			"source": "CRB",
+			"page": 508,
+			"subraces": [
+				{
+					"name": "Bleachling",
+					"ID": "bleachling",
+					"ability": {
+						"str": -2,
+						"con": 2,
+						"int": 2
+					},
+					"hp": 4,
+					"size": "Small",
+					"type": "Humanoid (Gnome)",
+					"source": "CRB",
+					"page": 508,
+					"features": [
+						{
+							"name": "CURIOUS",
+							"description": "Gnomes receive a +2 racial bonus to Culture checks."
+						},
+						{
+							"name": "ETERNAL HOPE",
+							"description": "Gnomes receive a +2 racial bonus to saving throws against fear and despair effects. Once per day, after rolling a 1 on a d20, the gnome can reroll and use the second result (see page 243)."
+						},
+						{
+							"name": "GNOME MAGIC",
+							"description": "Gnomes gain the following spell-like abilities (see page 262): 1/day—dancing lights, ghost sound, and token spell. The caster level for these effects is equal to the gnome’s character level. In addition, gnomes get a +2 racial saving throw bonus against illusion spells and effects. "
+						},
+						{
+							"name": "LOW-LIGHT VISION",
+							"description": "Gnomes can see in dim light as if it were normal light. See Vision and Light on page 261."
+						}
+					]
+				},
+				{
+					"name": "Feychild",
+					"ID": "gnome",
+					"ability": {
+						"str": -2,
+						"con": 2,
+						"cha": 2
+					},
+					"hp": 4,
+					"size": "Small",
+					"type": "Humanoid (Gnome)",
+					"source": "CRB",
+					"page": 508,
+					"features": [
+						{
+							"name": "CURIOUS",
+							"description": "Gnomes receive a +2 racial bonus to Culture checks."
+						},
+						{
+							"name": "ETERNAL HOPE",
+							"description": "Gnomes receive a +2 racial bonus to saving throws against fear and despair effects. Once per day, after rolling a 1 on a d20, the gnome can reroll and use the second result (see page 243)."
+						},
+						{
+							"name": "GNOME MAGIC",
+							"description": "Gnomes gain the following spell-like abilities (see page 262): 1/day—dancing lights, ghost sound, and token spell. The caster level for these effects is equal to the gnome’s character level. In addition, gnomes get a +2 racial saving throw bonus against illusion spells and effects. "
+						},
+						{
+							"name": "LOW-LIGHT VISION",
+							"description": "Gnomes can see in dim light as if it were normal light. See Vision and Light on page 261."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Goblin",
+			"ID": "goblin",
+			"ability": {
+				"dex": 4,
+				"cha": -2
+			},
+			"hp": 2,
+			"size": "Small",
+			"type": "Humanoid (Goblinoid)",
+			"source": "AA1",
+			"page": 55,
+			"description": "Goblin legend claims that long ago, a tribe of surprisingly clever goblins stowed away on a spacecraft that left Golarion and made its way to Absalom Station, where the goblins infiltrated the station’s worst neighborhoods and set up camps in its engineering passages. Over time, the goblins learned to build weapons and armor from scavenged parts, though many of their efforts are prone to exploding at the slightest provocation. While space goblins have since managed to hijack other ships and spread to the stars, nowhere are they as prevalent as on Absalom Station—a fact for which all other worlds that are familiar with space goblins are extremely grateful.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Space goblins have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Fast",
+					"description": "Space goblins are fast for their size and have a base speed of 35 feet."
+				},
+				{
+					"name": "Scrounger",
+					"description": "Space goblins receive a +2 racial bonus to Engineering, Stealth, and Survival checks."
+				},
+				{
+					"name": "Tinker",
+					"description": "As a move action, a space goblin can remove the penalties associated with the broken condition from a single piece of equipment until the start of his next turn. The item then becomes unusable for 10 minutes (and retains the broken condition after that until it is fixed)."
+				}
+			]
+		},
+		{
+			"name": "Gosclaw",
+			"ID": "gosclaw",
+			"ability": {
+				"dex": 2,
+				"int": 2,
+				"wis": -2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Gosclaw)",
+			"source": "AT02",
+			"page": 49,
+			"description": "A feline species with a long flexible neck, short tail, and a pliable body, gosclaws developed their culture over centuries on a volatile continent on the rocky planet of Duren. The planet is rattled with earthquakes and pitted with active volcanoes, so the gosclaws used sophisticated engineering to build complex underground cities that could withstand the shifting earth around them. However, they were still centuries away from developing starfaring technology when an Azlanti scout ship crashed near a gosclaw city. The crash had no survivors. Gosclaw engineers began to study the vessel’s technology, formulating sciences of space travel and advanced weaponry based on what they found",
+			"features": [
+				{
+					"name": "Burrow",
+					"description": "Gosclaws have a burrow speed of 10 feet. A gosclaw can leave a tunnel if he moves at half speed."
+				},
+				{
+					"name": "Fire Resistance",
+					"description": "Gosclaws have fire resistance 5."
+				},
+				{
+					"name": "Flexible",
+					"description": "A gosclaw can move through an area as small as one-half his space without squeezing or onequarter his space when squeezing."
+				},
+				{
+					"name": "Mechanical Talent",
+					"description": "Gosclaws gain a +2 racial bonus to Computers, Engineering, and Physical Science checks. A gosclaw can treat one of these skills as a class skill."
+				},
+				{
+					"name": "Nightvision",
+					"description": "Gosclaws have darkvision with a range of 60 feet and low-light vision."
+				}
+			]
+		},
+		{
+			"name": "Gray",
+			"ID": "gray",
+			"ability": {
+				"str": -2,
+				"int": 4
+			},
+			"hp": 2,
+			"size": "Small",
+			"type": "Humanoid (Gray)",
+			"source": "AA1",
+			"page": 57,
+			"description": "No one knows what planet or even galaxy the grays call home, but reports of their unnerving abductions, nightmarish paralysis, and mysterious experiments have been collected from countless worlds for as long as starships have sailed in the dark spaces of the universe.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Grays have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Gray Magic",
+					"description": "Grays gain the following spell-like abilities. The caster level for these effects is equal to the gray’s level. 1/day—mind thrust (1st level) At will—daze, telepathic message"
+				},
+				{
+					"name": "Phase",
+					"description": "A gray can shift itself out of phase with reality as a reaction to gain a 20% miss chance against one attack. A gray can use this ability a number of times per day equal to its Constitution modifier."
+				}
+			]
+		},
+		{
+			"name": "Grippli",
+			"ID": "grippli",
+			"ability": {
+				"str": -2,
+				"dex": 2,
+				"wis": 2
+			},
+			"hp": 2,
+			"size": "Small",
+			"type": "Humanoid (Grippli)",
+			"source": "ISR",
+			"page": 244,
+			"description": "Gripplis are a diminutive race of froglike humanoids known for their stealthy tactics in combat, their hunter-gatherer practices, and their insular natures.",
+			"features": [
+				{
+					"name": "Natural Climber",
+					"description": "Gripplis have a climb speed of 20 feet."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Gripplis can see in the dark up to 60 feet."
+				},
+				{
+					"name": "Camouflage",
+					"description": "Gripplis receive a +4 racial bonus on Stealth checks in marshes and forested areas. Swamp Stride: A grippli can move through difficult terrain at its normal speed while within a swamp. Magically altered terrain affects a grippli normally."
+				},
+				{
+					"name": "Weapon Familiarity",
+					"description": "Gripplis are proficient with nets."
+				},
+				{
+					"name": "Languages",
+					"description": "Gripplis begin play speaking Common and Grippli. Gripplis with high Intelligence scores can choose from the following languages: Boggard, Draconic, Elven, Gnome, Goblin, and Sylvan."
+				}
+			]
+		},
+		{
+			"name": "Haan",
+			"ID": "haan",
+			"ability": {
+				"str": 2,
+				"dex": 2,
+				"int": -2
+			},
+			"hp": 4,
+			"size": "Large",
+			"type": "Monstrous Humanoid",
+			"source": "AA1",
+			"page": 59,
+			"description": "The slender arthropodan haans are native to Bretheda, where they soar through the endless skies in search of prey.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Haans have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Firespray",
+					"description": "As a standard action, a haan can create a 30-foot cone of flame that deals 1d6 fire. Starting at 3rd level, a haan adds 1-1/2 × her character level to the damage. A creature in the cone can attempt a Reflex save (DC = 10 + half the haan’s character level + her Constitution modifier) for half damage. A haan can’t use this ability again until she has taken a 10-minute rest to recover Stamina Points"
+				},
+				{
+					"name": "Slow Fall",
+					"description": "A haan in an environment with atmosphere can slow her fall by inflating a web balloon as a reaction. This is an extraordinary ability that functions as per flight cast at 1st level."
+				}
+			]
+		},
+		{
+			"name": "Half-elf",
+			"ID": "halfelf",
+			"ability": {
+				"choose": [
+					{
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						],
+						"count": 2
+					}
+				]
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Elf/Human)",
+			"source": "CRB",
+			"page": 509,
+			"features": [
+				{
+					"name": "Adaptability",
+					"description": "Half-elves receive Skill Focus as a bonus feat at 1st level."
+				},
+				{
+					"name": "Elven Blood",
+					"description": "Half-elves are immune to magic sleep effects and receive a +2 racial bonus to saving throws against enchantment spells and effects."
+				},
+				{
+					"name": "Keen Senses",
+					"description": "Half-elves receive a +2 racial bonus to Perception skill checks."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "Half-elves can see dim light as if it were normal light. See Vision and Light on page 261."
+				}
+			]
+		},
+		{
+			"name": "Half-orc",
+			"ID": "halforc",
+			"ability": {
+				"choose": [
+					{
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						],
+						"count": 2
+					}
+				]
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Humanoid (Human/Orc)",
+			"source": "CRB",
+			"page": 510,
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Half-orcs can see up to 60 feet in the dark."
+				},
+				{
+					"name": "Intimidating",
+					"description": "Half-orcs receive a +2 racial bonus to Intimidate skill checks."
+				},
+				{
+					"name": "Orc Ferocity",
+					"description": "Once per day, a half-orc brought to 0 Hit Points but not killed can fight on for 1 more round. The half-orc drops to 0 HP and is dying (following the normal rules for death and dying) but can continue to act normally until the end of his next turn, when he becomes unconscious as normal. If he takes additional damage before this, he ceases to be able to act and falls unconscious."
+				},
+				{
+					"name": "Self-Sufficient",
+					"description": "Half-orcs receive a +2 racial bonus to Survival skill checks."
+				}
+			]
+		},
+		{
+			"name": "Halfling",
+			"ID": "halfling",
+			"ability": {
+				"str": -2,
+				"dex": 2,
+				"cha": 2
+			},
+			"hp": 2,
+			"size": "Small",
+			"type": "Humanoid (Halfling)",
+			"source": "CRB",
+			"page": 511,
+			"features": [
+				{
+					"name": "Halfling Luck",
+					"description": "Halflings receive a +1 racial bonus to all saving throws. This bonus increases to +3 against fear effects."
+				},
+				{
+					"name": "Keen Senses",
+					"description": "Halflings receive a +2 racial bonus to Perception skill checks."
+				},
+				{
+					"name": "Sneaky",
+					"description": "Halflings receive a +2 racial bonus to Stealth checks. In addition, halflings reduce the penalty for using Stealth while moving by 5, and reduce the Stealth check penalty for sniping by 10."
+				},
+				{
+					"name": "Sure-Footed",
+					"description": "Halflings receive a +2 racial bonus to Acrobatics and Athletics skill checks."
+				}
+			]
+		},
+		{
+			"name": "Hobgoblin",
+			"ID": "hobgoblin",
+			"ability": {
+				"dex": 2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "humanoid (Goblinoid)",
+			"source": "AA2",
+			"page": 77,
+			"description": "Hobgoblins are a militant and merciless species that organizes quickly, reproduces rapidly, and adapts well to changing conditions. They are similar in appearance to goblins but are significantly taller and more muscled. While goblins are anarchic and gleefully destructive, though, hobgoblins are highly ordered and do nothing without a purpose.",
+			"features": [
+				{
+					"name": "Battle Hardened",
+					"description": "Hobgoblins are trained for combat from an early age, and they quickly learn that a foe can do much more than just hurt you. Hobgoblins gain a +1 racial bonus to AC against combat maneuvers."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Hobgoblins have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Fearsome",
+					"description": "Hobgoblins gain a +2 racial bonus to Intimidate checks."
+				},
+				{
+					"name": "Sneaky",
+					"description": "Hobgoblins gain a +2 racial bonus to Stealth checks."
+				}
+			]
+		},
+		{
+			"name": "Human",
+			"ID": "human",
+			"ability": {
+				"choose": [
+					{
+						"from": [
+							"str",
+							"dex",
+							"con",
+							"int",
+							"wis",
+							"cha"
+						],
+						"count": 2
+					}
+				]
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Human)",
+			"source": "CRB",
+			"page": 44,
+			"description": "Ambitious, creative, and endlessly curious, humans have shown more drive to explore their system and the universe beyond than any of their neighbor races—for better and for worse. They’ve helped usher in a new era of system-wide communication and organization and are admired for their passion and tenacity, but their tendency to shoot first and think about the consequences later can make them a liability for those races otherwise inclined to work with them.",
+			"features": [
+				{
+					"name": "Bonus Feat",
+					"description": "Humans select one extra feat at 1st level."
+				},
+				{
+					"name": "Skilled",
+					"description": "Humans gain an additional skill rank at 1st level and each level thereafter. "
+				}
+			]
+		},
+		{
+			"name": "Ikeshti",
+			"ID": "ikeshti",
+			"ability": {
+				"dex": 2,
+				"int": 2,
+				"wis": -2
+			},
+			"hp": 4,
+			"size": "Small",
+			"type": "Humanoid (Ikeshti)",
+			"source": "AA1",
+			"page": 65,
+			"description": "Ikeshtis are a hardy race of lizardfolk native to the deserts and hills of Akiton, and their convoluted life cycle provides the blueprint for their civilization. The physiology and psychology of ikeshtis shift drastically as they go through childhood, adolescence, mating, and one of three adult paths.",
+			"features": [
+				{
+					"name": "Desert Survivor",
+					"description": "An ikeshti can go without water for 3  days plus a number of hours equal to her Constitution score before needing to attempt Constitution checks to avoid nonlethal damage."
+				},
+				{
+					"name": "Natural Climber",
+					"description": "Ikeshtis have a climb speed of 15 feet."
+				},
+				{
+					"name": "Shed Skin",
+					"description": "As part of the action to attempt the check, an ikeshti can shed a portion of her skin to gain a +4  bonus to Acrobatics checks to escape from grapples, pins, and restraints."
+				},
+				{
+					"name": "Squirt Blood",
+					"description": "Once per day as a move action, an ikeshti brood-minder can squirt blood from one of his eyes at a foe within 30 feet, making a ranged attack (+6 for most ikeshti brood-minders) against the target’s KAC. A successful hit grants the next ally who hits that foe the benefit of harrying fire against it (Starfinder Core Rulebook 247). An ikeshti can use this ability once per day plus one additional time per day for every 5 character levels she has."
+				}
+			]
+		},
+		{
+			"name": "Ilthisarian",
+			"ID": "ilthisarian",
+			"ability": {
+				"str": 2,
+				"int": 2,
+				"cha": -2
+			},
+			"hp": 6,
+			"size": "Large",
+			"type": "Monstrous Humanoid (Ilthisarian)",
+			"source": "DS05",
+			"page": 56,
+			"description": "Ilthisarians are multiheaded, serpentlike humanoids with forked tails instead of legs. Though they are most comfortable in the marshy environments of the planet Arshalin, ilthisarians can remain active in a wide range of climates.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Ilthisarians have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Natural Weapons",
+					"description": "Ilthisarians are always considered armed. They can deal 1d3 lethal piercing damage with unarmed strikes, and those attacks don’t count as archaic. Ilthisarians gain a version of Weapon Specialization with their natural weapons at 3rd level, allowing them to add 1-1/2 × their character level to damage rolls for their natural weapons (instead of just adding their character level)."
+				},
+				{
+					"name": "Redundant Vitals",
+					"description": "Ilthisarian receive a +4 racial bonus to saving throws against effects that target specific organs, such as the wound and severe wound critical hit effects."
+				},
+				{
+					"name": "Swim",
+					"description": "Ilthasarians have a swim speed of 20 feet."
+				},
+				{
+					"name": "Venom-Inured",
+					"description": "Ilthisarians receive a +2 racial bonus to saving throws against poison effects."
+				}
+			]
+		},
+		{
+			"name": "Kalo",
+			"ID": "kalo",
+			"ability": {
+				"dex": 2,
+				"con": -2,
+				"wis": 2
+			},
+			"hp": 2,
+			"size": "Medium",
+			"type": "Monstrous Humanoid",
+			"source": "AA1",
+			"page": 69,
+			"description": "Highly civilized and generally peaceful, kalos were the first residents of any moon to successfully win independent Pact Worlds recognition",
+			"features": [
+				{
+					"name": "Cold Resistance",
+					"description": "Kalos are used to swimming in icy water and have cold resistance 5."
+				},
+				{
+					"name": "Kalo Movement",
+					"description": "Kalos have a base speed of 20 feet and a swim speed of 50 feet."
+				},
+				{
+					"name": "Kalo Vision",
+					"description": "Kalos’ innate sonar grants them blindsight (sound) 60 ft., while their specialized eyes grant them low-light vision."
+				},
+				{
+					"name": "Stealthy Swimmers",
+					"description": "Kalos gain a +4 bonus to Stealth checks when in water."
+				}
+			]
+		},
+		{
+			"name": "Kasatha",
+			"ID": "kasatha",
+			"ability": {
+				"str": 2,
+				"int": -2,
+				"wis": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Kasatha)",
+			"source": "CRB",
+			"page": 46,
+			"description": "Originally from a planet orbiting a dying star far beyond the Pact Worlds, the four-armed kasathas maintain a reputation as a noble and mysterious people. They are famous for their anachronistic warriors, ancient wisdom, and strange traditions.",
+			"features": [
+				{
+					"name": "DESERT STRIDE",
+					"description": "Kasathas can move through nonmagical difficult terrain in deserts, hills, and mountains at their normal speed."
+				},
+				{
+					"name": "FOUR-ARMED",
+					"description": "Kasathas have four arms, which allows them to wield and hold up to four hands’ worth of weapons and equipment. While their multiple arms increase the number of items they can have at the ready, it doesn't increase the number of attacks they can make during combat."
+				},
+				{
+					"name": "HISTORIAN",
+					"description": "Due to their in-depth historical training and the wide-ranging academic background knowledge they possess, kasathas receive a +2 racial bonus to Culture checks."
+				},
+				{
+					"name": "NATURAL GRACE",
+					"description": "Kasathas receive a +2 racial bonus to Acrobatics and Athletics checks."
+				}
+			]
+		},
+		{
+			"name": "Kayal (Fetchling)",
+			"ID": "kayal",
+			"ability": {
+				"dex": 2,
+				"wis": -2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Outsider (Native)",
+			"source": "SS3",
+			"page": 57,
+			"description": "Also known as fetchlings, kayals are descendants of humans trapped on the Shadow Plane millennia ago. The ambient essence of shadow has long since permeated their forms, making them their own unique species. Their time spent without direct access to light has left them bleached of color. Dark, pale, or gray of skin tone, with white or pitchblack hair and yellow eyes, kayals have tall, lithe bodies that seem to blend in and out of darkness effortlessl . Some kayals are said to be able to command the shadows themselves, manipulating their appearance or using them as a conduit to travel across space and even between the planes.",
+			"features": [
+				{
+					"name": "Kayal Magic",
+					"description": "Kayals can use disguise self once per day as a spell-like ability; the caster level of this effec is equal to the kayal’s level. Kayals can assume only the form of a humanoid creature using this ability."
+				},
+				{
+					"name": "Kayal Vision",
+					"description": "Kayals have darkvision with a range of 60 feet and low-light vision, meaning they can see in dim light as if it were normal light."
+				},
+				{
+					"name": "Shadow Blending",
+					"description": "Attacks against a kayal in dim light have a 50% miss chance instead of the normal 20% miss chance. This ability does not grant total concealment; it just increases the miss chance."
+				},
+				{
+					"name": "Shadow Resistances",
+					"description": "Kayals have cold resistance 5 and electricity resistance 5."
+				}
+			]
+		},
+		{
+			"name": "Khizar",
+			"ID": "khizar",
+			"ability": {
+				"dex": -2,
+				"con": 2,
+				"wis": 2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Humanoid (Khizar/Plantlike)",
+			"source": "PWD",
+			"page": 212,
+			"description": "Plantlike humanoids, the solemn khizars live in harmony with the natural environment, and many strive to protect the wilderness areas they inhabit. While this often brings them into conflict with other species and cultures, khizars are eager to learn about others’ ways in an effort to understand them",
+			"features": [
+				{
+					"name": "Carbonic Respiration",
+					"description": "Khizars breathe in carbon dioxide and exhale oxygen. In situations of slow suffocation (Starfinder Core Rulebook 404), a khizar reduces the effective number of creatures consuming air by two, unless no oxygen-breathing creatures are present."
+				},
+				{
+					"name": "Evergreen",
+					"description": "For effects targeting creatures by type, khizars count as both humanoids and plants. They receive a +2 racial bonus to saving throws against mind-affecting effects, paralysis, poison, sleep effects, and stunning, unless the effect specifies that it works against plants. Khizars can go without food for three times longer than other humanoids as long as they are exposed to natural sunlight for at least 4 hours per day."
+				},
+				{
+					"name": "Limited Telepathy",
+					"description": "Khizars can communicate telepathically with any creatures within 30 feet with whom they share a language."
+				},
+				{
+					"name": "Natural Empathy",
+					"description": "Khizars have an empathic understanding of the natural world, giving them a +2 racial bonus to Life Science and Survival checks. Additionally, they can use their limited telepathy to communicate with non-mindless creatures of the plant type without sharing a common language."
+				},
+				{
+					"name": "Senses and Speech",
+					"description": "Khizars have no eyes or visual senses, other than the ability to perceive the presence or absence of light. Khizars have blindsense (vibration) and blindsight (life), each with a range of 30 feet. Khizars can’t speak and can communicate only via telepathy."
+				}
+			]
+		},
+		{
+			"name": "Kish",
+			"ID": "kish",
+			"ability": {
+				"str": 2,
+				"int": -2,
+				"wis": 2
+			},
+			"hp": 5,
+			"size": "Medium",
+			"type": "Humanoid (Kish)",
+			"source": "DS04",
+			"page": 58,
+			"description": "Kish are the descendants of the kishalee, an advanced civilization that ruled the stars millennia ago, though they have lost any firm grasp of kishalee mystical and technological innovations. In the floating metropolis of Istamak (see page 38), kish live among the ruins of their ancestors’ civilization.",
+			"features": [
+				{
+					"name": "Bonus Feat",
+					"description": "Kish select one extra feat at 1st level."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Kish have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Survivalist",
+					"description": "Kish have a +2 racial bonus to Survival checks and can take 20 on Survival checks to endure severe weather and predict weather. "
+				}
+			]
+		},
+		{
+			"name": "Kitsune",
+			"ID": "kitsune",
+			"source": "ISR",
+			"page": 245,
+			"size": "Medium",
+			"ability": {
+				"str": -2,
+				"dex": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"type": "Humanoid (Kitsune, Shapechanger)",
+			"features": [
+				{
+					"name": "Low-Light Vision",
+					"description": "Kitsune can see twice as far as humans in conditions of dim light."
+				},
+				{
+					"name": "Change Shape",
+					"description": "A kitsune can assume the appearance of a specific single human form of the same sex, and a specific single fox form of the same sex. The kitsune always takes this specific form when she uses this ability. A kitsune in human form cannot use her bite attack, but gains a +10 racial bonus on Disguise checks made to appear human. Changing shape is a standard action. This ability otherwise functions as alter self, except that the kitsune does not adjust her ability scores."
+				},
+				{
+					"name": "Agile",
+					"description": "Kitsune receive a +2 racial bonus on Acrobatics checks.",
+					"properties": [
+						{
+							"type": "skillModifier",
+							"properties": [
+								{
+									"name": "Acrobatics",
+									"value": 2
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Kitsune Magic",
+					"description": "Kitsune add 1 to the DCs of any saving throws to resist enchantment spells that they cast. Kitsune with a Charisma score of 11 or higher gain the following spell-like ability: 3/day—dancing lights."
+				},
+				{
+					"name": "Natural Weapons",
+					"description": "In her natural form, a kitsune has a bite attack that deals 1d4 points of damage.",
+					"properties": [
+						{
+							"type": "attack",
+							"properties": [
+								{
+									"name": "Bite attack",
+									"value": "1d4"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Languages",
+					"description": "Kitsune begin play speaking Common and Sylvan.",
+					"properties": [
+						{
+							"type": "language",
+							"properties": [
+								"Common",
+								"Sylvan"
+							]
+						}
+					]
+				}
+			],
+			"description": "Capricious and playful, kitsune are rarely encountered in the Inner Sea region—and when they are, they tend to be mistaken for lycanthropes."
+		},
+		{
+			"name": "Lashunta",
+			"ID": "lashunta",
+			"ability": {
+				"con": -2,
+				"int": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Lashunta)",
+			"source": "CRB",
+			"page": 48,
+			"description": "Idealized by many other humanoid races and gifted with innate psychic abilities, lashuntas are at once consummate scholars and enlightened warriors, naturally divided into two specialized subraces with different abilities and societal roles",
+			"subraces": [
+				{
+					"name": "Damaya",
+					"ID": "lashunta",
+					"ability": {
+						"con": -2,
+						"int": 2,
+						"cha": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Humanoid (Lashunta)",
+					"source": "CRB",
+					"page": 48,
+					"description": "Idealized by many other humanoid races and gifted with innate psychic abilities, lashuntas are at once consummate scholars and enlightened warriors, naturally divided into two specialized subraces with different abilities and societal roles",
+					"features": [
+						{
+							"name": "Lashunta Magic",
+							"description": "Lashuntas gain the following spell-like abilities: At will: daze, psychokinetic hand 1/day: detect thoughts\n See Spell-like Abilities on page 262. The caster level for these effects is equal to the lashunta's level."
+						},
+						{
+							"name": "Limited Telepathy",
+							"description": "Lashuntas can mentally communicate with any creatures within 30 feet with whom they share a language. Conversing telepathically with multiple creatures simultaneously is just as difficult as listening to multiple people speaking."
+						},
+						{
+							"name": "Student",
+							"description": "Lashuntas love to learn, and they receive a +2 racial bonus to any two skills of their choice."
+						}
+					]
+				},
+				{
+					"name": "Korasha",
+					"ID": "lashunta",
+					"ability": {
+						"str": 2,
+						"wis": -2,
+						"cha": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Humanoid (Lashunta)",
+					"source": "CRB",
+					"page": 48,
+					"description": "Idealized by many other humanoid races and gifted with innate psychic abilities, lashuntas are at once consummate scholars and enlightened warriors, naturally divided into two specialized subraces with different abilities and societal roles",
+					"features": [
+						{
+							"name": "Lashunta Magic",
+							"description": "Lashuntas gain the following spell-like abilities: At will: daze, psychokinetic hand 1/day: detect thoughts\n See Spell-like Abilities on page 262. The caster level for these effects is equal to the lashunta's level."
+						},
+						{
+							"name": "Limited Telepathy",
+							"description": "Lashuntas can mentally communicate with any creatures within 30 feet with whom they share a language. Conversing telepathically with multiple creatures simultaneously is just as difficult as listening to multiple people speaking."
+						},
+						{
+							"name": "Student",
+							"description": "Lashuntas love to learn, and they receive a +2 racial bonus to any two skills of their choice."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Maraquoi",
+			"ID": "maraquoi",
+			"ability": {
+				"dex": -2,
+				"con": 2,
+				"wis": 2
+			},
+			"hp": 5,
+			"size": "Medium",
+			"type": "Humanoid (Maraquoi)",
+			"source": "AA1",
+			"page": 75,
+			"description": "Maraquoi are the primary native race of Marata, one of Bretheda’s moons.",
+			"features": [
+				{
+					"name": "Blindsense",
+					"description": "Maraquoi sense sound through their skin rather than with ears, gaining blindsense (sound) with a range of 30 feet."
+				},
+				{
+					"name": "Climber",
+					"description": "Maraquoi have a climb speed of 20 feet."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "Maraquoi can see twice as far as humans in conditions of dim light."
+				},
+				{
+					"name": "Natural Hunter",
+					"description": "Maraquoi receive a +2 racial bonus to Survival skill checks."
+				},
+				{
+					"name": "Prehensile Tail",
+					"description": "A maraquoi’s tail is as effective as a hand at manipulating objects, which allows them to wield and hold up to three hands’ worth of weapons and equipment. This does not increase the number of attacks they can make during combat."
+				}
+			]
+		},
+		{
+			"name": "Morlamaw",
+			"ID": "morlamaw",
+			"ability": {
+				"con": 2,
+				"wis": -2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Large",
+			"type": "Monstrous Humanoid (Aquatic)",
+			"source": "AA3",
+			"page": 72,
+			"description": " These creatures, whose imposing physical size belies their generally good-natured personalities, have round torsos that end in a single wide flipper. They can breathe both underwater and on land, perhaps indicating that their ancestors lived on the planet’s continents in eons past. Currently, only particularly brave morlamaws venture onto the land, though swimming up to the surface isn’t uncommon.",
+			"features": [
+				{
+					"name": "Amphibious",
+					"description": "Morlamaws have both the amphibious and water breathing universal creature rules, allowing them to breathe both water and air normally."
+				},
+				{
+					"name": "Cold Resistance",
+					"description": "Morlamaws are accustomed to swimming in frigid and icy waters; they have cold resistance 5."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Morlamaws have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Morlamaw Movement",
+					"description": "Morlamaws have a land speed of 20 feet and a swim speed of 40 feet."
+				},
+				{
+					"name": "Natural Weapons",
+					"description": "Morlamaws are always considered armed. They can deal 1d3 lethal piercing damage with unarmed strikes and the attack doesn’t count as archaic. Morlamaws gain a unique weapon specialization with their natural weapons at 3rd level, allowing them to add 1-1/2  × their character level to their damage rolls with their natural weapons (instead of just adding their character level, as usual)."
+				}
+			]
+		},
+		{
+			"name": "Neskinti",
+			"ID": "neskinti",
+			"ability": {
+				"str": -2,
+				"dex": 2,
+				"wis": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Neskinti)",
+			"source": "AT02",
+			"page": 50,
+			"description": "Capable brachiators and adept gliders, neskintis have small legs that are still capable of locomotion. Their fur coloration ranges from blond to dark brown. Neskintis are natural omnivores that have become vegetarians by tradition. Also customary is reverence toward Nesk and other spirits, and some neskintis have extended this devotion to include the Azlanti religion",
+			"features": [
+				{
+					"name": "Low-Light Vision",
+					"description": "Accustomed to the perpetual twilight of days below thick canopy, neskintis have low-light vision."
+				},
+				{
+					"name": "Brachiator",
+					"description": "Neskintis have a climb speed of 30 feet. They can use this speed to move horizontally in an area that has adequate handholds, such as from branch to branch in a tree."
+				},
+				{
+					"name": "Forest Friend",
+					"description": "Neskintis gain a +2 racial bonus to Life Science and Survival checks."
+				},
+				{
+					"name": "Glider",
+					"description": "Neskintis are able to fly with the aid of skin membranes stretching between their arms and legs, traveling 5 feet horizontally for every 1 foot of vertical descent, with an extraordinary fly speed of 60 feet and average maneuverability. A neskinti can’t gain altitude using only this flight, so she can’t fly if she can’t descend. If falling, a neskinti can use this ability as a reaction to avoid falling damage. A neskinti can charge while flying but can’t run, and she can’t glide while carrying more weight than her normal bulk limit. At the GM’s discretion, wind or another effect can cause a neskinti to gain altitude, increasing the distance she can glide."
+				},
+				{
+					"name": "Small Legs",
+					"description": "Neskintis have a land speed of 20 feet."
+				}
+			]
+		},
+		{
+			"name": "Nuar",
+			"ID": "nuar",
+			"ability": {
+				"str": 2,
+				"dex": -2,
+				"int": 2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Monstrous Humanoid",
+			"source": "AA1",
+			"page": 75,
+			"description": "Nuars are pale, minotaur-like creatures with formidable frames and roughly bovine faces, hooves, and horns.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Nuars have darkvision out to 60 feet."
+				},
+				{
+					"name": "Gore",
+					"description": "A nuar can charge without taking the normal charge penalties to the attack roll or its AC. If the nuar has another ability that allows it to charge without taking these penalties (such as the charge attack ability from the soldier’s blitz attack fighting style), the nuar also gains the ability to charge through difficult terrain."
+				},
+				{
+					"name": "Maze Mind",
+					"description": "Nuars have a naturally strong sense of direction and an instinctive understanding of complex patterns. As a result, they very rarely get lost. A nuar can attempt a special level-based Wisdom check (1d20 + CR or level + Wisdom bonus) instead of using his total bonus in the Piloting skill to navigate or his total bonus in the Survival skill for orienteering. In addition, a nuar with 1 or more ranks in Piloting or Survival also gains a +2 racial bonus to checks with that skill."
+				},
+				{
+					"name": "Natural Weapons",
+					"description": "Nuars are always considered armed. They can deal 1d3 lethal piercing damage with unarmed strikes and the attack doesn’t count as archaic. Nuars gain a unique weapon specialization with their natural weapons at 3rd level, allowing them to add 1-1/2  × their character level to their damage rolls with their natural weapons (instead of just adding their character level, as usual)."
+				},
+				{
+					"name": "Swift",
+					"description": "Nuars have a base speed of 40 feet."
+				}
+			]
+		},
+		{
+			"name": "Oni, kanabo",
+			"ID": "kanabo",
+			"ability": {
+				"str": 2,
+				"con": 2,
+				"int": -2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Outsider (Goblinoid/Native)",
+			"source": "AA2",
+			"page": 89,
+			"description": "Oni are a race of malevolent spirits given physical form. Most oni begin their existence as kami, spirits tasked with the protection of a specific part of the natural world, but for some reason reject their duties and turn to evil. Less often, the souls of particularly vile mortals can become oni upon death.",
+			"features": [
+				{
+					"name": "Armor Savant",
+					"description": "Kanabo have an innate mastery of the use of armor. When wearing armor, they gain a +1 racial bonus to AC. When wearing heavy armor, their armor check penalty is 1 less severe than normal."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Kanabo have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Kanabo Magic",
+					"description": "Kanabo gain the following spell-like abilities. The caster level for these effects is equal to the kanabo’s level. 1/day—disguise self, supercharge weapon"
+				}
+			]
+		},
+		{
+			"name": "Orc",
+			"ID": "orc",
+			"ability": {
+				"str": 4,
+				"cha": -2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Humanoid (Orc)",
+			"source": "AA2",
+			"page": 91,
+			"description": "Orcs are rare, although records suggest they were numerous on lost Golarion. Today, they can be found in greatest numbers on Apostae, where most are drow-held slaves.",
+			"features": [
+				{
+					"name": "Conditioned Focus",
+					"description": "Due to her conditioning, an orc can choose one skill that becomes a class skill for her. If the chosen skill is a class skill from the class she takes at 1st level, she instead gains a +1 bonus to checks with that skill. She also receives an adjustment of +1 to the ability score associated with the chosen skill. In addition, due to her confidence with that skill, once per day, before she attempts a check with the chosen skill, the orc can grant herself a +2 bonus to that check."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Orcs have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Fierce Survivalist",
+					"description": "Orcs receive a +2 racial bonus to Intimidate and Survival checks."
+				},
+				{
+					"name": "Light Sensitivity",
+					"description": "An orc is dazzled as long as she remains in an area of bright light."
+				},
+				{
+					"name": "Orc Ferocity",
+					"description": "Once per day, a half-orc brought to 0 Hit Points but not killed can fight on for 1 more round. The half-orc drops to 0 HP and is dying (following the normal rules for death and dying) but can continue to act normally until the end of his next turn, when he becomes unconscious as normal. If he takes additional damage before this, he ceases to be able to act and falls unconscious."
+				}
+			]
+		},
+		{
+			"name": "Osharu",
+			"ID": "osharu",
+			"ability": {
+				"con": -2,
+				"int": 2,
+				"wis": 2
+			},
+			"hp": 2,
+			"size": "Medium",
+			"type": "Monstrous Humanoid",
+			"source": "AA2",
+			"page": 93,
+			"description": "To the slug-like osharus, religion and science are two sides of the same coin—concepts with the same intrinsic dependencies as life and death. These timid monk-scientists dedicate their lives to studying various fields of science, sharing their discoveries with their fellow osharus and other races that express a passion for epiphany.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Osharus have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Osharu Movement",
+					"description": "Osharus have a land speed of 25 feet and a swim speed of 25 feet."
+				},
+				{
+					"name": "Pious Scientist",
+					"description": "Osharus regard religion and science as a singular concept, using their understanding of each to enhance the other. An osharu can use Life Science to identify creatures normally identified using Mysticism, and vice versa."
+				},
+				{
+					"name": "Polymath",
+					"description": "Osharus spend their lives acquiring vast amounts of knowledge and therefore tend to have applicable information in most situations. Once per day, an osharu can automatically succeed at an attempt to aid another on an Intelligence-based skill check."
+				},
+				{
+					"name": "Slime",
+					"description": "As a swift action, an osharu can excrete slime into an empty adjacent square, causing that square to become difficult terrain. An osharu can use this ability 1d4 times per day before she must rest for at least 8 hours to replenish her slime stores."
+				},
+				{
+					"name": "Susceptible to Salt",
+					"description": "A handful or more of salt or a splash of salt water deals 1d6 damage to an osharu, and full immersion in salt water deals 4d6 damage per round. These effects are negated by the environmental protections built into most armor."
+				}
+			]
+		},
+		{
+			"name": "Pahtra",
+			"ID": "pahtra",
+			"ability": {
+				"str": -2,
+				"dex": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Pahtra)",
+			"source": "AA2",
+			"page": 95,
+			"description": "The catlike pahtras are one of the most prominent species of the Veskarium, natives of a lush world they call Pulonis but that the Veskarium designates as Vesk-6.",
+			"features": [
+				{
+					"name": "Pahtra Senses",
+					"description": "Pahtras have darkvision with a range of 60 feet and low-light vision."
+				},
+				{
+					"name": "Nimble",
+					"description": "An off-kilter pahtra doesn’t gain the flat-footed condition or take the normal penalty to attacks, and she can steady herself as a swift action instead of a move action."
+				},
+				{
+					"name": "Talented",
+					"description": "Pahtras gain a +2 racial bonus to Acrobatics checks, Stealth checks, and checks with one Profession of their choice."
+				},
+				{
+					"name": "Wary",
+					"description": "Pahtras gain a +2 racial bonus against charm and compulsion effects."
+				}
+			]
+		},
+		{
+			"name": "Phentomite",
+			"ID": "phentomite",
+			"ability": {
+				"dex": 2,
+				"con": -2,
+				"wis": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Phentomite)",
+			"source": "AA2",
+			"page": 97,
+			"description": "Phentomites are native inhabitants of Orry, an unusual cluster of landmasses floating in regular orbits around a gravitational anomaly in Near Space.",
+			"features": [
+				{
+					"name": "Acclimated",
+					"description": "Phentomites are acclimated to thin atmospheres and high altitudes (Core Rulebook 396–397), and they count as Small creatures for the purpose of slow suffocation (Core Rulebook 404)."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Phentomites have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Heat Tracker",
+					"description": "As a full action, a phentomite can alter her vision to detect the latent heat trails left by passing creatures. This allows the phentomite to use the Perception skill to perform the follow tracks task of the Survival skill and also functions as the tracking universal creature rule. While this ability is active, the phentomite takes a –1 penalty to Reflex saving throws. The phentomite can deactivate this ability as a move action."
+				},
+				{
+					"name": "Natural Agility",
+					"description": "Phentomites gain a +3 racial bonus to Athletics checks to climb or jump."
+				}
+			]
+		},
+		{
+			"name": "Quorlu",
+			"ID": "quorlu",
+			"ability": {
+				"dex": -2,
+				"con": 2,
+				"cha": 2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Monstrous Humanoid",
+			"source": "AA2",
+			"page": 105,
+			"description": "Quorlus are quadrupedal, silicon-based creatures that have three tentacular arms and three eyestalks. They hail from Quorlosh, a strange world in the Vast that is highly geologically active but has only a thin atmosphere. Quorlus live in warrens in the planet’s exposed stony crust, where they delve for minerals that they consume for sustenance. Their warrens are like the settlements of many humanoids, and their inhabitants conduct crystal farming in which they “grow” gypsum, quartzes, and salts for food. The average quorlu is 4-1/2 feet tall and weighs 350 pounds.",
+			"features": [
+				{
+					"name": "Endothermic",
+					"description": "A quorlu has resistance 5 to fire that stacks with one other source of fire resistance"
+				},
+				{
+					"name": "Lithic",
+					"description": "Quorlus gain a +2 racial bonus to saving throws against bleed, disease, and poison effects, and they can’t benefit from drugs, medicinals, or similar nonmagical substances. In addition, quorlus don’t breathe or suffer the normal environmental effects of being in a vacuum."
+				},
+				{
+					"name": "Multiarmed (3)",
+					"description": "The creature has the number of arms listed. This allows it to wield and hold up to that many hands’ worth of weapons and equipment. While this increases the number of items it can have at the ready, it doesn’t increase the number of attacks it can make during combat."
+				},
+				{
+					"name": "Ponderous",
+					"description": "Quorlus have a land speed of 25 feet."
+				},
+				{
+					"name": "Stable",
+					"description": "A quorlu gains a +4 racial bonus to AC against combat maneuvers to bull rush, reposition, or trip. "
+				},
+				{
+					"name": "Quorlu Senses",
+					"description": "Quorlus have darkvision with a range of 60 feet and lowlight vision."
+				},
+				{
+					"name": "Susceptible to Cold",
+					"description": "When a quorlu takes cold damage, it becomes fatigued for 1 round. This effect doesn’t cause a fatigued quorlu to become exhausted."
+				},
+				{
+					"name": "Tunneler",
+					"description": "A quorlu can dig through soil at a rate of 5 feet per minute. A quorlu can use this ability combined with its internal heat to dig through stone at a rate of 1 foot per minute. When it digs, a quorlu can leave a tunnel behind."
+				},
+				{
+					"name": "Unflankable",
+					"description": "Flanking the creature does not grant any bonuses, and abilities that function only against a creature that is flanked do not function against it."
+				}
+			]
+		},
+		{
+			"name": "Raxilite",
+			"ID": "raxilite",
+			"ability": {
+				"str": -4,
+				"dex": 2,
+				"int": 2,
+				"cha": 2
+			},
+			"hp": 2,
+			"size": "Tiny",
+			"type": "Plants",
+			"source": "AA3",
+			"page": 83,
+			"description": "Reptoids are masters of disguise and deception, who use their shapechanging abilities to infiltrate countless other societies, impersonating influential individuals and seeking positions of power within their target culture.",
+			"features": [
+				{
+					"name": "Flowering or Seeding",
+					"description": "Flowering raxilites gain a +2 racial bonus to Bluff and Diplomacy checks. Seeding raxilites gain a +2 racial bonus to Acrobatics checks and can attempt a DC 15 Acrobatics check to negate falling damage when in an atmosphere. A raxilite can change from flowering to seeding (or vice versa) with 1 week of rest."
+				},
+				{
+					"name": "LFAN",
+					"description": "An LFAN, or Lifting Floret Activation Network, is a biotech augmentation that looks like a cluster of artificial, prehensile “vines” attached to a raxilite’s brain system (the raxilite can add one other brain augmentation to the LFAN). The LFAN is as dexterous and strong as a human hand, and the vines can extend and retract, allowing a raxilite to use one-handed items as if they were a Medium creature with a reach of 5 feet."
+				},
+				{
+					"name": "LFAN Symbiosis",
+					"description": "When two or more raxilites share the same 5-foot space, they can use their LFANs together, allowing them to handle larger objects. Up to four raxilites can work together in this way, each acting as one hand."
+				},
+				{
+					"name": "Limited Plant Benefits",
+					"description": "Raxilites lack the immunities of most plants. Instead, they gain a +2 racial bonus to saving throws against mind-affecting effects, paralysis, poison, polymorph, sleep, and stunning effects, unless the effect specifies that it is effective against plants."
+				}
+			]
+		},
+		{
+			"name": "Reptoid",
+			"ID": "reptoid",
+			"ability": {
+				"str": 2,
+				"dex": -2,
+				"cha": 2
+			},
+			"hp": 5,
+			"size": "Medium",
+			"type": "Humanoid (Reptoid/Shapechanger)",
+			"source": "AA1",
+			"page": 93,
+			"description": "Reptoids are masters of disguise and deception, who use their shapechanging abilities to infiltrate countless other societies, impersonating influential individuals and seeking positions of power within their target culture.",
+			"features": [
+				{
+					"name": "Change Shape",
+					"description": "Once per day, a reptoid can assume the appearance of a specific single Medium humanoid. The reptoid always takes this specific form when using this ability. The reptoid gains a +10 racial bonus to Disguise checks to appear as that type of humanoid. This ability otherwise functions as per disguise self, and lasts for 10 minutes × the reptoid’s character level. A reptoid can select a new humanoid form by spending 1 week preparing for the change, but can then no longer assume the previous form."
+				},
+				{
+					"name": "Cold-Blooded",
+					"description": "Reptoids receive a +2 racial bonus on saving throws against mind-affecting effects and poisons."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "A reptoid can see in dim light as if it were normal light."
+				},
+				{
+					"name": "Natural Weapons",
+					"description": "Reptoids are always considered to be armed when they are not using their change shape ability. They can deal 1d3 lethal slashing damage with unarmed strikes, and the attack does not count as archaic. Reptoids gain a unique weapon specialization with their natural weapons at 3rd level, allowing them to add 1-1/2 × their character level to their damage rolls for their natural weapons (instead of adding just their character level, as usual)."
+				}
+			]
+		},
+		{
+			"name": "Ryphorian",
+			"ID": "ryphorian",
+			"ability": {
+				"str": -2,
+				"con": 2,
+				"wis": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Ryphorian)",
+			"source": "AA1",
+			"page": 97,
+			"description": "Ryphorians are the dominant humanoid race on the Pact Worlds planet of Triaxus, known for its highly eccentric orbit, which causes generations-long seasons.",
+			"subraces": [
+				{
+					"name": "Summerborn",
+					"ID": "ryphorian",
+					"ability": {
+						"str": -2,
+						"con": 2,
+						"wis": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Humanoid (Ryphorian)",
+					"source": "AA1",
+					"page": 97,
+					"features": [
+						{
+							"name": "Bonus Feat",
+							"description": "Ryphorians gain a bonus feat at 1st level."
+						},
+						{
+							"name": "Keen Senses",
+							"description": "Ryphorians’ distinctive ears help them hear precisely, granting a +2 bonus to Perception checks."
+						},
+						{
+							"name": "Low-Light Vision",
+							"description": "Ryphorians can see in dim light as if it were normal light."
+						},
+						{
+							"name": "Trimorphic",
+							"description": "Summerborn ryphorians gain fire resistance 5. A ryphorian can stack this natural resistance with one other form of resistance."
+						}
+					]
+				},
+				{
+					"name": "Transitional",
+					"ID": "ryphorian",
+					"ability": {
+						"str": -2,
+						"con": 2,
+						"wis": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Humanoid (Ryphorian)",
+					"source": "AA1",
+					"page": 97,
+					"features": [
+						{
+							"name": "Bonus Feat",
+							"description": "Ryphorians gain a bonus feat at 1st level."
+						},
+						{
+							"name": "Keen Senses",
+							"description": "Ryphorians’ distinctive ears help them hear precisely, granting a +2 bonus to Perception checks."
+						},
+						{
+							"name": "Low-Light Vision",
+							"description": "Ryphorians can see in dim light as if it were normal light."
+						},
+						{
+							"name": "Trimorphic",
+							"description": "Transitional ryphorians gain cold and fire resistance 2, and when in conditions of severe cold or heat, they have to attempt Fortitude saves only once per hour instead of once every 10 minutes. A ryphorian can stack this natural resistance with one other form of resistance."
+						}
+					]
+				},
+				{
+					"name": "Winterborn",
+					"ID": "ryphorian",
+					"ability": {
+						"str": -2,
+						"con": 2,
+						"wis": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Humanoid (Ryphorian)",
+					"source": "AA1",
+					"page": 97,
+					"features": [
+						{
+							"name": "Bonus Feat",
+							"description": "Ryphorians gain a bonus feat at 1st level."
+						},
+						{
+							"name": "Keen Senses",
+							"description": "Ryphorians’ distinctive ears help them hear precisely, granting a +2 bonus to Perception checks."
+						},
+						{
+							"name": "Low-Light Vision",
+							"description": "Ryphorians can see in dim light as if it were normal light."
+						},
+						{
+							"name": "Trimorphic",
+							"description": "Winterborn ryphorians gain cold resistance 5. A ryphorian can stack this natural resistance with one other form of resistance."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sarcesian",
+			"ID": "sarcesian",
+			"ability": {
+				"str": -2,
+				"dex": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Large",
+			"type": "Humanoid (Sarcesian)",
+			"source": "AA1",
+			"page": 99,
+			"description": "Standing between 10 and 15 feet tall with bulbous eyes and spindly, elongated limbs, a sarcesian is able to adapt her physiology to survive in space by suspending her respiration and growing a pair of butterfly-like wings made of pure light.",
+			"features": [
+				{
+					"name": "Low-Light Vision",
+					"description": "Sarcesians can see in dim light as if it were normal light."
+				},
+				{
+					"name": "Skilled",
+					"description": "Sarcesians gain an additional skill rank at 1st level and each level thereafter.",
+					"properties": [
+						{
+							"type": "skillPoints",
+							"properties": [
+								1
+							]
+						}
+					]
+				},
+				{
+					"name": "Void Flyer",
+					"description": "Sarcesians can go 1 hour without breathing and can exist in a vacuum without suffering the associated environmental effects. When in a vacuum, they automatically grow wings made from pure energy that grant them a supernatural fly speed of 60 feet (average maneuverability) but that work only in a vacuum."
+				}
+			]
+		},
+		{
+			"name": "Screedreep",
+			"ID": "screedreep",
+			"ability": {
+				"str": -2,
+				"wis": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Small",
+			"type": "Humanoid (Screedreep)",
+			"source": "AT02",
+			"page": 51,
+			"description": "Sporting a naturally hunched posture with drooping ears and a short snout, a screedreep’s bearing and expression make the creature seem to be waiting for a blow to land. It is perhaps this one feature that best defines the history of this species in the Azlanti Star Empire. Native to the Aristia system, screedreeps were among the first people to be taught the imperial lessons of brutality and subjugation. They bore the worst of Azlanti aggression and suffered decades of oppression before their surrender to imperial forces.",
+			"features": [
+				{
+					"name": "Cultured",
+					"description": "Screedreeps gain a +2 racial bonus to Bluff, Culture, and Diplomacy checks."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "Screedreeps’ big, sensitive eyes provide them with low-light vision."
+				},
+				{
+					"name": "Quick Senses",
+					"description": "A screedreep can use Perception to search an area in half the normal time. In addition, screedreeps gain a +2 racial bonus to Sense Motive checks."
+				},
+				{
+					"name": "Tricky Mind",
+					"description": "Screedreeps gain a +2 racial bonus to saving throws against mind-affecting effects other than fear effects. They also gain a +2 racial bonus to saving throws against effects used to determine if a target is being deceitful."
+				}
+			]
+		},
+		{
+			"name": "Scyphozoan",
+			"ID": "scyphozoan",
+			"ability": {
+				"con": 2,
+				"int": 2,
+				"cha": -2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Aberration",
+			"source": "DS05",
+			"page": 59,
+			"description": "Scyphozoans evolved from a species of large amphibious sea jellies, which hunted on land and in water along the coastlines of Primoria’s temperate zones. A scyphozoan has a soft and translucent body, with several ambulatory tentacles as well as two prehensile tentacles.",
+			"features": [
+				{
+					"name": "Acidic Tentacles",
+					"description": "As a swift action, a scyphozoan can make one of her prehensile tentacles secrete acid; her unarmed strikes with that tentacle count as having the corrosive weapon fusion, except the ability is not magical. While the effect is activated, the scyphozoan is considered armed, and the attack doesn’t count as archaic, but the scyphozoan cannot hold an item in that tentacle."
+				},
+				{
+					"name": "Amphibious",
+					"description": "Scyphozoans are able to breathe both water and air normally."
+				},
+				{
+					"name": "Scyphozoan Senses",
+					"description": "Scyphozoans have blindsense (vibration) with a range of 30 feet."
+				},
+				{
+					"name": "Sea-Born",
+					"description": "A scyphozoan has a land speed of 30 feet and a swim speed of 30 feet."
+				},
+				{
+					"name": "Translucent",
+					"description": "Scyphozoans receive a +2 racial bonus to Stealth skill checks."
+				}
+			]
+		},
+		{
+			"name": "Selamid",
+			"ID": "selamid",
+			"ability": {
+				"dex": 2,
+				"con": 2,
+				"cha": -2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Ooze (Selamid)",
+			"source": "DS05",
+			"page": 60,
+			"description": "Adapted to survive in fluctuating gravity, selamids are creatures of complex, flexible protoplasm. Though selamids can eat nearly any organic matter, their diets usually consist of material sloughed from other oozes on their home world. At the end of its 40-year life span, a selamid divides to “birth” new selamids.",
+			"features": [
+				{
+					"name": "Advanced Ooze Biology",
+					"description": "Selamids are not immune to critical hits, are not mindless, and can gain and use skills normally. For effects targeting creatures by type, selamids count as both humanoids and oozes (whichever type allows an ability to affect them for abilities that affect only one type, and whichever is worse for abilities that affect both creature types)."
+				},
+				{
+					"name": "Blindsight",
+					"description": "Selamids have blindsight (vibration) with a range of 60 feet."
+				},
+				{
+					"name": "Gravity Adaptation",
+					"description": "Selamids can always take 10 on Athletics checks in zero gravity."
+				},
+				{
+					"name": "Malleable",
+					"description": "A selamid can manipulate and wear equipment as a creature with two arms, and equipment and armor of the appropriate size never needs to be adjusted to allow the selamid to use it. It gains a +8 racial bonus to Acrobatics checks to escape."
+				},
+				{
+					"name": "Sightless",
+					"description": "A selamid cannot see and is never subject to any effect that requires it to see a target or effect."
+				}
+			]
+		},
+		{
+			"name": "Seprevoi",
+			"ID": "seprevoi",
+			"ability": {
+				"dex": 2,
+				"int": -2,
+				"cha": 2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Monstrous Humanoid (Seprevoi)",
+			"source": "DS05",
+			"page": 61,
+			"description": "Seprevois evolved from the simian creatures of their home world, Sepres VI. They are covered in fine, short hair ranging in color from dark brown to pale blond, except for the black skin of their faces and hands. Seprevois have six elongated fingers on each hand, each featuring an additional joint compared to a human’s hand. Seprevois’ four feet have three unjointed toes each.",
+			"features": [
+				{
+					"name": "Analog Attunement",
+					"description": "A seprevoi using a weapon with the analog or archaic weapon property receives a +1 racial bonus on attack rolls, due to the centuries of rationing that restricted the race’s access to and familiarity with powered or otherwise advanced technology"
+				},
+				{
+					"name": "Fast",
+					"description": "Seprevois have a land speed of 40 feet."
+				},
+				{
+					"name": "Multi-Legged",
+					"description": "Seprevois have four legs, which makes them particularly stable in areas of normal or higher gravity. A seprevois gains a +2 bonus to its KAC against combat maneuvers to trip or move it from its position."
+				},
+				{
+					"name": "Orbital Adaptation",
+					"description": "Most seprevois live their whole lives in zero-g environments in the spacecraft orbiting their home world. While a seprevoi must still attempt all required skill checks to move in zero-g, failure at any such checks never imparts the off-kilter condition to the creature. Additionally, seprevois have a natural resistance to radiation. A seprevoi gains a +2 bonus to saving throws to resist radiation and radiation sickness (Starfinder Core Rulebook 404). Finally, seprevois have weakened immune systems, such that they take a –2 penalty to saving throws against diseases (except radiation sickness)."
+				}
+			]
+		},
+		{
+			"name": "Shimreen",
+			"ID": "shimreen",
+			"ability": {
+				"dex": 2,
+				"int": 2,
+				"wis": -2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Shimreen)",
+			"source": "AA3",
+			"page": 96,
+			"description": "Shimreens are able to change their body slightly to fit their needs, including shifting an arm into a crystal lance or adjusting their constant internal glow. A significant number of shimreens shape the crystals atop their heads to form crowns, while others let the crystals around their faces grow wild to form clusters they call manes— and some do both.",
+			"features": [
+				{
+					"name": "Amplify",
+					"description": "Whenever a shimreen takes energy damage, they can voluntarily take an additional 1d4 damage of the same type by amplifying the energy within their crystalline form. The next time the shimreen hits with a melee attack, they release this energy, dealing an additional amount of damage equal to the extra damage the shimreen took (and of the same type). The shimreen can’t take additional damage in this way again until they release the energy they’re storing. If unused, this stored energy dissipates after 10 minutes. The amount of extra damage the shimreen takes (and deals) increases to 2d4 at 8th level (or CR 8) and 3d4 at 16th level (or CR 16)."
+				},
+				{
+					"name": "Electricity Resistance",
+					"description": "Shimreens have resistance 5 to electricity, thanks to their crystalline structure."
+				},
+				{
+					"name": "Radiant",
+					"description": "A shimreen constantly emits dim, normal, or bright light in a 5-foot radius and is immune to the dazzled condition. A shimreen can adjust their current level of light as a move action, but they can’t extinguish it."
+				},
+				{
+					"name": "Shift Limb",
+					"description": "As a swift action, a shimreen can transform one of their hands into a natural weapon that deals piercing damage. While transformed, this hand can’t be used to hold or use anything. The shimreen can reverse the transformation as a swift action."
+				}
+			]
+		},
+		{
+			"name": "Shirren",
+			"ID": "shirren",
+			"ability": {
+				"con": 2,
+				"wis": 2,
+				"cha": -2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Humanoid (Shirren)",
+			"source": "CRB",
+			"page": 50,
+			"description": "Once part of a ravenous hive of locust-like predators, the insectile shirrens only recently broke with their hive mind to become a race of telepaths physically addicted to their own individualism, yet dedicated to the idea of community and harmony with other races.",
+			"features": [
+				{
+					"name": "BLINDSENSE",
+					"description": "Shirrens’ sensitive antennae grant them blindsense (vibration)—the ability to sense vibrations in the air—out to 30 feet. A shirren ignores the Stealth bonuses from any form of visual camouflage, invisibility, and the like when attempting a Perception check opposed by a creature’s Stealth check. Even on a successful Perception check, any foe that can’t be seen still has total concealment (50% miss chance) against a shirren, and the shirren still has the normal miss chance when attacking foes that have concealment. A shirren is still flatfooted against attacks from creatures it can’t see."
+				},
+				{
+					"name": "COMMUNALISM",
+					"description": "Shirrens are used to working with others as part of a team. Once per day, as long as an ally is within 10 feet, a shirren can roll a single attack roll or skill check twice and take the higher result."
+				},
+				{
+					"name": "CULTURAL FASCINATION",
+					"description": "Shirrens are eager to learn about new cultures and societies. Shirrens receive a +2 racial bonus to Culture and Diplomacy checks."
+				},
+				{
+					"name": "LIMITED TELEPATHY",
+					"description": "Shirrens can communicate telepathically with any creatures within 30 feet with whom they share a language. Conversing telepathically with multiple creatures simultaneously is just as difficult as listening to multiple people speak."
+				}
+			]
+		},
+		{
+			"name": "Shobhad",
+			"ID": "shobhad",
+			"ability": {
+				"str": 2,
+				"int": -2
+			},
+			"hp": 6,
+			"size": "Large",
+			"type": "Monstrous Humanoid",
+			"source": "AA1",
+			"page": 105,
+			"description": "Collectively called the “shobhad-neh,” the four-armed giants of Akiton live as nomads, much as they have for millennia.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Shobhads have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Four-Armed",
+					"description": "Shobhads have four arms, which allows them to wield and hold up to four hands’ worth of weapons and equipment. While this increases the number of items they can have at the ready, it doesn’t increase the number of attacks shobhads can make during combat."
+				},
+				{
+					"name": "Shobhad Ferocity",
+					"description": "Once per day, a shobhad brought to 0 Hit Points but not killed can fight on for 1 more round. The shobhad drops to 0 HP and is dying (following the normal rules) but can act normally until the end of her next turn, when she becomes unconscious as normal. If she would lose additional Hit Points before this, she ceases to be able to act and falls unconscious. Swift: A shobhad has a base speed of 40 feet."
+				},
+				{
+					"name": "Weathered",
+					"description": "Shobhads have cold resistance 5, which stacks with one other source of cold resistance"
+				}
+			]
+		},
+		{
+			"name": "Skittermander",
+			"ID": "skittermander",
+			"ability": {
+				"dex": 2,
+				"int": -2,
+				"cha": 2
+			},
+			"hp": 2,
+			"size": "Small",
+			"type": "Humanoid (Skittermander)",
+			"source": "AA1",
+			"page": 107,
+			"description": "Skittermanders can be found throughout the Veskarium, often serving in clerical positions that allow them to aid as many people as possible. They have fully embraced technology and enjoy the many sights the galaxy has to offer, traveling to the Pact Worlds and beyond. Those who employ skittermanders quickly learn to give them missions that have open-ended parameters, as a skittermander who feels she has completed a task won’t necessarily report back to a superior for further instructions if she finds someone else who needs her help first.",
+			"features": [
+				{
+					"name": "Grappler",
+					"description": "Skittermanders gain a +2 racial bonus to grapple combat maneuvers."
+				},
+				{
+					"name": "Hyper",
+					"description": "Once per day, a skittermander can take an extra move action."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "A skittermander can see in dim light as if it were normal light."
+				},
+				{
+					"name": "Six-Armed",
+					"description": "Skittermanders have six arms, which allows them to wield and hold up to six hands’ worth of weapons and equipment. While their multiple arms increase the number of items they can have at the ready, it doesn’t increase the number of attacks they can make during combat."
+				}
+			]
+		},
+		{
+			"name": "SRO",
+			"ID": "sro",
+			"ability": {
+				"str": 2
+			},
+			"hp": 2,
+			"size": "Medium",
+			"type": "Construct (Technological)",
+			"source": "PWD",
+			"page": 213,
+			"description": "SROs (short for “sentient robotic organisms”) are among the most advanced forms of robots, with internal circuits and positronic brains so complex that they, like androids, attract a soul and develop true artificial intelligence and free will. SROs are most common on Aballon, though they are different from the native anacites. Unlike androids, SROs do not have a unified appearance, and many are at best vaguely humanoid in shape, while others have shapes designed purely to assist in their primary functions",
+			"subraces": [
+				{
+					"name": "SROS (Medium)",
+					"ID": "sro-large",
+					"ability": {
+						"str": 2
+					},
+					"hp": 2,
+					"size": "Medium",
+					"type": "Construct (Technological)",
+					"source": "PWD",
+					"page": 213,
+					"features": [
+						{
+							"name": "Darkvision",
+							"description": "SROs can see up to 60 feet in the dark."
+						},
+						{
+							"name": "Healing Circuit",
+							"description": "In addition to being constructs and thus able to benefit from spells like make whole, SROs count as living creatures for the purposes of magic healing effects that work on living creatures, though the number of Hit Points restored in such cases is halved. A character must use the Engineering skill to perform the tasks of the Medicine skill on SROs. SROs also heal naturally over time as living creatures do, and can benefit from magic or technology that can bring constructs back from the dead, as well as effects that normally can’t (such as raise dead)."
+						},
+						{
+							"name": "Integrated Equipment",
+							"description": "An SRO has an internal, integrated standard datajack and comm unit. If an SRO is helpless, these can be removed or destroyed without damaging the SRO. They can be replaced or upgraded for the normal price of this equipment. An SRO has an additional builtin cybernetic component with an item level no greater than half the SRO’s character level (minimum item level 1). Each time the SRO gains a level, they can swap out this piece of equipment at no additional cost to represent internal reconfigurations. These pieces of equipment don’t count against the systems in which an SRO can install cybernetics."
+						},
+						{
+							"name": "Robotic",
+							"description": "SROs are immune to bleed, disease, death effects, poison, nonlethal damage, and sleep effects unless those effects specify they affect constructs. SROs can be affected by effects or spells that normally target only humanoids, but receive a +4 racial bonus to saving throws against such effects. SROs can eat and drink, though they don’t need to, and they must recharge their internal batteries by entering an off-line mode that is similar to sleep for 8 hours every day. SROs do not breathe or suffer the normal environmental effects of being in a vacuum."
+						}
+					]
+				},
+				{
+					"name": "SROS (Small)",
+					"ID": "sro-small",
+					"ability": {
+						"dex": 2
+					},
+					"hp": 2,
+					"size": "Small",
+					"type": "Construct (Technological)",
+					"source": "PWD",
+					"page": 213,
+					"features": [
+						{
+							"name": "Darkvision",
+							"description": "SROs can see up to 60 feet in the dark."
+						},
+						{
+							"name": "Healing Circuit",
+							"description": "In addition to being constructs and thus able to benefit from spells like make whole, SROs count as living creatures for the purposes of magic healing effects that work on living creatures, though the number of Hit Points restored in such cases is halved. A character must use the Engineering skill to perform the tasks of the Medicine skill on SROs. SROs also heal naturally over time as living creatures do, and can benefit from magic or technology that can bring constructs back from the dead, as well as effects that normally can’t (such as raise dead)."
+						},
+						{
+							"name": "Integrated Equipment",
+							"description": "An SRO has an internal, integrated standard datajack and comm unit. If an SRO is helpless, these can be removed or destroyed without damaging the SRO. They can be replaced or upgraded for the normal price of this equipment. An SRO has an additional builtin cybernetic component with an item level no greater than half the SRO’s character level (minimum item level 1). Each time the SRO gains a level, they can swap out this piece of equipment at no additional cost to represent internal reconfigurations. These pieces of equipment don’t count against the systems in which an SRO can install cybernetics."
+						},
+						{
+							"name": "Robotic",
+							"description": "SROs are immune to bleed, disease, death effects, poison, nonlethal damage, and sleep effects unless those effects specify they affect constructs. SROs can be affected by effects or spells that normally target only humanoids, but receive a +4 racial bonus to saving throws against such effects. SROs can eat and drink, though they don’t need to, and they must recharge their internal batteries by entering an off-line mode that is similar to sleep for 8 hours every day. SROs do not breathe or suffer the normal environmental effects of being in a vacuum."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Stelliferas",
+			"ID": "stelliferas",
+			"ability": {
+				"str": -4,
+				"con": -2,
+				"wis": 2,
+				"cha": 2
+			},
+			"hp": 2,
+			"size": "Diminutive",
+			"type": "Magical Beast (Aquatic)",
+			"source": "AT02",
+			"page": 52,
+			"description": "Diminutive creatures resembling cuttlefish, stelliferas evolved in a deep-sea environment and spent millennia as nomads, developing psychic abilities and exploring their watery planet, Parin.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Stelliferas have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Hydrobody",
+					"description": "Provided enough water exists nearby or in the air, a stellifera can psychokinetically construct a watery humanoid-shaped body as a full action and maintain this hydrobody indefinitely, including while unable to take actions or unconscious. A stellifera can dismiss this hydrobody as a standard action, and it disintegrates if he dies. The hydrobody affords the stellifera the size and reach of a Medium creature, and while unclad, it can fit through any opening the stellifera can without squeezing. While within a hydrobody, a stellifera has a Strength score 4 higher, 2 additional Hit Points, a land speed of 30 feet, a swim speed of 30 feet, and the ability to wield weapons and wear clothing and armor as a Medium creature. In addition, a stellifera in a hydrobody takes the bleed effect from only a wound or severe wound critical hit effect, is immune to gases and inhaled poisons, and gains a +4 racial bonus to Fortitude saving throws against diseases and poisons of the contact or injury types. The hydrobody slowly exchanges oxygen with the surrounding atmosphere or liquid, including environmental protections from armor, allowing the stellifera to breathe as if he were underwater. The nature of this body makes the stellifera immune to most effects of vacuum as well as atmospheric or underwater pressure. The hydrobody stores enough oxygen at one time for a stellifera to go 1 hour without oxygen exchange from his surroundings. After that time, he risks suffocation."
+				},
+				{
+					"name": "Stellifera Magic",
+					"description": "Stelliferas have these spell-like abilities: At will: psychokinetic hand, telepathic message"
+				},
+				{
+					"name": "Stellifera Movement",
+					"description": "A stellifera has a land speed of 5 feet and a swim speed of 30 feet."
+				}
+			]
+		},
+		{
+			"name": "Strix",
+			"ID": "strix",
+			"ability": {
+				"dex": 2,
+				"int": 2,
+				"cha": -2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Humanoid (Strix)",
+			"source": "PWD",
+			"page": 214,
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Strix can see up to 60 feet in the dark."
+				},
+				{
+					"name": "Nightborn",
+					"description": "Strix gain a +2 racial bonus to Perception and Stealth checks in dim light or darkness."
+				},
+				{
+					"name": "Strix Mobility",
+					"description": "Strix have a land speed of 20 feet and an extraordinary fly speed of 30 feet with average maneuverability."
+				},
+				{
+					"name": "Suspicious",
+					"description": "Strix receive a +2 racial bonus to saving throws against illusion spells and effects."
+				},
+				{
+					"name": "Tinkerer",
+					"description": "Strix have a natural eye for technology and can craft such items at incredible speed. It takes a strix a base time of 2 hours to craft a technological item."
+				}
+			]
+		},
+		{
+			"name": "Svartalfar",
+			"ID": "svartalfar",
+			"ability": {
+				"str": -2,
+				"dex": 2,
+				"int": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Fey (Extreplanar)",
+			"source": "SS2",
+			"page": 60,
+			"description": "Exiled aeons ago from the First World for unspeakable crimes against other fey, svartalfars fled to the Shadow Plane. When Triune bestowed Drift technology to the universe, svartalfars channeled their vengeful energies away from the fey who expelled them to focus on an inscrutable endgame spanning both the galaxy and the planes. Many of these calculating killers have realized that the universal currencies of money and power can advance their race further than can the arcane knowledge they once sought as payment for their services.",
+			"features": [
+				{
+					"name": "Bane",
+					"description": "Once per day as a swift action, a svartalfar can imbue one of its weapons with the bane weapon fusion. It must select one creature type (and subtype, if choosing humanoid or outsider) when it uses this ability. This lasts for 1 hour. This ability functions only while the svartalfar wields the weapon."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Svartalfars have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "Svartalfars can see in dim light as if it were normal light."
+				},
+				{
+					"name": "Lethal Grace",
+					"description": "Svartalfars are known for their uncanny grace in combat. They gain a +2 racial bonus to Acrobatics and Stealth checks."
+				},
+				{
+					"name": "Light Blindness",
+					"description": "A svartalfar exposed to bright light is blinded for 1 round, and dazzled as long as it remains in areas of bright light."
+				},
+				{
+					"name": "Svartalfar Magic",
+					"description": "Svartalfars have an affinity for magic. A svartalfar chooses a 1st-level spell. It can cast that spell as a spell-like ability once per day for every 3 character levels it has. The caster level for this spell is equal to the svartalfar’s level. Once chosen, this spell cannot be changed."
+				}
+			]
+		},
+		{
+			"name": "Tiefling",
+			"ID": "tiefling",
+			"ability": {
+				"dex": 2,
+				"int": 2,
+				"cha": -2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Outsider (Native)",
+			"source": "AA2",
+			"page": 99,
+			"description": "Fiendish blood grants a tiefling their supernatural defenses and abilities.",
+			"features": [
+				{
+					"name": "Deceitful",
+					"description": "Tieflings gain a +2 racial bonus to Bluff and Stealth checks."
+				},
+				{
+					"name": "Fiendish Gloom",
+					"description": "As a standard action, the tiefling causes light within 20 feet of her to decrease one step. This gloom lasts for up to 1 minute, but the tiefling can dismiss it as a swift action. Nonmagical light sources can’t increase the light level in this area. Magical light can increase the light level in this area only if it’s from an item or creature of a level or CR higher than that of the tiefling. A tiefling can use this ability once per day, plus a number of times equal to half her CR or level."
+				},
+				{
+					"name": "Fiendish Resistance",
+					"description": "Tieflings have resistance 5 to cold, electricity, and fire."
+				}
+			]
+		},
+		{
+			"name": "Trox",
+			"ID": "trox",
+			"ability": {
+				"str": 2,
+				"dex": -2,
+				"con": 2
+			},
+			"hp": 8,
+			"size": "Large",
+			"type": "Monstrous Humanoid",
+			"source": "AA2",
+			"page": 127,
+			"description": "Trox are massive, sturdy creatures native to the Liavaran moon of Nchak. They have chitinous armor and a fearsome, mandibled countenance that belies their gentle spirits.",
+			"features": [
+				{
+					"name": "Darkvision",
+					"description": "Trox have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Bulwark",
+					"description": "When a trox fights defensively or takes the total defense action, he can grant half the bonus to AC granted by that action to an adjacent ally."
+				},
+				{
+					"name": "Burrower",
+					"description": "Trox have a burrow speed of 20 feet."
+				},
+				{
+					"name": "Chitin",
+					"description": "Trox chitin can help deflect effects, granting trox a +1 racial bonus to Reflex saves."
+				},
+				{
+					"name": "Frenzy",
+					"description": "Once per day when a significant enemy causes an ally to take Hit Point damage, a trox can fly into a frenzy, gaining a +2 racial bonus to melee attack rolls and a –2 penalty to AC for 1 minute."
+				},
+				{
+					"name": "Grappler",
+					"description": " Trox gain a +2 racial bonus to grapple combat maneuvers."
+				},
+				{
+					"name": "Spiritual Fervor",
+					"description": "Trox gain a +2 racial bonus to Intimidate and Mysticism skill checks."
+				},
+				{
+					"name": "Swift",
+					"description": "Trox have a land speed of 40 feet."
+				},
+				{
+					"name": "Vestigial Arms",
+					"description": "A trox’s four vestigial arms can be used to hold, draw, or put away items of negligible bulk, but not to make attacks, wield weapons, or use items."
+				}
+			]
+		},
+		{
+			"name": "Urog",
+			"ID": "urog",
+			"ability": {
+				"con": 2,
+				"int": 2,
+				"cha": -2
+			},
+			"hp": 6,
+			"size": "Large",
+			"type": "Magical Beast",
+			"source": "AA1",
+			"page": 117,
+			"features": [
+				{
+					"name": "Blunt",
+					"description": "Urogs are matter-of-fact creatures who value frankness and getting to the heart of a matter far more than protecting the feelings of others. Urogs take a –2 penalty to Bluff and Diplomacy checks."
+				},
+				{
+					"name": "Electrical Resistance",
+					"description": "Urogs have electricity resistance 5, which stacks with one other source of electricity resistance."
+				},
+				{
+					"name": "Electrolocation",
+					"description": "An urog who is in contact with a crystalline or metallic surface can detect the presence of other creatures within 60 feet that are also in contact with the same surface, even through walls and other obstacles. This otherwise functions as blindsense (vision)."
+				},
+				{
+					"name": "Limited Telepathy",
+					"description": "Urogs can communicate telepathically with any creatures within 30 feet with whom they share a language."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "Urogs can see in dim light as if it were normal light."
+				},
+				{
+					"name": "Plodding",
+					"description": "Urogs have a base speed of 20 feet."
+				},
+				{
+					"name": "Skilled",
+					"description": "Urogs gain an additional skill rank at 1st level and each level thereafter."
+				}
+			]
+		},
+		{
+			"name": "Verthani",
+			"ID": "verthani",
+			"ability": {
+				"str": -2,
+				"con": 2,
+				"int": 2
+			},
+			"hp": 5,
+			"size": "Medium",
+			"type": "Humanoid (Verthani)",
+			"source": "AA1",
+			"page": 119,
+			"description": "Verthani stand 8 feet tall on average, with delicate features and long limbs. Their eyes are pure-black orbs, protruding from their heads in half domes like the eyes of a mouse, and they can change the pigment of their skin at will to have complex patterns. Nearly all verthani learn to control these color changes by the time they reach puberty, but babies and children display bright, expressive patterns and colors that reflect their current mood. Some adults also refuse to control them, seeing in their random patterns hints of prophecy.",
+			"features": [
+				{
+					"name": "Easily Augmented",
+					"description": "Verthani have spent a long time implanting devices into their bodies. A verthani can install an additional augmentation (cybernetics only) into one system that already has an augmentation."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "Verthani can see twice as far as humans in conditions of dim light."
+				},
+				{
+					"name": "Skill Focus",
+					"description": "Verthani are highly skilled, though individually they tend to  focus on a particular discipline. Verthani gain Skill Focus as a bonus feat."
+				},
+				{
+					"name": "Skin Mimic",
+					"description": "Verthani can manipulate the pigments in their skin at will and with astonishing precision, creating bright decorative patterns or deceptive camouflage. A verthani who stays stationary for 1 round gains a +10 racial bonus to Stealth checks (this bonus doesn’t stack with the invisibility spell or similar effects). If the verthani takes any action, he loses this bonus until he once again spends 1 round remaining still. A verthani wearing clothing or armor that covers more than one-quarter of his body can’t use this ability."
+				}
+			]
+		},
+		{
+			"name": "Vesk",
+			"ID": "vesk",
+			"ability": {
+				"str": 2,
+				"con": 2,
+				"int": -2
+			},
+			"hp": 6,
+			"size": "Medium",
+			"type": "Humanoid (Vesk)",
+			"source": "CRB",
+			"page": 52,
+			"description": "Heavily muscled and covered with thick scales and short, sharp horns, the reptilian vesk are exactly as predatory and warlike as they appear. Originally hailing from a star system near the Pact Worlds, they sought to conquer and subdue their stellar neighbors, as they had all the other intelligent races in their own system, until an overwhelming threat forced them into a grudging alliance with the Pact Worlds—for now.",
+			"features": [
+				{
+					"name": "Armor Savant",
+					"description": "Vesk use armor in a way that complements their uniquely sturdy physiology. When wearing armor, they gain a +1 racial bonus to AC. When they’re wearing heavy armor, their armor check penalty is 1 less severe than normal."
+				},
+				{
+					"name": "Fearless",
+					"description": "Vesk receive a +2 racial bonus to saving throws against fear effects."
+				},
+				{
+					"name": "Low-Light Vision",
+					"description": "Vesk can see in dim light as if it were normal light. For more details, see page 264."
+				},
+				{
+					"name": "Natural Weapons",
+					"description": "Vesk are always considered armed. They can deal 1d3 lethal damage with unarmed strikes and the attack doesn’t count as archaic. Vesk gain a unique weapon specialization with their natural weapons at 3rd level, allowing them to add 1–1/2 × their character level to their damage rolls for their natural weapons (instead of just adding their character level, as usual)."
+				}
+			]
+		},
+		{
+			"name": "Vilderaro",
+			"ID": "vilderaro",
+			"ability": {
+				"int": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Monstrous Humanoid (Aquatic)",
+			"source": "AT02",
+			"page": 53,
+			"description": "Natives of Oyojii, a vast and hot ocean world with few landmasses, the vilderaros evolved in the sea but developed their civilization on land. Vilderaros created complex maps of the night sky and used them to navigate and settle their entire world, building geometrically precise cities that mimicked the shapes of stars and constellations. Vilderaro culture is centered on geometric construction and ornamentation. Their bodies, settlements, and structures all bear totemic representations of ancestors, spirits, various nature deities, and other mystical themes.",
+			"features": [
+				{
+					"name": "Amphibious",
+					"description": "Vilderaros can breathe water and air."
+				},
+				{
+					"name": "Spatial Awareness",
+					"description": "Vilderaros have a +4 racial bonus to Piloting checks to navigate and Survival checks when orienteering. This bonus can also apply to Profession skills in which spatial awareness is a benefit. The GM is the arbiter of when this bonus applies."
+				},
+				{
+					"name": "Swimmer",
+					"description": "A vilderaro has a swim speed of 30 feet. She can jet water through her body, so when she charges, runs, or withdraws while in water, she can swim twice as far as those actions normally allow."
+				},
+				{
+					"name": "Unflankable",
+					"description": "Flanking a vilderaro grants no bonuses, and abilities that function only against a creature that is flanked don’t function against a vilderaro."
+				}
+			]
+		},
+		{
+			"name": "Vlaka",
+			"ID": "vlaka",
+			"ability": {
+				"int": -2,
+				"wis": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Vlaka)",
+			"source": "AA2",
+			"page": 127,
+			"description": "Wolflike creatures with thick fur, vlakas hail from a doomed planet called Lajok, an arctic world in the Vast that is the most distant from its system’s dying star.",
+			"features": [
+				{
+					"name": "Buoy",
+					"description": "As a standard action, a vlaka can spend 1 Resolve Point to restore 1 RP to an ally within 30 feet. A vlaka can’t use this ability again until she has taken a 10-minute rest to regain Stamina Points. This is a sense-dependent, mind-affecting ability."
+				},
+				{
+					"name": "Cold Resistance",
+					"description": "Vlakas have cold resistance 5 that stacks with one other source of cold resistance."
+				},
+				{
+					"name": "Cooperative",
+					"description": "Vlakas gain a +2 bonus to skill checks for the aid another action and to attack rolls to provide harrying fire. A creature using the aid another action to assist a vlaka gains a +2 bonus to the skill check."
+				},
+				{
+					"name": "Perceptive",
+					"description": "Vlakas gain a +2 bonus to Perception and Sense Motive checks."
+				},
+				{
+					"name": "Versed",
+					"description": "Vlakas can speak, read and write their native language, Vlakan. They also know the signed and tactile versions of this language."
+				},
+				{
+					"name": "Vlaka Senses",
+					"description": "Vlakas can be born with one of three possible sets of senses. During character creation, determine a vlaka’s senses by choosing from those available. A vlaka born with functional sight or hearing who becomes permanently blind or deaf does not gain the abilities of a vlaka born with blindness or deafness. Blind: A blind vlaka has blindsight (hearing) with a range of 60 feet, blindsight (scent) with a range of 30 feet, and the blinded condition (Starfinder Core Rulebook 273). The vlaka is naturally sightless, so the blinded condition can be removed only by effects that grant sight to creatures with no natural vision. Deaf: A deaf vlaka has blindsight (scent) with a range of 30 feet, low-light vision, and the deafened condition (Core Rulebook 275). However, this condition imposes no penalty to initiative rolls or opposed Perception checks that are not based on hearing. The vlaka is naturally without hearing, so the deafened condition can be removed only by effects that grant hearing to creatures with no natural ability to perceive sound. Hearing and Sighted: A vlaka who has hearing and sight also has blindsense (scent) with a range of 30 feet and low-light vision."
+				}
+			]
+		},
+		{
+			"name": "Witchwyrd",
+			"ID": "witchwyrd",
+			"ability": {
+				"con": -2,
+				"int": 2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Monstrous Humanoid",
+			"source": "AA1",
+			"page": 123,
+			"description": "Witchwyrds are avid wanderers and inveterate merchants, plying the trade routes between both planets and the planes.",
+			"features": [
+				{
+					"name": "Absorb Force",
+					"description": "As a reaction, a witchwyrd can use any number of its free hands to catch magic missiles (from the spell of the same name) fired at it. Doing so absorbs the missile and manifests as a glowing nimbus around that hand (which is no longer considered free). The energy lasts 6 rounds or until it is used to create an additional force bolt (see below). To use this ability, the witchwyrd must be aware of the incoming magic missile and cannot be flat-footed."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Witchwyrds have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Force Bolt",
+					"description": "Witchwyrds can cast magic missile as a spell-like ability once per day. For every two magic missiles caught using its absorb force ability, a witchwyrd can use its force bolt ability an additional time each day."
+				},
+				{
+					"name": "Four-Armed",
+					"description": "Witchwyrds have four arms, which allows them to wield and hold up to four hands’ worth of weapons and equipment. While their multiple arms increase the number of items they can have at the ready, it doesn’t increase the number of attacks they can make during combat."
+				},
+				{
+					"name": "Haggler",
+					"description": "Witchwyrds are known as skilled traders and negotiators throughout the galaxy and the planes. They receive a +2 racial bonus to Bluff and Diplomacy checks."
+				}
+			]
+		},
+		{
+			"name": "Woioko",
+			"ID": "woioko",
+			"ability": {
+				"str": 2,
+				"con": -2,
+				"cha": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Humanoid (Aquatic/Woioko)",
+			"source": "DS02",
+			"page": 60,
+			"description": "Inhabitants of the ocean planet Heicoron IV, woiokos are humanoids who have smooth, eellike skin. They evolved from underwater-dwelling ancestors, but more recently they split into two subspecies when rising sea levels destroyed their terrestrial civilization. The air-breathing Floatborn remained above the waves and now reside in vast floating arcologies divided into dozens of autonomous nations. The Deepborn genetically modified themselves to breathe water as well as air and returned to their primeval homes deep in the ocean, where short-lived domains constantly vie for dominance. The two subspecies have little contact with one another, each remaining in its preferred environment.",
+			"subraces": [
+				{
+					"name": "Deepborn",
+					"ID": "woioko",
+					"ability": {
+						"str": 2,
+						"con": -2,
+						"cha": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Humanoid (Aquatic/Woioko)",
+					"source": "DS02",
+					"page": 60,
+					"features": [
+						{
+							"name": "Amphibious",
+							"description": "Deepborn woiokos can breathe underwater (thanks to the aquatic subtype), but they can also breathe air and survive on land."
+						},
+						{
+							"name": "Hold Breath",
+							"description": "See above."
+						},
+						{
+							"name": "Low-Light Vision",
+							"description": "All woiokos can see in dim light as if it were normal light."
+						},
+						{
+							"name": "Multinational",
+							"description": "To navigate the evershifting waters of alliances and enmities between the scattered Floatborn nations and arcologies, Floatborn woiokos must be skilled at dealing with those from different backgrounds; they receive a +2 racial bonus to Culture and Diplomacy checks."
+						},
+						{
+							"name": "Natural Swimmer",
+							"description": "All woiokos are at home in the water and have a swim speed of 30 feet."
+						}
+					]
+				},
+				{
+					"name": "Floatborn",
+					"ID": "woioko",
+					"ability": {
+						"dex": 2,
+						"con": -2,
+						"cha": 2
+					},
+					"hp": 4,
+					"size": "Medium",
+					"type": "Humanoid (Woioko)",
+					"source": "DS02",
+					"page": 60,
+					"features": [
+						{
+							"name": "Amphibious",
+							"description": "Deepborn woiokos can breathe underwater (thanks to the aquatic subtype), but they can also breathe air and survive on land."
+						},
+						{
+							"name": "Hold Breath",
+							"description": "See above."
+						},
+						{
+							"name": "Low-Light Vision",
+							"description": "All woiokos can see in dim light as if it were normal light."
+						},
+						{
+							"name": "Multinational",
+							"description": "To navigate the evershifting waters of alliances and enmities between the scattered Floatborn nations and arcologies, Floatborn woiokos must be skilled at dealing with those from different backgrounds; they receive a +2 racial bonus to Culture and Diplomacy checks."
+						},
+						{
+							"name": "Natural Swimmer",
+							"description": "All woiokos are at home in the water and have a swim speed of 30 feet."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Wrikreechee",
+			"ID": "wrikreechee",
+			"ability": {
+				"dex": -2,
+				"con": 2,
+				"int": 2
+			},
+			"hp": 4,
+			"size": "Medium",
+			"type": "Monstrous Humanoid (Aquatic)",
+			"source": "AA1",
+			"page": 125,
+			"description": "Spindly and deliberate, wrikreechees are chitinous filter feeders who bear as much a resemblance to mollusks as they do to airbreathing humanoids. Their two lower limbs are robust, capable of clinging to jagged surfaces for extended periods, while their forelimbs bear dozens of long, fibrous whiskers that fan out like baleen to catch passing food particles. These forelimbs each also bear a set of three grasping claws, with which a wrikreechee can manipulate objects, tools, and weapons.",
+			"features": [
+				{
+					"name": "Amphibious",
+					"description": "Wrikreechees are able to breathe both water and air normally."
+				},
+				{
+					"name": "Cooperative",
+					"description": "Wrikreechees spend much of their lives in close contact with one another, learning to predict their neighbors’ reactions and coordinate their actions. A wrikreechee gains a +2 bonus to skill checks for the aid another action and to attack rolls to provide harrying fire. A creature using the aid another action to assist a wrikreechee’s skill check gains a +2 bonus to her check."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Wrikreechees have darkvision with a range of 60 feet."
+				},
+				{
+					"name": "Sheltering",
+					"description": "A wrikreechee instinctively knows how to exploit sources of cover. When a wrikreechee is benefiting from partial cover, cover, or improved cover, the granted bonus to its AC and Reflex saves increases by 1."
+				},
+				{
+					"name": "Snag",
+					"description": "Thanks to the feathery material lining its forelimbs, a wrikreechee is adept at grabbing small prey. A wrikreechee gains a +4 bonus to attack rolls when attempting to grapple a creature smaller than itself. As a full action, a wrikreechee can make two attempts to grapple a creature with a –4 penalty to the attack rolls."
+				},
+				{
+					"name": "Wrikreechee Movement",
+					"description": "A wrikreechee has a base speed of 20 feet and a swim speed of 30 feet."
+				}
+			]
+		},
+		{
+			"name": "Ysoki",
+			"ID": "ysoki",
+			"ability": {
+				"str": -2,
+				"dex": 2,
+				"int": 2
+			},
+			"hp": 2,
+			"size": "Small",
+			"type": "Humanoid (Ysoki)",
+			"source": "CRB",
+			"page": 54,
+			"description": "Small and furtive, the ysoki are often overlooked by larger races. Yet through wit and technological prowess, they’ve spread throughout the solar system, giving truth to the old adage that every starship needs a few rats.",
+			"features": [
+				{
+					"name": "Cheek Pouches",
+					"description": "Ysoki can store up to 1 cubic foot of items weighing up to 1 bulk in total in their cheek pouches, and they can transfer a single object between hand and cheek as a swift action. A ysoki can disgorge the entire contents of his pouch onto the ground in his square as a move action that does not provoke an attack of opportunity."
+				},
+				{
+					"name": "Darkvision",
+					"description": "Ysoki can see up to 60 feet in the dark. See page 263 for more information."
+				},
+				{
+					"name": "Moxie",
+					"description": "Ysoki are scrappy and nimble even when the odds are against them. A ysoki can stand from prone as a swift action. Additionally, when off-kilter (see page 276), a ysoki does not take the normal penalties to attacks or gain the flat-footed condition. When attempting an Acrobatics check to tumble through the space of an opponent at least one size category larger than himself, a ysoki receive a +5 racial bonus to the check."
+				},
+				{
+					"name": "Scrounger",
+					"description": "Ysoki receive a +2 racial bonus to Engineering, Stealth, and Survival checks. "
+				}
+			]
+		}
+	]
+}

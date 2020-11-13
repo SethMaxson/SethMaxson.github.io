@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Maximum Questing!</title>
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/res/css/navbar.css" rel="stylesheet" type="text/css" media="all">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			.dropdown {
+				float: left;
+				overflow: hidden;
+				position:relative;
+				top:0;
+				left:0;
+			}
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				left:0px;
+				top:100%;
+				background-color: #f1f1f1;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				z-index: 5;
+			}
+
+			/* Links inside the dropdown */
+			.dropdown-content a {
+				float: none;
+				text-decoration: none;
+				display: block;
+				text-align: left;
+				white-space: nowrap;
+				background-color: #555;
+				color:#f2f2f2;
+				padding: 0px 16px;
+				line-height: 40px;
+			}
+
+			/* Change color of dropdown links on hover */
+			.dropdown-content a:hover {background-color: #ca8; color:black;}
+
+			/* Show the dropdown menu on hover */
+			.dropdown:hover>.dropdown-content {
+				display: block;
+				height:auto;
+				top:100%;
+			}
+
+			.dropdown:hover {
+				overflow:visible;
+			}
+
+			.navbar .icon {
+				display: none;
+			}
+
+
+			/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+			@media screen and (max-width: 600px) {
+				.navbar .dropdown:not(:first-child) {display: none;}
+				.navbar a.icon {
+					float: right;
+					display: block;
+				}
+			}
+
+			/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+			@media screen and (max-width: 600px) {
+				.navbar.responsive {position: relative;}
+				.navbar.responsive a.icon {
+					position: absolute;
+					right: 0;
+					top: 0;
+				}
+				.navbar.responsive .dropdown {
+					float: none;
+					display: block;
+					text-align: left;
+					border-bottom:2px solid #444;
+				}
+
+				.dropdown-content {
+					min-width: 100%;
+				}
+
+				.dropdown:hover>.dropdown-content {
+					display:none;
+				}
+			}
+		</style>
+
+		<script>
+			/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+			function myFunction() {
+				var x = document.getElementById("TopNav");
+				if (x.className === "navbar") {
+					x.className += " responsive";
+				} else {
+					x.className = "navbar";
+				}
+			}
+		</script>
+	</head>
+
+	<body class="no-overflow">
+		<div class="navbar" id="TopNav">
+			<div class="dropdown">
+				<a href="/sf/index.html">Starfinder</a>
+			</div>
+			<div class="dropdown">
+				<a href="pages/maps/worldmap.html" target="mainFrame">Home</a>
+			</div>
+			<div class="dropdown">
+				<a href="pages/world/races.html" target="mainFrame">
+					World</a>
+				<div class="dropdown-content">
+					<a class="innerLink" href="pages/world/races.html" target="mainFrame">Races</a>
+					<a class="innerLink" href="pages/world/guilds.html" target="mainFrame">Guilds</a>
+					<div class="sub-dropdown">
+						<a href="pages/maps/worldmap.html" target="mainFrame">Map ></a>
+						<div class="dropdown-content">
+							<a class="innerLink" href="pages/maps/cities/decapos/decapos.html" target="mainFrame">Decapos</a>
+							<a class="innerLink" href="pages/maps/cities/lagos/lagos.html" target="mainFrame">Lagos</a>
+							<a class="innerLink" href="pages/maps/cities/paros/paros.html" target="mainFrame">Paros</a>
+							<a class="innerLink" href="pages/maps/cities/peku/peku.html" target="mainFrame">Peku</a>
+							<a class="innerLink" href="pages/maps/cities/terrapim/terrapim.html" target="mainFrame">Terrapim</a>
+							<a class="innerLink" href="pages/maps/cities/skyisle/cartref.html" target="mainFrame">Cartref</a>
+							<a class="innerLink" href="pages/maps/ships/partyship.html" target="mainFrame">Ship</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a href="pages/lore/pantheon.html" target="mainFrame">
+					Lore</a>
+				<div class="dropdown-content">
+					<div class="sub-dropdown">
+						<a href="#" target="mainFrame">Characters ></a>
+						<div class="dropdown-content">
+							<a href="pages/characters/party.html" target="mainFrame">Party</a>
+							<a href="pages/characters/allies.html" target="mainFrame">Allies</a>
+						</div>
+					</div>
+					<a href="pages/lore/pantheon.html" target="mainFrame">Pantheon</a>
+					<a href="pages/lore/godfall_artifacts.html" target="mainFrame">Godfall Artifacts</a>
+					<a href="pages/lore/sessionnotes.html" target="mainFrame">Session Notes</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a href="pages/rules/reincarnation.html" target="mainFrame">Rules</a>
+				<div class="dropdown-content">
+					<a href="pages/rules/reincarnation.html" target="mainFrame">Reincarnation</a>
+					<a href="pages/rules/tenetsofgodhood.html" target="mainFrame">Tenets of Godhood</a>
+					<a href="pages/rules/items/weapons.html" target="mainFrame">Weapons</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<a href="pages/rules/items/weapons.html" target="mainFrame">Tools</a>
+				<div class="dropdown-content">
+					<a href="pages/tools/militarystrength.html" target="mainFrame">Military Strength</a>
+					<!-- <a href="pages/npccreation.html" target="mainFrame">NPC Generator</a> -->
+					<div class="sub-dropdown">
+						<a href="pages/tools/npccreation.html" target="mainFrame">Generators ></a>
+						<div class="dropdown-content">
+							<a href="pages/tools/generators/npc.html" target="mainFrame">NPC Generator</a>
+							<a href="pages/tools/generators/relationship.html" target="mainFrame">Character Relationship</a>
+							<a href="pages/tools/generators/citizen.html" target="mainFrame">Citizenship</a>
+							<a href="pages/tools/generators/town.html" target="mainFrame">Town Generator</a>
+							<a href="pages/itemcreation.html" target="mainFrame">Shop Generator</a>
+						</div>
+					</div>
+					<a href="pages/tools/random-tables.html" target="mainFrame">Random Tables</a>
+					<a href="pages/tools/table.html" target="mainFrame">Table</a>
+					<a href="pages/tools/charactercreation.html" target="mainFrame">Character Creation</a>
+				</div>
+			</div>
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+				<i class="fa fa-bars"></i>
+			</a>
+
+		</div>
+		<div class="main" style="padding:0;">
+			<iframe src="pages/maps/worldmap.html" frameborder="0" name="mainFrame" style="margin:0;" ></iframe>
+		</div>
+	</body>
+
+</html>

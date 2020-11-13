@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Relationship</title>
+		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/page-specific/relationship.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/dnd/res/js/npc.js"></script>
+		<script src="/dnd/res/js/generators/relationship.js"></script>
+		<script src="/dnd/res/js/page-specific/relationship-generator.js"></script>
+		<script src="/res/js/sort-table.js"></script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<button id="relationship-save">Save Changes</button>
+				<div id="relationship-preview">
+					<div>
+						<label for="character1-select">Character:</label>
+						<select name="character1-select" id="character1-select">
+							<option value="null">Surprise Me</option>
+						</select>
+						<div class="token">
+							<img id="character1-image" src="" alt="Character 1" />
+						</div>
+					</div>
+					<div style="position: relative; top: 0; left: 0; flex-grow: 0; flex-basis: 240px;">
+						<div id="relationship-container">
+							<select id="relationship-select"></select>
+							<button id="relationship-generate" style="margin-top:1em;">Re-roll</button>
+						</div>
+					</div>
+					<div>
+						<label for="character2-select">Character:</label>
+						<select name="character2-select" id="character2-select">
+							<option value="null">Surprise Me</option>
+						</select>
+						<div class="token">
+							<img id="character2-image" src="" alt="Character 1" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

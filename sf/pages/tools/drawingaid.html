@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Shadow Boxing</title>
+		<!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<style>
+			html {
+				min-height:100%;
+				width:100%;
+			}
+
+			.humanoid {
+				position:absolute;
+				top:50%;
+				left:50%;
+				transform: translate(-50%, -50%);
+				height:500px;
+				width:500px;
+			}
+			.head {
+				box-sizing: border-box;
+				height: 10%;
+				width:8%;
+				border:0.1em solid black;
+				border-radius: 50%;
+			}
+			.torso {
+				box-sizing: border-box;
+				height: 30%;
+				width:20%;
+				position:absolute;
+				top:50%;
+				left:50%;
+				transform: translate(-50%, -50%);
+			}
+			.torso .left-pec {
+				box-sizing: border-box;
+				height: 27%;
+				width:50%;
+				border:0.1em solid black;
+				border-radius: 50%;
+				position:absolute;
+				top:0;
+				left:0;
+			}
+			.torso .right-pec {
+				box-sizing: border-box;
+				position:absolute;
+				height: 27%;
+				width:50%;
+				border:0.1em solid black;
+				border-radius: 50%;
+				position:absolute;
+				top:0;
+				left:50%;
+			}
+		</style>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	</head>
+
+	<body>
+		<div style="padding:1vh 1vw; overflow:hidden;">
+			<div class="humanoid">
+				<div class="head">
+
+				</div>
+				<div class="torso">
+					<div class="left-pec"></div>
+					<div class="right-pec"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

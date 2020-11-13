@@ -1,0 +1,64 @@
+body div.background {
+	background:black;
+}
+
+body div.background div.container {
+	background-color:gray;
+	max-width:90%;
+	width:90%;
+}
+
+
+.background div.container {padding:10px;}
+th {font-weight: bold; border:2px solid #555; background:#333; color:floralwhite; padding:4px;}
+td{border:2px solid #555; padding:4px;}
+.collapsible.collapsed table {display:none;}
+.collapse-button {width:2em;}
+.collapse-button:before {content:"\25B2";}
+.collapsed .collapse-button:before {content:"\25BC";}
+
+div.token {
+	position: relative;
+	width: 100%;
+	height: 20em;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
+	background-image: url("/dnd/img/characters/snes/stage.png");
+}
+
+#character1-image,
+#character2-image {
+	position: absolute;
+	bottom: 0%;
+	left: 50%;
+	transform: translate(-50%, -260%) scale(6.0);
+}
+
+#relationship-preview {
+	width:90%;
+	margin:auto;
+	border-collapse: collapse;
+	display:flex;
+	flex-direction: row;
+	text-align: center;
+	align-items: stretch;
+	justify-content: center;
+}
+
+#relationship-preview > div {
+	flex-grow: 0;
+	flex-basis: 20em;
+}
+
+#relationship-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#relationship-select {
+	border:1px solid black;
+}

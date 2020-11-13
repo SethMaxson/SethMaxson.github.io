@@ -1,0 +1,20 @@
+[
+	{
+		"name": "Amarillo",
+		"displayName": "Amarillo",
+		"description": [
+			"Welcome, comrade, to a land where the keesh and honey flows like blood of our enemies.",
+			"Overseen by great king Pehr Lim, Lagos government is best in all of Geoss. If you can make it here, you can make it anywhere. If not, we feed you to alligator-persons."
+		],
+		"attractionsLabel": "Attractions",
+		"attractionsBlurb": [
+			"Here in sunny Lagos, you can participate in such entertainment activity as:"
+		],
+		"attractions": [
+			"Mourn dead ruler hero, Osbeck Lim!",
+			"Read book from library for to gain knowledge.",
+			"Fight in world-famous Keesh Day bake off, for glory of family.",
+			"And many mores!"
+		]
+	}
+]

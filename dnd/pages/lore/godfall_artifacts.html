@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Just look at all those McGuffins...</title>
+		<!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<style>
+			.dmnotes {display:none;}
+			.playernotes {display:table-row;}
+			.party {color:royalblue; font-weight:bold;}
+			.rewera {color:firebrick; font-weight:bold;}
+			.neutral {color:peru; font-weight:bold;}
+			.unknown {color:black; font-weight:bold; font-style: italic;}
+			th {font-weight: bold; border:2px solid #555; background:#333; color:floralwhite; padding:4px;}
+			td{border:2px solid #555; padding:4px;}
+		</style>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(function(){
+				jQuery('tr td').css({'background-color': 'none'});
+				jQuery('tr:visible:odd td').css({'background-color': '#efefef'});
+				$("#NotesToggle").click(function(){
+					if($("#NotesToggle").text() == 'Player Version'){
+						$("#NotesToggle").text('DM Version');
+						$('.dmnotes').css("display","table-row");
+						$('.playernotes').css("display","none");
+						jQuery('tr td').css({'background-color': 'none'});
+						jQuery('tr:visible:odd td').css({'background-color': '#efefef'});
+					} else {
+						$("#NotesToggle").text('Player Version');
+						$('.dmnotes').css("display","none");
+						$('.playernotes').css("display","table-row");
+						jQuery('tr td').css({'background-color': 'none'});
+						jQuery('tr:visible:odd td').css({'background-color': '#efefef'});
+					}
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<button id="NotesToggle">Player Version</button>
+				<h1>Artifacts</h1>
+				<table style="width:95%; margin:auto; border-collapse: collapse;">
+					<tr>
+						<th style="width:20%;">Culture</th>
+						<th style="width:20%;">Resting Place</th>
+						<th style="width:20%;">Weapon</th>
+						<th style="width:20%;">Last Known Owner</th>
+					</tr>
+					<tr class="playernotes">
+						<td class="unknown">??</td>
+						<td>Aphotia</td>
+						<td class="unknown">??</td>
+						<td class="rewera">Rewera</td>
+					</tr>
+					<tr class="dmnotes">
+						<td>Drow</td>
+						<td>Aphotia</td>
+						<td>Tome</td>
+						<td class="rewera">Rewera</td>
+					</tr>
+					<tr class="playernotes">
+						<td>Frost Giants</td>
+						<td>Moonfire Mountains</td>
+						<td class="unknown">??</td>
+						<td class="rewera">Rewera</td>
+					</tr>
+					<tr class="dmnotes">
+						<td>Frost Giants</td>
+						<td>Moonfire Mountains</td>
+						<td>Hammer</td>
+						<td class="rewera">Rewera</td>
+					</tr>
+					<tr class="playernotes">
+						<td>Celestials</td>
+						<td>Sky Island</td>
+						<td>Amulets</td>
+						<td>N/A</td>
+					</tr>
+					<tr class="dmnotes">
+						<td>Celestials</td>
+						<td>Etherworld (Skyland)</td>
+						<td>Amulets</td>
+						<td class="rewera">Rewera</td>
+					</tr>
+					<tr>
+						<td>Aarakocra</td>
+						<td>Notriven</td>
+						<td>Spear</td>
+						<td class="party">Quintus Skybreeze</td>
+					</tr>
+					<tr>
+						<td>Lizardfolk</td>
+						<td>Wetwood</td>
+						<td>Dagger</td>
+						<td class="party">Party</td>
+					</tr>
+					<tr class="playernotes">
+						<td>Firenewts</td>
+						<td>Firelake</td>
+						<td>Reaping Chain</td>
+						<td class="party">Party</td>
+					</tr>
+					<tr class="dmnotes">
+						<td>Firenewts</td>
+						<td>Firelake</td>
+						<td>Reaping Chain</td>
+						<td class="party">Party</td>
+					</tr>
+					<tr>
+						<td>Triton</td>
+						<td>Morsko Dno</td>
+						<td>Trident</td>
+						<td class="party">Party</td>
+					</tr>
+					<tr class="playernotes">
+						<td>Human</td>
+						<td>Amarillo</td>
+						<td>Greataxe</td>
+						<td class="party">Party</td>
+					</tr>
+					<tr class="dmnotes">
+						<td>Human</td>
+						<td>Amarillo</td>
+						<td>Greataxe</td>
+						<td class="party">Jasper</td>
+					</tr>
+					<tr class="playernotes">
+						<td>Elf</td>
+						<td class="unknown">??</td>
+						<td class="unknown">??</td>
+						<td class="unknown">??</td>
+					</tr>
+					<tr class="dmnotes">
+						<td>Elf</td>
+						<td>Ritchton</td>
+						<td>Crossbow</td>
+						<td>Cross</td>
+					</tr>
+					<tr class="playernotes">
+						<td>Gnome</td>
+						<td class="unknown">??</td>
+						<td class="unknown">??</td>
+						<td class="unknown">??</td>
+					</tr>
+					<tr class="dmnotes">
+						<td>Gnome</td>
+						<td>Elmusk</td>
+						<td>Wand</td>
+						<td class="party">Chris Angel</td>
+					</tr>
+					<tr class="playernotes">
+						<td>Dwarf</td>
+						<td class="unknown">??</td>
+						<td class="unknown">??</td>
+						<td class="unknown">??</td>
+					</tr>
+					<tr class="dmnotes">
+						<td>Dwarf</td>
+						<td>Stonweald</td>
+						<td>Halberd</td>
+						<td>Harbek Stonespire IV</td>
+					</tr>
+					<tr class="playernotes">
+						<td>Forestfolk</td>
+						<td>Thistleton</td>
+						<td>Rapier</td>
+						<td class="party">Party</td>
+					</tr>
+					<tr class="dmnotes">
+						<td>Forestfolk</td>
+						<td>Thistleton</td>
+						<td>Rapier</td>
+						<td class="party">Jasper</td>
+					</tr>
+					<tr class="playernotes">
+						<td>Dragon</td>
+						<td>Wustebie</td>
+						<td>Longsword</td>
+						<td class="party">Party</td>
+					</tr>
+					<tr class="dmnotes">
+						<td>Dragon</td>
+						<td>Wustebie</td>
+						<td>Longsword</td>
+						<td class="party">Shamous</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

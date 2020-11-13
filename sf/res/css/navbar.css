@@ -1,0 +1,197 @@
+/* The navigation bar */
+.navbar {
+	/* overflow: hidden; */
+	background-color: #30303a;
+	position: fixed;
+	/* Set the navbar to fixed position */
+	top: 0;
+	/* Position the navbar at the top of the page */
+	width: 100%;
+	/* Full width */
+	box-sizing: border-box;
+	box-shadow: inset 0px 1px 4px #aaa;
+}
+.dropdown {
+	float: left;
+	overflow: hidden;
+	position:relative;
+	top:0;
+	left:0;
+}
+/* Links inside the navbar */
+.dropdown>button,
+.dropdown>a {
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 0px 16px;
+	line-height: 40px;
+	text-decoration: none;
+	background:none;
+	font-size: inherit;
+	font-family: inherit;
+	border:none;
+}
+.navbar>a{
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 0px 16px;
+	line-height: 40px;
+	text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.navbar>a:hover,
+.dropdown>a:hover,
+.dropdown>button:hover,
+.dropdown:hover>a{
+	/* background: #ddd;
+	color: black; */
+	background: #00f9ff;
+	color: #30303a;
+}
+
+.dropdown-content {
+	/* display: none; */
+	position: absolute;
+	left:0px;
+	top:100%;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 5;
+	opacity:0;
+	transition: opacity 0.1s;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	float: none;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+	white-space: nowrap;
+	background-color: #555;
+	color:#f2f2f2;
+	padding: 0px 16px;
+	line-height: 40px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #a8c; color:black;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover>.dropdown-content {
+	display: block;
+	opacity:1;
+	height:auto;
+	top:100%;
+}
+
+.dropdown:hover {
+	overflow:visible;
+}
+
+.navbar .icon {
+	display: none;
+}
+
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+	.navbar .dropdown:not(:first-child) {display: none;}
+	.navbar a.icon {
+		float: right;
+		display: block;
+	}
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+	.navbar.responsive {position: relative;}
+	.navbar.responsive a.icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.navbar.responsive .dropdown {
+		float: none;
+		display: block;
+		text-align: left;
+		border-bottom:2px solid #444;
+	}
+
+	.navbar.responsive .dropdown>button,
+	.navbar.responsive .dropdown>a{
+		width:100%;
+		text-align:center;
+		padding:none;
+	}
+
+	.dropdown-content {
+		min-width: 100%;
+	}
+
+	/* .dropdown:hover>.dropdown-content {
+		display:none;
+	} */
+}
+
+
+
+/* Sub-Dropdown */
+.sub-dropdown .dropdown-content {
+	/* display: none; */
+	position: absolute;
+	left:100%;
+	top:0%;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 5;
+	opacity:0;
+	transition: opacity 0.1s;
+	pointer-events: none;
+}
+
+/* Links inside the dropdown */
+.sub-dropdown .dropdown-content a {
+	float: none;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+	white-space: nowrap;
+	background-color: #555;
+	color:#f2f2f2;
+	padding: 0px 16px;
+	line-height: 40px;
+}
+
+/* Change color of dropdown links on hover */
+.sub-dropdown .dropdown-content a:hover {background-color: #a8c; color:black;}
+
+/* Show the dropdown menu on hover */
+.sub-dropdown:hover>.dropdown-content {
+	display: block;
+	opacity:1;
+	height:auto;
+	top:0%;
+	pointer-events: visible;
+}
+
+.sub-dropdown:hover {
+	overflow:visible;
+}
+
+.dropdown-content .sub-dropdown {
+	float: none;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+	white-space: nowrap;
+	background-color: #555;
+	color:#f2f2f2;
+	position: relative;
+}

@@ -1,0 +1,191 @@
+html,
+body {
+	background: #F7F5E6;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.slider {
+	margin: 0 auto;
+	max-width: 1000px;
+}
+
+.slide_viewer {
+	height: 500px;
+	overflow: hidden;
+	position: relative;
+}
+
+.slide_group {
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+.slide {
+	display: none;
+	height: 94%;
+	box-sizing: border-box;
+	position: absolute;
+	width: 96%;
+	margin: 2%;
+	background: #E3CFB0;
+	border: 10px ridge #33acca;
+	overflow-y: auto;
+}
+
+.slide:first-child {
+	display: block;
+}
+
+
+a.slide_btn {
+	color: #474544;
+	font-size: 24px;
+	margin: 0 0.075em;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.slide_btn.active,
+.slide_btn:hover {
+	color: #428CC6;
+	cursor: pointer;
+}
+
+.slide .name {
+	font-size: 2em;
+	font-weight: bold;
+	font-family: 'Cinzel', serif;
+}
+
+
+.slide .tagline {
+	font-size: 0.9em;
+	font-weight: bold;
+	font-style: italic;
+	color: #444;
+	font-family: 'Cinzel', serif;
+}
+
+.slide .titles {
+	font-size: 1.2em;
+	font-weight: bold;
+	font-style: italic;
+	color: #444;
+	font-family: 'Cinzel', serif;
+}
+
+.slide p,
+.slide li {
+	font-size: 1.5em;
+	font-family: serif;
+}
+
+.directional_nav {
+	height: 130px;
+	margin: 0 auto;
+	max-width: 940px;
+	position: relative;
+	top: -130px;
+}
+
+.previous_btn {
+	bottom: 0;
+	right: 98.5%;
+	margin: auto;
+	position: absolute;
+	top: 0;
+}
+
+.next_btn {
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	left: 98.5%;
+	top: 0;
+}
+
+.previous_btn,
+.next_btn {
+	cursor: pointer;
+	width: 55px;
+	height: 55px;
+	opacity: 0.5;
+	-webkit-transition: opacity 0.2s ease-in-out;
+	-moz-transition: opacity 0.2s ease-in-out;
+	-ms-transition: opacity 0.2s ease-in-out;
+	-o-transition: opacity 0.2s ease-in-out;
+	transition: opacity 0.2s ease-in-out;
+}
+
+.previous_btn path,
+.next_btn path {
+	-webkit-transition: fill 0.3s ease-in-out;
+	-moz-transition: fill 0.3s ease-in-out;
+	-ms-transition: fill 0.3s ease-in-out;
+	-o-transition: fill 0.3s ease-in-out;
+	transition: fill 0.3s ease-in-out;
+}
+
+.previous_btn:hover,
+.next_btn:hover {
+	opacity: 1;
+}
+
+.previous_btn:hover path,
+.next_btn:hover path {
+	fill: #428CC6;
+}
+
+@media only screen and (max-width: 767px) {
+	.previous_btn {
+		left: 50px;
+	}
+
+	.next_btn {
+		right: 50px;
+	}
+}
+
+.portrait-frame {
+	width: 30%;
+	float: right;
+	margin-left: 15px;
+	position: relative;
+	border: 20px solid;
+	border-image: url("/img/renn_frame.png");
+	border-image-slice: 50;
+	box-sizing: border-box;
+	box-shadow: 0px 0px 5px 0px black;
+	z-index: 5;
+	text-shadow: 1px 1px 0px black,
+		1px 0px 0px black,
+		0px 1px 0px black,
+		-1px 1px 0px black,
+		-1px -1px 0px black,
+		-1px 0px 0px black,
+		1px -1px 0px black,
+		0px -1px 0px black;
+}
+
+.portrait-frame::after {
+	box-shadow: inset 2px 2px 5px 0 black,
+		inset -2px -2px 5px 0 black;
+	content: '';
+	display: block;
+	height: 100%;
+	position: absolute;
+	z-index: 6;
+	top: 0;
+	width: 100%;
+}
+
+.portrait-frame img {
+	box-sizing: border-box;
+}

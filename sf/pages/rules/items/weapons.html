@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Items</title>
+		<link rel="icon" href="/sf/favicon.png" />
+		<style>
+			td.item .content {display:none;}
+			td.item.expanded .content {display:block;}
+			td.item .content>* {padding-top:0.2em;}
+			td.item .header {user-select: none; cursor: pointer; border-bottom:2px solid black; font-weight: bold; text-transform: uppercase; font-size: 1.2em;;}
+			th {font-weight: bold; border:2px solid #eee; background:#333; color:floralwhite; padding:4px;}
+			td{border:2px solid #eee; padding:4px; font-family: Roboto;}
+		</style>
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/sort-table.js"></script>
+		<script src="/sf/res/js/items.js"></script>
+		<script>
+			var items;
+			var weaponManager;
+
+			$(document).ready(function(){
+
+
+				$(document).ready(function(){
+					getWeapons().done(function (returnedData) {
+						weaponManager = new WeaponManager(returnedData);
+						weaponManager.parse();
+						renderItems();
+					});
+				});
+				WeaponTypes.forEach(type => {
+					$(".weapon-types").append($(`<option value="${type}">${type}</option>`));
+				});
+				// $.ajax({
+				// 	crossDomain: true,
+				// 	url: "/sf/res/data/items/weapons.json",
+				// 	dataType: 'json',
+				// 	error: function (xmlHttpReq, status, err) {
+				// 		var something = xmlHttpReq;
+				// 	},
+				// 	success: function (returnedData) {
+				// 		items = returnedData;
+				// 		renderItems();
+				// 	}
+				// });
+			});
+			function renderItems(lvl, types) {
+				weaponManager.resetFilters();
+				lvl = lvl || undefined;
+				types = types || undefined;
+				weaponManager.filter(lvl, types);
+				weaponManager.sort(undefined, true);
+				weaponManager.sort("level");
+				const container = $("#items tbody");
+				container.html("");
+
+				for (let index = 0; index < weaponManager.filtered.length; index++) {
+					const item = weaponManager.filtered[index];
+					let desc = item.description? `<div>${item.description}</div>` : "";
+					container.append(
+						$(`<tr>
+							<td class="item" colspan="6">
+								<div class="header" onclick="$(this).parent().toggleClass('expanded')">
+									${item.name}
+									<span style="float:right">Lvl. ${item.level}</span>
+								</div>
+								<div class="content">
+									<div><b>Type</b> ${item.type}</div>
+									<div><b>Price</b> ${item.price}</div>
+									<div><b>Damage</b> ${item.damage} ${item.damageType}</div>
+									<div><b>Range</b> ${item.range}</div>
+									<div><b>Critical</b> ${item.criticalDamage} ${item.criticalType}</div>
+									<div><b>Usage</b> ${item.usage}</div>
+									<div><b>Special</b> ${item.special}</div>
+									${desc}
+								</div>
+							</td>
+						</tr>`)
+					);
+				}
+			}
+			function filter() {
+				var lvls = [];
+				if($("#level-1").prop("checked") == true) lvls.push(1);
+				if($("#level-2").prop("checked") == true) lvls.push(2);
+				if($("#level-3").prop("checked") == true) lvls.push(3);
+				if($("#level-4").prop("checked") == true) lvls.push(4);
+				if($("#level-5").prop("checked") == true) lvls.push(5);
+				if($("#level-6").prop("checked") == true) lvls.push(6);
+				if($("#level-7").prop("checked") == true) lvls.push(7);
+				if($("#level-8").prop("checked") == true) lvls.push(8);
+				if($("#level-9").prop("checked") == true) lvls.push(9);
+				if($("#level-10").prop("checked") == true) lvls.push(10);
+				if($("#level-11").prop("checked") == true) lvls.push(11);
+				if($("#level-12").prop("checked") == true) lvls.push(12);
+				if($("#level-13").prop("checked") == true) lvls.push(13);
+				if($("#level-14").prop("checked") == true) lvls.push(14);
+				if($("#level-15").prop("checked") == true) lvls.push(15);
+				if($("#level-16").prop("checked") == true) lvls.push(16);
+				if($("#level-17").prop("checked") == true) lvls.push(17);
+				if($("#level-18").prop("checked") == true) lvls.push(18);
+				if($("#level-19").prop("checked") == true) lvls.push(19);
+				if($("#level-20").prop("checked") == true) lvls.push(20);
+
+				t = $(".weapon-types").val();
+				t = t.length >0? t : WeaponTypes;
+
+				renderItems(lvls, t);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<div id="filters">
+					<div class="levels">
+						Levels:
+						<input type="checkbox" name="level-1" id="level-1" checked><label for="level-1">1</label>
+						<input type="checkbox" name="level-2" id="level-2" checked><label for="level-2">2</label>
+						<input type="checkbox" name="level-3" id="level-3" checked><label for="level-3">3</label>
+						<input type="checkbox" name="level-4" id="level-4" checked><label for="level-4">4</label>
+						<input type="checkbox" name="level-5" id="level-5" checked><label for="level-5">5</label>
+						<input type="checkbox" name="level-6" id="level-6" checked><label for="level-6">6</label>
+						<input type="checkbox" name="level-7" id="level-7" checked><label for="level-7">7</label>
+						<input type="checkbox" name="level-8" id="level-8" checked><label for="level-8">8</label>
+						<input type="checkbox" name="level-9" id="level-9" checked><label for="level-9">9</label>
+						<input type="checkbox" name="level-10" id="level-10" checked><label for="level-10">10</label>
+						<input type="checkbox" name="level-11" id="level-11" checked><label for="level-11">11</label>
+						<input type="checkbox" name="level-12" id="level-12" checked><label for="level-12">12</label>
+						<input type="checkbox" name="level-13" id="level-13" checked><label for="level-13">13</label>
+						<input type="checkbox" name="level-14" id="level-14" checked><label for="level-14">14</label>
+						<input type="checkbox" name="level-15" id="level-15" checked><label for="level-15">15</label>
+						<input type="checkbox" name="level-16" id="level-16" checked><label for="level-16">16</label>
+						<input type="checkbox" name="level-17" id="level-17" checked><label for="level-17">17</label>
+						<input type="checkbox" name="level-18" id="level-18" checked><label for="level-18">18</label>
+						<input type="checkbox" name="level-19" id="level-19" checked><label for="level-19">19</label>
+						<input type="checkbox" name="level-20" id="level-20" checked><label for="level-20">20</label>
+					</div>
+					<div class="types">
+						Weapon Types:
+						<select class="weapon-types" multiple>
+
+						</select>
+					</div>
+					<button onclick="filter();">Filter</button>
+				</div>
+				<table style="width:100%; margin:auto; border-collapse: collapse;" id="items">
+					<thead>
+						<tr class="header-row">
+							<th onclick="sortTable(this, 0)">Name</th>
+							<th style="width:7%;" onclick="sortTable(this, 1)">Level</th>
+							<th style="width:13%;" onclick="sortTable(this, 2)">Classes</th>
+							<th style="width:13%;" onclick="sortTable(this, 3)">School</th>
+							<th style="width:20%;" onclick="sortTable(this, 4)">Description</th>
+							<th style="width:13%;" onclick="sortTable(this, 5)">Source</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

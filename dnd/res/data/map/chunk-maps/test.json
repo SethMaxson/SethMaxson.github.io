@@ -1,0 +1,13 @@
+{
+	"size": {
+		"width": 6,
+		"height": 5
+	},
+	"chunks": [
+		["grid5", "grid4", "grid5", "grid4", "grid5", "grid4"],
+		["grid4", "grid5", "grid4", "grid5", "grid4", "grid5"],
+		["grid5", "grid6", "grid5", "grid4", "grid5", "grid4"],
+		["grid4", "grid5", "grid4", "grid5", "grid4", "grid5"],
+		["grid5", "grid4", "grid5", "grid4", "grid5", "grid4"]
+	]
+}

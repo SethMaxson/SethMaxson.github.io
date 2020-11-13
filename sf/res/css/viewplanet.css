@@ -1,0 +1,153 @@
+body {
+	height:100vh;
+	overflow:hidden;
+}
+
+.container p{
+	color:white;
+}
+
+th {
+	font-weight: bold;
+	border:2px solid #ccc;
+	background:#333;
+	color:floralwhite;
+	padding:4px;
+}
+td {
+	border:2px solid #ccc;
+	padding:4px;
+}
+.bg-blue {
+	background:#051626;
+	color:#f5fbd5;
+}
+.border-blue {
+	border-top:0.1em solid #246298;
+}
+
+.data-block {
+	flex-grow: 0;
+	flex-shrink: 0;
+	display:flex;
+	flex-direction: column;
+	width:10%;
+	min-width:350px;
+	/* height:740px; */
+	height:100vh;
+	/* position:relative;
+	top:0px;
+	left:0px; */
+	font-family:Arial, sans-serif;
+	z-index:3;
+}
+
+.data-block .name {
+	flex-grow: 0;
+	flex-shrink: 0;
+	background:#255981;
+	border:0.2em solid #6ddaf8;
+	font-variant: small-caps;
+	font-size:1.5em;
+	line-height: 1.5em;
+	font-weight: bold;
+	padding-left:1em;
+}
+
+.data-block .title {
+	flex-grow: 0;
+	flex-shrink: 0;
+	line-height: 1.5em;
+	padding-left:1em;
+	padding-top:0.5em;
+}
+
+
+.data-block .stats {
+	flex-grow: 0;
+	flex-shrink: 0;
+	/* position:absolute;
+	left:0;
+	bottom:0;
+	width:100%; */
+}
+
+.stats div {
+	border-top:0.1em solid #246298;
+	padding-left:0.5em;
+	line-height:2em;
+}
+
+.stats div span {
+	font-weight: bold;
+}
+
+.bg {
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color:rgba(0, 0, 50, 0.8);
+	position:relative;
+	top:0;
+	left:0;
+}
+
+.background {
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color:black;
+	overflow:hidden;
+	height:100%;
+}
+
+.background-div {
+	background-position: top center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color:black;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+}
+
+.planet-smol {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width:100%;
+	margin-bottom:1em;
+}
+
+.container {
+	height:100%;
+	padding:0.5em;
+	overflow:auto;
+	font-size:1.5em;
+}
+
+.background {
+	display:flex;
+	flex-direction: row;
+	padding:none;
+	height:100%;
+}
+
+#bg-button {
+	position:absolute;
+	top:0px;
+	right:3vw;
+	width:5vw;
+	text-align: center;
+	padding:0.1em;
+	padding-bottom:0.2em;
+	color:white;
+	background:rgba(60,60,60,1);
+	z-index:9;
+	user-select: none;
+	cursor:pointer;
+	border-radius:0 0 0.5em 0.5em;
+}

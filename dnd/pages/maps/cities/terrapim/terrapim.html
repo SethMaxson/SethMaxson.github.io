@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Terrapim</title>
+		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+
+			.travel-brochure .location-info {
+				width:30%;
+				display:block;
+				position:absolute;
+				top:0px;
+				left:0px;
+				box-shadow: 1px 0px 10px black,
+				8px 0px 8px inset rgba(255,255,255,0.5);
+				z-index:6;
+				height:100%;
+				overflow-y:auto;
+				background-color:rgb(253, 243, 229);
+			}
+
+			.location-info h2 {
+				background-color:#bbb;
+				box-shadow:0px 0px 5px #ddd;
+				margin:0.5em 0.4em;
+				padding:7px 10px;
+				font-size:16pt;
+				text-shadow: 0px 0px 1px #ddd;
+				text-align:center;
+				font-weight:600;
+				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+				color:#333
+			}
+
+			.location-info h3 {
+				text-align-last: justify;
+				margin:0.5em 1em;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #ddd;
+				font-weight:900;
+				font-family:monospace;
+				color:#222;
+				text-shadow: 0px 0px 1px #000;
+				text-transform: uppercase;
+			}
+
+			.location-info p {
+				text-align: justify;
+				margin:1em 1em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #ddd;
+				font-weight:500;
+				color:#222;
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.travel-brochure #map-body {
+				width:70%;
+				display:block;
+				float:right;
+			}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/map.js"></script>
+		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
+		<script>
+			$(document).ready(() => {
+				getCitiesByContinent($(".map-terrapim"), "Terrapim", true);
+			})
+		</script>
+	</head>
+
+	<body class="travel-brochure">
+		<div class="location-info">
+			<h3>Amarillo Airship Agency</h3>
+			<h2>Welcome to Terrapim!!</h2>
+			<p>
+				Description goes here.
+			</p>
+
+			<!-- <p>
+				Population:
+				Ettercaps
+				Bullywugs with Giant Bat mounts
+				Goblins
+				Worg
+				Bugbear
+				Tortles
+				Lemurfolk
+
+
+
+
+				Culture:
+				80's dark fantasy
+
+				Encounters:
+				Salad Fingers
+			</p> -->
+		</div>
+		<div id="map-body" style="overflow: hidden; background:#25325f;">
+			<div class="map-controls" style="z-index: 2; padding-left:80px;">
+				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
+				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
+			</div>
+			<div class="map-container map map-terrapim" style="background-image:url('/dnd/img/maps/landmasses/Terrapim.png'); background-repeat: no-repeat; background-size: contain; width:6000px; height:4240px; text-align: center; transform-origin:center center; image-rendering: pixelated;">
+			</div>
+		</div>
+	</body>
+
+</html>

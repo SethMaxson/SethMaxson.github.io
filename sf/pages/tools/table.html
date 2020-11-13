@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Knights of the Rectangle</title>
+		<!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<style>
+			.dmnotes {display:none;}
+			.playernotes {display:table-row;}
+
+
+			.chair {
+				width: 50px;
+				height:50px;
+				border:1px solid black;
+				background-color:#b25;
+			}
+
+			body .pedestrian {
+				width:48px;
+				height:48px;
+			}
+
+			.languages{
+				color:cyan;
+				font-weight: bold;
+				font-size:14pt;
+			}
+
+			.character {
+				background:#dedfdf;
+				border:1px solid #444;
+				border-radius:15px;
+				padding:5px;
+			}
+
+			div.header {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-box-pack: end;
+				-ms-flex-pack: end;
+				justify-content: flex-end;
+				position:relative;
+				height:50px;
+			}
+			div.header>.name {
+				-ms-flex-preferred-size: 100%;
+				flex-basis: 100%;
+				flex:1;
+				font-size:15pt;
+				font-weight: 600;
+				color:#555;
+				position: absolute;
+				left: 65px;
+				top: 50%;
+				-webkit-transform: translate(0%, -50%);
+				transform: translate(0%, -50%);
+			}
+			div.header>img{
+				position:absolute;
+				top:0px;
+				left:0px;
+				height:50px;
+				width:50px;
+				image-rendering: pixelated;
+			}
+
+			div.stats {
+				margin-top:5px;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-box-pack: end;
+				-ms-flex-pack: end;
+				justify-content: flex-end;
+			}
+
+			div.stats>div.senses {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-box-direction:normal;
+				-ms-flex-direction:column;
+				flex-direction: column;
+				-webkit-box-pack: end;
+				-ms-flex-pack: end;
+				justify-content: flex-end;
+				-ms-flex-preferred-size: 100%;
+				flex-basis: 100%;
+				flex:1;
+			}
+
+			div.passive-sense {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-box-direction: reverse;
+				-ms-flex-direction: row-reverse;
+				flex-direction: row-reverse;
+				-webkit-box-pack: end;
+				-ms-flex-pack: end;
+				justify-content: flex-end;
+				-ms-flex-preferred-size: 100%;
+				flex-basis: 100%;
+			}
+
+			div.passive-sense input {
+				width: 30px;
+				height: 28px;
+				text-align: center;
+				border: 1px solid black;
+				border-radius: 10px;
+			}
+
+			div.label-container {
+				position: relative;
+				width: 100%;
+				height: 18px;
+				margin-top: 6px;
+				border: 1px solid black;
+				border-left: 0;
+				border-radius:0px 5px 5px 0px;
+				text-align: center;
+				background:hsl(180, 2%, 92%);
+			}
+
+			div.label-container>label {
+				position: absolute;
+				left: 0;
+				top: 50%;
+				-webkit-transform: translate(0%, -50%);
+				transform: translate(0%, -50%);
+				width: 100%;
+				font-size: 8pt;
+			}
+
+			input.armorclass {
+				height: 90px;
+				width: 90px;
+				text-align: center;
+				font-size: 30px;
+				background-image:url("/img/ac.png");
+				background-color:#dedfdf;
+				background-size:contain;
+				background-repeat: no-repeat;
+				background-position: center center;
+				border:none;
+			}
+
+			div.textblock {
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: reverse;
+				-ms-flex-direction: column-reverse;
+				flex-direction: column-reverse;
+				width: 100%;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				align-items: center;
+			}
+
+			div.textblock label {
+				text-align: center;
+				border: 1px solid black;
+				border-top: 0;
+				font-size: 10px;
+				width: calc(100% - 20px - 2px);
+				border-radius: 0 0 10px 10px;
+				padding: 4px 0;
+				font-weight: bold;
+				background:hsl(180, 2%, 92%);
+			}
+
+			div.textblock textarea {
+				border: 1px solid black;
+				height: 2em;
+			}
+			textarea {
+				font-size: 12px;
+				text-align: left;
+				width: calc(100% - 20px - 2px);
+				border-radius: 10px;
+				padding: 10px;
+				resize: none;
+				overflow: hidden;
+				height: 15em;
+			}
+		</style>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/res/js/generators/npc.js"></script>
+		<script>
+			$(document).ready(function(){
+				$("#NotesToggle").click(function(){
+					if($("#NotesToggle").text() == 'Player Version'){
+						$("#NotesToggle").text('DM Version');
+						$('.dmnotes').css("display","table-row");
+						$('.playernotes').css("display","none");
+
+					} else {
+						$("#NotesToggle").text('Player Version');
+						$('.dmnotes').css("display","none");
+						$('.playernotes').css("display","table-row");
+					}
+				});
+			})
+
+
+			function sortTable(sender, n) {
+				var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+				table = sender;
+				while (table.tagName !== "TABLE") {
+					table = table.parentNode;
+				}
+				switching = true;
+				// Set the sorting direction to ascending:
+				dir = "asc";
+				/* Make a loop that will continue until
+				no switching has been done: */
+				while (switching) {
+					// Start by saying: no switching is done:
+					switching = false;
+					rows = table.rows;
+					/* Loop through all table rows (except the
+					first, which contains table headers): */
+					for (i = 1; i < (rows.length - 1); i++) {
+					// Start by saying there should be no switching:
+					shouldSwitch = false;
+					/* Get the two elements you want to compare,
+					one from current row and one from the next: */
+					x = rows[i].getElementsByTagName("TD")[n];
+					y = rows[i + 1].getElementsByTagName("TD")[n];
+					/* Check if the two rows should switch place,
+					based on the direction, asc or desc: */
+					if (dir == "asc") {
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+						// If so, mark as a switch and break the loop:
+						shouldSwitch = true;
+						break;
+						}
+					} else if (dir == "desc") {
+						if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+						// If so, mark as a switch and break the loop:
+						shouldSwitch = true;
+						break;
+						}
+					}
+					}
+					if (shouldSwitch) {
+						/* If a switch has been marked, make the switch
+						and mark that a switch has been done: */
+						rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+						switching = true;
+						// Each time a switch is done, increase this count by 1:
+						switchcount ++;
+					} else {
+						/* If no switching has been done AND the direction is "asc",
+						set the direction to "desc" and run the while loop again. */
+						if (switchcount == 0 && dir == "asc") {
+							dir = "desc";
+							switching = true;
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div style="padding:1vh 1vw; overflow:hidden;">
+			<!-- <button id="NotesToggle">Player Version</button> -->
+			<table style="width:98vw; height:98vh; box-sizing:border-box;">
+				<tr style="height:15%">
+					<td style="width:33%;">
+						&#160;
+					</td>
+					<td style="width:33%;" class="character">
+						<div class="header">
+							<img src="/sf/img/maps/icons/drow.png" alt="image"/>
+							<div class="name">Aurelia</div>
+						</div>
+						<div class="stats">
+							<input class="armorclass" placeholder="19" type="text" />
+							<div class="senses">
+								<div class="passive-sense box">
+									<div class="label-container">
+										<label for="passive">Passive Perception</label>
+									</div>
+									<input name="passive" placeholder="21" />
+								</div>
+							</div>
+						</div>
+						<div class="otherprofs box textblock">
+							<label for="otherprofs">Languages</label>
+							<textarea name="otherprofs">Common</textarea>
+						</div>
+					</td>
+					<td style="width:33%;">
+						&#160;
+					</td>
+				</tr>
+				<tr style="height:20%;">
+					<td class="character">
+						<div class="header">
+							<img src="/sf/img/maps/icons/goblin.png" alt="image"/>
+							<div class="name">Torque</div>
+						</div>
+						<div class="stats">
+							<div class="senses">
+								<div class="passive-sense box">
+									<div class="label-container">
+										<label for="passive">KAC</label>
+									</div>
+									<input name="passive" placeholder="11" />
+								</div>
+								<div class="passive-sense box">
+									<div class="label-container">
+										<label for="passive">EAC</label>
+									</div>
+									<input name="passive" placeholder="11" />
+								</div>
+								<div class="passive-sense box">
+									<div class="label-container">
+										<label for="passive">Passive Perception</label>
+									</div>
+									<input name="passive" placeholder="11" />
+								</div>
+							</div>
+						</div>
+						<div class="otherprofs box textblock">
+							<label for="otherprofs">Languages</label>
+							<textarea name="otherprofs">Common, Gnomish, Infernal</textarea>
+						</div>
+					</td>
+					<td style="border:1px solid black; background:#333; border-radius:10px;" rowspan="2">
+						&#160;
+					</td>
+					<td class="character">
+						<div class="header">
+							<img src="/img/maps/icons/Shamous.png" alt="image"/>
+							<div class="name">Ursa</div>
+						</div>
+						<div class="stats">
+							<input class="armorclass" placeholder="15" type="text" />
+							<div class="senses">
+								<div class="passive-sense box">
+									<div class="label-container">
+										<label for="passive">Passive Perception</label>
+									</div>
+									<input name="passive" placeholder="10" />
+								</div>
+							</div>
+						</div>
+						<div class="otherprofs box textblock">
+							<label for="otherprofs">Languages</label>
+							<textarea name="otherprofs">Common</textarea>
+						</div>
+					</td>
+				</tr>
+				<tr style="height:20%;">
+					<td class="character">
+						<div class="header">
+							<img src="/img/maps/icons/salax.png" alt="image"/>
+							<div class="name">4NDY</div>
+						</div>
+						<div class="stats">
+							<input class="armorclass" placeholder="18" type="text" />
+							<div class="senses">
+								<div class="passive-sense box">
+									<div class="label-container">
+										<label for="passive">Passive Perception</label>
+									</div>
+									<input name="passive" placeholder="12" />
+								</div>
+							</div>
+						</div>
+						<div class="otherprofs box textblock">
+							<label for="otherprofs">Languages</label>
+							<textarea name="otherprofs">Common</textarea>
+						</div>
+					</td>
+					<td class="character">
+						<div class="header">
+							<img src="/img/maps/icons/zenerya.png" alt="image"/>
+							<div class="name">Kevin</div>
+						</div>
+						<div class="stats">
+							<input class="armorclass" placeholder="21" type="text" />
+							<div class="senses">
+								<div class="passive-sense box">
+									<div class="label-container">
+										<label for="passive">Passive Perception</label>
+									</div>
+									<input name="passive" placeholder="10" />
+								</div>
+							</div>
+						</div>
+						<div class="otherprofs box textblock">
+							<label for="otherprofs">Languages</label>
+							<textarea name="otherprofs">Common</textarea>
+						</div>
+					</td>
+				</tr>
+				<tr style="height:20%;">
+					<td>
+						&#160;
+					</td>
+					<td style="border:1px solid black; background-color:#a80; border-radius:45%">
+						&#160;
+					</td>
+					<td>
+						&#160;
+					</td>
+				</tr>
+				<tr style="height:15%">
+					<td colspan="3" align="center">
+						<div class="chair pixels">
+							<img src="/img/maps/icons/dm.png" style="width:100%;" alt="image"/>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

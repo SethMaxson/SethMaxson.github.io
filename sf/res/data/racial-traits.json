@@ -1,0 +1,22 @@
+[
+	{
+		"name": "Blindsense",
+		"description": "{race-plural} can sense thinking creatures with a range of 30 feet. They cannot sense mindless creatures or those immune to mind-affecting magic with this awareness."
+	},
+	{
+		"name": "Low-Light Blindness",
+		"description": "{race-plural} treat dim light as if it were darkness."
+	},
+	{
+		"name": "Open",
+		"description": "Other creatures receive a +6 bonus to Sense Motive checks against an {race-singular} who is using telepathy to communicate with them. {race-plural} gain a +2 bonus to Diplomacy checks when using telepathy to communicate."
+	},
+	{
+		"name": "Telepathy",
+		"description": "{race-plural} have telepathy with a range of {range} feet."
+	},
+	{
+		"name": "Third Eye",
+		"description": "{race-plural} gain a +2 racial bonus to Perception and Sense Motive checks."
+	}
+]

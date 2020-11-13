@@ -1,0 +1,24 @@
+{
+	"items": [
+		{
+			"h": "commoner_mm",
+			"c": "1"
+		},
+		{
+			"h": "tribal%20warrior_mm",
+			"c": "1"
+		},
+		{
+			"h": "druid_mm",
+			"c": "1"
+		},
+		{
+			"h": "archer_vgm",
+			"c": "1"
+		}
+	],
+	"sources": [
+		"MM",
+		"VGM"
+	]
+}

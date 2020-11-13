@@ -1,0 +1,58 @@
+<doc>
+	<tileset src="http://127.0.0.1:5500/pages/JRPG/images/tilesets/BasicHouse.png" default-tile="0" grid-size="16">
+		<tile x="0" y="0"/>
+		<tile x="1" y="0"/>
+		<tile x="2" y="0"/>
+		<tile x="3" y="0"/>
+		<tile x="4" y="0"/>
+		<tile x="5" y="0"/>
+		<tile x="6" y="0"/>
+		<tile x="7" y="0"/>
+		<tile x="0" y="1"/>
+		<tile x="1" y="1"/>
+		<tile x="2" y="1"/>
+		<tile x="3" y="1"/>
+		<tile x="4" y="1"/>
+		<tile x="5" y="1"/>
+		<tile x="6" y="1"/>
+		<tile x="7" y="1"/>
+		<tile x="0" y="2"/>
+		<tile x="1" y="2"/>
+		<tile x="2" y="2"/>
+		<tile x="3" y="2"/>
+		<tile x="4" y="2"/>
+		<tile x="5" y="2"/>
+		<tile x="6" y="2"/>
+		<tile x="7" y="2"/>
+		<tile x="0" y="3"/>
+		<tile x="1" y="3"/>
+		<tile x="2" y="3"/>
+		<tile x="3" y="3"/>
+		<tile x="4" y="3"/>
+		<tile x="5" y="3"/>
+		<tile x="6" y="3"/>
+		<tile x="7" y="3"/>
+	</tileset>
+	<map width="16" height="6" data-size="2">
+		<tiles>
+00000000000000000000000102030405
+00000000000000000000080910111013
+00000000000000000000161718192021
+00000000000000000000242526272829
+00000000000000000000000000000000
+00000000000000000000000000000000
+		</tiles>
+		<collision>
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+		</collision>
+	</map>
+	<event>
+		<doors>
+		</doors>
+	</event>
+</doc>

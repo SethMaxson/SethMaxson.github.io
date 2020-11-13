@@ -1,0 +1,83 @@
+[
+	{
+		"id": "dogbury",
+		"name": "Dogbury",
+		"alignment": "LN",
+		"type": "township",
+		"population": "3,840 (54% shirren, 35% kasatha, 9% vesk, 2% other)",
+		"government": "true democracy",
+		"qualities": [
+			"profiteering",
+			"bureaucratic",
+			"surrounded by the past"
+		],
+		"maxItemLevel": 17,
+		"locations": [
+			{
+				"name": "Low Rent Housing Project",
+				"description": "This low rent housing project has small rooms and smaller kitchens and looks newly renovated"
+			}
+		]
+	},
+	{
+		"id": "alewinter",
+		"name": "Alewinter",
+		"alignment": "LG",
+		"type": "hamlet",
+		"population": "169 (94% half-elf, 6% other)",
+		"government": "utopia",
+		"qualities": [
+			"profiteering"
+		],
+		"maxItemLevel": 11,
+		"locations": [
+			{
+				"name": "Wizards of the Coast",
+				"description": "This magical items store ha the latest and greatest magic infused items and has extreme security protocols."
+			}
+		]
+	},
+	{
+		"id": "zeroton",
+		"name": "Zeroton",
+		"alignment": "CG",
+		"type": "megaplex",
+		"population": "13,792,000,000 (5% human, 95% other)",
+		"government": "autocracy",
+		"qualities": [
+			"devout",
+			"modular"
+		],
+		"maxItemLevel": 13,
+		"locations": [
+			{
+				"name": "Blade & Bust",
+				"description": "This melee weapon store has restricted and military-grade equipment, but only sells to licensed individuals and is a front for criminal activity"
+			},
+			{
+				"name": "A sanctuary for the followers of the Song of the Spheres (Desna)",
+				"description": "This place of worship has its walls adorned by a butterfly with stars, suns, and moons on its wings."
+			},
+			{
+				"name": "Metal, Carbon, and Plastics Surgery",
+				"description": "This augmentations clinic has 10 different types of knee joints and has very unpleasent climate control."
+			},
+			{
+				"name": "Solid States",
+				"description": "This electronics workshop is very popular among the aging population and is constructed from plastic."
+			},
+			{
+				"name": "The Sleeping Halfling",
+				"description": "This speakeasy is the seediest place in this quadrant and was constructed by nanites."
+			},
+			{
+				"name": "Munitions Mega Store",
+				"description": "This armory stocks all manner of combat items, from armor to ammunition and smells like cookies on the inside."
+			},
+			{
+				"name": "Body Recyclers",
+				"description": "This augmentations clinic specializes in biotech and seems to be well guarded."
+			}
+		]
+	}
+]

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Contracts</title>
+		<link rel="icon" href="/sf/favicon.png" />
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/sf/res/css/contracts.css" rel="stylesheet" type="text/css" media="all">
+		<script src="/res/js/sort-table.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+		<script>
+			const target = GetURLParameter("id");
+
+			function GetURLParameter(sParam)
+			{
+				var sPageURL = window.location.search.substring(1);
+				var sURLVariables = sPageURL.split('&');
+				for (var i = 0; i < sURLVariables.length; i++)
+				{
+					var sParameterName = sURLVariables[i].split('=');
+					if (sParameterName[0] == sParam)
+					{
+						return decodeURIComponent(sParameterName[1]);
+					}
+				}
+				return null;
+			};
+
+			function loadItem(items, target) {
+				$(".background").append($(`
+				<div class="background-div"></div>
+				<div id="bg-button" class="push-down">DM Notes: Hidden</div>
+				`));
+
+				let item = items.filter(function (entry) {
+					return entry.id === target;
+				})[0];
+				if (item) renderItem(item);
+			}
+
+
+			function loadItems(items) {
+				$(".background").append($(`
+					<div class="container">
+						<div style="width:100%; text-align:center;" id="filter-buttons">
+							<button onclick="filterList(this, true, true)">All</button>
+							<button onclick="filterList(this, true, false)">Registration Required</button>
+							<button onclick="filterList(this, false, true)">Registration Not Required</button>
+						</div>
+						<table style="width:100%; margin:auto; border-collapse: collapse;" id="party">
+							<tr class="header-row">
+								<th onclick="sortTable(this, 1)">Name</th>
+								<th onclick="sortTable(this, 2)">Location</th>
+								<th onclick="sortTable(this, 3)">Rank</th>
+								<th onclick="sortTable(this, 4)">Payment</th>
+							</tr>
+						</table>
+					</div>
+					`)
+				);
+
+				for (let index = 0; index < items.length; index++) {
+					const item = items[index];
+					const tr = $(`
+					<tr class="job-posting ${item.registrationRequired? "reg":"no-reg"}">
+						<td><a href="/sf/pages/tools/contracts.html?id=${item.id}">${item.name}</a></td>
+						<td>${item.location}</td>
+						<td class="rank">${item.rank}</td>
+						<td class="credits">${numberWithCommas(item.payment.credits)} cr</td>
+					</tr>
+					`);
+					$("#party").append(tr);
+				}
+			}
+
+			$(document).ready(function(){
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/quests.json",
+					dataType: 'json',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (items) {
+						if (target !== null) {
+							// Load fluff
+							loadItem(items, target)
+						}
+						else {
+							let filteredItems = items.filter(function (entry) {
+								return entry.active === true;
+							});
+							filteredItems = filteredItems.filter(function (entry) {
+								return entry.rank !== "Unfinished";
+							});
+							loadItems(filteredItems);
+						}
+					}
+				});
+
+				$("body").on("click", "#bg-button", function(){
+					if($("#bg-button").text() == 'DM Notes: Hidden'){
+						$("#bg-button").text('DM Notes: Shown');
+						$('.dmnotes').css("display","block");
+						$('.playernotes').css("display","none");
+					} else {
+						$("#bg-button").text('DM Notes: Hidden');
+						$('.dmnotes').css("display","none");
+						$('.playernotes').css("display","block");
+					}
+				});
+			})
+
+			function renderItem(obj) {
+				getDataBlock(obj);
+				getPortraitImage(obj);
+				getInfoText(obj);
+			}
+
+			function getPortraitImage(item) {
+				const ps = $(".planet-smol");
+				ps.css("height", ps.innerWidth() + "px");
+			}
+
+			function getDataBlock(obj) {
+				let db = $(`
+					<div class="data-block">
+						<div class="stats">
+							<div><a href="/sf/pages/tools/contracts.html" style="color:inherit; cursor:pointer; text-decoration:none;">< Back to List</a></div>
+						</div>
+						<div class="name">${obj.name}</div>
+						<div class="stats">
+							<div><span>Credits:</span> ${numberWithCommas(obj.payment.credits)}</div>
+						</div>
+						<div class="rank-box">
+							<div class="label">Rank:</div>
+							<div class="rank">${obj.rank}</div>
+						</div>
+						<div class="stats">
+							<div><span>Issuer:</span> ${obj.issuer}</div>
+							<div><span>Location:</span> ${obj.location}</div>
+						</div>
+					</div>
+					<div class="container bg">
+					</div>
+				`);
+				$(".background").append(db);
+			}
+
+			function getInfoText(obj) {
+				for (let i = 0; i < obj.notes.player.length; i++) {
+					const entry = obj.notes.player[i];
+					$(".container").append($(`<p>${entry}</p>`));
+				}
+				for (let i = 0; i < obj.notes.dm.length; i++) {
+					const entry = obj.notes.dm[i];
+					$(".container").append($(`<p class="dmnotes">${entry}</p>`));
+				}
+			}
+
+			function filterList(sender, includeRegisteredOnly, includeNonRegistered) {
+				$(".job-posting.reg").hide();
+				$(".job-posting.no-reg").hide();
+				$("#filter-buttons button").removeClass("selected");
+				$(sender).addClass("selected");
+				includeRegisteredOnly = includeRegisteredOnly || false;
+				includeNonRegistered = includeNonRegistered || false;
+				if (!(includeRegisteredOnly || includeNonRegistered)) {
+					includeRegisteredOnly = true;
+					includeNonRegistered = true;
+				}
+				if (includeRegisteredOnly) $(".job-posting.reg").show();
+				if (includeNonRegistered) $(".job-posting.no-reg").show();
+			}
+
+			function numberWithCommas(x) {
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+		</script>
+	</head>
+
+	<!-- <body class="crt"> -->
+	<body>
+		<div class="background">
+		</div>
+	</body>
+
+</html>

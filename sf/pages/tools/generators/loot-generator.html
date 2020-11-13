@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- base.html -->
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Starfinder Loot Generator</title>
+		<meta name="description" content="Randomly generated loot for starfinder encounters" />
+
+		<link rel="icon" href="/sf/favicon.png" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/navbar-fixed-left.v2.2.css">
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/base.v2.11.css">
+
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/contentPrint.v2.0.css">
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/bootstrap-select.min.css">
+
+		<!-- header colours -->
+		<!-- Chrome, Firefox OS and Opera -->
+		<meta name="theme-color" content="#2EC4B6">
+		<!-- Windows Phone -->
+		<meta name="msapplication-navbutton-color" content="#2EC4B6">
+		<!-- iOS Safari -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="#2EC4B6">
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="content">
+				<div class="top-spacer" style="height: 20px;"></div>
+
+				<div class="jumbotron">
+					<h1>Loot Generator</h1>
+					<p class="lead">Randomly generates loot from equipment in the various rulebooks. APL determines what item levels are available to the party and CR determines the wealth of the encounter.</p>
+					<p></p>
+					<div class="container">
+						<div class="dontPrint row">
+							<div class="col-md-4">
+								<select class="selectpicker show-tick" id="sourceDrop" multiple data-style="btn-default" data-width="100%" data-size="10" data-title="Sources" data-selected-text-format="static">
+                  <option selected title="Sources">Core Rulebook</option>
+                  <option selected title="Sources">Alien Archive</option>
+                  <option selected title="Sources">Pact Worlds</option>
+                  <option selected title="Sources">Armory</option>
+                  <option selected title="Sources">Dead Suns (1-6)</option>
+                </select>
+								<select class="selectpicker show-tick" id="APLDrop" data-style="btn-default" data-width="100%" data-size="10">
+                    <option selected title="Average Party Level - 1">APL 1</option>
+                    <option title="Average Party Level - 2">APL 2</option>
+                    <option title="Average Party Level - 3">APL 3</option>
+                    <option title="Average Party Level - 4">APL 4</option>
+                    <option title="Average Party Level - 5">APL 5</option>
+                    <option title="Average Party Level - 6">APL 6</option>
+                    <option title="Average Party Level - 7">APL 7</option>
+                    <option title="Average Party Level - 8">APL 8</option>
+                    <option title="Average Party Level - 9">APL 9</option>
+                    <option title="Average Party Level - 10">APL 10</option>
+                    <option title="Average Party Level - 11">APL 11</option>
+                    <option title="Average Party Level - 12">APL 12</option>
+                    <option title="Average Party Level - 13">APL 13</option>
+                    <option title="Average Party Level - 14">APL 14</option>
+                    <option title="Average Party Level - 15">APL 15</option>
+                    <option title="Average Party Level - 16">APL 16</option>
+                    <option title="Average Party Level - 17">APL 17</option>
+                    <option title="Average Party Level - 18">APL 18</option>
+                    <option title="Average Party Level - 19">APL 19</option>
+                    <option title="Average Party Level - 20">APL 20</option>
+                </select>
+								<select class="selectpicker show-tick" id="CRDrop" data-style="btn-default" data-width="100%" data-size="10">
+                    <option selected title="Challenge Rating - 1">CR 1</option>
+                    <option title="Challenge Rating - 2">CR 2</option>
+                    <option title="Challenge Rating - 3">CR 3</option>
+                    <option title="Challenge Rating - 4">CR 4</option>
+                    <option title="Challenge Rating - 5">CR 5</option>
+                    <option title="Challenge Rating - 6">CR 6</option>
+                    <option title="Challenge Rating - 7">CR 7</option>
+                    <option title="Challenge Rating - 8">CR 8</option>
+                    <option title="Challenge Rating - 9">CR 9</option>
+                    <option title="Challenge Rating - 10">CR 10</option>
+                    <option title="Challenge Rating - 11">CR 11</option>
+                    <option title="Challenge Rating - 12">CR 12</option>
+                    <option title="Challenge Rating - 13">CR 13</option>
+                    <option title="Challenge Rating - 14">CR 14</option>
+                    <option title="Challenge Rating - 15">CR 15</option>
+                    <option title="Challenge Rating - 16">CR 16</option>
+                    <option title="Challenge Rating - 17">CR 17</option>
+                    <option title="Challenge Rating - 18">CR 18</option>
+                    <option title="Challenge Rating - 19">CR 19</option>
+                    <option title="Challenge Rating - 20">CR 20</option>
+                </select>
+								<select class="selectpicker show-tick" id="moreDrop" data-style="btn-default" data-width="100%" data-size="10">
+                    <option selected>Random Generation</option>
+                    <option data-divider="true"></option>
+                    <option>No credits</option>
+                    <option data-divider="true"></option>
+                    <option>More ammo</option>
+                    <option>More armor</option>
+                    <option>More credits</option>
+                    <option>More grenades</option>
+                    <option>More heals</option>
+                    <option>More magic</option>
+                    <option>More tech</option>
+                    <option>More upgrades</option>
+                    <option>More weapons</option>
+                </select>
+								<button type="button" onclick="generateLoot()" title="magic, baby" class="btn btn-grn">Generate <i class="fa fa-magic fa-lg"></i></button>
+								<button type="button" onclick="clearOutput()" class="btn btn-default btn-notblack">Clear</button>
+								<P></P>
+							</div>
+							<div class="col-md-8"></div>
+						</div>
+					</div>
+					</br>
+
+					<div class="output area">
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- /container -->
+		<!-- JavaScript -->
+		<!-- jQuery first, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/sf/res/js/sfrpg-tools.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/common.v2.5.js"></script>
+
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/equipmentData.v2.2.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/bootstrap-select.min.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/lootGen.v2.5.js"></script>
+
+	</body>
+
+</html>

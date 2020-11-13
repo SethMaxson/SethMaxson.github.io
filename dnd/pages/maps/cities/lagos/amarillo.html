@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Amarillo</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+
+
+			.travel-brochure .location-info {
+				width:30%;
+				display:block;
+				position:absolute;
+				top:0px;
+				left:0px;
+				box-shadow: 1px 0px 10px black,
+				8px 0px 8px inset rgba(255,255,255,0.5);
+				z-index:6;
+				height:100%;
+				overflow-y:auto;
+				background-color:#121212;
+			}
+
+			.location-info h2 {
+				background-color:#cc0000;
+				box-shadow:0px 0px 1px #770000;
+				margin:2em 0.5em 1em 0.5em;
+				padding:7px 10px;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #ad9300;
+				text-align:center;
+				font-weight:600;
+				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+				color:#ffd700
+			}
+
+			.location-info h1 {
+				background-color:#cc0000;
+				box-shadow:0px 0px 1px #770000;
+				margin:0.5em 0.4em;
+				padding:7px 10px;
+				font-size:16pt;
+				text-shadow: 0px 0px 1px #ad9300;
+				text-align:center;
+				font-weight:600;
+				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+				color:#ffd700
+			}
+
+			.location-info h3 {
+				text-align-last: justify;
+				margin:0.5em 1em;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #555;
+				font-weight:900;
+				font-family:monospace;
+				color:#999;
+				text-transform: uppercase;
+			}
+
+			.location-info h3 {
+				text-align-last: justify;
+				margin:0.5em 1em;
+				font-size:13pt;
+				text-shadow: 0px 0px 1px #555;
+				font-weight:900;
+				font-family:monospace;
+				color:#999;
+				text-transform: uppercase;
+			}
+
+			.location-info p {
+				text-align: justify;
+				margin:1em 1em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #111;
+				font-weight:500;
+				color:#eee;
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.location-info ul {
+				text-align: left;
+				margin:0em 1em 0.5em 0.5em;
+				font-size:1em;
+				text-shadow: 0px 0px 1px #111;
+				font-weight:500;
+				color:#eee;
+				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+			}
+
+			.location-info ul li {
+				padding-top:0.5em;
+			}
+
+			.travel-brochure #map-body {
+				width:70%;
+				display:block;
+				float:right;
+			}
+			.dock {
+				position:absolute;
+				width:3%;
+				height:2.85%;
+				transform:translate(-50%, -50%);
+				background:url("/dnd/img/maps/elements/house1.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+				box-sizing: border-box;
+				text-align: center;
+				line-height: 26px;
+				font-size:26px;
+				font-weight: bold;
+				color:white;
+			}
+
+			.poi {
+				position:absolute;
+				/* transform:translate(-50%, -50%); */
+				box-sizing: border-box;
+				text-align: center;
+				line-height: 26px;
+				font-size:26px;
+				font-weight: bold;
+				color:white;
+			}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/map.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				airshipGrid = 50;
+				Pedestrian("47.1%", "38.5%", ["Jasper", "Shamous"], ["/dnd/img/maps/icons/jasper.png", "/dnd/img/maps/icons/Shamous.png"]);
+			})
+		</script>
+	</head>
+
+	<body class="travel-brochure">
+		<div class="location-info">
+			<h3>Amarillo Airship Agency</h3>
+			<h1>Amarillo</h1>
+			<p>
+				Welcome, comrade, to a land where the keesh and honey flows like blood of our enemies.
+			</p>
+			<p>
+				Overseen by great king Pehr Lim, Lagos government is best in all of Geoss. If you can make it here, you can make it anywhere. If not, we feed you to alligator-persons.
+			</p>
+			<h2>Attractions</h2>
+			<p>
+				Here in sunny Lagos, you can participate in such entertainment activity as:
+				<ul>
+					<li>
+						Mourn dead ruler hero, Osbeck Lim!
+					</li>
+					<li>
+						Read book from library for to gain knowledge.
+					</li>
+					<li>
+						Fight in world-famous Keesh Day bake off, for glory of family.
+					</li>
+					<li>
+						And many mores!
+					</li>
+				</ul>
+			</p>
+		</div>
+		<div id="map-body" style="overflow: hidden; background:#6c823a;">
+			<div class="map-controls" style="z-index: 2; padding-left:80px;">
+				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
+				<input type="number" name="previous-zoom" id="previous-zoom" value="0.50" style="display:none;"/>
+			</div>
+
+			<div class="map-container map" style="background-image:url('/dnd/img/maps/cities/Amarillo.svg'); background-repeat: no-repeat; background-size: contain; width:15000px; height:15800px; text-align: center; transform-origin:center center; image-rendering: pixelated;">
+				<div class="poi" style="left:14.33%; top:35.76%; width:8.33%; height:7.91%;">
+					<span class="city-preview">
+						<h1>Market Shops</h1>
+						<ul>
+							<li>Cog and Sprocket</li>
+							<li>Amarillan Armorers</li>
+							<li>Trader Jonas' Curious (Closed)</li>
+							<li>The Blessed Blossom</li>
+						</ul>
+					</span>
+				</div>
+
+				<div class="dock" style="left:54.1%; top:55.1%;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:57.5%; top:54.8%;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:60.9%; top:54.8%;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:53.8%; top:59%;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="dock" style="left:1710px; top:1980px;"><span class="city-preview"><h1>House</h1></span></div>
+				<div class="pedestrian party battle-token" style="height:50px; width:50px; left:50%; top:50%;">
+					<img class="wide-shot" src="/dnd/img/maps/icons/jasper.png" style="width:100%;" alt="image"/>
+					<div class="close-up jasper-battle idle" style="width:200%; position:absolute; top:50%; left:50%; transform:translate(-50%, -100%);">
+
+					</div>
+					<span class="city-preview">
+						<h1>Jasper</h1>
+					</span>
+				</div>
+				<a href="#" class="smith village" style="position:absolute; top:49%; left:57%; font-size:2em;">
+					Temple
+					<span class="city-preview">
+						<h1>Temple</h1>
+						<p>
+							Religious stuff probably happens here.
+						</p>
+					</span>
+				</a>
+			</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Menu Test</title>
+		<link href="/dnd/res/css/kh-menu.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<script>
+			var menuButtons = [ "Review Decks", "World Map", "Map Cards", "World Cards", "Status", "Journal", "Settings" ];
+			function createMenu(menuOptions) {
+				let menu = $(`
+					<div class="pause-menu-container">
+						<div class="menu">
+						</div>
+					</div>
+				`);
+				let menuEl = menu.find(".menu");
+				menuOptions.forEach(btnName => {
+					menuEl.append(getMenuButton(btnName));
+				});
+				return menu;
+			}
+			function getMenuButton(label) {
+				return $(`
+					<button class="button">
+						<span class="buttonText">${label}</span>
+					</button>
+				`);
+			}
+
+			$(document).ready(() => {
+				$("body").append(createMenu(menuButtons));
+			});
+		</script>
+	</head>
+
+	<body></body>
+
+</html>

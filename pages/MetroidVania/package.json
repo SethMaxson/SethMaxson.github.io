@@ -1,0 +1,31 @@
+{
+  "name": "tinyvania",
+  "version": "1.0.0",
+  "description": "_A tiny Castlevania-inspired game_",
+  "private": true,
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "webpack --mode=development --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laamp/TinyVania.git"
+  },
+  "author": "laamp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laamp/TinyVania/issues"
+  },
+  "homepage": "https://github.com/laamp/TinyVania#readme",
+  "dependencies": {
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "raw-loader": "^2.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2"
+  }
+}

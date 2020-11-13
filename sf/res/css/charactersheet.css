@@ -1,0 +1,255 @@
+input[type=checkbox] {
+	margin: 1px;
+	opacity:1;
+	position:relative;
+	box-sizing: border-box;
+}
+
+input[type=checkbox]::before{
+	content: "";
+	display: block;
+	position: absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	border:1px solid black;
+	background:white;
+	pointer-events: none;
+}
+input[type="checkbox"]::after {
+	display: block;
+	position: absolute;
+	font-size:1.2em;
+	top:0;
+	left:0;
+    content: none;
+}
+/*Unhide the checkmark on the checked state*/
+input[type="checkbox"]:checked::after {
+	display: block;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%, -50%);
+	content: "\2714";
+}
+
+input[disabled] {
+	background:none;
+	color:inherit;
+	user-select: none;
+}
+
+input[readonly] {
+	user-select: none;
+	outline: none;
+	cursor:default;
+}
+
+button {
+	border-radius: 1em;
+}
+
+.bigbutton {
+	font-size: 120%;
+}
+
+@media print {
+  .nonprinting {
+	visibility: hidden;
+	display: none;
+  }
+}
+
+@media screen {
+	.printonly {
+	visibility: hidden;
+	display: none;
+  }
+}
+
+.invisible{
+	display: none;
+}
+
+.fixedcontrols{
+	position: fixed;
+	top: 0;
+	left: 0;
+	/* background-color: gray; */
+	border: 1px solid;
+}
+
+.breaking{
+	break-before: page;
+}
+
+.top-aligned{
+	vertical-align: top;
+}
+
+.bottom-aligned{
+	vertical-align: bottom;
+}
+
+.input_u{
+	border: none;
+	border-bottom: 1px solid;
+	text-align: left;
+	font-weight: bold;
+	width: 100%;
+}
+
+.input_u3{
+	border: none;
+	border-bottom: 1px solid;
+	text-align: left;
+	width: 2em;
+	font-family: sans-serif;
+	font-variant: small-caps;
+}
+
+.input_uc{
+	border: none;
+	border-bottom: 1px solid;
+	text-align: center;
+	font-weight: bold;
+	width: 100%;
+}
+
+.charname{
+	font-size: 1.2em;
+	border: none;
+	border-bottom: 1px solid;
+	text-align: left;
+	width: 100%;
+}
+
+.input_b{
+	border: 1px solid;
+	border-radius: 0.5em;
+	text-align: center;
+	font-weight: bold;
+	width: 100%;
+}
+
+.bordered {
+	border: 2px solid;
+	border-radius: 0.5em;
+}
+
+.thinbordered{
+	border: 1px solid;
+	border-radius: 0.5em;
+}
+
+.halfwidth {
+	width: 48%;
+}
+
+.twentyfive {
+	width: 25%;
+}
+
+textarea {
+	resize: none;
+	width: 98%;
+	overflow: auto;
+	font-family: sans-serif;
+	border: 1px solid;
+	border-radius: 0.5em;
+}
+
+.fullwidth {
+	width: 100%;
+}
+
+.onethirdwidth {
+	width: 33%;
+}
+
+body {
+	font-family: sans-serif;
+	font-variant: small-caps;
+}
+
+.right-aligned {
+	text-align: right;
+}
+
+#Page1 th {
+	vertical-align: bottom;
+	font-variant: small-caps;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size:0.8em;
+}
+
+td {
+	font-variant: small-caps;
+	white-space: nowrap;
+}
+
+.wrap {
+	white-space: normal;
+}
+
+.nobreak {
+	white-space: nowrap;
+	display: inline-block;
+}
+
+#CharacterSheet h3 {
+	font-size: 1.2em;
+	display: inline-block;
+	padding: 0.1em 0.5em;
+	font-variant: small-caps;
+	margin-top: 0em;
+	margin-bottom: 0em;
+	color:white;
+	background:#235881;
+	box-shadow: 0px 0px 0px 2px #64c1ea inset;
+	border:2px solid #235881;
+	/* background:url("/sf/img/ui/header-blue.png");
+	padding: 0.1em 0.5em 0.1em 1em;
+	background-size: cover; */
+	box-sizing: border-box;
+}
+
+h4 {
+	font-family: monospace;
+	font-size: 1.2em;
+	margin-top: 0em;
+	margin-bottom: 0em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: bold;
+	display: inline-block;
+	padding: 0.075em;
+	font-variant: small-caps;
+}
+
+h6 {
+	margin-top: 0em;
+	margin-bottom: 0em;
+	margin-left: 0;
+	margin-right: 0;
+	font-weight: normal;
+	font-variant: small-caps;
+}
+
+.weapon {
+	border-collapse: collapse;
+}
+
+.weapon td {
+	border:1px solid black;
+}
+
+.weapon input {
+	border: none;
+	text-align: left;
+	font-weight: bold;
+	width: 100%;
+}

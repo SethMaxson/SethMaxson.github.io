@@ -1,0 +1,55 @@
+{
+	"base": {
+		"path": "/res/models/terrain/grid1.glb",
+		"position": {
+			"x": 0,
+			"y": 0,
+			"z": 0
+		},
+		"scale": {
+			"x": 1,
+			"y": 1,
+			"z": 1
+		}
+	},
+	"environment": {
+		"hasSea": false,
+		"seaLevel": -2
+	},
+	"setDressing": [
+		{
+			"path": "/res/models/vehicles/airship.glb",
+			"scale": {
+				"x":2,
+				"y":2,
+				"z":2
+			}
+		}
+	],
+	"entities": [
+		{
+			"name": "Falumer",
+			"position": {
+				"x": -10,
+				"y": 2,
+				"z": -20
+			}
+		},
+		{
+			"name": "Raven",
+			"position": {
+				"x": 10,
+				"y": 2,
+				"z": -5
+			}
+		},
+		{
+			"name": "Zenny",
+			"position": {
+				"x": 11,
+				"y": 2,
+				"z": 5
+			}
+		}
+	]
+}

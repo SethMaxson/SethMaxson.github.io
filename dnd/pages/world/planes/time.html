@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Demiplane of Time</title>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+
+		<style>
+			h1, h2, h3, .name, .collapsible {
+				color:#58180d;
+			}
+
+			h2 {
+				margin-bottom:0px;
+				padding:0px;
+				line-height:100%;
+			}
+
+			h4 {
+				color:black;
+				margin:1em 0em 0.2em 0em;
+				font-size:1.1em;
+			}
+
+
+			table tr:nth-child(odd) td {
+				background-color:#e0e5c1;
+			}
+
+			table tr:nth-child(even) td {
+				background-color:#ebe2c5;
+			}
+			th {
+				font-weight: bold;
+			}
+			tr th:last-child {
+				text-align:left;
+				padding:5px;
+			}
+
+			tr td:first-child {
+				white-space: nowrap;
+				width:35px;
+				text-align:center;
+			}
+
+			.collapsible {
+				position:relative;
+				top:0;
+				left:0;
+				background:white;
+				cursor: pointer;
+				width: 100%;
+				border: none;
+				text-align: left;
+				outline: none;
+				border-bottom:5px solid #6a9bc9;
+				padding:5px;
+				font-size:20px;
+				font-weight:bold;
+				border-radius:10px 10px 0px 0px;
+				margin-top:5px;
+			}
+
+			.collapsible:after {
+				background:none;
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "+"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active:after {
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "-"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active, .collapsible:hover {
+				background-color: #e5e5e7;
+			}
+
+			.content, .item {
+				margin-top:0px;
+				max-height: 0;
+				padding:0px 20px;
+				font-size:0.9em;
+				overflow: hidden;
+				transition: max-height 0.2s ease-out;
+				background-color: hsl(209, 47%, 90%);
+				border-radius:0px 0px 15px 15px;
+				border:1px solid black;
+			}
+
+			table {
+				font-size:1.1em;
+				width:100%;
+			}
+
+			.aside {
+				background-color:#c1cbe5;
+				padding:10px;
+				margin-top:10px;
+				border-top:3px solid black;
+				border-bottom:3px solid black;
+			}
+
+			ul, ol {
+				font-size:inherit;
+			}
+
+			div.container>div {
+				background-color:#eeeeff;
+				padding:10px;
+				border:5px double gray;
+				border-radius:25px;
+				margin-top:10px;
+			}
+
+			.prerequisites {
+				padding-top:5px;
+				padding-bottom:20px;
+				font-style: italic;
+				color:#444;
+				font-size:0.9em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<h1>
+					Demiplane of Time
+				</h1>
+				<p>
+					The Demiplane of Time, also called the Temporal Energy Plane and Temporal Prime, is continually in motion. It is a gray windstorm with neither a base nor a top that buffets and overturns travelers who venture within. Everything that enters the plane is tossed and ground against itself until all that remains is more dust - the sands of time carried by the winds to erode new items.
+				</p>
+				<p>
+					The stormy nature of the Demiplane of Time poses a physical problem, but the greater danger is in the nature of time itself. Those within the sandstorm can be carried months or years into the future, effectively exiling them from their native plane. Several Material Plane civilizations saw this plane as a convenient prison for unpopular malefactors. But some cultures survived long enough to regret it when their exiles returned centuries after their departure—and had aged only a few days.
+				</p>
+				<p>
+					The Curtain of Vaporous Color surrounding the Demiplane is translucent with shadowy shapes visible beyond.
+				</p>
+				<p>
+					Inhabitants include abominations called phanes and elemental-like beings called time+dimensionals. Nearby in the Ethereal Plane grow plants called chronolilies. Princes of the Plane of Time consort with the goddess Istus. Other inhabitants include vortex+spiders, tether+beasts, temporal+stalkers, temporal+gliders, temporal+dogs, and chronovoids.
+				</p>
+				<p>
+					On the edge of the demiplane, in the Ethereal, is a fortress called the Castle at the Edge of Time, built by wizard called Aionias the Sapphire Mage.
+				</p>
+				<p>
+					There is a portal to the Demiplane of Time in Rempha, the City of the Sands of Time in Mertion.
+				</p>
+				<p>
+					Sources:
+
+					Chronomancer
+					Monster Manual II (D&D 1.0) - Time Elemental
+					Monstrous Compendium Annual, Volume Three
+					Epic Level Handbook
+					OP1 Tales of the Outer Planes
+					Manual of the Planes (1st edition)
+					Manual of the Planes (3rd edition)
+					A Guide to the Ethereal Plane, page 79
+					Planes of Law
+				</p>
+
+
+				<div id="ProbablyBetterStuff">
+					<p>
+						Also known as the Temporal Energy Plane, or Temporal Prime, the demiplane of Time is a pseudo-transitory plane much as the once-Demiplane of Shadow. Touching all points across the multiverse (even within the Outer Planes), the demiplane of Time is the manifestation of the flow of time in all realms. It resembles nothing more than a vast, endless windstorm buffeting all within with bluish-gray dust, poetically referred to as the sands of time, eventually eroding all outside people and objects to nothing but more dust. However, to those sensitive to the flow of time - chronomancers, native life, and certain other sorts - one can view an endless number of silver cords similar to those upon the Astral. These cords, known as life lines or time lines, trail mostly parallel to one another off into the sands, like threads in a massive three-dimensional loom. Each corresponds to a single being, representing their path through the inexorable march of time. Clustering where people grow near, separating as they grow distant, and providing a path for those with the rare ability to travel the river of time.
+					</p>
+					<p>
+						The demiplane of Time has no natural gravity, nor true surface, but people still travel here by walking along the nonexistent ground at their own orientation rather than the mental travel of other realms. For the most part, other natural laws work as they do elsewhere; the demiplane has mass, distance. One can breathe here perfectly well, and people have no need for food, drink, or sleep while on this plane. Time, however (somewhat expectedly) is not exactly as expected. The flow of relative time can vary greatly, with a minute on the demiplane corresponding to a day outside for any given person, or vice versa. Distance holds a similar variability on this plane, and those that can travel freely between the two can use the plane to quicken travel much as some use the plane of Shadow.
+					</p>
+					<p>
+						Such beings tend to be the only to ever visit the demiplane of Time, as natural portals to and from this plane are extremely rare, and usually difficult to use by mere nature of their existence. The only well-known such gate is located within Rempha, a secluded city in Mertion, but its presence has the side effect of distorting the flow of time within the city, rendering its use, as mentioned above, quite the ordeal. The spells of most mages - plane shift, gate, and the like - rarely allow one to access the demiplane of Time either; the plane at times almost seems not to wish the presence of any sort of outsider. However, chronomancers are able to enter quite easily through their own magics, a process known as "timeslip": a function of their own natural inclination towards the manipulation of time.
+					</p>
+					<p>
+						To those with this inclination, the demiplane of Time is the hub of their travel, the plane that connects to all points of history and allows them passage between. To those without, however, it is much less useful for such purposes. Even disregarding the paucity of natural portals, the winds of the plane stymie any attempts of outsiders to travel back towards the past, reaching unfathomable speeds that push against those that attempt it and preventing them from even inching back before the time of their own present. Forward travel is more feasible, though finding a specific desired time is an art beyond most outsiders, and traveling too far without the capability to easily return is a prospect that appeals to few. The plane does seem to allow jumps to the future and back even by outsiders, should they somehow have the capability to leave the plane at a future point and later return, but such perceived futures are no more reliable as indicators of what is to come as the average prophecy, with events always shifting as time goes on. Those that wish it find they walk forward at a rate somewhere between 15 seconds and a minute for every foot of travel.
+					</p>
+					<p>
+						Hazards
+						Turbulence within the demiplane of Time is caused by a number of events, some more dangerous than others. The most common of these is the vortex, a swirling eddy of wind that connects two or three points of time months apart within the plane, allowing for rapid travel across the plane. Of course, these vortices are visible only to those that can view the life lines of the plane, rendering them somewhat useless for outsiders; especially given that they still function for outsiders. Such individuals can only find the presence of a vortex by the change in wind nearby, an inexact science to say the least. On occasion, multiple vortices gather in a conglomeration that allows travel across planar boundaries through the demiplane of Time, a feat otherwise impossible. These eddies are even more chaotic, however, and as they can connect potentially dozens of points within the plane, using them for travel is far trickier.
+					</p>
+					<p>
+						Much more dangerous than either of these, for outsiders and natives alike, are the rare timestorms, also known as time whirlpools. These occur around regions of time suffering massive disruption due to the acts of chronomancers or other temporal manipulators. These forces, manifesting as roiling clouds sparking with blue energy almost as a thundercloud, spew energy into the surrounding plane as the demiplane is twisted by the disrupting force. Depending on the degree, a timestorm can even erupt out of the demiplane and into normal space, drawing in outsiders and, far more often, the disrupting force. These can quite often be deadly, though not all disruptions spark a timestorm. It is because of the havoc these forces cause upon the demiplane that the Guardians, a shadowy cabal of chronomancers that dwell upon the demiplane, do their best to stop any disruptions as soon as they begin to spark a timestorm. The various powers of time, fate, and the like also are very much against disruptions to their areas of concerns, and as such major timestorms are rare indeed.
+					</p>
+					<p>
+						See Also
+						Inhabitants of Time
+					</p>
+					<p>
+						References
+						Chronomancer
+						Manual of the Planes, pp.208-210
+					</p>
+				</div>
+
+
+
+
+				<div id="Section">
+					<h2>Section</h2>
+					<button class="collapsible">
+						Section
+					</button>
+					<div class="content">
+						<p>
+							Content
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+
+	<script>
+		$(document).ready(function() {
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.maxHeight){
+						content.style.maxHeight = null;
+						content.style.padding = "0px 20px";
+					} else {
+						content.style.maxHeight = content.scrollHeight + "px";
+						content.style.padding = "5px 20px";
+					}
+				});
+			}
+		})
+	</script>
+
+</html>

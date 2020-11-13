@@ -1,0 +1,559 @@
+<html>
+
+	<head>
+		<title>Overworld</title>
+		<link rel="stylesheet" href="/res/css/threedee.css" />
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<!-- <script src="/res/js/threedee.js"></script> -->
+		<script src="/res/js/three.min.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+		<script>
+			/** @namespace */
+			var THREEx	= THREEx || {}
+
+			/**
+			* Update renderer and camera when the window is resized
+			*
+			* @param {Object} renderer the renderer to update
+			* @param {Object} Camera the camera to update
+			* @param {Function} dimension callback for renderer size
+			*/
+			THREEx.WindowResize	= function(renderer, camera, dimension)
+			{
+				dimension 	= dimension || function(){ return { width: window.innerWidth, height: window.innerHeight } }
+				var callback	= function(){
+					// fetch target renderer size
+					var rendererSize = dimension();
+					// notify the renderer of the size change
+					renderer.setSize( rendererSize.width, rendererSize.height )
+					// update the camera
+					camera.aspect	= rendererSize.width / rendererSize.height
+					camera.updateProjectionMatrix()
+				}
+				// bind the resize event
+				window.addEventListener('resize', callback, false)
+				// return .stop() the function to stop watching window resize
+				return {
+					trigger	: function(){
+						callback()
+					},
+					/**
+					* Stop watching window resize
+					*/
+					destroy	: function(){
+						window.removeEventListener('resize', callback)
+					}
+				}
+			}
+		</script>
+
+		<script>
+			$(document).ready(function(){
+				function init() {
+					var scene = new THREE.Scene();
+					var camera = new THREE.PerspectiveCamera(
+						45,
+						window.innerWidth/window.innerHeight,
+						1,
+						10000
+					);
+					var spotLight_01 = getSpotlight('rgb(255, 220, 180)', 1);
+					spotLight_01.name = 'spotLight_01';
+
+					// create geometric objects
+					var plane = getPlane(45, 45);
+					var sphere = getSphere(1);
+					sphere.name = 'sphere';
+					// var house = getHouse(3, 2, 3);
+					var crate = getCrate();
+
+					// add objects to the scene
+					scene.add(getSky());
+					// scene.add(sphere);
+					scene.add(crate);
+					scene.add(getDoor(0, 0, 1, 0));
+					scene.add(getDoor(1, 0, 1, 0));
+					scene.add(getDoor(1, 0, -1, -Math.PI/2));
+					scene.add(getWall(2, 2, 0.01, -1, 0, -1, Math.PI/2));
+					scene.add(getDoor(-1, 0, -2, Math.PI/2));
+					scene.add(getWall(2, 2, 0.01, -1, 0, -4, Math.PI/2));
+					scene.add(getDoor(-1, 0, -5, Math.PI/2));
+					scene.add(getWall(2, 2, 0.01, -1, 0, -7, Math.PI/2));
+					scene.add(getWall(8, 2.5, 0.01, -4, 0, -7, Math.PI/2));
+					scene.add(getWall(8, 0.5, 0.01, -1, 2, -7, Math.PI/2));
+					scene.add(getWall(3, 2.5, 0.01, -4, 0, 1, 0));
+					scene.add(getWall(3, 2.5, 0.01, -4, 0, -7, 0));
+					scene.add(getDoor(-4, 0, 1, Math.PI/2));
+					scene.add(getWall(3, 2.5, 0.01, -4, 0, 2, 0));
+					scene.add(getWall(8, 2.5, 0.01, -4, 0, 2, Math.PI/2));
+					scene.add(getDoor(-1, 0,2, Math.PI/2));
+					scene.add(getWall(3, 2.5, 0.01, -1, 0, 3, Math.PI/2));
+					scene.add(getWall(3, 2.5, 0.01, -4, 0, 6, 0));
+					scene.add(getTiles(-1, 0.01, -14, 2, 15));
+					scene.add(getMetalTiles(-4, 0.01, 2, 3, 4));
+					scene.add(plane);
+					// scene.add(spotLight_01);
+					scene.add(new THREE.AmbientLight(0xeeeefe, 1.5));
+
+					// add Cabin Lights
+					scene.add(getCabinLight(-2.5, 3, 4));
+					scene.add(getCabinLight(0, 3, -5));
+					scene.add(getCabinLight(0, 3, -2));
+					scene.add(getCabinLight(0, 3, -8));
+
+					// transform objects
+					camera.position.x = 0;
+					camera.position.y = 6;
+					camera.position.z = 6;
+					camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+					// spotLight_01.position.x = -12;
+					// spotLight_01.position.y = 6;
+					// spotLight_01.position.z = -10;
+
+					plane.rotation.x = -Math.PI/2;
+					sphere.position.y = sphere.geometry.parameters.radius;
+
+					crate.position.z = 5;
+					// house2.position.z = -25;
+					// house3.position.z = -21;
+					// house4.position.z = -25;
+					// house2.position.x = -25;
+					// house3.position.x = -21;
+					// house4.position.x = -17;
+
+					// material adjustments
+					var planeMaterial = plane.material;
+					var sphereMaterial = sphere.material;
+
+					var textureLoader = new THREE.TextureLoader();
+					var texture = textureLoader.load(getTexture());
+
+					planeMaterial.map = textureLoader.load("/img/SunriseMaiden.png");
+					planeMaterial.transparent = true;
+					planeMaterial.bumpMap = texture;
+					planeMaterial.roughnessMap = texture;
+					planeMaterial.alphaMap = textureLoader.load("/img/SunriseMaiden_Alpha.png");
+					planeMaterial.roughness = 0.65;
+					planeMaterial.metalness = 0;
+					planeMaterial.bumpScale = -0.2;
+
+					var renderer = new THREE.WebGLRenderer();
+					renderer.shadowMap.enabled = true;
+					document.getElementById('container').appendChild(renderer.domElement);
+					renderer.setSize(window.innerWidth, window.innerHeight);
+
+					var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+					var winResize = new THREEx.WindowResize(renderer, camera);
+
+					update(renderer, scene, camera, controls);
+				}
+
+				function getSphere(radius) {
+					var geo = new THREE.SphereGeometry(radius, 24, 24);
+					var material = new THREE.MeshStandardMaterial({
+						color: 0xffffff,
+					});
+					var mesh = new THREE.Mesh(geo, material);
+					mesh.castShadow = true;
+
+					return mesh;
+				}
+				function getCabinLight(x, y, z) {
+					var geo = new THREE.SphereGeometry(0.1, 8, 8);
+					var material = new THREE.MeshBasicMaterial({
+						color: 0xffffff,
+						emissive: 0xffffff,
+					});
+
+					var light = new THREE.PointLight( 0xdddefe, 0.8, 10, 2);
+					light.add(new THREE.Mesh(geo, material));
+					light.position.set(x, y, z);
+					light.castShadow = true;
+
+					return light;
+				}
+
+				function getKoboldHouse(x, y, z) {
+					var koboldHouse = getHouse(3, 2, 3);
+					koboldHouse.position.x = x;
+					koboldHouse.position.y = y;
+					koboldHouse.position.z = z;
+					return koboldHouse;
+				}
+
+				function getDoor(x, y, z, rotation) {
+					var geo = new THREE.BoxGeometry(1, 2, 0.2);
+					var material = new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+					});
+					var mesh = new THREE.Mesh(geo, material);
+					mesh.castShadow = true;
+					mesh.receiveShadow = true;
+					var doorTexture = new THREE.TextureLoader().load("/img/textures/scifi_door.png");
+					mesh.material.map = doorTexture;
+					mesh.material.roughnessMap = doorTexture;
+					mesh.material.roughness = 0.15;
+					mesh.material.metalness = 0.5;
+					var cosRot = Math.cos(Math.abs(rotation));
+					var sinRot = Math.sin(Math.abs(rotation));
+					mesh.position.x = x - (cosRot * 0.5) + (sinRot * 0.1);
+					// alert("x=" + x + (cosRot * 0.5) + (sinRot * 0.1) + "\nz=" + z + (cosRot * 0.1) + (sinRot * 0.5));
+					mesh.position.y = y + 1;
+					mesh.position.z = z + (cosRot * 0.1) + (sinRot * 0.5);
+					mesh.rotation.y = rotation;
+					return mesh;
+				}
+
+				function getWall(sizeX, sizeY, sizeZ, x, y, z, rotation) {
+					var geo = new THREE.BoxGeometry(sizeX, sizeY, sizeZ);
+					var material = new THREE.MeshPhysicalMaterial({
+						color: 0x261d32,
+						emissive: 0x261d32,
+					});
+					var mesh = new THREE.Mesh(geo, material);
+					mesh.castShadow = true;
+					mesh.receiveShadow = true;
+					mesh.material.bumpMap = new THREE.TextureLoader().load("/img/textures/steel.png");
+					mesh.material.bumpScale = 0.1;
+					var textures = ['bumpMap'];
+					textures.forEach((mapName) => {
+						mesh.material[mapName].wrapS = THREE.RepeatWrapping;
+						mesh.material[mapName].wrapT = THREE.RepeatWrapping;
+						mesh.material[mapName].repeat.set(sizeX, sizeY);
+					});
+					// mesh.material.map = doorTexture;
+					// mesh.material.roughnessMap = doorTexture;
+					// mesh.material.roughness = 0.15;
+					var cosRot = parseFloat(Math.cos(Math.abs(rotation)));
+					var sinRot = Math.sin(Math.abs(rotation));
+					mesh.transparent = true;
+					mesh.opacity = 0.6;
+					mesh.material.metalness = 0.5;
+					mesh.position.y = y + sizeY / 2;
+					mesh.position.x = x + (((cosRot * sizeX) + (sinRot * sizeZ)) * 0.5);
+					// mesh.position.z = z + (((cosRot * sizeZ) + (sinRot * sizeX)) * 0.5);
+					mesh.position.z = z + (((cosRot * sizeZ) + (sinRot * sizeX)) * 0.5);
+					mesh.rotation.y = rotation;
+					return mesh;
+				}
+
+
+
+				function getCrate(){
+					var geo = new THREE.BoxGeometry(1, 1, 1);
+					var material = new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+					});
+					var mesh = new THREE.Mesh(geo, material);
+					mesh.castShadow = true;
+					mesh.receiveShadow = true;
+					var crateTexture = new THREE.TextureLoader().load("/img/crate.png");
+
+					mesh.material.map = crateTexture;
+					mesh.material.bumpMap = crateTexture;
+					mesh.material.roughnessMap = crateTexture;
+					mesh.material.roughness = 0.15;
+					mesh.material.metalness = 0.5;
+					mesh.material.bumpScale = 0.2;
+					mesh.position.y = 0.5;
+					return mesh
+				}
+
+				function getHouse(width, height, depth) {
+					var house = new THREE.Group();
+					var geo = new THREE.BoxGeometry(width, height, depth, 2, 1, 1);
+					var material = new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+					});
+					var mesh = new THREE.Mesh(geo, material);
+					mesh.castShadow = true;
+					mesh.receiveShadow = true;
+
+
+					var cactusTexture = new THREE.TextureLoader().load(getCactusTexture());
+
+					mesh.material.map = cactusTexture;
+					mesh.material.bumpMap = cactusTexture;
+					mesh.material.roughnessMap = cactusTexture;
+					mesh.material.roughness = 0.15;
+					mesh.material.metalness = 0;
+					mesh.material.bumpScale = 0.02;
+
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						mesh.material[mapName].wrapS = THREE.RepeatWrapping;
+						mesh.material[mapName].wrapT = THREE.RepeatWrapping;
+						mesh.material[mapName].repeat.set(width, height);
+					});
+					geo.vertices[9].y = 2
+					geo.vertices[8].y = 2
+					var depthMod = mesh.geometry.parameters.depth / 2;
+					var widthMod = mesh.geometry.parameters.width / 2;
+					var heightMod = mesh.geometry.parameters.height;
+
+					//Create Front Roof Face
+					geo = new THREE.PlaneGeometry(width, depth, 1, 2);
+
+					// geo.vertices[0] = new THREE.Vector3(-widthMod, heightMod, depthMod);
+					// geo.vertices[1] = new THREE.Vector3(0, heightMod + 1, depthMod);
+					// geo.vertices[2] = new THREE.Vector3(widthMod, heightMod, depthMod);
+					geo.vertices[0] = new THREE.Vector3(0, heightMod, depthMod);
+					geo.vertices[1] = new THREE.Vector3(-widthMod, heightMod, depthMod);
+					geo.vertices[2] = new THREE.Vector3(0, heightMod + 1, depthMod);
+					geo.vertices[3] = new THREE.Vector3(0, heightMod, depthMod);
+					geo.vertices[4] = new THREE.Vector3(widthMod, heightMod, depthMod);
+					geo.vertices[5] = new THREE.Vector3(0, heightMod + 1, depthMod);
+
+					var frontFace = new THREE.Mesh(geo, material);
+					frontFace.castShadow = true;
+					frontFace.receiveShadow = true;
+
+					//Create Rear Roof Face
+					geo = new THREE.PlaneGeometry(width, depth, 1, 0);
+					geo.vertices[0] = new THREE.Vector3(-widthMod, heightMod, -depthMod);
+					geo.vertices[1] = new THREE.Vector3(0, heightMod + 1, -depthMod);
+					geo.vertices[2] = new THREE.Vector3(widthMod, heightMod, -depthMod);
+					geo.vertices[3] = new THREE.Vector3(-widthMod, heightMod, -depthMod);
+					var rearFace = new THREE.Mesh(geo, material);
+					rearFace.castShadow = true;
+					rearFace.receiveShadow = true;
+					rearFace.material.map = cactusTexture;
+					rearFace.material.bumpMap = cactusTexture;
+					rearFace.material.roughnessMap = cactusTexture;
+					rearFace.material.roughness = 0.15;
+					rearFace.material.metalness = 0;
+					rearFace.material.bumpScale = 0.02;
+
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						mesh.material[mapName].wrapS = THREE.RepeatWrapping;
+						mesh.material[mapName].wrapT = THREE.RepeatWrapping;
+						mesh.material[mapName].repeat.set(width, height);
+					});
+
+
+					//Create Roof Slope
+					geo = new THREE.PlaneGeometry(width, depth, 2, 1);
+					material = new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						emissive: 0xdddddd,
+					});
+					roofTexture = new THREE.TextureLoader().load("/img/textures/cactus_boards.png");
+					roofBump = new THREE.TextureLoader().load("/img/textures/boards_bump.png");
+					geo.vertices[0] = new THREE.Vector3(-widthMod, heightMod, -depthMod);
+					geo.vertices[1] = new THREE.Vector3(0, heightMod + 1, -depthMod);
+					geo.vertices[2] = new THREE.Vector3(widthMod, heightMod, -depthMod);
+					geo.vertices[3] = new THREE.Vector3(-widthMod, heightMod, depthMod);
+					geo.vertices[4] = new THREE.Vector3(0, heightMod + 1, depthMod);
+					geo.vertices[5] = new THREE.Vector3(widthMod, heightMod, depthMod);
+					var roof = new THREE.Mesh(geo, material);
+					roof.material.map = roofTexture;
+					roof.material.bumpMap = roofBump;
+					roof.material.roughnessMap = roofTexture;
+					roof.material.roughness = 1;
+					roof.material.metalness = 0.2;
+					roof.material.bumpScale = 0.2;
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						roof.material[mapName].wrapS = THREE.RepeatWrapping;
+						roof.material[mapName].wrapT = THREE.RepeatWrapping;
+						roof.material[mapName].repeat.set(width, depth);
+					});
+					roof.castShadow = true;
+					roof.receiveShadow = true;
+					roof.renderOrder = 5;
+					roof.position.y = 0.01
+
+
+
+
+					house.add(mesh);
+					mesh.position.y = mesh.geometry.parameters.height / 2;
+					house.add(roof);
+					// house.add(frontFace);
+					// house.add(rearFace);
+					return house;
+				}
+
+				function getPlane(w, h) {
+					var geo = new THREE.PlaneGeometry(w, h);
+					var material = new THREE.MeshStandardMaterial({
+						color: 0xffffff,
+						side: THREE.FrontSide,
+					});
+					var mesh = new THREE.Mesh(geo, material);
+					mesh.receiveShadow = true;
+					return mesh;
+				}
+
+				function getTiles(x, y, z, w, h) {
+					var geo = new THREE.PlaneGeometry(w, h);
+					var textureLoader = new THREE.TextureLoader();
+					var material = new THREE.MeshStandardMaterial({
+						color: 0xffffff,
+						side: THREE.FrontSide,
+						map: textureLoader.load("/img/textures/steel.png"),
+						bumpMap: textureLoader.load("/img/textures/gridBump.png"),
+						roughnessMap: textureLoader.load("/img/textures/steel.png"),
+						roughness: 0.65,
+						metalness: 0.5,
+						bumpScale: 2,
+						shininess: 30,
+					});
+
+					var mesh = new THREE.Mesh(geo, material);
+					mesh.rotation.x = -Math.PI/2;
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						mesh.material[mapName].wrapS = THREE.RepeatWrapping;
+						mesh.material[mapName].wrapT = THREE.RepeatWrapping;
+						mesh.material[mapName].repeat.set(w, h);
+					});
+					mesh.position.y = y;
+					mesh.position.x = x + (w / 2);
+					mesh.position.z = z + (h / 2);
+
+					mesh.receiveShadow = true;
+					return mesh;
+				}
+				function getMetalTiles(x, y, z, w, h) {
+					var tiles = getTiles(x, y, z, w, h);
+					var textureLoader = new THREE.TextureLoader();
+					tiles.material.map =  textureLoader.load("/img/textures/MetalDiamond.jpg");
+					tiles.material.bumpMap=  textureLoader.load("/img/textures/gridBump.png");
+					tiles.material.roughnessMap = textureLoader.load("/img/textures/MetalDiamond.jpg");
+					tiles.material.roughness= 0.65;
+					tiles.material.metalness= 0.1;
+					tiles.material.bumpScale= 1;
+					tiles.material.shininess= 30;
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						tiles.material[mapName].wrapS = THREE.RepeatWrapping;
+						tiles.material[mapName].wrapT = THREE.RepeatWrapping;
+						tiles.material[mapName].repeat.set(w, h);
+					});
+					return tiles;
+				}
+
+
+				function getSky() {
+					var skyGeo = new THREE.SphereGeometry(9000, 25, 25);
+					// var texture = new THREE.TextureLoader().load( "images/space.jpg" );
+					// var sky = new THREE.Mesh(skyGeo, new THREE.MeshPhongMaterial({map: texture, color: 0x7ec0ee, emissive: 0x7ec0ee,}));
+					var material =  new THREE.MeshLambertMaterial({color: 0xffffff, emissive: 0x000000});
+					material.map = new THREE.TextureLoader().load("/img/final_frontier.png");
+					var textures = ['map'];
+					textures.forEach((mapName) => {
+						material[mapName].wrapS = THREE.RepeatWrapping;
+						material[mapName].wrapT = THREE.RepeatWrapping;
+						material[mapName].repeat.set(10, 10);
+					});
+					var sky = new THREE.Mesh(skyGeo, material);
+					sky.material.side = THREE.BackSide;
+					return sky;
+				}
+
+				function getSpotlight(color, intensity) {
+					var light = new THREE.SpotLight(color, intensity);
+					light.castShadow = true;
+
+					light.shadow.mapSize.x = 4096;
+					light.shadow.mapSize.y = 4096;
+
+					return light;
+				}
+
+				function getSun(color, intensity) {
+					var light = new THREE.DirectionalLight(color, intensity);
+					light.castShadow = true;
+
+					light.shadow.mapSize.x = 4096;
+					light.shadow.mapSize.y = 4096;
+
+					return light;
+				}
+
+				function update(renderer, scene, camera, controls) {
+					renderer.render(scene, camera);
+					controls.update();
+
+					// var spotLight_01 = scene.getObjectByName('spotLight_01');
+					// spotLight_01.intensity += (Math.random() - 0.5) * 0.05;
+					// spotLight_01.intensity = Math.abs(spotLight_01.intensity);
+
+					requestAnimationFrame(function() {
+						update(renderer, scene, camera, controls);
+					})
+				}
+
+				init();
+
+				function getTexture() {
+					return "/img/textures/desert_sand.png";
+				}
+
+				function getCactusTexture() {
+					return "/img/textures/green_boards.jpg";
+				}
+			});
+		</script>
+	</head>
+
+	<body style="margin:0px; padding:0px;">
+		<div id="container">
+		<!-- <div id="MenuBar" style="position:absolute; top:0; left:0; z-index:9; background:none;">
+			<div id="setView" class="depressed">
+				<div class="threed">3D</div>
+				<div class="twod">2D</div>
+			</div>
+		</div>
+		<div id="FixedScreen">
+			<!- - <div style="position:absolute; left:0; top:0; background:none; height:100vh; width:20vw; z-index:8; pointer-events:none;">
+				<div style="height:100vh; background:#04009d; display:none;" class="slideMenu">
+					&#160;
+				</div>
+			</div> -->
+			<!-- <div id="Camera" class="twod">
+				<div id="Viewport">
+					<div class="assembly" id="World">
+						<script>
+							document.getElementById("World").appendChild(createSkybox(50, 15, 30, 0, 0, 0));
+						</script>
+						<img src="res/images/link.gif" alt="Link" class="sprite" style="width:50px; height:100px; top:750px; left:500px;" />
+						<img src="res/images/tree_lowres.png" alt="tree" class="sprite" style="width:200px; height:290px; left:1000px; top:900px;" />
+						<!- - Terrain - ->
+							<map-terrain size="10,20, 1" position="0,0,0" type="grass"></map-terrain>
+							<map-terrain size="10,20,1" position="10,0,0" type="sand"></map-terrain>
+						<!- - Terrain - ->
+						<map-building size="1,1,1" position="2,2,0"></map-building>
+						<map-building size="1,1,1" position="3.5,2,0"></map-building>
+						<map-building size="1,1,1" position="5,2,0"></map-building>
+						<map-building size="1,1,1" position="6.5,2,0"></map-building>
+						<map-building size="1,1,1" position="2.5,3.5,0"></map-building>
+						<map-building size="1,1,1" position="4,3.5,0"></map-building>
+						<map-building size="1,1,1" position="5.5,3.5,0"></map-building>
+
+						<map-building size="4,5,2" position="9,2,0"></map-building>
+						<map-building size="6,2,2" position="15,4,0"></map-building>
+						<map-building size="4,7,3" position="3,8,0"></map-building>
+						<map-building size="2,3,3" position="5,10,3"></map-building>
+						<map-person style="left:450px; top:500px;"></map-person>
+						<map-player style="left:650px; top:1500px;" maxHP="250" HP="200" name="Smith" id="1"></map-player>
+					</div>
+				</div>
+			</div> -->
+			<!-- <div class="speech">
+				<h1>Cloud</h1>
+				<p>&ldquo;No one lives in the slums because they want to. It's like this train. It can't run anywhere except where its rails take it.&rdquo;</p>
+			</div> - ->
+			<div id="pause" style="width:100vw; height:100vh; line-height:100vh; position:absolute; top:0; left:0; background:rgba(100, 100, 100, 0.3); text-align:center; color:white; font-size:50px; display:none; z-index:5;">
+				-PAUSED-
+			</div>
+		</div> -->
+
+	</body>
+
+</html>

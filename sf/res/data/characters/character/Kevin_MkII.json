@@ -1,0 +1,347 @@
+{
+	"name": "Kevin",
+	"gender": "Yes",
+	"homeWorld": "Apostae",
+	"alignment": "True Neutral",
+	"deity": "",
+	"player": "Dom",
+	"description": "Manifestation's Gift: - Lunar Call. Armor: Vesk Brigande II EAC+5 KAC+5",
+	"ability": {
+		"pointBuy": {
+			"str": 0,
+			"dex": 2,
+			"con": 2,
+			"int": 1,
+			"wis": 0,
+			"cha": 5
+		}
+	},
+	"levels": [
+		{
+			"class": {
+				"name": "Witchwarper",
+				"choices": []
+			},
+			"feat": "Fleet",
+			"skillRanks": {
+				"ranks": [
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					0,
+					1,
+					0,
+					1,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				],
+				"names": [
+					"Acrobatics",
+					"Athletics",
+					"Bluff",
+					"Computers",
+					"Culture",
+					"Diplomacy",
+					"Disguise",
+					"Engineering",
+					"Intimidate",
+					"Life Science",
+					"Medicine",
+					"Mysticism",
+					"Perception",
+					"Physical Science",
+					"Piloting",
+					"Profession",
+					"Profession2",
+					"Sense Motive",
+					"Sleight of Hand",
+					"Stealth",
+					"Survival"
+				]
+			},
+			"ability": {
+				"str": 0,
+				"dex": 0,
+				"con": 0,
+				"int": 0,
+				"wis": 0,
+				"cha": 0
+			}
+		},
+		{
+			"class": {
+				"name": "Solarian",
+				"choices": []
+			},
+			"skillRanks": {
+				"ranks": [
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					1,
+					1,
+					0
+				],
+				"names": [
+					"Acrobatics",
+					"Athletics",
+					"Bluff",
+					"Computers",
+					"Culture",
+					"Diplomacy",
+					"Disguise",
+					"Engineering",
+					"Intimidate",
+					"Life Science",
+					"Medicine",
+					"Mysticism",
+					"Perception",
+					"Physical Science",
+					"Piloting",
+					"Profession",
+					"Profession2",
+					"Sense Motive",
+					"Sleight of Hand",
+					"Stealth",
+					"Survival"
+				]
+			},
+			"ability": {
+				"str": 0,
+				"dex": 0,
+				"con": 0,
+				"int": 0,
+				"wis": 0,
+				"cha": 0
+			}
+		},
+		{
+			"class": {
+				"name": "Witchwarper",
+				"choices": []
+			},
+			"feat": "Corruption’s Gift",
+			"skillRanks": {
+				"ranks": [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					1,
+					1,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					1,
+					0,
+					0
+				],
+				"names": [
+					"Acrobatics",
+					"Athletics",
+					"Bluff",
+					"Computers",
+					"Culture",
+					"Diplomacy",
+					"Disguise",
+					"Engineering",
+					"Intimidate",
+					"Life Science",
+					"Medicine",
+					"Mysticism",
+					"Perception",
+					"Physical Science",
+					"Piloting",
+					"Profession",
+					"Profession2",
+					"Sense Motive",
+					"Sleight of Hand",
+					"Stealth",
+					"Survival"
+				]
+			},
+			"ability": {
+				"str": 0,
+				"dex": 0,
+				"con": 0,
+				"int": 0,
+				"wis": 0,
+				"cha": 0
+			}
+		},
+		{
+			"class": {
+				"name": "Solarian",
+				"choices": []
+			},
+			"skillRanks": {
+				"ranks": [
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					1,
+					0
+				],
+				"names": [
+					"Acrobatics",
+					"Athletics",
+					"Bluff",
+					"Computers",
+					"Culture",
+					"Diplomacy",
+					"Disguise",
+					"Engineering",
+					"Intimidate",
+					"Life Science",
+					"Medicine",
+					"Mysticism",
+					"Perception",
+					"Physical Science",
+					"Piloting",
+					"Profession",
+					"Profession2",
+					"Sense Motive",
+					"Sleight of Hand",
+					"Stealth",
+					"Survival"
+				]
+			},
+			"ability": {
+				"str": 0,
+				"dex": 0,
+				"con": 0,
+				"int": 0,
+				"wis": 0,
+				"cha": 0
+			}
+		},
+		{
+			"class": {
+				"name": "Solarian",
+				"choices": []
+			},
+			"feat": "Jet Dash",
+			"skillRanks": {
+				"ranks": [
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					0,
+					0,
+					0,
+					1,
+					0,
+					0,
+					0,
+					0,
+					1,
+					0
+				],
+				"names": [
+					"Acrobatics",
+					"Athletics",
+					"Bluff",
+					"Computers",
+					"Culture",
+					"Diplomacy",
+					"Disguise",
+					"Engineering",
+					"Intimidate",
+					"Life Science",
+					"Medicine",
+					"Mysticism",
+					"Perception",
+					"Physical Science",
+					"Piloting",
+					"Profession",
+					"Profession2",
+					"Sense Motive",
+					"Sleight of Hand",
+					"Stealth",
+					"Survival"
+				]
+			},
+			"ability": {
+				"str": 0,
+				"dex": 0,
+				"con": 0,
+				"int": 0,
+				"wis": 0,
+				"cha": 0
+			}
+		}
+	],
+	"race": "Astrazoan",
+	"theme": "Icon",
+	"defaultClass": "Solarian",
+	"spells": [
+		"Charming Veneer",
+		"Hazard",
+		"Fatigue",
+		"Dazzling Flares",
+		"Ghost Sound",
+		"Ectoplasmic Barrage",
+		"Puncture Veil",
+		"Shifting Surge"
+	]
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Settlements</title>
+		<link rel="icon" href="/sf/favicon.png" />
+		<!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<style>
+			th {font-weight: bold; border:2px solid #ccc; background:#333; color:floralwhite; padding:4px;}
+			td {border:2px solid #ccc; padding:4px;}
+			.container {overflow:auto;}
+		</style>
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/sf/res/css/modal-preview.css" rel="stylesheet" type="text/css" media="all">
+		<!-- <link href="/sf/res/css/character-modal.css" rel="stylesheet" type="text/css" media="all"> -->
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/res/js/sort-table.js"></script>
+		<script src="/sf/res/js/map/settlements.js"></script>
+		<script src="/sf/res/js/modal-preview.js"></script>
+		<script>
+			var settlementManager;
+			$(document).ready(function(){
+				getSettlements().done(function (returnedData) {
+					settlementManager = new SettlementManager(returnedData);
+					settlementManager.parse();
+					renderSettlements();
+				});
+			});
+			function renderSettlements() {
+				settlementManager.resetFilters();
+				settlementManager.filter(lvl, classes, schools);
+				settlementManager.sort();
+				const container = $("#items tbody");
+				container.html("");
+				for (let index = 0; index < settlementManager.filteredItems.length; index++) {
+					let shouldRender = true;
+					const item = settlementManager.filteredItems[index];
+					const row = $(`
+						<tr>
+							<td>${index + 1}</td>
+							<td><a onclick="displaySettlement('${item.name}');">${item.name}</a></td>
+							<td>${item.type}</td>
+							<td>${item.size}</td>
+							<td>${item.source}</td>
+						</tr>
+					`);
+					container.append(row);
+				}
+			}
+
+			function displaySettlement(name) {
+				if (settlementManager.get(name)) {
+					let item = settlementManager.get(name);
+					let flavor = $("<div></div>").append(getSettlementPreview(item)).html();
+					const newpage = new PreviewModal(name, `
+						${flavor}
+					`);
+
+					$("body").append(newpage.element);
+					$(".container").addClass("no-scroll");
+				}
+			}
+		</script>
+	</head>
+
+	<body style="overflow: hidden;">
+		<div class="background" style="height:100%;">
+			<div class="container" style="height:100%;">
+				<table style="width:100%; margin:auto; border-collapse: collapse;" id="items">
+					<tr class="header-row">
+						<th>Row</th>
+						<th onclick="sortTable(this, 1)">Name</th>
+						<th style="width:13%;" onclick="sortTable(this, 2)">Type</th>
+						<th style="width:15%;" onclick="sortTable(this, 3)">Size</th>
+						<th style="width:15%;" onclick="sortTable(this, 4)">Source</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

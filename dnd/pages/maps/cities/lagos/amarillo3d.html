@@ -1,0 +1,658 @@
+<html>
+
+	<head>
+		<title>Amarillo</title>
+		<link rel="stylesheet" href="/res/css/threedee.css" />
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<!-- <script src="/res/js/threedee.js"></script> -->
+		<script src="/res/js/three.min.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+<script>
+	/** @namespace */
+	var THREEx	= THREEx || {}
+
+	/**
+	* Update renderer and camera when the window is resized
+	*
+	* @param {Object} renderer the renderer to update
+	* @param {Object} Camera the camera to update
+	* @param {Function} dimension callback for renderer size
+	*/
+	THREEx.WindowResize	= function(renderer, camera, dimension)
+	{
+		dimension 	= dimension || function(){ return { width: window.innerWidth, height: window.innerHeight } }
+		var callback	= function(){
+			// fetch target renderer size
+			var rendererSize = dimension();
+			// notify the renderer of the size change
+			renderer.setSize( rendererSize.width, rendererSize.height )
+			// update the camera
+			camera.aspect	= rendererSize.width / rendererSize.height
+			camera.updateProjectionMatrix()
+		}
+		// bind the resize event
+		window.addEventListener('resize', callback, false)
+		// return .stop() the function to stop watching window resize
+		return {
+			trigger	: function(){
+				callback()
+			},
+			/**
+			* Stop watching window resize
+			*/
+			destroy	: function(){
+				window.removeEventListener('resize', callback)
+			}
+		}
+	}
+</script>
+		<script>
+			$(document).ready(function(){
+				function init() {
+					var scene = new THREE.Scene();
+					var camera = new THREE.PerspectiveCamera(
+						45,
+						window.innerWidth/window.innerHeight,
+						1,
+						10000
+					);
+					var spotLight_01 = getSpotlight('rgb(255, 220, 180)', 1);
+					spotLight_01.name = 'spotLight_01';
+					var sun = getSun(0xffffff, 1);
+					getSun.name = 'sun';
+					scene.add(sun);
+					sun.position.set(-400, 300, 100);
+					sun.shadow.camera.near = 0.5;
+					sun.shadow.camera.far = 1000;
+					// sun.shadow.camera.left = -500;
+					// sun.shadow.camera.bottom = -500;
+					// sun.shadow.camera.right = 500;
+					// sun.shadow.camera.top = 500;
+					// sun.shadow.bias = 0.0001;
+
+					// create geometric objects
+					var plane = getPlane(600, 616);
+
+					// add objects to the scene
+					scene.add(getSky());
+					plane.add(getCityWall(149, 10, 0, 600, 616));
+					plane.add(getCityWall(294, 10, 0, 600, 616));
+					var tower = getCityWall(8.5, 20, 0, 600, 616);
+					plane.add(tower);
+					tower.position.x = 279;
+					tower.position.z = 449;
+					var tower2 = getCityWall(8.5, 20, 0, 600, 616);
+					plane.add(tower2);
+					tower2.position.x = 322;
+					tower2.position.z = 449;
+					scene.add(getKoboldHouse(-29, 0, -30));
+					scene.add(getKoboldHouse(-25, 0, -30));
+					scene.add(getKoboldHouse(-21, 0, -30));
+					scene.add(getKoboldHouse(-17, 0, -30));
+					scene.add(getKoboldHouse(-27, 0, -26));
+					scene.add(getKoboldHouse(-23, 0, -26));
+					scene.add(getKoboldHouse(-19, 0, -26));
+
+
+					plane.add(getSlumHouse(308, 0, 393));
+					plane.add(getSlumHouse(306, 0, 382));
+					plane.add(getSlumHouse(305, 0, 372));
+					plane.add(getSlumHouse(307, 0, 362));
+					plane.add(getSlumHouse(305, 0, 352));
+					plane.add(getSlumHouse(306, 0, 342));
+					plane.add(getSlumHouse(307, 0, 332));
+					plane.add(getSlumHouse(317, 0, 332));
+					plane.add(getSlumHouse(327, 0, 331));
+					plane.add(getSlumHouse(337, 0, 331));
+					plane.add(getSlumHouse(347, 0, 330));
+					plane.add(getSlumHouse(357, 0, 330));
+					plane.add(getSlumHouse(316, 0, 344));
+					plane.add(getSlumHouse(327, 0, 341));
+					plane.add(getSlumHouse(337, 0, 342));
+					plane.add(getSlumHouse(347, 0, 340));
+					plane.add(getSlumHouse(357, 0, 341));
+
+					plane.add(getSlumHouse(322, 0, 356));
+					plane.add(getSlumHouse(334, 0, 356));
+					plane.add(getSlumHouse(344, 0, 357));
+					plane.add(getSlumHouse(355, 0, 356));
+					plane.add(getSlumHouse(323, 0, 366));
+					plane.add(getSlumHouse(333, 0, 366));
+					plane.add(getSlumHouse(344, 0, 368));
+					plane.add(getSlumHouse(354, 0, 366));
+					plane.add(getSlumHouse(322, 0, 376));
+					plane.add(getSlumHouse(322, 0, 386));
+					plane.add(getSlumHouse(333, 0, 383));
+					plane.add(getSlumHouse(344, 0, 383));
+					plane.add(getSlumHouse(354, 0, 381));
+					plane.add(getSlumHouse(323, 0, 397));
+					plane.add(getSlumHouse(335, 0, 394));
+					plane.add(getSlumHouse(346, 0, 394));
+					plane.add(getSlumHouse(356, 0, 392));
+
+					plane.add(getSlumHouse(309, 0, 413));
+					plane.add(getSlumHouse(320, 0, 413));
+					plane.add(getSlumHouse(331, 0, 412));
+					plane.add(getSlumHouse(341, 0, 411));
+					plane.add(getSlumHouse(352, 0, 409));
+					plane.add(getSlumHouse(362, 0, 408));
+
+					var neighborhood = new THREE.Group();
+					neighborhood.add(getKoboldHouse(0, 0, 0));
+
+
+
+					var palace = getHouse(94, 20, 47);
+					palace.position.x = 253 + (94/2);
+					palace.position.z = 185 + (47/2);
+					plane.add(palace);
+					// neighborhood.add(getKoboldHouse(6, 0, 0));
+					// neighborhood.add(getKoboldHouse(0, 0, 4));
+					// neighborhood.add(getKoboldHouse(4, 0, 4));
+					// neighborhood.add(getKoboldHouse(8, 0, 4));
+					// neighborhood.add(getKoboldHouse(0, 0, 8));
+					// neighborhood.add(getKoboldHouse(4, 0, 8));
+					// neighborhood.add(getKoboldHouse(8, 0, 8));
+					// neighborhood.add(getKoboldHouse(0, 0, 8));
+					// neighborhood.add(getKoboldHouse(4, 0, 8));
+					// neighborhood.add(getKoboldHouse(8, 0, 8));
+					// neighborhood.add(getKoboldHouse(0, 0, 12));
+					// neighborhood.add(getKoboldHouse(4, 0, 12));
+					// neighborhood.add(getKoboldHouse(8, 0, 12));
+					// neighborhood.add(getKoboldHouse(0, 0, 16));
+					// neighborhood.add(getKoboldHouse(4, 0, 16));
+					// neighborhood.add(getKoboldHouse(8, 0, 16));
+					// neighborhood.add(getKoboldHouse(2, 0, 20));
+					// neighborhood.add(getKoboldHouse(6, 0, 20));
+
+
+					var x = 298, y = 445;
+
+					var roadPath = new THREE.Shape();
+
+					roadPath.moveTo( x + 4, y );
+					roadPath.lineTo( x + 3, y - 105);
+					roadPath.lineTo( x + 4, y - 211);
+					roadPath.lineTo( x, y - 211);
+					roadPath.lineTo( x - 1, y - 105);
+					roadPath.lineTo( x, y);
+					roadPath.lineTo( x+4, y);
+
+					var roadShape = new THREE.ShapeGeometry( roadPath );
+					var roadMaterial = new THREE.MeshPhysicalMaterial( {
+						color: 0xffffff,
+						emissive: 0x111111,
+						side: THREE.BackSide,
+						map: new THREE.TextureLoader().load("/img/textures/dirt.png"),
+						roughnessMap: new THREE.TextureLoader().load("/img/textures/dirt.png"),
+						bumpMap: new THREE.TextureLoader().load("/img/textures/dirt.png"),
+					} );
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						roadMaterial[mapName].wrapS = THREE.RepeatWrapping;
+						roadMaterial[mapName].wrapT = THREE.RepeatWrapping;
+						roadMaterial[mapName].repeat.set(1, 1);
+					});
+					roadMaterial.roughness = 0.8;
+					roadMaterial.bumpScale = -0.1;
+
+					var road = new THREE.Mesh( roadShape, roadMaterial );
+					road.renderOrder = 1;
+					road.position.y = 0.01;
+					road.rotation.x = Math.PI/2;
+					plane.add( road );
+
+					neighborhood.position.x = 0;
+					neighborhood.position.z = 0;
+
+					scene.add(neighborhood);
+					scene.add(plane);
+					// scene.add(spotLight_01);
+					// var ambLight = new THREE.AmbientLight(0x222222)
+					var ambLight = new THREE.HemisphereLight(0x999999, 0x000000, 1);
+					ambLight.position.set(0, 20, 0);
+					scene.add(ambLight);
+
+					// transform objects
+					camera.position.x = 0;
+					camera.position.y = 6;
+					camera.position.z = 10;
+					camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+					// spotLight_01.position.x = -12;
+					// spotLight_01.position.y = 6;
+					// spotLight_01.position.z = -10;
+
+
+					// material adjustments
+
+
+					var renderer = new THREE.WebGLRenderer();
+					renderer.shadowMap.enabled = true;
+					document.getElementById('container').appendChild(renderer.domElement);
+					renderer.setSize(window.innerWidth, window.innerHeight);
+
+					var controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+					var winResize = new THREEx.WindowResize(renderer, camera);
+
+					update(renderer, scene, camera, controls);
+				}
+
+
+				function getCityWall(radius, height, z, mapWidth, mapHeight) {
+					var material = new THREE.MeshPhysicalMaterial( { color: 0xffffff, map: new THREE.TextureLoader().load("/img/textures/Cartoon_Castle_Brick.jpg"), bumpMap: new THREE.TextureLoader().load("/img/textures/Cartoon_Castle_Brick.jpg"), roughnessMap: new THREE.TextureLoader().load("/img/textures/Cartoon_Castle_Brick.jpg"), } );
+
+					var extrudeSettings = {
+						depth : -height,
+						steps : 1,
+						bevelEnabled: false,
+						curveSegments: 18
+					};
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						material[mapName].wrapS = THREE.RepeatWrapping;
+						material[mapName].wrapT = THREE.RepeatWrapping;
+						material[mapName].repeat.set(Math.round(radius/10), height/5);
+					});
+					material.roughness = 0.15;
+					material.metalness = 0;
+					material.bumpScale = 0.02;
+
+
+					var arcShape = new THREE.Shape();
+					arcShape.absarc(0, 0, radius, 0, Math.PI * 2, 0, false);
+
+					var holePath = new THREE.Path();
+					holePath.absarc(0, 0, radius - 4, 0, Math.PI * 2, true);
+					arcShape.holes.push(holePath);
+
+					var geometry = new THREE.ExtrudeGeometry(arcShape, extrudeSettings);
+
+					var mesh = new THREE.Mesh(geometry, material) ;
+					mesh.material.side = THREE.BackSide;
+					mesh.position.y = 0.01;
+					mesh.rotation.x = Math.PI / 2;
+					mesh.position.x = mapWidth/2;
+					mesh.position.z = mapHeight/2;
+					mesh.castShadow = true;
+
+					return mesh;
+				}
+
+				function getKoboldHouse(x, y, z) {
+					var koboldHouse = getHouse(3, 2, 3);
+					koboldHouse.position.x = x;
+					koboldHouse.position.y = y;
+					koboldHouse.position.z = z;
+					return koboldHouse;
+				}
+
+				function getSlumHouse(x, y, z) {
+					var slumHouses = new THREE.Object3D();
+					var house1 = getHouse(4, 2, 4);
+					var house2 = getHouse(4, 2, 4);
+					var house3 = getHouse(4, 2, 4);
+					var house4 = getHouse(4, 2, 4);
+					slumHouses.add(house1);
+					slumHouses.add(house2);
+					slumHouses.add(house3);
+					slumHouses.add(house4);
+					house1.position.x = 2;
+					house2.position.x = 7;
+					house3.position.x = 2;
+					house4.position.x = 7;
+					house1.position.z = 2;
+					house2.position.z = 2;
+					house3.position.z = 7;
+					house4.position.z = 7;
+					slumHouses.position.x = x;
+					slumHouses.position.y = y;
+					slumHouses.position.z = z;
+					slumHouses.castShadow = true;
+					return slumHouses;
+				}
+
+				function getHouse(width, height, depth) {
+					var geom = new THREE.Geometry();
+					var w = width/2;
+					var h = height;
+					var d = depth/2;
+					var doorLeftEdge = (Math.random() * 0.6 * w) + 0.2 - w;
+					var doorRightEdge = doorLeftEdge + 1;
+					var doorFromLeft = doorLeftEdge + 0.5;
+					const doorTop = 1.5;
+
+					// Exterior faces
+					geom.vertices.push(
+						new THREE.Vector3(-w, 0, -d),
+						new THREE.Vector3(w, 0, -d),
+						new THREE.Vector3(w, h, -d),
+						new THREE.Vector3(-w, h, -d),
+						new THREE.Vector3(-w, 0, d),
+						new THREE.Vector3(w, 0, d),
+						new THREE.Vector3(w, h, d),
+						new THREE.Vector3(-w, h, d),
+						new THREE.Vector3(doorLeftEdge, 0, d),
+						new THREE.Vector3(doorLeftEdge, h, d),
+						new THREE.Vector3(doorLeftEdge, doorTop, d),
+						new THREE.Vector3(doorRightEdge, doorTop, d),
+						new THREE.Vector3(doorRightEdge, h, d),
+						new THREE.Vector3(doorRightEdge, 0, d)
+					);
+
+
+					geom.faces.push(new THREE.Face3(4, 8, 7));
+					geom.faces.push(new THREE.Face3(8, 9, 7));
+					geom.faces.push(new THREE.Face3(10, 11, 9));
+					geom.faces.push(new THREE.Face3(11, 12, 9));
+					geom.faces.push(new THREE.Face3(13, 5, 12));
+					geom.faces.push(new THREE.Face3(5, 6, 12));
+					geom.faces.push(new THREE.Face3(8, 9, 7));
+					geom.faces.push(new THREE.Face3(3, 1, 0));
+					geom.faces.push(new THREE.Face3(3, 2, 1));
+					geom.faces.push(new THREE.Face3(5, 1, 6));
+					geom.faces.push(new THREE.Face3(1, 2, 6));
+					geom.faces.push(new THREE.Face3(0, 4, 3));
+					geom.faces.push(new THREE.Face3(4, 7, 3));
+
+					geom.computeVertexNormals();
+
+					// geom.faceVertexUvs[0].push([
+					// 	new THREE.Vector2(0,0),        //play with these values
+					// 	new THREE.Vector2(1,0),
+					// 	new THREE.Vector2(0,1)],
+					// 	[
+					// 	new THREE.Vector2(1,0),        //play with these values
+					// 	new THREE.Vector2(1,1),
+					// 	new THREE.Vector2(0,1)]);
+					// geom.faceVertexUvs.push();
+					// geom.uvsNeedUpdate = true;
+
+
+					// Interior Faces
+					var intGeom = new THREE.Geometry();
+					w -= 0.1;
+					h -= 0.1;
+					d -= 0.1;
+
+					intGeom.vertices.push(new THREE.Vector3(-w, 0, -d));
+					intGeom.vertices.push(new THREE.Vector3(w, 0, -d));
+					intGeom.vertices.push(new THREE.Vector3(w, h, -d));
+					intGeom.vertices.push(new THREE.Vector3(-w, h, -d));
+					intGeom.vertices.push(new THREE.Vector3(-w, 0, d));
+					intGeom.vertices.push(new THREE.Vector3(w, 0, d));
+					intGeom.vertices.push(new THREE.Vector3(w, h, d));
+					intGeom.vertices.push(new THREE.Vector3(-w, h, d));
+					intGeom.vertices.push(new THREE.Vector3(doorLeftEdge, 0, d));
+					intGeom.vertices.push(new THREE.Vector3(doorLeftEdge, h, d));
+					intGeom.vertices.push(new THREE.Vector3(doorLeftEdge, doorTop, d));
+					intGeom.vertices.push(new THREE.Vector3(doorRightEdge, doorTop, d));
+					intGeom.vertices.push(new THREE.Vector3(doorRightEdge, h, d));
+					intGeom.vertices.push(new THREE.Vector3(doorRightEdge, 0, d));
+
+					intGeom.faces.push(new THREE.Face3(4, 8, 7));
+					intGeom.faces.push(new THREE.Face3(8, 9, 7));
+					intGeom.faces.push(new THREE.Face3(10, 11, 9));
+					intGeom.faces.push(new THREE.Face3(11, 12, 9));
+					intGeom.faces.push(new THREE.Face3(13, 5, 12));
+					intGeom.faces.push(new THREE.Face3(5, 6, 12));
+					intGeom.faces.push(new THREE.Face3(8, 9, 7));
+					intGeom.faces.push(new THREE.Face3(3, 1, 0));
+					intGeom.faces.push(new THREE.Face3(3, 2, 1));
+					intGeom.faces.push(new THREE.Face3(5, 1, 6));
+					intGeom.faces.push(new THREE.Face3(1, 2, 6));
+					intGeom.faces.push(new THREE.Face3(0, 4, 3));
+					intGeom.faces.push(new THREE.Face3(4, 7, 3));
+
+					var depthMod = depth / 2;
+					var widthMod = width / 2;
+					var heightMod = height;
+					var doorSidePosition = (Math.random() * 0.6 * widthMod) + 0.2;
+
+					var house = new THREE.Group();
+					var geo = new THREE.BoxGeometry(width, height, depth, 2, 1, 1);
+					var material = new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						emissive: 0x222222,
+					});
+					// var mesh = new THREE.Mesh(geo, material);
+					var mesh = new THREE.Mesh(geom, material);
+					mesh.material.castShadow = true;
+					mesh.castShadow = true;
+					mesh.receiveShadow = true;
+
+
+					var cactusTexture = new THREE.TextureLoader().load("/img/textures/cartoon_warped_boards.jpg");
+
+					mesh.material.map = cactusTexture;
+					mesh.material.bumpMap = cactusTexture;
+					mesh.material.roughnessMap = cactusTexture;
+					mesh.material.roughness = 0.15;
+					mesh.material.metalness = 0.1;
+					mesh.material.bumpScale = 0.02;
+
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						mesh.material[mapName].wrapS = THREE.RepeatWrapping;
+						mesh.material[mapName].wrapT = THREE.RepeatWrapping;
+						mesh.material[mapName].repeat.set(width, height);
+					});
+
+					// Create Door
+					geo = new THREE.BoxGeometry(1, doorTop, 0.05);
+					var roofTexture = new THREE.TextureLoader().load("/img/textures/cactus_boards.png");
+					var roofBump = new THREE.TextureLoader().load("/img/textures/boards_bump.png");
+					material = new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						emissive: 0x000000,
+						map: roofTexture,
+						bumpMap: roofBump,
+						roughnessMap: roofTexture,
+					});
+					var door = new THREE.Mesh(geo, material);
+					door.castShadow = true;
+					door.receiveShadow = true;
+					door.material.roughness = 0.15;
+					door.material.metalness = 0;
+					door.material.bumpScale = 0.02;
+					door.position.y = 0.75;
+					door.position.z = depthMod + 0.025;
+					door.position.x = doorFromLeft;
+
+					//Create Roof Slope
+					geo = new THREE.PlaneGeometry(width, depth, 2, 1);
+					geo.vertices[0] = new THREE.Vector3(-widthMod, heightMod, -depthMod);
+					geo.vertices[1] = new THREE.Vector3(0, heightMod + 1, -depthMod);
+					geo.vertices[2] = new THREE.Vector3(widthMod, heightMod, -depthMod);
+					geo.vertices[3] = new THREE.Vector3(-widthMod, heightMod, depthMod);
+					geo.vertices[4] = new THREE.Vector3(0, heightMod + 1, depthMod);
+					geo.vertices[5] = new THREE.Vector3(widthMod, heightMod, depthMod);
+					var roof = new THREE.Mesh(geo, material);
+					roof.material.map = roofTexture;
+					roof.material.bumpMap = roofBump;
+					roof.material.roughnessMap = roofTexture;
+					roof.material.roughness = 1;
+					roof.material.metalness = 0.0;
+					roof.material.bumpScale = 0.0;
+					var roofWidth = Math.sqrt(((width / 2) * (width / 2)) + 1);
+					textures.forEach((mapName) => {
+						roof.material[mapName].wrapS = THREE.RepeatWrapping;
+						roof.material[mapName].wrapT = THREE.RepeatWrapping;
+						roof.material[mapName].repeat.set(roofWidth, depth);
+					});
+					roof.castShadow = true;
+					roof.receiveShadow = true;
+					roof.renderOrder = 5;
+					roof.position.y = 0.01
+
+
+					house.add(mesh);
+					house.add(roof);
+					house.add(door);
+					// house.add(frontFace);
+					// house.add(rearFace);
+					return house;
+				}
+
+				function getPlane(w, h) {
+					var terrain = new THREE.Group();
+					var geo = new THREE.PlaneGeometry(w, h ,3, 3);
+					var material = new THREE.MeshPhysicalMaterial({
+						color: 0xdddddd,
+						emissive: 0x222222,
+						map: new THREE.TextureLoader().load("/img/textures/grass_dull.png"),
+						side: THREE.DoubleSide,
+					});
+					var mesh = new THREE.Mesh(geo, material);
+
+					//Test
+					// geo.vertices[0].z = -0.1;
+					// geo.vertices[1].z = -0.3;
+					// geo.vertices[2].z = -0;
+					// geo.vertices[3].z = -0.4;
+					// geo.vertices[4].z = -0.8;
+					// geo.vertices[5].z = -1;
+					// geo.vertices[6].z = -0.2;
+					// geo.vertices[7].z = -0.7;
+					// geo.vertices[8].z = -1;
+					// geo.vertices[9].z = -0.6;
+					// geo.vertices[10].z = -1;
+					// geo.vertices[11].z = -0.5;
+					// geo.vertices[12].z = -0.2;
+					// geo.vertices[13].z = -0.8;
+					// geo.vertices[14].z = -1;
+					// geo.vertices[15].z = -0.1;
+					var texture = new THREE.TextureLoader().load("/img/textures/desert_sand.png");
+
+					mesh.material.bumpMap = texture;
+					mesh.material.roughnessMap = texture;
+					mesh.material.roughness = 0.85;
+					mesh.material.metalness = 0;
+					mesh.material.bumpScale = 0.02;
+					mesh.renderOrder = 0;
+					mesh.receiveShadow = true;
+
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						mesh.material[mapName].wrapS = THREE.RepeatWrapping;
+						mesh.material[mapName].wrapT = THREE.RepeatWrapping;
+						mesh.material[mapName].repeat.set(w, h);
+					});
+
+					var grid = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						side: THREE.DoubleSide,
+						transparent: true,
+						emissive: 0x555555,
+					}));
+					grid.material.map = new THREE.TextureLoader().load("/img/textures/gridBump.png");
+					grid.material.alphaMap = new THREE.TextureLoader().load("/img/textures/gridAlpha.png");
+					textures = ['map', 'alphaMap'];
+					textures.forEach((mapName) => {
+						grid.material[mapName].wrapS = THREE.RepeatWrapping;
+						grid.material[mapName].wrapT = THREE.RepeatWrapping;
+						grid.material[mapName].repeat.set(w, h);
+					});
+
+
+					mesh.rotation.x = Math.PI/2;
+					grid.rotation.x = Math.PI/2;
+					grid.position.x = Math.floor(w/2);
+					grid.position.z = Math.floor(h/2);
+					mesh.position.x = Math.floor(w/2);
+					mesh.position.z = Math.floor(h/2);
+					var board = new THREE.Object3D();
+					board.add(mesh);
+					board.add(grid);
+					board.position.x = -Math.ceil(w/2);
+					board.position.z = -Math.ceil(h/2);
+					board.receiveShadow = true;
+					return board;
+				}
+
+				function getTron(w, h) {
+					var tronGrid = new THREE.Group();
+					var intensity = 0.2;
+					var rectLight = new THREE.RectAreaLight( 0xdd22ff, intensity, w, h );
+					rectLight.lookAt( 0, 0, 0 );
+					rectLight.rotation.x = -Math.PI / 2;
+					tronGrid.add( rectLight );
+
+					rectLightHelper = new THREE.RectAreaLightHelper( rectLight );
+					// tronGrid.add( rectLightHelper );
+
+					var rectLightMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry(), new THREE.MeshBasicMaterial({color: 0xdd22ff,}) );
+					rectLightMesh.scale.x = rectLight.width;
+					rectLightMesh.scale.y = rectLight.height;
+					rectLightMesh.position.z = -0.1;
+					rectLight.add( rectLightMesh );
+
+					var rectLightGrid = new THREE.Mesh(new THREE.PlaneBufferGeometry(), new THREE.MeshStandardMaterial({color: 0x6600aa, transparent: true,}) );
+					rectLightGrid.scale.x = rectLight.width;
+					rectLightGrid.scale.y = rectLight.height;
+					rectLightGrid.material.alphaMap = new THREE.TextureLoader().load("/img/textures/gridBump.png");
+					rectLightGrid.material.alphaMap.wrapS = THREE.RepeatWrapping;
+					rectLightGrid.material.alphaMap.wrapT = THREE.RepeatWrapping;
+					rectLightGrid.material.alphaMap.repeat.set(w, h);
+					rectLight.add( rectLightGrid );
+
+					return tronGrid;
+				}
+
+				function getSky() {
+					var skyGeo = new THREE.SphereGeometry(9000, 25, 25);
+					// var texture = new THREE.TextureLoader().load( "images/space.jpg" );
+					// var sky = new THREE.Mesh(skyGeo, new THREE.MeshPhongMaterial({map: texture, color: 0x7ec0ee, emissive: 0x7ec0ee,}));
+					var material =  new THREE.MeshLambertMaterial({color: 0x7ec0ee, emissive: 0x7ec0ee});
+					var sky = new THREE.Mesh(skyGeo, material);
+					sky.material.side = THREE.BackSide;
+					return sky;
+				}
+
+				function getSpotlight(color, intensity) {
+					var light = new THREE.SpotLight(color, intensity);
+					light.castShadow = true;
+
+					light.shadow.mapSize.x = 4096;
+					light.shadow.mapSize.y = 4096;
+
+					return light;
+				}
+
+				function getSun(color, intensity) {
+					var light = new THREE.DirectionalLight(color, intensity);
+					light.castShadow = true;
+
+					light.shadow.mapSize.x = 1024;
+					light.shadow.mapSize.y = 1024;
+
+					return light;
+				}
+
+				function update(renderer, scene, camera, controls) {
+					renderer.render(scene, camera);
+					controls.update();
+
+					// var spotLight_01 = scene.getObjectByName('spotLight_01');
+					// spotLight_01.intensity += (Math.random() - 0.5) * 0.05;
+					// spotLight_01.intensity = Math.abs(spotLight_01.intensity);
+
+					requestAnimationFrame(function() {
+						update(renderer, scene, camera, controls);
+					})
+				}
+
+				init();
+			});
+		</script>
+	</head>
+
+	<body style="margin:0px; padding:0px;">
+		<div id="container">
+			<!-- prevent null -->
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+    <g id="mark-of-matthias" stroke="#2A0D25" stroke-width="5" fill="none">
+		<path d="M15, 2
+				L85, 2
+				M15, 5
+				L85, 5
+				M48, 1
+				L45, 99
+				M52, 1
+				L55, 99
+				M1, 99
+				L30, 1
+				M70, 1
+				L98, 99
+				M10, 45
+				L91, 55
+		" />
+
+    </g>
+</svg>

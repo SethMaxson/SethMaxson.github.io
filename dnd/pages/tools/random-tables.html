@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tables</title>
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/random-table.css" rel="stylesheet" type="text/css" media="all">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/mechanics.js"></script>
+		<script>
+			$(document).ready(function() {
+				$.ajax({
+					crossDomain: true,
+					url: "/dnd/res/data/random-tables.json",
+					dataType: 'json',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (items) {
+						for (let index = 0; index < items.length; index++) {
+							const e = items[index];
+							if (e.show) {
+								$("#table-list").append($(`
+									<option value="${e.name}">${e.name}</option>
+								`));
+							}
+						}
+						populateRows(items[0]);
+					}
+				});
+
+				$("#table-list").on("change", function() {
+					var newVal = $(this).val();
+					$.ajax({
+						crossDomain: true,
+						url: "/dnd/res/data/random-tables.json",
+						dataType: 'json',
+						error: function (xmlHttpReq, status, err) {
+							var something = xmlHttpReq;
+						},
+						success: function (items) {
+							item = items.filter(function (entry) {
+								return entry.name == newVal;
+							})[0];
+							populateRows(item);
+						}
+					});
+				});
+
+				function populateRows(item) {
+					$("#roll-it").html("Roll 1d"+item.rows.length);
+					$("#description").html(item.description);
+					$("#result").html("");
+					$("#random-table>tbody").html("");
+					for (let index = 0; index < item.rows.length; index++) {
+						const e = item.rows[index];
+						$("#random-table>tbody").append($(`
+							<tr>
+								<td>${index+1}</td>
+								<td>${e}</td>
+							</tr>
+						`));
+					}
+				}
+
+				$("#roll-it").click(function(){
+					var die = $("#random-table tr").length;
+					var result = rollDie(die);
+					const el = $("#random-table tr")[result-1];
+					$("#result").html(result + ".<br/>" + el.children[1].innerText);
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<div>
+					<select name="table-list" id="table-list"></select>
+					<button id="roll-it">Roll 1d</button>
+					<div id="description"></div>
+					<div id="result"></div>
+					<div class="item" style="margin-top: 1em;">
+						<table id="random-table">
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

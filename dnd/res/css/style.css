@@ -1,0 +1,300 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+   html{
+	zoom:100%;
+	transform:scale(1);
+}
+
+body {
+	background-color: white;
+	color: black;
+	font-family: Verdana;
+	padding: 0px;
+	margin: 0px;
+}
+
+.i {
+	font-style: italic;
+}
+
+.bold {
+	font-style: bold;
+}
+
+.no-overflow {
+	overflow: hidden;
+}
+
+p {
+	font-size: 10pt;
+}
+
+iframe[name="mainFrame"] {
+	box-sizing: border-box;
+	width: 100%;
+	height: calc(100vh - 40px);
+}
+
+.container {
+	box-sizing: border-box;
+	width: 95%;
+	max-width: 1000px;
+	min-height: 100vh;
+	padding: 25px 50px;
+	background: white;
+	border-left: 3px double gray;
+	border-right: 3px double gray;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media handheld {
+	.container {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 1000px;
+		min-height: 100vh;
+		padding: 25px 50px;
+		background: white;
+		border-left: 3px double gray;
+		border-right: 3px double gray;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.background {
+	background-image: url('https://maxquest.neocities.org/img/textures/Scroll.png');
+	background-repeat: repeat;
+}
+
+/* The navigation bar */
+.navbar {
+	/* overflow: hidden; */
+	background-color: #333;
+	position: fixed;
+	/* Set the navbar to fixed position */
+	top: 0;
+	/* Position the navbar at the top of the page */
+	width: 100%;
+	/* Full width */
+	box-sizing: border-box;
+}
+
+/* Links inside the navbar */
+.dropdown>a {
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 0px 16px;
+	line-height: 40px;
+	text-decoration: none;
+}
+.navbar>a{
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 0px 16px;
+	line-height: 40px;
+	text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.navbar>a:hover,
+.dropdown>a:hover,
+.dropdown:hover>a{
+	background: #ddd;
+	color: black;
+}
+
+/* Main content */
+.main {
+	margin-top: 39px;
+	/* Add a top margin to avoid content overlay */
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.item {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color:black;
+	font-size:9pt;
+	margin-top:20px;
+	padding: 10px 10px 10px 20px;
+	background-color:#fafafa;
+	border:1px solid #eaeaea;
+	border-radius: 10px;
+}
+
+.race {
+	width:calc(44% - 50px);
+	margin-left:4%;
+	min-height:250px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color:black;
+	font-size:9pt;
+	margin-top:20px;
+	padding: 10px 10px 10px 20px;
+	background-color:#dada99;
+	border:5px double #caaa33;
+	border-radius: 3px;
+}
+
+.guild {
+	margin-left:4%;
+	min-height:250px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color:black;
+	font-size:9pt;
+	margin-top:20px;
+	padding: 10px 10px 10px 20px;
+	background-color:#99c0da;
+	border:5px double #33acca;
+	border-radius: 3px;
+}
+.race .name,
+.guild .name,
+.item .name {
+	font-size:11pt;
+	font-weight: bold;
+	margin-left:-10px;
+}
+
+.race .properties,
+.item .properties {
+	font-style: italic;
+	color:#999;
+}
+
+.guild .properties {
+	font-style: italic;
+	color:#553300;
+	padding-bottom:10px;
+}
+
+.race table,
+.item table {
+	border-collapse: collapse;
+}
+
+.race td,
+.item td {
+	vertical-align: top;
+	border:1px solid #aaa;
+	padding:5px;
+}
+
+.pixels {
+	image-rendering: pixelated;
+}
+
+.paper:after {
+	display:block;
+	content: '';
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-image: url("/img/textures/parchment.jpg");
+	background-repeat: repeat;
+	background-size:500px, 500px;
+	mix-blend-mode: overlay;
+	pointer-events: none;
+	opacity:0.3;
+	z-index:9;
+}
+.slide_buttons {
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	margin-top:-55px;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.hover {
+	animation: hover 4s linear 0s infinite alternate;
+}
+
+span.party {
+	color:#006494;
+}
+
+span.ally {
+	color:#007A70;
+}
+
+span.enemy {
+	color:#4C1024;
+}
+
+span.brass {
+	color:#B7AA45;
+}
+
+span.purple {
+	color:#3A015C;
+}
+
+span.ally,
+span.party,
+span.enemy,
+span.brass,
+span.purple {
+	font-weight: 700;
+	text-shadow: 0px 0px 4px black,;
+}
+
+.jasper-battle {
+	width:100px !important;
+	height:100px !important;
+	background: url("/img/maps/icons/jasper_blink.png") no-repeat;
+	background-size: 1500px 100px;
+	background-position: 0px, 0px;
+	background-attachment: scroll;
+	overflow: hidden;
+	position: absolute;
+	left:0px;
+	top:0px;
+	z-index: 2;
+	image-rendering: pixelated;
+}
+
+.idle {
+	-webkit-animation: idle 2s steps(15) infinite;
+	-moz-animation: idle 2s steps(15) infinite;
+	-ms-animation: idle 2s steps(15) infinite;
+	-o-animation: idle 2s steps(15) infinite;
+	animation: idle 2s steps(15) infinite;
+}
+
+
+@-webkit-keyframes idle {
+	from { background-position-x:  0px; }
+	to { background-position-x: -1500px; }
+  }
+  @-moz-keyframes idle {
+	from { background-position-x:  0px; }
+	to { background-position-x: -1500px; }
+  }
+  @-ms-keyframes idle {
+	from { background-position-x:  0px; }
+	to { background-position-x: -1500px; }
+  }
+  @-o-keyframes idle {
+	from { background-position-x:  0px; }
+	to { background-position-x: -1500px; }
+  }
+  @keyframes idle {
+	from { background-position-x:  0%; }
+	to { background-position-x: -1500px; }
+  }

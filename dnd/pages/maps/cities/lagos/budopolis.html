@@ -1,0 +1,514 @@
+<html>
+
+	<head>
+		<title>Budopolis</title>
+		<link rel="stylesheet" href="/res/css/threedee.css" />
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<!-- <script src="/res/js/threedee.js"></script> -->
+		<script src="/res/js/three.min.js"></script>
+		<script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/res/js/loaders/GLTFLoader.js"></script>
+		<script src="/res/js/characters.js"></script>
+		<script src="/res/js/environment.js"></script>
+		<script>
+			/** @namespace */
+			var THREEx	= THREEx || {}
+
+			/**
+			* Update renderer and camera when the window is resized
+			*
+			* @param {Object} renderer the renderer to update
+			* @param {Object} Camera the camera to update
+			* @param {Function} dimension callback for renderer size
+			*/
+			THREEx.WindowResize	= function(renderer, camera, dimension)
+			{
+				dimension 	= dimension || function(){ return { width: window.innerWidth, height: window.innerHeight } }
+				var callback	= function(){
+					// fetch target renderer size
+					var rendererSize = dimension();
+					// notify the renderer of the size change
+					renderer.setSize( rendererSize.width, rendererSize.height )
+					// update the camera
+					camera.aspect	= rendererSize.width / rendererSize.height
+					camera.updateProjectionMatrix()
+				}
+				// bind the resize event
+				window.addEventListener('resize', callback, false)
+				// return .stop() the function to stop watching window resize
+				return {
+					trigger	: function(){
+						callback()
+					},
+					/**
+					* Stop watching window resize
+					*/
+					destroy	: function(){
+						window.removeEventListener('resize', callback)
+					}
+				}
+			}
+		</script>
+		<script>
+			$(document).ready(function(){
+				var camera, controls, renderer, scene, sky, water, time=0;
+				var clock = new THREE.Clock();
+				var objects = [];
+				function init() {
+					scene = new THREE.Scene();
+					camera = new THREE.PerspectiveCamera(
+						45,
+						window.innerWidth/window.innerHeight,
+						1,
+						1500
+					);
+					renderer = new THREE.WebGLRenderer();
+					// renderer.sortObjects = false;
+					// renderer.shadowMap.enabled = true;
+					document.getElementById('container').appendChild(renderer.domElement);
+					renderer.setSize(window.innerWidth, window.innerHeight);
+
+
+
+					camera.position.x = 0;
+					camera.position.y = 10;
+					camera.position.z = 10;
+					camera.lookAt(new THREE.Vector3(0, 2, 0));
+
+
+					controls = new THREE.OrbitControls(camera, renderer.domElement);
+					controls.maxPolarAngle = Math.PI/2 - 0.01;
+					controls.maxDistance = 500;
+
+
+					// var spotLight_01 = getSpotlight('rgb(255, 220, 180)', 1);
+					// spotLight_01.name = 'spotLight_01';
+
+
+
+
+					var people = new THREE.Object3D();
+					var ldr = new PersonLoader(function() {
+						people.name="PeopleGroup"
+						people.add(getPC("Zenreya", -1, 0, 1));
+						people.add(getPC("Jasper", -1, 0, 0));
+						people.add(getPC("Bud", -2, 0, 1));
+						people.add(getRandom(-2.5, 0, -2, "elf"));
+						people.add(getPC("Namfoodle", 0, 0, 0));
+						people.add(getPC("Falumer", -1, 0, -1));
+						people.add(getPC("Shamous", 1, 0, -2));
+						people.add(getPC("Redji", -2, 0, -3));
+						people.add(getPC("Thunder", -0.5, 0, -3.5));
+						people.add(getRandom(2, 0, 0, "goblin"));
+						people.add(getRandom(3, 0, 0, "bugbear"));
+						people.add(getNPC("Althea", 4, 0, 0));
+
+						people.add(getSprite(3,0,5, undefined, 1, "Smith"));
+
+						for (let i = 1; i < 11; i++) {
+							if (i < 6) {
+								people.add(getZombies(-4 + (i * 6), 0, Math.floor(Math.random() * 9) + 20, i));
+							}
+							else {
+								people.add(getZombies(-4 + ((i-5) * 6), 0, Math.floor(Math.random() * 9) + 29, i));
+							}
+
+						}
+
+						// people.add(getWickerBeak(-2, 0, 2));
+						// people.add(getRandom(-1, 0, 2, "aarakocra"));
+						// people.add(getRandom(0, 0, 2, "bloodfin"));
+						// people.add(getRandom(1, 0, 2, "bloodfin"));
+						// people.add(getRandom(2, 0, 2, "grung"));
+						// people.add(getRandom(3, 0, 2, "human"));
+						// people.add(getRandom(4, 0, 2, "elf"));
+						// people.add(getRandom(5, 0, 2, "halforc"));
+						// people.add(getRandom(-2, 0, 3, "goblin"));
+						// people.add(getRandom(-1, 0, 3, "kenku"));
+						// people.add(getKrunion(0, 0, 3));
+						// people.add(getRandom(1, 0, 3));
+						// people.add(getRandom(2, 0, 3));
+
+						people.traverse(function(node) {
+							objects.push(node);
+						})
+
+						var dragControls = new THREE.DragControls( objects, camera, renderer.domElement );
+						dragControls.addEventListener( 'dragstart', function () {
+							controls.enabled = false;
+						} );
+						dragControls.addEventListener( 'dragend', function () {
+							controls.enabled = true;
+						} );
+
+
+						dragControls.activate();
+					});
+
+
+					scene.add(people);
+
+					// create geometric objects
+					var plane = getPlane(1024, 1024);
+
+					// add objects to the scene
+					sky = getSky();
+					scene.add(sky);
+					plane.add(getForest(24, 0, 980, 1020, 1020));
+
+					var floader = new THREE.FontLoader();
+
+					floader.load( '/res/fonts/droid_sans_regular.typeface.json', function ( font ) {
+						var geometry = new THREE.TextGeometry( 'BUDOPOLIS', {
+							font: font,
+							size: 10,
+							height: 1,
+							curveSegments: 6,
+							bevelEnabled: true,
+							bevelThickness: 1,
+							bevelSize: 1,
+							bevelSegments: 1,
+						} );
+						var text = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: 0x7ec0ee, emissive: 0x000000}));
+						text.position.set(512, 50, 512);
+						plane.add(text);
+					});
+
+					var palace = getHouse(94, 20, 47);
+					palace.position.x = 253 + (94/2);
+					palace.position.z = 185 + (47/2);
+					plane.add(palace);
+
+					scene.add(plane);
+					var ambLight = new THREE.HemisphereLight(0xffffff, 0x000200, 1);
+					ambLight.position.set(0, 20, 0);
+					scene.add(ambLight);
+
+					// transform objects
+					var winResize = new THREEx.WindowResize(renderer, camera);
+
+					$(document.body).append(getHUD());
+					speak("Rockface", "This here's <i>my</i> swamp.");
+					update();
+				}
+
+				function getKoboldHouse(x, y, z) {
+					var koboldHouse = getHouse(3, 2, 3);
+					koboldHouse.position.x = x;
+					koboldHouse.position.y = y;
+					koboldHouse.position.z = z;
+					return koboldHouse;
+				}
+
+				function getSlumHouse(x, y, z) {
+					var slumHouses = new THREE.Object3D();
+					var house1 = getHouse(4, 2, 4);
+					var house2 = getHouse(4, 2, 4);
+					var house3 = getHouse(4, 2, 4);
+					var house4 = getHouse(4, 2, 4);
+					slumHouses.add(house1);
+					slumHouses.add(house2);
+					slumHouses.add(house3);
+					slumHouses.add(house4);
+					house1.position.x = 2;
+					house2.position.x = 7;
+					house3.position.x = 2;
+					house4.position.x = 7;
+					house1.position.z = 2;
+					house2.position.z = 2;
+					house3.position.z = 7;
+					house4.position.z = 7;
+					slumHouses.position.x = x;
+					slumHouses.position.y = y;
+					slumHouses.position.z = z;
+					slumHouses.castShadow = true;
+					return slumHouses;
+				}
+
+				function getHouse(width, height, depth) {
+					var geom = new THREE.Geometry();
+
+					var house = new THREE.Group();
+					var geo = new THREE.BoxGeometry(width, height, depth);
+					var material = new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						emissive: 0x222222,
+					});
+					var mesh = new THREE.Mesh(geo, material);
+					mesh.material.castShadow = true;
+					mesh.castShadow = true;
+					mesh.receiveShadow = true;
+
+
+					var cactusTexture = new THREE.TextureLoader().load("/img/textures/cartoon_warped_boards.jpg");
+
+					mesh.material.map = cactusTexture;
+					mesh.material.bumpMap = cactusTexture;
+					mesh.material.roughnessMap = cactusTexture;
+					mesh.material.roughness = 0.15;
+					mesh.material.metalness = 0.1;
+					mesh.material.bumpScale = 0.02;
+
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						mesh.material[mapName].wrapS = THREE.RepeatWrapping;
+						mesh.material[mapName].wrapT = THREE.RepeatWrapping;
+						mesh.material[mapName].repeat.set(width, height);
+					});
+
+					mesh.position.y = height / 2;
+					house.add(mesh);
+
+
+					// var cactusTexture = new THREE.TextureLoader().load("/img/textures/architecture/human/House.png");
+
+					// var loader = new THREE.GLTFLoader(manager);
+					// var manager = new THREE.LoadingManager();
+					// loader.load( '/res/models/Architecture/Budopolis/house.gltf', function ( gltf ) {
+					// 	gltf.scene.traverse( function ( node ) {
+					// 		if ( node.material && ( node.material.isMeshStandardMaterial)) {
+					// 			node.material.map = cactusTexture;
+					// 			node.material.bumpMap = cactusTexture;
+					// 			node.material.roughnessMap = cactusTexture;
+					// 			node.material.roughness = 0.15;
+					// 			node.material.metalness = 0.1;
+					// 			node.material.bumpScale = 0.02;
+					// 			house.add(node);
+					// 		}
+					// 	} );
+					// }, undefined, function ( error ) {
+					// 	console.error( error );
+					// } );
+
+					return house;
+				}
+
+				function getPlane(w, h) {
+					var terrain = new THREE.Group();
+					var geo = new THREE.PlaneGeometry(w, h);
+					var material = new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						emissive: 0x000000,
+						metalness: 0,
+						roughness: 0.85,
+						map: new THREE.TextureLoader().load("/img/textures/budopolis_texture.png"),
+						side: THREE.FrontSide,
+					});
+					material.map.flipY = false;
+					var hutMaterial = new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						emissive: 0x000000,
+						metalness: 0,
+						roughness: 0.85,
+						map: new THREE.TextureLoader().load("/img/textures/cartoon_warped_boards.jpg"),
+						side: THREE.FrontSide,
+					});
+
+					//Prepare road material
+					var roadMaterial = new THREE.MeshPhysicalMaterial( {
+						color: 0xffffff,
+						emissive: 0x111111,
+						side: THREE.FrontSide,
+						map: new THREE.TextureLoader().load("/img/textures/dirt.png"),
+						roughnessMap: new THREE.TextureLoader().load("/img/textures/dirt.png"),
+						bumpMap: new THREE.TextureLoader().load("/img/textures/dirt.png"),
+					});
+					var textures = ['map', 'bumpMap', 'roughnessMap'];
+					textures.forEach((mapName) => {
+						roadMaterial[mapName].wrapS = THREE.RepeatWrapping;
+						roadMaterial[mapName].wrapT = THREE.RepeatWrapping;
+						roadMaterial[mapName].repeat.set(100, 100);
+					});
+					roadMaterial.roughness = 0.8;
+					roadMaterial.bumpScale = -0.1;
+					//end road material
+
+					var grid = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({
+						color: 0x000000,
+						side: THREE.FrontSide,
+						roughness:1,
+						metalness:1,
+						transparent: true,
+						emissive: 0x000000,
+						opacity:0.4,
+					}));
+					grid.material.map = new THREE.TextureLoader().load("/img/textures/gridBump.png");
+					grid.material.alphaMap = new THREE.TextureLoader().load("/img/textures/gridAlpha.png");
+					textures = ['map', 'alphaMap'];
+					textures.forEach((mapName) => {
+						grid.material[mapName].wrapS = THREE.RepeatWrapping;
+						grid.material[mapName].wrapT = THREE.RepeatWrapping;
+						grid.material[mapName].repeat.set(w, h);
+					});
+
+					water = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({
+						color: 0xffffff,
+						side: THREE.DoubleSide,
+						transparent: true,
+						emissive: 0x000000,
+						metalness:0.4,
+						opacity: 0.8,
+						map: new THREE.TextureLoader().load("/img/textures/ww_waves.gif"),
+					}));
+					textures = ['map'];
+					textures.forEach((mapName) => {
+						water.material[mapName].wrapS = THREE.RepeatWrapping;
+						water.material[mapName].wrapT = THREE.RepeatWrapping;
+						water.material[mapName].repeat.set(w/5, h/5);
+					});
+					water.scale.set(1.5, 1.5, 1.5)
+					water.name = "water";
+					water.rotation.x = Math.PI/2;
+					water.position.set(Math.floor(w/2), -0.5, Math.floor(h/2));
+
+
+					grid.rotation.x = -Math.PI/2;
+					grid.position.x = Math.floor(w/2);
+					grid.position.z = Math.floor(h/2);
+					var board = new THREE.Object3D();
+					board.add(grid);
+					board.position.x = -Math.ceil(w/2);
+					board.position.z = -Math.ceil(h/2);
+					board.receiveShadow = true;
+					// return board;
+
+
+
+					var manager = new THREE.LoadingManager();
+					var loader = new THREE.GLTFLoader(manager);
+
+					loader.load( '/res/models/architecture/budopolis.gltf', function ( gltf ) {
+						gltf.scene.traverse( function ( thing ) {
+							if ( thing.material && ( thing.material.isMeshStandardMaterial) && thing.name !="Hut") {
+								var node = thing.clone();
+								node.material = material;
+								node.position.x = Math.floor(w/2);
+								node.position.z = Math.floor(h/2);
+								node.position.y = -0.001;
+								node.renderOrder = 0;
+								board.add(node);
+								if (node.name =="Huts") {
+									node.material = hutMaterial;
+								} else if (node.name == "Roads") {
+									node.material = roadMaterial;
+								};
+							};
+						} );
+					}, undefined, function ( error ) {
+						console.error( error );
+					} );
+					board.add(water);
+					return board;
+				}
+
+				function getSpotlight(color, intensity) {
+					var light = new THREE.SpotLight(color, intensity);
+					light.castShadow = true;
+
+					light.shadow.mapSize.x = 4096;
+					light.shadow.mapSize.y = 4096;
+
+					return light;
+				}
+
+				function getForest(x, y, z, endX, endZ) {
+					var forest = new THREE.Object3D();
+					const treeSpacing = 5;
+					var sizeX = Math.round(endX - x)/treeSpacing;
+					var sizeZ = Math.round(endZ - z)/treeSpacing;
+
+					for (let modZ = 0; modZ < sizeZ; modZ++) {
+						for (let modX = 0; modX < sizeX; modX++) {
+							if (modZ == 0 || modZ == sizeZ - 1) {
+								forest.add(getTree(modX*treeSpacing, 0, modZ*treeSpacing));
+							} else if (modX == 0 && modZ == 1) {
+								var geo = new THREE.BoxGeometry(sizeX*treeSpacing, 13, (sizeZ-1)*treeSpacing);
+								var material = new THREE.MeshPhysicalMaterial({
+									color: 0x29B200,
+									emissive: 0x222222,
+								});
+								var tree = new THREE.Mesh(geo, material);
+
+								tree.material.castShadow = true;
+								tree.castShadow = true;
+								tree.receiveShadow = true;
+								tree.position.set(sizeX*treeSpacing/2, 6.5, (sizeZ-1)*treeSpacing/2)
+								forest.add(tree);
+								console.log("deku!");
+							}
+						}
+					}
+					forest.position.x = x;
+					forest.position.y = y;
+					forest.position.z = z;
+					forest.castShadow = true;
+					return forest;
+				}
+
+				function getTree(x, y, z, sizeX, sizeY, sizeZ) {
+					var scale = new THREE.Vector3();
+					var tree = new THREE.Object3D();
+					sizeX = sizeX || 1;
+					sizeY = sizeY || 1;
+					sizeZ = sizeZ || 1;
+
+					var manager = new THREE.LoadingManager();
+
+					var loader = new THREE.GLTFLoader(manager);
+
+					loader.load( '/res/models/Terrain/Tree.gltf', function ( gltf ) {
+						tree.add(gltf.scene.children[0]);
+						tree.add(gltf.scene.children[0]);
+						tree.traverse( function ( node ) {
+							if ( node.material && ( node.material.isMeshStandardMaterial)) {
+								node.transparent = false;
+								node.material.castShadow = true;
+								node.material.receiveShadow = true;
+								node.material.needsUpdate = true;
+							}
+						} );
+						tree.scale.set(sizeX * 0.5, sizeY * 0.5, sizeZ * 0.5);
+						tree.position.set(x, y, z);
+						tree.rotation.y = (Math.random(Math.PI));
+					}, undefined, function ( error ) {
+
+						console.error( error );
+
+					} );
+					return tree;
+				}
+
+				function update() {
+					renderer.render(scene, camera);
+					controls.update();
+					sky.position.copy(camera.position);
+					time++;
+					water.material.map.offset.x = time*0.001;
+					const mixTime = clock.getDelta();
+					objects.forEach(person => {
+						if (person.userData.mixer != undefined) {
+							// person.material.map.offset.x = time*0.001;
+							person.userData.mixer.update(mixTime);
+						}
+					});
+					setTimeout( function() {
+
+					requestAnimationFrame( update );
+
+					}, 1000 / 40 );
+				}
+
+				init();
+			});
+		</script>
+	</head>
+
+	<body style="margin:0px; padding:0px;">
+		<div id="container">
+			<!-- prevent null -->
+		</div>
+	</body>
+
+</html>

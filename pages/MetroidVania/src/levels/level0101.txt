@@ -1,0 +1,17 @@
+G                                                                                                                                                                                                            
+G                                                                                                                                                                                                    !              
+G                    !                                                                                                                                                                               !              
+G                    Q                                                         bbbbbbb    bbbQ              Q           bbb    bQQb                                                        BB        !              
+G                                                                                                                                                                                         BBB        !              
+G                                                                                                                                                                                        BBBB        !              
+G                                                                                                                                                                                       BBBBB        !    bbb    
+G              Q   bQbQb                     12         12                  bQb              b     bb    Q  Q  Q     b          bb                    BB  B            bbQb            BBBBBB        !    bbb    
+                                     12      34         34                                                                                           BBB  BB                          BBBBBBB        !   bbbbb   
+                           12        34      34         34                                                                                          BBBB  BBB                        BBBBBBBB        !   bbfbb   
+     P                     34    o   34      34         34                                                                                         BBBBB  BBBB                      BBBBBBBBB        B   bbfbb     
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGG   GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+
+00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+~
+#Door 1 9 level01 6 10 right t

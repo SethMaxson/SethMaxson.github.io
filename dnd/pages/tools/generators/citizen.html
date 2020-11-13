@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Relationship</title>
+		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/page-specific/citizen.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/mechanics.js"></script>
+		<script src="/dnd/res/js/npc.js"></script>
+		<script src="/dnd/res/js/generators/relationship.js"></script>
+		<script src="/dnd/res/js/page-specific/citizen-generator.js"></script>
+		<script src="/res/js/sort-table.js"></script>
+	</head>
+
+	<body>
+		<div id="citizen-preview">
+			<div id="city-container">
+				<button id="citizen-save">Save Changes</button>
+				<ul class="continents">
+					<li>
+						Lagos
+					</li>
+				</ul>
+			</div>
+			<div id="citizen-container">
+
+			</div>
+			<div id="non-citizen-container">
+				<div class="filters">
+					<label for="species-filter">Race:</label>
+					<select name="species-filter" class="species-filter">
+						<option value="null">Any</option>
+					</select>
+					<label for="gender-filter">Gender:</label>
+					<select name="gender-filter" class="gender-filter">
+						<option value="null">Any</option>
+						<option value="female">Female</option>
+						<option value="male">Male</option>
+					</select>
+					<label for="alignment-filter">Alignment:</label>
+					<select name="alignment-filter" class="alignment-filter">
+						<option value="null">Any</option>
+						<option value="LG">Lawful Good</option>
+						<option value="NG">Neutral Good</option>
+						<option value="CG">Chaotic Good</option>
+						<option value="LN">Lawful Neutral</option>
+						<option value="NN">Neutral</option>
+						<option value="CN">Chaotic Neutral</option>
+						<option value="LE">Lawful Evil</option>
+						<option value="NE">Neutral Evil</option>
+						<option value="CE">Chaotic Evil</option>
+					</select>
+					<label for="relative-age-filter">Age:</label>
+					<select name="relative-age-filter" class="relative-age-filter">
+						<option value="null">Any</option>
+						<option value="child">Child</option>
+						<option value="young adult">Young Adult</option>
+						<option value="adult">Adult</option>
+						<option value="elder">Elder</option>
+					</select>
+					<button class="apply-filters">Apply</button>
+				</div>
+				<div class="non-citizens">
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

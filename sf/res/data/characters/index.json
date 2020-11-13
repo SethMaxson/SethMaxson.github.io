@@ -1,0 +1,39 @@
+{
+	"items": [
+		{
+			"player":"Andy",
+			"characters":[
+				"Steel",
+				"Oniongrab"
+			]
+		},
+		{
+			"player":"Chuck",
+			"characters":[
+				"Heracles",
+				"Torque"
+			]
+		},
+		{
+			"player":"Dom",
+			"characters":[
+				"Jasper",
+				"Kevin",
+				"Kevin_MkII",
+				"Mirage"
+			]
+		},
+		{
+			"player":"Kendall",
+			"characters":[
+				"Ursa"
+			]
+		},
+		{
+			"player":"Mark",
+			"characters":[
+				"4ndy"
+			]
+		}
+	]
+}

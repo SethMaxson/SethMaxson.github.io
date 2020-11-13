@@ -1,0 +1,34 @@
+
+
+                                                                                       
+                                                                                       
+                                                                                       
+                                                                                                                                                      
+                                                                                    xxxxxx
+                                                                                    ffffffxx  
+                                                                                    ffffffffxx                                           
+                                                                                    ffffffffffxxxxxxxxxxxxxxxx     xxxxxxx     xxxxxxx             xxxx
+                                                                                    ffffffffffffffffffffffffff     fffffff     fffffff xxxx        ffff
+                                                                                                                                                   ffff
+                                                                                                                                               xxxxffff
+                                                                                                                                               ffffffff
+                                                                                                                                           xxxxffffffff
+                                                                                  xxxxxxxxxxxxxxxxxxxxxxxxxxxx     xxxxxxx     xxxxxxxxxxxxffffffffffff
+                                                                                xxffffffffffffffffffffffffffff     fffffff     ffffffffffffffffffffffff
+                                                                              xxffffffffffffffffffffffffffffff     fffffff     ffffffffffffffffffffffff
+                                                                            xxffffffffff                                                              f
+      xxxxx                                                               xxffffffffffff                                                              f
+     xfffff        h                                                    xxffffffffffffff                                                              f
+    xfffff     P             E                                        xxfffffffffff                                                                    
+   xffffff                   E                                      xxffffffffffff
+  xfffffff                   E      k                             xxffffffffffffff                                                                     
+xxfffffffffxxxTxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+~
+#Door 11 22 debug 6 10 right t
+#Door 151 22 level0101 6 10 right t
+#block T 1 1 red na 0 0

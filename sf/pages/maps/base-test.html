@@ -1,0 +1,318 @@
+<html>
+
+	<head>
+		<title>PhysTest</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="/sf/res/css/threedee.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<script src="/res/data/dialog.js"></script>
+		<script src="/res/js/three.min.js"></script>
+		<script src="/res/js/generators/npc.js"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<!-- <script src="/sf/res/js/game-engine.js"></script> -->
+		<script src="/res/js/loaders/GLTFLoader.js"></script>
+		<script src="/res/js/utils/SkeletonUtils.js"></script>
+		<script src="/sf/res/js/hud.js"></script>
+		<!-- <script type="module" src="/sf/res/js/characters.js"></script> -->
+		<script src="/sf/res/js/environment.js"></script>
+		<script src="/res/js/PointerLockControls.js"></script>
+		<script>
+
+		</script>
+		<script type="module">
+			// import { Engine, main } from '../../../sf/res/js/game-engine.js';
+			import { Engine } from '../../../sf/res/js/engine.js';
+			import { Characters } from '../../../sf/res/js/characters.js';
+			import { FOUR } from '../../../sf/res/js/four.js';
+			import { THREEx } from '../../../sf/res/js/threex.js';
+			var main;
+			$(document).ready(function() {
+				Engine.Initialize();
+				main = Engine.main;
+				function init() {
+					Characters.PersonLoader(function() {
+						let playerModel = new Engine.Entity(Characters.getPC("Player", 0, 0, 0));
+						main.MainStage.Entities.Add(playerModel);
+						main.DebugHelper.addPerson(playerModel.Model);
+						playerModel.Motion = main.Controls.motion;
+						playerModel.Model.visible = false;
+						main.Controls.mesh = playerModel.Model;
+						main.Motions = [];
+
+
+						function getHorizontalDistance(pos1, pos2) {
+							return Math.sqrt( Math.pow(pos1.x - pos2.x, 2) + Math.pow(pos1.z - pos2.z, 2));
+						}
+
+
+						// main.MainStage.Entities.AddMesh(Characters.getPC("Kevin", 1, 0, -19));
+						// main.MainStage.Entities.AddMesh(Characters.getPC("Torque", 0, 0, -20));
+						// main.MainStage.Entities.AddMesh(Characters.getBear(0, 0, -17));
+						// let lizard = Characters.getLizard(3, 0, -20);
+						// lizard.scale.set(0.8, 0.9, 0.8);
+						// main.MainStage.Entities.AddMesh(lizard);
+						// let biggerLizard = Characters.getLizard(5, 0, -17)
+						// biggerLizard.scale.set(1.5, 2.2, 1.5);
+						// main.MainStage.Entities.AddMesh(biggerLizard);
+						// main.MainStage.Entities.AddMesh(Characters.getYamask(2, 0, -15));
+
+						// let halfOrcEntity = new Engine.Entity(Characters.getRandom(-1, 0, -15, "halforc", "m"));
+						// halfOrcEntity.Events.Died = function(){
+						// 	alert("Died!");
+						// };
+						// main.MainStage.Entities.Add(halfOrcEntity);
+
+						// main.MainStage.Entities.AddMesh(Characters.getPC("Raven", 0, 0, -10));
+						// main.MainStage.Entities.AddMesh(Characters.getPC("Ty", 0, 0, -10));
+						// main.MainStage.Entities.AddMesh(Characters.getPC("Sir Jasper", 1, 0, -11));
+						// main.MainStage.Entities.AddMesh(Characters.getPC("Mirage", 0, 0, -9));
+						// main.MainStage.Entities.AddMesh(Characters.getPC("Zenny", -1, 0, -9));
+
+						let miracle = new Engine.Entity(Characters.getPC("Miracle", -23, 1, -8));
+						main.DebugHelper.addPerson(miracle.Model);
+						main.MainStage.Entities.Add(miracle);
+
+						main.onRenderFcts.push(function(delta, now){
+							miracle.Motion.speed = 0;
+
+							if(miracle.Motion.position.distanceTo(playerModel.Model.position) < 10) {
+								let dis = getHorizontalDistance(miracle.Motion.position, playerModel.Model.position);
+								miracle.Motion.speed = dis > 2? miracle.Motion.baseSpeed : Math.max(dis - 1, 0) * miracle.Motion.baseSpeed;
+								miracle.Motion.face(playerModel);
+								// miracle.Motion.walk()
+								if(dis <= 1) {
+									miracle.Motion.speed = -miracle.Motion.baseSpeed;
+								}
+								// check if need to jump
+								if (dis > 2 && playerModel.Model.position.y - miracle.Motion.position.y > 0.2) {
+									miracle.Motion.jump();
+								}
+							}
+						})
+						main.HUD.setEntity(main.Entities.GetByModelID(playerModel._Model.uuid));
+						// main.HUD.setEntity(miracle);
+					}, true);
+
+					main.Controls.motion.position.set(-24, 1,-5);
+					main.Controls.motion.rotation.y += Math.PI;
+					main.Controls.getObject().rotation.y += Math.PI;
+
+
+					// create geometric objects
+					// var plane = getTerrain(1024, 1024);
+					// plane.scale.set(0.008, 0.008, 0.008);
+					// plane.position.set(0,0,23);
+					// main.Scene.add(plane);
+					// main.Collidable.push(plane);
+					// plane.traverse(function(node) {
+					// 	if (node.material) {
+					//		main.Collidable.push(node);
+					// 	}
+					// })
+					// create test geometric objects
+					main.Scene.add(getTestTerrain(main, new THREE.Vector3(0,0.1,0)));
+					// var grid = getGrid(1024, 1024);
+					// grid.position.y = 0.11;
+					// main.Scene.add(grid);
+
+					var water = getWater(1024, 1024);
+					main.Scene.add(water);
+					water.position.y -= 2;
+					main.Collidable.push(water);
+
+					// transform objects
+					new THREEx.WindowResize(main.renderer, main.Camera);
+					main.update();
+				}
+
+				function getTerrain(w, h) {
+					var terrain = new THREE.Group();
+					var geo = new THREE.PlaneGeometry(w, h);
+
+					var grid = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({
+						color: 0x000000,
+						side: THREE.FrontSide,
+						roughness:1,
+						transparent: true,
+						emissive: 0x000000,
+						opacity:0.4,
+					}));
+					grid.material.map = new THREE.TextureLoader().load("/img/textures/gridBump.png");
+					grid.material.alphaMap = new THREE.TextureLoader().load("/img/textures/gridAlpha.png");
+					var textures = ['map', 'alphaMap'];
+					textures.forEach((mapName) => {
+						grid.material[mapName].wrapS = THREE.RepeatWrapping;
+						grid.material[mapName].wrapT = THREE.RepeatWrapping;
+						grid.material[mapName].repeat.set(w, h);
+					});
+
+
+
+					grid.rotation.x = -Math.PI/2;
+					grid.position.x = Math.floor(w/2);
+					grid.position.z = Math.floor(h/2);
+					var board = new THREE.Object3D();
+					board.add(grid);
+					board.position.x = -Math.ceil(w/2);
+					board.position.z = -Math.ceil(h/2);
+					board.receiveShadow = true;
+
+
+
+					var manager = new THREE.LoadingManager();
+					var loader = new THREE.GLTFLoader(manager);
+
+					loader.load( '/res/models/architecture/Windfall/Windfall.glb', function ( gltf ) {
+						gltf.scene.traverse( function ( thing ) {
+							if ( thing.material && ( thing.material.isMeshStandardMaterial)) {
+								var node = thing.clone();
+								node.material.transparent = false;
+								node.material.alphaTest = 0.5;
+								node.material.needsUpdate = true;
+								node.position.z -= 15000;
+								node.renderOrder = 0;
+								board.add(node);
+								main.Collidable.push(node);
+							};
+						} );
+					}, undefined, function ( error ) {
+						console.error( error );
+					} );
+					// loader.load( '/res/js/yuka-master/yuka-master/examples/navigation/navmeshPerformance/model/level.glb', ( gltf ) => {
+					// 	gltf.scene.position.y = 125 * 10;
+					// 	gltf.scene.scale.set(125, 125, 125);
+					// 	board.add(gltf.scene);
+					// 	gltf.scene.traverse( function ( node ) {
+					// 		if ( node.isMesh ) {
+					// 			main.Collidable.push(node);
+					// 		};
+					// 	});
+					// 	main.Collidable.push(gltf.scene);
+					// } );
+
+					loader.load( '/res/models/architecture/Outset/Outset.glb', function ( gltf ) {
+						gltf.scene.traverse( function ( thing ) {
+							if ( thing.material && ( thing.material.isMeshStandardMaterial)) {
+								var node = thing.clone();
+								node.material.transparent = false;
+								node.material.alphaTest = 0.5;
+								node.material.needsUpdate = true;
+								node.renderOrder = 0;
+								board.add(node);
+								main.Collidable.push(node);
+							};
+						} );
+					}, undefined, function ( error ) {
+						console.error( error );
+					} );
+
+					return board;
+				}
+
+				function getTestTerrain(main, position) {
+					return loadTerrain(main, position, '/res/models/architecture/Test/Test.glb');
+				}
+				function loadTerrain(main, position, file) {
+					// declare the container for the loaded mesh
+					var board = new THREE.Object3D();
+					// declare the loader object that will do the loading
+					var loader = new THREE.GLTFLoader();
+					// do the actual loading
+					loader.load( file, ( gltf ) => {
+						board.add(gltf.scene);
+						gltf.scene.traverse( function ( node ) {
+							if ( node.isMesh ) {
+								main.Collidable.push(node);
+							};
+							if (node.material != undefined && node.material.map != undefined) {
+								if ( true ) {
+									node.material.map.minFilter = THREE.LinearFilter;
+									node.material.map.magFilter = THREE.LinearFilter;
+								}
+							}
+
+						});
+					} );
+					board.position.copy(position);
+					return board;
+				}
+
+				function getGrid(w, h) {
+					var grid = new THREE.Mesh(
+							new THREE.PlaneGeometry(w, h),
+							new THREE.MeshPhysicalMaterial({
+								color: 0x000000,
+								side: THREE.FrontSide,
+								roughness:1,
+								transparent: true,
+								emissive: 0x000000,
+								opacity:0.4,
+							}
+						)
+					);
+					grid.material.map = new THREE.TextureLoader().load("/img/textures/gridBump.png");
+					grid.material.alphaMap = new THREE.TextureLoader().load("/img/textures/gridAlpha.png");
+					var textures = ['map', 'alphaMap'];
+					textures.forEach((mapName) => {
+						grid.material[mapName].wrapS = THREE.RepeatWrapping;
+						grid.material[mapName].wrapT = THREE.RepeatWrapping;
+						grid.material[mapName].repeat.set(w, h);
+					});
+
+					grid.rotation.x = -Math.PI/2;
+					grid.translate.x = Math.floor(w/2);
+					grid.position.z = Math.floor(h/2);
+					var board = new THREE.Object3D();
+					board.add(grid);
+					board.position.x = -Math.ceil(w/2);
+					board.position.z = -Math.ceil(h/2);
+					board.receiveShadow = true;
+
+					var manager = new THREE.LoadingManager();
+					var loader = new THREE.GLTFLoader(manager);
+					return board;
+				}
+
+				function getWater(w, h) {
+					var terrain = new THREE.Group();
+					var geo = new THREE.PlaneGeometry(w, h);
+
+					let waterMesh = new THREE.Mesh(geo, FOUR.Material({
+						color: 0xffffff,
+						side: THREE.BackSide,
+						transparent: true,
+						emissive: 0x000000,
+						opacity: 1,
+						// map: FOUR.Texture("/sf/img/textures/windwaker_water.png"),
+						// map: FOUR.Texture("/sf/img/textures/Cartoon_Grass.jpg"),
+						map: FOUR.Texture("/sf/img/textures/moon-craters.jpg"),
+					}));
+					var textures = ['map'];
+					textures.forEach((mapName) => {
+						waterMesh.material[mapName].wrapS = THREE.RepeatWrapping;
+						waterMesh.material[mapName].wrapT = THREE.RepeatWrapping;
+						waterMesh.material[mapName].repeat.set(w/5, h/5);
+					});
+					waterMesh.scale.set(1.5, 1.5, 1.5)
+					waterMesh.name = "water";
+					waterMesh.rotation.x = Math.PI/2;
+					waterMesh.position.set(Math.floor(w/2), 0, Math.floor(h/2));
+
+					return waterMesh;
+				}
+
+				init();
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="container">
+			<div id="debug" style="width:100%; position:absolute; left:0; bottom:0; pointer-events: none; z-index: 11; padding-bottom:2em;"></div>
+			<!-- prevent null -->
+		</div>
+	</body>
+
+</html>

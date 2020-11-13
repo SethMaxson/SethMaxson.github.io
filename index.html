@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Maximum Questing!</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<style>
+			.site-button {
+				margin: 1.5% 50px;
+				background:#f0f0f0;
+				border:2px outset black;
+				border-radius:10vh;
+				text-align: center;
+				font-size:3em;
+				display: block;
+				text-decoration: none;
+				color: #222;
+				flex-grow: 3;
+				position: relative;
+			}
+
+			.site-button .label {
+				position: absolute;
+				top:50%;
+				left:50%;
+				transform: translate(-50%, -50%);
+			}
+
+			.site-button:hover {
+				border-color: black;
+				background:#555;
+				box-shadow: inset 0px 0px 20px black;
+				color:white;
+			}
+
+			body {
+				background: #111515;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+		</style>
+
+	</head>
+
+	<body class="no-overflow">
+		<a class="site-button" href="/dnd/index.html"><span class="label">5e</span></a>
+		<a class="site-button" href="/sf/index.html"><span class="label">Starfinder</span></a>
+		<a class="site-button" href="/pages/index.html"><span class="label">Demos</span></a>
+	</body>
+
+</html>

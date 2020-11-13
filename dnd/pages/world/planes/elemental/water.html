@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Elemental Plane of Water</title>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+
+		<style>
+			h1, h2, h3, .name, .collapsible {
+				color:#58180d;
+			}
+
+			h2 {
+				margin-bottom:0px;
+				padding:0px;
+				line-height:100%;
+			}
+
+			h4 {
+				color:black;
+				margin:1em 0em 0.2em 0em;
+				font-size:1.1em;
+			}
+
+
+			table tr:nth-child(odd) td {
+				background-color:#e0e5c1;
+			}
+
+			table tr:nth-child(even) td {
+				background-color:#ebe2c5;
+			}
+			th {
+				font-weight: bold;
+			}
+			tr th:last-child {
+				text-align:left;
+				padding:5px;
+			}
+
+			tr td:first-child {
+				white-space: nowrap;
+				width:35px;
+				text-align:center;
+			}
+
+			.collapsible {
+				position:relative;
+				top:0;
+				left:0;
+				background:white;
+				cursor: pointer;
+				width: 100%;
+				border: none;
+				text-align: left;
+				outline: none;
+				border-bottom:5px solid #6a9bc9;
+				padding:5px;
+				font-size:20px;
+				font-weight:bold;
+				border-radius:10px 10px 0px 0px;
+				margin-top:5px;
+			}
+
+			.collapsible:after {
+				background:none;
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "+"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active:after {
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "-"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active, .collapsible:hover {
+				background-color: #e5e5e7;
+			}
+
+			.content, .item {
+				margin-top:0px;
+				max-height: 0;
+				padding:0px 20px;
+				font-size:0.9em;
+				overflow: hidden;
+				transition: max-height 0.2s ease-out;
+				background-color: hsl(209, 47%, 90%);
+				border-radius:0px 0px 15px 15px;
+				border:1px solid black;
+			}
+
+			table {
+				font-size:1.1em;
+				width:100%;
+			}
+
+			.aside {
+				background-color:#c1cbe5;
+				padding:10px;
+				margin-top:10px;
+				border-top:3px solid black;
+				border-bottom:3px solid black;
+			}
+
+			ul, ol {
+				font-size:inherit;
+			}
+
+			div.container>div {
+				background-color:#eeeeff;
+				padding:10px;
+				border:5px double gray;
+				border-radius:25px;
+				margin-top:10px;
+			}
+
+			.prerequisites {
+				padding-top:5px;
+				padding-bottom:20px;
+				font-style: italic;
+				color:#444;
+				font-size:0.9em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<h1>
+					Elemental Plane of Water
+				</h1>
+				<p>
+					Physical Conditions
+					One of the two most benign of the Inner Planes, the Bottomless Deep is as livable a plane for those that breathe water as Air is for those that don't. Water is almost as filled with life as Air, and in fact has a greater selection of plant life than that largely-groundless plane. Most forms of sea life can be found somewhere in Water, fresh- and saltwater both — regardless of which a creature requires on the Prime, both can be found throughout Water, living together in the same regions. The only exception is of course those aquatic beings that require air, the dolphins and whales, which can only be found in those locations near an elemental pocket of air. Even there, such life forms are fairly rare, and most beings near such pockets consider them treasured, reacting quite harshly to those that would threaten their existence. Further aiding aquatic life that happens to dwell in Water, any creatures with a natural ability to swim beyond the basic skill land-dwellers can obtain find their abilities enhanced in the Deep, their speed doubled while here.
+
+					Water, unlike some groundless Inner Planes, doesn't possess the quality of subjective gravity. Instead, it is without gravity, and thus without pressure. Nowhere in Water does a being have to worry about being crushed by the weight of liquid surrounding them, merely do they need to worry about the ability to breathe. Because of this fact, natural aquatic life tends to be larger than it is on the Prime, with creatures here not constrained by even buoyancy-canceled weight. Giant sharks, squids, octopuses, and other such life are even larger here than those found in the depths of Material oceans. While those on the Prime might reach hundreds of feet across, some rare examples in the Bottomless Deep are said to reach sizes in the thousands.
+
+					Sight is also less of a concern in Water than in the seas of other planes, though it's not entirely easy for those not native to aquatic environments. The water of the Deep is crystal clear, and a dim light suffuses the plane, preventing the darkness found far below the surface of the waves elsewhere. While those more used to life on land have their vision limited to about 60 feet or so, those native to such conditions have their vision improved much as their speed, able to see twice as far as they would elsewhere. Infravision, due to the temperature-dispersing qualities of water, is however still badly impeded here as anywhere. It functions at half-normal range in this plane to a maximum of 60 feet, even for aquatic beings. However, sound, used by many aquatic beings as a stand-in for sight, carries extraordinarily well here. A single sound can travel miles if not more, though identifying the exact source of a noise can be tricky. This quality tends to create a low thrumming noise throughout all but the most empty areas of the plane, as the sounds of everything about them ripple through the waves - a sound many natives of the Deep find lacking when traveling elsewhere.
+
+					The water itself of this plane, as most may expect, is in most cases among the purest a person can find anywhere. As mentioned before, it's crystal clear. In most cases, it's neither too hot nor too cold, a perfect soothing temperature for those dwelling within it regardless of if they may be native to arctic or tropical conditions. It even tastes slightly sweet, the pure essence of water normally subdued by tainting of other elements coming through excellently. However, this purity isn't the case throughout the plane, especially those areas tainted by elemental pockets. There's the obvious result from areas too near Salt or around pockets of it having since dispersed, but other pockets can provide their own contaminations. Dissolved areas of Mineral or Ooze, for example, create the substance known as "burn water": indistinguishable by sight from normal water, but highly acidic, burning those that enter the region and dissolving most items that enter its span. Far more deadly a contamination, however, is "red tide", a torrent of fast-moving water tainted by some sort of sickness, and marked by the red tint the infestation gives it. For those that manage to avoid breathing water (through spells such as no breath, for example), the disease is merely debilitating; for those that don't, it can be deadly.
+
+					These are far from the only hazards the plane provides, however. There is the obvious danger of the natives; most fish tend to be carnivorous, after all, and the fish here are much larger than they might be elsewhere. But there are far more fundamental dangers to those traveling the Deep as well. The currents in Water are not only far more mercurial, they can be far stronger as well. A given current can travel dozens of miles an hour, sweeping up those within it that likely don't have the strength to fight back. Currents in Water are extremely transitory. Some last seconds, others centuries, and they can and often do change direction and strength without any warning. But far more dangerous are the locations where two currents of opposite directions cross one another; even below the surface, such hazards can still suck a person into their centers, battering them with the debris also spinning at their centers. Further, about a quarter of the whirlpools found in the Deep have at their center a gate to another plane (usually, but not always, the Prime), often adding even more danger to being sucked into these subsurface typhoons.
+
+					This quality often extends to whirlpools formed on the Prime as well. Such occurrences, when not caused by purely natural means, serve as one of the two sorts of elemental vortices connecting the Prime with Water. The other, the storm surge, can be just as dangerous to traverse; vortices of this nature form during severe storms on the Prime that stir up the seas horribly. Even the sturdiest of ships often don't survive the storm long enough to pass through the vortex formed during these events, leaving these as most commonly traversed by the survivors of shipwrecks, floating through on wreckage and usually only surviving if lucky enough to be granted water-breathing magic on the far side.
+
+					Of course, there are many other ways of reaching the Bottomless Deep, with common thought being there are almost as many portals to Water as there are to Air, and more than to any other Inner Plane. Such portals can be dangerous, as though most hold the waters of the plane back, some (such as the small ones found within every decanter of endless water) do not. Many a berk has found himself trapped within a flooded building after creating a bad gate to Water.
+
+					Among the natural portals, the Oceanus Gate is one of the more well-known, though only the guardinals know its exact location. Only those pure of heart can traverse this portal, located somewhere in the waters of the River Oceanus, and the guardinals (as well as Ahlic, its genasi keeper) ensure that despite this protection, none of evil alignment ever find it. Kept more secret is the Silver Eye, the portal located in Muspelheim within the vast scrying pool of the same name. Controlled by the Muspelheim giants, they ensure none know of, or even gain access to, this massive gate; over 100 yards wide, when this portal is opened, it remains such for a full hour, granting more than enough time for those on either side to move an entire contingent of forces through. Those on both ends of this portal are more than aware of the consequences of this fact, and both keep an uneasy peace, not wishing to be the ones to fall victim to an invasion by the other side.
+
+					Magical Conditions
+					Similar all the elemental planes, those spells of Water are extended and enlarged on this plane, and those spells of Air, Earth, and, for what few can be cast underwater, Fire are impeded. Physical conditions cause alterations to many spells here as well; except in those few places with pockets of air, all spells cast here are obviously affected as one would expect through being underwater, with some exceptions. Conjured ice, for example, doesn't begin floating to the surface, there being no surface for it to float to - instead, it merely remains in place where it's conjured, neither falling nor floating.
+
+					Locations
+					Boundary Regions
+					Bile Sea - Ooze
+					Islands of Water - Steam
+					Saline Sea - Salt
+					Sea of Frozen Lives - Ice
+					Sites
+					The Avenger
+					Cities
+					Citadel of Ten Thousand Pearls
+					City of Glass
+					Realms
+					Curling Wave (Ahto's realm)
+					The Murky Depths (Blibdoolpoolp's realm)
+					The Sea of Timelessness (Istishia's realm)
+					Shelluria (Eadro and Persana's realm)
+					Powers
+					Pantheon of Ukko
+					Ahto - Seas, Waters
+					Other
+					Blibdoolpoolp - Darkness, insanity, revenge, kuo-toa
+					Eadro - Locathah, merfolk
+					Istishia - Water
+					Persana - Architecture, tritons
+					See Also
+					Inhabitants of Water
+					References
+					The Inner Planes, pgs.50-59,71,83,105,119
+					Manual of the Planes, pp.77-80
+				</p>
+
+
+
+
+				<div id="Section">
+					<h2>Section</h2>
+					<button class="collapsible">
+						Section
+					</button>
+					<div class="content">
+						<p>
+							Content
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+
+	<script>
+		$(document).ready(function() {
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.maxHeight){
+						content.style.maxHeight = null;
+						content.style.padding = "0px 20px";
+					} else {
+						content.style.maxHeight = content.scrollHeight + "px";
+						content.style.padding = "5px 20px";
+					}
+				});
+			}
+		})
+	</script>
+
+</html>

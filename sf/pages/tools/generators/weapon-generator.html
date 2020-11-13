@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- base.html -->
+
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Starfinder Weapon Generator</title>
+		<meta name="description" content="Random weapon generator to add fun balanced weapons to your starfinder game" />
+
+		<link rel="icon" href="/sf/favicon.png" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/navbar-fixed-left.v2.2.css">
+		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/base.v2.11.css">
+
+		<!-- header colours -->
+		<!-- Chrome, Firefox OS and Opera -->
+		<meta name="theme-color" content="#2EC4B6">
+		<!-- Windows Phone -->
+		<meta name="msapplication-navbutton-color" content="#2EC4B6">
+		<!-- iOS Safari -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="#2EC4B6">
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="content">
+				<div class="top-spacer" style="height: 20px;"></div>
+
+				<div class="jumbotron">
+					<h1>Weapon Generator</h1>
+					<p class="lead">Generates balanced weapons for the Starfinder RPG with damage curves matched as closely as possible to the core rulebook weapon entries.</p>
+					<p></p>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4">
+								<div class="btn-group btn-block" role="group">
+									<button id="levelDrop" type="button" class="btn btn-default dropdown-toggle btn-block btn-notblack" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<span class="pull-left">Any level</span>
+									<span class="caret"></span>
+								</button>
+									<ul class="dropdown-menu pull-right">
+										<li><a href="#">Any level</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Tier 1</a></li>
+										<li><a href="#">Tier 2</a></li>
+										<li><a href="#">Tier 3</a></li>
+										<li><a href="#">Tier 4</a></li>
+										<li><a href="#">Tier 5</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Level 1</a></li>
+										<li><a href="#">Level 2</a></li>
+										<li><a href="#">Level 3</a></li>
+										<li><a href="#">Level 4</a></li>
+										<li><a href="#">Level 5</a></li>
+										<li><a href="#">Level 6</a></li>
+										<li><a href="#">Level 7</a></li>
+										<li><a href="#">Level 8</a></li>
+										<li><a href="#">Level 9</a></li>
+										<li><a href="#">Level 10</a></li>
+										<li><a href="#">Level 11</a></li>
+										<li><a href="#">Level 12</a></li>
+										<li><a href="#">Level 13</a></li>
+										<li><a href="#">Level 14</a></li>
+										<li><a href="#">Level 15</a></li>
+										<li><a href="#">Level 16</a></li>
+										<li><a href="#">Level 17</a></li>
+										<li><a href="#">Level 18</a></li>
+										<li><a href="#">Level 19</a></li>
+										<li><a href="#">Level 20</a></li>
+									</ul>
+								</div>
+								<P></P>
+								<div class="btn-group btn-block" role="group">
+									<button id="weaponDrop" type="button" class="btn btn-default dropdown-toggle btn-block btn-notblack" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<span class="pull-left">Any weapon</span>
+									<span class="caret"></span>
+								</button>
+									<ul class="dropdown-menu pull-right">
+										<li><a href="#">Any weapon</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Basic melee</a></li>
+										<li><a href="#">Advanced melee</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Small arm</a></li>
+										<li><a href="#">Longarm</a></li>
+										<li><a href="#">Heavy</a></li>
+										<li><a href="#">Sniper</a></li>
+									</ul>
+								</div>
+								<P></P>
+								<div class="btn-group btn-block" role="group">
+									<button id="nameDrop" type="button" class="btn btn-default dropdown-toggle btn-block btn-notblack" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<span class="pull-left">Name Generator On</span>
+									<span class="caret"></span>
+								</button>
+									<ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu2">
+										<li><a href="#">On</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Off</a></li>
+									</ul>
+								</div>
+								<P></P>
+								<button type="button" onclick="generateWeapon()" title="magic, baby" class="btn btn-grn">Generate <i class="fa fa-magic fa-lg"></i></button>
+								<button type="button" onclick="clearOutput()" class="btn btn-default btn-notblack">Clear</button>
+								<P></P>
+							</div>
+							<div class="col-md-8"></div>
+						</div>
+					</div>
+
+					<div class="output area">
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- /container -->
+		<!-- JavaScript -->
+		<!-- jQuery first, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/sf/res/js/sfrpg-tools.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/common.v2.5.js"></script>
+
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/weaponGen.v2.6.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/nameGenData.v2.0.js"></script>
+		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/nameGen.v2.3.js"></script>
+
+	</body>
+
+</html>

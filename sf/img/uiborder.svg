@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500">
+	<!-- <path fill="rgba(0, 180.8, 193.8, 0.5)" stroke="#00eeff" stroke-width="5" d="M15, 495
+	L5, 485
+	L5, 55
+	L45, 5
+	L485, 5
+	L495, 15
+	L495, 485
+	L485, 495
+	Z
+	" /> -->
+	<path fill="#245659" stroke="#00eeff" stroke-width="10" d="M15, 495
+	L5, 485
+	L5, 55
+	L45, 5
+	L485, 5
+	L495, 15
+	L495, 485
+	L485, 495
+	Z
+	" />
+</svg>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Party Members</title>
+		<link rel="icon" href="/sf/favicon.png" />
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<link href="/sf/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/sf/res/css/id-card.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/sort-table.js"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script>
+			const target = GetURLParameter("id");
+			const renderObj = {
+				data: null,
+				fluff: null
+			};
+
+			function GetURLParameter(sParam)
+			{
+				var sPageURL = window.location.search.substring(1);
+				var sURLVariables = sPageURL.split('&');
+				for (var i = 0; i < sURLVariables.length; i++)
+				{
+					var sParameterName = sURLVariables[i].split('=');
+					if (sParameterName[0] == sParam)
+					{
+						return decodeURIComponent(sParameterName[1]);
+					}
+				}
+				return null;
+			};
+
+			function loadCharacter(target) {
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/fluff-characters.json",
+					dataType: 'html',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (returnedData) {
+						var items = JSON.parse(returnedData).items;
+						renderObj.fluff = items.filter(function (entry) {
+							return entry.id === target;
+						})[0];
+						renderItem(renderObj);
+					}
+				});
+			}
+
+
+			function loadParty() {
+				// $(".background").append($(`
+				// 	<div class="container">
+				// 		<table style="width:100%; margin:auto; border-collapse: collapse;" id="party">
+				// 			<tr class="header-row">
+				// 				<th style="width:100px;">Row</th>
+				// 				<th onclick="sortTable(this, 1)">Name</th>
+				// 			</tr>
+				// 		</table>
+				// 	</div>
+				// 	`)
+				// );
+
+				$.ajax({
+					crossDomain: true,
+					url: "/sf/res/data/party.json",
+					dataType: 'html',
+					error: function (xmlHttpReq, status, err) {
+						var something = xmlHttpReq;
+					},
+					success: function (returnedData) {
+						var items = JSON.parse(returnedData).items;
+						for (let index = 0; index < items.length; index++) {
+							const item = items[index];
+							// const tr = $(`
+							// <tr>
+							// 	<td>${index + 1}</td>
+							// 	<td><a href="/sf/pages/characters/idcard.html?id=${item}">${item.capitalize()}</a></td>
+							// </tr>
+							// `);
+							// $("#party").append(tr);
+							loadCharacter(item);
+						}
+					}
+				});
+			}
+
+			$(document).ready(function(){
+
+
+
+				if (target !== null) {
+					// Load fluff
+					loadCharacter(target)
+				}
+				else {
+					loadParty();
+				}
+
+				$("#bg-button").click(function(){
+					if ($(this).hasClass("push-down")) {
+						$(this).attr("class", "push-up");
+						$(this).html("&uarr; &uarr; &uarr;");
+						$(".background").css("padding-top", "100vh");
+					} else {
+						$(this).attr("class", "push-down");
+						$(this).html("&darr; &darr; &darr;");
+						$(".background").css("padding-top", "0");
+					}
+				})
+			})
+
+			function renderItem(obj) {
+				if (obj.fluff !== null) {
+					getDataBlock(obj);
+				}
+			}
+
+			function getDataBlock(obj) {
+				let db = $(`
+					<div class="id-card bg-blue">
+						<div class="headshot-container">
+							<div class="headshot"></div>
+						</div>
+
+						<div class="header-section">
+							<table class="header">
+								<tr>
+									<td>
+										<div class="logo"></div>
+									</td>
+									<td class="name">
+										PACT COUNCIL
+										<div class="alien">PACT COUNCIL</div>
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td style="font-variant:normal;">
+										Absalom Immigration Authority
+										<div class="alien">Immigration Authority</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="data-block">
+							<div class="name">
+								${obj.fluff.name}
+								<div class="alien">${obj.fluff.name}</div>
+							</div>
+							<div class="stats">
+								<div class="half"><span>Species:</span> ${obj.fluff.properties.species}</div>
+								<div class="half"><span>Homeworld:</span> ${obj.fluff.properties.homeworld}</div>
+								<div>
+									<div class="half">
+										<span>Date of Birth:</span> ${obj.fluff.properties.birthDate}
+									</div>
+									<div class="half">
+										<span>Sex:</span> ${obj.fluff.properties.gender}
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="disclaimer">
+							<div>Issued by the Pact Council.</div>
+							<div class="alien">.Pact Council Issued.</div>
+						</div>
+					</div>
+				`);
+				const ps = db.find(".headshot");
+				const bg = obj.fluff.images.hasOwnProperty("headshot")? "url(/sf/img/characters/" + obj.fluff.images.headshot + ")" : "url(/sf/img/characters/" + obj.fluff.images.portrait + ")";
+				ps.css("background-image", bg);
+				// $(".background").append(db);
+				$(".page").append(db);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="page"></div>
+		</div>
+	</body>
+
+</html>

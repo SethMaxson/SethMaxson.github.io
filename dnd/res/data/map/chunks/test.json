@@ -1,0 +1,95 @@
+{
+	"base": {
+		"path": "/res/models/terrain/geoss.glb",
+		"position": {
+			"x": 0,
+			"y": 0.1,
+			"z": 0
+		},
+		"scale": {
+			"x": 400,
+			"y": 400,
+			"z": 400
+		}
+	},
+	"environment": {
+		"hasSea": true,
+		"seaLevel": -2
+	},
+	"setDressing": [
+		{
+			"path": "/res/models/vehicles/airship.glb",
+			"scale": {
+				"x":2,
+				"y":2,
+				"z":2
+			}
+		}
+	],
+	"entities": [
+		{
+			"name": "Namfoodle",
+			"position": {
+				"x": 1,
+				"y": 1,
+				"z": -19
+			}
+		},
+		{
+			"name": "Redji",
+			"position": {
+				"x": 0,
+				"y": 1,
+				"z": -20
+			}
+		},
+		{
+			"name": "Falumer",
+			"position": {
+				"x": -1,
+				"y": 1,
+				"z": -20
+			}
+		},
+		{
+			"name": "Raven",
+			"position": {
+				"x": 1,
+				"y": 2,
+				"z": -10
+			}
+		},
+		{
+			"name": "Ty",
+			"position": {
+				"x": 0,
+				"y": 2,
+				"z": -10
+			}
+		},
+		{
+			"name": "Jasper",
+			"position": {
+				"x": 1,
+				"y": 2,
+				"z": -80
+			}
+		},
+		{
+			"name": "Mirage",
+			"position": {
+				"x": 5,
+				"y": 2,
+				"z": -80
+			}
+		},
+		{
+			"name": "Zenny",
+			"position": {
+				"x": 0,
+				"y": 2,
+				"z": -80
+			}
+		}
+	]
+}

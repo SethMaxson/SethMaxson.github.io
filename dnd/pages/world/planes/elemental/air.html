@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Elemental Plane of Air</title>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+
+		<style>
+			h1, h2, h3, .name, .collapsible {
+				color:#58180d;
+			}
+
+			h2 {
+				margin-bottom:0px;
+				padding:0px;
+				line-height:100%;
+			}
+
+			h4 {
+				color:black;
+				margin:1em 0em 0.2em 0em;
+				font-size:1.1em;
+			}
+
+
+			table tr:nth-child(odd) td {
+				background-color:#e0e5c1;
+			}
+
+			table tr:nth-child(even) td {
+				background-color:#ebe2c5;
+			}
+			th {
+				font-weight: bold;
+			}
+			tr th:last-child {
+				text-align:left;
+				padding:5px;
+			}
+
+			tr td:first-child {
+				white-space: nowrap;
+				width:35px;
+				text-align:center;
+			}
+
+			.collapsible {
+				position:relative;
+				top:0;
+				left:0;
+				background:white;
+				cursor: pointer;
+				width: 100%;
+				border: none;
+				text-align: left;
+				outline: none;
+				border-bottom:5px solid #6a9bc9;
+				padding:5px;
+				font-size:20px;
+				font-weight:bold;
+				border-radius:10px 10px 0px 0px;
+				margin-top:5px;
+			}
+
+			.collapsible:after {
+				background:none;
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "+"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active:after {
+				position:absolute;
+				width:30px;
+				text-align:center;
+				right:0.5em;
+				top:50%;
+				transform: translateY(-50%);
+				color:black;
+				font-size:1.5em;
+				content: "-"; /* Unicode character for "minus" sign (-) */
+			}
+
+			.active, .collapsible:hover {
+				background-color: #e5e5e7;
+			}
+
+			.content, .item {
+				margin-top:0px;
+				max-height: 0;
+				padding:0px 20px;
+				font-size:0.9em;
+				overflow: hidden;
+				transition: max-height 0.2s ease-out;
+				background-color: hsl(209, 47%, 90%);
+				border-radius:0px 0px 15px 15px;
+				border:1px solid black;
+			}
+
+			table {
+				font-size:1.1em;
+				width:100%;
+			}
+
+			.aside {
+				background-color:#c1cbe5;
+				padding:10px;
+				margin-top:10px;
+				border-top:3px solid black;
+				border-bottom:3px solid black;
+			}
+
+			ul, ol {
+				font-size:inherit;
+			}
+
+			div.container>div {
+				background-color:#eeeeff;
+				padding:10px;
+				border:5px double gray;
+				border-radius:25px;
+				margin-top:10px;
+			}
+
+			.prerequisites {
+				padding-top:5px;
+				padding-bottom:20px;
+				font-style: italic;
+				color:#444;
+				font-size:0.9em;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<h1>
+					Demiplane of Time
+				</h1>
+				<p>
+						Elemental Plane of Air
+
+						The most inhabitable of the Inner Planes, and perhaps the most accessible as well, the Elemental Plane of Air (or the Boundless Blue, as it is known by many of its inhabitants) is considered a paradise by many, local and visitor alike. With few natural hazards, abundant extraplanar commerce, and locals that more often than not are friendly, it's among the most popular of the Inner Planes as well.
+					</p>
+					<p>
+						Contents
+						1 Physical Conditions
+						2 Magical Conditions
+						3 Locations
+						4 Powers
+						5 See Also
+						6 References
+						Physical Conditions
+					</p>
+					<p>
+						Travel within the Plane of Air is fairly simple, for gravity in Air, as in many of the Inner Planes, is subjective. Down is whatever direction you imagine it to be. Though a tricky concept for many first-time visitors, true bloods find it a snap to redirect their personal conception, and "take the eternal plunge" as many refer to it. Of course, travel in this manner can be dangerous, as stopping with this style of "flight" without colliding with ones destination at horrific speeds is almost an art form. Thus, many prefer safer methods of travel. Those with natural ability to fly find their skills even more effective in the Blue than elsewhere, buoyed by the innate qualities of the planes. Those without often prefer magical, biological, or even technological solutions. Wings of flight, flying carpets, and potions of flying enjoy a healthy market in Air, as do pegasi, griffon, and hippogriff mounts. Hot-air balloons are common here as well, and airships aren't unheard of, both somehow functioning despite the lack of a true gravity. And for the truly esoteric, a person can purchase a glidewing, a creation of the Floating Sorcerers of Ktll that allows a wingless person to fly like a bird with the proper skill.
+					</p>
+					<p>
+						As for travel to Air, there are a number of options, and though many are located in remote locations as is common for portals to the Inner Planes, they still tend to be on the whole somewhat more easily utilized. Of those Outer Planar portals to Air, there are a few that are somewhat well-known. On Mount Celestia, there are two well-known means of accessing Air, though neither of them especially useful; one is located within the depths of the stone ziggurat in Jovar that marks the path to Chronias, its existence one of the worst-kept secrets in the Upper Planes even if its exact location within the ziggurat is unknown. The other is Bahamut's Palace itself, one section of which can transition from the Mount to Air instantly, taking any within it along for the trip and moving about at Bahamut's whim. A third portal is said to connect Air to the highest branch of Yggdrasil, providing a constant breeze to gently sway the branches of the World Ash. The final well-known portal, or portals in this case, are located far above the towers of the Greeks in Arborea, though there's two tricks to it - for one, each of the two portals has a different key, and for another, they must be opened at precisely the same time, despite the many miles that separate them.
+					</p>
+					<p>
+						As for the Prime, there are two types of elemental vortices found that lead to Air. Both are somewhat difficult to use as well, though for widely different reasons. The first, known as a floating vortex, is found only in those areas of sky far above the ground and in the middle of a clear blue expanse of sky, void of both clouds and mountains as far as the eye can see. Generally only accessible by those able to fly magically by virtue of their location, they further have the problems of both being almost indistinguishable from the air around them and shifting with the breeze on both ends, Prime and Planar.
+
+						The second is known as a whirling vortex, for the fact that it's found in the heart of a tornado, cyclone, or other major windstorm. Some believe that every such storm on the prime carries a whirling vortex at its heart, though few have been able to survive these storms often enough to even begin to investigate. Though these vortices have fixed ends on Air, they have transitory and temporary ends on the Prime, jumping from storm to storm as one forms and another collapses. Those that believe that all storms carry a vortex in their heart also often believe the theory that most of the material on Air came through a whirling vortex, sucking items in rather than destroying them as is more commonly thought.
+
+						Of course, Air itself is no stranger to windstorms, which make up the single common hazard on the plane. Most of the time, weather in the Boundless Blue is calm, rarely reaching heights greater than a strong breeze. However, weather patterns in this plane are even more chaotic than most, sometimes lasting centuries, other times only seconds before they suddenly change. And if a cutter's unlucky, what was once nothing more than a gentle zephyr can suddenly grow to the strength of a full-blown tornado, reaching wind speeds of over 300 miles an hour without the barest bit of warning.
+
+						Even worse, and thankfully even rarer, are the maelstroms, storms as far above a tornado as a tornado is above a breeze. Believed by some to be a tiny rift between Air and Vacuum, these great terrors resemble a giant, circular tornado seeking to devour its own tail. These storms can range from only a handful of yards across to hundreds of miles, and the larger the storm, the greater its force. Get caught in one of these and you aren't just blown about, but smacked into (and at times, sliced up by) the debris caught within. Even worse, these storms never truly end, they merely move from place to place; no hoping for a quick change from these nasty sights. A few believe that located at the center of Air is a single Great Maelstrom, thousands of miles across; of course, this is probably nothing more than screed, since Air's infinite and doesn't have a center. If not, though, sorry to the unlucky soul that runs into that beast.
+
+						Magical Conditions
+						Being the center of air, all spells of Elemental Air are empowered and enlarged on this plane, while spells of the other three elements are impeded.
+
+						Locations
+						Boundary Regions
+						Eternal Haze - Smoke
+						Precipice - Ice
+						Subdued Cacophany - Lightning
+						Sites
+						Borealis
+						Taifun, the Palace of Tempests
+						The Waterspout
+						Cities
+						Blurophil
+						Citadel of Ice and Steel
+						Ktll
+						Zephyrhome
+						Realms
+						Desert Wind (Shu's realm)
+						The Great Funnel (Akadi's realm)
+						Powers
+						Egyptian Pantheon
+						Shu - Winds, atmosphere
+						Other
+						Akadi - Air
+						See Also
+						Inhabitants of Air
+						References
+						The Inner Planes, pgs.20-29,71,89,93
+						Manual of the Planes, pp.68-70
+				</p>
+
+
+				<div id="Section">
+					<h2>Section</h2>
+					<button class="collapsible">
+						Section
+					</button>
+					<div class="content">
+						<p>
+							Content
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+
+	<script>
+		$(document).ready(function() {
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.maxHeight){
+						content.style.maxHeight = null;
+						content.style.padding = "0px 20px";
+					} else {
+						content.style.maxHeight = content.scrollHeight + "px";
+						content.style.padding = "5px 20px";
+					}
+				});
+			}
+		})
+	</script>
+
+</html>

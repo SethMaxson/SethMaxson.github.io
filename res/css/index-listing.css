@@ -1,0 +1,15 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 1.5em;
+	padding:1%;
+}
+
+a {
+	padding-top:0.1em;
+	display:block;
+}

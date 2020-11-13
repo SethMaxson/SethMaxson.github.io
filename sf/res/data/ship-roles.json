@@ -1,0 +1,37 @@
+{"Items": [
+	{
+		"Name":"Captain",
+		"Phase":"Any",
+		"Limit":"One per Starship",
+		"Description":"Your role in combat is about encouraging the crew while taunting enimies into making critical mistakes.",
+		"Source":"CRB p.154"
+	},
+	{
+		"Name":"Engineer",
+		"Phase":"Engineering",
+		"Limit":"As many as ship permits",
+		"Description":"You work with your ship's power core and engines to achieve maximum effienciency, grant extra power in times of need, and divert power to vital systems as necessary. You can also repair damaged systems.",
+		"Source":"CRB p.163"
+	},
+	{
+		"Name":"Gunner",
+		"Phase":"Gunnery",
+		"Limit":"One action per weapon",
+		"Description":"You operate your starship's various weapon systems, using them to neutralize or destroy enemy vessels.",
+		"Source":"CRB p.163"
+	},
+	{
+		"Name":"Pilot",
+		"Phase":"Helm",
+		"Limit":"One per ship",
+		"Description":"You plot the course of the ship. Each starship has speed and maneuverability ratings, but you can push your starship beyond those boundaries with enough skill.",
+		"Source":"CRB p.163"
+	},
+	{
+		"Name":"Science Officer",
+		"Phase":"Helm",
+		"Limit":"None",
+		"Description":"You use the starship's computuers, scanners, and other systems to identify threats, target foes, and navigate hazards.",
+		"Source":"CRB p.163"
+	}
+]}

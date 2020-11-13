@@ -1,0 +1,4081 @@
+{
+	"items": [
+		{
+			"name": "Adaptive fingerprints",
+			"level": 6,
+			"price": "4,030",
+			"type": "Cybernetic",
+			"system": "All hands",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Adaptive fingerprints (AB)",
+			"level": 6,
+			"price": "4,433",
+			"type": "Biotech",
+			"system": "All hands",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Adaptive fingerprints (N)",
+			"level": 6,
+			"price": "3,627",
+			"type": "Necrograft",
+			"system": "All hands",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Adrenal booster",
+			"level": 8,
+			"price": "8,900",
+			"type": "Cybernetic",
+			"system": "Endocrine",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Adrenal booster (AB)",
+			"level": 8,
+			"price": "9,790",
+			"type": "Biotech",
+			"system": "Endocrine",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Adrenal booster (N)",
+			"level": 8,
+			"price": "8,010",
+			"type": "Necrograft",
+			"system": "Endocrine",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Aeon eye",
+			"level": 13,
+			"price": "46,000",
+			"type": "Magitech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AP08"
+		},
+		{
+			"name": "Aeon gage",
+			"level": 16,
+			"price": "200,000",
+			"type": "Magitech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AP08"
+		},
+		{
+			"name": "Antimagic skin, mk 1",
+			"level": 15,
+			"price": "109,400",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Antimagic skin, mk 2",
+			"level": 16,
+			"price": "170,800",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Antimagic skin, mk 3",
+			"level": 17,
+			"price": "263,000",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Antimagic skin, mk 4",
+			"level": 18,
+			"price": "388,000",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Antimagic skin, mk 5",
+			"level": 19,
+			"price": "587,000",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Antimagic skin, mk 6",
+			"level": 20,
+			"price": "891,000",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Antitoxin membrane",
+			"level": 5,
+			"price": "3,000",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "AA"
+		},
+		{
+			"name": "Antitoxin membrane (AB)",
+			"level": 5,
+			"price": "3,300",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB & AA"
+		},
+		{
+			"name": "Antitoxin membrane (N)",
+			"level": 5,
+			"price": "2,700",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AA & AR"
+		},
+		{
+			"name": "Arcane lenses",
+			"level": 11,
+			"price": "25,900",
+			"type": "Magitech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Artificial third eye",
+			"level": 10,
+			"price": "18,000",
+			"type": "Cybernetic",
+			"system": "Brain and eyes",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Artificial third eye (AB)",
+			"level": 10,
+			"price": "19,800",
+			"type": "Biotech",
+			"system": "Brain and eyes",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Artificial third eye (N)",
+			"level": 10,
+			"price": "16,200",
+			"type": "Necrograft",
+			"system": "Brain and eyes",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Backup lobe",
+			"level": 11,
+			"price": "23,400",
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Backup lobe (N)",
+			"level": 11,
+			"price": "21,060",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Bionic knees",
+			"level": 5,
+			"price": "2,750",
+			"type": "Cybernetic",
+			"system": "All legs",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Bionic knees (AB)",
+			"level": 5,
+			"price": "3,025",
+			"type": "Biotech",
+			"system": "All legs",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Bionic knees (N)",
+			"level": 5,
+			"price": "2,475",
+			"type": "Necrograft",
+			"system": "All legs",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Biosynthetic nanites, mk 1",
+			"level": 6,
+			"price": "4,450",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Biosynthetic nanites, mk 1 (AB)",
+			"level": 6,
+			"price": "4,895",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Biosynthetic nanites, mk 1 (N)",
+			"level": 6,
+			"price": "4,005",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Biosynthetic nanites, mk 2",
+			"level": 9,
+			"price": "13,700",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Biosynthetic nanites, mk 2 (AB)",
+			"level": 9,
+			"price": "15,070",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Biosynthetic nanites, mk 2 (N)",
+			"level": 9,
+			"price": "12,330",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Biosynthetic nanites, mk 3",
+			"level": 13,
+			"price": "50,900",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Biosynthetic nanites, mk 3 (AB)",
+			"level": 13,
+			"price": "55,990",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Biosynthetic nanites, mk 3 (N)",
+			"level": 13,
+			"price": "45,810",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Black heart, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Heart or Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Black heart, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "Heart or Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Black heart, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "Heart or Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Black heart, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "Heart or Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Black heart, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "Heart or Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Bone blade, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Arm",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Bone blade, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "Arm",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Bone blade, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "Arm",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Bone blade, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "Arm",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Bone blade, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "Arm",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Cardiac accelerator",
+			"level": 6,
+			"price": "3,850",
+			"type": "Cybernetic",
+			"system": "Heart",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Cardiac accelerator (AB)",
+			"level": 6,
+			"price": "4,235",
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Cardiac accelerator (N)",
+			"level": 6,
+			"price": "3,465",
+			"type": "Necrograft",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Cerebral countermeasures",
+			"level": 6,
+			"price": "4,200",
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "AA2"
+		},
+		{
+			"name": "Cerebral countermeasures (N)",
+			"level": 6,
+			"price": "3,780",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AA2 & AR"
+		},
+		{
+			"name": "Charged skin",
+			"level": 5,
+			"price": "3,075",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Cleansing breath",
+			"level": 18,
+			"price": "342,000",
+			"type": "Biotech",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Cleansing breath (N)",
+			"level": 18,
+			"price": "307,800",
+			"type": "Necrograft",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Climbing suckers",
+			"level": 3,
+			"price": "1,200",
+			"type": "Biotech",
+			"system": "All feet",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Climbing suckers (N)",
+			"level": 3,
+			"price": "1,080",
+			"type": "Necrograft",
+			"system": "All feet",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Clinging hands",
+			"level": 3,
+			"price": "1,350",
+			"type": "Biotech",
+			"system": "All hands",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Clinging hands (N)",
+			"level": 3,
+			"price": "1,215",
+			"type": "Necrograft",
+			"system": "All hands",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Cloaking skin, greater",
+			"level": 17,
+			"price": "270,000",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Cloaking skin, standard",
+			"level": 10,
+			"price": "18,000",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Control mirror neurons",
+			"level": 18,
+			"price": "365,000",
+			"type": "Magitech",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Corpseskin, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Corpseskin, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Corpseskin, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Corpseskin, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Corpseskin, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Crypt marrow, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "All legs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Crypt marrow, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "All legs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Crypt marrow, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "All legs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Crypt marrow, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "All legs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Crypt marrow, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "All legs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Cybernetic arm, dual",
+			"level": 14,
+			"price": "70,150",
+			"type": "Cybernetic",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Cybernetic arm, dual (AB)",
+			"level": 14,
+			"price": "77,165",
+			"type": "Biotech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Cybernetic arm, dual (N)",
+			"level": 14,
+			"price": "63,135",
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Cybernetic arm, single",
+			"level": 11,
+			"price": "24,750",
+			"type": "Cybernetic",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Cybernetic arm, single (AB)",
+			"level": 11,
+			"price": "27,225",
+			"type": "Biotech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Cybernetic arm, single (N)",
+			"level": 11,
+			"price": "22,275",
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Darkvision capacitors, advanced",
+			"level": 8,
+			"price": "9,000",
+			"type": "Cybernetic",
+			"system": "Eyes",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Darkvision capacitors, advanced (AB)",
+			"level": 8,
+			"price": "9,900",
+			"type": "Biotech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Darkvision capacitors, advanced (N)",
+			"level": 8,
+			"price": "8,100",
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Darkvision capacitors, long-range",
+			"level": 13,
+			"price": "48,950",
+			"type": "Cybernetic",
+			"system": "Eyes",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Darkvision capacitors, long-range (AB)",
+			"level": 13,
+			"price": "53,845",
+			"type": "Biotech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Darkvision capacitors, long-range (N)",
+			"level": 13,
+			"price": "44,055",
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Darkvision capacitors, standard",
+			"level": 3,
+			"price": "1,750",
+			"type": "Cybernetic",
+			"system": "Eyes",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Darkvision capacitors, standard (AB)",
+			"level": 3,
+			"price": "1,925",
+			"type": "Biotech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Darkvision capacitors, standard (N)",
+			"level": 3,
+			"price": "1,575",
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Datajack, accelerated",
+			"level": 8,
+			"price": "8,525",
+			"type": "Cybernetic",
+			"system": "Brain",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Datajack, accelerated (AB)",
+			"level": 8,
+			"price": "9,378",
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Datajack, accelerated (N)",
+			"level": 8,
+			"price": "7,673",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Datajack, high-density",
+			"level": 5,
+			"price": "2,600",
+			"type": "Cybernetic",
+			"system": "Brain",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Datajack, high-density (AB)",
+			"level": 5,
+			"price": "2,860",
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Datajack, high-density (N)",
+			"level": 5,
+			"price": "2,340",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Datajack, standard",
+			"level": 2,
+			"price": 625,
+			"type": "Cybernetic",
+			"system": "Brain",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Datajack, standard (AB)",
+			"level": 3,
+			"price": 688,
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Datajack, standard (N)",
+			"level": 2,
+			"price": 563,
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Dermal plating, mk 1",
+			"level": 5,
+			"price": "3,025",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 1 (AB)",
+			"level": 5,
+			"price": "3,328",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 1 (N)",
+			"level": 5,
+			"price": "2,723",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Dermal plating, mk 2",
+			"level": 7,
+			"price": "6,950",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 2 (AB)",
+			"level": 7,
+			"price": "7,645",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 2 (N)",
+			"level": 7,
+			"price": "6,255",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Dermal plating, mk 3",
+			"level": 9,
+			"price": "17,975",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 3 (AB)",
+			"level": 9,
+			"price": "19,773",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 3 (N)",
+			"level": 9,
+			"price": "16,178",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Dermal plating, mk 4",
+			"level": 12,
+			"price": "48,850",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 4 (AB)",
+			"level": 12,
+			"price": "53,735",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 4 (N)",
+			"level": 12,
+			"price": "43,965",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Dermal plating, mk 5",
+			"level": 14,
+			"price": "105,000",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 5 (AB)",
+			"level": 14,
+			"price": "115,500",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 5 (N)",
+			"level": 14,
+			"price": "94,500",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Dermal plating, mk 6",
+			"level": 16,
+			"price": "163,500",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 6 (AB)",
+			"level": 16,
+			"price": "179,850",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 6 (N)",
+			"level": 16,
+			"price": "147,150",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Dermal plating, mk 7",
+			"level": 19,
+			"price": "542,000",
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 7 (AB)",
+			"level": 19,
+			"price": "596,200",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dermal plating, mk 7 (N)",
+			"level": 19,
+			"price": "487,800",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Detoxifier, advanced",
+			"level": 12,
+			"price": "39,500",
+			"type": "Cybernetic",
+			"system": "Heart",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Detoxifier, advanced (AB)",
+			"level": 12,
+			"price": "43,450",
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Detoxifier, advanced (N)",
+			"level": 12,
+			"price": "35,550",
+			"type": "Necrograft",
+			"system": "Heart",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Detoxifier, elite",
+			"level": 19,
+			"price": "612,000",
+			"type": "Cybernetic",
+			"system": "Heart",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Detoxifier, elite (AB)",
+			"level": 19,
+			"price": "673,200",
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Detoxifier, elite (N)",
+			"level": 19,
+			"price": "550,800",
+			"type": "Necrograft",
+			"system": "Heart",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Detoxifier, standard",
+			"level": 5,
+			"price": "3,500",
+			"type": "Cybernetic",
+			"system": "Heart",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Detoxifier, standard (AB)",
+			"level": 5,
+			"price": "3,850",
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Detoxifier, standard (N)",
+			"level": 5,
+			"price": "3,150",
+			"type": "Necrograft",
+			"system": "Heart",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Dimensional braces",
+			"level": 12,
+			"price": "38,000",
+			"type": "Magitech",
+			"system": "All legs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Dispelling hand",
+			"level": 9,
+			"price": "14,300",
+			"type": "Magitech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Divining mirror neurons",
+			"level": 12,
+			"price": "36,400",
+			"type": "Magitech",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Dragon gland, standard",
+			"level": 10,
+			"price": "19,125",
+			"type": "Biotech",
+			"system": "Throat",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dragon gland, standard (N)",
+			"level": 10,
+			"price": "17,213",
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Dragon gland, wyrm",
+			"level": 16,
+			"price": "181,500",
+			"type": "Biotech",
+			"system": "Throat",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dragon gland, wyrm (N)",
+			"level": 16,
+			"price": "163,350",
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Dragon gland, wyrmling",
+			"level": 2,
+			"price": 755,
+			"type": "Biotech",
+			"system": "Throat",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Dragon gland, wyrmling (N)",
+			"level": 2,
+			"price": 680,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Eagle eyes",
+			"level": 6,
+			"price": "4,000",
+			"type": "Biotech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Eagle eyes (N)",
+			"level": 6,
+			"price": "3,600",
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Echolocators, active",
+			"level": 9,
+			"price": "13,700",
+			"type": "Cybernetic",
+			"system": "Ears and throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Echolocators, active (AB)",
+			"level": 9,
+			"price": "15,070",
+			"type": "Biotech",
+			"system": "Ears and throat",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Echolocators, active (N)",
+			"level": 9,
+			"price": "12,330",
+			"type": "Cybernetic",
+			"system": "Ears and throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Echolocators, enhanced",
+			"level": 13,
+			"price": "50,900",
+			"type": "Cybernetic",
+			"system": "Ears and throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Echolocators, enhanced (AB)",
+			"level": 13,
+			"price": "55,990",
+			"type": "Biotech",
+			"system": "Ears and throat",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Echolocators, enhanced (N)",
+			"level": 13,
+			"price": "45,810",
+			"type": "Cybernetic",
+			"system": "Ears and throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Echolocators, reactive",
+			"level": 6,
+			"price": "4,450",
+			"type": "Cybernetic",
+			"system": "Ears",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Echolocators, reactive (AB)",
+			"level": 6,
+			"price": "4,895",
+			"type": "Biotech",
+			"system": "Ears",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Echolocators, reactive (N)",
+			"level": 6,
+			"price": "4,005",
+			"type": "Cybernetic",
+			"system": "Ears",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Emotional regulator",
+			"level": 4,
+			"price": "2,120",
+			"type": "Cybernetic",
+			"system": "Brain",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Emotional regulator (AB)",
+			"level": 4,
+			"price": "2,332",
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Emotional regulator (N)",
+			"level": 4,
+			"price": "1,908",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Enchanting vocal modulator, duofrequency",
+			"level": 14,
+			"price": "66,500",
+			"type": "Magitech",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Enchanting vocal modulator, monofrequency",
+			"level": 11,
+			"price": "25,400",
+			"type": "Magitech",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Enchanting vocal modulator, quadfrequency",
+			"level": 17,
+			"price": "225,000",
+			"type": "Magitech",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Enervating Hand, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Enervating Hand, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Enervating Hand, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Enervating Hand, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Enervating Hand, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Filament mesh, mk 1",
+			"level": 5,
+			"price": "3,450",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AA2"
+		},
+		{
+			"name": "Filament mesh, mk 1 (N)",
+			"level": 5,
+			"price": "3,105",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AA2 & AR"
+		},
+		{
+			"name": "Filament mesh, mk 2",
+			"level": 10,
+			"price": "17,500",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AA2"
+		},
+		{
+			"name": "Filament mesh, mk 2 (N)",
+			"level": 10,
+			"price": "15,750",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AA2 & AR"
+		},
+		{
+			"name": "Fluttering heart",
+			"level": 8,
+			"price": "8,220",
+			"type": "Magitech",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Focusing membrane, mk 1",
+			"level": 4,
+			"price": "1,925",
+			"type": "Biotech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AA2"
+		},
+		{
+			"name": "Focusing membrane, mk 1 (N)",
+			"level": 4,
+			"price": "1,733",
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AA2 & AR"
+		},
+		{
+			"name": "Focusing membrane, mk 2",
+			"level": 9,
+			"price": "13,260",
+			"type": "Biotech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AA2"
+		},
+		{
+			"name": "Focusing membrane, mk 2 (N)",
+			"level": 9,
+			"price": "11,934",
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AA2 & AR"
+		},
+		{
+			"name": "Force matrix, mk 1",
+			"level": 5,
+			"price": "3,300",
+			"type": "Cybernetic",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Force matrix, mk 1 (AB)",
+			"level": 5,
+			"price": "3,630",
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Force matrix, mk 1 (N)",
+			"level": 5,
+			"price": "2,970",
+			"type": "Cybernetic",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Force matrix, mk 2",
+			"level": 11,
+			"price": "26,750",
+			"type": "Cybernetic",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Force matrix, mk 2 (AB)",
+			"level": 11,
+			"price": "29,425",
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Force matrix, mk 2 (N)",
+			"level": 11,
+			"price": "24,075",
+			"type": "Cybernetic",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Force matrix, mk 3",
+			"level": 17,
+			"price": "278,100",
+			"type": "Cybernetic",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Force matrix, mk 3 (AB)",
+			"level": 17,
+			"price": "305,910",
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Force matrix, mk 3 (N)",
+			"level": 17,
+			"price": "250,290",
+			"type": "Cybernetic",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Force palms",
+			"level": 14,
+			"price": "69,500",
+			"type": "Magitech",
+			"system": "All hands",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Force soles, mk 1",
+			"level": 4,
+			"price": "2,260",
+			"type": "Magitech",
+			"system": "All feet",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Force soles, mk 2",
+			"level": 8,
+			"price": "10,700",
+			"type": "Magitech",
+			"system": "All feet",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Fortified feet",
+			"level": 4,
+			"price": "1,850",
+			"type": "Cybernetic",
+			"system": "All feet",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Fortified feet (AB)",
+			"level": 4,
+			"price": "2,035",
+			"type": "Biotech",
+			"system": "All feet",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Fortified feet (N)",
+			"level": 4,
+			"price": "1,665",
+			"type": "Cybernetic",
+			"system": "All feet",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Ghoul glands, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Ghoul glands, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Ghoul glands, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Ghoul glands, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Ghoul glands, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Gill sheath",
+			"level": 1,
+			"price": 95,
+			"type": "Biotech",
+			"system": "Lungs",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Gill sheath (N)",
+			"level": 1,
+			"price": 86,
+			"type": "Necrograft",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Glass skin",
+			"level": 4,
+			"price": "2,000",
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AA2"
+		},
+		{
+			"name": "Glass skin (N)",
+			"level": 4,
+			"price": "1,800",
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AA2 & AR"
+		},
+		{
+			"name": "Grave wind, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Grave wind, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Grave wind, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Grave wind, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Grave wind, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Gravitational harness, mk 1",
+			"level": 2,
+			"price": 515,
+			"type": "Magitech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Gravitational harness, mk 2",
+			"level": 9,
+			"price": "12,700",
+			"type": "Magitech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Gravitational harness, mk 3",
+			"level": 15,
+			"price": "118,500",
+			"type": "Magitech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Hideaway limb, quickdraw",
+			"level": 5,
+			"price": "3,050",
+			"type": "Cybernetic",
+			"system": "Arm or Leg",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Hideaway limb, quickdraw (AB)",
+			"level": 5,
+			"price": "3,355",
+			"type": "Biotech",
+			"system": "Arm or Leg",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Hideaway limb, quickdraw (N)",
+			"level": 5,
+			"price": "2,745",
+			"type": "Necrograft",
+			"system": "Arm or Leg",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Hideaway limb, standard",
+			"level": 1,
+			"price": 150,
+			"type": "Cybernetic",
+			"system": "Arm or Leg",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Hideaway limb, standard (AB)",
+			"level": 3,
+			"price": 165,
+			"type": "Biotech",
+			"system": "Arm or Leg",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Hideaway limb, standard (N)",
+			"level": 1,
+			"price": 135,
+			"type": "Necrograft",
+			"system": "Arm or Leg",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Holographic eyes, mk 1",
+			"level": 10,
+			"price": "18,300",
+			"type": "Magitech",
+			"system": "Brain and eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Holographic eyes, mk 2",
+			"level": 13,
+			"price": "49,700",
+			"type": "Magitech",
+			"system": "Brain and eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Holographic eyes, mk 3",
+			"level": 17,
+			"price": "266,000",
+			"type": "Magitech",
+			"system": "Brain and eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Holographic eyes, mk 4",
+			"level": 20,
+			"price": "820,000",
+			"type": "Magitech",
+			"system": "Brain and eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Intercepting ears, mk 1",
+			"level": 3,
+			"price": "1,225",
+			"type": "Magitech",
+			"system": "Ears",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Intercepting ears, mk 2",
+			"level": 9,
+			"price": "13,600",
+			"type": "Magitech",
+			"system": "Ears",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Keening larynx, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Keening larynx, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Keening larynx, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Keening larynx, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Keening larynx, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Lightvision shades",
+			"level": 2,
+			"price": 500,
+			"type": "Cybernetic",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AP14"
+		},
+		{
+			"name": "Lightvision shades (AB)",
+			"level": 2,
+			"price": 550,
+			"type": "Biotech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AP14 & CRB"
+		},
+		{
+			"name": "Lightvision shades (N)",
+			"level": 2,
+			"price": 450,
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR & AP14"
+		},
+		{
+			"name": "Limning palm",
+			"level": 7,
+			"price": "6,300",
+			"type": "Cybernetic",
+			"system": "Hand",
+			"special": "-",
+			"source": "AP14"
+		},
+		{
+			"name": "Limning palm (AB)",
+			"level": 7,
+			"price": "6,930",
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AP14 & CRB"
+		},
+		{
+			"name": "Limning palm (N)",
+			"level": 7,
+			"price": "5,670",
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR & AP14"
+		},
+		{
+			"name": "Linguistic capacitor",
+			"level": 12,
+			"price": "36,600",
+			"type": "Cybernetic",
+			"system": "Brain",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Linguistic capacitor (AB)",
+			"level": 12,
+			"price": "40,260",
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Linguistic capacitor (N)",
+			"level": 12,
+			"price": "32,940",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Machine telepathy cluster",
+			"level": 5,
+			"price": "2,500",
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "AA3"
+		},
+		{
+			"name": "Machine telepathy cluster (N)",
+			"level": 5,
+			"price": "2,250",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AA3 & AR"
+		},
+		{
+			"name": "Mighty vocal cords",
+			"level": 3,
+			"price": "1,275",
+			"type": "Biotech",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Mighty vocal cords (N)",
+			"level": 3,
+			"price": "1,148",
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Moonflower lightgraft",
+			"level": 8,
+			"price": "8,500",
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AA2"
+		},
+		{
+			"name": "Moonflower lightgraft (N)",
+			"level": 8,
+			"price": "7,650",
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AA2 & AR"
+		},
+		{
+			"name": "Moonlight fibers, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Moonlight fibers, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Moonlight fibers, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Moonlight fibers, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Moonlight fibers, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Morphic skin, advanced",
+			"level": 4,
+			"price": "2,030",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Morphic skin, basic",
+			"level": 1,
+			"price": 370,
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Morphic skin, doppelganger",
+			"level": 6,
+			"price": "4,400",
+			"type": "Magitech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Necrocortex, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Necrocortex, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Necrocortex, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Necrocortex, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Necrocortex, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Nimble soles",
+			"level": 4,
+			"price": "2,000",
+			"type": "Magitech",
+			"system": "Feet",
+			"special": "-",
+			"source": "AP08"
+		},
+		{
+			"name": "Ocucloak processor",
+			"level": 4,
+			"price": "2,200",
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "AA"
+		},
+		{
+			"name": "Ocucloak processor (N)",
+			"level": 4,
+			"price": "1,980",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AA & AR"
+		},
+		{
+			"name": "Optical laser, aphelion",
+			"level": 11,
+			"price": "26,520",
+			"type": "Cybernetic",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Optical laser, aphelion (AB)",
+			"level": 11,
+			"price": "29,172",
+			"type": "Biotech",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Optical laser, aphelion (N)",
+			"level": 11,
+			"price": "23,868",
+			"type": "Cybernetic",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Optical laser, azimuth",
+			"level": 3,
+			"price": "1,530",
+			"type": "Cybernetic",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Optical laser, azimuth (AB)",
+			"level": 3,
+			"price": "1,683",
+			"type": "Biotech",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Optical laser, azimuth (N)",
+			"level": 3,
+			"price": "1,377",
+			"type": "Cybernetic",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Optical laser, corona",
+			"level": 7,
+			"price": "7,140",
+			"type": "Cybernetic",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Optical laser, corona (AB)",
+			"level": 7,
+			"price": "7,854",
+			"type": "Biotech",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Optical laser, corona (N)",
+			"level": 7,
+			"price": "6,426",
+			"type": "Cybernetic",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Optical laser, parallax",
+			"level": 15,
+			"price": "122,400",
+			"type": "Cybernetic",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Optical laser, parallax (AB)",
+			"level": 15,
+			"price": "134,640",
+			"type": "Biotech",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Optical laser, parallax (N)",
+			"level": 15,
+			"price": "110,160",
+			"type": "Cybernetic",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Optical laser, zenith",
+			"level": 19,
+			"price": "612,000",
+			"type": "Cybernetic",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Optical laser, zenith (AB)",
+			"level": 19,
+			"price": "673,200",
+			"type": "Biotech",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Optical laser, zenith (N)",
+			"level": 19,
+			"price": "550,800",
+			"type": "Cybernetic",
+			"system": "Eye",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Personal upgrade, mk 1",
+			"level": 3,
+			"price": "1,400",
+			"type": "-",
+			"system": "-",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Personal upgrade, mk 2",
+			"level": 7,
+			"price": "6,500",
+			"type": "-",
+			"system": "-",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Personal upgrade, mk 3",
+			"level": 14,
+			"price": "75,000",
+			"type": "-",
+			"system": "-",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Phantom basal ganglia, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Phantom basal ganglia, mk 2",
+			"level": 6,
+			"price": "4,000",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Phantom basal ganglia, mk 3",
+			"level": 12,
+			"price": "30,000",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Phantom basal ganglia, mk 4",
+			"level": 18,
+			"price": "350,000",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Phantom basal ganglia, mk 5",
+			"level": 20,
+			"price": "775,000",
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Photoenergetic node",
+			"level": 2,
+			"price": 625,
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AA2"
+		},
+		{
+			"name": "Photoenergetic node (N)",
+			"level": 2,
+			"price": 563,
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AA2 & AR"
+		},
+		{
+			"name": "Polarizing palm",
+			"level": 7,
+			"price": "5,850",
+			"type": "Cybernetic",
+			"system": "Hand",
+			"special": "-",
+			"source": "AP11"
+		},
+		{
+			"name": "Polarizing palm (AB)",
+			"level": 7,
+			"price": "6,435",
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "CRB & AP11"
+		},
+		{
+			"name": "Polarizing palm (N)",
+			"level": 7,
+			"price": "5,265",
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AP11 & AR"
+		},
+		{
+			"name": "Polyhand",
+			"level": 14,
+			"price": "71,000",
+			"type": "Cybernetic",
+			"system": "Hand",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Polyhand (AB)",
+			"level": 14,
+			"price": "78,100",
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Polyhand (N)",
+			"level": 14,
+			"price": "63,900",
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Prehensile tail",
+			"level": 10,
+			"price": "17,900",
+			"type": "Biotech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Prehensile tail (N)",
+			"level": 10,
+			"price": "16,110",
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Pressurized lungs",
+			"level": 1,
+			"price": 130,
+			"type": "Biotech",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Pressurized lungs (N)",
+			"level": 1,
+			"price": 117,
+			"type": "Necrograft",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Prosthetic limb, standard",
+			"level": 1,
+			"price": 100,
+			"type": "Cybernetic",
+			"system": "Arm and Hand or Leg and Foot",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Prosthetic limb, standard (AB)",
+			"level": 3,
+			"price": 110,
+			"type": "Biotech",
+			"system": "Arm and Hand or Leg and Foot",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Prosthetic limb, standard (N)",
+			"level": 1,
+			"price": 90,
+			"type": "Necrograft",
+			"system": "Arm and Hand or Leg and Foot",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Prosthetic limb, storage",
+			"level": 3,
+			"price": "1,450",
+			"type": "Cybernetic",
+			"system": "Arm and Hand or Leg and Foot",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Prosthetic limb, storage (AB)",
+			"level": 3,
+			"price": "1,595",
+			"type": "Biotech",
+			"system": "Arm and Hand or Leg and Foot",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Prosthetic limb, storage (N)",
+			"level": 3,
+			"price": "1,305",
+			"type": "Necrograft",
+			"system": "Arm and Hand or Leg and Foot",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Psychoactive eyes, charming",
+			"level": 6,
+			"price": 4250,
+			"type": "Magitech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Psychoactive eyes, fascinating",
+			"level": 2,
+			"price": 965,
+			"type": "Magitech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Psychokinetic sleeve",
+			"level": 14,
+			"price": 75000,
+			"type": "Magitech",
+			"system": "Arm and hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Recoil stabilizer",
+			"level": 8,
+			"price": 8550,
+			"type": "Cybernetic",
+			"system": "Arm and hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Recoil stabilizer (AB)",
+			"level": 8,
+			"price": 9405,
+			"type": "Biotech",
+			"system": "Arm and hand",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Recoil stabilizer (N)",
+			"level": 8,
+			"price": 7695,
+			"type": "Cybernetic",
+			"system": "Arm and hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Regenerative blood, mk 1",
+			"level": 5,
+			"price": 3250,
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Regenerative blood, mk 1 (N)",
+			"level": 5,
+			"price": 2925,
+			"type": "Necrograft",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Regenerative blood, mk 2",
+			"level": 8,
+			"price": 10100,
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Regenerative blood, mk 2 (N)",
+			"level": 8,
+			"price": 9090,
+			"type": "Necrograft",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Regenerative blood, mk 3",
+			"level": 12,
+			"price": 38500,
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Regenerative blood, mk 3 (N)",
+			"level": 12,
+			"price": 34650,
+			"type": "Necrograft",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Regenerative blood, mk 4",
+			"level": 15,
+			"price": 122000,
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Regenerative blood, mk 4 (N)",
+			"level": 15,
+			"price": 109800,
+			"type": "Necrograft",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Regenerative blood, mk 5",
+			"level": 19,
+			"price": 605000,
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Regenerative blood, mk 5 (N)",
+			"level": 19,
+			"price": 544500,
+			"type": "Necrograft",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 1",
+			"level": 2,
+			"price": 700,
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 1 (N)",
+			"level": 2,
+			"price": 630,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 2",
+			"level": 4,
+			"price": 1900,
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 2 (N)",
+			"level": 4,
+			"price": 1710,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 3",
+			"level": 7,
+			"price": 5890,
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 3 (N)",
+			"level": 7,
+			"price": 5301,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 4",
+			"level": 10,
+			"price": 17000,
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 4 (N)",
+			"level": 10,
+			"price": 15300,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 5",
+			"level": 13,
+			"price": 46350,
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 5 (N)",
+			"level": 13,
+			"price": 41715,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 6",
+			"level": 17,
+			"price": 230850,
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resistant hide, mk 6 (N)",
+			"level": 17,
+			"price": 207765,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Resonant larynx, advanced",
+			"level": 11,
+			"price": 25500,
+			"type": "Magitech",
+			"system": "Throat",
+			"special": "-",
+			"source": "AP08"
+		},
+		{
+			"name": "Resonant larynx, standard",
+			"level": 6,
+			"price": 4400,
+			"type": "Magitech",
+			"system": "Throat",
+			"special": "-",
+			"source": "AP08"
+		},
+		{
+			"name": "Respiration compounder",
+			"level": 1,
+			"price": 250,
+			"type": "Cybernetic",
+			"system": "Lungs",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Respiration compounder (AB)",
+			"level": 3,
+			"price": 275,
+			"type": "Biotech",
+			"system": "Lungs",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Respiration compounder (N)",
+			"level": 1,
+			"price": 225,
+			"type": "Necrograft",
+			"system": "Lungs",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Restless pineal gland",
+			"level": 7,
+			"price": 5500,
+			"type": "Magitech",
+			"system": "Endocrine",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Restraining spinneret",
+			"level": 1,
+			"price": 330,
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Restraining spinneret (N)",
+			"level": 1,
+			"price": 297,
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Retinal reflectors",
+			"level": 3,
+			"price": 1350,
+			"type": "Cybernetic",
+			"system": "Eyes",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Retinal reflectors (AB)",
+			"level": 3,
+			"price": 1485,
+			"type": "Biotech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Retinal reflectors (N)",
+			"level": 3,
+			"price": 1215,
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Seismic spine",
+			"level": 20,
+			"price": 1075000,
+			"type": "Magitech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AA3"
+		},
+		{
+			"name": "Selective ears",
+			"level": 5,
+			"price": 2830,
+			"type": "Magitech",
+			"system": "Ears",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shadow nerves, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shadow nerves, mk 2",
+			"level": 6,
+			"price": 4000,
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shadow nerves, mk 3",
+			"level": 12,
+			"price": 30000,
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shadow nerves, mk 4",
+			"level": 18,
+			"price": 350000,
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shadow nerves, mk 5",
+			"level": 20,
+			"price": 775000,
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shock fist, aurora",
+			"level": 12,
+			"price": 41400,
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shock fist, aurora (N)",
+			"level": 12,
+			"price": 37260,
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shock fist, static",
+			"level": 9,
+			"price": 15600,
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shock fist, static (N)",
+			"level": 9,
+			"price": 14040,
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shock fist, storm",
+			"level": 17,
+			"price": 297000,
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shock fist, storm (N)",
+			"level": 17,
+			"price": 267300,
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shock fist, tempest",
+			"level": 20,
+			"price": 1075000,
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shock fist, tempest (N)",
+			"level": 20,
+			"price": 967500,
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Shortwave receiver-transmitter",
+			"level": 7,
+			"price": 6500,
+			"type": "Cybernetic",
+			"system": "Brain",
+			"special": "-",
+			"source": "AA"
+		},
+		{
+			"name": "Shortwave receiver-transmitter (AB)",
+			"level": 7,
+			"price": 7150,
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "CRB & AA"
+		},
+		{
+			"name": "Shortwave receiver-transmitter (N)",
+			"level": 7,
+			"price": 5850,
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AA & AR"
+		},
+		{
+			"name": "Shotalashu link cortex",
+			"level": 4,
+			"price": 2500,
+			"type": "Biotech",
+			"system": "Brain",
+			"special": "-",
+			"source": "AA2"
+		},
+		{
+			"name": "Shotalashu link cortex (N)",
+			"level": 4,
+			"price": 2250,
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AA2 & AR"
+		},
+		{
+			"name": "Skin of the chameleon",
+			"level": 6,
+			"price": 4050,
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Skin of the chameleon (N)",
+			"level": 6,
+			"price": 3645,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Solar overload conduit, mk 1",
+			"level": 5,
+			"price": 2640,
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP14"
+		},
+		{
+			"name": "Solar overload conduit, mk 1 (AB)",
+			"level": 5,
+			"price": 2904,
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP14 & CRB"
+		},
+		{
+			"name": "Solar overload conduit, mk 1 (N)",
+			"level": 5,
+			"price": 2376,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & AP14"
+		},
+		{
+			"name": "Solar overload conduit, mk 2",
+			"level": 10,
+			"price": 16800,
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP14"
+		},
+		{
+			"name": "Solar overload conduit, mk 2 (AB)",
+			"level": 10,
+			"price": 18480,
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP14 & CRB"
+		},
+		{
+			"name": "Solar overload conduit, mk 2 (N)",
+			"level": 10,
+			"price": 15120,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & AP14"
+		},
+		{
+			"name": "Solar overload conduit, mk 3",
+			"level": 15,
+			"price": 120000,
+			"type": "Cybernetic",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP14"
+		},
+		{
+			"name": "Solar overload conduit, mk 3 (AB)",
+			"level": 15,
+			"price": 132000,
+			"type": "Biotech",
+			"system": "Skin",
+			"special": "-",
+			"source": "AP14 & CRB"
+		},
+		{
+			"name": "Solar overload conduit, mk 3 (N)",
+			"level": 15,
+			"price": 108000,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR & AP14"
+		},
+		{
+			"name": "Sovereign helm",
+			"level": 9,
+			"price": 14975,
+			"type": "Cybernetic",
+			"system": "Brain",
+			"special": "Relic",
+			"source": "AP05"
+		},
+		{
+			"name": "Speed suspension, complete",
+			"level": 12,
+			"price": 32900,
+			"type": "Cybernetic",
+			"system": "All legs",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Speed suspension, complete (AB)",
+			"level": 12,
+			"price": 36190,
+			"type": "Biotech",
+			"system": "All legs",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Speed suspension, complete (N)",
+			"level": 12,
+			"price": 29610,
+			"type": "Necrograft",
+			"system": "All legs",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Speed suspension, minimal",
+			"level": 4,
+			"price": 1900,
+			"type": "Cybernetic",
+			"system": "All legs",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Speed suspension, minimal (AB)",
+			"level": 4,
+			"price": 2090,
+			"type": "Biotech",
+			"system": "All legs",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Speed suspension, minimal (N)",
+			"level": 4,
+			"price": 1710,
+			"type": "Necrograft",
+			"system": "All legs",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Speed suspension, standard",
+			"level": 8,
+			"price": 8800,
+			"type": "Cybernetic",
+			"system": "All legs",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Speed suspension, standard (AB)",
+			"level": 8,
+			"price": 9680,
+			"type": "Biotech",
+			"system": "All legs",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Speed suspension, standard (N)",
+			"level": 8,
+			"price": 7920,
+			"type": "Necrograft",
+			"system": "All legs",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Spinal struts, minimal",
+			"level": 3,
+			"price": 1260,
+			"type": "Cybernetic",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Spinal struts, minimal (AB)",
+			"level": 3,
+			"price": 1386,
+			"type": "Biotech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Spinal struts, minimal (N)",
+			"level": 3,
+			"price": 1134,
+			"type": "Cybernetic",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Spinal struts, reinforced",
+			"level": 10,
+			"price": 17640,
+			"type": "Cybernetic",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Spinal struts, reinforced (AB)",
+			"level": 10,
+			"price": 19404,
+			"type": "Biotech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Spinal struts, reinforced (N)",
+			"level": 10,
+			"price": 15876,
+			"type": "Cybernetic",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Spinal struts, standard",
+			"level": 6,
+			"price": 4030,
+			"type": "Cybernetic",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Spinal struts, standard (AB)",
+			"level": 6,
+			"price": 4433,
+			"type": "Biotech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Spinal struts, standard (N)",
+			"level": 6,
+			"price": 3627,
+			"type": "Cybernetic",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Squirming entrails, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Squirming entrails, mk 2",
+			"level": 6,
+			"price": 4000,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Squirming entrails, mk 3",
+			"level": 12,
+			"price": 30000,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Squirming entrails, mk 4",
+			"level": 18,
+			"price": 350000,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Squirming entrails, mk 5",
+			"level": 20,
+			"price": 775000,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Stench glands, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Stench glands, mk 2",
+			"level": 6,
+			"price": 4000,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Stench glands, mk 3",
+			"level": 12,
+			"price": 30000,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Stench glands, mk 4",
+			"level": 18,
+			"price": 350000,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Stench glands, mk 5",
+			"level": 20,
+			"price": 775000,
+			"type": "Necrograft",
+			"system": "Skin",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Swimming fins",
+			"level": 2,
+			"price": 850,
+			"type": "Biotech",
+			"system": "All feet",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Swimming fins (N)",
+			"level": 2,
+			"price": 765,
+			"type": "Necrograft",
+			"system": "All feet",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Synchronous heart",
+			"level": 7,
+			"price": 6300,
+			"type": "Magitech",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Technopathy node",
+			"level": 1,
+			"price": 220,
+			"type": "Magitech",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Thorgothrel armature",
+			"level": 11,
+			"price": 25000,
+			"type": "Cybernetic",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AA3"
+		},
+		{
+			"name": "Thorgothrel armature (AB)",
+			"level": 11,
+			"price": 27500,
+			"type": "Biotech",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AA3 & CRB"
+		},
+		{
+			"name": "Thorgothrel armature (N)",
+			"level": 11,
+			"price": 22500,
+			"type": "Necrograft",
+			"system": "Spinal column",
+			"special": "-",
+			"source": "AA3 & AR"
+		},
+		{
+			"name": "Threshold buffer, mk 1",
+			"level": 4,
+			"price": 2080,
+			"type": "Cybernetic",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Threshold buffer, mk 1 (AB)",
+			"level": 4,
+			"price": 2288,
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Threshold buffer, mk 1 (N)",
+			"level": 4,
+			"price": 1872,
+			"type": "Cybernetic",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Threshold buffer, mk 2",
+			"level": 9,
+			"price": 13500,
+			"type": "Cybernetic",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Threshold buffer, mk 2 (AB)",
+			"level": 9,
+			"price": 14850,
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Threshold buffer, mk 2 (N)",
+			"level": 9,
+			"price": 12150,
+			"type": "Cybernetic",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Threshold buffer, mk 3",
+			"level": 15,
+			"price": 110000,
+			"type": "Cybernetic",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Threshold buffer, mk 3 (AB)",
+			"level": 15,
+			"price": 121000,
+			"type": "Biotech",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Threshold buffer, mk 3 (N)",
+			"level": 15,
+			"price": 99000,
+			"type": "Cybernetic",
+			"system": "Heart",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Tympanal cluster",
+			"level": 4,
+			"price": 2150,
+			"type": "Biotech",
+			"system": "Ears",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Tympanal cluster (N)",
+			"level": 4,
+			"price": 1935,
+			"type": "Necrograft",
+			"system": "Ears",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Ultralight wings, angel",
+			"level": 11,
+			"price": 28600,
+			"type": "Biotech",
+			"system": "All arms",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Ultralight wings, angel (N)",
+			"level": 11,
+			"price": 25740,
+			"type": "Necrograft",
+			"system": "All arms",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Ultralight wings, dragon",
+			"level": 14,
+			"price": 80300,
+			"type": "Biotech",
+			"system": "All arms",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Ultralight wings, dragon (N)",
+			"level": 14,
+			"price": 72270,
+			"type": "Necrograft",
+			"system": "All arms",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Ultralight wings, strix",
+			"level": 7,
+			"price": 6400,
+			"type": "Biotech",
+			"system": "All arms",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Ultralight wings, strix (N)",
+			"level": 7,
+			"price": 5760,
+			"type": "Necrograft",
+			"system": "All arms",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Undead adrenal gland, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Endocrine",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Undead adrenal gland, mk 2",
+			"level": 6,
+			"price": 4000,
+			"type": "Necrograft",
+			"system": "Endocrine",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Undead adrenal gland, mk 3",
+			"level": 12,
+			"price": 30000,
+			"type": "Necrograft",
+			"system": "Endocrine",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Undead adrenal gland, mk 4",
+			"level": 18,
+			"price": 350000,
+			"type": "Necrograft",
+			"system": "Endocrine",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Undead adrenal gland, mk 5",
+			"level": 20,
+			"price": 775000,
+			"type": "Necrograft",
+			"system": "Endocrine",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Vampire voice, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Vampire voice, mk 2",
+			"level": 6,
+			"price": 4000,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Vampire voice, mk 3",
+			"level": 12,
+			"price": 30000,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Vampire voice, mk 4",
+			"level": 18,
+			"price": 350000,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Vampire voice, mk 5",
+			"level": 20,
+			"price": 775000,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Venom spur",
+			"level": 2,
+			"price": 625,
+			"type": "Biotech",
+			"system": "Hand",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Venom spur (N)",
+			"level": 2,
+			"price": 563,
+			"type": "Necrograft",
+			"system": "Hand",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Vocal modulator",
+			"level": 1,
+			"price": 125,
+			"type": "Cybernetic",
+			"system": "Throat",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Vocal modulator (AB)",
+			"level": 3,
+			"price": 138,
+			"type": "Biotech",
+			"system": "Throat",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Vocal modulator (N)",
+			"level": 1,
+			"price": 113,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Voice amplifier",
+			"level": 1,
+			"price": 125,
+			"type": "Cybernetic",
+			"system": "Throat",
+			"special": "-",
+			"source": "AA"
+		},
+		{
+			"name": "Voice amplifier (AB)",
+			"level": 3,
+			"price": 138,
+			"type": "Biotech",
+			"system": "Throat",
+			"special": "-",
+			"source": "CRB & AA"
+		},
+		{
+			"name": "Voice amplifier (N)",
+			"level": 1,
+			"price": 113,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AA & AR"
+		},
+		{
+			"name": "Weaponized prosthesis, mk 1",
+			"level": 4,
+			"price": 2120,
+			"type": "Cybernetic",
+			"system": "Arm and Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Weaponized prosthesis, mk 1 (AB)",
+			"level": 4,
+			"price": 2332,
+			"type": "Biotech",
+			"system": "Arm and Hand",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Weaponized prosthesis, mk 1 (N)",
+			"level": 4,
+			"price": 1908,
+			"type": "Cybernetic",
+			"system": "Arm and Hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Weaponized prosthesis, mk 2",
+			"level": 8,
+			"price": 9250,
+			"type": "Cybernetic",
+			"system": "Arm and hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Weaponized prosthesis, mk 2 (AB)",
+			"level": 8,
+			"price": 10175,
+			"type": "Biotech",
+			"system": "Arm and hand",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Weaponized prosthesis, mk 2 (N)",
+			"level": 8,
+			"price": 8325,
+			"type": "Cybernetic",
+			"system": "Arm and hand",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Whispering gyrus, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Whispering gyrus, mk 2",
+			"level": 6,
+			"price": 4000,
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Whispering gyrus, mk 3",
+			"level": 12,
+			"price": 30000,
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Whispering gyrus, mk 4",
+			"level": 18,
+			"price": 350000,
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Whispering gyrus, mk 5",
+			"level": 20,
+			"price": 775000,
+			"type": "Necrograft",
+			"system": "Brain",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Wide-spectrum ocular implant",
+			"level": 5,
+			"price": 2825,
+			"type": "Cybernetic",
+			"system": "Eyes",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Wide-spectrum ocular implant (AB)",
+			"level": 5,
+			"price": 3107.5,
+			"type": "Biotech",
+			"system": "Eyes",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Wide-spectrum ocular implant (N)",
+			"level": 5,
+			"price": 2542.5,
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Wildwise",
+			"level": 2,
+			"price": 500,
+			"type": "Biotech",
+			"system": "Throat",
+			"special": "-",
+			"source": "CRB"
+		},
+		{
+			"name": "Wildwise (N)",
+			"level": 2,
+			"price": 450,
+			"type": "Necrograft",
+			"system": "Throat",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "Wraith motes, mk 1",
+			"level": 1,
+			"price": 200,
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Wraith motes, mk 2",
+			"level": 6,
+			"price": 4000,
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Wraith motes, mk 3",
+			"level": 12,
+			"price": 30000,
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Wraith motes, mk 4",
+			"level": 18,
+			"price": 350000,
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "Wraith motes, mk 5",
+			"level": 20,
+			"price": 775000,
+			"type": "Necrograft",
+			"system": "Eyes",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "X-legs, basic",
+			"level": 6,
+			"price": 4295,
+			"type": "Cybernetic",
+			"system": "All legs and feet",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "X-legs, basic (AB)",
+			"level": 6,
+			"price": 4724.5,
+			"type": "Biotech",
+			"system": "All legs and feet",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "X-legs, basic (N)",
+			"level": 6,
+			"price": 3865.5,
+			"type": "Necrograft",
+			"system": "All legs and feet",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "X-legs, climbing",
+			"level": 12,
+			"price": 35600,
+			"type": "Cybernetic",
+			"system": "All legs and feet",
+			"special": "-",
+			"source": "AR"
+		},
+		{
+			"name": "X-legs, climbing (AB)",
+			"level": 12,
+			"price": 39160,
+			"type": "Biotech",
+			"system": "All legs and feet",
+			"special": "-",
+			"source": "AR & CRB"
+		},
+		{
+			"name": "X-legs, climbing (N)",
+			"level": 12,
+			"price": 32040,
+			"type": "Necrograft",
+			"system": "All legs and feet",
+			"special": "-",
+			"source": "AR"
+		}
+	]
+}

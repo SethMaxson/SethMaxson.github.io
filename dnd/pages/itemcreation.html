@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>What're ya buyin'?</title>
+		<!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<style>
+			.dmnotes {display:none;}
+			.playernotes {display:table-row;}
+			.party {color:royalblue; font-weight:bold;}
+			.rewera {color:firebrick; font-weight:bold;}
+			.neutral {color:peru; font-weight:bold;}
+			.unknown {color:black; font-weight:bold; font-style: italic;}
+			th {font-weight: bold; border:2px solid #333; background:#333; color:floralwhite; padding:4px;}
+			td{border:2px solid #333; padding:4px;}
+		</style>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/mechanics.js"></script>
+		<script src="/res/js/generators/shopitem.js"></script>
+		<script>
+			$(document).ready(function(){
+				const container = $("#items");
+				getItems(undefined, undefined, 0, 20);
+
+				function getItems(rarity, type, count, number) {
+					var items = generateItems(rarity, type, count, number);;
+					for (let i = 0; i < items.length; i++) {
+						const item = items[i];
+						const tr = $("<tr><td>" + item.name + "</td><td>" + item.type + "</td><td>" + item.rarity + "</td><td>" + item.price + "gp</td><td>" + item.count + "</td></tr>");
+						container.append(tr);
+					}
+				}
+
+
+				$("#generate-items").click(function(){
+					var rarity = undefined, type = undefined;
+					if ($("#rarity-select").val() !== "null") rarity = $("#rarity-select").val();
+					if ($("#type-select").val() !== "null") type = $("#type-select").val();
+					getItems(
+						rarity,
+						type,
+						$("#item-count").val(),
+						$("#records-to-generate").val()
+					);
+				})
+				$("#clear-items").click(function(){
+					$("#items tr:not(.header-row)").remove();
+				})
+
+			})
+
+
+			function sortTable(sender, n) {
+				var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+				table = sender;
+				while (table.tagName !== "TABLE") {
+					table = table.parentNode;
+				}
+				switching = true;
+				// Set the sorting direction to ascending:
+				dir = "asc";
+				/* Make a loop that will continue until
+				no switching has been done: */
+				while (switching) {
+					// Start by saying: no switching is done:
+					switching = false;
+					rows = table.rows;
+					/* Loop through all table rows (except the
+					first, which contains table headers): */
+					for (i = 1; i < (rows.length - 1); i++) {
+					// Start by saying there should be no switching:
+					shouldSwitch = false;
+					/* Get the two elements you want to compare,
+					one from current row and one from the next: */
+					x = rows[i].getElementsByTagName("TD")[n];
+					y = rows[i + 1].getElementsByTagName("TD")[n];
+					/* Check if the two rows should switch place,
+					based on the direction, asc or desc: */
+					if (dir == "asc") {
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+						// If so, mark as a switch and break the loop:
+						shouldSwitch = true;
+						break;
+						}
+					} else if (dir == "desc") {
+						if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+						// If so, mark as a switch and break the loop:
+						shouldSwitch = true;
+						break;
+						}
+					}
+					}
+					if (shouldSwitch) {
+						/* If a switch has been marked, make the switch
+						and mark that a switch has been done: */
+						rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+						switching = true;
+						// Each time a switch is done, increase this count by 1:
+						switchcount ++;
+					} else {
+						/* If no switching has been done AND the direction is "asc",
+						set the direction to "desc" and run the while loop again. */
+						if (switchcount == 0 && dir == "asc") {
+							dir = "desc";
+							switching = true;
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<h1>Shop Inventory</h1>
+				<table style="width:100%; margin:auto; border-collapse: collapse;">
+					<tr>
+						<td>
+							<label for="rarity-select">Rarity:</label>
+							<select name="rarity-select" id="rarity-select">
+								<option value="null">Surprise Me</option>
+								<option value="common">Common</option>
+								<option value="uncommon">Uncommon</option>
+								<option value="rare">Rare</option>
+								<option value="very rare">Very Rare</option>
+								<option value="legendary">Legendary</option>
+							</select>
+						</td>
+						<td>
+							<label for="type-select">Type:</label>
+							<select name="type-select" id="type-select">
+								<option value="null">Surprise Me</option>
+								<option value="armor">Armor</option>
+								<option value="potion">Potion</option>
+								<option value="ring">Ring</option>
+								<option value="scroll">Scroll</option>
+								<option value="weapon">Weapon</option>
+								<option value="wondrous item">Wondrous Item</option>
+							</select>
+						</td>
+						<td>
+							<label for="item-count">Number in Stock:</label>
+							<input type="number" name="item-count" id="item-count" value="20" />
+						</td>
+						<td>
+							<label for="records-to-generate">Number to create:</label>
+							<input type="number" name="records-to-generate" id="records-to-generate" value="20" />
+						</td>
+						<td><button id="generate-items">Generate!</button></td>
+						<td><button id="clear-items">Clear Inventory</button></td>
+					</tr>
+				</table>
+				<table style="width:100%; margin:auto; border-collapse: collapse;" id="items">
+					<tr class="header-row">
+						<th onclick="sortTable(this, 0)">Name</th>
+						<th style="width:13%;" onclick="sortTable(this, 1)">Type</th>
+						<th style="width:15%;" onclick="sortTable(this, 2)">Rarity</th>
+						<th style="width:15%;" onclick="sortTable(this, 3)">Price</th>
+						<th style="width:3%;" onclick="sortTable(this, 4)">Count</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

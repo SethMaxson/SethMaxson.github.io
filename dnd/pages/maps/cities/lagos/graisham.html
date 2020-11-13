@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Graisham</title>
+		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<style>
+			html, body {margin: 0; height: 100%; overflow: hidden}
+		</style>
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<script
+			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+			crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/map.js"></script>
+	</head>
+
+	<body id="map-body" style="overflow: hidden; background:#464646;">
+		<div class="map-controls" style="z-index: 2; padding-left:80px;">
+			- <input type="range" min="10" max="125" value="50" class="slider" id="map-zoom"> +
+			<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
+		</div>
+		<div class="map-container city-map" style="background-image:url('/dnd/img/maps/cities/Graisham.png'); background-repeat: no-repeat; background-size: contain; width:2500px; height:2231px; text-align: center; transform-origin:center center;">
+		</div>
+	</body>
+
+</html>

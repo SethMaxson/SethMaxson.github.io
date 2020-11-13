@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Map Editor</title>
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script type="module" src="res/js/map-editor.js"></script>
+		<style>
+			* { margin: 0; padding: 0; box-sizing: border-box; }
+
+			body, html { height:100%; overflow:hidden; position: relative; }
+
+			canvas {
+				position:absolute;
+				top: 0;
+				left: 0;
+				/* width:100%;
+				height:100%; */
+			}
+			#background {
+				z-index: 1;
+			}
+			#foreground {
+				z-index: 2;
+			}
+			#ui {
+				z-index: 3;
+			}
+
+			.editor-window {
+				display: flex;
+				flex-direction: column;
+			}
+
+			.editor-window .menu-bar {
+				flex-grow: 0;
+				background-color: #eee;
+			}
+
+			.editor-window .editor-frame {
+				flex-grow: 3;
+			}
+			.editor-frame {
+				/* width:100%;
+				height:100%; */
+				display: flex;
+				flex-direction: row;
+				align-items: stretch;
+			}
+
+			.editor-frame .controls {
+				max-width: 228px;
+				padding-top: 10px;
+				display: flex;
+				flex-direction: column;
+				align-content: flex-start;
+				flex-grow: 0;
+				flex-shrink: 0;
+				background:#dcdcdc;
+				border:3px outset #ddd;
+			}
+
+			.controls .toolbox {
+				padding-top: 5px;
+				display: flex;
+				flex-direction: row;
+				align-content: flex-start;
+				border:1px inset #ddd;
+				flex-wrap: wrap;
+			}
+
+			.controls .toolbox button {
+				/* height: 20px;
+				width: 20px; */
+				box-sizing: border-box;
+				background:none;
+				border:none;
+				padding: 4px;
+				margin: none;
+			}
+
+			.controls .toolbox button.selected {
+				background:#66f;
+				border:1px solid blue;
+			}
+
+			/* .controls .toolbox button img {
+				height: 16px;
+				width: 16px;
+			} */
+
+			.controls .tool-options {
+				/* margin-top: 10px; */
+				display: flex;
+				flex-direction: column;
+				align-content: flex-start;
+				border:1px inset #ddd;
+				flex-grow:10;
+			}
+
+			.editor-frame .canvi {
+				position: relative;
+				flex-grow: 3;
+				flex-shrink: 1;
+			}
+
+			#map-reference {
+				opacity: 0.0;
+				pointer-events:none;
+				position: absolute;
+				top:0;
+				left: 0;
+				z-index: 5;
+				background-image: url('/pages/JRPG/images/worldmap.png');
+  				background-repeat: no-repeat;
+				background-size: contain;
+			}
+		</style>
+	</head>
+
+	<body class="editor-window">
+		<div class="menu-bar">
+			<button>File</button>
+			<button id="save-map">Save</button>
+		</div>
+		<div class="editor-frame">
+			<div class="controls">
+				<div class="toolbox">
+					<button><img src="/pages/JRPG/images/map-editor/gimp-tool-rect-select.png" alt="Rectangle Select"></button>
+					<button><img src="/pages/JRPG/images/map-editor/gimp-tool-ellipse-select.png" alt="Ellipse Select"></button>
+					<button><img src="/pages/JRPG/images/map-editor/gimp-tool-free-select.png" alt="Lasso Select"></button>
+					<button><img src="/pages/JRPG/images/map-editor/gimp-tool-fuzzy-select.png" alt="Fuzzy Select"></button>
+					<button><img src="/pages/JRPG/images/map-editor/gimp-tool-by-color-select.png" alt="Select By Color"></button>
+					<button id="button-reference" title="Reference Image"><img src="/pages/JRPG/images/map-editor/gimp-landscape.png" alt="Reference Picture"></button>
+					<button id="button-eraser" title="Erase tiles"><img src="/pages/JRPG/images/map-editor/gimp-tool-eraser.png" alt="Eraser"></button>
+					<button id="button-zoom" title="Zoom in or out"><img src="/pages/JRPG/images/map-editor/gimp-tool-zoom.png" alt="Zoom"></button>
+					<button><img src="/pages/JRPG/images/map-editor/gimp-tool-paintbrush.png" alt="Paintbrush"></button>
+					<button id="button-pencil" title="Place tiles"><img src="/pages/JRPG/images/map-editor/gimp-tool-pencil.png" alt="Pencil"></button>
+					<button id="button-collision" title="Edit collision data"><img src="/pages/JRPG/images/map-editor/gimp-tool-pencil-red.png" alt="Red Pencil"></button>
+				</div>
+				<div class="tool-options"></div>
+				<label for="button-open">Open:</label><input type="file" id="button-open" name="button-open" accept=".xml" />
+				<label for="new-map-name">Name:</label><input type="text" name="new-map-name" id="new-map-name" placeholder="New map name" />
+				<label for="size-x">Width:</label><input type="number" name="size-x" id="input-size-x" value="1" />
+				<label for="size-y">Height:</label><input type="number" name="size-y" id="input-size-y" value="1" />
+				<button id="button-create">Create</button>
+				<button id="collision-toggle" style="margin-top:5px;">Show Collisions</button>
+			</div>
+			<div class="canvi">
+				<div id="map-scroller" style="z-index: 5; position: absolute; top:0; left:0; width:100%; height:100%; margin:0; padding:0; overflow: auto;">
+					<div id="map-reference"></div>
+					<canvas id="ui">
+						Please use a web browser compatible with HTML5.
+					</canvas>
+					<canvas id="foreground">
+						Please use a web browser compatible with HTML5.
+					</canvas>
+					<canvas id="background">
+						Please use a web browser compatible with HTML5.
+					</canvas>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
+.pause-menu-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to bottom, #000000, #000A74);
+}
+
+.pause-menu-container .menu {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+
+.pause-menu-container .button {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  background-color: black;
+  border-radius: 50px;
+  border: 3px solid black;
+  box-shadow: inset 0px -2px 1px rgba(0,0,0,0.8),
+	inset 0 2px 1px rgba(255,255,255,1);
+	transition: margin-left 0.05s;
+}
+
+.pause-menu-container .button:focus {
+  outline: none;
+}
+
+.pause-menu-container button::after {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 5px solid #F9FE8D;
+  border-radius: 5px;
+  content: "";
+  box-shadow: 0 0 15px 7.5px orange;
+  animation: orb 1.5s infinite linear;
+  opacity: 0;
+}
+
+.pause-menu-container .buttonText {
+  color: white;
+  font-size: 1.75em;
+  float: left;
+  margin-left: 10px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.pause-menu-container .button:hover {
+  cursor: pointer;
+  background: linear-gradient(#000000 25%, #680908 100%);
+  border-color: red;
+  margin-left: 30px;
+}
+
+.pause-menu-container .button:hover:after {
+  opacity: 1;
+}
+
+
+/* Rotate animation */
+@keyframes orb {
+  from{
+     transform: rotate(0deg) translateX(20px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(20px) rotate(-360deg);
+  }
+}
