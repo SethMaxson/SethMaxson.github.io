@@ -16,10 +16,10 @@ import { Inventory, InventorySlot, Item } from './inventory.js';
 export { PlayerControls } from './controls/playercontrols.js';
 export { Entity } from './entity/entity.js';
 export { Stage } from './stage.js';
-export { Inventory, InventorySlot, Item } from '../../../../sf/res/js/engine/inventory.js';
+export { Inventory, InventorySlot, Item } from './../engine/inventory.js';
 export var main: Main;
 
-export function Initialize(controlsType?: string)
+export function Initialize(controlsType?: ControlTypes)
 {
 	main = new Main(controlsType);
 	return main;
@@ -35,6 +35,13 @@ export enum Attitude
 	Indifferent,
 	Friendly,
 	Helpful
+}
+
+export enum ControlTypes
+{
+	Human = "Human",
+	Ship = "Ship",
+	Viewer = "Viewer"
 }
 
 /**
@@ -63,6 +70,10 @@ export class HealthManager
 			}
 
 		});
+	}
+	clear()
+	{
+		this.members = [];
 	}
 }
 
@@ -133,27 +144,33 @@ export class EngineSettings
 */
 export class Main
 {
+	//@ts-ignore
 	Scene: THREE.Scene;
 	HUD: HUD;
 	FPS: number = 40;
 	renderer: THREE.WebGLRenderer;
+	/**Not sure what purpose this serves. Can probably remove it. */
 	HealthManager: HealthManager;
 	Entities: EntityManager;
 	Interactive: THREE.Object3D[] = [];
 	Collidable: THREE.Object3D[] = [];
 	Timer: Timer;
 	DebugHelper: EngineDebug;
+	//@ts-ignore
 	Camera: THREE.PerspectiveCamera;
 	Stages: Stage[] = [];
+	//@ts-ignore
 	MainStage: Stage;
+	//@ts-ignore
 	Controls: Controls;
+	//@ts-ignore
 	Sky: Sky;
 	InputManager: InputManager;
 	onRenderFcts: Function[] = [];
 	Motions: PersonMotion[] = [];
 	_effect: OutlineEffect;
 	Settings: EngineSettings = new EngineSettings();
-	constructor(controlsType: string = "Human")
+	constructor(controlsType: ControlTypes = ControlTypes.Human)
 	{
 		this.HUD = new HUD();
 		$("body").append(this.HUD.html);
@@ -161,42 +178,8 @@ export class Main
 		this.HealthManager = new HealthManager();
 		this.Entities = new EntityManager(this);
 		this.Timer = new Timer();
-		this.MainStage = new Stage(this);
-		this.FPS = 60;
-		this.Scene = new THREE.Scene();
-		this.Scene.add(this.MainStage);
-		this.Scene.background = new THREE.Color(0x11aaff);
-
-		this.Camera = new THREE.PerspectiveCamera(
-			35,
-			window.innerWidth / window.innerHeight,
-			0.1,
-			3000
-		);
-		this.DebugHelper = new EngineDebug(this);
-		this.Camera.up.set(0, 1, 0);
-		this.Camera.position.set(0, 0.5, 0);
 		this.InputManager = new InputManager();
-		if (controlsType == "Ship")
-		{
-			this.Controls = new ShipControls(this.Camera, this);
-		}
-		else
-		{
-			this.Controls = new PlayerControls(this.Camera, this);
-		}
-
-		let target = this;
-		if (controlsType !== "Viewer") {
-			this.renderer.domElement.addEventListener('click', function ()
-			{
-				target.Controls.lock();
-			}, false);
-		}
-		this.Scene.add(this.Controls.getObject());
-
-		this.Sky = new Sky(this);
-		this.Scene.add(this.Sky);
+		this.FPS = 60;
 
 		this._effect = new OutlineEffect(this.renderer, {
 			defaultThickness: 0.001,
@@ -204,8 +187,18 @@ export class Main
 			defaultAlpha: 0.8,
 			defaultKeepAlive: true
 		});
+		this.DebugHelper = new EngineDebug(this);
+
+		this.start();
 
 		// #region InputManagerSetup
+		let target = this;
+		if (controlsType !== ControlTypes.Viewer) {
+			this.renderer.domElement.addEventListener('click', function ()
+			{
+				target.Controls.lock();
+			}, false);
+		}
 		var onMouseWheel = function (event: WheelEvent)
 		{
 			target.Controls.zoom(event.deltaY * 0.005);
@@ -270,8 +263,10 @@ export class Main
 		}
 		this.InputManager.update();
 	}
+	/** Render to the screen */
 	private render()
 	{
+		this.HUD.update(this);
 		this.renderer.render(this.Scene, this.Controls.Camera);
 		// this._effect.render( this.Scene, this.Controls.Camera );
 	}
@@ -296,33 +291,52 @@ export class Main
 		this.HealthManager.update(this);
 
 		this.Sky.update(this.Controls.getObject());
-		this.updateCompass();
 
 		this.onRenderFcts.forEach(function (onRenderFct)
 		{
 			onRenderFct(delta, target.Timer.prevTime / 1000)
 		});
 	}
-	hideCompass()
+	/**
+	 * Starts (or restarts) this engine instance
+	 * @param controlsType
+	 */
+	start(controlsType: ControlTypes = ControlTypes.Human)
 	{
-		this.Settings.hideCompass = true;
-		$("#compass").hide();
-	}
-	updateCompass()
-	{
-		if (!this.Settings.hideCompass) {
-			var vector = new THREE.Vector3();
-			var spherical = new THREE.Spherical();
-			this.Camera.getWorldDirection(vector);
-			spherical.setFromVector3(vector);
-			$('#compass > svg')[0].style.transform = `rotate(${spherical.theta - Math.PI}rad)`;
+		this.Interactive = [];
+		this.Collidable = [];
+		this.onRenderFcts = [];
+		this.Motions = [];
+		this.DebugHelper.clear();
+		this.MainStage = new Stage(this);
+		this.Scene = new THREE.Scene();
+		this.Scene.add(this.MainStage);
+		this.Scene.background = new THREE.Color(0x11aaff);
+
+		this.Camera = new THREE.PerspectiveCamera(
+			35,
+			window.innerWidth / window.innerHeight,
+			0.1,
+			3000
+		);
+		this.Camera.up.set(0, 1, 0);
+		this.Camera.position.set(0, 0.5, 0);
+		if (controlsType == ControlTypes.Ship)
+		{
+			this.Controls = new ShipControls(this.Camera, this);
 		}
+		else
+		{
+			this.Controls = new PlayerControls(this.Camera, this);
+		}
+		this.Scene.add(this.Controls.getObject());
+
+		this.Sky = new Sky(this);
+		this.Scene.add(this.Sky);
 	}
 }
 
-/**
-* A debug helper meant to be attached to an instance of Main.
-*/
+/** A debug helper meant to be attached to an instance of Main. */
 class EngineDebug
 {
 	BoxHelpers: THREE.BoxHelper[] = [];
@@ -363,15 +377,30 @@ class EngineDebug
 			box.update();
 		});
 	}
+	/**
+	 * Empties the collection and removes any tracked items from the current scene.
+	 */
+	clear()
+	{
+		let target = this;
+		this.BoxHelpers.forEach(helper =>
+		{
+			target.Engine.Scene.remove(helper);
+		});
+		this.BoxHelpers = [];
+	}
 }
 
+/** Used to measure the elapsed time in-engine. */
 class Timer
 {
+	/** The timestamp at which the last measurement ocurred. */
 	prevTime: number;
 	constructor()
 	{
 		this.prevTime = performance.now();
 	}
+	/** The time elapsed since last measurement. */
 	get delta()
 	{
 		var time = performance.now();

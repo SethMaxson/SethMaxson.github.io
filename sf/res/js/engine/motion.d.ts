@@ -1,6 +1,8 @@
 import * as THREE from '../../../../node_modules/three/src/Three.js';
-import { Entity, EntityAbilities, Main, PlayerControls } from './engine.js';
-import { Characters } from '../../../../sf/res/js/characters.js';
+import { Main, PlayerControls } from './engine.js';
+import { Entity } from './entity/entity.js';
+import { EntityAbilities } from './entity/entityabilities.js';
+import { Characters } from './../characters.js';
 export declare class MotionCollisions {
     front: THREE.Intersection[];
     rear: THREE.Intersection[];
@@ -36,10 +38,18 @@ export declare class Motion extends THREE.Object3D {
     constructor(x?: number, y?: number, z?: number);
     update(main: Main, delta: number): void;
 }
+export declare class PersonMotionState {
+    isAirborne: boolean;
+    isFlying: boolean;
+    isGliding: boolean;
+    isClimbing: boolean;
+    isSlipping: boolean;
+    isSprinting: boolean;
+    isSwimming: boolean;
+}
 export declare class PersonMotion extends Motion {
-    airborne: boolean;
+    state: PersonMotionState;
     canMove: boolean;
-    sprinting: boolean;
     baseSpeed: number;
     direction: THREE.Vector3;
     velocity: THREE.Vector3;
@@ -58,6 +68,5 @@ export declare class PersonMotion extends Motion {
 */
 export declare class PlayerMotion extends PersonMotion {
     constructor();
-    update(main: Main, delta: number, controls?: PlayerControls, firstPerson?: boolean): void;
+    update(main: Main, delta: number, firstPerson?: boolean, controls?: PlayerControls): void;
 }
-//# sourceMappingURL=motion.d.ts.map

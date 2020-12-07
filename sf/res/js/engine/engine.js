@@ -11,7 +11,7 @@ import { InputManager } from './inputmanager.js';
 export { PlayerControls } from './controls/playercontrols.js';
 export { Entity } from './entity/entity.js';
 export { Stage } from './stage.js';
-export { Inventory, InventorySlot } from '../../../../sf/res/js/engine/inventory.js';
+export { Inventory, InventorySlot } from './../engine/inventory.js';
 export var main;
 export function Initialize(controlsType) {
     main = new Main(controlsType);
@@ -28,6 +28,12 @@ export var Attitude;
     Attitude[Attitude["Friendly"] = 3] = "Friendly";
     Attitude[Attitude["Helpful"] = 4] = "Helpful";
 })(Attitude || (Attitude = {}));
+export var ControlTypes;
+(function (ControlTypes) {
+    ControlTypes["Human"] = "Human";
+    ControlTypes["Ship"] = "Ship";
+    ControlTypes["Viewer"] = "Viewer";
+})(ControlTypes || (ControlTypes = {}));
 /**
 * Manages HitPoints objects in the scene.
 */
@@ -49,6 +55,9 @@ export class HealthManager {
                 }
             }
         });
+    }
+    clear() {
+        this.members = [];
     }
 }
 /**
@@ -108,7 +117,7 @@ export class EngineSettings {
 * The main process for the engine.
 */
 export class Main {
-    constructor(controlsType = "Human") {
+    constructor(controlsType = ControlTypes.Human) {
         this.FPS = 40;
         this.Interactive = [];
         this.Collidable = [];
@@ -122,38 +131,23 @@ export class Main {
         this.HealthManager = new HealthManager();
         this.Entities = new EntityManager(this);
         this.Timer = new Timer();
-        this.MainStage = new Stage(this);
-        this.FPS = 60;
-        this.Scene = new THREE.Scene();
-        this.Scene.add(this.MainStage);
-        this.Scene.background = new THREE.Color(0x11aaff);
-        this.Camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 3000);
-        this.DebugHelper = new EngineDebug(this);
-        this.Camera.up.set(0, 1, 0);
-        this.Camera.position.set(0, 0.5, 0);
         this.InputManager = new InputManager();
-        if (controlsType == "Ship") {
-            this.Controls = new ShipControls(this.Camera, this);
-        }
-        else {
-            this.Controls = new PlayerControls(this.Camera, this);
-        }
-        let target = this;
-        if (controlsType !== "Viewer") {
-            this.renderer.domElement.addEventListener('click', function () {
-                target.Controls.lock();
-            }, false);
-        }
-        this.Scene.add(this.Controls.getObject());
-        this.Sky = new Sky(this);
-        this.Scene.add(this.Sky);
+        this.FPS = 60;
         this._effect = new OutlineEffect(this.renderer, {
             defaultThickness: 0.001,
             defaultColor: [0, 0, 0],
             defaultAlpha: 0.8,
             defaultKeepAlive: true
         });
+        this.DebugHelper = new EngineDebug(this);
+        this.start();
         // #region InputManagerSetup
+        let target = this;
+        if (controlsType !== ControlTypes.Viewer) {
+            this.renderer.domElement.addEventListener('click', function () {
+                target.Controls.lock();
+            }, false);
+        }
         var onMouseWheel = function (event) {
             target.Controls.zoom(event.deltaY * 0.005);
         };
@@ -207,7 +201,9 @@ export class Main {
         }
         this.InputManager.update();
     }
+    /** Render to the screen */
     render() {
+        this.HUD.update(this);
         this.renderer.render(this.Scene, this.Controls.Camera);
         // this._effect.render( this.Scene, this.Controls.Camera );
     }
@@ -223,28 +219,39 @@ export class Main {
         this.DebugHelper.update();
         this.HealthManager.update(this);
         this.Sky.update(this.Controls.getObject());
-        this.updateCompass();
         this.onRenderFcts.forEach(function (onRenderFct) {
             onRenderFct(delta, target.Timer.prevTime / 1000);
         });
     }
-    hideCompass() {
-        this.Settings.hideCompass = true;
-        $("#compass").hide();
-    }
-    updateCompass() {
-        if (!this.Settings.hideCompass) {
-            var vector = new THREE.Vector3();
-            var spherical = new THREE.Spherical();
-            this.Camera.getWorldDirection(vector);
-            spherical.setFromVector3(vector);
-            $('#compass > svg')[0].style.transform = `rotate(${spherical.theta - Math.PI}rad)`;
+    /**
+     * Starts (or restarts) this engine instance
+     * @param controlsType
+     */
+    start(controlsType = ControlTypes.Human) {
+        this.Interactive = [];
+        this.Collidable = [];
+        this.onRenderFcts = [];
+        this.Motions = [];
+        this.DebugHelper.clear();
+        this.MainStage = new Stage(this);
+        this.Scene = new THREE.Scene();
+        this.Scene.add(this.MainStage);
+        this.Scene.background = new THREE.Color(0x11aaff);
+        this.Camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 3000);
+        this.Camera.up.set(0, 1, 0);
+        this.Camera.position.set(0, 0.5, 0);
+        if (controlsType == ControlTypes.Ship) {
+            this.Controls = new ShipControls(this.Camera, this);
         }
+        else {
+            this.Controls = new PlayerControls(this.Camera, this);
+        }
+        this.Scene.add(this.Controls.getObject());
+        this.Sky = new Sky(this);
+        this.Scene.add(this.Sky);
     }
 }
-/**
-* A debug helper meant to be attached to an instance of Main.
-*/
+/** A debug helper meant to be attached to an instance of Main. */
 class EngineDebug {
     constructor(engine) {
         this.BoxHelpers = [];
@@ -276,11 +283,23 @@ class EngineDebug {
             box.update();
         });
     }
+    /**
+     * Empties the collection and removes any tracked items from the current scene.
+     */
+    clear() {
+        let target = this;
+        this.BoxHelpers.forEach(helper => {
+            target.Engine.Scene.remove(helper);
+        });
+        this.BoxHelpers = [];
+    }
 }
+/** Used to measure the elapsed time in-engine. */
 class Timer {
     constructor() {
         this.prevTime = performance.now();
     }
+    /** The time elapsed since last measurement. */
     get delta() {
         var time = performance.now();
         var del = Math.min((time - this.prevTime) / 1000, 1 / 20);

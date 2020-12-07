@@ -29,7 +29,9 @@ function getRacialTraits() {
 	return $.ajax({ crossDomain: true, url: "/sf/res/data/racial-traits.json", dataType: 'json' });
 }
 
-class Race {
+class Race implements IRaceData
+{
+	//@ts-ignore
 	ability = new Abilities(0, 0, 0, 0, 0, 0);
 	name: string;
 	description: string = "";
@@ -40,6 +42,8 @@ class Race {
 	type: string = "";
 	features: RacialBenefit[] = [];
 	source: string = "";
+	subraces: any[] = [];
+	page: number = 0;
 	constructor(o?: any, subraceName?: string) {
 		if (typeof o === 'object') {
 			this.name = o.name;
@@ -53,10 +57,11 @@ class Race {
 			this.subrace = subraceName || "";
 			this.size = o.size;
 			this.type = o.type;
-			this.features = o.features || [];
 			this.source = o.source;
 			this.description = o.description;
 			this.ID = o.ID;
+			this.subraces = o.subraces || [];
+			this.page = o.page || 0;
 		}
 		else {
 			this.name = o;
@@ -121,32 +126,30 @@ class Race {
 	}
 
 }
-class RaceData {
-	name?: string;
-	ID?: string;
-	ability: any;
-	hp?: number;
-	size?: any;
-	type?: string;
-	source?: string;
-	subraces?: any;
-	page?: number;
-	description?: string;
-	features: any;
-	constructor(o?: any) {
-		o = o || {};
-		this.name = o.name || undefined;
-		this.ID = o.ID || undefined;
-		this.ability = o.ability || {};
-		this.hp = o.hp || undefined;
-		this.size = o.size || undefined;
-		this.type = o.type || undefined;
-		this.source = o.source || undefined;
-		this.subraces = o.subraces || [];
-		this.page = o.page || undefined;
-		this.description = o.description || undefined;
-		this.features = o.features || [];
-	}
+
+interface IAbilities
+{
+	str?: number;
+	dex?: number;
+	con?: number;
+	int?: number;
+	wis?: number;
+	cha?: number;
+	[key: string]: number|undefined;
+}
+
+interface IRaceData {
+	name: string;
+	ID: string;
+	ability: IAbilities;
+	hp: number;
+	size: any;
+	type: string;
+	source: string;
+	subraces: any[];
+	page: number;
+	description: string;
+	features: any[];
 }
 class RacialBenefit
 {
@@ -437,7 +440,8 @@ class CharacterClasses
 		return results;
 	}
 }
-class Abilities
+
+class Abilities implements IAbilities
 {
 	str: number;
 	dex: number;
@@ -786,7 +790,7 @@ class Character
 					target.description = cd.description;
 					target.levels = cd.levels;
 					target.ability.pointBuy = cd.ability.pointBuy;
-					target.race = new Race(raceDat.items.filter(function (entry: RaceData) {
+					target.race = new Race(raceDat.items.filter(function (entry: IRaceData) {
 						return entry.name === cd.race;
 					})[0]);
 					target.theme = new Theme(themeDat.items.filter(function (entry: Theme) {
@@ -798,7 +802,7 @@ class Character
 					target.classes = new CharacterClasses();
 					for (let i = 0; i < target.levels.length; i++) {
 						const el = target.levels[i];
-						let subClass = el.hasOwnProperty("choices")? el.choices.filter(function (entry) {
+						let subClass = el.class.hasOwnProperty("choices")? el.class.choices.filter(function (entry: any) {
 							return entry.id === "Subclass";
 						}) : [];
 						let clsObj = new CharacterClass(classDat.items.filter(function (entry: CharacterClass) {

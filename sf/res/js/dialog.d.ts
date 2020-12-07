@@ -25,5 +25,5 @@ export declare namespace Dialog {
         /** A function to execute if this option is selected. */
         function?: Function;
     }
-    function getDialog(name: string): Dialog[];
+    function getDialog(name: string, id?: string): Dialog[];
 }

@@ -1,5 +1,5 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
-import { Engine } from '../../../sf/res/js/engine.js';
+import { Engine } from './engine.js';
 export var FOUR;
 (function (FOUR) {
     // var main = Engine.main;

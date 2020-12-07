@@ -20,8 +20,8 @@
 			"themecolor":"#775520"
 		},
 		{
-			"id":"Falumer",
-			"name":"Falumer",
+			"id":"Falimrr",
+			"name":"Falimur",
 			"race":"aasimar",
 			"type":"cleric",
 			"texture":"/res/models/Advanced/skin_falumer.png",
@@ -99,6 +99,29 @@
 			"righthand":"Blaster",
 			"lefthand":1,
 			"back":0,
+			"weight":0.2,
+			"donk": 2,
+			"fronk": 1,
+			"themecolor":"#b73b2f"
+		},
+		{
+			"id":"Sir Jeffrey",
+			"name":"Jasper",
+			"race":"elf",
+			"type":"cleric",
+			"texture":[
+				"/res/models/Advanced/skin_jasper.png",
+				"/res/models/Advanced/skin_jasper_bump.png",
+				"/res/models/Advanced/skin_jasper_spec.png"
+			],
+			"gender":"f",
+			"hairstyle": [{"style": "SamusHair", "texture":"/res/models/Advanced/hair_jasper.png", "color": "#b73b2f"}],
+			"haircolor":"#b73b2f",
+			"beard":null,
+			"skincolor":"#ffd7b1",
+			"righthand":1,
+			"lefthand":2,
+			"back":4,
 			"weight":0.2,
 			"donk": 2,
 			"fronk": 1,
@@ -272,28 +295,6 @@
 			"donk": null,
 			"fronk": null,
 			"themecolor":"#33bb33"
-		},
-		{
-			"id":"Zenreya",
-			"name":"Zenreya",
-			"race":"halfling",
-			"type":"sorc",
-			"texture":"/res/models/Advanced/skin_zenreya.png",
-			"gender":"f",
-			"hairstyle":[
-				{"style":"Hood_Large", "color":"#39345a"},
-				{"style":"Center_Bangs", "color":"#191919"}
-			],
-			"haircolor":"#191919",
-			"beard":null,
-			"skincolor":"#b6693d",
-			"righthand":9,
-			"lefthand":0,
-			"back":0,
-			"weight":null,
-			"donk": 1.4,
-			"fronk": null,
-			"themecolor":"#b73b2f"
 		},
 		{
 			"id":"Zenrya",

@@ -10,8 +10,8 @@ export declare class PointerLockControls extends EventDispatcher {
     yawObject: Object3D;
     PI_2: number;
     constructor(camera: Camera, domElement?: HTMLElement);
-    onMouseMove(event: MouseEvent): void;
-    onPointerlockChange(): void;
+    onMouseMove(target: PointerLockControls): (event: MouseEvent) => void;
+    onPointerlockChange(target: PointerLockControls): (this: Document, event: Event) => void;
     onPointerlockError(): void;
     connect(): void;
     disconnect(): void;
@@ -20,4 +20,3 @@ export declare class PointerLockControls extends EventDispatcher {
     lock(): void;
     unlock(): void;
 }
-//# sourceMappingURL=PointerControls.d.ts.map

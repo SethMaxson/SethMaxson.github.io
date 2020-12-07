@@ -1,7 +1,7 @@
 /// <reference types="jquery" />
 import * as THREE from '../../../node_modules/three/src/Three.js';
-import { Engine } from '../../../sf/res/js/engine.js';
-import { Stage } from '../js/engine/stage.js';
+import { Engine } from './engine.js';
+import { Stage } from './engine/stage.js';
 /**
 * Interface for the JSON structure of a chunk
 */

@@ -31,7 +31,7 @@ import {
 	DoubleSide,
 	Vector
 } from '../../../node_modules/three/src/Three.js';
-import { Engine } from '../js/engine.js';
+import { Engine } from './engine.js';
 import { Direction } from 'readline';
 import { Dir } from 'fs';
 

@@ -3,7 +3,7 @@ declare var ccm: CharacterCreationManager, ccdm: CharacterCreationDataManager;
 declare class CharacterCreationDataManager {
     classes: CharacterClass[];
     feats?: any;
-    races: Race[];
+    races: IRaceData[];
     themes: Theme[];
     constructor();
 }
@@ -24,7 +24,7 @@ declare class CharacterCreationManager {
 }
 declare function prepareCharacterCreationModal(char: Character): void;
 declare function updateRace(name: string, subraceName?: string): void;
-declare function getRaceOptionEntry(item: Race): JQuery<HTMLElement>;
+declare function getRaceOptionEntry(item: IRaceData): JQuery<HTMLElement>;
 declare function levelUpModalComplete(): void;
 declare function closeModal(modal: JQuery<HTMLElement>): void;
 declare function previousModal(): void;
@@ -32,7 +32,7 @@ declare function nextModal(): void;
 declare function destroyModal(modal: string | JQuery<HTMLElement>): void;
 declare function selectCharacterOption(sender: JQuery<HTMLElement>): void;
 /********* Stat Generator*********/
-declare function changeBase(e: Event): string | undefined;
+declare function changeBase(this: HTMLInputElement, e: Event): string | undefined;
 declare function getCost(e: number): number;
 declare function changeTotal(): void;
 /************ Menu ************/

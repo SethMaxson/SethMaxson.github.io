@@ -1,10 +1,10 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { OutlineEffect } from '../../../node_modules/three/examples/jsm/effects/OutlineEffect.js';
-import { FOUR } from '../../../sf/res/js/four.js';
-import { Characters } from '../../../sf/res/js/characters.js';
-import { PointerLockControls } from '../../../sf/res/js/PointerControls.js';
-import { Dialog } from '../../../sf/res/js/dialog.js';
-import { Sky } from '../../../sf/res/js/sky.js';
+import { FOUR } from './four.js';
+import { Characters } from './characters.js';
+import { PointerLockControls } from './PointerControls.js';
+import { Dialog } from './dialog.js';
+import { Sky } from './sky.js';
 declare function randomize(Array: any): any;
 declare function speak(speaker: string | Dialog.Dialog[], speech: number | string, callback ?: Function, character ?: Engine.Entity): void;
 
@@ -466,6 +466,7 @@ export namespace Engine
 			}, false);
 			this.Scene.add(this.Controls.getObject());
 
+			//@ts-ignore
 			this.Sky = new Sky(this);
 			this.Scene.add(this.Sky);
 

@@ -1,7 +1,7 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { GLTFLoader } from '../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { SkeletonUtils } from '../../../node_modules/three/examples/jsm/utils/SkeletonUtils.js';
-import { FOUR } from '../js/four.js';
+import { FOUR } from './four.js';
 export var Characters;
 (function (Characters) {
     const genders = "fm";
@@ -646,6 +646,7 @@ export var Characters;
         constructor(geometry, material) {
             super(geometry, material);
             this.animations = [];
+            this.personId = "";
             this._animation = "";
         }
         get animation() {
@@ -831,7 +832,7 @@ export var Characters;
     }
     Characters.getPC = getPC;
     function getParty(target, x = 0, y = 0, z = 0) {
-        const partyMembers = ["Bud", "Jasper", "Falumer", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenreya"];
+        const partyMembers = ["Bud", "Jasper", "Falimur", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenrya"];
         // var target = new THREE.Object3D();
         for (let i = 0; i < partyMembers.length; i++) {
             const e = partyMembers[i];

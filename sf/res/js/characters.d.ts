@@ -1,5 +1,6 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
 export declare module Characters {
+    var hairOptions: string[];
     class Hair {
         color: string;
         style: string;
@@ -68,15 +69,9 @@ export declare module Characters {
         back: number;
         constructor(rightHand?: number, leftHand?: number, back?: number, race?: string);
     }
-    function getPC(name: string, x?: number, y?: number, z?: number): Person3D | undefined;
-    function getParty(target: THREE.Object3D, x?: number, y?: number, z?: number): void;
-    function getRandom(x?: number, y?: number, z?: number, race?: string, gender?: string): Person3D | undefined;
-    function getHair(size: number | THREE.Vector3, style: Hair | Hair[]): THREE.Mesh;
-    function getItem(index: number | string, scale?: THREE.Vector3): THREE.Mesh;
-    function getTorso(item: PersonPhysicalFeature): THREE.Mesh;
-    function getHumanoid(x: number, y: number, z: number, personInfo: Person, gear?: Gear): Person3D | undefined;
     class Person3D extends THREE.Mesh {
         animations: THREE.AnimationClip[];
+        personId: string;
         _equipment: Person3DEquipment | undefined;
         _hatHolder: THREE.Bone | undefined;
         _animation: string;
@@ -86,7 +81,7 @@ export declare module Characters {
         get gender(): string;
         set gender(newGender: string);
         toggleGender(): void;
-        setHair(hairStyle: string, hairColor: number | string): void;
+        setHair(hairStyle: string, hairColor?: number | string): void;
         setRace(race: string): void;
         setMorphTargets(personInfo: Person): void;
         get mesh(): THREE.Mesh;
@@ -104,6 +99,13 @@ export declare module Characters {
     class MiniatureBase extends THREE.Mesh {
         constructor(x?: number, y?: number, z?: number);
     }
+    function getPC(name: string, x?: number, y?: number, z?: number): Person3D | undefined;
+    function getParty(target: THREE.Object3D, x?: number, y?: number, z?: number): void;
+    function getRandom(x?: number, y?: number, z?: number, race?: string, gender?: string): Person3D;
+    function getHair(size: number | THREE.Vector3, style: Hair | Hair[]): THREE.Mesh;
+    function getItem(index: number | string, scale?: THREE.Vector3): THREE.Mesh;
+    function getTorso(item: PersonPhysicalFeature): THREE.Mesh;
+    function getHumanoid(x: number, y: number, z: number, personInfo: Person, gear?: Gear): Person3D | undefined;
     function PersonLoader(callback: Function, hideBase?: boolean): void;
     function updateHumanoid(person: Person3D, personInfo: Person, gear?: Gear): Person3D;
     function removeFromBone(parent: Person3D, boneName: string, objectName: string): void;
@@ -116,4 +118,3 @@ export declare module Characters {
     function getLizard(x?: number, y?: number, z?: number): THREE.Object3D;
     function getYamask(x?: number, y?: number, z?: number): THREE.Object3D;
 }
-//# sourceMappingURL=characters.d.ts.map

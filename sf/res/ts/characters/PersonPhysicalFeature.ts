@@ -1,5 +1,5 @@
 import * as THREE from '../../../../node_modules/three/src/Three.js';
-import { FOUR } from '../../js/four.js';
+import { FOUR } from './../four.js';
 export class PersonPhysicalFeature
 {
 	style: string;

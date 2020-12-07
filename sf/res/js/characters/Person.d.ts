@@ -1,6 +1,6 @@
 import * as THREE from '../../../../node_modules/three/src/Three.js';
-import { Hair } from '../../js/characters/Hair.js';
-import { PersonPhysicalFeature } from '../../js/characters/PersonPhysicalFeature.js';
+import { Hair } from './Hair.js';
+import { PersonPhysicalFeature } from './../characters/PersonPhysicalFeature.js';
 export declare class Person {
     race: string;
     texture?: string | string[];
@@ -13,6 +13,7 @@ export declare class Person {
     themecolor: THREE.Color;
     type?: string;
     name: string;
+    personId: string;
     scale: THREE.Vector3;
     headScale: THREE.Vector3;
     armScale: THREE.Vector3;

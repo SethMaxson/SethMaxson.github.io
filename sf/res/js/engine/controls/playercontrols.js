@@ -1,9 +1,9 @@
 import * as THREE from '../../../../../node_modules/three/src/Three.js';
 import { Attitude } from "./../engine.js";
 import { PlayerMotion } from './../motion.js';
-import { Characters } from '../../../../../sf/res/js/characters.js';
+import { Characters } from './../../characters.js';
 import { Controls } from './controls.js';
-import { Dialog } from '../../../../../sf/res/js/dialog.js';
+import { Dialog } from './../../dialog.js';
 export class PlayerControls extends Controls {
     constructor(camera, main) {
         super(camera, main);
@@ -50,7 +50,7 @@ export class PlayerControls extends Controls {
                     if (this.InputManager.keys.talk.down == true) {
                         this.InputManager.keys.talk.down = false;
                         this.motion.canMove = false;
-                        speak(Dialog.getDialog(ent.Model.name), 0, () => {
+                        speak(Dialog.getDialog(ent.Model.name, ent.Model.personId), 0, () => {
                             this.motion.canMove = true;
                         }, ent);
                     }

@@ -1,4 +1,6 @@
-function getSpells() {
+declare function saveJSON(json: JSON | Object, fileName: string): void;
+function getSpells()
+{
 	return $.ajax({ crossDomain: true, url: "/sf/res/data/spells.json", dataType: 'json' });
 }
 

@@ -54,7 +54,9 @@ export class ResourceTracker {
                     resource.parent.remove(resource);
                 }
             }
+            //@ts-ignore
             if (resource.dispose) {
+                //@ts-ignore
                 resource.dispose();
             }
         }

@@ -20,8 +20,8 @@
 			"themecolor":"#775520"
 		},
 		{
-			"id":"Falumer",
-			"name":"Falumer",
+			"id":"Falimur",
+			"name":"Falimur",
 			"race":"aasimar",
 			"type":"cleric",
 			"texture":"/res/models/Advanced/skin_falumer.png",
@@ -253,28 +253,6 @@
 			"donk": null,
 			"fronk": null,
 			"themecolor":"#33bb33"
-		},
-		{
-			"id":"Zenreya",
-			"name":"Zenreya",
-			"race":"halfling",
-			"type":"sorc",
-			"texture":"/res/models/Advanced/skin_zenreya.png",
-			"gender":"f",
-			"hairstyle":[
-				{"style":"Hood_Large", "color":"#39345a"},
-				{"style":"Center_Bangs", "color":"#191919"}
-			],
-			"haircolor":"#191919",
-			"beard":null,
-			"skincolor":"#b6693d",
-			"righthand":9,
-			"lefthand":0,
-			"back":0,
-			"weight":null,
-			"donk": 1.4,
-			"fronk": null,
-			"themecolor":"#b73b2f"
 		},
 		{
 			"id":"Zenrya",

@@ -9,15 +9,18 @@ function getHorizontalDistance(pos1, pos2) {
     return Math.sqrt(Math.pow(pos1.x - pos2.x, 2) + Math.pow(pos1.z - pos2.z, 2));
 }
 $(document).ready(function () {
-    Engine.Initialize("");
+    Engine.Initialize();
     // Engine.Initialize("Ship");
     main = Engine.main;
     function init() {
+        main.start();
         Characters.PersonLoader(function () {
-            let playerModel = new Engine.Entity(Characters.getPC("Player", 0, 0, 0));
-            // let playerModel = new Engine.Entity(Characters.getPC("Sidhon", 0, 0, 0));
+            let playerModel = new Engine.Entity(Characters.getPC("Player"));
+            // let playerModel = new Engine.Entity(Characters.getPC("Sidhon"));
             playerModel.Events.Died = function () {
                 alert("GAME OVER!");
+                init();
+                // location.reload(); // reloads the web page
             };
             playerModel.Events.HealthChanged = function () {
                 main.HUD.healthBar.update(playerModel.Health);
@@ -27,8 +30,7 @@ $(document).ready(function () {
             playerModel.Model.visible = false;
             main.Controls.mesh = playerModel.Model;
             main.Motions = [];
-            main.MainStage.Entities.AddMesh(Characters.getPC("Kevin", 1, 1, -19));
-            main.MainStage.Entities.AddMesh(Characters.getPC("Torque", 0, 1, -20));
+            // let baddie = new Engine.Entity(Characters.getRandom(-1, 1, -15, "bugbear", "m"));
             let baddie = new Engine.Entity(Characters.getRandom(-1, 1, -15, "bugbear", "m"));
             baddie.Events.Died = function () {
                 alert("Died!");
@@ -41,9 +43,14 @@ $(document).ready(function () {
                 alert("Died!");
             };
             main.MainStage.Entities.Add(testerMan);
+            //#region add NPCs
+            main.MainStage.Entities.AddMesh(Characters.getPC("Kevin", 1, 1, -19));
+            main.MainStage.Entities.AddMesh(Characters.getPC("Torque", 0, 1, -20));
             main.MainStage.Entities.AddMesh(Characters.getPC("Raven", 1, 2, -10));
             main.MainStage.Entities.AddMesh(Characters.getPC("Ty", 0, 2, -10));
             main.MainStage.Entities.AddMesh(Characters.getPC("Jasper", 1, 2, -80));
+            // main.MainStage.Entities.AddMesh(Characters.getPC("Smith", -8, 22, -258) as CharactersModular.Person3D);
+            main.MainStage.Entities.AddMesh(Characters.getPC("Sir Jeffrey", -8, 22, -258));
             // main.MainStage.Entities.AddMesh(Characters.getPC("Mirage", 5, 2, -80));
             main.MainStage.Entities.AddMesh(Characters.getPC("Zenny", 0, 2, -80));
             // let miracle = new Engine.Entity(Characters.getPC("Miracle", -1, 2, -80));
@@ -53,7 +60,9 @@ $(document).ready(function () {
             // 	miracle.Motion.face(playerModel);
             // 	// miracle.Motion.velocity.z = 2;
             // });
+            //#endregion
             main.DebugHelper.addPerson(playerModel.Model);
+            //#region low-level AI Tests
             // Follower test
             main.onRenderFcts.push(function (delta, now) {
                 testerMan.Motion.speed = 0;
@@ -99,6 +108,7 @@ $(document).ready(function () {
                     }
                 }
             });
+            //#endregion
             main.HUD.setEntity(main.Entities.GetByModelID(playerModel._Model.uuid));
         }, true);
         main.Sky.hemiLight.intensity = 0.8;
@@ -107,10 +117,6 @@ $(document).ready(function () {
         main.Controls.motion.baseSpeed = main.Controls.motion.baseSpeed * 2;
         main.Controls.motion.rotation.y += Math.PI;
         main.Controls.getObject().rotation.y += Math.PI;
-        function attack(attacker, target) {
-            target.Health.damage(2);
-        }
-        ;
         // create geometric objects
         let mapScale = new THREE.Vector3(400, 400, 400);
         let map = getTestTerrain(main, new THREE.Vector3(0, 0.1, 0), mapScale);
@@ -124,7 +130,7 @@ $(document).ready(function () {
         // main.Scene.add(loadTerrain(main, new THREE.Vector3(20, 0, 0), '/res/models/vehicles/ship_light.gltf'));
         // main.Scene.add(loadTerrain(main, new THREE.Vector3(), '/res/models/vehicles/airship.glb'));
         // Test City render
-        let amarillo = loadTerrain(main, new THREE.Vector3(-0.13991, 0, -0.5645).multiplyScalar(400), '/res/models/architecture/amarillo.glb');
+        let amarillo = loadTerrain(main, new THREE.Vector3(-0.13991, 0, -0.5645).multiplyScalar(mapScale.x), '/res/models/architecture/amarillo.glb');
         amarillo.scale.multiplyScalar(0.01);
         amarillo.position.y += 0.1;
         main.Scene.add(amarillo);
@@ -183,37 +189,6 @@ $(document).ready(function () {
             prepareLOD(main, board, scale, position);
         });
     }
-    function loadTerrain(main, position, file, hasLOD = false, callback) {
-        // declare the container for the loaded mesh
-        var board = new THREE.Object3D();
-        // declare the loader object that will do the loading
-        var loader = new GLTFLoader();
-        // do the actual loading
-        loader.load(file, (gltf) => {
-            board.add(gltf.scene);
-            gltf.scene.traverse(function (node) {
-                //@ts-ignore
-                if (node.isMesh && !hasLOD) {
-                    main.Collidable.push(node);
-                }
-                ;
-                //@ts-ignore
-                if (node.material != undefined && node.material.map != undefined) {
-                    let mat = node.material;
-                    mat.map.minFilter = THREE.LinearFilter;
-                    mat.map.magFilter = THREE.LinearFilter;
-                    mat.transparent = true;
-                    node.receiveShadow = true;
-                    node.castShadow = true;
-                }
-            });
-            if (callback) {
-                callback(board);
-            }
-        });
-        board.position.copy(position);
-        return board;
-    }
     function prepareLOD(main, board, scale, position) {
         board.scale.copy(scale);
         //lod test
@@ -265,11 +240,66 @@ $(document).ready(function () {
     }
     ;
     init();
-    $("#warp-test").click(() => {
+    $("#warp-test").on("click", () => {
         teleport();
     });
 });
+/**
+ * Moves the player to the specified position
+ * @param x destination x coordinate
+ * @param y destination y coordinate
+ * @param z destination z coordinate
+ */
 export function teleport(x = 0, y = 1, z = 0) {
     main.Controls.motion.position.set(x, y, z);
+}
+/**
+ * A placeholder attack function for pre-alpha
+ * @param attacker The entity making the attack
+ * @param target The entity being attacked
+ */
+function attack(attacker, target) {
+    // target.Health.damage(2);
+    target.Health.damage(20);
+}
+;
+/**
+ * Load a GLTF file, initialize it for terrain collisions, and return a THREE.Object3D containing the mesh(es)
+ * @param main main instance of the engine
+ * @param position the coordinates at which the loaded model should be placed
+ * @param file path to model file
+ * @param hasLOD indicate whether level of detail is present in model
+ * @param callback optional function to execute after load has finished
+ */
+function loadTerrain(main, position, file, hasLOD = false, callback) {
+    // declare the container for the loaded mesh
+    var board = new THREE.Object3D();
+    // declare the loader object that will do the loading
+    var loader = new GLTFLoader();
+    // do the actual loading
+    loader.load(file, (gltf) => {
+        board.add(gltf.scene);
+        gltf.scene.traverse(function (node) {
+            //@ts-ignore
+            if (node.isMesh && !hasLOD) {
+                main.Collidable.push(node);
+            }
+            ;
+            //@ts-ignore
+            if (node.material != undefined && node.material.map != undefined) {
+                let mat = node.material;
+                mat.map.minFilter = THREE.LinearFilter;
+                mat.map.magFilter = THREE.LinearFilter;
+                mat.transparent = true;
+                node.receiveShadow = true;
+                node.castShadow = true;
+            }
+        });
+        if (callback) {
+            callback(board);
+        }
+    });
+    board.position.copy(position);
+    return board;
 }
 //# sourceMappingURL=geoss-test.js.map

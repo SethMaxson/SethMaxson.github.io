@@ -139,6 +139,7 @@ function nextModal() {
     }
 }
 function destroyModal(modal) {
+    //@ts-ignore
     $(modal).remove();
     if ($('.modal:visible').length == 0) {
         $("#modal-blocker").hide();
@@ -153,7 +154,8 @@ function changeBase(e) {
     const o = Number($("#budget").val());
     let a = 0;
     const target = this;
-    $(".base").each((e, o) => a += getCost(Number(o.value)));
+    //@ts-ignore
+    $(".base").each((e, o2) => a += getCost(Number(o2.value)));
     if (a > o) {
         if (target.dataset.prev != undefined)
             return target.value = target.dataset.prev;
@@ -908,7 +910,7 @@ class CharacterLevelPage extends CreationPage {
         // /new, not functional
         if (this.level.class.name !== undefined && this.level.class.name !== "") {
             var val = this.level.class.name;
-            this.level.class.choices.forEach(choice => {
+            this.level.class.choices.forEach((choice) => {
                 val += "|" + choice.value;
             });
             this.$(".class-options .value").val(val);
@@ -1021,9 +1023,9 @@ class ClassLevelPage extends CreationPage {
                 var subclass = cls.subclasses.filter(function (entry) {
                     return entry.id === subClsName;
                 })[0];
-                subclass.levels.forEach(scLvl => {
+                subclass.levels.forEach((scLvl) => {
                     if (scLvl.level == lvl + 1) {
-                        scLvl.features.forEach(e => {
+                        scLvl.features.forEach((e) => {
                             let opt = $(`
 								<li name="${e.name}" title="${e.name}" class="subclass-option">
 									<span class="name">${e.name} <input type="text" class="id" disabled /> <input type="text" class="value" disabled /></span>
@@ -1081,8 +1083,8 @@ class ClassLevelPage extends CreationPage {
         if (this.classObj != undefined) {
             let target = this;
             if (this.classObj.hasOwnProperty("subclasses")) {
-                this.classObj.subclasses.forEach(subclass => {
-                    subclass.levels.forEach(scLvl => {
+                this.classObj.subclasses.forEach((subclass) => {
+                    subclass.levels.forEach((scLvl) => {
                         if (scLvl.level == lvl + 1) {
                             var feat = scLvl.features.filter(function (entry) {
                                 return entry.name === name;
@@ -1557,7 +1559,7 @@ function autocomplete(inp, arr) {
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
         /*append the DIV element as a child of the autocomplete container:*/
-        this.parentNode.appendChild(a);
+        this.parentNode?.appendChild(a);
         /*for each item in the array...*/
         for (i = 0; i < arr.length; i++) {
             /*check if the item starts with the same letters as the text field value:*/
@@ -1635,7 +1637,7 @@ function autocomplete(inp, arr) {
         var x = document.getElementsByClassName("autocomplete-items");
         for (var i = 0; i < x.length; i++) {
             if (elmnt != x[i] && elmnt != inp) {
-                x[i].parentNode.removeChild(x[i]);
+                x[i].parentNode?.removeChild(x[i]);
             }
         }
     }

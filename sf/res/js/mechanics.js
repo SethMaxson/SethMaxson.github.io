@@ -41,9 +41,11 @@ function arrayAppend(array, item) {
 // Array.prototype.move = function (from: number, to: number) {
 // 	this.splice(to, 0, this.splice(from, 1)[0]);
 // };
+//@ts-ignore
 String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
+//@ts-ignore
 String.prototype.replaceAll = function (search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);

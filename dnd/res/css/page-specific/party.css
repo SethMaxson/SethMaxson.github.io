@@ -187,4 +187,5 @@ a.slide_btn {
 .portrait-frame img {
 	box-sizing: border-box;
 	margin:0;
+	width:100%;
 }

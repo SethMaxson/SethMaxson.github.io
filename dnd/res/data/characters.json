@@ -19,7 +19,7 @@
 			"themecolor":"#775520"
 		},
 		{
-			"name":"Falumer",
+			"name":"Falimur",
 			"race":"aasimar",
 			"type":"cleric",
 			"texture":"/res/models/Advanced/skin_falumer.png",
@@ -225,7 +225,7 @@
 			"themecolor":"#33bb33"
 		},
 		{
-			"name":"Zenreya",
+			"name":"Zenrya",
 			"race":"halfling",
 			"type":"sorc",
 			"texture":"/res/models/Advanced/skin_zenreya.png",

@@ -2101,6 +2101,7 @@ const NameGenerator = {
 			//#region Brokkos
 			case "brokkos":
 				/*
+					name | role | color
 					Aiutatu - helper, assists with any role that has insufficient Brokkos
 					Cuocu - cook/chef
 					Doto - healer
@@ -2486,6 +2487,7 @@ const NameGenerator = {
 				name = randomize([
 					"Archer",
 					"Baker",
+					"Blackwood",
 					"Brewer",
 					"Butcher",
 					"Carpenter",
@@ -2496,10 +2498,12 @@ const NameGenerator = {
 					"Cooper",
 					"Cook",
 					"Dyer",
+					"Everly",
 					"Faire",
 					"Farmer",
 					"Faulkner",
 					"Fisher",
+					"Fletcher",
 					"Freeman",
 					"Fuller",
 					"Gardener",
@@ -2507,18 +2511,22 @@ const NameGenerator = {
 					"Hunt",
 					"Judge",
 					"Knight",
+					"Law",
 					"Mason",
 					"Miller",
 					"Miner",
 					"Page",
 					"Parker",
+					"Payne",
 					"Potter",
+					"Rolfe",
 					"Sawyer",
 					"Slater",
 					"Smith",
 					"Taylor",
 					"Thatcher",
 					"Turner",
+					"Ward",
 					"Weaver",
 					"Wood",
 					"Wright"

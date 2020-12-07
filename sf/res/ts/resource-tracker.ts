@@ -2,12 +2,12 @@ import * as THREE from '../../../node_modules/three/src/Three.js';
 
 export class ResourceTracker
 {
-	resources: Set<THREE.Object3D|THREE.Mesh|THREE.Geometry|THREE.Material>;
+	resources: Set<THREE.Object3D | THREE.Mesh | THREE.Geometry | THREE.Material | THREE.Texture>;
 	constructor()
 	{
 		this.resources = new Set();
 	}
-	track(resource: THREE.Object3D | THREE.Object3D[] | THREE.Material | THREE.Material[])
+	track(resource: THREE.Object3D | THREE.Object3D[] | THREE.Material | THREE.Material[] | THREE.Geometry | THREE.Geometry[] | THREE.Texture | THREE.Texture[])
 	{
 		if (!resource)
 		{
@@ -18,7 +18,7 @@ export class ResourceTracker
 		// uniform is array of textures
 		if (Array.isArray(resource))
 		{
-			resource.forEach((resource:THREE.Object3D|THREE.Material) => this.track(resource));
+			resource.forEach((resource:THREE.Object3D|THREE.Material|THREE.Geometry|THREE.Texture) => this.track(resource));
 			return resource;
 		}
 		//@ts-ignore
@@ -28,8 +28,8 @@ export class ResourceTracker
 		}
 		if (resource instanceof THREE.Object3D)
 		{
-			this.track(resource.geometry);
-			this.track(resource.material);
+			this.track((resource as THREE.Mesh).geometry as THREE.Geometry);
+			this.track((resource as THREE.Mesh).material);
 			this.track(resource.children);
 		} else if (resource instanceof THREE.Material)
 		{
@@ -42,9 +42,9 @@ export class ResourceTracker
 				}
 			}
 			// We also have to check if any uniforms reference textures or arrays of textures
-			if (resource.uniforms)
+			if ((resource as THREE.ShaderMaterial).uniforms)
 			{
-				for (const value of Object.values(resource.uniforms))
+				for (const value of Object.values((resource as THREE.ShaderMaterial).uniforms))
 				{
 					if (value)
 					{
@@ -75,8 +75,10 @@ export class ResourceTracker
 					resource.parent.remove(resource);
 				}
 			}
+			//@ts-ignore
 			if (resource.dispose)
 			{
+				//@ts-ignore
 				resource.dispose();
 			}
 		}

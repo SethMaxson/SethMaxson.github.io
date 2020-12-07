@@ -13,15 +13,18 @@ function getHorizontalDistance(pos1: THREE.Vector3, pos2: THREE.Vector3) {
 }
 
 $(document).ready(function() {
-	Engine.Initialize("");
+	Engine.Initialize();
 	// Engine.Initialize("Ship");
 	main = Engine.main;
 	function init() {
+		main.start();
 		Characters.PersonLoader(function() {
-			let playerModel = new Engine.Entity(Characters.getPC("Player", 0, 0, 0));
-			// let playerModel = new Engine.Entity(Characters.getPC("Sidhon", 0, 0, 0));
+			let playerModel = new Engine.Entity(Characters.getPC("Player"));
+			// let playerModel = new Engine.Entity(Characters.getPC("Sidhon"));
 			playerModel.Events.Died = function(){
 				alert("GAME OVER!");
+				init();
+				// location.reload(); // reloads the web page
 			};
 			playerModel.Events.HealthChanged = function(){
 				main.HUD.healthBar.update(playerModel.Health);
@@ -32,9 +35,7 @@ $(document).ready(function() {
 			main.Controls.mesh = playerModel.Model;
 			main.Motions = [];
 
-			main.MainStage.Entities.AddMesh(Characters.getPC("Kevin", 1, 1, -19) as CharactersModular.Person3D);
-			main.MainStage.Entities.AddMesh(Characters.getPC("Torque", 0, 1, -20) as CharactersModular.Person3D);
-
+			// let baddie = new Engine.Entity(Characters.getRandom(-1, 1, -15, "bugbear", "m"));
 			let baddie = new Engine.Entity(Characters.getRandom(-1, 1, -15, "bugbear", "m"));
 			baddie.Events.Died = function(){
 				alert("Died!");
@@ -49,9 +50,15 @@ $(document).ready(function() {
 				alert("Died!");
 			};
 			main.MainStage.Entities.Add(testerMan);
+
+			//#region add NPCs
+			main.MainStage.Entities.AddMesh(Characters.getPC("Kevin", 1, 1, -19) as CharactersModular.Person3D);
+			main.MainStage.Entities.AddMesh(Characters.getPC("Torque", 0, 1, -20) as CharactersModular.Person3D);
 			main.MainStage.Entities.AddMesh(Characters.getPC("Raven", 1, 2, -10) as CharactersModular.Person3D);
 			main.MainStage.Entities.AddMesh(Characters.getPC("Ty", 0, 2, -10) as CharactersModular.Person3D);
 			main.MainStage.Entities.AddMesh(Characters.getPC("Jasper", 1, 2, -80) as CharactersModular.Person3D);
+			// main.MainStage.Entities.AddMesh(Characters.getPC("Smith", -8, 22, -258) as CharactersModular.Person3D);
+			main.MainStage.Entities.AddMesh(Characters.getPC("Sir Jeffrey", -8, 22, -258) as CharactersModular.Person3D);
 			// main.MainStage.Entities.AddMesh(Characters.getPC("Mirage", 5, 2, -80));
 			main.MainStage.Entities.AddMesh(Characters.getPC("Zenny", 0, 2, -80) as CharactersModular.Person3D);
 
@@ -62,9 +69,11 @@ $(document).ready(function() {
 			// 	miracle.Motion.face(playerModel);
 			// 	// miracle.Motion.velocity.z = 2;
 			// });
+			//#endregion
 
 			main.DebugHelper.addPerson(playerModel.Model);
 
+			//#region low-level AI Tests
 			// Follower test
 			main.onRenderFcts.push(function(delta: number, now: number){
 				testerMan.Motion.speed = 0;
@@ -114,7 +123,7 @@ $(document).ready(function() {
 					}
 				}
 			});
-
+			//#endregion
 			main.HUD.setEntity(main.Entities.GetByModelID(playerModel._Model.uuid) as Engine.Entity);
 		}, true);
 
@@ -124,10 +133,6 @@ $(document).ready(function() {
 		(main.Controls.motion as Engine.PlayerMotion).baseSpeed = (main.Controls.motion as Engine.PlayerMotion).baseSpeed * 2;
 		main.Controls.motion.rotation.y += Math.PI;
 		main.Controls.getObject().rotation.y += Math.PI;
-
-		function attack(attacker: Engine.Entity, target: Engine.Entity) {
-			target.Health.damage(2);
-		};
 
 
 
@@ -148,7 +153,7 @@ $(document).ready(function() {
 		// main.Scene.add(loadTerrain(main, new THREE.Vector3(), '/res/models/vehicles/airship.glb'));
 
 		// Test City render
-		let amarillo = loadTerrain(main, new THREE.Vector3(-0.13991, 0, -0.5645).multiplyScalar(400), '/res/models/architecture/amarillo.glb');
+		let amarillo = loadTerrain(main, new THREE.Vector3(-0.13991, 0, -0.5645).multiplyScalar(mapScale.x), '/res/models/architecture/amarillo.glb');
 		amarillo.scale.multiplyScalar(0.01);
 		amarillo.position.y += 0.1;
 		main.Scene.add(amarillo);
@@ -218,39 +223,6 @@ $(document).ready(function() {
 		});
 	}
 
-	function loadTerrain(main: Engine.Main, position: THREE.Vector3, file: string, hasLOD = false, callback?: any) {
-		// declare the container for the loaded mesh
-		var board = new THREE.Object3D();
-		// declare the loader object that will do the loading
-		var loader = new GLTFLoader();
-		// do the actual loading
-		loader.load( file, ( gltf ) => {
-			board.add(gltf.scene);
-			gltf.scene.traverse( function ( node ) {
-				//@ts-ignore
-				if ( node.isMesh && !hasLOD ) {
-					main.Collidable.push(node);
-				};
-				//@ts-ignore
-				if (node.material != undefined && node.material.map != undefined)
-				{
-					let mat = (node as THREE.Mesh).material as THREE.MeshBasicMaterial;
-					(mat.map as THREE.Texture).minFilter = THREE.LinearFilter;
-					(mat.map as THREE.Texture).magFilter = THREE.LinearFilter;
-					mat.transparent = true;
-					node.receiveShadow = true;
-					node.castShadow = true;
-				}
-
-			});
-			if (callback) {
-				callback(board);
-			}
-		} );
-		board.position.copy(position);
-		return board;
-	}
-
 	function prepareLOD(main: Engine.Main, board: THREE.Object3D, scale: THREE.Vector3, position: THREE.Vector3) {
 		board.scale.copy(scale);
 		//lod test
@@ -307,13 +279,70 @@ $(document).ready(function() {
 
 	init();
 
-	$("#warp-test").click(() =>
+	$("#warp-test").on("click", () =>
 	{
 		teleport();
 	})
 });
 
+/**
+ * Moves the player to the specified position
+ * @param x destination x coordinate
+ * @param y destination y coordinate
+ * @param z destination z coordinate
+ */
 export function teleport(x: number = 0, y: number = 1, z: number = 0)
 {
 	main.Controls.motion.position.set(x, y, z);
+}
+
+/**
+ * A placeholder attack function for pre-alpha
+ * @param attacker The entity making the attack
+ * @param target The entity being attacked
+ */
+function attack(attacker: Engine.Entity, target: Engine.Entity) {
+	// target.Health.damage(2);
+	target.Health.damage(20);
+};
+
+/**
+ * Load a GLTF file, initialize it for terrain collisions, and return a THREE.Object3D containing the mesh(es)
+ * @param main main instance of the engine
+ * @param position the coordinates at which the loaded model should be placed
+ * @param file path to model file
+ * @param hasLOD indicate whether level of detail is present in model
+ * @param callback optional function to execute after load has finished
+ */
+function loadTerrain(main: Engine.Main, position: THREE.Vector3, file: string, hasLOD = false, callback?: any) {
+	// declare the container for the loaded mesh
+	var board = new THREE.Object3D();
+	// declare the loader object that will do the loading
+	var loader = new GLTFLoader();
+	// do the actual loading
+	loader.load( file, ( gltf ) => {
+		board.add(gltf.scene);
+		gltf.scene.traverse( function ( node ) {
+			//@ts-ignore
+			if ( node.isMesh && !hasLOD ) {
+				main.Collidable.push(node);
+			};
+			//@ts-ignore
+			if (node.material != undefined && node.material.map != undefined)
+			{
+				let mat = (node as THREE.Mesh).material as THREE.MeshBasicMaterial;
+				(mat.map as THREE.Texture).minFilter = THREE.LinearFilter;
+				(mat.map as THREE.Texture).magFilter = THREE.LinearFilter;
+				mat.transparent = true;
+				node.receiveShadow = true;
+				node.castShadow = true;
+			}
+
+		});
+		if (callback) {
+			callback(board);
+		}
+	} );
+	board.position.copy(position);
+	return board;
 }

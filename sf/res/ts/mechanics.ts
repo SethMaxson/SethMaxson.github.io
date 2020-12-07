@@ -1,5 +1,5 @@
-import { Engine } from '../../../sf/res/js/game-engine.js';
-import { Dialog } from '../../../sf/res/js/dialog.js';
+import { Engine } from './engine.js';
+import { Dialog } from './dialog.js';
 
 declare interface String {
 	capitalize(): string;
@@ -54,9 +54,11 @@ function arrayAppend(array: any, item: any): Array<any> {
 // 	this.splice(to, 0, this.splice(from, 1)[0]);
 // };
 
+//@ts-ignore
 String.prototype.capitalize = function() {
 	return this.charAt(0).toUpperCase() + this.slice(1);
 }
+//@ts-ignore
 String.prototype.replaceAll = function(search: string, replacement: string) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);

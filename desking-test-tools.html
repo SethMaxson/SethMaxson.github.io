@@ -108,6 +108,8 @@
 					var dep = (ncc - res) / term;
 					var lc = (ncc + res) * rate;
 					var basePayment = dep + lc;
+					$("#lease-charge").val(lc.toFixed(2));
+					$("#lease-deprecation").val(dep.toFixed(2));
 					$("#base-payment").val(basePayment.toFixed(2));
 					var utr = parseFloat($("#use-tax-rate").val()) || 0;
 					var monthlyUseTax = basePayment * (utr);
@@ -198,6 +200,14 @@
 				<div class="row">
 					<input type="text" id="rate" placeholder="Money Factor" autocomplete="off" />
 					<label for="rate">Money Factor</label>
+				</div>
+				<div class="row">
+					<input type="text" id="lease-charge" disabled placeholder="Lease Charge" autocomplete="off" />
+					<label for="lease-charge">Lease Charge</label>
+				</div>
+				<div class="row">
+					<input type="text" id="lease-deprecation" disabled placeholder="Lease Deprecation" autocomplete="off" />
+					<label for="lease-deprecation">Lease Deprecation</label>
 				</div>
 				<div class="row">
 					<input type="text" id="base-payment" disabled placeholder="Base Payment" autocomplete="off" />

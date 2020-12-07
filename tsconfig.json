@@ -70,7 +70,8 @@
 		"./sf/res/ts"
 	],
 	"exclude": [
-		"./sf/res/js"
+		"./sf/res/js/**/*",
+		"*.d.ts"
 	],
 	"compileOnSave": true
 }

@@ -1,4 +1,4 @@
-import { Engine } from '../../../sf/res/js/game-engine.js';
+import { Engine } from './engine.js';
 
 
 export namespace Dialog
@@ -63,6 +63,24 @@ export namespace Dialog
 				{ s: "Jasper", m: "What year is it?", answers: [
 					{ m: "353", next: "like_yes" },
 					{ m: "1353", next: "like_no" },
+				] },
+				{ label: "like_yes", s: "Jasper", m: "That's a relief!", next: "exit" },
+				{ label: "like_no", s: "Jasper", m: "I've been asleep for that long?!", next: "like_end" },
+				{ label: "like_end" },
+				{ s: "Jasper", m: "This is going to take some getting used to..." }
+			]
+		},
+		{
+			name: "Sir Jeffrey",
+			dialog: [
+				{ s: "Jasper", m: "Greetings, friend." },
+				{ s: "Jasper", m: "What year is it?", answers: [
+					{ m: "yes", next: "like_yes" },
+					{ m: "no", next: "like_no", function: function (ent: Engine.Entity)
+						{
+							ent?.Model.setHair("Long_Braid", ent.Model.userData.hairColor || 0x000000);
+						}
+					},
 				] },
 				{ label: "like_yes", s: "Jasper", m: "That's a relief!", next: "exit" },
 				{ label: "like_no", s: "Jasper", m: "I've been asleep for that long?!", next: "like_end" },
@@ -314,14 +332,29 @@ export namespace Dialog
 		}
 	]
 
-	export function getDialog(name: string): Dialog[] {
-		var dialog: Dialog[]|undefined = undefined;
-		for (let i = 0; i < characterDialog.length; i++) {
-			const el = characterDialog[i];
-			if (el.name.toLowerCase() == name.toLowerCase()) {
-				dialog = el.dialog;
-				break;
-			};
+	export function getDialog(name: string, id?: string): Dialog[]
+	{
+		var dialog: Dialog[] | undefined = undefined;
+		if (id) {
+			for (let i = 0; i < characterDialog.length; i++) {
+				const el = characterDialog[i];
+				if (el.name.toLowerCase() == id.toLowerCase()) {
+					dialog = el.dialog;
+					break;
+				};
+			}
+		}
+		if (dialog == undefined)
+		{
+			for (let i = 0; i < characterDialog.length; i++)
+			{
+				const el = characterDialog[i];
+				if (el.name.toLowerCase() == name.toLowerCase())
+				{
+					dialog = el.dialog;
+					break;
+				};
+			}
 		}
 		if (dialog == undefined) {
 			dialog = [

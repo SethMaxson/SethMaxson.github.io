@@ -36,6 +36,23 @@ export var Dialog;
             ]
         },
         {
+            name: "Sir Jeffrey",
+            dialog: [
+                { s: "Jasper", m: "Greetings, friend." },
+                { s: "Jasper", m: "What year is it?", answers: [
+                        { m: "yes", next: "like_yes" },
+                        { m: "no", next: "like_no", function: function (ent) {
+                                ent?.Model.setHair("Long_Braid", ent.Model.userData.hairColor || 0x000000);
+                            }
+                        },
+                    ] },
+                { label: "like_yes", s: "Jasper", m: "That's a relief!", next: "exit" },
+                { label: "like_no", s: "Jasper", m: "I've been asleep for that long?!", next: "like_end" },
+                { label: "like_end" },
+                { s: "Jasper", m: "This is going to take some getting used to..." }
+            ]
+        },
+        {
             name: "Ribbert",
             dialog: [
                 { s: "Ribbert", m: "Hey there, neighbor." },
@@ -278,15 +295,27 @@ export var Dialog;
             ]
         }
     ];
-    function getDialog(name) {
+    function getDialog(name, id) {
         var dialog = undefined;
-        for (let i = 0; i < characterDialog.length; i++) {
-            const el = characterDialog[i];
-            if (el.name.toLowerCase() == name.toLowerCase()) {
-                dialog = el.dialog;
-                break;
+        if (id) {
+            for (let i = 0; i < characterDialog.length; i++) {
+                const el = characterDialog[i];
+                if (el.name.toLowerCase() == id.toLowerCase()) {
+                    dialog = el.dialog;
+                    break;
+                }
+                ;
             }
-            ;
+        }
+        if (dialog == undefined) {
+            for (let i = 0; i < characterDialog.length; i++) {
+                const el = characterDialog[i];
+                if (el.name.toLowerCase() == name.toLowerCase()) {
+                    dialog = el.dialog;
+                    break;
+                }
+                ;
+            }
         }
         if (dialog == undefined) {
             dialog = [

@@ -9,7 +9,7 @@ declare function getClasses(): JQuery.jqXHR<any>;
 declare function getRaces(): JQuery.jqXHR<any>;
 declare function getThemes(): JQuery.jqXHR<any>;
 declare function getRacialTraits(): JQuery.jqXHR<any>;
-declare class Race {
+declare class Race implements IRaceData {
     ability: Abilities;
     name: string;
     description: string;
@@ -20,24 +20,34 @@ declare class Race {
     type: string;
     features: RacialBenefit[];
     source: string;
+    subraces: any[];
+    page: number;
     constructor(o?: any, subraceName?: string);
     get languages(): string[];
     get skills(): number[];
     getRacialBenefits(type: string): RacialBenefitPropertyEffect[];
 }
-declare class RaceData {
-    name?: string;
-    ID?: string;
-    ability: any;
-    hp?: number;
-    size?: any;
-    type?: string;
-    source?: string;
-    subraces?: any;
-    page?: number;
-    description?: string;
-    features: any;
-    constructor(o?: any);
+interface IAbilities {
+    str?: number;
+    dex?: number;
+    con?: number;
+    int?: number;
+    wis?: number;
+    cha?: number;
+    [key: string]: number | undefined;
+}
+interface IRaceData {
+    name: string;
+    ID: string;
+    ability: IAbilities;
+    hp: number;
+    size: any;
+    type: string;
+    source: string;
+    subraces: any[];
+    page: number;
+    description: string;
+    features: any[];
 }
 declare class RacialBenefit {
     name: string;
@@ -106,7 +116,7 @@ declare class CharacterClasses {
     get spellsKnown(): number[];
     get proficiencies(): string[];
 }
-declare class Abilities {
+declare class Abilities implements IAbilities {
     str: number;
     dex: number;
     con: number;

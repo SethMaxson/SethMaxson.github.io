@@ -1,10 +1,11 @@
-import { Engine } from '../../../sf/res/js/engine.js';
+import { Engine } from './engine.js';
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { OrbitControls } from '../../../node_modules/three/examples/jsm/controls/OrbitControls.js';
-import { CharactersModular } from '../../../sf/res/js/characters-modular.js';
-import { THREEx } from '../../../sf/res/js/threex.js';
+import { CharactersModular } from './characters-modular.js';
+import { THREEx } from './threex.js';
+import { ControlTypes } from './engine/engine.js';
 var camera, controls, renderer, scene, time = 0, newChar;
-Engine.Initialize("Viewer");
+Engine.Initialize(ControlTypes.Viewer);
 var main = Engine.main;
 var clock = new THREE.Clock();
 var objects = [];
@@ -76,8 +77,9 @@ function init() {
     scene.position.z = -0.5;
     update();
     var winResize = new THREEx.WindowResize(main.renderer, camera);
+    //@ts-ignore
     winResize.trigger();
-    main.hideCompass();
+    main.HUD.compass.hide();
     $("#spells").hide();
 }
 function getMenu(canvasElementID = "#container") {

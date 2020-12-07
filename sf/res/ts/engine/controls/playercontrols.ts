@@ -2,9 +2,9 @@ import * as THREE from '../../../../../node_modules/three/src/Three.js';
 import { Main, Attitude } from "./../engine.js";
 import { InputManager } from "./../inputmanager.js";
 import { Motion, PersonMotion, PlayerMotion } from './../motion.js';
-import { Characters } from '../../../../../sf/res/js/characters.js';
+import { Characters } from './../../characters.js';
 import { CellCoordinates, Controls } from './controls.js';
-import { Dialog } from '../../../../../sf/res/js/dialog.js';
+import { Dialog } from './../../dialog.js';
 import { Entity } from "./../entity/entity.js";
 
 declare function randomize(Array: any): any;
@@ -72,7 +72,7 @@ export class PlayerControls extends Controls
 					if (this.InputManager.keys.talk.down == true) {
 						this.InputManager.keys.talk.down = false;
 						this.motion.canMove = false;
-						speak(Dialog.getDialog(ent.Model.name),
+						speak(Dialog.getDialog(ent.Model.name, ent.Model.personId),
 							0,
 							() => {
 								this.motion.canMove = true;

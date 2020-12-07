@@ -1,8 +1,8 @@
 import * as THREE from '../../../../node_modules/three/src/Three.js';
-import { Hair } from '../../js/characters/Hair.js';
-import { FOUR } from '../../js/four.js';
-import { PersonPhysicalFeature } from '../../js/characters/PersonPhysicalFeature.js';
-import { CharactersModular } from '../../js/characters-modular.js';
+import { Hair } from './Hair.js';
+import { FOUR } from './../four.js';
+import { PersonPhysicalFeature } from './../characters/PersonPhysicalFeature.js';
+import { CharactersModular } from './../characters-modular.js';
 
 declare var races: string[];
 declare function randomize(array: any): string;
@@ -22,6 +22,7 @@ export class Person {
 	themecolor: THREE.Color;
 	type?: string;
 	name: string;
+	personId: string = "";
 	scale: THREE.Vector3;
 	headScale: THREE.Vector3;
 	armScale: THREE.Vector3;

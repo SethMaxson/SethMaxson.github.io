@@ -1,7 +1,7 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { GLTFLoader } from '../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { SkeletonUtils } from '../../../node_modules/three/examples/jsm/utils/SkeletonUtils.js';
-import { FOUR } from '../js/four.js';
+import { FOUR } from './four.js';
 
 declare var races: string[];
 declare function randomize(array: any): string;
@@ -36,7 +36,7 @@ export module Characters
 	var pcData: PCData[];
 
 	// List Variables
-	export var hairOptions = [];
+	export var hairOptions: string[] = [];
 
 	export class Hair
 	{
@@ -758,6 +758,7 @@ export module Characters
 	export class Person3D extends THREE.Mesh
 	{
 		animations: THREE.AnimationClip[] = [];
+		personId: string = "";
 		_equipment: Person3DEquipment | undefined;
 		_hatHolder: THREE.Bone | undefined;
 		_animation: string = "";
@@ -983,7 +984,7 @@ export module Characters
 	}
 
 	export function getParty(target: THREE.Object3D, x: number = 0, y: number = 0, z: number = 0){
-		const partyMembers = [ "Bud", "Jasper", "Falumer", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenreya"];
+		const partyMembers = [ "Bud", "Jasper", "Falimur", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenrya"];
 		// var target = new THREE.Object3D();
 		for (let i = 0; i < partyMembers.length; i++) {
 			const e = partyMembers[i];
@@ -1031,7 +1032,7 @@ export module Characters
 					} else if ((hat.material as THREE.MeshPhongMaterial).map != null) {
 						if (typeof stylo.color === "string" && stylo.color.startsWith("#"))
 						{
-							hat.material = hat.material.clone();
+							hat.material = (hat.material as THREE.Material).clone();
 							(hat.material as THREE.MeshPhongMaterial).color.set(FOUR.Color(stylo.color));
 							// (hat.material as THREE.MeshPhongMaterial).color.setHex(0x191919);
 							// (hat.material as THREE.MeshPhongMaterial).color.setStyle(stylo.color);

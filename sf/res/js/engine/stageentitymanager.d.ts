@@ -1,5 +1,7 @@
-import { Entity, Stage, Main } from "./engine.js";
-import { Characters } from '../../../../sf/res/js/characters.js';
+import { Main } from "./engine.js";
+import { Entity } from "./entity/entity.js";
+import { Stage } from './stage.js';
+import { Characters } from './../characters.js';
 export declare class StageEntityManager {
     members: Entity[];
     parent: Stage;
@@ -10,4 +12,3 @@ export declare class StageEntityManager {
     Add(newMember: Entity, collidable?: boolean): void;
     AddMesh(newMember: Characters.Person3D, collidable?: boolean): void;
 }
-//# sourceMappingURL=stageentitymanager.d.ts.map

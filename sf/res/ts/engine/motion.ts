@@ -2,7 +2,7 @@ import * as THREE from '../../../../node_modules/three/src/Three.js';
 import { Main, PlayerControls } from './engine.js';
 import { Entity } from './entity/entity.js';
 import { EntityAbilities } from './entity/entityabilities.js';
-import { Characters } from '../../../../sf/res/js/characters.js';
+import { Characters } from './../characters.js';
 
 
 const motionRaycastLengths = {

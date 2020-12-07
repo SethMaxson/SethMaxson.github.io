@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+declare function saveJSON(json: JSON | Object, fileName: string): void;
 declare function getSpells(): JQuery.jqXHR<any>;
 declare class Spell {
     name: string;

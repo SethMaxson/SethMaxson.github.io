@@ -1,10 +1,10 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { GLTFLoader } from '../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { SkeletonUtils } from '../../../node_modules/three/examples/jsm/utils/SkeletonUtils.js';
-import { FOUR } from '../js/four.js';
-import { PersonPhysicalFeature } from '../js/characters/PersonPhysicalFeature.js';
-import { Hair } from '../js/characters/Hair.js';
-import { Person } from '../js/characters/Person.js';
+import { FOUR } from './four.js';
+import { PersonPhysicalFeature } from './characters/PersonPhysicalFeature.js';
+import { Hair } from './characters/Hair.js';
+import { Person } from './characters/Person.js';
 export var CharactersModular;
 (function (CharactersModular) {
     const useMorphTargets = true;
@@ -76,6 +76,7 @@ export var CharactersModular;
         constructor(geometry, material) {
             super(geometry, material);
             this.animations = [];
+            this.personId = "";
             this._animation = "";
         }
         get animation() {
@@ -263,6 +264,7 @@ export var CharactersModular;
             // if (typeof pc.skincolor === "string" && pc.skincolor.startsWith("#")) pc.skincolor = new THREE.Color(pc.skincolor);
             // if (typeof pc.themecolor === "string" && pc.themecolor.startsWith("#")) pc.themecolor = new THREE.Color(pc.themecolor);
             var charBase = new Person(pc.name, pc.race, pc.texture, pc.gender, pc.hairstyle, pc.haircolor, pc.beard, pc.skincolor, pc.weight, pc.themecolor, pc.type);
+            charBase.personId = pc.id;
             if (pc.donk !== undefined)
                 charBase.caboose = pc.donk;
             if (pc.fronk !== undefined)
@@ -273,7 +275,7 @@ export var CharactersModular;
     }
     CharactersModular.getPC = getPC;
     function getParty(target, x = 0, y = 0, z = 0) {
-        const partyMembers = ["Bud", "Jasper", "Falumer", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenreya"];
+        const partyMembers = ["Bud", "Jasper", "Falimur", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenrya"];
         // var target = new THREE.Object3D();
         for (let i = 0; i < partyMembers.length; i++) {
             const e = partyMembers[i];
@@ -728,6 +730,7 @@ export var CharactersModular;
     CharactersModular.PersonLoader = PersonLoader;
     function updateHumanoid(person, personInfo, gear = new Gear(0, 0, 0)) {
         person.name = personInfo.name;
+        person.personId = personInfo.personId;
         person.userData.scale = {
             size: personInfo.scale,
             head: personInfo.headScale,

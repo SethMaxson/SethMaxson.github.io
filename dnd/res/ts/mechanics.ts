@@ -1,4 +1,4 @@
-import { Engine } from '../../../sf/res/js/game-engine.js';
+import { Engine } from '../../../sf/res/js/engine.js';
 import { Dialog } from '../../../sf/res/js/dialog.js';
 
 declare interface String {

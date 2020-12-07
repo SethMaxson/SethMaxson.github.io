@@ -11,4 +11,8 @@ export declare class Stage extends THREE.Object3D {
     Terrain: THREE.Object3D;
     constructor(main: Main);
     needsUpdate(): void;
+    /**
+     * Remove this chunk and its contents from memory
+     */
+    unload(): void;
 }

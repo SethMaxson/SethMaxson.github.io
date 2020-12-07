@@ -1,15 +1,19 @@
 import * as THREE from '../../../../node_modules/three/src/Three.js';
 import { OutlineEffect } from '../../../../node_modules/three/examples/jsm/effects/OutlineEffect.js';
-import { Characters } from '../../../../sf/res/js/characters.js';
-import { Sky } from '../../../../sf/res/js/sky.js';
+import { Characters } from './../characters.js';
+import { Sky } from './../sky.js';
 import { HUD } from './hud/hud.js';
 import { Stage } from './stage.js';
-import { Motion, PersonMotion } from './motion.js';
+import { PersonMotion } from './motion.js';
 import { Controls } from './controls/controls.js';
+import { Entity } from './entity/entity.js';
+import { InputManager } from './inputmanager.js';
 export { PlayerControls } from './controls/playercontrols.js';
+export { Entity } from './entity/entity.js';
 export { Stage } from './stage.js';
+export { Inventory, InventorySlot, Item } from './../engine/inventory.js';
 export declare var main: Main;
-export declare function Initialize(controlsType?: string): Main;
+export declare function Initialize(controlsType?: ControlTypes): Main;
 /**
 * Indicates one entity's disposition towards another.
 */
@@ -20,12 +24,18 @@ export declare enum Attitude {
     Friendly = 3,
     Helpful = 4
 }
+export declare enum ControlTypes {
+    Human = "Human",
+    Ship = "Ship",
+    Viewer = "Viewer"
+}
 /**
 * Manages HitPoints objects in the scene.
 */
 export declare class HealthManager {
     members: HitPoints[];
     update(main: Main): void;
+    clear(): void;
 }
 /**
 * This tracks and manages HP for an entity.
@@ -55,16 +65,6 @@ export declare class HitPoints {
     heal(healAmount: number): void;
 }
 /**
-* This is used to track and manage user input.
-*/
-export declare class InputManager {
-    keys: any;
-    constructor();
-    update(): void;
-    setKey(keyName: string, pressed: boolean): void;
-    getMovementDirection(): THREE.Vector3;
-}
-/**
 * The settings for the main process for the engine.
 */
 export declare class EngineSettings {
@@ -78,6 +78,7 @@ export declare class Main {
     HUD: HUD;
     FPS: number;
     renderer: THREE.WebGLRenderer;
+    /**Not sure what purpose this serves. Can probably remove it. */
     HealthManager: HealthManager;
     Entities: EntityManager;
     Interactive: THREE.Object3D[];
@@ -94,25 +95,43 @@ export declare class Main {
     Motions: PersonMotion[];
     _effect: OutlineEffect;
     Settings: EngineSettings;
-    constructor(controlsType?: string);
+    constructor(controlsType?: ControlTypes);
+    /**
+     * Toggles between first and third person views
+     */
+    toggleView(): void;
+    /**
+     * The core update method for the game loop.
+     */
     update(): void;
+    private processInput;
+    /** Render to the screen */
+    private render;
     updateGameLogic(delta: number): void;
-    hideCompass(): void;
-    updateCompass(): void;
+    /**
+     * Starts (or restarts) this engine instance
+     * @param controlsType
+     */
+    start(controlsType?: ControlTypes): void;
 }
-/**
-* A debug helper meant to be attached to an instance of Main.
-*/
+/** A debug helper meant to be attached to an instance of Main. */
 declare class EngineDebug {
     BoxHelpers: THREE.BoxHelper[];
     Engine: Main;
     constructor(engine: Main);
     addPerson(person: Characters.Person3D): void;
     update(): void;
+    /**
+     * Empties the collection and removes any tracked items from the current scene.
+     */
+    clear(): void;
 }
+/** Used to measure the elapsed time in-engine. */
 declare class Timer {
+    /** The timestamp at which the last measurement ocurred. */
     prevTime: number;
     constructor();
+    /** The time elapsed since last measurement. */
     get delta(): number;
 }
 export declare class EntityManager {
@@ -123,66 +142,6 @@ export declare class EntityManager {
     GetByEntityID(id: string): Entity | undefined;
     Add(newMember: Entity, collidable?: boolean): void;
     AddMesh(newMember: Characters.Person3D, collidable?: boolean): void;
-}
-export declare class EntityAnimations {
-    Walk: string;
-    Stand: string;
-}
-/**
- * This class contains objects and methods for a character.
- */
-export declare class Entity {
-    _ID: string;
-    Events: EntityEvents;
-    Health: HitPoints;
-    _Model: Characters.Person3D;
-    Motion: PersonMotion;
-    PositionOffset: THREE.Vector3;
-    Animations: EntityAnimations;
-    constructor(model?: Characters.Person3D);
-    get Model(): Characters.Person3D;
-    set Model(value: Characters.Person3D);
-    get ID(): string;
-    set ID(value: string);
-    update(delta: number): void;
-}
-export declare class EntityEvents {
-    Died?: Function;
-    HealthChanged?: Function;
-    Resurrected?: Function;
-    Think?: Function;
-}
-/**
-* Entity State
-*/
-export declare class EntityState {
-    isFlying: boolean;
-    isGliding: boolean;
-    isClimbing: boolean;
-    isSlipping: boolean;
-    isDashing: boolean;
-    chargingDash: boolean;
-}
-/**
-* Entity Permissions/Abilities
-*/
-export declare class EntityAbilities {
-    gliding: boolean;
-    infinityJump: boolean;
-    dash: boolean;
-    maxJump: number;
-}
-export declare class ShipControls extends Controls {
-    mesh: THREE.Mesh;
-    motion: Motion;
-    firstPerson: boolean;
-    interactRaycaster: THREE.Raycaster;
-    speed: number;
-    constructor(camera: THREE.Camera, main: Main);
-    getCollisions(delta: number): void;
-    getInteractions(): void;
-    updateRaycasters(delta: number): void;
-    update(delta: number): void;
 }
 export declare abstract class GameState {
     abstract update(delta: number): void;

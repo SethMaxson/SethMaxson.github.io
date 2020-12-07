@@ -983,7 +983,7 @@ export module Characters
 	}
 
 	export function getParty(target: THREE.Object3D, x: number = 0, y: number = 0, z: number = 0){
-		const partyMembers = [ "Bud", "Jasper", "Falumer", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenreya"];
+		const partyMembers = [ "Bud", "Jasper", "Falimur", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenrya"];
 		// var target = new THREE.Object3D();
 		for (let i = 0; i < partyMembers.length; i++) {
 			const e = partyMembers[i];

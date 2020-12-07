@@ -1,8 +1,8 @@
 var ccm: CharacterCreationManager, ccdm: CharacterCreationDataManager;
 class CharacterCreationDataManager {
 	classes: CharacterClass[] = [];
-	feats?;
-	races: Race[] = [];
+	feats?: any;
+	races: IRaceData[] = [];
 	themes: Theme[] = [];
 	constructor() {
 		this.feats = null;
@@ -61,7 +61,7 @@ function updateRace(name: string, subraceName?: string) {
 	name = name || "Human";
 	subraceName = subraceName || "";
 
-	let race = ccdm.races.filter(function (entry: Race) {
+	let race = ccdm.races.filter(function (entry: IRaceData) {
 		return entry.name === name;
 	})[0];
 	// if (subraceName.length > 0) {
@@ -73,7 +73,7 @@ function updateRace(name: string, subraceName?: string) {
 	ccm.racePage.show();
 }
 
-function getRaceOptionEntry(item: Race) {
+function getRaceOptionEntry(item: IRaceData) {
 	const id = item.hasOwnProperty('ID')? item.ID.toLowerCase() : item.name.toLowerCase();
 	const l = "/sf/img/portraits/" + id + ".png";
 	if (item.hasOwnProperty('subraces')) {
@@ -155,7 +155,9 @@ function nextModal() {
 		$("#modal-blocker").hide();
 	}
 }
-function destroyModal(modal: string|JQuery<HTMLElement>) {
+function destroyModal(modal: string | JQuery<HTMLElement>)
+{
+	//@ts-ignore
 	$(modal).remove();
 	if ($('.modal:visible').length == 0) {
 		$("#modal-blocker").hide();
@@ -167,12 +169,13 @@ function selectCharacterOption(sender: JQuery<HTMLElement>) {
 }
 
 /********* Stat Generator*********/
-function changeBase(e: Event)
+function changeBase(this: HTMLInputElement, e: Event)
 {
 	const o=Number($("#budget").val());
 	let a = 0;
 	const target: HTMLInputElement = this;
-	$(".base").each((e, o) => a += getCost(Number(o.value)));
+	//@ts-ignore
+	$(".base").each((e, o2) => a += getCost(Number((o2 as HTMLInputElement).value)));
 	if (a > o)
 	{
 		if (target.dataset.prev != undefined)
@@ -462,7 +465,7 @@ class RacePage extends CreationPage {
 			this.element.find("button.select").attr("disabled", "");
 		}
 		getRaces().done(function (returnedData: any) {
-			var items: Race[] = returnedData.items;
+			var items: IRaceData[] = returnedData.items;
 			ccdm.races = items;
 			var newBody = $("<div></div>");
 			if (isChoose || name.length == 0) {
@@ -475,7 +478,7 @@ class RacePage extends CreationPage {
 				newBody.append(options);
 			} else {
 				subraceName = subraceName || "";
-				var item = ccdm.races.filter(function (entry: Race) {
+				var item = ccdm.races.filter(function (entry: IRaceData) {
 					return entry.name === name;
 				})[0];
 				if (subraceName.length > 0) {
@@ -491,7 +494,7 @@ class RacePage extends CreationPage {
 					for (let i = 0; i < Object.keys(item.ability).length; i++) {
 						const e = Object.keys(item.ability)[i];
 						const a = Object.keys(item.ability)[i];
-						const val = item.ability[e];
+						const val = item.ability[e] as number;
 						const sign = val<0? "":"+";
 						asi += `<span class="ability">${sign}${val} ${a}</span>`;
 					}
@@ -961,7 +964,7 @@ class CharacterLevelPage extends CreationPage
 
 		if (this.level.class.name !== undefined && this.level.class.name !== "") {
 			var val = this.level.class.name;
-			this.level.class.choices.forEach(choice => {
+			this.level.class.choices.forEach((choice: any) => {
 				val += "|" + choice.value;
 			});
 			this.$(".class-options .value").val(val);
@@ -1003,7 +1006,7 @@ class ClassLevelPage extends CreationPage
 {
 	class: string;
 	classObj?: CharacterClass;
-	shownFeature;
+	shownFeature: any;
 	constructor(parent: CharacterLevelPage) {
 		super(parent, "class-level-modal", "&lt;", "Select Class Options", "Finish");
 		this.parent.parent.element.append(this.element);
@@ -1080,12 +1083,12 @@ class ClassLevelPage extends CreationPage
 			let classDef = target.parent.parent.character.classes.get(name);
 			let subClsName = classDef != null? classDef.subclass : undefined;
 			if (cls.hasOwnProperty("subclasses") && subClsName) {
-				var subclass = cls.subclasses.filter(function (entry) {
+				var subclass = cls.subclasses.filter(function (entry: any) {
 					return entry.id === subClsName;
 				})[0];
-				subclass.levels.forEach(scLvl => {
+				subclass.levels.forEach((scLvl: any) => {
 					if (scLvl.level == lvl+1) {
-						scLvl.features.forEach(e => {
+						scLvl.features.forEach((e: any) => {
 							let opt = $(`
 								<li name="${e.name}" title="${e.name}" class="subclass-option">
 									<span class="name">${e.name} <input type="text" class="id" disabled /> <input type="text" class="value" disabled /></span>
@@ -1143,10 +1146,10 @@ class ClassLevelPage extends CreationPage
 		if (this.classObj != undefined) {
 			let target = this;
 			if (this.classObj.hasOwnProperty("subclasses")) {
-				this.classObj.subclasses.forEach(subclass => {
-					subclass.levels.forEach(scLvl => {
+				this.classObj.subclasses.forEach((subclass: any) => {
+					subclass.levels.forEach((scLvl: any) => {
 						if (scLvl.level == lvl+1) {
-							var feat = scLvl.features.filter(function (entry) {
+							var feat = scLvl.features.filter(function (entry: any) {
 								return entry.name === name;
 							})[0];
 							target.$(".preview-pane .name").text(feat.name);
@@ -1181,7 +1184,7 @@ class ClassLevelPage extends CreationPage
 		target.find(".id").val(id);
 		target.find(".value").val(val);
 
-		var option = this.shownFeature.choice.options.filter(function (entry) {
+		var option = this.shownFeature.choice.options.filter(function (entry: any) {
 			return entry.name === val;
 		})[0];
 		$(".option-content").html(option.description);
@@ -1650,7 +1653,7 @@ function autocomplete(inp: HTMLInputElement, arr: string[]) {
       a.setAttribute("id", this.id + "autocomplete-list");
       a.setAttribute("class", "autocomplete-items");
       /*append the DIV element as a child of the autocomplete container:*/
-      this.parentNode.appendChild(a);
+      this.parentNode?.appendChild(a);
       /*for each item in the array...*/
       for (i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
@@ -1676,7 +1679,7 @@ function autocomplete(inp: HTMLInputElement, arr: string[]) {
   });
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
-      var x = document.getElementById(this.id + "autocomplete-list");
+      var x: HTMLElement|HTMLCollectionOf<HTMLElement>|null = document.getElementById(this.id + "autocomplete-list");
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {
         /*If the arrow DOWN key is pressed,
@@ -1699,7 +1702,7 @@ function autocomplete(inp: HTMLInputElement, arr: string[]) {
         }
       }
   });
-  function addActive(x) {
+  function addActive(x?: HTMLCollectionOf<HTMLElement>|null) {
     /*a function to classify an item as "active":*/
     if (!x) return false;
     /*start by removing the "active" class on all items:*/
@@ -1709,24 +1712,24 @@ function autocomplete(inp: HTMLInputElement, arr: string[]) {
     /*add class "autocomplete-active":*/
     x[currentFocus].classList.add("autocomplete-active");
   }
-  function removeActive(x) {
+  function removeActive(x: HTMLCollectionOf<HTMLElement>) {
     /*a function to remove the "active" class from all autocomplete items:*/
     for (var i = 0; i < x.length; i++) {
       x[i].classList.remove("autocomplete-active");
     }
   }
-  function closeAllLists(elmnt?) {
+  function closeAllLists(elmnt?: HTMLElement) {
     /*close all autocomplete lists in the document,
     except the one passed as an argument:*/
     var x = document.getElementsByClassName("autocomplete-items");
     for (var i = 0; i < x.length; i++) {
       if (elmnt != x[i] && elmnt != inp) {
-        x[i].parentNode.removeChild(x[i]);
+        x[i].parentNode?.removeChild(x[i]);
       }
     }
   }
   /*execute a function when someone clicks in the document:*/
   document.addEventListener("click", function (e) {
-      closeAllLists(e.target);
+      closeAllLists(e.target as HTMLElement);
   });
 }

@@ -1,7 +1,7 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
-import { PersonPhysicalFeature } from '../js/characters/PersonPhysicalFeature.js';
-import { Hair } from '../js/characters/Hair.js';
-import { Person } from '../js/characters/Person.js';
+import { PersonPhysicalFeature } from './characters/PersonPhysicalFeature.js';
+import { Hair } from './characters/Hair.js';
+import { Person } from './characters/Person.js';
 export declare module CharactersModular {
     var hairOptions: string[];
     var bodyPartOptions: {
@@ -43,6 +43,7 @@ export declare module CharactersModular {
     }
     class Person3D extends THREE.Mesh {
         animations: THREE.AnimationClip[];
+        personId: string;
         _equipment: Person3DEquipment | undefined;
         _hatHolder: THREE.Bone | undefined;
         _animation: string;

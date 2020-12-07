@@ -1,5 +1,192 @@
 [
 	{
+		"name": "Decapos",
+		"cartographer": "smith",
+		"cities": [
+			{
+				"name": "Grandcrest",
+				"type": "city",
+				"description": [
+					"These ancient ruins are surprisingly advanced. In fact, some of the technology here appears to surpass anything in the current age."
+				],
+				"culture": [],
+				"dmNotes": [
+					"Population:",
+					"Skeleton",
+					"Zombie",
+					"Mummy",
+					"One decrepit Nagpa",
+					"The city that was once the childhood home of the Rewera, once known as Deimos. The darkness within Deimos spoke to something within the Nagpa. While all of the Nagpa's other underlings were subjected to horrible experiments, Deimos was treated as a ember of the flock. Deimos' innate intelligence and lust for power quickly caused him to rise among their ranks. While the rest of the world prophesies the Rewera as the end of days, the Nagpa believe it to signal the rebirth of their empire.",
+					"Absolutely overrun with undead."
+				],
+				"url": "#",
+				"position": {
+					"left": "70%",
+					"top": "22%"
+				},
+				"marker": {
+					"type": "city",
+					"position": {
+						"right": "103%",
+						"top": "30%"
+					}
+				}
+			},
+			{
+				"name": "Sun's Warmth",
+				"type": "city",
+				"description": [
+					"An open field, littered with scattered tents."
+				],
+				"culture": [],
+				"dmNotes": [
+					"Population:",
+					"Tabaxi",
+					"Myconid",
+					"With their enslavemnt behind them, the Tabaxi of Decapos settled into the lives of peaceful nomads."
+				],
+				"url": "#",
+				"position": {
+					"left": "75%",
+					"top": "35%"
+				},
+				"marker": {
+					"type": "town",
+					"position": {
+						"right": "103%",
+						"top": "30%"
+					}
+				}
+			},
+			{
+				"name": "(Башня Стража) Bashnya Strazha",
+				"type": "city",
+				"description": [
+					"A small fortress lies inside walls made of sharpened logs."
+				],
+				"culture": [],
+				"dmNotes": [
+					"Population:",
+					"Hobgoblin",
+					"Myconid",
+					"After the fall of the Nagpa tyrants, the liberated Hobgoblins elected to put down roots just outside the ruined capital. In the event the mechanical mosnters inside are ever revived, they intend to be the first on the scene to exterminate them."
+				],
+				"url": "#",
+				"position": {
+					"left": "73%",
+					"top": "24%"
+				},
+				"marker": {
+					"type": "town",
+					"position": {
+						"right": "103%",
+						"top": "30%"
+					}
+				}
+			},
+			{
+				"name": "Splishter",
+				"type": "city",
+				"description": [
+					"There are no visible buildings, but it is known that a village exists here. The citizens are rumored to be nocturnal."
+				],
+				"culture": [],
+				"dmNotes": [
+					"Population:",
+					"Kuo-toa",
+					"Myconid"
+				],
+				"url": "#",
+				"position": {
+					"left": "81%",
+					"top": "22%"
+				},
+				"marker": {
+					"type": "town",
+					"position": {
+						"right": "103%",
+						"top": "30%"
+					}
+				}
+			},
+			{
+				"name": "Tranquility",
+				"type": "city",
+				"description": [
+					"Simple huts dot the river. In a way, it's almost idyllic."
+				],
+				"culture": [],
+				"dmNotes": [
+					"Population:",
+					"Subek",
+					"Myconid"
+				],
+				"url": "#",
+				"position": {
+					"left": "62%",
+					"top": "33%"
+				},
+				"marker": {
+					"type": "town",
+					"position": {
+						"right": "103%",
+						"top": "30%"
+					}
+				}
+			},
+			{
+				"name": "Eyesbane",
+				"type": "city",
+				"description": [
+					"Were this village not constantly shrouded in the shadow cast by the mountains, it would almost seem <span style=\"font-style: italic\">too</span> normal."
+				],
+				"culture": [],
+				"dmNotes": [
+					"Population:",
+					"Mongrelfolk",
+					"Myconid"
+				],
+				"url": "#",
+				"position": {
+					"left": "64%",
+					"top": "22%"
+				},
+				"marker": {
+					"type": "town",
+					"position": {
+						"right": "103%",
+						"top": "30%"
+					}
+				}
+			},
+			{
+				"name": "Harborhome",
+				"type": "city",
+				"description": [
+					"A large, bustling trade center that grew around a halfling fishing village."
+				],
+				"culture": [],
+				"dmNotes": [
+					"Population:",
+					"Halfling",
+					"Human"
+				],
+				"url": "#",
+				"position": {
+					"left": "42.8%",
+					"top": "63.43%"
+				},
+				"marker": {
+					"type": "town",
+					"position": {
+						"right": "103%",
+						"top": "30%"
+					}
+				}
+			}
+		]
+	},
+	{
 		"name": "Lagos",
 		"cartographer": "smith",
 		"cities": [
@@ -171,7 +358,7 @@
 				"culture": [
 					"The climate displaced center of Graisham is home to the goddess Graisum and a small handful of carefully chosen followers. They are fiercely protective of this territory and the plant life within it. While most people are unable to survive within the circle, small farms pepper the outlying area. The largest cluster of civilization lies at the base of one of the ridges, and is populated by devout followers of Graisum.",
 					"Most people who travel to Graisham do so during a religious pilgrimage. The vast majority wish to make an offering to Graisum in exchange for blessings upon their harvest, but there are some who make offerings to Tordanei. While Tordenei is seldom seen in Graisham, it is said that she returns frequently to keep up the climate zones for her sister.",
-					"Nearly all races are welcome on the outskirts of the climate circle, so long as they respect nature. All Graishamites detest destruction of plants, but none so much as Graisham's chosen followers. Many an adventurer has entered the climate circle, only to be slain as punishment for treading on a sacred blade of grass."
+					"Nearly all races are welcome on the outskirts of the climate circle, so long as they respect nature. All Graishamites detest destruction of plants, but none so much as Graisum's chosen followers. Many an adventurer has entered the climate circle, only to be slain as punishment for treading on a sacred blade of grass."
 				],
 				"dmNotes": [],
 				"url": "#",
@@ -439,7 +626,7 @@
 				"name": "Moonfire Village",
 				"type": "village",
 				"description": [
-					"Hidden amount the peaks of the Moonfire Mountains lies a civilization of frost giants. The harsh environment ensures that the giants have very few visitors, which is fine by them."
+					"Hidden among the peaks of the Moonfire Mountains lies a civilization of frost giants. The harsh environment ensures that the giants have very few visitors, which is fine by them."
 				],
 				"culture": [
 					"The giants are fierce warriors, and kill for sport. Any visitors deemed strong enough for combat are almost certain to be slaughtered."
@@ -701,10 +888,22 @@
 				"name": "Victarn",
 				"type": "village",
 				"description": [
-					"Victarn is something of a safe-haven for arcane avengers. It is home to one of the worlds only recorded academies for monster hunters."
+					"Victarn is something of a safe-haven for arcane avengers. It is home to one of the world's only recorded academies for monster hunters."
 				],
 				"culture": [],
-				"dmNotes": [],
+				"dmNotes": [
+					"Cocky monster hunter:",
+					"    Wolfstan Slater",
+					"    Dark hair",
+					"    Thick stubble and or short beard. Need to see how they look in Heroforge to finalize.",
+					"    Voiced with generic Sidhon-esque voice.",
+					"Headmaster of the Monster Hunter Academy:",
+					"    Mr. Pennington",
+					"    White hair with dark roots.",
+					"    Right eye is missing and there is a large scar.",
+					"    Left arm is gone beneath the elbow.",
+					"    Voiced kinda like Sylvester Stallone"
+				],
 				"url": "#",
 				"useCityViewer": true,
 				"position": {
@@ -962,7 +1161,7 @@
 				"name": "Ritchton",
 				"type": "village",
 				"description": [
-					"Richton is a place where ambitious old heroes go to wait out old age. Here they keep an ear to the ground, and try to monitor the world to ensure it stays on the right track."
+					"Ritchton is a place where ambitious old heroes go to wait out old age. Here they keep an ear to the ground, and try to monitor the world to ensure it stays on the right track."
 				],
 				"culture": [],
 				"dmNotes": [],
@@ -1027,6 +1226,11 @@
 				}
 			}
 		]
+	},
+	{
+		"name": "Notre",
+		"cartographer": "smith",
+		"cities": []
 	},
 	{
 		"name": "Paros",
@@ -1342,190 +1546,18 @@
 		]
 	},
 	{
-		"name": "Decapos",
+		"name": "Peku",
 		"cartographer": "smith",
-		"cities": [
-			{
-				"name": "Grandcrest",
-				"type": "city",
-				"description": [
-					"These ancient ruins are surprisingly advanced. In fact, some of the technology here appears to surpass anything in the current age."
-				],
-				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Skeleton",
-					"Zombie",
-					"Mummy",
-					"One decrepit Nagpa",
-					"The city that was once the childhood home of the Rewera, once known as Deimos. The darkness within Deimos spoke to something within the Nagpa. While all of the Nagpa's other underlings were subjected to horrible experiments, Deimos was treated as a ember of the flock. Deimos' innate intelligence and lust for power quickly caused him to rise among their ranks. While the rest of the world prophesies the Rewera as the end of days, the Nagpa believe it to signal the rebirth of their empire.",
-					"Absolutely overrun with undead."
-				],
-				"url": "#",
-				"position": {
-					"left": "70%",
-					"top": "22%"
-				},
-				"marker": {
-					"type": "city",
-					"position": {
-						"right": "103%",
-						"top": "30%"
-					}
-				}
-			},
-			{
-				"name": "Sun's Warmth",
-				"type": "city",
-				"description": [
-					"An open field, littered with scattered tents."
-				],
-				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Tabaxi",
-					"Myconid",
-					"With their enslavemnt behind them, the Tabaxi of Decapos settled into the lives of peaceful nomads."
-				],
-				"url": "#",
-				"position": {
-					"left": "75%",
-					"top": "35%"
-				},
-				"marker": {
-					"type": "town",
-					"position": {
-						"right": "103%",
-						"top": "30%"
-					}
-				}
-			},
-			{
-				"name": "(Башня Стража) Bashnya Strazha",
-				"type": "city",
-				"description": [
-					"A small fortress lies inside walls made of sharpened logs."
-				],
-				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Hobgoblin",
-					"Myconid",
-					"After the fall of the Nagpa tyrants, the liberated Hobgoblins elected to put down roots just outside the ruined capital. In the event the mechanical mosnters inside are ever revived, they intend to be the first on the scene to exterminate them."
-				],
-				"url": "#",
-				"position": {
-					"left": "73%",
-					"top": "24%"
-				},
-				"marker": {
-					"type": "town",
-					"position": {
-						"right": "103%",
-						"top": "30%"
-					}
-				}
-			},
-			{
-				"name": "Splishter",
-				"type": "city",
-				"description": [
-					"There are no visible buildings, but it is known that a village exists here. The citizens are rumored to be nocturnal."
-				],
-				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Kuo-toa",
-					"Myconid"
-				],
-				"url": "#",
-				"position": {
-					"left": "81%",
-					"top": "22%"
-				},
-				"marker": {
-					"type": "town",
-					"position": {
-						"right": "103%",
-						"top": "30%"
-					}
-				}
-			},
-			{
-				"name": "Tranquility",
-				"type": "city",
-				"description": [
-					"Simple huts dot the river. In a way, it's almost idyllic."
-				],
-				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Subek",
-					"Myconid"
-				],
-				"url": "#",
-				"position": {
-					"left": "62%",
-					"top": "33%"
-				},
-				"marker": {
-					"type": "town",
-					"position": {
-						"right": "103%",
-						"top": "30%"
-					}
-				}
-			},
-			{
-				"name": "Eyesbane",
-				"type": "city",
-				"description": [
-					"Were this village not constantly shrouded in the shadow cast by the mountains, it would almost seem <span style=\"font-style: italic\">too</span> normal."
-				],
-				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Mongrelfolk",
-					"Myconid"
-				],
-				"url": "#",
-				"position": {
-					"left": "64%",
-					"top": "22%"
-				},
-				"marker": {
-					"type": "town",
-					"position": {
-						"right": "103%",
-						"top": "30%"
-					}
-				}
-			},
-			{
-				"name": "Harborhome",
-				"type": "city",
-				"description": [
-					"A large, bustling trade center that grew around a halfling fishing village."
-				],
-				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Halfling",
-					"Human"
-				],
-				"url": "#",
-				"position": {
-					"left": "42.8%",
-					"top": "63.43%"
-				},
-				"marker": {
-					"type": "town",
-					"position": {
-						"right": "103%",
-						"top": "30%"
-					}
-				}
-			}
-		]
+		"cities": []
+	},
+	{
+		"name": "Sutre",
+		"cartographer": "smith",
+		"cities": []
+	},
+	{
+		"name": "Terrapim",
+		"cartographer": "smith",
+		"cities": []
 	}
 ]

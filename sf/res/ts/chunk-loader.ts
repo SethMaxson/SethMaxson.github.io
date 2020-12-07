@@ -1,9 +1,9 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { GLTFLoader } from '../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
-import { Characters } from '../../../sf/res/js/characters.js';
-import { Engine } from '../../../sf/res/js/engine.js';
-import { main, Entity } from '../js/engine/engine.js';
-import { Stage } from '../js/engine/stage.js';
+import { Characters } from './characters.js';
+import { Engine } from './engine.js';
+import { main, Entity } from './engine/engine.js';
+import { Stage } from './engine/stage.js';
 
 declare function randomize(Array: any): any;
 

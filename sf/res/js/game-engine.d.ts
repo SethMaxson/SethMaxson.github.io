@@ -1,9 +1,9 @@
 /// <reference types="jquery" />
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { OutlineEffect } from '../../../node_modules/three/examples/jsm/effects/OutlineEffect.js';
-import { Characters } from '../../../sf/res/js/characters.js';
-import { PointerLockControls } from '../../../sf/res/js/PointerControls.js';
-import { Sky } from '../../../sf/res/js/sky.js';
+import { Characters } from './characters.js';
+import { PointerLockControls } from './PointerControls.js';
+import { Sky } from './sky.js';
 export declare var main: Engine.Main;
 export declare namespace Engine {
     export function Initialize(controlsType?: string): Main;
@@ -303,4 +303,3 @@ export declare namespace Engine {
     }
     export {};
 }
-//# sourceMappingURL=game-engine.d.ts.map

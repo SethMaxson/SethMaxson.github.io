@@ -1,12 +1,13 @@
 import * as THREE from '../../../../node_modules/three/src/Three.js';
-import { Hair } from '../../js/characters/Hair.js';
-import { FOUR } from '../../js/four.js';
-import { PersonPhysicalFeature } from '../../js/characters/PersonPhysicalFeature.js';
-import { CharactersModular } from '../../js/characters-modular.js';
+import { Hair } from './Hair.js';
+import { FOUR } from './../four.js';
+import { PersonPhysicalFeature } from './../characters/PersonPhysicalFeature.js';
+import { CharactersModular } from './../characters-modular.js';
 const genders = "fm";
 export class Person {
     constructor(name, race, textureURL, gender, hairstyle, haircolor, beardstyle, skincolor, weight, themecolor = 0x999999, type, ladychest) {
         this.hair = [];
+        this.personId = "";
         this.ladychest = 0;
         this.weight = 0;
         this.pants = 0;

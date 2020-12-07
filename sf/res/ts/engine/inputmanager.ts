@@ -41,6 +41,11 @@ export class InputManager
 		addKey(0, 'click'); // left click
 		addKey(1, 'click'); // left click
 		addKey(2, 'rightClick'); // right click
+
+		addKey(0, 'talk'); // left click
+		addKey(1, 'talk'); // left click
+		addKey(2, 'magic'); // right click
+
 		addKey(32, 'jump'); // spacebar
 		addKey(84, 'talk'); // t
 		addKey(77, 'magic'); // m

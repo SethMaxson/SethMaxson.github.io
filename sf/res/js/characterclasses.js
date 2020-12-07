@@ -27,6 +27,7 @@ function getRacialTraits() {
 }
 class Race {
     constructor(o, subraceName) {
+        //@ts-ignore
         this.ability = new Abilities(0, 0, 0, 0, 0, 0);
         this.description = "";
         this.ID = "";
@@ -36,6 +37,8 @@ class Race {
         this.type = "";
         this.features = [];
         this.source = "";
+        this.subraces = [];
+        this.page = 0;
         if (typeof o === 'object') {
             this.name = o.name;
             if (o.ability) {
@@ -49,10 +52,11 @@ class Race {
             this.subrace = subraceName || "";
             this.size = o.size;
             this.type = o.type;
-            this.features = o.features || [];
             this.source = o.source;
             this.description = o.description;
             this.ID = o.ID;
+            this.subraces = o.subraces || [];
+            this.page = o.page || 0;
         }
         else {
             this.name = o;
@@ -113,22 +117,6 @@ class Race {
             results = results.concat(e.properties);
         }
         return results;
-    }
-}
-class RaceData {
-    constructor(o) {
-        o = o || {};
-        this.name = o.name || undefined;
-        this.ID = o.ID || undefined;
-        this.ability = o.ability || {};
-        this.hp = o.hp || undefined;
-        this.size = o.size || undefined;
-        this.type = o.type || undefined;
-        this.source = o.source || undefined;
-        this.subraces = o.subraces || [];
-        this.page = o.page || undefined;
-        this.description = o.description || undefined;
-        this.features = o.features || [];
     }
 }
 class RacialBenefit {
@@ -744,7 +732,7 @@ class Character {
                 target.classes = new CharacterClasses();
                 for (let i = 0; i < target.levels.length; i++) {
                     const el = target.levels[i];
-                    let subClass = el.hasOwnProperty("choices") ? el.choices.filter(function (entry) {
+                    let subClass = el.class.hasOwnProperty("choices") ? el.class.choices.filter(function (entry) {
                         return entry.id === "Subclass";
                     }) : [];
                     let clsObj = new CharacterClass(classDat.items.filter(function (entry) {

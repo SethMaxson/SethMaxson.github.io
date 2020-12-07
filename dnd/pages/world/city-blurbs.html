@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Pantheon</title>
+		<!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
+		<style>
+			* {
+				font-family: Calibri, sans-serif;
+			}
+
+			h1 {
+				font-weight: bold;
+			}
+
+			h3 {
+				font-weight: bold;
+				margin-bottom: 0;
+				margin-top:12pt;
+				font-size: 16pt;
+			}
+
+			p {
+				font-size:12pt;
+				margin-top: 0;
+			}
+
+			span.culture {
+				font-weight: bold;
+				font-size:12pt;
+				margin-bottom: 0;
+			}
+		</style>
+		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
+		<script>
+			$(document).ready(() => {
+				var cityData = getCityData();
+				$.when(cityData).done(function(continentSections){
+					for (let index = 0; index < continentSections.length; index++) {
+						const continent = continentSections[index];
+						$(".container").append(
+							$(`<h1>${continent.name}</h1>`)
+						);
+						for (let i = 0; i < continent.cities.length; i++) {
+							$(".container").append(
+								getCityBlurbMarkup(continent.cities[i])
+							);
+						}
+					}
+				})
+			})
+			function getCityBlurbMarkup(city) {
+				let description = "";
+				for (let i = 0; i < city.description.length; i++) {
+					description += "<p>" + city.description[i] + "</p>";
+				}
+				let culture = city.culture.length > 0 ? "<span class=\"culture\">Culture.</span>" : "";
+				for (let i = 0; i < city.culture.length; i++) {
+					culture += "<p>" + city.culture[i] + "</p>";
+				}
+				if (description.length > 0 || culture.length > 0) {
+					return $(`
+						<div>
+							<h3>${city.name}</h3>
+							${description}
+							${culture}
+						</div>
+					`);
+				}
+				else {
+					return $(``);
+				}
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+
+			</div>
+		</div>
+	</body>
+
+</html>
