@@ -1223,7 +1223,6 @@ export module Characters
 					person.userData.animations.Stand = "ManicMage";
 					break;
 				case 'feral':
-					// clip = THREE.AnimationClip.findByName( person.animations, 'LadyChest' );
 					person.userData.animations.Stand = "LadyChest";
 					break;
 				case 'druid':

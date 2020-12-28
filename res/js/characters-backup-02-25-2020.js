@@ -237,7 +237,7 @@ function getNPC(name, x, y, z){
 }
 
 function getParty(target, x, y, z){
-	const partyMembers = [ "Bud", "Jasper", "Falumer", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenreya"];
+	const partyMembers = [ "Bud", "Jasper", "Falumer", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenrya"];
 	// var target = new THREE.Object3D();
 	for (let i = 0; i < partyMembers.length; i++) {
 		const e = partyMembers[i];

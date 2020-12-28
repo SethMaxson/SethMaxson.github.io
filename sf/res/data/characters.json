@@ -20,7 +20,7 @@
 			"themecolor":"#775520"
 		},
 		{
-			"id":"Falimrr",
+			"id":"Falimur",
 			"name":"Falimur",
 			"race":"aasimar",
 			"type":"cleric",
@@ -185,6 +185,7 @@
 			"themecolor":"#7ee2ff"
 		},
 		{
+			"id":"Redji",
 			"name":"Redji",
 			"race":"human",
 			"type":"mage",
@@ -224,7 +225,7 @@
 			"id":"Shamous",
 			"name":"Shamous",
 			"race":"tortle",
-			"type":"feral",
+			"type":"druid",
 			"texture":null,
 			"gender":"m",
 			"hairstyle":[],
@@ -301,7 +302,7 @@
 			"name":"Zenrya",
 			"race":"halfling",
 			"type":"sorc",
-			"texture":"/res/models/Advanced/skin_zenreya.png",
+			"texture":"/res/models/Advanced/skin_zenrya.png",
 			"gender":"f",
 			"hairstyle":[
 				{"style":"Hood_Large", "color":"#39345a"},

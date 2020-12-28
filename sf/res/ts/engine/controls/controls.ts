@@ -140,5 +140,27 @@ export abstract class Controls extends EventDispatcher
 		document.exitPointerLock();
 	};
 
+	/** Toggles between first and third person views */
+	toggleView()
+	{
+		this.firstPerson = !this.firstPerson;
+		if (this.firstPerson == true)
+		{
+			this.Camera.position.z = 0;
+			if (this.mesh != undefined)
+			{
+				this.mesh.visible = false;
+			}
+		} else
+		{
+			this.Camera.position.z = this._zoom;
+			if (this.mesh != undefined)
+			{
+				this.mesh.visible = true;
+				this.motion.rotation.y = this.getObject().rotation.y;
+			}
+		}
+	}
+
 	abstract update(delta: number): void;
 }

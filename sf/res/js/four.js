@@ -30,7 +30,7 @@ export var FOUR;
         return new THREE.Color(param).convertSRGBToLinear();
     }
     FOUR.Color = Color;
-    function Renderer() {
+    function Renderer(containerElement) {
         let rend = new THREE.WebGLRenderer({ antialias: true });
         rend.setPixelRatio(window.devicePixelRatio);
         rend.sortObjects = true;
@@ -39,7 +39,7 @@ export var FOUR;
         rend.shadowMap.shadowSide = THREE.CullFaceFrontBack;
         // renderer.shadowMap.type = THREE.BasicShadowMap;
         rend.shadowMap.type = THREE.PCFSoftShadowMap;
-        document.getElementById('container').appendChild(rend.domElement);
+        containerElement.appendChild(rend.domElement);
         rend.setSize(Math.floor(window.innerWidth), Math.floor(window.innerHeight));
         rend.gammaFactor = 2.2;
         // rend.physicallyCorrectLights = true;

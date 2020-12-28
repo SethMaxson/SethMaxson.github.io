@@ -831,7 +831,7 @@ export var Characters;
     }
     Characters.getPC = getPC;
     function getParty(target, x = 0, y = 0, z = 0) {
-        const partyMembers = ["Bud", "Jasper", "Falumer", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenreya"];
+        const partyMembers = ["Bud", "Jasper", "Falimur", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenrya"];
         // var target = new THREE.Object3D();
         for (let i = 0; i < partyMembers.length; i++) {
             const e = partyMembers[i];

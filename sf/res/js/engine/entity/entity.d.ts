@@ -15,7 +15,7 @@ export declare class Entity {
     Motion: PersonMotion;
     PositionOffset: THREE.Vector3;
     Animations: EntityAnimations;
-    constructor(model?: Characters.Person3D);
+    constructor(model: Characters.Person3D);
     get Model(): Characters.Person3D;
     set Model(value: Characters.Person3D);
     get ID(): string;

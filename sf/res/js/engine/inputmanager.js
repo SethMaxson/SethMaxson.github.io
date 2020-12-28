@@ -4,6 +4,7 @@ import * as THREE from '../../../../node_modules/three/src/Three.js';
 */
 export class InputManager {
     constructor() {
+        //@ts-ignore
         this.keys = {};
         const keyMap = new Map();
         const addKey = (keyCode, name) => {
@@ -34,6 +35,8 @@ export class InputManager {
         addKey(0, 'talk'); // left click
         addKey(1, 'talk'); // left click
         addKey(2, 'magic'); // right click
+        addKey(80, 'pause'); // p
+        addKey(16, 'pause'); // escape
         addKey(32, 'jump'); // spacebar
         addKey(84, 'talk'); // t
         addKey(77, 'magic'); // m

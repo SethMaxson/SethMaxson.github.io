@@ -33,7 +33,7 @@ export module FOUR
 		return new THREE.Color(param).convertSRGBToLinear();
 	}
 
-	export function Renderer()
+	export function Renderer(containerElement: HTMLElement)
 	{
 		let rend = new THREE.WebGLRenderer( { antialias: true } );
 		rend.setPixelRatio( window.devicePixelRatio );
@@ -43,7 +43,7 @@ export module FOUR
 		rend.shadowMap.shadowSide = THREE.CullFaceFrontBack;
 		// renderer.shadowMap.type = THREE.BasicShadowMap;
 		rend.shadowMap.type = THREE.PCFSoftShadowMap;
-		(document.getElementById('container') as HTMLElement).appendChild(rend.domElement);
+		containerElement.appendChild(rend.domElement);
 		rend.setSize(Math.floor(window.innerWidth), Math.floor(window.innerHeight));
 		rend.gammaFactor = 2.2;
 		// rend.physicallyCorrectLights = true;

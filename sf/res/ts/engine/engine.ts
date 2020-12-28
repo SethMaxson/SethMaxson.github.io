@@ -169,12 +169,28 @@ export class Main
 	onRenderFcts: Function[] = [];
 	Motions: PersonMotion[] = [];
 	_effect: OutlineEffect;
+	private _paused: boolean = false;
+	private _pauseBlocker: HTMLElement;
+	private _viewerElement: HTMLElement;
 	Settings: EngineSettings = new EngineSettings();
+	world: CANNON.World;
 	constructor(controlsType: ControlTypes = ControlTypes.Human)
 	{
 		this.HUD = new HUD();
 		$("body").append(this.HUD.html);
-		this.renderer = FOUR.Renderer();
+		this._viewerElement = document.getElementById('container') as HTMLElement;
+		this.renderer = FOUR.Renderer(this._viewerElement);
+		this._pauseBlocker = $(`<div id="pause-blocker" style="position:absolute; top:0; left:0; z-index:9; height:100%; width:100%; display: none; background:black;">
+
+				<div id="instructions" style="width:100%; height:100%; text-align: center; -webkit-box-align: center; -moz-box-align: center; box-align: center; color:white;">
+					<span style="font-size:40px">-PAUSED-</span>
+					<br>
+					(W,A,S,D = Move, SPACE = Jump, MOUSE = Look, CLICK = Shoot)
+				</div>
+
+			</div>
+		`)[0];
+		this._viewerElement.appendChild(this._pauseBlocker);
 		this.HealthManager = new HealthManager();
 		this.Entities = new EntityManager(this);
 		this.Timer = new Timer();
@@ -189,10 +205,39 @@ export class Main
 		});
 		this.DebugHelper = new EngineDebug(this);
 
+		let target = this;
+
+		//#region cannonJS test
+		this.world = new CANNON.World();
+		// this.world.gravity.set(0, -9.82, 0); // m/s²
+		this.world.gravity.set(0, -20, 0); // m/s² in this engine, 1 refers to five feet, not 1 meter
+
+		this.world.defaultContactMaterial.contactEquationStiffness = 1e9;
+		this.world.defaultContactMaterial.contactEquationRelaxation = 4;
+		this.world.default_dt = 1;
+		this.world.defaultContactMaterial.restitution = 0;
+		// this.world.broadphase = new CANNON.GridBroadphase(new CANNON.Vec3(-100, -100, -100), new CANNON.Vec3(100, 100, 100), 10, 10, 10);
+		this.world.broadphase = new CANNON.SAPBroadphase(this.world);
+		this.world.broadphase.useBoundingBoxes = true;
+
+		var fixedTimeStep = 1.0 / 60.0; // seconds
+		var maxSubSteps = 3;
+		var lastTime;
+		(function simloop(time: number = 0){
+			requestAnimationFrame(simloop);
+			if (!target._paused) {
+				if(lastTime !== undefined){
+					var dt = (time - lastTime) / 1000;
+					target.world.step(fixedTimeStep, dt, maxSubSteps);
+				}
+				lastTime = time;
+			}
+		})();
+		//#endregion
+
 		this.start();
 
 		// #region InputManagerSetup
-		let target = this;
 		if (controlsType !== ControlTypes.Viewer) {
 			this.renderer.domElement.addEventListener('click', function ()
 			{
@@ -206,32 +251,7 @@ export class Main
 		document.addEventListener('wheel', onMouseWheel, false);
 		//#endregion
 	}
-	/**
-	 * Toggles between first and third person views
-	 */
-	toggleView()
-	{
-		this.Controls.firstPerson = !this.Controls.firstPerson;
-		if (this.Controls.firstPerson == true)
-		{
-			this.Camera.position.z = 0;
-			if (this.Controls.mesh != undefined)
-			{
-				this.Controls.mesh.visible = false;
-			}
-		} else
-		{
-			this.Camera.position.z = this.Controls._zoom;
-			if (this.Controls.mesh != undefined)
-			{
-				this.Controls.mesh.visible = true;
-				this.Controls.motion.rotation.y = this.Controls.getObject().rotation.y;
-			}
-		}
-	}
-	/**
-	 * The core update method for the game loop.
-	 */
+	/** The core update method for the game loop. */
 	update()
 	{
 		let target = this;
@@ -241,11 +261,6 @@ export class Main
 			// this.processInput();
 			let delta = this.Timer.delta;
 			this.updateGameLogic(delta);
-
-			// let ticks =  Math.round( delta / ( 1 / 120 ) );
-			// for ( let i = 0 ; i < ticks ; i++ ) {
-			// 	this.updateGameLogic( delta / ticks );
-			// };
 
 			// jumping works properly when this is active
 			this.processInput();
@@ -259,7 +274,7 @@ export class Main
 	private processInput()
 	{
 		if (this.InputManager.keys.changeView.justPressed) {
-			this.toggleView();
+			this.Controls.toggleView();
 		}
 		this.InputManager.update();
 	}
@@ -273,29 +288,34 @@ export class Main
 	updateGameLogic(delta: number)
 	{
 		this.Controls.update(delta);
+		if (this.InputManager.keys.pause.justPressed) {
+			!this._paused ? this.pause() : this.unpause();
+		}
 
-		let target = this;
+		if (!this._paused) {
+			let target = this;
 
-		this.Motions.forEach(function (motion)
-		{
-			motion.update(target, delta);
-		});
+			this.Motions.forEach(function (motion)
+			{
+				motion.update(target, delta);
+			});
 
-		this.Entities.members.forEach(function (node)
-		{
-			node.update(delta);
-		});
+			this.Entities.members.forEach(function (node)
+			{
+				node.update(delta);
+			});
 
 
-		this.DebugHelper.update();
-		this.HealthManager.update(this);
+			this.DebugHelper.update();
+			this.HealthManager.update(this);
 
-		this.Sky.update(this.Controls.getObject());
+			this.Sky.update(this.Controls.getObject());
 
-		this.onRenderFcts.forEach(function (onRenderFct)
-		{
-			onRenderFct(delta, target.Timer.prevTime / 1000)
-		});
+			this.onRenderFcts.forEach(function (onRenderFct)
+			{
+				onRenderFct(delta, target.Timer.prevTime / 1000)
+			});
+		}
 	}
 	/**
 	 * Starts (or restarts) this engine instance
@@ -328,11 +348,22 @@ export class Main
 		else
 		{
 			this.Controls = new PlayerControls(this.Camera, this);
+			(this.Controls.motion as PersonMotion).attachPhysics();
 		}
 		this.Scene.add(this.Controls.getObject());
 
 		this.Sky = new Sky(this);
 		this.Scene.add(this.Sky);
+	}
+	pause()
+	{
+		this._paused = true;
+		this._pauseBlocker.style.display = "block";
+	}
+	unpause()
+	{
+		this._paused = false;
+		this._pauseBlocker.style.display = "none";
 	}
 }
 
@@ -452,7 +483,6 @@ export class EntityManager
 		if (interactionTarget != undefined)
 		{
 			this.mainProcess.Interactive.push(interactionTarget);
-			// this.mainProcess.Collidable.push(new THREE.Box3().setFromObject(newMember.Model));
 			if (collidable)
 				this.mainProcess.Collidable.push(interactionTarget);
 		}

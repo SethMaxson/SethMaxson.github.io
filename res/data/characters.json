@@ -259,7 +259,7 @@
 			"name":"Zenrya",
 			"race":"halfling",
 			"type":"sorc",
-			"texture":"/res/models/Advanced/skin_zenreya.png",
+			"texture":"/res/models/Advanced/skin_zenrya.png",
 			"gender":"f",
 			"hairstyle":[
 				{"style":"Hood_Large", "color":"#39345a"},

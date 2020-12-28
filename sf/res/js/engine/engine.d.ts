@@ -1,3 +1,4 @@
+/// <reference types="cannon" />
 import * as THREE from '../../../../node_modules/three/src/Three.js';
 import { OutlineEffect } from '../../../../node_modules/three/examples/jsm/effects/OutlineEffect.js';
 import { Characters } from './../characters.js';
@@ -94,15 +95,13 @@ export declare class Main {
     onRenderFcts: Function[];
     Motions: PersonMotion[];
     _effect: OutlineEffect;
+    private _paused;
+    private _pauseBlocker;
+    private _viewerElement;
     Settings: EngineSettings;
+    world: CANNON.World;
     constructor(controlsType?: ControlTypes);
-    /**
-     * Toggles between first and third person views
-     */
-    toggleView(): void;
-    /**
-     * The core update method for the game loop.
-     */
+    /** The core update method for the game loop. */
     update(): void;
     private processInput;
     /** Render to the screen */
@@ -113,6 +112,8 @@ export declare class Main {
      * @param controlsType
      */
     start(controlsType?: ControlTypes): void;
+    pause(): void;
+    unpause(): void;
 }
 /** A debug helper meant to be attached to an instance of Main. */
 declare class EngineDebug {

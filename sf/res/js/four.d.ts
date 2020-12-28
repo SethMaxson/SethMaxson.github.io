@@ -4,6 +4,6 @@ export declare module FOUR {
     function Texture(url: string, flipY?: boolean): THREE.Texture;
     function Material(parameters: any): THREE.MeshToonMaterial;
     function Color(param: any): THREE.Color;
-    function Renderer(): THREE.WebGLRenderer;
+    function Renderer(containerElement: HTMLElement): THREE.WebGLRenderer;
     function getColorNumber(color: number | string): number;
 }

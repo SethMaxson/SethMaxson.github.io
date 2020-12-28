@@ -34,5 +34,7 @@ export declare abstract class Controls extends EventDispatcher {
     getObject(): Object3D;
     lock(): void;
     unlock(): void;
+    /** Toggles between first and third person views */
+    toggleView(): void;
     abstract update(delta: number): void;
 }

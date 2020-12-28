@@ -27,6 +27,9 @@ export class StageEntityManager {
         this.members.push(newMember);
         this.mainProcess.Entities.Add(newMember, collidable);
         this.parent.EntityModels.add(newMember.Model);
+        if (newMember.Motion.physicsBody) {
+            this.mainProcess.world.addBody(newMember.Motion.physicsBody);
+        }
     }
     AddMesh(newMember, collidable = false) {
         this.Add(new Entity(newMember), collidable);

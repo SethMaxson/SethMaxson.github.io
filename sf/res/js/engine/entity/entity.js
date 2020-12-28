@@ -3,7 +3,6 @@ import { EntityEvents } from './entityevents.js';
 import { EntityAnimations } from './entityanimations.js';
 import { HitPoints } from '../engine.js';
 import { PersonMotion } from '../motion.js';
-import { Characters } from './../../characters.js';
 /**
  * This class contains objects and methods for a character.
  */
@@ -13,14 +12,10 @@ export class Entity {
         this.Health = new HitPoints(this._ID);
         this.Events = new EntityEvents();
         this.Motion = new PersonMotion();
-        if (model == undefined) {
-            this._Model = new Characters.Person3D();
-        }
-        else {
-            this._Model = model;
-            this.Motion.position.copy(model.position);
-            this.Motion.rotation.copy(model.rotation);
-        }
+        this._Model = model;
+        this.Motion.position.copy(model.position);
+        this.Motion.rotation.copy(model.rotation);
+        // this.Motion.attachPhysics();
         this.PositionOffset = new THREE.Vector3(0, -1, 0);
         this.Animations = new EntityAnimations();
     }
@@ -40,7 +35,15 @@ export class Entity {
     }
     update(delta) {
         if (this.Motion.canMove === true) {
-            this._Model.position.copy(this.Motion.position).add(this.PositionOffset);
+            if (this.Motion.physicsBody) {
+                this._Model.position.copy(this.Motion.position);
+                this._Model.position.copy(this.Motion.position).add(this.PositionOffset);
+                // this._Model.position.y -= 0.5;
+            }
+            else {
+                this._Model.position.copy(this.Motion.position);
+                // this._Model.position.copy(this.Motion.position).add(this.PositionOffset);
+            }
             this._Model.rotation.copy(this.Motion.rotation);
             this._Model.rotation.y = this.Motion.rotation.y + Math.PI;
             if (this._Model.userData.mixer != undefined) {

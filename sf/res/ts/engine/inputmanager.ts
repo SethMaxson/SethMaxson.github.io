@@ -4,9 +4,30 @@ import * as THREE from '../../../../node_modules/three/src/Three.js';
 */
 export class InputManager
 {
-	keys: { [key: string]: IInputKey; };
+	keys: {
+		/**Left mouse button */
+		click: IInputKey;
+		/**Right mouse button */
+		rightClick: IInputKey;
+		talk: IInputKey;
+		magic: IInputKey;
+		jump: IInputKey;
+		changeView: IInputKey;
+		sprint: IInputKey;
+		ascend: IInputKey;
+		descend: IInputKey;
+		pause: IInputKey;
+		inventory: IInputKey;
+		left: IInputKey;
+		right: IInputKey;
+		up: IInputKey;
+		down: IInputKey;
+		gun: IInputKey;
+		[key: string]: IInputKey;
+	};
 	constructor()
 	{
+		//@ts-ignore
 		this.keys = {};
 		const keyMap = new Map();
 
@@ -46,6 +67,8 @@ export class InputManager
 		addKey(1, 'talk'); // left click
 		addKey(2, 'magic'); // right click
 
+		addKey(80, 'pause'); // p
+		addKey(16, 'pause'); // escape
 		addKey(32, 'jump'); // spacebar
 		addKey(84, 'talk'); // t
 		addKey(77, 'magic'); // m
