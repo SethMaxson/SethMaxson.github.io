@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@types/jquery": "^3.3.33",
-    "@types/node": "^13.9.2",
-    "@types/three": "^0.103.2",
     "cannon": "^0.6.2",
     "three": "^0.114.0"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.0.2",
     "@types/cannon": "^0.1.5",
+    "@types/jquery": "^3.3.33",
+    "@types/jqueryui": "^1.12.14",
+    "@types/node": "^13.9.2",
     "@types/three": "^0.103.2"
   },
   "scripts": {

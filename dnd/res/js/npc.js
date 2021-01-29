@@ -14,6 +14,8 @@ class NPC {
         this.relativeAge = obj.relativeAge || undefined;
         this.alignment = obj.alignment || undefined;
         this.threat = obj.threat || undefined;
+        this.intelligence = obj.intelligence || undefined;
+        this.personalityTags = obj.personalityTags || [];
         this.profession = obj.profession || undefined;
         this.description = obj.description || undefined;
         this.status = obj.status || "living";

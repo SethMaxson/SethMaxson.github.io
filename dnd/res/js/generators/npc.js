@@ -1,494 +1,962 @@
-const races = ["Aarakocra", "Aasimar", "Bloodfin", "Brokkos", "Bugbear", "Burrowfolk", "Dragonborn", "Drow", "Dwarf", "Elf", "Firbolg", "Firenewt", "Gnome", "Goblin", "Grippli", "Grung", "Halfling", "HalfOrc", "Human", "Kenku", "Kobold", "Kuo-toa", "Orc", "Tabaxi", "Tiefling", "Tortle", "Triton"];
-
-function getGender() {
-	return randomize(["f", "m"]);
+"use strict";
+var races = [];
+var racesWeighted = {};
+var spawnFrequencySum = -1;
+const totaledWeights = {
+    Adjectives: -1,
+    Age: -1,
+    From: -1,
+    Personality: -1,
+    Profession: -1,
+    Race: -1,
+    Threat: -1,
+    Who: -1
+};
+const adjectives = [
+    "shifty",
+    "paranoid",
+    "bubbly",
+    "friendly",
+    "loud",
+    "obnoxious",
+    "nosey",
+    "creepy",
+    "ill-tempered",
+    "easily-distracted",
+    "absent-minded",
+    "political",
+    "condescending",
+    "panicky",
+    "wise",
+    "stupid",
+    "monotone",
+    "forgettable",
+    "ugly",
+    "shy",
+    "quiet",
+    "depressing",
+    "uplifting",
+    "wholesome",
+    "intimidating",
+    "disarming",
+    "charming",
+    "annoying"
+];
+const threatLevels = {
+    "very low": 5,
+    "low": 6,
+    "slightly low": 5,
+    "medium": 4,
+    "slightly high": 3,
+    "high": 2,
+    "very high": 1
+};
+var professions = {
+    "Actor": 20,
+    "Adventurer": 100,
+    "Airship Pilot": 40,
+    "Alchemist": 40,
+    "Archaeologist": 50,
+    "Architect": 40,
+    "Artist": 30,
+    "Assassin": 15,
+    "Banker": 50,
+    "Bard": 100,
+    "Barkeep": 100,
+    "Blacksmith": 100,
+    "Bounty Hunter": 100,
+    "Builder": 100,
+    "Butler": 30,
+    "Carpenter": 100,
+    "Cartographer": 50,
+    "Chef": 50,
+    "Cobbler": 100,
+    "Comedian": 40,
+    "Con Artist": 30,
+    "Cook": 100,
+    "Courtesan": 60,
+    "Counselor": 40,
+    "Dancer": 80,
+    "Dockworker": 100,
+    "Engineer": 60,
+    "Executioner": 60,
+    "Exorcist": 50,
+    "Farmer": 100,
+    "Gambler": 40,
+    "Ghost Hunter": 40,
+    "Gladiator": 80,
+    "Guard": 100,
+    "Guide": 20,
+    "Healer": 60,
+    "Herbalist": 60,
+    "Hobo": 100,
+    "Housekeeper": 100,
+    "Hunter": 100,
+    "Innkeeper": 100,
+    "Janitor": 100,
+    "Jester": 50,
+    "Knight": 100,
+    "Lady": 2,
+    "Lawyer": 50,
+    "Librarian": 40,
+    "Lord": 2,
+    "Mason": 100,
+    "Masseuse": 50,
+    "Mechanic": 50,
+    "Mercenary": 100,
+    "Merchant": 100,
+    "Miner": 100,
+    "Monk": 50,
+    "Monster Hunter": 70,
+    "Orator": 10,
+    "Philosopher": 30,
+    "Pickpocket": 100,
+    "Planeswalker": 5,
+    "Pirate": 100,
+    "Plumber": 80,
+    "Poet": 50,
+    "Politician": 20,
+    "Priest": 80,
+    "Royal Taster": 50,
+    "Sage": 10,
+    "Sailor": 100,
+    "Scholar": 30,
+    "Scribe": 15,
+    "Seer": 20,
+    "Smuggler": 100,
+    "Spy": 10,
+    "Squire": 100,
+    "Starving Artist": 90,
+    "Teacher": 50,
+    "Town Crier": 50,
+    "Therapist": 50,
+    "Thief": 100,
+    "Thug": 100,
+    "Tour Guide": 5,
+    "Train Conductor": 5,
+    "Translator": 50,
+    "Urchin": 100,
+    "Wizard": 55,
+    "Writer": 50
+};
+var AgeRanks = {
+    // These should total to exactly 1.0
+    1: 0.05,
+    2: 0.40,
+    3: 0.39,
+    4: 0.16
+};
+var AgeList = [
+    'child',
+    'young adult',
+    'adult',
+    'old'
+];
+// Updated for D&D
+var PersonalityList = [
+    "Accusative",
+    "Active",
+    "Adventurous",
+    "Affable",
+    "Aggressive",
+    "Agist",
+    "Agreeable",
+    "Aimless",
+    "Aloof",
+    "Altruistic",
+    "Analytical",
+    "Angry",
+    "Animated",
+    "Annoying",
+    "Anxious",
+    "Apathetic",
+    "Apologetic",
+    "Apprehensive",
+    "Argumentative",
+    "Arrogant",
+    "Articulate",
+    "Attentive",
+    "Bigoted",
+    "Bitter",
+    "Blustering",
+    "Boastful",
+    "Bookish",
+    "Bossy",
+    "A Braggart",
+    "Brash",
+    "Brave",
+    "Bullying",
+    "Callous",
+    "Calm",
+    "Candid",
+    "Cantankerous",
+    "Capricious",
+    "Careful",
+    "Careless",
+    "Caring",
+    "Casual",
+    "Catty",
+    "Cautious",
+    "Cavalier",
+    "Charming",
+    "Chaste",
+    "Chauvinistic",
+    "Cheeky",
+    "Cheerful",
+    "Childish",
+    "Chivalrous",
+    "Clueless",
+    "Clumsy",
+    "Cocky",
+    "Comforting",
+    "Communicative",
+    "Complacent",
+    "Condescending",
+    "Confident",
+    "Conformist",
+    "Confused",
+    "Conscientious",
+    "Conservative",
+    "Contentious",
+    "Contrary",
+    "Contumely",
+    "Conventional",
+    "Cooperative",
+    "Courageous",
+    "Courteous",
+    "Cowardly",
+    "Coy",
+    "Curious",
+    "Crabby",
+    "Cranky",
+    "Critical",
+    "Cruel",
+    "Cultured",
+    "Curious",
+    "Cynical",
+    "Daring",
+    "Deceitful",
+    "Deceptive",
+    "Defensive",
+    "Defiant",
+    "Deliberate",
+    "Deluded",
+    "Depraved",
+    "Depressed",
+    "Discreet",
+    "Dishonest",
+    "Disingenuous",
+    "Disloyal",
+    "Disrespectful",
+    "Distant",
+    "Distracted",
+    "Distraught",
+    "Docile",
+    "Doleful",
+    "Dominating",
+    "Dramatic",
+    "A Drunkard",
+    "Dull",
+    "Earthy",
+    "Eccentric",
+    "Elitist",
+    "Emotional",
+    "Energetic",
+    "Enigmatic",
+    "Enthusiastic",
+    "Excited",
+    "Expressive",
+    "Extroverted",
+    "Faithful",
+    "Fanatical",
+    "Fastidious",
+    "Fatalistic",
+    "Fearful",
+    "Fearless",
+    "Feral",
+    "Fierce",
+    "Feisty",
+    "Flamboyant",
+    "Flippant",
+    "Flirtatious",
+    "Foolhardy",
+    "Foppish",
+    "Forgiving",
+    "Friendly",
+    "Frightened",
+    "Frivolous",
+    "Frustrated",
+    "Funny",
+    "Furtive",
+    "Generous",
+    "Genial",
+    "Gentle",
+    "Gloomy",
+    "Goofy",
+    "Gossipy",
+    "Graceful",
+    "Gracious",
+    "Grave",
+    "Gregarious",
+    "Grouchy",
+    "Groveling",
+    "Gruff",
+    "Gullible",
+    "Happy",
+    "Harsh",
+    "Hateful",
+    "Helpful",
+    "Honest",
+    "Hopeful",
+    "Hostile",
+    "Humble",
+    "Humorless",
+    "Humorous",
+    "Hyper",
+    "Idealistic",
+    "Idiosyncratic",
+    "Imaginative",
+    "Imitative",
+    "Impatient",
+    "Impetuous",
+    "Implacable",
+    "Impractical",
+    "Impulsive",
+    "Inattentive",
+    "Incoherent",
+    "Indifferent",
+    "Indiscreet",
+    "Individualist",
+    "Indolent",
+    "Indomitable",
+    "Industrious",
+    "Inexorable",
+    "Inexpressive",
+    "Inquisitive",
+    "Insecure",
+    "Insensitive",
+    "Instructive",
+    "Intolerant",
+    "Intransigent",
+    "Introverted",
+    "Irreligious",
+    "Irresponsible",
+    "Irreverent",
+    "Irritable",
+    "Jealous",
+    "Jocular",
+    "Joking",
+    "Jolly",
+    "Joyous",
+    "Judgmental",
+    "Jumpy",
+    "Kind",
+    "A Know-it-all",
+    "Languid",
+    "Lazy",
+    "Lethargic",
+    "Lewd",
+    "Lying",
+    "Likable",
+    "Lippy",
+    "Listless",
+    "Loquacious",
+    "Loving",
+    "Loud",
+    "Loyal",
+    "Lustful",
+    "Madcap",
+    "Magnanimous",
+    "Malicious",
+    "Mean",
+    "Meddlesome",
+    "Melancholy",
+    "Melodramatic",
+    "Merciless",
+    "Merry",
+    "Meticulous",
+    "Mischievous",
+    "A Miscreant",
+    "Miserable",
+    "Modest",
+    "Moody",
+    "Mopey",
+    "Moralistic",
+    "Morbid",
+    "Morose",
+    "Mournful",
+    "Mousy",
+    "Mouthy",
+    "Mysterious",
+    "Naive",
+    "Narrow-minded",
+    "Needy",
+    "Nefarious",
+    "Nervous",
+    "Nettlesome",
+    "Neurotic",
+    "Noble",
+    "Nonchalant",
+    "Nurturing",
+    "Obdurate",
+    "Obedient",
+    "Oblivious",
+    "Obnoxious",
+    "Obsequious",
+    "Obsessive",
+    "Obstinate",
+    "Obtuse",
+    "Odd",
+    "Ornery",
+    "Optimistic",
+    "Organized",
+    "Ostentatious",
+    "Outgoing",
+    "Overbearing",
+    "Paranoid",
+    "Passionate",
+    "Pathological",
+    "Patient",
+    "Peaceful",
+    "Pensive",
+    "Pertinacious",
+    "Pessimistic",
+    "Philosophical",
+    "Phony",
+    "Pious",
+    "Playful",
+    "Pleasant",
+    "Poised",
+    "Polite",
+    "Pompous",
+    "Pondering",
+    "Pontificating",
+    "Practical",
+    "Prejudiced",
+    "Pretentious",
+    "Preoccupied",
+    "Promiscuous",
+    "Proper",
+    "Proselytizing",
+    "Proud",
+    "Prudent",
+    "Prudish",
+    "Prying",
+    "Quiet",
+    "Quirky",
+    "Racist",
+    "Rascally",
+    "Rash",
+    "Realistic",
+    "Rebellious",
+    "Reckless",
+    "Refined",
+    "Repellent",
+    "Reserved",
+    "Respectful",
+    "Responsible",
+    "Restless",
+    "Reticent",
+    "Reverent",
+    "Rigid",
+    "Risk-taking",
+    "Rude",
+    "Sadistic",
+    "Sarcastic",
+    "Sardonic",
+    "Sassy",
+    "Savage",
+    "Scared",
+    "Scolding",
+    "Secretive",
+    "Self-effacing",
+    "Selfish",
+    "Selfless",
+    "Senile",
+    "Sensible",
+    "Sensitive",
+    "Sensual",
+    "Sentimental",
+    "Serene",
+    "Serious",
+    "Servile",
+    "Sexist",
+    "Sexual",
+    "Shallow",
+    "Shameful",
+    "Shameless",
+    "Shifty",
+    "Shrewd",
+    "Shy",
+    "Sincere",
+    "Slanderous",
+    "Sly",
+    "Smug",
+    "Snobbish",
+    "Sober",
+    "Sociable",
+    "Solemn",
+    "Solicitous",
+    "Solitary",
+    "Solitary",
+    "Sophisticated",
+    "Spendthrift",
+    "Spiteful",
+    "Stern",
+    "Stingy",
+    "Stoic",
+    "Stubborn",
+    "Submissive",
+    "Sultry",
+    "Superstitious",
+    "Surly",
+    "Suspicious",
+    "Sybarite",
+    "Sycophantic",
+    "Sympathetic",
+    "Taciturn",
+    "Tactful",
+    "Tawdry",
+    "Teetotaler",
+    "Temperamental",
+    "Tempestuous",
+    "Thorough",
+    "Thrifty",
+    "Timid",
+    "Tolerant",
+    "Transparent",
+    "Treacherous",
+    "Tricky",
+    "Troublemaker",
+    "Trusting",
+    "Truthful",
+    "Uncommitted",
+    "Understanding",
+    "Unfriendly",
+    "Unhinged",
+    "Uninhibited",
+    "Unpredictable",
+    "Unruly",
+    "Unsupportive",
+    "Vague",
+    "Vain",
+    "Vapid",
+    "Vengeful",
+    "Vigilant",
+    "Violent",
+    "Vivacious",
+    "Vulgar",
+    "Wanton",
+    "Wasteful",
+    "Weary",
+    "Whimsical",
+    "Whiny",
+    "Wicked",
+    "Wisecracking",
+    "Wistful",
+    "Witty",
+    "Zealous"
+];
+// Updated for D&D
+var FromList = [
+    "a backwater village",
+    "a backwater village",
+    "a beautiful, green valley",
+    "a broken home",
+    "a broken home",
+    "a bustling market",
+    "a bustling underground city",
+    "a city no one else has ever heard of",
+    "a city ravaged by war",
+    "a company of mercenaries and sellswords",
+    "a complex bureaucratic society",
+    "a depleted mine",
+    "a now barren farmland",
+    "a disease ridden city",
+    "a disgraced family of scrap collectors",
+    "a dusty mountain range",
+    "a fallen kingdom in the wilds",
+    "a farming village in a lush forest",
+    "a flotilla of ships that's always on the move",
+    "a forgotten elven monastery",
+    "a frozen wasteland",
+    "a halfway house",
+    "a hidden underground city",
+    "a laid back beach town",
+    "a large desert metropolis",
+    "a large family, with many siblings",
+    "a large military outpost",
+    "a large secluded dungeon",
+    "a military stronghold",
+    "a mutanied prison ship",
+    "a notorious dungeon",
+    "a peaceful coastal town",
+    "a peaceful nomadic culture",
+    "a powerful trading city",
+    "a refugee city outside a walled garden",
+    "a royal lineage",
+    "a run down bar",
+    "a rundown adventurers guild",
+    "a rural construction guild",
+    "a secret barracks",
+    "a shanty town in a scrapyard",
+    "a sheltered upbringing",
+    "a slave market",
+    "a slave owning city",
+    "a sleepy harbour town",
+    "a small desert village",
+    "a small family transport company",
+    "a small farm",
+    "a small island",
+    "a small oasis village",
+    "a small town where nothing ever happened",
+    "a small village of barbarians",
+    "a street gang in a large city",
+    "a strict, religious temple",
+    "a thriving port town",
+    "a town run by gangs",
+    "a travelling theatre company",
+    "a tropical paradise",
+    "a very religious family",
+    "a very tiny village",
+    "a vile village in a swamp",
+    "an abandoned fortress",
+    "an actual castle",
+    "an affluent upbringing",
+    "an ancient temple run by monks",
+    "an aristocratic family",
+    "an engineer's guild",
+    "an extremist cult",
+    "an orphanage",
+    "an underwater bubble city",
+    "an underwater city protected by a magical force field",
+    "beyond the known world",
+    "one of the great libraries",
+    "the city post office",
+    "the city watch",
+    "the forests of the Verdant Isle",
+    "the frozen wastes of Notre",
+    "the inner slums of a large city",
+    "the inside of an asylum",
+    "the jungles of Chupajiji",
+    "the local academy",
+    "the outskirts of a large city",
+    "the remains of a sunken city",
+    "the slums of a large city"
+];
+// Updated for D&D
+var WhoList = [
+    "always carries multiple wallets",
+    "always keeps their promises",
+    "always looks their best",
+    "always refers to inanimate objects as 'she'",
+    "always thinks outside the box",
+    "always wears the sweetest kicks",
+    "avoids the city guard at all costs",
+    "believes in life after love",
+    "believes lizardfolk control the government",
+    "believes they are destined for a higher calling",
+    "believes they can speak to plants",
+    "blames all their misfortune on ghosts",
+    "can pilot any vehicle",
+    "can't read",
+    "can't stand the sight of blood",
+    "can't swim",
+    "can't tolerate gluten",
+    "constantly has a broken arm, looking for help",
+    "covered in maze tattoos",
+    "deserted the military",
+    "distrusts all authority",
+    "distrusts anyone shorter than them",
+    "distrusts anyone taller than them",
+    "doesn't believe in dwarves",
+    "doesn't believe in magic",
+    "doesn't know their own strength",
+    "doesn't speak a word of common",
+    "doesn't trust warforged",
+    "doesn't understand sarcasm",
+    "doesn't understand the concept of politeness",
+    "dresses provocatively",
+    "fights for species equality",
+    "finds it hard to relate to others",
+    "finds it hard to work as a team",
+    "flirts relentlessly",
+    "gets nervous when public speaking",
+    "gets startled at the slightest raise in someones tone",
+    "gives people small amounts of money, in strange amounts, for doing the simplest errands",
+    "gives their weapons names",
+    "had their mind wiped by parties unknown",
+    "has a burning hatred for pirates",
+    "has a drinking problem",
+    "has a gambling problem",
+    "has a huge debt to pay back",
+    "has a limp",
+    "has a lisp",
+    "has a price on their head",
+    "has a quick answer for every question, but is always wrong",
+    "has a thirst for all knowledge",
+    "has a twin and constantly gets confused for them",
+    "has a well kept mustache",
+    "has accepted death as an inevitability",
+    "has an incredible fashion sense",
+    "has an irrational fear of halflings",
+    "has anger problems",
+    "has bad hygiene",
+    "has been on the run for several years",
+    "has body image issues",
+    "has connections to underworld crime syndicates",
+    "has many identities in different cities",
+    "has no concept of personal space",
+    "has nothing left to lose",
+    "has stolen someones identity",
+    "has the itch to explore other continents",
+    "has the loudest laugh in the room",
+    "has to have rice with every meal",
+    "has to urinate frequently",
+    "hasn't been quite right. Not since the accident",
+    "hates being on dry land",
+    "hates children",
+    "hates crowds",
+    "hates fighting",
+    "hates wearing armor face masks",
+    "hears voices",
+    "is a compulsive liar",
+    "is a pacifist",
+    "is a total gear-head",
+    "is addicted to runic tattoos",
+    "is afraid of crossbows",
+    "is afraid of heights",
+    "is afraid of the dark",
+    "is always warm and friendly",
+    "is always hungry",
+    "is an alcoholic",
+    "is being hunted by a horrible beast",
+    "is completely mute",
+    "is downright racist towards hobgoblins",
+    "is endlessly amused by magic",
+    "is endlessly fascinated by gnome culture",
+    "is much older than they look",
+    "is much younger than they look",
+    "is nearly deaf",
+    "is not very good at sports",
+    "is obsessed with carriages",
+    "is obsessed with the local sports team",
+    "is obsessed with their hair",
+    "is responsible for the death of a family member",
+    "is running from their debt",
+    "is scared of airship travel",
+    "is secretly a dragon",
+    "is secretly a fallen deva",
+    "is secretly a hag",
+    "is secretly a succubus/incubus",
+    "is slightly overweight",
+    "is so laid back they often come across as rude and uncaring",
+    "is superstitious",
+    "is the escaped clone of a wealthy politician",
+    "is the first to loot every enemy",
+    "is the party's biggest critic",
+    "is the party's biggest fan",
+    "is tone-deaf, but sings all the time",
+    "is tough-as-nails",
+    "is uncomfortable around dwarves",
+    "is uncomfortable in armor",
+    "is vegan, and makes sure everyone knows",
+    "is vegetarian",
+    "is very good at running",
+    "is writing a novel about their heroic adventures",
+    "keeps a diary of all the creatures they come across",
+    "keeps getting mistaken for a famous icon",
+    "keeps lists about everything",
+    "keeps track of their kills",
+    "knows a guy",
+    "knows how to ride most creatures",
+    "knows the location of a huge weapons cache",
+    "knows their way around a workshop",
+    "knows what its like to die",
+    "likes to craft personal items rather than buy them",
+    "looks down on anyone who is poorer than they are",
+    "lost the love of their life. In a bet.",
+    "lost their family in a dragon attack",
+    "loves to dance",
+    "makes inappropriate jokes at the worst times",
+    "must read every book they come across",
+    "never takes their armour off",
+    "once started a rebellion",
+    "only makes eye contact with people they like",
+    "owes a debt collector an airship",
+    "really knows how to party",
+    "refuses to use a weapon",
+    "saw their whole family killed by slaad",
+    "seems aloof and distant",
+    "smells like old cheese",
+    "smokes too much herb, like all the time",
+    "speaks exclusively in rhyme",
+    "speaks in monotone",
+    "speaks to people as though hes being hunted",
+    "speaks to people as though hes hunting them",
+    "speaks with a stutter",
+    "suffers from claustrophobia",
+    "suffers from night terrors",
+    "suffers from sneezing attacks",
+    "talks about stabbing people entirely too often",
+    "talks to themself",
+    "thinks of themselves as a private investigator",
+    "thinks that they are amazing at combat, but are the worst in the party",
+    "thinks they are a brilliant wizard",
+    "thinks they are always surrounded by a force field",
+    "wants everyone to like them",
+    "wants to be a dancer",
+    "wants to be a famous adventurer",
+    "wants to be a princess",
+    "wants to be a sky-pirate captain",
+    "wants to one day own their own airship",
+    "wants to open their own bar",
+    "wants to settle down and have a family",
+    "was born the opposite of their current gender",
+    "was grown in a vat and has no family",
+    "was once a completely different race",
+    "was once very wealthy but lost everything",
+    "was told by their parents they'll never be good enough",
+    "wears rings, which isn’t cool, but its cool that they don’t care if they’re cool",
+    "who donates time to local charities",
+    "will always choose to bluff an enemy",
+    "will always go for a swim in bodies of water they come across",
+    "will always try to bribe officials",
+    "will follow their party members blindly",
+    "will never dance",
+    "will only fight with ranged weapons",
+    "will throw fireballs first and ask questions later",
+    "won't stop believing",
+    "would rather be farming than adventuring"
+];
+function getArticle(word) {
+    var article;
+    if (['a', 'e', 'i', 'o', 'u'].includes(word.toLowerCase().charAt(0))) {
+        article = 'an ' + word;
+    }
+    else {
+        article = 'a ' + word;
+    }
+    return article;
 }
-
-const racialTraits = [
-	{
-		race: "Human",
-		gender: function() {return getGender();},
-		adultAge: 18,
-		maxAge: 70,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Adam", "Adelard", "Alan", "Albert", "Aldous", "Aldred", "Alexander", "Alisander", "Anselm", "Arnold", "Arthur", "Bardolph", "Barnabas", "Bartholomew", "Basil", "Bennet", "Berenger", "Bernard", "Bertram", "Bryce", "Castor", "Charles", "Clerebold", "Conrad", "David", "Diggory", "Dinadan", "Drogo", "Edwin", "Eliot", "Elton", "Everard", "Frederick", "Geoffrey", "George", "Gerald", "Gilbert", "Giles", "Godfrey", "Gunter", "Guy", "Hamond", "Hardwin", "Henry", "Herbert", "Heward", "Hildebrand", "Hubert", "Hugh", "Jocelyn", "John", "Lance", "Leon", "Lionel", "Lucan", "Manfred", "Mark", "Martin", "Matthew", "Merek", "Michael", "Miles", "Nicholas", "Nigel", "Noah", "Norman", "Odo", "Paul", "Percival", "Peter", "Ralf", "Randal", "Raymond", "Reynard", "Richard", "Robert", "Roger", "Roland", "Rolf", "Simon", "Theobald", "Theodoric", "Thomas", "Timm", "Trevor", "Tristram", "Urian", "William", "Wolfstan", "Wymar"]);
-			} else {
-				name = randomize(["Adelaide", "Adelina", "Aelina", "Agatha", "Agnes", "Aldith", "Alice", "Aline", "Alma", "Althea", "Alyson", "Amelina", "Anais", "Anne", "Artemisia", "Aubrey", "Audry", "Augusta", "Avelina", "Avice", "Barbetta", "Beatrice", "Bertha", "Brangwine", "Bridget", "Brien", "Catelin", "Caterina", "Cecily", "Clare", "Cristina", "Dameta", "Dionisia", "Edeva", "Edith", "Egelina", "Elaine", "Eleanor", "Elizabeth", "Ella", "Elle", "Eloise", "Elysande", "Emeline", "Emeny", "Emma", "Emmeline", "Ermina", "Eva", "Evelune", "Galiena", "Geva", "Giselle", "Griselda", "Guinevere", "Hadwisa", "Helen", "Herleva", "Hugolina", "Ida", "Isabella", "Ivette", "Jacoba", "Jane", "Joan", "Johanna", "Judith", "Juliana", "Julliet", "Katherine", "Lena", "Margaret", "Margery", "Martha", "Mary", "Matilda", "Maynild", "Millicent", "Molly", "Oriel", "Paulina", "Regina", "Ricolda", "Roana", "Rohesia", "Rosalind", "Rosamund", "Sarah", "Sela", "Susanna"]);
-			}
-			name += " " + randomize(["Archer", "Baker", "Brewer", "Butcher", "Carpenter", "Carter", "Carver", "Clark", "Cobbler", "Cooper", "Cook", "Dyer", "Faire", "Farmer", "Faulkner", "Fisher", "Freeman", "Fuller", "Gardener", "Glover", "Hunt", "Judge", "Knight", "Mason", "Miller", "Miner", "Page", "Parker", "Potter", "Sawyer", "Slater", "Smith", "Taylor", "Thatcher", "Turner", "Weaver", "Wood", "Wright"]);
-			return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	},
-	{
-		race: "Aarakocra",
-		gender: function() {return getGender();},
-		adultAge: 3,
-		maxAge: 30,
-		name: function(gender, age) {
-			return randomize(["Aera", "Aial", "Aur", "Bara", "Deekek", "Errk", "Goost", "Heehk", "Ikki", "Kaaw", "Kleeck", "Koka", "Oorr", "Ost", "Ouss", "Quaf", "Quierk", "Rok", "Salleek", "Tuk", "Urreek", "Zeed"]);
-		},
-		alignment: ["LG", "NG", "CG"]
-	},
-	{
-		race: "Bloodfin",
-		gender: function() {return getGender();},
-		adultAge: 4,
-		maxAge: 40,
-		name: function(gender, age) {
-			return randomize(["Bitey", "Blood", "Bone", "Bubble", "Hard", "Hungry", "Leather", "Rock", "Salt", "Stone", "Thirsty", "Tough"]) +  randomize(["Face", "Fin", "Jaw", "Maw", "Scale", "Tail", "Teeth", "Tooth"]);
-		},
-		alignment: ["LE", "NE", "CE"]
-	},
-	{
-		race: "Brokkos",
-		gender: function() {return getGender();},
-		adultAge: 7,
-		maxAge: 80,
-		name: function(gender, age) {
-			/*
-				Aiutatu - helper, assists with any role that has insufficient Brokkos
-				Cuocu - cook/chef
-				Doto - healer
-				Fermia - childcare
-				Guardia - guard
-				Maestru - teacher
-				Produ - maker, craftsman
-				Raccogli - gatherer/forager
-				Scavo - digger
-			*/
-			name = randomize(["Aiutatu (Helper)", "Cuocu (Cook)", "Doto (Healer)", "Fermia (Childcare)", "Guardia (Warrior)", "Maestru (Teacher)", "Produ (Craftsman)", "Raccogli (Forager)", "Scavo (Digger)"]) + " ";
-			if (gender == "m") {
-				name += randomize(["Adalbertu", "Alesiu", "Ambrosgiu", "Andria", "Antone", "Biasgiu", "Baltazaru", "Benghjaminu", "Bernardu", "Boaris", "Borisu", "Calistu", "Carlu", "Conradu", "Cristofanu", "Danelu", "Francescu", "Gasparu", "Giacumu", "Ghjaseppu", "Larenzu", "Lisandru", "Martinu", "Melchioru", "Niculaiu", "Petru", "Raimondu", "Saveriu", "Silvestru", "Simone", "Tumasgiu", "Volfgangu"]);
-			} else {
-				name += randomize(["Amandina", "Angiola", "Angioletta", "Angiolina", "Catalina", "Cicilia", "Cristina", "Edvige", "Elodia", "Ghjenuveffa", "Gnese", "Laurenza", "Laurenzia", "Lisabetta", "Lisandra", "Lucia", "Maria", "Martina", "Orsula", "Rita", "Teresia", "Saveria", "Sofia", "Stefania"]);
-			}
-			return name;
-		},
-		alignment: ["LN", "NN"]
-	},
-	{
-		race: "Bugbear",
-		gender: function() {return getGender();},
-		adultAge: 16,
-		maxAge: 80,
-		name: function(gender, age) {
-			var name = randomize(["bug", "bar", "ber", "krag", "hak", "kar", "rak", "dos", "gro", "umsch"]);
-			name += randomize(["bug", "bar", "ber", "krag", "hak", "kar", "rak", "dos", "gro", "umsch"]);
-			name = name.charAt(0).toUpperCase() + name.slice(1);
-			return name;
-		},
-		alignment: ["NE", "CE"]
-	},
-	{
-		race: "Burrowfolk",
-		gender: function() {return getGender();},
-		adultAge: 16,
-		maxAge: 80,
-		name: function(gender, age) {
-			var name = randomize(["Shurmie", "Burmo", "Foro", "Rowf", "Suko", "Rolu", "Rofo", "Lubo", "Bowuf", "Wufo", "Kulo", "Roru"]);
-			return name;
-		},
-		alignment: ["LN", "N"]
-	},
-	{
-		race: "Drow",
-		gender: function() {return getGender();},
-		adultAge: 18,
-		maxAge: 700,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Adran", "Aelar", "Aramil", "Arannis", "Aust", "Beiro", "Berrian", "Carric", "Enialis", "Erdan", "Erevan", "Galinndan", "Hadarai", "Heian", "Himo", "Immeral", "Ivellios", "Laucian", "Mindartis", "Paelias", "Peren", "Quarion", "Riardon", "Rolen", "Soveliss", "Thamior", "Tharivol, Theren", "Varis"]);
-			} else {
-				name = randomize(["Adrie", "Althaea", "Anastrianna", "Andraste", "Antinua", "Bethrynna", "Birel", "Caelynn", "Drusilia", "Enna", "Felosial", "Ielenia", "Jelenneth", "Keyleth", "Leshanna", "Lia", "Meriele", "Mialee", "Naivara", "Quelenna", "Quillathe", "Sariel", "Shanairra", "Shava", "Silaqui", "Theirastra", "Thia", "Vadania", "Valanthe", "Xanaphia"]);
-			}
-			name += " " + randomize(["Amakiir (Gemflower)", "Amastacia (Starflower)", "Galanodel (Moonwhisper)", "Holimion (Diamonddew)", "Ilphelkiir (Gemblossom)", "Liadon (Silverfrond)", "Meliamne (Oakenheel)", "Naïlo (Nightbreeze)", "Siannodel (Moonbrook)", "Xiloscient (Goldpetal)"]);
-			return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	},
-	{
-		race: "Dragonborn",
-		gender: function() {return getGender();},
-		adultAge: 18,
-		maxAge: 360,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Adrex", "Arjhan", "Azzakh", "Balasar", "Baradad", "Bharash", "Bidreked", "Dadalan", "Dazzazn", "Direcris", "Donaar", "Fax", "Gargax", "Ghesh", "Gorbundus", "Greethen", "Heskan", "Hirrathak", "Ildrex", "Kaladan", "Kerkad", "Kiirith", "Kriv", "Maagog", "Medrash", "Mehen", "Mozikth", "Mreksh", "Mugrunden", "Nadarr", "Nithther", "Norkruuth", "Nykkan", "Pandjed", "Patrin", "Pijjirik", "Quarethon", "Rathkran", "Rhogar", "Rivaan", "Sethrekar", "Shamash", "Shedinn", "Srorthen", "Tarhun", "Torinn", "Trynnicus", "Valorean", "Vrondiss", "Zedaar"]);
-			} else {
-				name = randomize(["Akra", "Aasathra", "Antrara", "Arava", "Biri", "Blendaeth", "Burana", "Chassath", "Daar", "Dentratha", "Doudra", "Driindar", "Eggren", "Farideh", "Findex", "Furrele", "Gesrethe", "Gilkass", "Harann", "Havilar", "Hethress", "Hillanot", "Jaxi", "Jezean", "Jheri", "Kadana", "Kava", "Korinn", "Megren", "Mijira", "Mishann", "Nala", "Nuthra", "Perra", "Pogranix", "Pyxrin", "Quespa", "Raiann", "Rezena", "Ruloth", "Saphara", "Savaran", "Sora", "Surina", "Synthrin", "Tatyan", "Thava", "Uadjit", "Vezera", "Zykroff"]);
-			}
-			name += " " + randomize(["Akambherylliax", "Argenthrixus", "Baharoosh", "Beryntolthropal", "Bhenkumbyrznaax", "Caavylteradyn", "Chumbyxirinnish", "Clethtinthiallor", "Daardendrian", "Delmirev", "Dhyrktelonis", "Ebynichtomonis", "Esstyrlynn", "Fharngnarthnost", "Ghaallixirn", "Grrrmmballhyst", "Gygazzylyshrift", "Hashphronyxadyn", "Hshhsstoroth", "Imbixtellrhyst", "Jerynomonis", "Jharthraxyn", "Kerrhylon", "Kimbatuul", "Lhamboldennish", "Linxakasendalor", "Mohradyllion", "Mystan", "Nemmonis", "Norixius", "Ophinshtalajiir", "Orexijandilin", "Pfaphnyrennish", "Phrahdrandon", "Pyraxtallinost", "Qyxpahrgh", "Raghthroknaar", "Shestendeliath", "Skaarzborroosh", "Sumnarghthrysh", "Tiammanthyllish", "Turnuroth", "Umbyrphrael", "Vangdondalor", "Verthisathurgiesh", "Wivvyrholdalphiax", "Wystongjiir", "Xephyrbahnor", "Yarjerit", "Zzzxaaxthroth"]);
-			return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	},
-	{
-		race: "Dwarf",
-		gender: function() {return getGender();},
-		adultAge: 18,
-		maxAge: 360,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Adrik", "Alberich", "Baern", "Barendd", "Beloril", "Brodain", "Brottor", "Bruenor", "Dain", "Dalgal", "Darrak", "Delg", "Duergath", "Dworic", "Eberk", "Einkil", "Elaim", "Erias", "Fallond", "Fargrim", "Flint", "Gardain", "Gilthur", "Gimgen", "Gimurt", "Harbek", "Kildrak", "Kilvar", "Morgran", "Morkral", "Nalral", "Nordak", "Nuraval", "Oloric", "Olunt", "Orsik", "Oskar", "Ragnar", "Rangrim", "Reirak", "Rurik", "Taklinn", "Thoradin", "Thorin", "Thradal", "Tordek", "Traubon", "Travok", "Ulfgar", "Uraim", "Veit", "Vonbin", "Vondal", "Whurbin"]);
-			} else {
-				name = randomize(["Amber", "Anbera", "Artin", "Audhild", "Balifra", "Barbena", "Bardryn", "Bolhild", "Brumhilda", "Dagnal", "Dariff", "Delre", "Diesa", "Eldeth", "Eridred", "Falkrunn", "Fallthra", "Finellen", "Gillydd", "Gunnloda", "Gurdis", "Helgret", "Helja", "Hilda", "Hlin", "Ilde", "Jarana", "Kathra", "Kilia", "Kristryd", "Liftrasa", "Marastyr", "Mardred", "Morana", "Nalaed", "Nora", "Nurkara", "Oriff", "Ovina", "Riswynn", "Sannl", "Therlin", "Thodris", "Thoretta", "Thorina", "Torbera", "Tordrid", "Torgga", "Torveda", "Urshar", "Valida", "Vistra", "Vonana", "Werydd", "Whurdred", "Yurgunn"]);
-			}
-			name += " " + randomize(["Aranore", "Balderk", "Battlehammer", "Bigtoe", "Bloodkith", "Bofdann", "Brawnanvil", "Brazzik", "Bronzehand", "Broodfist", "Burrowfound", "Caebrek", "Daerdahk", "Dankil", "Daraln", "Deepdelver", "Diamondpick", "Durthane", "Eversharp", "Fallack", "Fireforge", "Foamtankard", "Frostbeard", "Glanhig", "Goblinbane", "Goldfinder", "Gorunn", "Graybeard", "Hammerstone", "Helcral", "Holderhek", "Ironfist", "Loderr", "Lutgehr", "Morigak", "Orcfoe", "Rakankrak", "RubyEye", "Rumnaheim", "Silveraxe", "Silverstone", "Steelfist", "Stonespire", "Stoutale", "Strakeln", "Strongbellows", "Strongheart", "Thrahak", "Torevir", "Torunn", "Trollbleeder", "Trueanvil", "Trueblood", "Ungart"]);
-			return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	},
-	{
-		race: "Elf",
-		gender: function() {return getGender();},
-		adultAge: 18,
-		maxAge: 750,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Adran", "Aelar", "Aramil", "Arannis", "Aust", "Beiro", "Berrian", "Carric", "Enialis", "Erdan", "Erevan", "Galinndan", "Hadarai", "Heian", "Himo", "Immeral", "Ivellios", "Laucian", "Mindartis", "Paelias", "Peren", "Quarion", "Riardon", "Rolen", "Soveliss", "Thamior", "Tharivol, Theren", "Varis"]);
-			} else {
-				name = randomize(["Adrie", "Althaea", "Anastrianna", "Andraste", "Antinua", "Bethrynna", "Birel", "Caelynn", "Drusilia", "Enna", "Felosial", "Ielenia", "Jelenneth", "Keyleth", "Leshanna", "Lia", "Meriele", "Mialee", "Naivara", "Quelenna", "Quillathe", "Sariel", "Shanairra", "Shava", "Silaqui", "Theirastra", "Thia", "Vadania", "Valanthe", "Xanaphia"]);
-			}
-			name += " " + randomize(["Amakiir (Gemflower)", "Amastacia (Starflower)", "Galanodel (Moonwhisper)", "Holimion (Diamonddew)", "Ilphelkiir (Gemblossom)", "Liadon (Silverfrond)", "Meliamne (Oakenheel)", "Naïlo (Nightbreeze)", "Siannodel (Moonbrook)", "Xiloscient (Goldpetal)"]);
-			return name;
-		},
-		alignment: ["CG", "CN", "CE"]
-	},
-	{
-		race: "Firbolg",
-		gender: function() {return getGender();},
-		adultAge: 30,
-		maxAge: 500,
-		name: function(gender, age) {
-			var name;
-			return randomize(["Beech", "Birch", "Dogwood", "Hemlock", "Magnolia", "Maple", "Oak", "Pine", "Palm", "Redwood", "Sequoia", "Spruce", "Sycamore", "Walnut", "Willow", "Wormwood"]);
-		},
-		alignment: ["NG", "NN"]
-	},
-	{
-		race: "Firenewt",
-		gender: function() {return getGender();},
-		adultAge: 3,
-		maxAge: 50,
-		name: function(gender, age) {
-			var name;
-			return randomize(["Sahalia (lizard)", "Nariyin (fiery)", "Harq (burn)", "'Ahraq (scald)", "Rawasib (magma)", "Damalon (boil)", "Dukhanon (smoke)", "Dhabulon (sear)", "Manalon (roast)", "Yaqlaa (fry)", "Nar (fire)", "Alnakhbu (toast)", "Lahab (flame)"]);
-		},
-		alignment: ["LE"]
-	},
-	{
-		race: "Gnome",
-		gender: function() {return getGender();},
-		adultAge: 40,
-		maxAge: 500,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Alston", "Alvyn", "Boddynock", "Brocc", "Burgell", "Dimble", "Eldon", "Erky", "Fonkin", "Frug", "Gerbo", "Gimble", "Glim", "Jebeddo", "Kellen", "Namfoodle", "Orryn", "Roondar", "Seebo", "Sindri", "Warryn", "Wrenn", "Zook"]);
-			} else {
-				name = randomize(["Bimpnottin", "Breena", "Caramip", "Carlin", "Donella", "Duvamil", "Ella", "Ellyjobell", "Ellywick", "Lilli", "Loopmottin", "Lorilla", "Mardnab", "Nissa", "Nyx", "Oda", "Orla", "Roywyn", "Shamil", "Tana", "Waywocket", "Zanna"]);
-			}
-			name += " " + randomize(["Beren", "Daergel", "Folkor", "Garrick", "Nackle", "Murnig", "Ningel", "Raulnor", "Scheppen", "Timbers", "Turen"]) + " " + randomize(["Aleslosh", "Ashhearth", "Badger", "Cloak", "Doublelock", "Filchbatter", "Fnipper", "Ku", "Nim", "Oneshoe", "Pock", "Sparklegem", "Stumbleduck"]);
-			return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	},
-	{
-		race: "Goblin",
-		gender: function() {return getGender();},
-		adultAge: 8,
-		maxAge: 60,
-		name: function(gender, age) {
-			const goblinNameParts = ["krun", "grum", "gri", "nion", "pook", "shch", "krad", "dia"];
-			var name = randomize(goblinNameParts);
-			name += randomize(goblinNameParts);
-			name = name.charAt(0).toUpperCase() + name.slice(1);
-			return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	},
-	{
-		race: "Grippli",
-		gender: function() {return getGender();},
-		adultAge: 30,
-		maxAge: 180,
-		name: function(gender, age) {
-			return randomize(["Bellum", "Brillup", "Bullgup", "Chirk", "Dart", "Flybert", "Frollum", "Kaillum", "Kermin", "Kroallup", "Quartle", "Quon", "Ribbert", "Roagup", "Toallum"]);
-			// var name;
-			// if (gender == "m") {
-			// 	name = randomize(["Brillup", "Bullgup", "Chirk", "Dart", "Labllup", "Quartle", "Rublup", "Willup"]);
-			// } else {
-			// 	name = randomize(["Bellum", "Kaillum", "Que", "Quon", "Ruue", "Toum", "Wuon"]);
-			// }
-			// return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	},
-	{
-		race: "Grung",
-		gender: function() {return getGender();},
-		adultAge: 18,
-		maxAge: 70,
-		name: function(gender, age) {
-			var name;
-			const grungGreenNames = ["Pap'k'aka", "Ski'di'ki'pap", "Ap'upu", "Sk'ya", "D'udu", "K'uku", "Dun'd'un", "P'oo'mp'oom", "Pa'n", "N'da", "B'oom", "Pu'dr'r'r", "Skiv'ipa", "Sk'ree'e"];
-			const grungBlueNames = ["G'ot'taf'iyt", "F'ory'ar'iyt", "To'pra'tee", "S'abo", "Ta'je"];
-			const grungPurpleNames = ["O'u", "T'r'un", "M'iam'", "Ei'ht", "S'yn", "Pla'm", "Tw'y", "Ni'on", "V'ae", "Po'r", "W'ae'v"];
-				name = randomize(grungGreenNames);
-			return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	},
-	{
-		race: "Halfling",
-		gender: function() {return getGender();},
-		adultAge: 20,
-		maxAge: 150,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Alton", "Ander", "Bernie", "Bobbin", "Cade", "Callus", "Corrin", "Dannad", "Danniel", "Eddie", "Egart", "Eldon", "Errich", "Fildo", "Finnan", "Franklin", "Garret", "Garth", "Gilbert", "Gob", "Harol", "Igor", "Jasper", "Keith", "Kevin", "Lazam", "Lerry", "Lindal", "Lyle", "Merric", "Mican", "Milo", "Morrin", "Nebin", "Nevil", "Osborn", "Ostran", "Oswalt", "Perrin", "Poppy", "Reed", "Roscoe", "Sam", "Shardon", "Tye", "Ulmo", "Wellby", "Wendel", "Wenner", "Wes"]);
-			} else {
-				name = randomize(["Alain", "Andry", "Anne", "Bella", "Blossom", "Bree", "Callie", "Chenna", "Cora", "Dee", "Dell", "Eida", "Eran", "Euphemia", "Georgina", "Gynnie", "Harriet", "Jasmine", "Jillian", "Jo", "Kithri", "Lavinia", "Lidda", "Maegan", "Marigold", "Merla", "Myria", "Nedda", "Nikki", "Nora", "Olivia", "Paela", "Pearl", "Pennie", "Philomena", "Portia", "Robbie", "Rose", "Saral", "Seraphina", "Shaena", "Stacee", "Tawna", "Thea", "Trym", "Tyna", "Vani", "Verna", "Wella", "Willow"]);
-			}
-			name += " " + randomize(["Appleblossom", "Bigheart", "Brightmoon", "Brushgather", "Cherrycheeks", "Copperkettle", "Deephollow", "Elderberry", "Fastfoot", "Fatrabbit", "Glenfellow", "Goldfound", "Goodbarrel", "Goodearth", "Greenbottle", "Greenleaf", "Highhill", "High-hill", "Hilltopple", "Hogcollar", "Honeypot", "Jamjar", "Kettlewhistle", "Leagallow", "Littlefoot", "Nimblefingers", "Porridgepot", "Quickstep", "Reedfellow", "Shadowquick", "Silvereyes", "Smoothhands", "Stonebridge", "Stoutbridge", "Stoutman", "Strongbones", "Sunmeadow", "Swiftwhistle", "Tallfellow", "Tealeaf", "Tenpenny", "Thistletop", "Thorngage", "Tosscobble", "Underbough", "Underfoot", "Warmwater", "Whispermouse", "Wildcloak", "Wildheart", "Wiseacre"]);
-			return name;
-		},
-		alignment: ["LG", "NG"]
-	},
-	{
-		race: "HalfOrc",
-		gender: function() {return getGender();},
-		adultAge: 14,
-		maxAge: 75,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Dench", "Feng", "Gell", "Henk", "Holg", "Imsh", "Keth", "Krusk", "Mhurren", "Ront", "Thokk", "Shump", "Argran", "Braak", "Brug", "Cagak", "Dorn", "Dren", "Druuk", "Gnarsh", "Grumbar", "Gubrash", "Hagren", "Hogar", "Karash", "Karg", "Korag", "Lubash", "Megged", "Mord", "Morg", "Nil", "Nybarg", "Odorr", "Ohr", "Rendar", "Resh", "Rrath", "Sark", "Scrag", "Sheggen", "Tanglar", "Tarak", "Thar", "Trag", "Ugarth", "Varg", "Vilberg", "Yurk", "Zed"]);
-			} else {
-				name = randomize(["Arha", "Baggi", "Bendoo", "Bilga", "Brakka", "Creega", "Drenna", "Ekk", "Emen", "Engong", "Fistula", "Gaaki", "Gorga", "Grai", "Greeba", "Grigi", "Gynk", "Hrathy", "Huru", "Ilga", "Kabbarg", "Kansif", "Lagazi", "Lezre", "Murgen", "Murook", "Myev", "Nagrette", "Neega", "Nella", "Nogu", "Oolah", "Ootah", "Ovak", "Ownka", "Puyet", "Reeza", "Shautha", "Silgre", "Sutha", "Tagga", "Tawar", "Tomph", "Ubada", "Vanchu", "Vola", "Volen", "Vorka", "Yevelda", "Zagga"]);
-			}
-			name += " " + randomize(["Archer", "Baker", "Brewer", "Butcher", "Carpenter", "Carter", "Carver", "Clark", "Cobbler", "Cooper", "Cook", "Dyer", "Faire", "Farmer", "Faulkner", "Fisher", "Freeman", "Fuller", "Gardener", "Glover", "Hunt", "Judge", "Knight", "Mason", "Miller", "Miner", "Page", "Parker", "Potter", "Sawyer", "Slater", "Smith", "Taylor", "Thatcher", "Turner", "Weaver", "Wood", "Wright"]);
-			return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	},
-	{
-		race: "Kenku",
-		gender: function() {return getGender();},
-		adultAge: 12,
-		maxAge: 60,
-		name: function(gender, age) {
-			return randomize(["Smasher", "Clanger", "Slicer", "Basher", "Rat Scratch", "Whistler", "Mouser", "Growler", "Sail Snap", "Hammerer", "Cutter"]);
-		},
-		alignment: ["CN"]
-	},
-	{
-		race: "Kobold",
-		gender: function() {return getGender();},
-		adultAge: 6,
-		maxAge: 120,
-		name: function(gender, age) {
-			return randomize(["Arix", "Eks", "Ett", "Galax", "Garu", "Hagnar", "Hox", "Irtos", "Kashak", "Kovi", "Kubo", "Meepo", "Molo", "Rotom", "Ohsoss", "Sagin", "Sik", "Sniv", "Taklak", "Tes", "Urak", "Varn"]);
-		},
-		alignment: ["LN", "LE"]
-	},
-	{
-		race: "Kuo-toa",
-		gender: function() {return getGender();},
-		adultAge: 6,
-		maxAge: 120,
-		name: function(gender, age) {
-			return randomize(["Too", "Mmot", "Loo", "Chog", "Laag", "Shoo", "Doo", "Gib", "Glol", "Kur", "Dag", "Gap", "Blop"]) +  randomize(["ploorg", "hagoon", "goorg", "bogg", "goop", "loorg", "daga", "gool", "goonleth"]);
-		},
-		alignment: ["NE"]
-	},
-	{
-		race: "Lizardfolk",
-		gender: function() {return getGender();},
-		adultAge: 14,
-		maxAge: 60,
-		name: function(gender, age) {
-			return randomize(["Achuak (green)", "Aryte (war)", "Baeshra (animal)", "Darastrix (dragon)", "Garurt (axe)", "Irhtos (secret)", "Jhank (hammer)", "Kepesk (storm)", "Kethend (gem)", "Korth (danger)", "Kosj (small)", "Kothar (demon)", "Litrix (armor)", "Mirik (song)", "Othokent (smart)", "Sauriv (eye)", "Throden (many)", "Thurkear (night)", "Usk (iron)", "Valignat (burn)", "Vargach (battle)", "Verthica (mountain)", "Vutha (black)", "Vyth (steel)"]);
-		},
-		alignment: ["NN"]
-	},
-	{
-		race: "Modron",
-		gender: function() {return getGender();},
-		adultAge: 0,
-		maxAge: 9999,
-		name: function(gender, age) {
-			const modronLetters = ["alpha", "beta", "gamma", "delta", "epsilon", "zeta", "eta", "theta", "iota", "kappa", "lambda", "mu", "nu", "xi", "omicron", "pi", "rho", "sigma", "tau", "upsilon", "phi", "chi", "psi", "omega"];
-			var name = randomize(modronLetters);
-			for (let i = 0; i < 6; i++) {
-				name += " " + randomize(modronLetters);
-			}
-			return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	},
-	{
-		race: "Orc",
-		gender: function() {return getGender();},
-		adultAge: 12,
-		maxAge: 50,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Dench", "Feng", "Gell", "Henk", "Holg", "Imsh", "Keth", "Krusk", "Mhurren", "Ront", "Shump", "Thokk"]);
-			} else {
-				name = randomize(["Baggi", "Emen", "Engong", "Kansif", "Myev", "Neega", "Ovak", "Ownka", "Shautha", "Sutha", "Vola", "Volen", "Yevelda"]);
-			}
-			return name;
-		},
-		alignment: ["CE"]
-	},
-	{
-		race: "Tabaxi",
-		gender: function() {return getGender();},
-		adultAge: 18,
-		maxAge: 70,
-		name: function(gender, age) {
-			return randomize(["Cloud on the Mountaintop (Cloud)", "Five Timber (Timber)", "Jade Shoe (Jade)", "Left-Handed Hummingbird (Bird)", "Seven Thundercloud (Thunder)", "Skirt of Snakes (Snake)", "Smoking Mirror (Smoke) "]) + " " + randomize(["Bright Cliffs", "Distant Rain", "Mountain Tree", "Rumbling River", "Snoring Mountain"]);
-		},
-		alignment: ["CG", "CN"]
-	},
-	{
-		race: "Tiefling",
-		gender: function() {return getGender();},
-		adultAge: 18,
-		maxAge: 110,
-		name: function(gender, age) {
-			var name;
-			if (Math.round(Math.random()) == 0) {
-				name = randomize(["Ambition", "Art", "Beauty", "Carrion", "Chant", "Chivalry", "Conflict", "Creed", "Death", "Debauchery", "Despair", "Doom", "Doubt", "Dread", "Ecstasy", "Ennui", "Entropy", "Excellence", "Fear", "Glory", "Gluttony", "Grief", "Hate", "Hope", "Horror", "Ideal", "Ignominy", "Joy", "Laughter", "Love", "Lust", "Mayhem", "Misery", "Mockery", "Murder", "Muse", "Music", "Mystery", "Nowhere", "Open", "Pain", "Passion", "Poetry", "Power", "Quest", "Random", "Reverence", "Revulsion", "Secrecy", "Sorrow", "Temerity", "Torment", "Tragedy", "Vice", "Virtue", "War", "Weary", "Wit"]);
-			} else {
-				if (gender == "m") {
-					name = randomize(["Abad", "Ahrim", "Akmen", "Akmenos", "Amnon", "Andram", "Astar", "Balam", "Barakas", "Bathin", "Caim", "Chem", "Cimer", "Cressel", "Damakos", "Ekemon", "Euron", "Fenriz", "Forcas", "Habor", "Iados", "Kairon", "Leucis", "Mamnen", "Mantus", "Marbas", "Melech", "Merihim", "Modean", "Mordai", "Mormo", "Morthos", "Nicor", "Nirgel", "Oriax", "Paymon", "Pelaios", "Purson", "Qemuel", "Raam", "Rimmon", "Sammal", "Skamos", "Tethren", "Thamuz", "Therai", "Valafar", "Vassago", "Xappan", "Zepar", "Zephan"]);
-				} else {
-					name = randomize(["Akta", "Anakis", "Armara", "Astaro", "Aym", "Azza", "Beleth", "Bryseis", "Bune", "Criella", "Damaia", "Decarabia", "Ea", "Gadreel", "Gomory", "Hecat", "Ishte", "Jezebeth", "Kali", "Kallista", "Kasdeya", "Lerissa", "Lilith", "Makaria", "Manea", "Markosian", "Mastema", "Naamah", "Nemeia", "Nija", "Orianna", "Osah", "Phelaia", "Prosperine", "Purah", "Pyra", "Rieta", "Ronobe", "Ronwe", "Seddit", "Seere", "Sekhmet", "Semyaza", "Shava", "Shax", "Sorath", "Uzza", "Vapula", "Vepar", "Verin"]);
-				}
-			}
-			return name;
-		},
-		alignment: ["CG", "CN", "CE"]
-	},
-	{
-		race: "Tortle",
-		gender: function() {return getGender();},
-		adultAge: 15,
-		maxAge: 50,
-		name: function(gender, age) {
-			return randomize(["Baka", "Damu", "Gar", "Gura", "Ini", "Jappa", "Kinlek", "Krull", "Lim", "Lop", "Nortle", "Nulka", "Olo", "Ploqwat", "Quee", "Queg", "Quott", "Sunny", "Tibor", "Ubo", "Uhok", "Wabu", "Xelbuk", "Xopa", "Yog"]);
-		},
-		alignment: ["LG", "LN", "LE"]
-	},
-	{
-		race: "Triton",
-		gender: function() {return getGender();},
-		adultAge: 15,
-		maxAge: 200,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Corus", "Delnis", "Jhimas", "Keros", "Molos", "Nalos", "Vodos", "Zunis"]);
-			} else {
-				name = randomize(["Aryn", "Belthyn", "Duthyn", "Feloren", "Otanyn", "Shalryn", "Vlaryn", "Wolyn"]);
-			}
-			name += " " + randomize(["Paroxath", "Morskoth", "Dnoth"]);
-			return name;
-		},
-		alignment: ["LG", "NG", "LN"]
-	},
-	{
-		race: "Wilkoss",
-		gender: function() {return getGender();},
-		adultAge: 12,
-		maxAge: 50,
-		name: function(gender, age) {
-			var name;
-			if (gender == "m") {
-				name = randomize(["Bee", "Bun", "Er", "Foz", "Gon", "Gro", "Ker"]);
-				name += randomize(["ker", "son", "nie", "zie", "zo", "ver", "mit"]);
-			} else {
-				name = randomize(["Ab", "Pig", "Zo", "Bubble", "Hungry", "Leather", "Rock", "Salt", "Stone", "Thirsty"]);
-				name += randomize(["bie", "gie", "eey", "Maw", "Scale", "Tail", "Teeth", "Tooth"]);
-			}
-			return name;
-		},
-		alignment: ["LG", "NG", "CG",
-					"LN", "NN", "CN",
-					"LE", "NE", "CE"]
-	}
-]
-
-function NPC(name, race, gender, age, alignment, description) {
-	var npc;
-	this.race = race || races[Math.floor(Math.random() * races.length)];
-	for (let i = 0; i < racialTraits.length; i++) {
-		const el = racialTraits[i];
-		if (el.race.toLowerCase() == this.race.toLowerCase()) {
-			npc = el;
-			this.raceIndex = i;
-			break;
-		};
-	}
-	if (npc == undefined) {
-		npc = racialTraits[0];
-		this.raceIndex = 0;
-	}
-	this.gender = gender || npc.gender();
-	switch (parseInt(age)) {
-		case undefined:
-		case 0:
-			if (chance(15)) {
-				this.age = rollDie(npc.adultAge);
-			}
-			else {
-				this.age = npc.adultAge + Math.floor(Math.random() * Math.random() * (npc.maxAge - npc.adultAge));
-			}
-			break;
-		case 1:
-			this.age = Math.max(rollDie(npc.adultAge), 1);
-			break;
-		case 2:
-			this.age = npc.adultAge + Math.floor(Math.random() * Math.random() * (npc.maxAge / 5));
-			break;
-		case 3:
-			this.age = npc.adultAge + Math.floor((npc.maxAge / 5)) + Math.floor(Math.random() * Math.random() * 2 * (npc.maxAge / 5));
-			break;
-		default:
-			this.age = npc.maxAge - Math.floor(Math.random() * Math.random() * (npc.maxAge / 5));
-			break;
-	}
-	this.alignment = alignment || randomize(npc.alignment);
-	this.name = name || npc.name(this.gender, this.age);
+/* /Based on sfrpgtools characterGen.v2.1.js */
+/**
+ * Is this NPC a 'he', 'she', or 'they'?
+ * @param gender e.g. 'female', 'male', etc.
+ */
+function getPronoun(gender) {
+    var pronoun = 'they';
+    if (gender.toLowerCase() == 'female') {
+        pronoun = 'she';
+    }
+    else if (gender.toLowerCase() == 'male') {
+        pronoun = 'he';
+    }
+    return pronoun;
 }
+/**
+ * Determines which word is correct for the specified pronoun based on an array of possible values
+ * @param pronoun The pronoun from which to determine the correct word
+ * @param wordForms Possible word forms. The first index is for 'he' or 'she'. The second is for 'they'.
+ */
+function conjugate(pronoun, wordForms) {
+    var result = wordForms[0];
+    if (pronoun.toLowerCase() == 'they') {
+        result = wordForms[1];
+    }
+    return result;
+}
+function getNPCOldness(npc) {
+    var rt = getRacialTraits(npc.race);
+    var ageMod = (npc.age - rt.adultAge) / (rt.maxAge - rt.adultAge);
+    return ageMod;
+}
+function randomizeNPC(npc, name, race, gender, age, alignment) {
+    if (totaledWeights.Race < 0) {
+        initializeNPCGen();
+    }
+    // npc.race = race || races[Math.floor(Math.random() * races.length)];
+    npc.race = race ? race : weightedRandom(racesWeighted, totaledWeights.Race);
+    let rt = getRacialTraits(npc.race);
+    npc.gender = gender || randomize(rt.genders);
+    getNPCAge(npc, rt, age);
+    npc.name = name || NameGenerator.full(npc.race, npc.gender, npc.relativeAge);
+    npc.alignment = alignment || randomize(rt.alignments);
+    npc.threat = weightedRandom(threatLevels, totaledWeights.Threat);
+    npc.profession = weightedRandom(professions, totaledWeights.Profession);
+    npc.description = getNPCDescription(npc.race, npc.relativeAge, npc.profession, npc.gender);
+}
+/**
+ * Sets the age properties for an NPC.
+ * @param npc Target NPC
+ * @param rt The Traits for the NPC's species
+ * @param ageCategory On a scale of 1-4, how old are they?
+ */
+function getNPCAge(npc, rt, ageCategory) {
+    if (ageCategory == undefined || ageCategory == 0) {
+        ageCategory = weightedRandom(AgeRanks);
+    }
+    switch (parseInt(ageCategory)) {
+        case 1:
+            // Child
+            npc.age = Math.max(rollDie(rt.adultAge), 1);
+            npc.relativeAge = AgeList[0];
+            break;
+        case 2:
+            // Young Adult
+            // adultAge + (maxAge * (random/5))
+            npc.age = rt.adultAge + Math.floor(Math.random() * Math.random() * (rt.maxAge / 5));
+            npc.relativeAge = AgeList[1];
+            break;
+        case 3:
+            // Adult
+            npc.age = rt.adultAge + Math.floor((rt.maxAge / 5)) + Math.floor(Math.random() * Math.random() * 2 * (rt.maxAge / 5));
+            npc.relativeAge = AgeList[2];
+            break;
+        case 4:
+            // Old
+            npc.age = rt.maxAge - Math.floor(Math.random() * Math.random() * (rt.maxAge / 5));
+            npc.relativeAge = AgeList[3];
+            break;
+    }
+}
+function getNPCDescription(race, age, profession, gender) {
+    var Age = age || randomize(AgeList);
+    var Race = race || randomize(races);
+    var Gender = gender || randomize(['female', 'male']);
+    var Profession = profession || weightedRandom(professions, totaledWeights.Profession);
+    var Who = randomize(WhoList);
+    var Personality = randomize(PersonalityList) + ' and ' + randomize(PersonalityList);
+    var From = randomize(FromList);
+    // var result = getArticle(Age).capitalize() + " " + Race.toLowerCase() + ", who " + Who + " and comes from " + From + ". They are " + Personality.toLowerCase() + ", and have found work as " + getArticle(Profession.toLowerCase()) + ".";
+    let pronoun = getPronoun(Gender).capitalize();
+    var result = `${getArticle(Age).capitalize()} ${Race.toLowerCase()}, who ${Who} and comes from ${From}. ${pronoun} ${conjugate(pronoun, ["is", "are"])} ${Personality.toLowerCase()}, and ${conjugate(pronoun, ["has", "have"])} found work as ${getArticle(Profession.toLowerCase())}.`;
+    return result;
+}
+function initializeNPCGen() {
+    spawnFrequencySum = 0;
+    totaledWeights.Race = 0;
+    for (let i = 0; i < races.length; i++) {
+        const e = races[i];
+        racesWeighted[e] = getRacialTraits(e).spawnFrequency;
+        spawnFrequencySum += getRacialTraits(e).spawnFrequency;
+        totaledWeights.Race += getRacialTraits(e).spawnFrequency;
+        // if (RacialTraits.hasOwnProperty(e))
+        // {
+        // 	spawnFrequencySum += getNPCRacialTraits(e).spawnFrequency;
+        // }
+    }
+    totaledWeights.Threat = getTotalWeight(threatLevels);
+    totaledWeights.Profession = getTotalWeight(professions);
+}
+//#region Tests
+function testRaceMapping() {
+    for (let i = 0; i < races.length; i++) {
+        const e = races[i];
+        if (!RacialTraits.hasOwnProperty(e)) {
+            console.log(`ID "${e}" was not found in racialtraits.js`);
+        }
+    }
+}
+//#endregion
+//# sourceMappingURL=npc.js.map

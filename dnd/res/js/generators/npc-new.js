@@ -571,7 +571,7 @@ var FromList = [
     "a company of mercenaries and sellswords",
     "a complex bureaucratic society",
     "a depleted mine",
-    "a destitute farming facility",
+    "a now barren farmland",
     "a disease ridden city",
     "a disgraced family of scrap collectors",
     "a dusty mountain range",

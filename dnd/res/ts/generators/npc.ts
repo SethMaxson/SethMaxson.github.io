@@ -1,10 +1,7 @@
-declare var chance: { (num: number): boolean };
-declare var rollDie: { (numberofFaces: number): number };
 var races: string[] = [];
 var racesWeighted: IWeightedKeyList = {};
 var spawnFrequencySum: number = -1;
 const totaledWeights = {
-
 	Adjectives: -1,
 	Age: -1,
 	From: -1,
@@ -580,7 +577,7 @@ var FromList = [
 	"a company of mercenaries and sellswords",
 	"a complex bureaucratic society",
 	"a depleted mine",
-	"a destitute farming facility",
+	"a now barren farmland",
 	"a disease ridden city",
 	"a disgraced family of scrap collectors",
 	"a dusty mountain range",
@@ -878,15 +875,8 @@ function conjugate(pronoun: string, wordForms: string[]): string {
 	return result;
 }
 
-function getNPCRacialTraits(race: string) {
-	if (RacialTraits.hasOwnProperty(race)) {
-		return RacialTraits[race] as RacialTraitSet;
-	} else {
-		return RacialTraits.misc;
-	}
-}
 function getNPCOldness(npc: NPC) {
-	var rt = getNPCRacialTraits(npc.race);
+	var rt = getRacialTraits(npc.race);
 	var ageMod = (npc.age - rt.adultAge)/(rt.maxAge - rt.adultAge);
 	return ageMod;
 }
@@ -898,7 +888,7 @@ function randomizeNPC(npc: NPC, name?: string, race?: string, gender?: string, a
 	}
 	// npc.race = race || races[Math.floor(Math.random() * races.length)];
 	npc.race = race? race : weightedRandom(racesWeighted, totaledWeights.Race);
-	let rt = getNPCRacialTraits(npc.race);
+	let rt = getRacialTraits(npc.race);
 	npc.gender = gender || randomize(rt.genders);
 	getNPCAge(npc, rt, age as number);
 	npc.name = name || NameGenerator.full(npc.race, npc.gender, npc.relativeAge);
@@ -966,9 +956,9 @@ function initializeNPCGen()
 	for (let i = 0; i < races.length; i++)
 	{
 		const e = races[i];
-		racesWeighted[e] = getNPCRacialTraits(e).spawnFrequency;
-		spawnFrequencySum += getNPCRacialTraits(e).spawnFrequency;
-		totaledWeights.Race += getNPCRacialTraits(e).spawnFrequency;
+		racesWeighted[e] = getRacialTraits(e).spawnFrequency;
+		spawnFrequencySum += getRacialTraits(e).spawnFrequency;
+		totaledWeights.Race += getRacialTraits(e).spawnFrequency;
 		// if (RacialTraits.hasOwnProperty(e))
 		// {
 		// 	spawnFrequencySum += getNPCRacialTraits(e).spawnFrequency;

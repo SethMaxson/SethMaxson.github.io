@@ -20,10 +20,14 @@ declare class Sea {
     uniforms: any;
     constructor(main: any);
 }
-declare function initSkybox(): void;
-declare function DesertIsland(): void;
-declare var Beacon: () => void;
-declare var swayBeacon: () => void;
+declare class DesertIsland {
+    mesh: THREE.Mesh;
+    constructor();
+}
+declare class Beacon {
+    mesh: THREE.Mesh;
+    constructor();
+}
 declare class SeaGull {
     mesh: THREE.Mesh;
     tail: THREE.Mesh;
@@ -43,16 +47,6 @@ declare class Boat {
     constructor();
     swayBoat(): void;
 }
-declare var beaconArray: any[];
-declare var seaGullArray: any[];
+declare var seaGullArray: SeaGull[];
 declare var seaGullIslandArray: any[];
 declare var sea: any, boat: any, desertIsland: any, beacon: any, seaGull: any;
-declare function createSea(): void;
-declare function createBoat(): void;
-declare function createBeacon(x: number, y: number, z: number): void;
-declare function createIsland(x: number, y: number, z: number): void;
-declare function createSeaGull(x: number, y: number, z: number, s: number): void;
-declare function finishedLoading(): void;
-declare function init(): void;
-declare function loop(e: any): void;
-declare function animation(): void;

@@ -1,4 +1,5 @@
-function getSpells() {
+function getSpells()
+{
 	return $.ajax({ crossDomain: true, url: "/sf/res/data/spells.json", dataType: 'json' });
 }
 

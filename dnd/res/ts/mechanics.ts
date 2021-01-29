@@ -1,10 +1,11 @@
-import { Engine } from '../../../sf/res/js/engine.js';
-import { Dialog } from '../../../sf/res/js/dialog.js';
-
-declare interface String {
+interface String
+{
 	capitalize(): string;
 	replaceAll(search: string, replacement: string): string;
 }
+
+type Alignment = "CG" | "NG" | "LG" | "CN" | "N" | "LN" | "CE" | "NE" | "LE";
+type ItemRarity = "None" | "Common" | "Uncommon" | "Rare" | "Very Rare" | "Legendary" | "Artifact";
 
 // declare interface Array<T> {
 // 	capitalize(): string;
@@ -12,6 +13,21 @@ declare interface String {
 // 	append(item: T): Array<T>;
 // 	move(from: number, to: number): void;
 // }
+
+function roll(dice: string): number
+{
+	dice = dice.toLowerCase();
+	if (!dice.includes("d")) {
+		return -1;
+	}
+	let result = 0;
+	let count = parseInt(dice.split("d")[0]);
+	let size = parseInt(dice.split("d")[1]);
+	for (let i = 0; i < count; i++) {
+		result += rollDie(size);
+	}
+	return result;
+}
 
 function rollDie(size: number = 20, modifier: number = 0, advantage: number = 0): number
 {
@@ -24,6 +40,12 @@ function rollDie(size: number = 20, modifier: number = 0, advantage: number = 0)
 	return rolledResult;
 }
 
+function getRandomInt(start: number, end: number): number
+{
+	let rollResult = rollDie(1 + end - start, -1);
+	return start + rollResult;
+}
+
 function chance(percent: number = 50): boolean {
 	var rolledResult = false;
 	if (Math.floor((Math.random() * 100)) < percent) {
@@ -31,6 +53,22 @@ function chance(percent: number = 50): boolean {
 	}
 	return rolledResult;
 }
+
+function GetURLParameter(sParam: string)
+{
+	var sPageURL = window.location.search.substring(1);
+	var sURLVariables = sPageURL.split('&');
+	for (var i = 0; i < sURLVariables.length; i++)
+	{
+		var sParameterName = sURLVariables[i].split('=');
+		if (sParameterName[0] == sParam)
+		{
+			return decodeURIComponent(sParameterName[1]);
+		}
+	}
+	return null;
+};
+
 
 function arrayAppend(array: any, item: any): Array<any> {
 	if (array !== undefined && array !== null) {
@@ -77,194 +115,6 @@ function saveJSON(json: JSON|Object, fileName: string) {
 	window.URL.revokeObjectURL(url);
 
 	// $(a).remove();
-}
-
-class DialogWindow
-{
-	element: JQuery<HTMLElement>;
-	constructor(speaker: string, text: string, showCloseIcon: boolean = false)
-	{
-		let icon = showCloseIcon ? `<div class="close" >&#10003;</div>` : "";
-		this.element = $(`<div class="speech"><h1>${ speaker }</h1\><p>"${ text }"</p>${ icon }</div>`);
-		$(document.body).append(this.element);
-	}
-	append(button: AnswerButton)
-	{
-		this.element.append(button.element);
-	}
-}
-
-class AnswerButton
-{
-	element: JQuery<HTMLElement>;
-	constructor(index: number, answer: Dialog.DialogAnswer, dialog: JQuery<HTMLElement>, speech: Dialog.Dialog[])
-	{
-		this.element = $("<button>" + answer.m + "</button>");
-		this.element.attr("index", index);
-		this.element.attr("next", answer.next);
-		let button = this.element;
-		if (answer.next == "exit") {
-			button.click(function(ev){
-				ev.preventDefault();
-				dialog.remove();
-			});
-		} else {
-			button.click(function(ev){
-				ev.preventDefault();
-				dialog.remove();
-				speak(speech, find_label(speech, answer.next));
-			});
-		}
-	}
-}
-
-interface SpeakEventData
-{
-	tree: Dialog.Dialog[];
-	dialog: Dialog.Dialog;
-	current_line_index: number;
-	callback?: Function;
-	character?: Engine.Entity;
-}
-
-function speak(speaker: string|Dialog.Dialog[], speech:number|string, callback?: Function, character?: Engine.Entity) {
-	if (speaker.constructor === Array) {
-		var current_line = speech as number || 0;
-		if (current_line < speaker.length)
-		{
-			let current_step = speaker[current_line] as Dialog.Dialog;
-			if (current_step.m !== undefined)
-			{
-				if (current_step.answers !== undefined)
-				{
-					let dialog = new DialogWindow(current_step.s as string, current_step.m);
-					for (let i = 0; i < current_step.answers.length; i++)
-					{
-						dialog.append(new AnswerButton(i, current_step.answers[i], dialog.element, speaker as Dialog.Dialog[]));
-					}
-					$(dialog.element).find("button").first().addClass("selected");
-				}
-				else
-				{
-					new DialogWindow(current_step.s as string, current_step.m, true);
-				}
-				$(document).on("keydown", { tree: speaker, dialog: current_step, current_line_index: current_line, callback: callback, character: character } as SpeakEventData, speechHandler);
-			}
-			else
-			{
-				speak(speaker, ++current_line, callback);
-			}
-		}
-		else {
-			if (typeof callback === "function") callback();
-		}
-	}
-	else {
-		speakWithoutDialog(speaker as string, speech as string, callback);
-	}
-}
-function speakWithoutDialog(speaker: string, speech: string, callback?: Function)
-{
-	let tempDialog = {
-		s: speaker,
-		m: speech
-	};
-	new DialogWindow(speaker, speech as string, true);
-	$(document).on(
-		"keydown",
-		{
-			tree: [
-				tempDialog
-			] as Dialog.Dialog[],
-			dialog: tempDialog,
-			current_line_index: 0,
-			callback: callback
-		} as SpeakEventData,
-		speechHandler
-	);
-}
-
-function speechHandler(e: JQuery.KeyDownEvent)
-{
-	let data: SpeakEventData = e.data;
-	let current_branch = data.tree[data.current_line_index];
-	switch (e.keyCode) {
-		case 13: // enter
-			// progress dialog
-			let next: string | undefined;
-			let chosenAnswer: Dialog.DialogAnswer | undefined;
-			if ($('.speech button.selected').length > 0 && current_branch.answers)
-			{
-				chosenAnswer = current_branch.answers[parseInt($('.speech button.selected').attr("index") as string)];
-				next = chosenAnswer.next;
-			} else {
-				next = current_branch.next;
-			}
-			$(document).off("keydown", speechHandler);
-
-			$(".speech").remove();
-			if (chosenAnswer != undefined && chosenAnswer.function) {
-				chosenAnswer.function(data.character);
-			}
-			if (next !== undefined && next !== "exit" && next !== "") {
-				speak(data.tree, find_label(data.tree, next), data.callback, data.character);
-			} else if (next !== "exit") {
-				speak(data.tree, ++data.current_line_index, data.callback, data.character);
-			} else {
-				if(typeof data.callback === "function") {
-					data.callback();
-				} else {
-					console.log("callback() isn't registering as a function.");
-				}
-			}
-			break;
-		case 38: // up
-		case 87: // w
-			// move selected position up
-			var index = parseInt($('.speech button.selected').attr("index") as string);
-            if(index > 0) {
-                $('.speech button.selected').removeClass('selected');
-                $('.speech button[index=' + (index - 1) + ']').addClass('selected');
-			}
-			else if (index == 0)
-			{
-				$('.speech button.selected').removeClass('selected');
-                $('.speech button[index=' + ($('.speech button').length - 1) + ']').addClass('selected');
-			}
-			break;
-		case 40: // down
-		case 83: // s
-			// move selected position down
-			var selected_item = $('.speech .selected');
-            if (typeof selected_item.next()[0] !== 'undefined') {
-                selected_item.next().addClass('selected');
-                selected_item.removeClass('selected');
-			}
-			else if (selected_item != undefined) {
-				$('.speech button.selected').removeClass('selected');
-                $('.speech button[index=0]').addClass('selected');
-			}
-			break;
-		default:
-			break;
-	}
-	return 0;
-}
-
-/**
- * Finds the index of a Label within a Dialog tree.
- * @param story - the Dialog tree to be searched
- * @param label - the label to search for
- * @returns the zero-based index of the label within the Dialog.
-*/
-function find_label(story: Dialog.Dialog[], label: string) {
-	for (let i = 0; i < story.length; i++) {
-		const line = story[i];
-		if (line.label == label) {
-			return i;
-		}
-	}
-	return story.length - 1;
 }
 
 function randomize(array: any[], weighted: boolean = false) {

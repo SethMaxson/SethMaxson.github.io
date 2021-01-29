@@ -1,3 +1,5 @@
+/// <reference types="jquery" />
+/// <reference types="jqueryui" />
 declare const kmppx = 1;
 declare var airshipGrid: number;
 declare var dragging: boolean;
@@ -14,9 +16,9 @@ declare function Pedestrian(left?: string, top?: string, name?: string | string[
 declare function PedestrianNPC(left?: string, top?: string, name?: string | string[], image?: string | string[]): void;
 declare function PartyBattle(left?: string, top?: string, name?: string | string[], image?: string | string[], target?: string): void;
 declare function FlyingThing(left?: string, top?: string, name?: string | string[], image?: string | string[]): void;
-declare function partyDrag(event: any, ui: any, speed: number): void;
-declare function partyDragStop(event: any, ui: any): void;
-declare function partyDragStart(event: any, ui: any): void;
+declare function partyDrag(event: JQueryEventObject, ui: JQueryUI.DraggableEventUIParams, speed: number): void;
+declare function partyDragStop(event: JQueryEventObject, ui: JQueryUI.DraggableEventUIParams): void;
+declare function partyDragStart(event: JQueryEventObject, ui: JQueryUI.DraggableEventUIParams): void;
 declare function partyDroppable(): void;
 declare function characterList(characters: string[]): string;
 declare function CrewManager(object1: any, object2: any, name1: string, name2: string): void;

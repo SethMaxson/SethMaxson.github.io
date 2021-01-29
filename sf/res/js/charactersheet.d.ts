@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jqueryui" />
 declare class CharacterSheetDataManager {
     spell: SpellManager | undefined;
 }

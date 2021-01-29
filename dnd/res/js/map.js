@@ -21,55 +21,56 @@ $(document).ready(function () {
         const windowWidth = $("#map-body").width();
         const windowScale = ($(window).width() / (previousZoom * 2));
         const newWindowScale = ($(window).width() / (zoom * 2));
+        const mapContainer = $(".map-container");
         // var initialLeft = parseFloat($(".map-container").css("left")) + newWindowScale - windowScale;
-        var initialLeft = parseFloat($(".map-container").css("left"));
-        const initialWidth = $(".map-container")[0].clientWidth;
-        $(".map-container").css("transform", zoomString);
-        const heightMod = -1 * ($(".map-container")[0].clientHeight / 2);
-        const widthMod = -1 * ($(".map-container")[0].clientWidth / 2);
+        var initialLeft = parseFloat(mapContainer.css("left"));
+        const initialWidth = mapContainer[0].clientWidth;
+        mapContainer.css("transform", zoomString);
+        const heightMod = -1 * (mapContainer[0].clientHeight / 2);
+        const widthMod = -1 * (mapContainer[0].clientWidth / 2);
         const topPos = (heightMod * (1 - zoom));
         const bottomPos = (heightMod * (1 + zoom)) + windowHeight;
         const leftPos = (widthMod * (1 - zoom));
         const rightPos = (widthMod * (1 + zoom)) + windowWidth;
-        $(".map-container").offset.top = 0;
-        $(".map-container").offset.left = 0;
-        const curTop = parseFloat($(".map-container").css("top"));
-        const curLeft = parseFloat($(".map-container").css("left"));
-        const clihi = $(".map-container")[0].clientHeight * zoom;
-        const cliwi = $(".map-container")[0].clientWidth * zoom;
+        mapContainer.offset().top = 0;
+        mapContainer.offset().left = 0;
+        const curTop = parseFloat(mapContainer.css("top"));
+        const curLeft = parseFloat(mapContainer.css("left"));
+        const clihi = mapContainer[0].clientHeight * zoom;
+        const cliwi = mapContainer[0].clientWidth * zoom;
         if (clihi < windowHeight) {
             if (curTop <= topPos) {
-                $(".map-container").css("top", topPos + "px");
+                mapContainer.css("top", topPos + "px");
             }
             else if (curTop > bottomPos) {
-                $(".map-container").css("top", bottomPos + "px");
+                mapContainer.css("top", bottomPos + "px");
             }
         }
         else {
             if (curTop >= topPos) {
-                $(".map-container").css("top", topPos + "px");
+                mapContainer.css("top", topPos + "px");
             }
             else if (curTop < bottomPos) {
-                $(".map-container").css("top", bottomPos + "px");
+                mapContainer.css("top", bottomPos + "px");
             }
         }
         if (cliwi < windowWidth) {
             if (curLeft <= leftPos) {
-                $(".map-container").css("left", leftPos + "px");
+                mapContainer.css("left", leftPos + "px");
             }
             else if (curLeft > rightPos) {
-                $(".map-container").css("left", rightPos + "px");
+                mapContainer.css("left", rightPos + "px");
             }
         }
         else {
             if (curLeft >= leftPos) {
-                $(".map-container").css("left", leftPos + "px");
+                mapContainer.css("left", leftPos + "px");
             }
             else if (curLeft < rightPos) {
-                $(".map-container").css("left", rightPos + "px");
+                mapContainer.css("left", rightPos + "px");
             }
             else {
-                $(".map-container").css("left", (initialLeft) + "px");
+                mapContainer.css("left", (initialLeft) + "px");
             }
         }
         $(".map-container .smol").css("fontSize", (18 / zoom) + "px");
@@ -261,7 +262,7 @@ function Airship(left, top, name, image, crew) {
         stop: function (event, ui) {
             partyDragStop(event, ui);
         },
-        drop: partyDroppable(),
+        // drop: partyDroppable,
         scroll: false,
     });
 }

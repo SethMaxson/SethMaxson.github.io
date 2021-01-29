@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jqueryui" />
 declare var ccm: CharacterCreationManager, ccdm: CharacterCreationDataManager;
 declare class CharacterCreationDataManager {
     classes: CharacterClass[];

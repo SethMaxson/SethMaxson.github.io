@@ -16,16 +16,16 @@ class Camera
 	canvasCtx: CanvasRenderingContext2D;
 	camBounds: { left: number; right: number; top: number; bottom: number; };
 	camLimits!: { left: number; right: number; top: number; bottom: number; };
-	displayDebugInfo: boolean;
-	faded: boolean;
+	displayDebugInfo: boolean = true;
+	faded: boolean = false;
 	offsetX: number;
 	offsetY: number;
 	oldPosY: number;
 	victoryScreen: boolean;
 	levelSize: Size;
-	private fadingIn: boolean;
-	private fadingOut: boolean;
-	private fadeLevel: number;
+	private fadingIn: boolean = false;
+	private fadingOut: boolean = false;
+	private fadeLevel: number = 0;
 	constructor(player: Player, gameObjects: GameObjects, canvasCtx: CanvasRenderingContext2D, levelSize: Size)
 	{
 		this.thePlayer = player;
@@ -37,11 +37,6 @@ class Camera
 			top: 0.4,
 			bottom: 0.9
 		};
-		this.displayDebugInfo = true;
-		this.faded = false;
-		this.fadingIn = false;
-		this.fadingOut = false;
-		this.fadeLevel = 0;
 		this.levelSize = levelSize;
 		this.recalculate();
 		this.offsetX = -player.pos.x + (globals.screenWidth * 0.5);
@@ -174,7 +169,7 @@ class Camera
 			this.canvasCtx.mozImageSmoothingEnabled = false;
 			this.canvasCtx.imageSmoothingEnabled = false;
 
-			//drawing the background
+			//#region drawing the background
 			const adjWidth = globals.screenWidth;
 			const adjHeight = globals.screenHeight;
 
@@ -227,6 +222,7 @@ class Camera
 					-this.offsetX * 0.92 + 500 + (globals.screenWidth * i), -this.offsetY + 165
 				);
 			}
+			//#endregion
 
 			//loop through all objects and call their respective render functions
 			let layerNames = Object.keys(this.gameObjects);

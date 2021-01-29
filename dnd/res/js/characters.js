@@ -1,7 +1,7 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { GLTFLoader } from '../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { SkeletonUtils } from '../../../node_modules/three/examples/jsm/utils/SkeletonUtils.js';
-import { FOUR } from '../js/four.js';
+import { FOUR } from './four.js';
 export var Characters;
 (function (Characters) {
     const genders = "fm";

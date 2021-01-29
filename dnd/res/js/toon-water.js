@@ -143,250 +143,221 @@ class Sea {
         this.mesh.receiveShadow = true;
     }
 }
-function initSkybox() {
-    var urls = [
-        'images/skybox/sky_pos_x.png',
-        'images/skybox/sky_neg_x.png',
-        'images/skybox/sky_pos_y.png',
-        'images/skybox/sky_neg_y.png',
-        'images/skybox/sky_neg_z.png',
-        'images/skybox/sky_pos_z.png'
-    ];
-    var reflectionCube = new THREE.CubeTextureLoader(loaderManager).load(urls);
-    reflectionCube.format = THREE.RGBFormat;
-    var shader = THREE.ShaderLib["cube"];
-    shader.uniforms["tCube"].value = reflectionCube;
-    var material = new THREE.ShaderMaterial({
-        fragmentShader: shader.fragmentShader,
-        vertexShader: shader.vertexShader,
-        uniforms: shader.uniforms,
-        depthWrite: false,
-        side: THREE.BackSide
-    }), skyBox = new THREE.Mesh(new THREE.BoxGeometry(4000, 2000, 4000), material);
-    skyBox.position.set(0, 0, 0);
-    scene.add(skyBox);
+class DesertIsland {
+    constructor() {
+        this.mesh = new THREE.Object3D();
+        var island = new THREE.Group();
+        var matYellow = new THREE.MeshPhongMaterial({ color: Colors.yellow, flatShading: true, wireframe: false });
+        var matGrey = new THREE.MeshPhongMaterial({ color: Colors.darkGrey, wireframe: false });
+        var matBrown = new THREE.MeshPhongMaterial({ color: Colors.brown, wireframe: false });
+        var matGreen = new THREE.MeshPhongMaterial({ color: Colors.green, flatShading: true, wireframe: false });
+        //Sandbanks
+        var geomSandBanks = new THREE.Geometry();
+        var geomSandBank = new THREE.SphereGeometry(150, 10, 10);
+        var sandBank = new THREE.Mesh(geomSandBank, matYellow);
+        sandBank.scale.set(1, 0.3, 1);
+        sandBank.updateMatrix();
+        geomSandBanks.merge(sandBank.geometry, sandBank.matrix);
+        var geomSandBankExtend1 = new THREE.SphereGeometry(150, 10, 10);
+        var sandBankExtend1 = new THREE.Mesh(geomSandBankExtend1, matYellow);
+        sandBankExtend1.scale.set(1.3, 0.275, 1);
+        sandBankExtend1.position.set(30, 0, 40);
+        sandBankExtend1.updateMatrix();
+        geomSandBanks.merge(sandBankExtend1.geometry, sandBankExtend1.matrix);
+        var sandBanks = new THREE.Mesh(geomSandBanks, matYellow);
+        sandBanks.position.set(0, -30, 0);
+        sandBanks.castShadow = false;
+        sandBanks.receiveShadow = true;
+        island.add(sandBanks);
+        //Boulders
+        var geomBouldersMerged = new THREE.Geometry();
+        var geomBoulder = new THREE.DodecahedronGeometry(20, 0);
+        var boulderLarge = new THREE.Mesh(geomBoulder, matGrey);
+        boulderLarge.applyMatrix4(new THREE.Matrix4().makeTranslation(-10, 22, 0));
+        boulderLarge.applyMatrix4(new THREE.Matrix4().makeRotationX(Math.PI / 10));
+        boulderLarge.updateMatrix();
+        geomBouldersMerged.merge(boulderLarge.geometry, boulderLarge.matrix);
+        //Scatter Small boulders
+        for (var i = 0; i < 15; i++) {
+            var b = new THREE.Mesh(geomBoulder, matGrey);
+            var min = -50;
+            var max = 80;
+            b.position.z = Math.random() * (max - min) + min;
+            b.position.x = Math.random() * (max - min) + min;
+            b.position.y = 10;
+            b.rotation.y = 0 + Math.random() * 10;
+            b.rotation.z = 0 + Math.random() * 10;
+            b.rotation.z = 0 + Math.random() * 10;
+            var s = .1 + Math.random() * .3;
+            b.scale.set(s, s, s);
+            b.castShadow = true;
+            b.receiveShadow = true;
+            b.updateMatrix();
+            geomBouldersMerged.merge(b.geometry, b.matrix);
+        }
+        var bouldersMerged = new THREE.Mesh(geomBouldersMerged, matGrey);
+        bouldersMerged.castShadow = true;
+        bouldersMerged.receiveShadow = true;
+        island.add(bouldersMerged);
+        //PalmTree
+        var palmTree = new THREE.Group();
+        palmTree.position.set(50, 16, 0);
+        var geomPalmTrunkSegMerged = new THREE.Geometry();
+        var geomPalmTrunkSeg = new THREE.BoxGeometry(8, 10, 8);
+        geomPalmTrunkSeg.vertices[0].x += 2.5;
+        geomPalmTrunkSeg.vertices[0].z += 2.5;
+        geomPalmTrunkSeg.vertices[1].x += 2.5;
+        geomPalmTrunkSeg.vertices[1].z -= 2.5;
+        geomPalmTrunkSeg.vertices[4].x -= 2.5;
+        geomPalmTrunkSeg.vertices[4].z -= 2.5;
+        geomPalmTrunkSeg.vertices[5].x -= 2.5;
+        geomPalmTrunkSeg.vertices[5].z += 2.5;
+        var palmTrunkSeg = new THREE.Mesh(geomPalmTrunkSeg, matBrown);
+        palmTrunkSeg.updateMatrix();
+        geomPalmTrunkSegMerged.merge(palmTrunkSeg.geometry, palmTrunkSeg.matrix);
+        var palmTrunkSeg2 = palmTrunkSeg.clone();
+        palmTrunkSeg2.applyMatrix4(new THREE.Matrix4().makeTranslation(.5, 9, 0));
+        palmTrunkSeg2.applyMatrix4(new THREE.Matrix4().makeRotationZ(0.2));
+        palmTrunkSeg2.updateMatrix();
+        geomPalmTrunkSegMerged.merge(palmTrunkSeg2.geometry, palmTrunkSeg2.matrix);
+        var palmTrunkSeg3 = palmTrunkSeg2.clone();
+        palmTrunkSeg3.applyMatrix4(new THREE.Matrix4().makeTranslation(-2, 9, 0));
+        palmTrunkSeg3.applyMatrix4(new THREE.Matrix4().makeRotationY(-0.2));
+        palmTrunkSeg3.updateMatrix();
+        geomPalmTrunkSegMerged.merge(palmTrunkSeg3.geometry, palmTrunkSeg3.matrix);
+        var palmTrunkSeg4 = palmTrunkSeg3.clone();
+        palmTrunkSeg4.applyMatrix4(new THREE.Matrix4().makeTranslation(3, 9, 0));
+        palmTrunkSeg4.applyMatrix4(new THREE.Matrix4().makeRotationY(0.2));
+        palmTrunkSeg4.applyMatrix4(new THREE.Matrix4().makeRotationZ(0.2));
+        palmTrunkSeg4.updateMatrix();
+        geomPalmTrunkSegMerged.merge(palmTrunkSeg4.geometry, palmTrunkSeg4.matrix);
+        var palmTrunkSeg5 = palmTrunkSeg4.clone();
+        palmTrunkSeg5.applyMatrix4(new THREE.Matrix4().makeTranslation(-4, 9, 0));
+        palmTrunkSeg5.updateMatrix();
+        geomPalmTrunkSegMerged.merge(palmTrunkSeg5.geometry, palmTrunkSeg5.matrix);
+        var palmTrunkSeg6 = palmTrunkSeg5.clone();
+        palmTrunkSeg6.applyMatrix4(new THREE.Matrix4().makeTranslation(4.5, 10, 0));
+        palmTrunkSeg6.applyMatrix4(new THREE.Matrix4().makeRotationZ(0.2));
+        palmTrunkSeg4.applyMatrix4(new THREE.Matrix4().makeRotationY(0.2));
+        palmTrunkSeg6.updateMatrix();
+        geomPalmTrunkSegMerged.merge(palmTrunkSeg6.geometry, palmTrunkSeg6.matrix);
+        var palmTrunkSeg7 = palmTrunkSeg6.clone();
+        palmTrunkSeg7.applyMatrix4(new THREE.Matrix4().makeTranslation(4.5, 10, 0));
+        palmTrunkSeg7.applyMatrix4(new THREE.Matrix4().makeRotationZ(0.2));
+        palmTrunkSeg7.updateMatrix();
+        geomPalmTrunkSegMerged.merge(palmTrunkSeg7.geometry, palmTrunkSeg7.matrix);
+        var palmTrunkSeg8 = palmTrunkSeg7.clone();
+        palmTrunkSeg8.applyMatrix4(new THREE.Matrix4().makeTranslation(-17, -.25, 0));
+        palmTrunkSeg8.applyMatrix4(new THREE.Matrix4().makeRotationZ(-0.2));
+        palmTrunkSeg8.updateMatrix();
+        geomPalmTrunkSegMerged.merge(palmTrunkSeg8.geometry, palmTrunkSeg8.matrix);
+        var palmTrunkTop = palmTrunkSeg8.clone();
+        palmTrunkTop.applyMatrix4(new THREE.Matrix4().makeTranslation(-6, -21, 0));
+        palmTrunkTop.applyMatrix4(new THREE.Matrix4().makeRotationZ(-0.2));
+        palmTrunkTop.applyMatrix4(new THREE.Matrix4().makeScale(1.3, 1.6, 1.3));
+        palmTrunkTop.updateMatrix();
+        geomPalmTrunkSegMerged.merge(palmTrunkTop.geometry, palmTrunkTop.matrix);
+        var palmTrunk = new THREE.Mesh(geomPalmTrunkSegMerged, matBrown);
+        palmTrunk.castShadow = true;
+        palmTrunk.receiveShadow = true;
+        palmTree.add(palmTrunk);
+        island.add(palmTree);
+        var geomPalmLeavesMerged = new THREE.Geometry();
+        var geomPalmLeaf = new THREE.BoxGeometry(20, 2, 60, 2, 1, 4);
+        geomPalmLeaf.vertices[1].y -= 1;
+        geomPalmLeaf.vertices[6].y -= 1;
+        geomPalmLeaf.vertices[13].y -= 1;
+        geomPalmLeaf.vertices[18].y -= 1;
+        geomPalmLeaf.vertices[2].y -= 3;
+        geomPalmLeaf.vertices[7].y -= 3;
+        geomPalmLeaf.vertices[12].y -= 3;
+        geomPalmLeaf.vertices[17].y -= 3;
+        geomPalmLeaf.vertices[3].y -= 10;
+        geomPalmLeaf.vertices[8].y -= 10;
+        geomPalmLeaf.vertices[11].y -= 10;
+        geomPalmLeaf.vertices[16].y -= 10;
+        geomPalmLeaf.vertices[4].y -= 20;
+        geomPalmLeaf.vertices[9].y -= 20;
+        geomPalmLeaf.vertices[10].y -= 20;
+        geomPalmLeaf.vertices[15].y -= 20;
+        //Ridge
+        geomPalmLeaf.vertices[20].y -= 18;
+        geomPalmLeaf.vertices[21].y -= 7;
+        geomPalmLeaf.vertices[22].y -= 1;
+        geomPalmLeaf.vertices[26].y -= 1;
+        geomPalmLeaf.vertices[27].y -= 3;
+        geomPalmLeaf.vertices[28].y -= 7;
+        geomPalmLeaf.vertices[29].y -= 18;
+        geomPalmLeaf.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0, -30));
+        var palmLeaf = new THREE.Mesh(geomPalmLeaf, matGreen);
+        for (var i = 0; i < 6; i++) {
+            var l = new THREE.Mesh(geomPalmLeaf, matGreen);
+            l.rotation.y = i * Math.PI / 3;
+            var s = .7 + Math.random() * .95;
+            l.scale.set(1, s, 1);
+            l.castShadow = true;
+            l.receiveShadow = true;
+            l.updateMatrix();
+            geomPalmLeavesMerged.merge(l.geometry, l.matrix);
+        }
+        for (var i = 0; i < 6; i++) {
+            var l = new THREE.Mesh(geomPalmLeaf, matGreen);
+            l.rotation.y = i * Math.PI / 3 + Math.PI / 6;
+            l.position.y = -3;
+            var s = .5 + Math.random() * .8;
+            l.scale.set(.8, s, .7);
+            l.castShadow = true;
+            l.receiveShadow = true;
+            l.updateMatrix();
+            geomPalmLeavesMerged.merge(l.geometry, l.matrix);
+        }
+        var palmLeaves = new THREE.Mesh(geomPalmLeavesMerged, matGreen);
+        palmLeaves.position.set(-34, 76, 0);
+        palmLeaves.rotation.z = Math.PI / 10;
+        palmLeaves.castShadow = true;
+        palmLeaves.receiveShadow = true;
+        palmTree.add(palmLeaves);
+        this.mesh.add(island);
+    }
 }
-function DesertIsland() {
-    this.mesh = new THREE.Object3D();
-    var island = new THREE.Group();
-    var matYellow = new THREE.MeshPhongMaterial({ color: Colors.yellow, flatShading: true, wireframe: false });
-    var matGrey = new THREE.MeshPhongMaterial({ color: Colors.darkGrey, wireframe: false });
-    var matBrown = new THREE.MeshPhongMaterial({ color: Colors.brown, wireframe: false });
-    var matGreen = new THREE.MeshPhongMaterial({ color: Colors.green, flatShading: true, wireframe: false });
-    //Sandbanks
-    var geomSandBanks = new THREE.Geometry();
-    var geomSandBank = new THREE.SphereGeometry(150, 10, 10);
-    var sandBank = new THREE.Mesh(geomSandBank, matYellow);
-    sandBank.scale.set(1, 0.3, 1);
-    sandBank.updateMatrix();
-    geomSandBanks.merge(sandBank.geometry, sandBank.matrix);
-    var geomSandBankExtend1 = new THREE.SphereGeometry(150, 10, 10);
-    var sandBankExtend1 = new THREE.Mesh(geomSandBankExtend1, matYellow);
-    sandBankExtend1.scale.set(1.3, 0.275, 1);
-    sandBankExtend1.position.set(30, 0, 40);
-    sandBankExtend1.updateMatrix();
-    geomSandBanks.merge(sandBankExtend1.geometry, sandBankExtend1.matrix);
-    var sandBanks = new THREE.Mesh(geomSandBanks, matYellow);
-    sandBanks.position.set(0, -30, 0);
-    sandBanks.castShadow = false;
-    sandBanks.receiveShadow = true;
-    island.add(sandBanks);
-    //Boulders
-    var geomBouldersMerged = new THREE.Geometry();
-    var geomBoulder = new THREE.DodecahedronGeometry(20, 0);
-    var boulderLarge = new THREE.Mesh(geomBoulder, matGrey);
-    boulderLarge.applyMatrix4(new THREE.Matrix4().makeTranslation(-10, 22, 0));
-    boulderLarge.applyMatrix4(new THREE.Matrix4().makeRotationX(Math.PI / 10));
-    boulderLarge.updateMatrix();
-    geomBouldersMerged.merge(boulderLarge.geometry, boulderLarge.matrix);
-    //Scatter Small boulders
-    for (var i = 0; i < 15; i++) {
-        var b = new THREE.Mesh(geomBoulder, matGrey);
-        var min = -50;
-        var max = 80;
-        b.position.z = Math.random() * (max - min) + min;
-        b.position.x = Math.random() * (max - min) + min;
-        b.position.y = 10;
-        b.rotation.y = 0 + Math.random() * 10;
-        b.rotation.z = 0 + Math.random() * 10;
-        b.rotation.z = 0 + Math.random() * 10;
-        var s = .1 + Math.random() * .3;
-        b.scale.set(s, s, s);
-        b.castShadow = true;
-        b.receiveShadow = true;
-        b.updateMatrix();
-        geomBouldersMerged.merge(b.geometry, b.matrix);
+class Beacon {
+    constructor() {
+        this.mesh = new THREE.Object3D();
+        var matRed = new THREE.MeshPhongMaterial({ color: Colors.red, flatShading: true, wireframe: false });
+        var matWhite = new THREE.MeshPhongMaterial({ color: Colors.white, flatShading: true, wireframe: false });
+        var geomBeaconMerged = new THREE.Geometry();
+        var geomBeaconBase = new THREE.CylinderGeometry(10, 10, 7, 10, 1);
+        var beaconBase = new THREE.Mesh(geomBeaconBase, matRed);
+        beaconBase.applyMatrix4(new THREE.Matrix4().makeTranslation(0, -1, 0));
+        beaconBase.updateMatrix();
+        geomBeaconMerged.merge(beaconBase.geometry, beaconBase.matrix);
+        var geomBeaconTower1 = new THREE.CylinderGeometry(6, 8, 10, 4, 1);
+        var beaconTower1 = new THREE.Mesh(geomBeaconTower1, matRed);
+        beaconTower1.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 7.5, 0));
+        beaconTower1.updateMatrix();
+        geomBeaconMerged.merge(beaconTower1.geometry, beaconTower1.matrix);
+        var geomBeaconTower2 = new THREE.CylinderBufferGeometry(4.5, 5.5, 6, 4, 1);
+        var beaconTower2 = new THREE.Mesh(geomBeaconTower2, matWhite);
+        beaconTower2.position.set(0, 13, 0);
+        beaconTower2.castShadow = true;
+        beaconTower2.receiveShadow = true;
+        this.mesh.add(beaconTower2);
+        var geomBeaconTower3 = new THREE.CylinderGeometry(3.5, 5.5, 10, 4, 1);
+        var beaconTower3 = new THREE.Mesh(geomBeaconTower3, matRed);
+        beaconTower3.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 21, 0));
+        beaconTower3.updateMatrix();
+        geomBeaconMerged.merge(beaconTower3.geometry, beaconTower3.matrix);
+        var geomBeaconTop = new THREE.SphereGeometry(5, 4, 5);
+        var beaconTop = new THREE.Mesh(geomBeaconTop, matRed);
+        beaconTop.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 29, 0));
+        beaconTop.updateMatrix();
+        geomBeaconMerged.merge(beaconTop.geometry, beaconTop.matrix);
+        var beacon = new THREE.Mesh(geomBeaconMerged, matRed);
+        beacon.castShadow = true;
+        beacon.receiveShadow = true;
+        this.mesh.add(beacon);
     }
-    var bouldersMerged = new THREE.Mesh(geomBouldersMerged, matGrey);
-    bouldersMerged.castShadow = true;
-    bouldersMerged.receiveShadow = true;
-    island.add(bouldersMerged);
-    //PalmTree
-    var palmTree = new THREE.Group();
-    palmTree.position.set(50, 16, 0);
-    var geomPalmTrunkSegMerged = new THREE.Geometry();
-    var geomPalmTrunkSeg = new THREE.BoxGeometry(8, 10, 8);
-    geomPalmTrunkSeg.vertices[0].x += 2.5;
-    geomPalmTrunkSeg.vertices[0].z += 2.5;
-    geomPalmTrunkSeg.vertices[1].x += 2.5;
-    geomPalmTrunkSeg.vertices[1].z -= 2.5;
-    geomPalmTrunkSeg.vertices[4].x -= 2.5;
-    geomPalmTrunkSeg.vertices[4].z -= 2.5;
-    geomPalmTrunkSeg.vertices[5].x -= 2.5;
-    geomPalmTrunkSeg.vertices[5].z += 2.5;
-    var palmTrunkSeg = new THREE.Mesh(geomPalmTrunkSeg, matBrown);
-    palmTrunkSeg.updateMatrix();
-    geomPalmTrunkSegMerged.merge(palmTrunkSeg.geometry, palmTrunkSeg.matrix);
-    var palmTrunkSeg2 = palmTrunkSeg.clone();
-    palmTrunkSeg2.applyMatrix4(new THREE.Matrix4().makeTranslation(.5, 9, 0));
-    palmTrunkSeg2.applyMatrix4(new THREE.Matrix4().makeRotationZ(0.2));
-    palmTrunkSeg2.updateMatrix();
-    geomPalmTrunkSegMerged.merge(palmTrunkSeg2.geometry, palmTrunkSeg2.matrix);
-    var palmTrunkSeg3 = palmTrunkSeg2.clone();
-    palmTrunkSeg3.applyMatrix4(new THREE.Matrix4().makeTranslation(-2, 9, 0));
-    palmTrunkSeg3.applyMatrix4(new THREE.Matrix4().makeRotationY(-0.2));
-    palmTrunkSeg3.updateMatrix();
-    geomPalmTrunkSegMerged.merge(palmTrunkSeg3.geometry, palmTrunkSeg3.matrix);
-    var palmTrunkSeg4 = palmTrunkSeg3.clone();
-    palmTrunkSeg4.applyMatrix4(new THREE.Matrix4().makeTranslation(3, 9, 0));
-    palmTrunkSeg4.applyMatrix4(new THREE.Matrix4().makeRotationY(0.2));
-    palmTrunkSeg4.applyMatrix4(new THREE.Matrix4().makeRotationZ(0.2));
-    palmTrunkSeg4.updateMatrix();
-    geomPalmTrunkSegMerged.merge(palmTrunkSeg4.geometry, palmTrunkSeg4.matrix);
-    var palmTrunkSeg5 = palmTrunkSeg4.clone();
-    palmTrunkSeg5.applyMatrix4(new THREE.Matrix4().makeTranslation(-4, 9, 0));
-    palmTrunkSeg5.updateMatrix();
-    geomPalmTrunkSegMerged.merge(palmTrunkSeg5.geometry, palmTrunkSeg5.matrix);
-    var palmTrunkSeg6 = palmTrunkSeg5.clone();
-    palmTrunkSeg6.applyMatrix4(new THREE.Matrix4().makeTranslation(4.5, 10, 0));
-    palmTrunkSeg6.applyMatrix4(new THREE.Matrix4().makeRotationZ(0.2));
-    palmTrunkSeg4.applyMatrix4(new THREE.Matrix4().makeRotationY(0.2));
-    palmTrunkSeg6.updateMatrix();
-    geomPalmTrunkSegMerged.merge(palmTrunkSeg6.geometry, palmTrunkSeg6.matrix);
-    var palmTrunkSeg7 = palmTrunkSeg6.clone();
-    palmTrunkSeg7.applyMatrix4(new THREE.Matrix4().makeTranslation(4.5, 10, 0));
-    palmTrunkSeg7.applyMatrix4(new THREE.Matrix4().makeRotationZ(0.2));
-    palmTrunkSeg7.updateMatrix();
-    geomPalmTrunkSegMerged.merge(palmTrunkSeg7.geometry, palmTrunkSeg7.matrix);
-    var palmTrunkSeg8 = palmTrunkSeg7.clone();
-    palmTrunkSeg8.applyMatrix4(new THREE.Matrix4().makeTranslation(-17, -.25, 0));
-    palmTrunkSeg8.applyMatrix4(new THREE.Matrix4().makeRotationZ(-0.2));
-    palmTrunkSeg8.updateMatrix();
-    geomPalmTrunkSegMerged.merge(palmTrunkSeg8.geometry, palmTrunkSeg8.matrix);
-    var palmTrunkTop = palmTrunkSeg8.clone();
-    palmTrunkTop.applyMatrix4(new THREE.Matrix4().makeTranslation(-6, -21, 0));
-    palmTrunkTop.applyMatrix4(new THREE.Matrix4().makeRotationZ(-0.2));
-    palmTrunkTop.applyMatrix4(new THREE.Matrix4().makeScale(1.3, 1.6, 1.3));
-    palmTrunkTop.updateMatrix();
-    geomPalmTrunkSegMerged.merge(palmTrunkTop.geometry, palmTrunkTop.matrix);
-    var palmTrunk = new THREE.Mesh(geomPalmTrunkSegMerged, matBrown);
-    palmTrunk.castShadow = true;
-    palmTrunk.receiveShadow = true;
-    palmTree.add(palmTrunk);
-    island.add(palmTree);
-    var geomPalmLeavesMerged = new THREE.Geometry();
-    var geomPalmLeaf = new THREE.BoxGeometry(20, 2, 60, 2, 1, 4);
-    geomPalmLeaf.vertices[1].y -= 1;
-    geomPalmLeaf.vertices[6].y -= 1;
-    geomPalmLeaf.vertices[13].y -= 1;
-    geomPalmLeaf.vertices[18].y -= 1;
-    geomPalmLeaf.vertices[2].y -= 3;
-    geomPalmLeaf.vertices[7].y -= 3;
-    geomPalmLeaf.vertices[12].y -= 3;
-    geomPalmLeaf.vertices[17].y -= 3;
-    geomPalmLeaf.vertices[3].y -= 10;
-    geomPalmLeaf.vertices[8].y -= 10;
-    geomPalmLeaf.vertices[11].y -= 10;
-    geomPalmLeaf.vertices[16].y -= 10;
-    geomPalmLeaf.vertices[4].y -= 20;
-    geomPalmLeaf.vertices[9].y -= 20;
-    geomPalmLeaf.vertices[10].y -= 20;
-    geomPalmLeaf.vertices[15].y -= 20;
-    //Ridge
-    geomPalmLeaf.vertices[20].y -= 18;
-    geomPalmLeaf.vertices[21].y -= 7;
-    geomPalmLeaf.vertices[22].y -= 1;
-    geomPalmLeaf.vertices[26].y -= 1;
-    geomPalmLeaf.vertices[27].y -= 3;
-    geomPalmLeaf.vertices[28].y -= 7;
-    geomPalmLeaf.vertices[29].y -= 18;
-    geomPalmLeaf.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0, -30));
-    var palmLeaf = new THREE.Mesh(geomPalmLeaf, matGreen);
-    for (var i = 0; i < 6; i++) {
-        var l = new THREE.Mesh(geomPalmLeaf, matGreen);
-        l.rotation.y = i * Math.PI / 3;
-        var s = .7 + Math.random() * .95;
-        l.scale.set(1, s, 1);
-        l.castShadow = true;
-        l.receiveShadow = true;
-        l.updateMatrix();
-        geomPalmLeavesMerged.merge(l.geometry, l.matrix);
-    }
-    for (var i = 0; i < 6; i++) {
-        var l = new THREE.Mesh(geomPalmLeaf, matGreen);
-        l.rotation.y = i * Math.PI / 3 + Math.PI / 6;
-        l.position.y = -3;
-        var s = .5 + Math.random() * .8;
-        l.scale.set(.8, s, .7);
-        l.castShadow = true;
-        l.receiveShadow = true;
-        l.updateMatrix();
-        geomPalmLeavesMerged.merge(l.geometry, l.matrix);
-    }
-    var palmLeaves = new THREE.Mesh(geomPalmLeavesMerged, matGreen);
-    palmLeaves.position.set(-34, 76, 0);
-    palmLeaves.rotation.z = Math.PI / 10;
-    palmLeaves.castShadow = true;
-    palmLeaves.receiveShadow = true;
-    palmTree.add(palmLeaves);
-    this.mesh.add(island);
 }
-var Beacon = function () {
-    this.mesh = new THREE.Object3D();
-    var matRed = new THREE.MeshPhongMaterial({ color: Colors.red, flatShading: true, wireframe: false });
-    var matWhite = new THREE.MeshPhongMaterial({ color: Colors.white, flatShading: true, wireframe: false });
-    var geomBeaconMerged = new THREE.Geometry();
-    var geomBeaconBase = new THREE.CylinderGeometry(10, 10, 7, 10, 1);
-    var beaconBase = new THREE.Mesh(geomBeaconBase, matRed);
-    beaconBase.applyMatrix4(new THREE.Matrix4().makeTranslation(0, -1, 0));
-    beaconBase.updateMatrix();
-    geomBeaconMerged.merge(beaconBase.geometry, beaconBase.matrix);
-    var geomBeaconTower1 = new THREE.CylinderGeometry(6, 8, 10, 4, 1);
-    var beaconTower1 = new THREE.Mesh(geomBeaconTower1, matRed);
-    beaconTower1.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 7.5, 0));
-    beaconTower1.updateMatrix();
-    geomBeaconMerged.merge(beaconTower1.geometry, beaconTower1.matrix);
-    var geomBeaconTower2 = new THREE.CylinderBufferGeometry(4.5, 5.5, 6, 4, 1);
-    var beaconTower2 = new THREE.Mesh(geomBeaconTower2, matWhite);
-    beaconTower2.position.set(0, 13, 0);
-    beaconTower2.castShadow = true;
-    beaconTower2.receiveShadow = true;
-    this.mesh.add(beaconTower2);
-    var geomBeaconTower3 = new THREE.CylinderGeometry(3.5, 5.5, 10, 4, 1);
-    var beaconTower3 = new THREE.Mesh(geomBeaconTower3, matRed);
-    beaconTower3.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 21, 0));
-    beaconTower3.updateMatrix();
-    geomBeaconMerged.merge(beaconTower3.geometry, beaconTower3.matrix);
-    var geomBeaconTop = new THREE.SphereGeometry(5, 4, 5);
-    var beaconTop = new THREE.Mesh(geomBeaconTop, matRed);
-    beaconTop.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 29, 0));
-    beaconTop.updateMatrix();
-    geomBeaconMerged.merge(beaconTop.geometry, beaconTop.matrix);
-    var beacon = new THREE.Mesh(geomBeaconMerged, matRed);
-    beacon.castShadow = true;
-    beacon.receiveShadow = true;
-    this.mesh.add(beacon);
-};
-var swayBeacon = function () {
-    for (var i = 0; i < beaconArray.length; i++) {
-        var min = 0.005;
-        var max = 0.01;
-        var offset = Math.random() * (max - min) + min;
-        beaconArray[i].mesh.rotation.z = Math.sin(Date.now() * 0.0008) * Math.PI * 0.05;
-        beaconArray[i].mesh.rotation.x = Math.sin(Date.now() * 0.001 + offset) * Math.PI * 0.02;
-        beaconArray[i].mesh.position.y = Math.sin(Date.now() * 0.001 + offset) * -1;
-    }
-};
 class SeaGull {
     constructor() {
         this.mesh = new THREE.Object3D();
@@ -1146,14 +1117,19 @@ class Boat {
         greyGeom.castShadow = true;
         greyGeom.receiveShadow = true;
         this.group.add(greyGeom);
-        // Anchor Camera to Boat
-        camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
-        controls = new THREE.OrbitControls(camera, renderer.domElement);
-        camera.position.set(0, 30, 100);
-        cameraMesh.add(camera);
-        cameraMesh.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0, -24));
-        cameraMesh.add(this.group);
-        this.mesh.add(cameraMesh);
+        // // Anchor Camera to Boat
+        // camera = new THREE.PerspectiveCamera(
+        // 	fieldOfView,
+        // 	aspectRatio,
+        // 	nearPlane,
+        // 	farPlane
+        // );
+        // controls = new THREE.OrbitControls(camera, renderer.domElement);
+        // camera.position.set(0, 30, 100);
+        // cameraMesh.add(camera);
+        // cameraMesh.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0, -24));
+        // cameraMesh.add(this.group);
+        // this.mesh.add(cameraMesh);
     }
     swayBoat() {
         this.group.rotation.z = Math.sin(Date.now() * 0.001) * Math.PI * 0.01;
@@ -1162,140 +1138,7 @@ class Boat {
         this.engineBlock.rotation.z = Math.sin(Date.now() * 0.05) * Math.PI * 0.005;
     }
 }
-var beaconArray = [];
 var seaGullArray = [];
 var seaGullIslandArray = [];
 var sea, boat, desertIsland, beacon, seaGull;
-function createSea() {
-    sea = new Sea();
-    scene.add(sea.mesh);
-    sea.mesh.castShadow = false;
-    sea.mesh.receiveShadow = true;
-}
-function createBoat() {
-    boat = new Boat();
-    boat.mesh.position.set(-100, 0.25, 100);
-    boat.mesh.scale.set(1, 1, 1);
-    scene.add(boat.mesh);
-}
-function createBeacon(x, y, z) {
-    beacon = new Beacon();
-    beacon.mesh.position.set(x, y, z);
-    scene.add(beacon.mesh);
-    beaconArray.push(beacon);
-}
-function createIsland(x, y, z) {
-    desertIsland = new DesertIsland();
-    desertIsland.mesh.position.set(x, y, z);
-    scene.add(desertIsland.mesh);
-    createSeaGull(x - 50, 50, z, .3);
-    seaGullIslandArray.push(seaGull);
-    createBeacon(x - 150, 0.5, z + 50);
-}
-function createSeaGull(x, y, z, s) {
-    seaGull = new SeaGull();
-    seaGull.mesh.scale.set(s, s, s);
-    seaGull.mesh.position.set(x, y, z);
-    scene.add(seaGull.mesh);
-    seaGullArray.push(seaGull);
-}
-function finishedLoading() {
-    loaded = true;
-    document.getElementById('preloader').classList.add('hidden');
-}
-function init() {
-    createScene();
-    createLights();
-    createSea();
-    createBoat();
-    createIsland(-80, 0, -300);
-    createIsland(120, 2, 250);
-    createIsland(-400, -2, 300);
-    createIsland(-650, -1.2, -300);
-    createBeacon(-40, 0, 25);
-    createSeaGull(200, 65, 100, .4);
-    initSkybox();
-    loop();
-}
-function loop(e) {
-    swayBeacon();
-    flapWings();
-    boat.swayBoat();
-    renderer.render(scene, camera);
-    requestAnimationFrame(loop);
-    animation();
-}
-function animation() {
-    var delta = clock.getDelta(); // seconds.
-    //SEAGULL ANIMATIONS
-    //////////////////////////
-    var gullSpeed = 40 * delta;
-    //Sea Gull Island Movement
-    for (var i = 0; i < seaGullIslandArray.length; i++) {
-        var turningCircle = -Math.PI / 6 * delta;
-        seaGullIslandArray[i].mesh.translateZ(-gullSpeed);
-        seaGullIslandArray[i].mesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), turningCircle);
-    }
-    //Sea Gull Free Movement
-    seaGull.mesh.translateZ(-(gullSpeed + .35));
-    seaGull.mesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI / 15 * delta);
-    //BOAT ANIMATIONS
-    //////////////////////////
-    var rotateAngle = Math.PI / 3.5 * delta;
-    var propellorAngle = -Math.PI * 4 * delta; // degrees per second
-    var moveDistance = 100 * delta; // 100 pixels per second
-    //Engine Idle
-    boat.propellor.rotateOnAxis(new THREE.Vector3(0, 1, 0), propellorAngle / 8);
-    //Engine Rotation
-    var engineY = boat.engineBlock.rotation.y;
-    var maxEngineY = .8;
-    //BOAT CONTROLS
-    //////////////////////////
-    if (keyboard.pressed("W")) {
-        boat.mesh.translateZ(-moveDistance);
-        boat.propellor.rotateOnAxis(new THREE.Vector3(0, 1, 0), propellorAngle);
-    }
-    if (keyboard.pressed("S")) {
-        boat.mesh.translateZ(moveDistance);
-        boat.propellor.rotateOnAxis(new THREE.Vector3(0, 1, 0), -propellorAngle);
-    }
-    if (keyboard.pressed("A")) {
-        setTimeout(function () {
-            boat.mesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), rotateAngle);
-        }, 100);
-        if (keyboard.pressed("S")) {
-            boat.engineBlock.rotation.y = THREE.Math.clamp(engineY + (delta * 2.5), -maxEngineY, maxEngineY);
-        }
-        else {
-            boat.engineBlock.rotation.y = THREE.Math.clamp(engineY - (delta * 2.5), -maxEngineY, maxEngineY);
-        }
-        if (!(keyboard.pressed("W") || keyboard.pressed("S"))) {
-            boat.propellor.rotateOnAxis(new THREE.Vector3(0, 1, 0), propellorAngle);
-        }
-    }
-    if (keyboard.pressed("D")) {
-        setTimeout(function () {
-            boat.mesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), -rotateAngle);
-        }, 100);
-        if (keyboard.pressed("S")) {
-            boat.engineBlock.rotation.y = THREE.Math.clamp(engineY - (delta * 2.5), -maxEngineY, maxEngineY);
-        }
-        else {
-            boat.engineBlock.rotation.y = THREE.Math.clamp(engineY + (delta * 2.5), -maxEngineY, maxEngineY);
-        }
-        if (!(keyboard.pressed("W") || keyboard.pressed("S"))) {
-            boat.propellor.rotateOnAxis(new THREE.Vector3(0, 1, 0), propellorAngle);
-        }
-    }
-    // Steering Decay
-    if (!(keyboard.pressed("A") || keyboard.pressed("D")) && (keyboard.pressed("W") || keyboard.pressed("S"))) {
-        if (engineY > 0) {
-            boat.engineBlock.rotation.y = THREE.Math.clamp(engineY - delta * 1.75, 0, maxEngineY);
-        }
-        else {
-            boat.engineBlock.rotation.y = THREE.Math.clamp(engineY + delta * 1.75, -maxEngineY, 0);
-        }
-    }
-    controls.update();
-}
 //# sourceMappingURL=toon-water.js.map

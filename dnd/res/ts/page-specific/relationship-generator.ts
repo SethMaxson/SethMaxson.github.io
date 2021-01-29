@@ -4,9 +4,6 @@ var npcManager2: NPCManager;
 var loadedRelationships: RelationshipManager;
 var character1: NPC | undefined;
 var character2: NPC | undefined;
-function getRaces() {
-    return $.ajax({ crossDomain: true, url: "/dnd/res/data/races.json", dataType: 'json' });
-}
 
 $(document).ready(function ()
 {

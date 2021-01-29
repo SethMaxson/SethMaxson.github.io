@@ -122,7 +122,8 @@
 			<div id="TripDistance"></div>
 			<div id="TripTime"></div>
 		</div>
-		<div id="map-container" class="map-container map" style="background-image:url('/dnd/img/maps/WorldMap.png'); background-repeat: no-repeat; background-size: contain; width:18750px; height:11250px; text-align: center; transform-origin:center center;">
+		<div id="map-container" class="map-container map" style="width:18750px; height:11250px; text-align: center; transform-origin:center center;">
+			<div class="grid-lines stay-visible"></div>
 			<!-- <div class="airship hover" style="height:150px; width:150px; left:44.4%; top:37.5%; animation-delay: 1s; box-shadow:0px 0px 2px rgba(250,100,0,0.5), 0px 0px 5px rgba(250,100,0,0.5), 10px 15px 5px rgba(0,0,0,0.4);">
 				<img class="scale-me" src="/dnd/img/maps/CrossShip.png" style="width:100%;" alt="image"/>
 				<span class="city-preview">
@@ -165,41 +166,6 @@
 					<h1>The High Ground</h1>
 				</span>
 			</div> -->
-			<a href="#" class="smith continent" style="position:absolute; top:700px; left:10000px; z-index:6;">
-				Notre
-				<span class="city-preview">
-					<h1>Notre</h1>
-					<!-- <p>
-						Population:
-						Yeti
-						Walrus Folk
-
-						Culture:
-						The Yeti and Walrus tend to distance themselves from each other. The two cultures signed a peace treaty 38 years ago preventing war, but their cultures are too different to mingle effectively.
-
-							Yeti: Stoic and standoffish. Yeti speak only when necessary, and using only as many words as needed to convey their intended message. The yeti are herbivores. They subsist on the rare frostflower. This is incredibly rich in nutrients and curative power, but grows only in small numbers beneath the snow. Due to the limited food supply, the yeti population tends to remain small.
-
-							Walrusfolk: Boisterous and hearty. Walrusfolk are fond of large gatherings, and love nothing more than a good recreational fight, adult party, or feast. Their diet consists almost exclusively of seafood.
-					</p> -->
-				</span>
-			</a>
-			<a href="#" class="smith continent" style="position:absolute; top:9730px; left:9300px; z-index:6;">
-				Sutre
-				<span class="city-preview">
-					<h1>Sutre</h1>
-					<!-- <p>
-						Population:
-						Centaurs
-						The weird antler walrus things from TLoZ: Phantom Hourglass
-
-						Culture:
-						Both primary cultures on Sutre are welcoming to outsiders, but hate each other with a fiery passion. They are constantly at war over the few viable feeding grounds on Sutre.
-
-						Biome:
-						Sutre is the very definition of arctic. The handful of locations on Suture that are not covered in ice are coveted and fought over.
-					</p> -->
-				</span>
-			</a>
 			<a href="/dnd/pages/maps/noseyus.html" class="smith metropolis" style="position:absolute; top:4200px; left:15000px; font-size:80px; z-index:6;">
 				Noseyus Island
 				<span class="city-preview">
@@ -249,7 +215,7 @@
 				<a href="cities/paros/paros.html" class="smith continent" style="position:absolute; top:2230px; left:2540px;">
 					Paros
 				</a>
-				<div class="marker-town" style="left:2490px; top:3460px;">
+				<div class="marker-town" style="left:2490px; top:3460px; background:chartreuse">
 					&#160;
 				</div>
 				<img src="/dnd/img/maps/landmasses/Paros.png" style="height:100%; z-index:1;">
@@ -282,6 +248,45 @@
 			<div class="map-decapos">
 				<a href="cities/decapos/decapos.html" class="smith continent" style="position:absolute; top:40%; left:55%; transform:translate(-50%, -50%);">Decapos</a>
 				<img src="/dnd/img/maps/landmasses/Decapos.png" style="width:100%; z-index:1;">
+			</div>
+			<div class="map-notre">
+				<a href="#" class="smith continent" style="position:absolute; top:82.5%; left:61.5%; transform:translate(-50%, -50%);">Notre
+					<span class="city-preview">
+						<h1>Notre</h1>
+						<!-- <p>
+							Population:
+							Yeti
+							Walrus Folk
+
+							Culture:
+							The Yeti and Walrus tend to distance themselves from each other. The two cultures signed a peace treaty 38 years ago preventing war, but their cultures are too different to mingle effectively.
+
+								Yeti: Stoic and standoffish. Yeti speak only when necessary, and using only as many words as needed to convey their intended message. The yeti are herbivores. They subsist on the rare frostflower. This is incredibly rich in nutrients and curative power, but grows only in small numbers beneath the snow. Due to the limited food supply, the yeti population tends to remain small.
+
+								Walrusfolk: Boisterous and hearty. Walrusfolk are fond of large gatherings, and love nothing more than a good recreational fight, adult party, or feast. Their diet consists almost exclusively of seafood.
+						</p> -->
+					</span>
+				</a>
+				<img src="/dnd/img/maps/landmasses/Notre.png" style="width:100%; z-index:1;">
+			</div>
+			<div class="map-sutre">
+				<a href="#" class="smith continent" style="position:absolute; top:28%; left:45%; transform:translate(-50%, -50%);">Sutre
+					<span class="city-preview">
+						<h1>Sutre</h1>
+						<!-- <p>
+							Population:
+							Centaurs
+							The weird antler walrus things from TLoZ: Phantom Hourglass
+
+							Culture:
+							Both primary cultures on Sutre are welcoming to outsiders, but hate each other with a fiery passion. They are constantly at war over the few viable feeding grounds on Sutre.
+
+							Biome:
+							Sutre is the very definition of arctic. The handful of locations on Suture that are not covered in ice are coveted and fought over.
+						</p> -->
+					</span>
+				</a>
+				<img src="/dnd/img/maps/landmasses/Notre.png" style="width:100%; z-index:1;">
 			</div>
 			<div id="CorruptionMap" style="background-image:url('/dnd/img/maps/corruptionmap.png'); background-repeat: no-repeat; background-size: contain; width:100%; height:100%; z-index:1; position:absolute; top:0; left:0; opacity:0.6; pointer-events: none; display:none;">
 				<img src="/dnd/img/maps/corruptionmap.png" style="width:100%;" alt="image"/>

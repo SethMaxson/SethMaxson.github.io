@@ -9,3 +9,4 @@ declare const RacialTraits: {
     misc: RacialTraitSet;
     [key: string]: RacialTraitSet | undefined;
 };
+declare function getRacialTraits(race: string): RacialTraitSet;

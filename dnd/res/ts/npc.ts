@@ -2,7 +2,6 @@ function getNPCs() {
 	return $.ajax({ crossDomain: true, url: "/dnd/res/data/npcs.json", dataType: 'json' });
 }
 
-
 interface INPC
 {
 	id: string;
@@ -13,8 +12,10 @@ interface INPC
 	gender: any;
 	age: number;
 	relativeAge: string;
-	alignment: string;
+	alignment: Alignment;
 	threat: string;
+	intelligence: string;
+	personalityTags: string[];
 	profession: string;
 	description: string;
 	status: string;
@@ -29,8 +30,10 @@ class NPC implements INPC {
 	gender: string;
 	age: number;
 	relativeAge: string;
-	alignment: string;
+	alignment: Alignment;
 	threat: string;
+	intelligence: string;
+	personalityTags: string[];
 	profession: string;
 	description: string;
 	status: string;
@@ -46,6 +49,8 @@ class NPC implements INPC {
 		this.relativeAge = obj.relativeAge || undefined;
 		this.alignment = obj.alignment || undefined;
 		this.threat = obj.threat || undefined;
+		this.intelligence = obj.intelligence || undefined;
+		this.personalityTags = obj.personalityTags || [];
 		this.profession = obj.profession || undefined;
 		this.description = obj.description || undefined;
 		this.status = obj.status || "living";

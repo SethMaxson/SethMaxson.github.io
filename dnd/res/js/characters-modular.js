@@ -1,7 +1,7 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { GLTFLoader } from '../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { SkeletonUtils } from '../../../node_modules/three/examples/jsm/utils/SkeletonUtils.js';
-import { FOUR } from '../js/four.js';
+import { FOUR } from './four.js';
 export var CharactersModular;
 (function (CharactersModular) {
     const genders = "fm";
@@ -838,7 +838,7 @@ export var CharactersModular;
     }
     CharactersModular.getPC = getPC;
     function getParty(target, x = 0, y = 0, z = 0) {
-        const partyMembers = ["Bud", "Jasper", "Falumer", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenrya"];
+        const partyMembers = ["Bud", "Jasper", "Falimur", "Namfoodle", "Redji", "Seabern", "Shamous", "Thunder", "Zenrya"];
         // var target = new THREE.Object3D();
         for (let i = 0; i < partyMembers.length; i++) {
             const e = partyMembers[i];

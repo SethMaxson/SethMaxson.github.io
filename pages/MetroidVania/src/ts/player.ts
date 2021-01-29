@@ -20,7 +20,6 @@ import
 		characterDeadRight
 	} from "./img-loader.js";
 import Creature from './base-types/creature.js';
-import { Console } from 'console';
 
 const PLAYER_STATES = {
 	IDLE_LEFT: "IDLE_LEFT",

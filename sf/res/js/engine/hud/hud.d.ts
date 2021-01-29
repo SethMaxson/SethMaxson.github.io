@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jqueryui" />
 import { Reticle } from "./reticle.js";
 import { Entity } from "./../entity/entity.js";
 import { HitPoints, Main } from "./../engine.js";

@@ -6,6 +6,7 @@ declare class ThemeBenefit {
     constructor(lvl: any, name?: string, description?: string);
 }
 declare function getClasses(): JQuery.jqXHR<any>;
+declare function getRaces(): JQuery.jqXHR<any>;
 declare function getThemes(): JQuery.jqXHR<any>;
 declare function getRacialTraits(): JQuery.jqXHR<any>;
 declare class Race {

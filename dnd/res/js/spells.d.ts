@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jqueryui" />
 declare function getSpells(): JQuery.jqXHR<any>;
 declare class Spell {
     name: string;

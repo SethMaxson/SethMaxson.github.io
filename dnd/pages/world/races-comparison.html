@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Peoples of Geoss</title>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous"></script>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				background: #F7F5E6;
+				height: 100vh;
+				margin: 0;
+				padding: 0;
+				width: 100vw;
+			}
+
+			.background {
+				height:100%;
+				width:100%;
+				display: flex;
+				flex-direction: column;
+				background-image: url("/img/locales/windows_xp_bliss-wide.jpg");
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-position: bottom;
+			}
+
+			.title {
+				text-align: center;
+				color: white;
+				font-weight: bold;
+				font-size: 3em;
+				height: 3em;
+				flex-grow: 0;
+			}
+
+			.container {
+				overflow: hidden;
+				flex-grow: 2;
+				font-size:1em;
+				position: relative;
+			}
+
+			.ruler {
+				position:absolute;
+				top:0;
+				left: 0;
+				height:100%;
+			}
+
+			.slider {
+				background-image: url("/dnd/img/races/raceEntry/RulerLines.png");
+				background-repeat: repeat-x;
+				background-position:center center;
+				background-size: contain;
+				background-origin: content-box;
+				background-attachment: scroll;
+				position:relative;
+				overflow-x: visible;
+				overflow-y: hidden;
+				height: 100%;
+				font-size:1em;
+				white-space: nowrap;
+			}
+
+			.slider .name {
+				text-align: center;
+				height:1.5em;
+				font-size: 1.5em;
+				position: absolute;
+				top:0;
+				left:0;
+				width: 100%;
+				color: black;
+				-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+				-webkit-text-stroke-width: 0.5px;
+				-webkit-text-stroke-color: black;
+			}
+
+			.slider > div > img {
+				height: 100%;
+			}
+
+			.slider > div {
+				min-height: 100px;
+				max-height: 100%;
+				min-width: 100px;
+				position: relative;
+				overflow:hidden;
+				display: inline-block;
+				padding:0;
+			}
+
+			.slider > div:not(:first-of-type) {
+				margin-right:-50px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="background" style="padding:0px; height:100%;">
+			<div class="title">Race Heights</div>
+			<div class="container">
+				<div class="slider">
+					<!-- <img class="ruler" src="/dnd/img/races/raceEntry/Ruler.png" alt=""> -->
+					<div style="height:100%; width:1px; max-width: 1px; min-width: 1px;"></div>
+					<div style="height:50%;">
+						<div class="name">Aarakocra</div>
+						<img src="/dnd/img/races/raceEntry/Aarakocra.png" alt="">
+					</div>
+					<div style="height:60%;">
+						<div class="name">Aasimar</div>
+						<img src="/dnd/img/races/raceEntry/Aasimar.png" alt="">
+					</div>
+					<div style="height:80%;">
+						<div class="name">Bloodfin</div>
+						<img src="/dnd/img/races/raceEntry/Bloodfin.png" alt="">
+					</div>
+					<div style="height:40%;">
+						<div class="name">Brokkos</div>
+						<img src="/dnd/img/races/raceEntry/brokkos2.png" alt="">
+					</div>
+					<div style="height:85%;">
+						<div class="name">Bugbear</div>
+						<img src="/dnd/img/races/raceEntry/Bugbear.png" alt="">
+					</div>
+					<div style="height:40%;">
+						<div class="name">Bullywug</div>
+						<img src="/dnd/img/races/raceEntry/Bullywug.png" alt="">
+					</div>
+					<!-- <div style="height:60%;">
+						<div class="name">Changeling</div>
+						<img src="/dnd/img/races/raceEntry/Changeling.png" alt="">
+					</div> -->
+					<div style="height:60%;">
+						<div class="name">Dragonborn</div>
+						<img src="/dnd/img/races/raceEntry/Dragonborn.png" alt="">
+					</div>
+					<div style="height:50%;">
+						<div class="name">Dwarf</div>
+						<img src="/dnd/img/races/raceEntry/Dwarf.png" alt="">
+					</div>
+					<div style="height:60%;">
+						<div class="name">Elf</div>
+						<img src="/dnd/img/races/raceEntry/Elf.png" alt="">
+					</div>
+					<div style="height:80%;">
+						<div class="name">Firbolg</div>
+						<img src="/dnd/img/races/raceEntry/Firbolg.png" alt="">
+					</div>
+					<div style="height:50%;">
+						<div class="name">Firenewt</div>
+						<img src="/dnd/img/races/raceEntry/Firenewt.jpeg" alt="">
+					</div>
+					<div style="height:60%;">
+						<div class="name">Genasi</div>
+						<img src="/dnd/img/races/raceEntry/Genasi.png" alt="">
+					</div>
+					<div style="height:30%;">
+						<div class="name">Gnome</div>
+						<img src="/dnd/img/races/raceEntry/Gnome.png" alt="">
+					</div>
+					<div style="height:40%;">
+						<div class="name">Goblin</div>
+						<img src="/dnd/img/races/raceEntry/Goblin.png" alt="">
+					</div>
+					<div style="height:80%;">
+						<div class="name">Goliath</div>
+						<img src="/dnd/img/races/raceEntry/Goliath.png" alt="">
+					</div>
+					<div style="height:25%;">
+						<div class="name">Grippli</div>
+						<img src="/dnd/img/races/raceEntry/Grippli.png" alt="">
+					</div>
+					<div style="height:25%;">
+						<div class="name">Grung</div>
+						<img src="/dnd/img/races/raceEntry/Grung.png" alt="">
+					</div>
+					<div style="height:30%;">
+						<div class="name">Halfling</div>
+						<img src="/dnd/img/races/raceEntry/Halfling.png" alt="">
+					</div>
+					<div style="height:60%;">
+						<div class="name">Half-Elf</div>
+						<img src="/dnd/img/races/raceEntry/Half-Elf.png" alt="">
+					</div>
+					<div style="height:65%;">
+						<div class="name">Half-Orc</div>
+						<img src="/dnd/img/races/raceEntry/Half-Orc.png" alt="">
+					</div>
+					<div style="height:65%;">
+						<div class="name">Hobgoblin</div>
+						<img src="/dnd/img/races/raceEntry/Hobgoblin.png" alt="">
+					</div>
+					<div style="height:60%;">
+						<div class="name">Human</div>
+						<img src="/dnd/img/races/raceEntry/Human.png" alt="">
+					</div>
+					<div style="height:50%;">
+						<div class="name">Kenku</div>
+						<img src="/dnd/img/races/raceEntry/Kenku.png" alt="">
+					</div>
+					<div style="height:30%;">
+						<div class="name">Kobold</div>
+						<img src="/dnd/img/races/raceEntry/Kobold.png" alt="">
+					</div>
+					<div style="height:60%;">
+						<div class="name">Lizardfolk</div>
+						<img src="/dnd/img/races/raceEntry/Lizardfolk.png" alt="">
+					</div>
+					<div class="race slide">
+						<div class="name">Minotaur</div>
+					</div>
+					<div style="height:65%;">
+						<div class="name">Tabaxi</div>
+						<img src="/dnd/img/races/raceEntry/Tabaxi.png" alt="">
+					</div>
+					<div style="height:60%;">
+						<div class="name">Tiefling</div>
+						<img src="/dnd/img/races/raceEntry/Tiefling.png" alt="">
+					</div>
+					<div style="height:55%;">
+						<div class="name">Tortle</div>
+						<img src="/dnd/img/races/raceEntry/Tortle.png" alt="">
+					</div>
+					<div style="height:60%;">
+						<div class="name">Triton</div>
+						<img src="/dnd/img/races/raceEntry/Triton.png" alt="">
+					</div>
+					<!-- <div style="height:65%;">
+						<div class="name">Warforged</div>
+						<img src="/dnd/img/races/raceEntry/Warforged.png" alt="">
+					</div> -->
+					<div style="height:60%;">
+						<div class="name">Yuan-Ti</div>
+						<img src="/dnd/img/races/raceEntry/Yuan-Ti.png" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

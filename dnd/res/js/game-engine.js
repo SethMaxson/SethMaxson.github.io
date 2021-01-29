@@ -328,7 +328,7 @@ export var Engine;
             this.Motions = [];
             this.HUD = new HUD();
             $("body").append(this.HUD.html);
-            this.renderer = FOUR.Renderer();
+            this.renderer = FOUR.Renderer(document.getElementById('container'));
             this.HealthManager = new HealthManager();
             this.Entities = new EntityManager(this);
             this.Timer = new Timer();
@@ -358,6 +358,7 @@ export var Engine;
                 target.Controls.lock();
             }, false);
             this.Scene.add(this.Controls.getObject());
+            //@ts-ignore
             this.Sky = new Sky(this);
             this.Scene.add(this.Sky);
             this._effect = new OutlineEffect(this.renderer, {

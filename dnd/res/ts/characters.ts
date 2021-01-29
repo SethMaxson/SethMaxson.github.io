@@ -1,7 +1,7 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { GLTFLoader } from '../../../node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { SkeletonUtils } from '../../../node_modules/three/examples/jsm/utils/SkeletonUtils.js';
-import { FOUR } from '../js/four.js';
+import { FOUR } from './four.js';
 
 declare var races: string[];
 declare function randomize(array: any): string;
@@ -36,7 +36,7 @@ export module Characters
 	var pcData: PCData[];
 
 	// List Variables
-	export var hairOptions = [];
+	export var hairOptions: string[] = [];
 
 	export class Hair
 	{
@@ -1031,7 +1031,7 @@ export module Characters
 					} else if ((hat.material as THREE.MeshPhongMaterial).map != null) {
 						if (typeof stylo.color === "string" && stylo.color.startsWith("#"))
 						{
-							hat.material = hat.material.clone();
+							hat.material = (hat.material as THREE.MeshPhongMaterial).clone();
 							(hat.material as THREE.MeshPhongMaterial).color.set(FOUR.Color(stylo.color));
 							// (hat.material as THREE.MeshPhongMaterial).color.setHex(0x191919);
 							// (hat.material as THREE.MeshPhongMaterial).color.setStyle(stylo.color);

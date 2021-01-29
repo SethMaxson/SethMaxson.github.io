@@ -9,97 +9,102 @@
 		<title>Town Generator</title>
 		<meta name="description" content="Random settlement generator to help fill your worlds" />
 
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" />
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
-		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/navbar-fixed-left.v2.2.css">
-		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/base.v2.11.css">
 
-		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/contentPrint.v2.0.css">
-		<link rel="stylesheet" type="text/css" href="/sf/res/sfrpg-tools/css/bootstrap-select.min.css">
+		<style>
+			.background div.container {
+				padding: 10px;
+			}
 
-		<!-- header colours -->
-		<!-- Chrome, Firefox OS and Opera -->
-		<meta name="theme-color" content="#2EC4B6">
-		<!-- Windows Phone -->
-		<meta name="msapplication-navbutton-color" content="#2EC4B6">
-		<!-- iOS Safari -->
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="#2EC4B6">
+			th {
+				font-weight: bold;
+				border: 2px solid #555;
+				background: #333;
+				color: floralwhite;
+				padding: 4px;
+			}
+
+			td {
+				border: 2px solid #555;
+				padding: 4px;
+			}
+
+			.collapsible.collapsed table {
+				display: none;
+			}
+
+			.collapse-button {
+				width: 2em;
+			}
+
+			.collapse-button:before {
+				content: "\25B2";
+			}
+
+			.collapsed .collapse-button:before {
+				content: "\25BC";
+			}
+
+			div.token {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-position: center;
+				background-size: contain;
+				background-repeat: no-repeat;
+				image-rendering: pixelated;
+			}
+		</style>
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
+
+		<!-- JavaScript -->
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/dnd/res/js/mechanics.js"></script>
+		<script type="text/javascript" src="/dnd/res/js/world-data/deities.js"></script>
+		<script type="text/javascript" src="/dnd/res/js/generators/racialtraits.js"></script>
+		<script type="text/javascript" src="/dnd/res/js/common/weighted-random.js"></script>
+		<script type="text/javascript" src="/dnd/res/js/generators/town.js"></script>
 	</head>
 
 	<body>
-		<div class="container">
-			<div class="content">
-				<div class="top-spacer" style="height: 20px;"></div>
-
-				<div class="jumbotron">
-					<h1>Town Generator</h1>
-					<p class="lead">Generates settlements for D&D to help fill your world.</p>
-					<p></p>
-					<div class="container">
-						<div class="dontPrint row">
-							<div class="col-md-4">
-								<select class="selectpicker show-tick" id="sizePicker" data-style="btn-default" data-width="100%" data-size="10">
-							<option selected>Any size</option>
-							<option data-divider="true"></option>
-							<option>Empty</option>
-							<option>Tiny</option>
-							<option>Small</option>
-							<option>Medium</option>
-							<option>Large</option>
-							<option>Huge</option>
-							</select>
-								<select class="selectpicker show-tick" id="itemPicker" data-style="btn-default" data-width="100%" data-size="10">
-							<option selected>Any max item level</option>
-							<option data-divider="true"></option>
-							<option>1st</option>
-							<option>2nd</option>
-							<option>3rd</option>
-							<option>4th</option>
-							<option>5th</option>
-							<option>6th</option>
-							<option>7th</option>
-							<option>8th</option>
-							<option>9th</option>
-							<option>10th</option>
-							<option>11th</option>
-							<option>12th</option>
-							<option>13th</option>
-							<option>14th</option>
-							<option>15th</option>
-							<option>16th</option>
-							<option>17th</option>
-							<option>18th</option>
-							<option>19th</option>
-							<option>20th</option>
-							</select>
-								<P></P>
-								<button type="button" onclick="generateSettlement()" title="magic, baby" class="btn btn-grn">Generate <i class="fa fa-magic fa-lg"></i></button>
-								<button type="button" onclick="clearOutput()" class="btn btn-default btn-notblack">Clear</button>
-								<P></P>
-							</div>
-							<div class="col-md-8"></div>
-						</div>
-					</div>
-
-					<div class="output area">
-
-					</div>
+		<div class="background">
+			<div class="container">
+				<h1>Town Generator</h1>
+				<p class="lead">Generates settlements for D&D to help fill your world.</p>
+				<p></p>
+				<div class="controls">
+					<select id="sizePicker">
+						<option value="null" selected>Any size</option>
+						<option disabled="true">--------------</option>
+						<option value="empty">Empty</option>
+						<option value="micro">Micro</option>
+						<option value="tiny">Tiny</option>
+						<option value="small">Small</option>
+						<option value="medium">Medium</option>
+						<option value="large">Large</option>
+						<option value="huge">Huge</option>
+					</select>
+					<select id="itemPicker">
+						<option value="null" selected>Any max item rarity</option>
+						<option disabled="true">--------------</option>
+						<option value="None">None</option>
+						<option value="Common">Common</option>
+						<option value="Uncommon">Uncommon</option>
+						<option value="Rare">Rare</option>
+						<option value="Very Rare">Very Rare</option>
+						<option value="Legendary">Legendary</option>
+						<option value="Artifact">Artifact</option>
+					</select>
+					<button type="button" onclick="generateSettlement()" class="btn btn-grn">Generate</button>
+					<button type="button" onclick="clearOutput()" class="btn btn-default btn-notblack">Clear</button>
 				</div>
 
+				<div class="output-area">
+
+				</div>
 			</div>
 		</div>
-		<!-- /container -->
-		<!-- JavaScript -->
-		<!-- jQuery first, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="/sf/res/js/sfrpg-tools.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/common.v2.5.js"></script>
-
-		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/bootstrap-select.min.js"></script>
-		<script type="text/javascript" src="/sf/res/sfrpg-tools/js/equipmentData.v2.2.js"></script>
-		<script type="text/javascript" src="/dnd/res/js/generators/town.js"></script>
 
 	</body>
 

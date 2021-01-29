@@ -1345,7 +1345,7 @@
 			"NPC has a mouth on their back that says mean stuff about them. This would usually sadden people but this just pushes them to complete their goals more.",
 			"NPC has a horn coming out of their forehead that they are very self conscious about. They constantly shave it off if they have time.",
 			"NPC has scales on his legs. (If they are a species that usually has scales then their legs are human.)",
-			"NPC has no natural teeth left. Luckily for him his enemies had some of theres. His jaw is full of random teeth that are surgically placed in. They may not be fabulous but they sure is scary!",
+			"NPC has no natural teeth left. Luckily for him his enemies had some of theirs. His jaw is full of random teeth that are surgically placed in. They may not be fabulous but they sure are scary!",
 			"NPC has a magical tattoo that can answer riddles.",
 			"NPC is missing his left eye. He constantly forgets which eye is actually gone.",
 			"NPC has acid burn scars on both of his hands.",
@@ -2399,6 +2399,26 @@
 			"Peku",
 			"Sutre",
 			"Terrapim"
+		]
+	},
+	{
+		"name": "Classes",
+		"description": "Select a character class",
+		"show": true,
+		"rows": [
+			"Artificer",
+			"Barbarian",
+			"Bard",
+			"Cleric",
+			"Druid",
+			"Fighter",
+			"Monk",
+			"Paladin",
+			"Ranger",
+			"Rogue",
+			"Sorcerer",
+			"Warlock",
+			"Wizard"
 		]
 	}
 ]

@@ -14,7 +14,7 @@
  * Three.js integration by zz85 http://twitter.com/blurspline
 */
 import { DirectionalLight, HemisphereLight, Mesh, Object3D, Vector3 } from '../../../node_modules/three/src/Three.js';
-import { Engine } from '../js/engine.js';
+import { Engine } from './engine.js';
 export declare class Sky extends Object3D {
     sun: Sun;
     hemiLight: HemisphereLight;

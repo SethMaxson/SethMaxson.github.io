@@ -4,7 +4,7 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 18,
         maxAge: 70,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 20
     },
     "aarakocra": {
@@ -18,14 +18,14 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 18,
         maxAge: 120,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 25
     },
     "bear": {
         genders: ["female", "male"],
         adultAge: 7,
         maxAge: 80,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 10
     },
     "bloodfin": {
@@ -39,7 +39,7 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 7,
         maxAge: 80,
-        alignments: ["LN", "NN"],
+        alignments: ["LN", "N"],
         spawnFrequency: 5
     },
     "burrowfolk": {
@@ -60,21 +60,21 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 18,
         maxAge: 360,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 30
     },
     "drow": {
         genders: ["female", "male"],
         adultAge: 18,
         maxAge: 750,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 30
     },
     "dwarf": {
         genders: ["female", "male"],
         adultAge: 18,
         maxAge: 360,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 50
     },
     "elf": {
@@ -88,7 +88,7 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 30,
         maxAge: 500,
-        alignments: ["NG", "NN"],
+        alignments: ["NG", "N"],
         spawnFrequency: 30
     },
     "firenewt": {
@@ -102,35 +102,35 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 6,
         maxAge: 120,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 20
     },
     "gnome": {
         genders: ["female", "male"],
         adultAge: 40,
         maxAge: 500,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 50
     },
     "goblin": {
         genders: ["female", "male"],
         adultAge: 8,
         maxAge: 60,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 40
     },
     "grippli": {
         genders: ["female", "male"],
         adultAge: 30,
         maxAge: 180,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 20
     },
     "grung": {
         genders: ["female", "male"],
         adultAge: 18,
         maxAge: 70,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 10
     },
     "halfling": {
@@ -144,14 +144,14 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 14,
         maxAge: 75,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 50
     },
     "halforc": {
         genders: ["female", "male"],
         adultAge: 14,
         maxAge: 75,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 40
     },
     "hobgoblin": {
@@ -165,14 +165,14 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 18,
         maxAge: 70,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 100
     },
     "lizardfolk": {
         genders: ["female", "male"],
         adultAge: 14,
         maxAge: 60,
-        alignments: ["NN"],
+        alignments: ["N"],
         spawnFrequency: 20
     },
     "kenku": {
@@ -186,7 +186,7 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 15,
         maxAge: 900,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 1
     },
     "kobold": {
@@ -249,8 +249,16 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 12,
         maxAge: 50,
-        alignments: ["LG", "NG", "CG", "LN", "NN", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 10
     }
 };
+function getRacialTraits(race) {
+    if (RacialTraits.hasOwnProperty(race)) {
+        return RacialTraits[race];
+    }
+    else {
+        return RacialTraits.misc;
+    }
+}
 //# sourceMappingURL=racialtraits.js.map

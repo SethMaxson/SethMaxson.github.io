@@ -71,7 +71,9 @@ $(document).ready(function () {
         scene.position.z = -0.5;
         update();
         var winResize = new THREEx.WindowResize(main.renderer, camera);
+        //@ts-ignore
         winResize.trigger();
+        //@ts-ignore
         main.hideCompass();
         $("#spells").hide();
     }

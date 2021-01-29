@@ -1,6 +1,6 @@
 import * as THREE from '../../../node_modules/three/src/Three.js';
 export declare module Characters {
-    var hairOptions: never[];
+    var hairOptions: string[];
     class Hair {
         color: string;
         style: string;

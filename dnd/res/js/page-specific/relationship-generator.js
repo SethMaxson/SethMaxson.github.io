@@ -4,9 +4,6 @@ var npcManager2;
 var loadedRelationships;
 var character1;
 var character2;
-function getRaces() {
-    return $.ajax({ crossDomain: true, url: "/dnd/res/data/races.json", dataType: 'json' });
-}
 $(document).ready(function () {
     loadedRelationships = new RelationshipManager();
     loadedRelationships.load();

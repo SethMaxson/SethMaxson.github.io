@@ -10,6 +10,7 @@
 		"relativeAge": "young adult",
 		"alignment": "LG",
 		"threat": "slightly high",
+		"personalityTags": [],
 		"profession": "Rogue Agent",
 		"description": "The goodest boy.",
 		"status": "living"
@@ -24,6 +25,7 @@
 		"relativeAge": "adult",
 		"alignment": "CG",
 		"threat": "very high",
+		"personalityTags": [],
 		"profession": "Mercenary Captain",
 		"description": "Means well, but is a bit erratic and absent minded. Mostly polite, but if annoyed often unleashes an onslaught of verbal abuse.",
 		"status": "living"
@@ -38,6 +40,7 @@
 		"relativeAge": "young adult",
 		"alignment": "LE",
 		"threat": "very high",
+		"personalityTags": [],
 		"profession": "Mechanic",
 		"description": "A young adult drow, who was born the opposite of their current gender and comes from a disgraced family of scrap collectors. They are likable and judgmental, and have found work as a mechanic.",
 		"status": "living"
@@ -51,6 +54,7 @@
 		"relativeAge": "young adult",
 		"alignment": "CG",
 		"threat": "very high",
+		"personalityTags": [],
 		"profession": "Adventurer",
 		"status": "living"
 	},
@@ -64,6 +68,7 @@
 		"relativeAge": "young adult",
 		"alignment": "NG",
 		"threat": "slightly high",
+		"personalityTags": [],
 		"profession": "Botanist",
 		"status": "living"
 	},
@@ -74,8 +79,9 @@
 		"gender": "male",
 		"age": 50,
 		"relativeAge": "adult",
-		"alignment": "NN",
+		"alignment": "N",
 		"threat": "slightly high",
+		"personalityTags": [],
 		"profession": "Tinkerer",
 		"status": "living"
 	},
@@ -89,6 +95,7 @@
 		"relativeAge": "young adult",
 		"alignment": "CE",
 		"threat": "very high",
+		"personalityTags": [],
 		"profession": "Wizard",
 		"status": "living"
 	},
@@ -102,6 +109,7 @@
 		"relativeAge": "adult",
 		"alignment": "NG",
 		"threat": "very high",
+		"personalityTags": [],
 		"profession": "Lord God King Bud Brrawd",
 		"status": "living"
 	},
@@ -116,6 +124,7 @@
 		"relativeAge": "young adult",
 		"alignment": "CG",
 		"threat": "very high",
+		"personalityTags": [],
 		"profession": "Zainen",
 		"status": "living"
 	},
@@ -128,6 +137,7 @@
 		"relativeAge": "young adult",
 		"alignment": "NG",
 		"threat": "very high",
+		"personalityTags": [],
 		"profession": "Champion",
 		"status": "living"
 	},
@@ -140,6 +150,7 @@
 		"relativeAge": "child",
 		"alignment": "CN",
 		"threat": "very low",
+		"personalityTags": [],
 		"profession": "Banana-Gator",
 		"description": "Formerly Amar Rodan. He was approached by a lizardfolk who magically summoned a banana atop his head. That event forever changed Amar's destiny.",
 		"status": "living"
@@ -153,6 +164,7 @@
 		"relativeAge": "young adult",
 		"alignment": "LN",
 		"threat": "slightly high",
+		"personalityTags": [],
 		"profession": "Gladiator",
 		"status": "living"
 	},
@@ -165,6 +177,7 @@
 		"relativeAge": "adult",
 		"alignment": "LN",
 		"threat": "slightly high",
+		"personalityTags": [],
 		"profession": "Gladiator",
 		"status": "living"
 	},
@@ -177,6 +190,7 @@
 		"relativeAge": "young adult",
 		"alignment": "LG",
 		"threat": "slightly low",
+		"personalityTags": [],
 		"profession": "Herbalist",
 		"description": "A young adult triton, who must read every book they come across and comes from a sleepy harbour town. He is scolding and sentimental, and has found work as a herbalist.",
 		"status": "living"
@@ -190,6 +204,7 @@
 		"relativeAge": "adult",
 		"alignment": "NG",
 		"threat": "medium",
+		"personalityTags": [],
 		"profession": "Pickpocket",
 		"description": "An adult human, who can't read and comes from a travelling theatre company. She is gregarious and cocky, and has found work as a pickpocket.",
 		"status": "living"
@@ -203,6 +218,7 @@
 		"relativeAge": "young adult",
 		"alignment": "CN",
 		"threat": "slightly low",
+		"personalityTags": [],
 		"profession": "Exorcist",
 		"description": "A young adult drow, who is a pacifist and comes from a tropical paradise. She is hateful and risk-taking, and has found work as an exorcist.",
 		"status": "living"
@@ -216,6 +232,7 @@
 		"relativeAge": "adult",
 		"alignment": "LG",
 		"threat": "very low",
+		"personalityTags": [],
 		"profession": "Cook",
 		"description": "An adult dragonborn, who was once very wealthy but lost everything and comes from a backwater village. He is sober and miserable, and has found work as a cook.",
 		"status": "living"
@@ -229,6 +246,7 @@
 		"relativeAge": "young adult",
 		"alignment": "NE",
 		"threat": "very low",
+		"personalityTags": [],
 		"profession": "Chef",
 		"description": "A young adult human, who can't tolerate gluten and comes from a small farm. He is curious and rebellious, and has found work as a chef.",
 		"status": "living"
@@ -242,6 +260,7 @@
 		"relativeAge": "young adult",
 		"alignment": "LE",
 		"threat": "slightly low",
+		"personalityTags": [],
 		"profession": "Gladiator",
 		"description": "A young adult hobgoblin, who keeps a diary of all the creatures they come across and comes from a farming village in a lush forest. He is hostile and joking, and has found work as a gladiator.",
 		"status": "living"
@@ -255,6 +274,7 @@
 		"relativeAge": "young adult",
 		"alignment": "NG",
 		"threat": "very low",
+		"personalityTags": [],
 		"profession": "Dancer",
 		"description": "A young adult halforc, who doesn't trust warforged and comes from a bustling underground city. He is savage and gentle, and has found work as a dancer.",
 		"status": "living"
@@ -268,6 +288,7 @@
 		"relativeAge": "adult",
 		"alignment": "LN",
 		"threat": "very low",
+		"personalityTags": [],
 		"profession": "Merchant",
 		"description": "An adult triton, who always looks their best and comes from a secret barracks. He is sassy and argumentative, and has found work as a merchant.",
 		"status": "living"
@@ -279,8 +300,9 @@
 		"gender": "male",
 		"age": 17,
 		"relativeAge": "young adult",
-		"alignment": "NN",
+		"alignment": "N",
 		"threat": "medium",
+		"personalityTags": [],
 		"profession": "Builder",
 		"description": "A young adult halforc, who wears rings, which isn’t cool, but its cool that they don’t care if they’re cool and comes from the inner slums of a large city. He is cheerful and sentimental, and has found work as a builder.",
 		"status": "living"
@@ -294,6 +316,7 @@
 		"relativeAge": "adult",
 		"alignment": "NG",
 		"threat": "slightly high",
+		"personalityTags": [],
 		"profession": "Farmer",
 		"description": "An adult halfelf, who has a drinking problem and comes from a company of mercenaries and sellswords. He is reckless and practical, and has found work as a farmer.",
 		"status": "living"
@@ -307,6 +330,7 @@
 		"relativeAge": "adult",
 		"alignment": "NG",
 		"threat": "low",
+		"personalityTags": [],
 		"profession": "Mechanic",
 		"description": "An adult human, who blames all their misfortune on ghosts and comes from a farming village in a lush forest. He is hyper and cantankerous, and has found work as a mechanic.",
 		"status": "living"
@@ -320,6 +344,7 @@
 		"relativeAge": "adult",
 		"alignment": "CN",
 		"threat": "medium",
+		"personalityTags": [],
 		"profession": "Executioner",
 		"description": "An adult gnome, who distrusts anyone taller than them and comes from an underwater bubble city. He is meddlesome and secretive, and has found work as an executioner.",
 		"status": "living"
@@ -333,6 +358,7 @@
 		"relativeAge": "young adult",
 		"alignment": "NE",
 		"threat": "very high",
+		"personalityTags": [],
 		"profession": "Knight",
 		"description": "A young adult human, who is secretly a dragon and comes from a peaceful nomadic culture. He is obnoxious and dishonest, and has found work as a knight.",
 		"status": "living"
@@ -346,6 +372,7 @@
 		"relativeAge": "adult",
 		"alignment": "CN",
 		"threat": "medium",
+		"personalityTags": [],
 		"profession": "Healer",
 		"description": "An adult tabaxi, who is vegetarian and comes from the inside of an asylum. He is rash and emotional, and has found work as a healer.",
 		"status": "living"
@@ -359,6 +386,7 @@
 		"relativeAge": "old",
 		"alignment": "LE",
 		"threat": "slightly high",
+		"personalityTags": [],
 		"profession": "Pirate",
 		"description": "An old hobgoblin, who gives their weapons names and comes from a fallen kingdom in the wilds. She is courteous and excited, and has found work as a pirate.",
 		"status": "living"
@@ -372,6 +400,7 @@
 		"relativeAge": "young adult",
 		"alignment": "NG",
 		"threat": "slightly low",
+		"personalityTags": [],
 		"profession": "Exorcist",
 		"description": "A young adult firbolg, who blames all their misfortune on ghosts and comes from a slave market. He is a drunkard and miserable, and has found work as an exorcist.",
 		"status": "living"
@@ -385,6 +414,7 @@
 		"relativeAge": "young adult",
 		"alignment": "CE",
 		"threat": "low",
+		"personalityTags": [],
 		"profession": "Pirate",
 		"description": "A young adult halfelf, who is the escaped clone of a wealthy politician and comes from a street gang in a large city. She is sexist and preoccupied, and has found work as a pirate.",
 		"status": "living"
@@ -398,6 +428,7 @@
 		"relativeAge": "adult",
 		"alignment": "CE",
 		"threat": "very low",
+		"personalityTags": [],
 		"profession": "Ghost Hunter",
 		"description": "An adult tiefling, who is endlessly fascinated by gnome culture and comes from a city no one else has ever heard of. She is restless and modest, and has found work as a ghost hunter.",
 		"status": "living"
@@ -411,6 +442,7 @@
 		"relativeAge": "young adult",
 		"alignment": "CE",
 		"threat": "slightly low",
+		"personalityTags": [],
 		"profession": "Royal Taster",
 		"description": "A young adult human, who flirts relentlessly and comes from the inner slums of a large city. She is loud and dramatic, and has found work as a royal taster.",
 		"status": "living"
@@ -424,6 +456,7 @@
 		"relativeAge": "adult",
 		"alignment": "CN",
 		"threat": "medium",
+		"personalityTags": [],
 		"profession": "Urchin",
 		"description": "An adult kenku, who is the party's biggest critic and comes from a slave owning city. He is deceitful and pontificating, and has found work as an urchin.",
 		"status": "living"
@@ -437,6 +470,7 @@
 		"relativeAge": "adult",
 		"alignment": "CG",
 		"threat": "slightly low",
+		"personalityTags": [],
 		"profession": "Barkeep",
 		"description": "An adult goblin, who has an irrational fear of halflings and comes from a rundown adventurers guild. He is irreligious and grouchy, and has found work as a barkeep.",
 		"status": "living"
@@ -450,6 +484,7 @@
 		"relativeAge": "young adult",
 		"alignment": "CN",
 		"threat": "slightly high",
+		"personalityTags": [],
 		"profession": "Smuggler",
 		"description": "A young adult goblin, who can't swim and comes from a small island. She is gullible and magnanimous, and has found work as a smuggler.",
 		"status": "living"

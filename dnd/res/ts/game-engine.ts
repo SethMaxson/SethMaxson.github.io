@@ -424,7 +424,7 @@ export namespace Engine
 		{
 			this.HUD = new HUD();
 			$("body").append(this.HUD.html);
-			this.renderer = FOUR.Renderer();
+			this.renderer = FOUR.Renderer(document.getElementById('container') as HTMLElement);
 			this.HealthManager = new HealthManager();
 			this.Entities = new EntityManager(this);
 			this.Timer = new Timer();
@@ -466,6 +466,7 @@ export namespace Engine
 			}, false);
 			this.Scene.add(this.Controls.getObject());
 
+			//@ts-ignore
 			this.Sky = new Sky(this);
 			this.Scene.add(this.Sky);
 

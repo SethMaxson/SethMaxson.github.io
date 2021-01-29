@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jqueryui" />
 declare function getFeats(): JQuery.jqXHR<any>;
 declare class Feat {
     name: string;

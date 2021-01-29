@@ -4,16 +4,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Knights of the Rectangle</title>
-		<!-- The style.css file allows you to change the look of your web pages.
-         If you include the next line in all your web pages, they will all share the same look.
-         This makes it easier to make new pages for your site. -->
-		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
 
 		<style>
-			.dmnotes {display:none;}
-			.playernotes {display:table-row;}
-
-
 			.chair {
 				width: 50px;
 				height:50px;
@@ -200,83 +192,6 @@
 		</style>
 		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
 		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-		<script src="/res/js/mechanics.js"></script>
-		<script src="/res/js/generators/npc.js"></script>
-		<script>
-			$(document).ready(function(){
-				$("#NotesToggle").click(function(){
-					if($("#NotesToggle").text() == 'Player Version'){
-						$("#NotesToggle").text('DM Version');
-						$('.dmnotes').css("display","table-row");
-						$('.playernotes').css("display","none");
-
-					} else {
-						$("#NotesToggle").text('Player Version');
-						$('.dmnotes').css("display","none");
-						$('.playernotes').css("display","table-row");
-					}
-				});
-			})
-
-
-			function sortTable(sender, n) {
-				var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-				table = sender;
-				while (table.tagName !== "TABLE") {
-					table = table.parentNode;
-				}
-				switching = true;
-				// Set the sorting direction to ascending:
-				dir = "asc";
-				/* Make a loop that will continue until
-				no switching has been done: */
-				while (switching) {
-					// Start by saying: no switching is done:
-					switching = false;
-					rows = table.rows;
-					/* Loop through all table rows (except the
-					first, which contains table headers): */
-					for (i = 1; i < (rows.length - 1); i++) {
-					// Start by saying there should be no switching:
-					shouldSwitch = false;
-					/* Get the two elements you want to compare,
-					one from current row and one from the next: */
-					x = rows[i].getElementsByTagName("TD")[n];
-					y = rows[i + 1].getElementsByTagName("TD")[n];
-					/* Check if the two rows should switch place,
-					based on the direction, asc or desc: */
-					if (dir == "asc") {
-						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-						// If so, mark as a switch and break the loop:
-						shouldSwitch = true;
-						break;
-						}
-					} else if (dir == "desc") {
-						if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-						// If so, mark as a switch and break the loop:
-						shouldSwitch = true;
-						break;
-						}
-					}
-					}
-					if (shouldSwitch) {
-						/* If a switch has been marked, make the switch
-						and mark that a switch has been done: */
-						rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-						switching = true;
-						// Each time a switch is done, increase this count by 1:
-						switchcount ++;
-					} else {
-						/* If no switching has been done AND the direction is "asc",
-						set the direction to "desc" and run the while loop again. */
-						if (switchcount == 0 && dir == "asc") {
-							dir = "desc";
-							switching = true;
-						}
-					}
-				}
-			}
-		</script>
 	</head>
 
 	<body>

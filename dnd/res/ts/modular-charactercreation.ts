@@ -4,10 +4,11 @@ import { OrbitControls } from '../../../node_modules/three/examples/jsm/controls
 import { CharactersModular } from '../../../sf/res/js/characters-modular.js';
 import { FOUR } from '../../../sf/res/js/four.js';
 import { THREEx } from '../../../sf/res/js/threex.js';
+import { ControlTypes } from '../../../sf/res/js/engine/engine.js';
 
 $(document).ready(function(){
 	var camera: THREE.PerspectiveCamera, controls: OrbitControls, renderer, scene, sky, ground, time=0, newChar: CharactersModular.Person3D;
-	Engine.Initialize("Viewer");
+	Engine.Initialize("Viewer" as ControlTypes);
 	var main = Engine.main;
 	var clock = new THREE.Clock();
 	var objects: THREE.Object3D[] = [];
@@ -93,7 +94,9 @@ $(document).ready(function(){
 
 		update();
 		var winResize = new THREEx.WindowResize(main.renderer, camera);
+		//@ts-ignore
 		winResize.trigger();
+		//@ts-ignore
 		main.hideCompass();
 		$("#spells").hide();
 	}

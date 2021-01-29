@@ -22,60 +22,61 @@ $(document).ready(function(){
 		const windowWidth = $("#map-body").width() as number;
 
 		const windowScale = ($(window).width() as number/(previousZoom*2));
-		const newWindowScale = ($(window).width() as number/(zoom*2));
+		const newWindowScale = ($(window).width() as number / (zoom * 2));
+		const mapContainer = $(".map-container") as JQuery<HTMLElement>;
 		// var initialLeft = parseFloat($(".map-container").css("left")) + newWindowScale - windowScale;
-		var initialLeft = parseFloat($(".map-container").css("left"));
-		const initialWidth = $(".map-container")[0].clientWidth;
-		$(".map-container").css("transform", zoomString);
+		var initialLeft = parseFloat(mapContainer.css("left"));
+		const initialWidth = mapContainer[0].clientWidth;
+		mapContainer.css("transform", zoomString);
 
-		const heightMod = -1 * ($(".map-container")[0].clientHeight / 2);
-		const widthMod = -1 * ($(".map-container")[0].clientWidth / 2);
+		const heightMod = -1 * (mapContainer[0].clientHeight / 2);
+		const widthMod = -1 * (mapContainer[0].clientWidth / 2);
 		const topPos = (heightMod * (1 - zoom));
 		const bottomPos = (heightMod * (1 + zoom)) + windowHeight;
 		const leftPos = (widthMod * (1 - zoom));
 		const rightPos = (widthMod * (1 + zoom)) + windowWidth;
-		$(".map-container").offset.top = 0;
-		$(".map-container").offset.left = 0;
-		const curTop = parseFloat($(".map-container").css("top"));
-		const curLeft = parseFloat($(".map-container").css("left"));
+		(mapContainer.offset() as JQuery.Coordinates).top = 0;
+		(mapContainer.offset() as JQuery.Coordinates).left = 0;
+		const curTop = parseFloat(mapContainer.css("top"));
+		const curLeft = parseFloat(mapContainer.css("left"));
 
 
-		const clihi = $(".map-container")[0].clientHeight * zoom;
-		const cliwi = $(".map-container")[0].clientWidth * zoom;
+		const clihi = mapContainer[0].clientHeight * zoom;
+		const cliwi = mapContainer[0].clientWidth * zoom;
 		if (clihi < windowHeight) {
 			if (curTop <= topPos) {
-				$(".map-container").css("top", topPos + "px");
+				mapContainer.css("top", topPos + "px");
 			}
 			else if (curTop > bottomPos) {
-				$(".map-container").css("top", bottomPos + "px");
+				mapContainer.css("top", bottomPos + "px");
 			}
 		}
 		else {
 			if (curTop >= topPos) {
-				$(".map-container").css("top", topPos + "px");
+				mapContainer.css("top", topPos + "px");
 			}
 			else if (curTop < bottomPos) {
-				$(".map-container").css("top", bottomPos + "px");
+				mapContainer.css("top", bottomPos + "px");
 			}
 		}
 
 		if (cliwi < windowWidth) {
 			if (curLeft <= leftPos) {
-				$(".map-container").css("left", leftPos + "px");
+				mapContainer.css("left", leftPos + "px");
 			}
 			else if (curLeft > rightPos) {
-				$(".map-container").css("left", rightPos + "px");
+				mapContainer.css("left", rightPos + "px");
 			}
 		}
 		else {
 			if (curLeft >= leftPos) {
-				$(".map-container").css("left", leftPos + "px");
+				mapContainer.css("left", leftPos + "px");
 			}
 			else if (curLeft < rightPos) {
-				$(".map-container").css("left", rightPos + "px");
+				mapContainer.css("left", rightPos + "px");
 			}
 			else {
-				$(".map-container").css("left", (initialLeft) + "px");
+				mapContainer.css("left", (initialLeft) + "px");
 			}
 		}
 
@@ -125,6 +126,7 @@ $(document).ready(function(){
 			$('.continent').css("display", "block");
 		}
 	});
+
 	$("#map-container").mousedown(function() {
 		var zoom = $("#map-zoom").val() as number * 0.01;
 		var zoomString = "scale(" + zoom + ")";
@@ -135,6 +137,7 @@ $(document).ready(function(){
 		$(".city-preview").find("p").css("fontSize", (18 / zoom) + "px");
 		$(".city-preview").find("h1").css("fontSize", (20 / zoom) + "px");
 	});
+
 	$('#map-body').on('keydown', function(e){
 		if (e.keyCode == 16) {
 			shiftkey = true;
@@ -181,7 +184,7 @@ $(document).ready(function(){
 			const windowWidth = $("#map-body").width() as number;
 
 			ui.offset.top = 0;
-			ui.offset.left = $("#map-body").width();
+			ui.offset.left = $("#map-body").width() as number;
 			const topPos = (heightMod * (1 - zoom));
 			const bottomPos = (heightMod * (1 + zoom)) + windowHeight;
 			const leftPos = (widthMod * (1 - zoom));
@@ -277,7 +280,7 @@ function Airship(left: number, top: number, name: string, image: string, crew?: 
 		stop: function(event, ui) {
 			partyDragStop(event, ui);
 		},
-		drop: partyDroppable(),
+		// drop: partyDroppable,
 		scroll: false,
 	});
 }
@@ -502,15 +505,15 @@ function FlyingThing(left: string = "50%", top: string = "50%", name: string | s
 	});
 }
 
-function partyDrag(event, ui, speed: number) {
+function partyDrag(event: JQueryEventObject, ui: JQueryUI.DraggableEventUIParams, speed: number) {
 	dragging = true;
 	var zoom = $("#map-zoom").val() as number * 0.01;
 	if (ctrlkey) {
 		ui.position.left = dragStartX;
 		ui.position.top = dragStartY;
 	} else {
-		ui.position.top = Math.round(((event.pageY/zoom) - $(".map-container").position().top/zoom - (ui.helper.height()/2))/airshipGrid)*airshipGrid;
-		ui.position.left = Math.round(((event.pageX/zoom) - $(".map-container").position().left/zoom - (ui.helper.width()/2))/airshipGrid)*airshipGrid;
+		ui.position.top = Math.round(((event.pageY/zoom) - $(".map-container").position().top/zoom - (ui.helper.height() as number/2))/airshipGrid)*airshipGrid;
+		ui.position.left = Math.round(((event.pageX/zoom) - $(".map-container").position().left/zoom - (ui.helper.width() as number/2))/airshipGrid)*airshipGrid;
 	}
 	dragStopX = ui.position.left;
 	dragStopY = ui.position.top;
@@ -532,14 +535,14 @@ function partyDrag(event, ui, speed: number) {
 	}
 }
 
-function partyDragStop(event, ui) {
+function partyDragStop(event: JQueryEventObject, ui: JQueryUI.DraggableEventUIParams) {
 	dragging = false;
 }
 
-function partyDragStart(event, ui) {
+function partyDragStart(event: JQueryEventObject, ui: JQueryUI.DraggableEventUIParams) {
 	var zoom = $("#map-zoom").val() as number * 0.01;
-	dragStartX = Math.round(((event.pageX/zoom) - $(".map-container").position().left/zoom - (ui.helper.width()/2))/airshipGrid)*airshipGrid;
-	dragStartY = Math.round(((event.pageY/zoom) - $(".map-container").position().top/zoom - (ui.helper.height()/2))/airshipGrid)*airshipGrid;
+	dragStartX = Math.round(((event.pageX/zoom) - $(".map-container").position().left/zoom - (ui.helper.width() as number/2))/airshipGrid)*airshipGrid;
+	dragStartY = Math.round(((event.pageY/zoom) - $(".map-container").position().top/zoom - (ui.helper.height() as number/2))/airshipGrid)*airshipGrid;
 }
 
 function partyDroppable() {

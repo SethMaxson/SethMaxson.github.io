@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jqueryui" />
 declare function getNPCs(): JQuery.jqXHR<any>;
 interface INPC {
     id: string;
@@ -9,8 +10,10 @@ interface INPC {
     gender: any;
     age: number;
     relativeAge: string;
-    alignment: string;
+    alignment: Alignment;
     threat: string;
+    intelligence: string;
+    personalityTags: string[];
     profession: string;
     description: string;
     status: string;
@@ -24,8 +27,10 @@ declare class NPC implements INPC {
     gender: string;
     age: number;
     relativeAge: string;
-    alignment: string;
+    alignment: Alignment;
     threat: string;
+    intelligence: string;
+    personalityTags: string[];
     profession: string;
     description: string;
     status: string;

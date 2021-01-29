@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jqueryui" />
 import { Reticle } from "./reticle.js";
 import { Entity, HitPoints } from "./../engine.js";
 export declare class HUD {
