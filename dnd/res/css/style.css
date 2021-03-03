@@ -257,7 +257,7 @@ span.purple {
 .jasper-battle {
 	width:100px !important;
 	height:100px !important;
-	background: url("/img/maps/icons/jasper_blink.png") no-repeat;
+	background: url("/dnd/img/maps/icons/jasper_blink.png") no-repeat;
 	background-size: 1500px 100px;
 	background-position: 0px, 0px;
 	background-attachment: scroll;

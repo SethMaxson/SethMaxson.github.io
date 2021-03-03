@@ -518,6 +518,7 @@ function partyDragStart(event, ui) {
 function partyDroppable() {
     $(".airship.party").droppable({
         accept: ".pedestrian",
+        //@ts-ignore
         classes: {
             "ui-droppable-hover": "ui-state-hover"
         },

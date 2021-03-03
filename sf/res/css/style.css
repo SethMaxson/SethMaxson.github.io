@@ -499,16 +499,6 @@ ul.character-list {
 	width:100%;
 }
 
-.cloud {
-	position:absolute;
-	width:1500px;
-	height:1500px;
-	background-image: url("/img/maps/Cloud.png");
-	background-size:contain;
-	animation: fog 8s linear 0s infinite alternate;
-	transform: translate(-50%, -50%);
-}
-
 .hover {
 	animation: hover 4s linear 0s infinite alternate;
 }
@@ -540,14 +530,6 @@ span.brass,
 span.purple {
 	font-weight: 700;
 	text-shadow: 0px 0px 4px black,;
-}
-
-@keyframes fog {
-	0% {margin-left: 0px; margin-top:0px;}
-	25% {margin-top:25px;}
-	50% {margin-left: 25px; margin-top:0px;}
-	75% {margin-top:-25px;}
-	100% {margin-left: 0px; margin-top:0px;}
 }
 
 @keyframes hover {

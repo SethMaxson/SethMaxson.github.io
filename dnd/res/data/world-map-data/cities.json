@@ -6,7 +6,6 @@
 			{
 				"name": "Grandcrest",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"These ancient ruins are surprisingly advanced. In fact, some of the technology here appears to surpass anything in the current age."
@@ -18,7 +17,7 @@
 					"Zombie",
 					"Mummy",
 					"One decrepit Nagpa",
-					"The city that was once the childhood home of the Rewera, once known as Deimos. The darkness within Deimos spoke to something within the Nagpa. While all of the Nagpa's other underlings were subjected to horrible experiments, Deimos was treated as a ember of the flock. Deimos' innate intelligence and lust for power quickly caused him to rise among their ranks. While the rest of the world prophesies the Rewera as the end of days, the Nagpa believe it to signal the rebirth of their empire.",
+					"The city that was once the childhood home of the Rewera, once known as Deimos. The darkness within Deimos spoke to something within the Nagpa. While all of the Nagpa's other underlings were subjected to horrible experiments, Deimos was treated as a member of the flock. Deimos' innate intelligence and lust for power quickly caused him to rise among their ranks. While the rest of the world prophesies the Rewera as the end of days, the Nagpa believe it to signal the rebirth of their empire.",
 					"Absolutely overrun with undead."
 				],
 				"url": "#",
@@ -30,7 +29,6 @@
 			},
 			{
 				"name": "Sun's Warmth",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"An open field, littered with scattered tents."
@@ -53,7 +51,6 @@
 				"name": "(Башня Стража) Bashnya Strazha",
 				"type": "city",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"description": [
 					"A small fortress lies inside walls made of sharpened logs."
 				],
@@ -74,7 +71,6 @@
 			{
 				"name": "Splishter",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"There are no visible buildings, but it is known that a village exists here. The citizens are rumored to be nocturnal."
@@ -95,7 +91,6 @@
 			{
 				"name": "Tranquility",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"Simple huts dot the river. In a way, it's almost idyllic."
@@ -103,7 +98,7 @@
 				"culture": [],
 				"dmNotes": [
 					"Population:",
-					"Subek",
+					"Lizardfolk",
 					"Myconid"
 				],
 				"url": "#",
@@ -116,7 +111,6 @@
 			{
 				"name": "Eyesbane",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"Were this village not constantly shrouded in the shadow cast by the mountains, it would almost seem <span style=\"font-style: italic\">too</span> normal."
@@ -137,7 +131,6 @@
 			{
 				"name": "Harborhome",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"A large, bustling trade center that grew around a halfling fishing village."
@@ -164,7 +157,6 @@
 			{
 				"name":"Amarillo",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type":"city",
 				"fontSize": 40,
 				"description":[
@@ -172,7 +164,7 @@
 					"Members of the Lim clan tend to perish at a young age, and seldom due to natural causes. The high mortality rate among Lims has driven them nearly out of existence. Only two known heirs remain."
 				],
 				"culture":[
-					"Under the watchful eyes of the Lims, Amarillo was crafted to become an economic powerhouse. There is a tremendous disparity between the wealthy and the impoverished, with almost citizens between these two financial standings. This is a frequent cause of derision among Amarillo's residents. The upper class tend to view the poor as more beast then human, while the lower class often believe the upper class to be nothing more than uppity thieves.",
+					"Under the watchful eyes of the Lims, Amarillo was crafted to become an economic powerhouse. There is a tremendous disparity between the wealthy and the impoverished, with almost all of its citizens falling into one of these two financial standings. This is a frequent cause of derision among Amarillo's residents. The upper class tend to view the poor as more beast then human, while the lower class often believe the upper class to be nothing more than uppity thieves.",
 					"Amarillo's populous is primarily human, but other races are welcome (as long as they are good for business)."
 				],
 				"dmNotes":[],
@@ -186,7 +178,6 @@
 			{
 				"name":"Firelake",
 				"nameLocation": "bottom right",
-				"useNewLocation": "true",
 				"type":"metropolis",
 				"fontSize": 40,
 				"description":[
@@ -207,7 +198,6 @@
 			{
 				"name":"Tahl Town",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type":"city",
 				"description":[
 					"Tahl Town is often referred to as \"Bandit Town\" by those loyal to Amarillo. Tahl Town has few modern conveniences, and its people have a gruffness about them. Most of the residents of Tahl Town are outcasts. Some are criminals on the lam, paupers who couldn't afford life in Amarillo, or mages hoping to perform magical experiments without government regulation. Regardless of each citizen's reason for living in Tahl Town, they almost universally share a hatred of larger governments.",
@@ -229,7 +219,6 @@
 			{
 				"name": "Budopolis",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"Little is known of the origins of the civilization formerly known as \"Bubble-Town.\" The city was renamed \"Budopolis\" recently after a change of leadership."
@@ -256,6 +245,7 @@
 			},
 			{
 				"name": "Sky Isle",
+				"nameLocation": "bottom",
 				"type": "city",
 				"description": [
 					"The unofficially dubbed 'Sky Isle' seems unperturbed by the laws of gravity. It is actually a small fragment of another plane that has begun to bleed into this one through a planar rift."
@@ -267,21 +257,14 @@
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "1580px",
-					"top": "580px"
+					"left": "66.62%",
+					"top": "23.78%"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0px",
-						"top": "0px"
-					}
-				}
+				"marker": "none"
 			},
 			{
 				"name": "Vidan's Rest",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "city",
 				"fontSize": 40,
 				"description": [
@@ -303,7 +286,6 @@
 			{
 				"name": "Graisham",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"Graisham has one of the highest land to citizen ratio of any charted settlement. Legends say that Tordanei used these grounds eons ago to hone her weather controlling abilities. In her training, Tordanei caused fracture-like ridges to erupt from the ground, separating Graisham into 5 distinct segments. She then used these to experiment with new climates. The goddess Graisum was delighted at her sister Tordanei's handiwork, and promptly set to work filling these climate fragments with natural life."
@@ -324,6 +306,7 @@
 			},
 			{
 				"name": "Aphotia",
+				"nameLocation": "right",
 				"type": "city",
 				"description": [
 					"An underground city carved out of solid rock as a safe haven for races unwelcome in the surface world. The founders of Aphotia were primarily drow, deep gnome, and gray dwarves. As a result, the city is kept very dark to accommodate creatures with an aversion to light.",
@@ -335,21 +318,14 @@
 				"dmNotes": [],
 				"url": "/dnd/pages/maps/cities/terrapim/Aphotia.html",
 				"position": {
-					"left": "2200px",
-					"top": "0px"
+					"left": "88%",
+					"top": "0%"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0px",
-						"top": "0px"
-					}
-				}
+				"marker": "none"
 			},
 			{
 				"name": "Emerald's Edge",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"Emerald's Edge is home to a peculiar culture, shaped by centuries surrounded by beating waves and scorching sands. The driving force of nearly every citizen is greed. This town incredibly wealthy, fiercely protective of the wealth it has, and ever-desperate to become even wealthier."
@@ -366,7 +342,6 @@
 			{
 				"name": "Laketon",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"Of all the major hub cities on Lagos, Laketon is the most easygoing. Its position between a lake basin and the ocean means its citizens never want for food. Living in such abundance has caused the Laketonians to adopt a much slower way of life, and embrace many water-based sports."
@@ -383,6 +358,7 @@
 			},
 			{
 				"name": "Ruined Keep",
+				"nameLocation": "bottom",
 				"type": "village",
 				"fontSize": 18,
 				"description": [
@@ -392,19 +368,14 @@
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "1215px",
-					"top": "590px"
+					"left": "50.4%",
+					"top": "23.84%"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0px",
-						"top": "0px"
-					}
-				}
+				"marker": "town"
 			},
 			{
 				"name": "Faire Ranch",
+				"nameLocation": "top",
 				"type": "village",
 				"fontSize": 18,
 				"description": [
@@ -416,21 +387,14 @@
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "1255px",
-					"top": "640px"
+					"left": "52.32%",
+					"top": "27.25%"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0px",
-						"top": "0px"
-					}
-				}
+				"marker": "town"
 			},
 			{
 				"name": "Sudmoss",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"What was once a peaceful fishing village is now little more than a collection of broken houses and scattered skeletons. The cause of Sudmoss' sudden destruction is shrouded in mystery, but rumors suggest that it was besieged by men with the faces of fish."
@@ -448,44 +412,63 @@
 			},
 			{
 				"name": "Ancient Ruins",
+				"nameLocation": "bottom",
 				"type": "village",
 				"description": [],
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "899px",
-					"top": "1111px"
+					"left": "39.09%",
+					"top": "44.4%"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0px",
-						"top": "0px"
-					}
-				}
+				"marker": "none"
 			},
 			{
 				"name": "Matthias Manor",
+				"nameLocation": "bottom",
 				"type": "village",
 				"description": [],
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "1216px",
-					"top": "950px"
+					"left": "51.4%",
+					"top": "37.62%"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0px",
-						"top": "0px"
-					}
-				}
+				"marker": "town"
+			},
+			{
+				"name": "Isevaras",
+				"nameLocation": "right",
+				"type": "village",
+				"description": [],
+				"culture": [],
+				"dmNotes": [],
+				"url": "#",
+				"position": {
+					"left": "68%",
+					"top": "47%"
+				},
+				"marker": "town"
+			},
+			{
+				"name": "Louth",
+				"nameLocation": "right",
+				"type": "village",
+				"description": [],
+				"culture": [],
+				"dmNotes": [],
+				"url": "#",
+				"position": {
+					"left": "58%",
+					"top": "27.5%"
+				},
+				"marker": "town"
 			},
 			{
 				"name": "Dryad's Grove",
+				"nameLocation": "top",
 				"type": "village",
 				"fontSize": 18,
 				"description": [],
@@ -493,21 +476,14 @@
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "1360px",
-					"top": "870px"
+					"left": "56.36%",
+					"top": "35.84%"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0px",
-						"top": "0px"
-					}
-				}
+				"marker": "none"
 			},
 			{
 				"name": "Moonfire Village",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Hidden among the peaks of the Moonfire Mountains lies a civilization of frost giants. The harsh environment ensures that the giants have very few visitors, which is fine by them."
@@ -526,7 +502,6 @@
 			{
 				"name": "Tilaporth",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"Tilaporth is a small port city, and is the departure point for most of the expeditions into the new world."
@@ -546,7 +521,6 @@
 			{
 				"name": "Southport",
 				"nameLocation": "bottom right",
-				"useNewLocation": "true",
 				"type": "city",
 				"description": [
 					"Southport is a hub of nearly every conceivable criminal activity. Founded by pirates, for pirates, it is a safe haven for those in need of a dark corner to hide in.",
@@ -568,7 +542,6 @@
 			{
 				"name": "W&#252;stebie",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"W&#252;stebie is a small kobold village at the western edge of the Scorchwind Desert. The kobolds use the arid climate to experiment with jerky making, and are non-hostile to visitors with coin."
@@ -588,7 +561,6 @@
 			{
 				"name": "Temple of the Sacred Soul",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"The Temple of the Sacred Soul is nestled high atop a mountain, away from the materialistic lifestyle of the major cities."
@@ -633,7 +605,6 @@
 			{
 				"name": "Elmusk",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Elmusk is a small settlement built around a large tower. The tower is inhabited by a strange old gnome known as \"The Right Honorable Royal Highness Emperor Princess Jeeb the Wise, First of His Name, Rocker of Parties, Petter of Small Mammals, and Generally Good Guy\". Elmusk has no official system of government, but the citizens usually look to the sole resident of the tower for guidance and wisdom."
@@ -653,7 +624,6 @@
 			{
 				"name": "Notriven",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Notriven is a mountaintop monument to the goddess of wisdom, Notriv. Ancient traditions often use altitude to symbolize wisdom, and teachings stressed the value of traveling to broaden one's mind.",
@@ -674,7 +644,6 @@
 			{
 				"name": "Salem",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Salem was once a modest town populated by humans. However, it was destroyed centuries ago for reasons that have long been forgotten."
@@ -694,6 +663,7 @@
 			},
 			{
 				"name": "Mortadus' Colosseum",
+				"nameLocation": "bottom",
 				"type": "village",
 				"description": [
 					"Mortadus' Colosseum is usually spoken of in awed whispers. It is one of few places where a mortal is guaranteed to be in the presence of a god, but with this honor comes a great cost. Countless warriors have met their end here, trying to prove themselves to Mortadus."
@@ -702,21 +672,14 @@
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "1705px",
-					"top": "1380px"
+					"left": "72.56%",
+					"top": "55.2%"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0%",
-						"top": "0%"
-					}
-				}
+				"marker": "none"
 			},
 			{
 				"name": "Duskhaven",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"H̶͇̊̑͌͝͝Ȩ̵͎̯̟̝̽ ̷̠̣͝H̶̡̛̲̣̺͎̔̈́̏̆A̷̭͂͝S̴̡̰̞̪̫̉͆͐̔̍ ̴̞̝̒́̏͊R̸̭̚Ê̶̖͍̘̋͐̕T̷͕̮̋U̸̥͐́̇͘R̵̝̲̀N̵̨͎͔̈Ȇ̷̮͋̏͊D̶̙̏<br/><br/>̶̡̛̑̑̓͛̓̑̏Á̴̡̞̞͍̞̖̪̖̳̓̽̆̿̒̋L̵̢̡͎̹̼̰̞͂L̶͉̟̀̒̀͐̃͒͝ ̶̭̻͈͓̳̃͆̐̌̎͜H̷̦̅̐̿̊̐̂̕O̶̤͔̟̺̙͓̓͌̚͝͠ͅP̷̨͚̙̗̮̼͐E̸̛̺̝̱̲͙̣͓͊̋̑͒̽ ̸̢̙̲̱̫͎̖̟̫́̔̑͆I̸̖̽́͠S̷̬̱̙̮̖̑̿̾̋̀͝͠ ̸̱͇̹̝͓̦̫́͊́̇̂̋͒́̚L̵̲͙͖̆̓͗̓O̵̲̣̟͋̌̎̚S̸̨͎̘̻̃͛͗̉T̷̪͔͕̈́̇͛̚<br/><br/>̴̢̨̳͎̗̗͍͖̝̈́̊̐̒̚Ŗ̵̧̧̱̠̫͓̳͎̻̙̺͉̘̠̯̱̠̑̐E̸̢͉͉̺̪̘̪̪̳̳̭̖̙̓̇̂̆̆̈́̈̂̍̆̀̔͗̃͑̅̕͝ͅẄ̴̬̲͉̫̪̜̞̪̊̿̊̇̅E̸̢̨̻̥͖͈̰̒̅͑́̾̚Ŗ̴̛̪͍̤̤̥͖̝̝͐̀̄̈́͒̓̄̉̏̎̽̀͠Ȁ̷̬͖̹̙͎̭͚̰̏͒͂͌̌̐͊̿́͜͝͝R̶̖͚͙͛ͅͅͅE̵̛̫̼̭͔̮̲͗̑̑̓́͒̔̋̓̌͜͝͠W̵̢̢̨̙͔̠̠̼͈̖͖̜̪͎̳̑͆́̈́͐͆̄͒̓̒͐͜͝͝E̸̗̓́͛͆̑Ŗ̶̫̭͔͇͎͆̿͑͂Á̵̢̼̗̼̝̤̝̬̰̤͖̂̋̍͌̒͂̓͂̆͘ͅR̸̨̨̨̗̫̗͇̫̻̗̰̠̖̪͉̗͈̎̋̓È̷̛̜̥͍̠̌̏̈́̀̈́̃W̵̡̡̬̤͖̱̗̣̻̟̦͎͈̉͛͂̽̌̚͜͠E̴̻̭̮̪̒̅̐̌̀̉̑̈́̎̒̏̚̚̕R̷̛͎̖̹̤̤͕̼̬̟͖̥̎́͒̅̄̈̌̽̓̅̊̈́̇̈́̎͝͠͝ͅͅA̸̴̧̨̧̻͇͙͙͉̺̟̰̞̳̝̩̯͉̫̞̜̥̹͈͕̟̰͋̆̉̀̏͌̎̄͌́̈́̾̚̚͜͜͝͝E̴̱̲̣͖̫̠̺͇̮̗͈͖̣͈͕̹̺̳͒͆̔̐̍̑̓̀̽͌͌̚̕Ȑ̸̟̱͙̉̀̄̇̅́̌͂͂̚͠Ā̸̻̹͖̯̠̩̳̤͙͍̯̭̳̮̐͋͗R̵̹̺̰̠͙̤͉̙͖͙̭͔̜͍̭͔̀̚E̴̝͕̟͙̰̣̤͍̖͛̽̅̿̾́͊̓̚͝Ŵ̴͔͔̹̂͗͛̌͌̈́̃̆̈̄̌͌̐̇͜͝͝E̵̡̛̩̯̜͓̘͇͕̝̦̣̘̙̥͛̈́̾͗̄͋͂̅̇͂̿̊͂̐́̓̕͜͠Ŕ̷̢̧̨̛̫̜̰͉͓̯̖̮͈̟̝̱̻͉̎̒̿̾̎͑̽̽̒͛̉͂̓͘̕͝Á̶̟͉̈́̄̑̌͊̀̑̏͌̆͊́̆̾́̑Ṟ̴̢̻̞̫̟̩̰̠̈́̐̋̓͒̂̂̈́ͅĘ̴͙̻̥̞͉̣͉̮̞̯̬̦̫̦̠̫̦̄̔͜W̵̛̗̬̫̬̘͚̺͉̝̠͈͍̌͑̓̀̑͋̂̋̊̃̓̔̈̈͗̒̑Ȇ̷̡̛̛͉̬̺͇̠̮̃͒́͊̇͑́̌̍̃͒̈̕͝Ŗ̷̛̦̱̙̗̮̫̙́͗̂͗̍̃̉́͘̕A̵̡͈͈̟͉̲̳̲͔̦͛̏͐̆͑̃̀̈́͑͌̍̾̇̉͗̑̚͠͝R̴̨̡̹̬̠̳̠̞̳͖̓̍̈̄̃͆̾̀͊͛̏̃̈̊͘̕͜E̴̘̩̖̼͉̓̉̑͒̅̋͛͗͠W̵͇̥̲̓Ë̷͍̙̼̘̜͉̮͔̲̫̘̮́̑͝͝Ŗ̷̛̥̮̙̥͚̼͖̱̖̤͇̙̖͇̏̿͑̔͊̈́̔̀̾̈̇͐̅Ả̸̵̛͓͎̹̹̲̱͙͓̞̞̝̗̜̥̣̦͔̆̉̒̄̀̍̀̍̏̚̚͠ͅW̶͖̪̪͙͍̰̞̙̩̹̭̝͙̏̀̍͒̐̈́̓̇͊̄̌̿̉͜ͅR̵̟̰͖̥̺͎̠̼͚͔͕͖̪̖̹͇̂̐̔̈́̍̑͊͘̚ͅḚ̸̢͍̗̟̹͕̰̣͌͗̿́̏̑̀͋͆͌̓́W̵̭̻͗̊̈́̀͝E̶̫͗́̄̾̏́͊̈́̇̊̄̎̑̕͘̚͠Ȑ̸̻͙̮̾̽́͌͐́̕ͅA̶̧̨͎͔͉̻͔̤͇͖̣̭̼͎͖̗͋́̔̆͊̀̀͂̀̉̌̍̓̔̊̚̚͝͝Ř̷̛͖͉͖̫̃͒͐̾̀̇̈́̈̀̐̈̿͝͝Ė̶̛͔̟́͝Ẃ̷̩̫̦̼̣̹̗̼̖̲̝Ȩ̵͓͎͍̩̹̖̩̅͆̎͒͠R̸̛̦͐̽̍̌̈͆͒͆̓̅͒͑Ą̴̛̯͇̘̟͈̺̖͓̻̤̥̔̀̒̒̄͠ͅͅR̶̢̛̦̺̙̜̤̮̞͙̘̖͎͔͕̖̘͒̂̓̋̍̂̏̉̓͂̿͜͝E̶̠̘̥̺̟͉̽̏W̷̞̳̉͛̋̿̀̀̌̂̔̐̀͒̋͗Ȩ̵͓̤̬̲̳̹̩̜͐̓̆̏̀̾̍̅̑͐̈́̆́̄͋̏͘͝͝R̵̛̞̹̗͚͌͋̽̒̂̈͐̈́͌͛̓̕͘͠͝A̵̡̡͔͇͎̰͚̱̖̳͈̹̱͓̔͑̂̊̓̔̈̈͘̕͜͝W̵̛̛̛̪͇͇̣̯̊̾̆́̍̒͆̀͋̚͘͝͠͝À̷̡̨̧̼̟̖̞͉̘̫͇͖͇̝̮̲̩͖̿̃̑̿͗̓̐̾̽̚̕̚͜͝͠Ȩ̸̧̭̹͕̦͍̦̥̜̰̼͔̝̈̔̾͆́̏́̑̃̀̄͊̂͘̚͠͝R̸̵̛̛̪̺̼̘͖͓̯͉̼̘̫̙̺̱̮̤̾̂͑̽̈́̄̿͒̏̈́̓́͛͆̎͒̑͊́̈́̉͑̇̏͠͝ͅE̸̛̟̺̠̖̯͍̜̔̔͋̒Ä̶̠͍̜́̓̿̉́̈́͜Ŗ̸͍̹͓̂̆͛̾̓͛E̸̛͕̪͈̤͈̘̳̝̳̪͐̿̋̃̿̊̉͋̊̑̕͝͝͝W̸̨͉̫̥̦̝̘͍̻̞͖̲͚̺̲͓͉͇̺̽͐̎̓̌Ę̷̧̡̛̛̖͓̖̻̰͍̳͓͇͎͚̓̐̀̈́̀͆̑͘͜Ř̶̨̧̫͖̜̩̬̺̟̏͑̀̉̃͊̃̃̌͋̒̓̈͐̅͗̕͝ͅĄ̵̹͚͕̬̣̟̦͚͇͕͌͂̓̒͌͋̚R̶̛̤̗̖̣͚̻̫̲̃̇̎͑͗͊̋̾̔͛͘̕̕͠E̴̼̎͊̒̆̂̄̏͛W̷̨̼͔̳͖̣̹̞̻̱̭͖̒̌̿͋̉̈́͋͛̋̈́̅̑̀̚͜ͅE̷̛̠̤̮͈̥̖͉̹̭͙̻̦̓̒̀̉́̀́͛̑͑͐̇̒̕̕̚͜͝͠Ȓ̶̬̭̖̠͇̩͓̭͉̞̳͉͍̣̲̹͈̤̈́̎͗͊͒͑̔́̆́̀͛̎͊̐͠͠Á̴̧̞̤͎͕̂̉̌͒͠͠R̷̢͚̻̗̩̝̣͎̲͍͇̳̪̔͂̂͑̌̀̀͌̂̃̔̿̈́̍̿͆̅̕͠E̷͈̫͙̤͔̬͎̻͉̖͍̙̟͍̍̒̋̑̈́͐͒̀̇̒̕W̴͔̖͉̓̈͑̈́̍̓͗̎̄͐̂͘̕͝͠͝ͅĘ̷̢̨̢̭̘̲̠͚͚͖͙͈͚̣̄̈R̵̭̦͕̲̈́͂̾̉̌̓̐̕͝A̶̫̾R̵̢̛̳͍̯̼͙̰͔̻͈̹̼̞̻͂Ě̴̛̪̳̲̭͎͉͎͆́͑͌̄̀́͗̇̇̋̓͌̄͘W̸̛̦̜͕̰͊͌́͌͐͆̊͌̒̚A̸̵̢̦͚͎̯̳͙̳̞̠̺̖̤̬̝̓̇̐̽̇̄̍̕͜Ŗ̷̼͎̮̳̬̣̙͙̹̳̰͔̀̄͒̋̉͊̊̏̈́̌̐͂̑̐̆E̸̡͙̯̟̬̰̘͎͉̻̭̥͉̗̯̺͖̪̓̌̃̏͆̆͗̍̄̕͘R̶͔̣͙̈́͂͒̀̆̋̚ͅË̵̡̦̫͓̟̮̥͚̝̺͖͌̆̇̅̈̅̅͂͒̾̀͑̕͠ͅͅW̷̧̩̜͓̗͓͇͓̘̬̤̼̗̱͇̣̭͋͒̓̓̚Ẹ̷̡͓̠̄̄̇̋͛̓͐͐͐͐́̂̕͝R̶̛̻̞̭͇̒̀͋̾̓́̈̌͊͌̄̆̂͊̕̚Ā̶̧̨͚͓̺̟̬͙͈͉̲̫̪̼̭͛̂ͅͅŘ̸͚͓̲͎̞̆̈́̃͛̓̅̃̾̍̄͝͝͝Ȩ̶̡̧̛͖̬͈̲̪̯̉̇̀̅̍̾̐͐͋́̔̿̈́̐̆̕͠Ẁ̸͎̗̭̋͛̇̀̇̾̉͊E̵̡̢̨̨̛̗̥̺͙̠̼̲͎̘̻͇̯̎̏̿̀̈̅͌͂͑̐̀̒͝͝R̶̠̤̣̀́̔͌̎͐̅̃̽̄̓̔̈́̈̋̕̕͘͝Ȧ̶̡̼͔̗̙̗̣͕̟̰̹̪̆͑͐̎́̂̾͐͂̍̎̅̚͘͜͝͝ͅR̶̨̛͇̟̫̳̲͓͇͇̱͙̼̫̗̘̞̅͒̑̿̏̂͜ͅE̵̡̘̤͕͕̤͚͍̭̼̼̟̋̄͆̋̏̌͑̍̈́̿̈́͜W̷̧̝̻͔̜͙̦̩͎̙̻̔͑̓̿͘E̵̢̥̺̝̲͓̳̠͔̼͛̆̍̈́͂͋͊̾̕̕͝R̷͙͎͓̰̉̿̌̀̂̕͠Ḁ̸͎̮̬̿̿̇̎̅͝R̶̢̨̛̤̺͓̗̞̖̜̞̩͕̣̞͙̬̎̑̈͆̄́́̆͆͗̾̇͘̕͠͠͝A̴̵̯͉͍̲̼̘͙̝͓̩̫̹̳̳͇̳̦̘͙̠̙̎̓́̈̋̋̇͒͛̄̈́͛̌̾̍̀̋̓͌́̾̏́̅̇̏͗̕͠ͅA̷̙͈̦̯̒̔̉̾̌͒̊͂͛̄̈́͌̌͝R̴͉͈̗͊͛̿̂͌̄̆̇̎̀̉́͘W̵̛͉͓̻̫͚̰̫̝͚̮̋̽̽̿̈̌̀̂̏̿̍́͂́̚͝E̶̢̛̯̪̦͉̤̳̘͈̋͒͛̀͗̍͆̀͑͗̓͒̒̇̎͒͝͝R̸͎̓̒͊́̀̎̕E̴̙̣̫͉̳̫͍̪̬͒̃̈́̊͛̉̑̋͆͑̏͆̍͘͜W̷̜̦̻̩̗͖͎̐̔͒̉̈́̏͐̔̊̌̕͠ͅȨ̷̧̳̜̬͉͙̘̝̘͈͉̉̆̂͌̿̓̉̀̋̓͋̓͐̆̌R̶̡̛͔͛̄̇̇͆̈́̀̀͆̕͜͝A̴̧̨̭̻͈̺͔̹͓͖̮̼̖̱̪̲̲̓̒͒͒͜Ŗ̵̨̻͎͙̼̱̲̞͖̩̪̟͌͛̓̃͒͐̍͒̇͆̀̄̃̉͠͝Ȩ̵̣͈͍̺̯̥̘̺̪͙̹̳̙̪͌͂̋̆̽̾̑̍̑̕̚͜͝Ẃ̴̢̡̱̗͇͔̫̝̰̖̘̝̤̝̠̖͜Ẽ̷̡Ȓ̷̛͙͖̣͔̪̌̏̃͗͒̆̋̓̀̅͂͘̚̕͝A̵̰͇͓̠̙̺̯̞͌̊Ṛ̶̨̨̡̛̤͉̯̖̣͙̪͂͛̓̉̃̀̾̈͊̽͘͘͝E̵͓̳͋̓͛̈́Ẃ̸̱͛̓͗̈́͗̋͂́̃̕͠͝E̵̟͉̘̯̜͎̰̓́̌́̌̿̑̔̂̕͠R̴̨̲̩͕̎̽́͂̎̓̀͐̌̎̑A̵̷͖͔̼͖̮̺̙̳̝̼̱̞̲͍̫̱̜̞̥̾̓́͛͆̂̂͗͌̿͌̾̐̊̔̈́̊͘̕͜͠͝͝ͅR̷̨̛͇͓̼͔̼̝̣͙E̷̡̛̪̻͍̗͔̣͖͇̺̭͊͌̈̄͑̏̑͝͝ͅͅẀ̴̢͕̼͙͔̗̫̜̿̄̑̐̽͊͆̾͆͜͝ͅŔ̸̯̞͉̃̿̔̅̆̃͛͊̈́́͠E̴̲̤̹̻̜̯͆̑̒͗̿̈́̽͌W̶̢̺̙̙͔̰͆͛̍̀ͅĔ̴̙̀͋Ŗ̵̢̹̥̙̱̟͓̆A̸͎͕͓̱̿͊̈̍͌̊̑̔̐̍͗̀̊̐̕͝͝R̷̦̖͉̱̺̥̭̘̳̝̩̂̑̐̑͂̏͗͋͜͜͜Ẽ̸̞̪̰Ẁ̷̧̙̗͙͌E̷̛͔̩̬͈͖͕͍̭͇͇͕̫͋̈́͌͌̄̀̈̌̾͐̌̍̈́̏̚̚̚͝R̵̤͔͖̪͈̰͎̳̊͌̂̃Á̶̡̝͇̝̺͕̣̲̜̣͉͂̿̏̑̔̏̇̋̌͒̈́͒R̷̹̭̱̯̼̼͉͚̹͉̬̭͙͖͎̹̖͎̪͆̂̈́̾̊͗̕͠Ẻ̴̹̰̲͔͚͖̥̟̺͉͔̣̜̳̰̠W̸̘͎̹̰͉̫̱͑̆̔̈́̄̿̐̒̕͜ͅE̸̡͇͍̤͖̣̭͈̻̭̩͈̹͈̳̔̈̉͗́͑̿͜R̵̛̛͍̝̜̼̞͕͍̘̬̱̪̟͒́̓͒̍́̈̔͋͆̏͌͐͘͜͝͠ͅȂ̶̷͔̦̹̹̗̻͇̙̹̝͓̑̔̈̀̆͋̐̐̍̇́̓̉͌̈́́̈́͆͛̓̎͒̊͆̌͘̕͝E̴̛͖̙̙̱͇̟̬̘̯̜̋͌͋̽͗̃̉R̶̨̞̭̬̭̘͙̝̪͋̎̇͆̀̓̏͝A̶̟̪̭̘͉̔͜W̶̡̢̛͓̠̺͇̮̼͇̖̯͍͓͍̥̼̟̓͊͠E̸̢̞̺̳̯̻͈͕̺̙͍̳͐̈́̆͊̊̓͠R̶̢̯͍̤̟̦̞̰̐̑̃͛̅̀͛̉̏͐̑͊̿̀́̔͆͠E̴̙̹͙͐̿͆̌̀͂͂̂̌͊̋̉̓͌͛̒̕̕͠W̷̛̯̤̗̐̄̊͊̆͑͋̈́̐̄͒̌̈́̉ͅĘ̶̰̗̥̼͙̥͎̀̓́̏̎̋̈́̄̏́̂͋̓̒́̉ͅR̷̡̘͕͙̹͇͇͓̤̤̼̤̤̟̰̭̻͑̌̽̈́̀̀́̽͐̐̌̿̊͊͗̌́̃͠ͅĀ̴̛̰̮͈͉̪͇̤̱̠̼͖͎̹͔͇̳̏̄̐̔̽̾̐̔̈́̆͐̚͝͠͠͝͝Ŗ̷̖͔͎̭̮̬̻̝̰̰̲̞͐̓̽͝É̷̛͔̞͇͎̜̖͂̀́̈́̽̂̏̇̾͑W̴̨̧̤͔͍͉͔̬̱͉̹̭̦̼͌̊̈́͆̓̎̾͘͠͠E̸̤͇̞͔̤̻̲̲͗͒͛́̽̿͂̏̾̈́̓̈́̍̇̕͠͝Ŕ̷̢̡̢̦̦̟͚͈̥̼͙̹͎͍̝̥̩͖̔͜A̵̧̨͓̼̥̭̫̤̭̝̫̠͎̘̱̱̬̍̌̽͋̽̈́́̀̉͆R̵̥̆E̴̝̦̙̗̝̰̞͇̞̫̎̎͐͛̉̓̇̓̽̋͛̈́̓͠͝W̵̡̛͔͇̘̠̮̠̥̞̱̗̰̹͐̒̓̓͛̇͘̕͜ͅͅE̴̫̺̖͇͇̋̎͌͑͗̓̍̎̏͘̚R̷̢̢̬̖̩̫̫̻̙̱̭̘̟̞͓͙̲̥̾̋͐̃̀̈̊̒̅͑̿̕̚͠ͅA̴̴̧̢̛̛̹̭̯̪̳̼̫̰̞̹̮̣̰̩͔͈͉͖̳̗̺̗͕͂̈́̾̊̓͆͌̇̿̉͌͑̾̒͗̃͌̂̎͝͝͝W̴̨̢̳͔̦͍̖͔͙̣̦͉̭̖̟̞͐̈́́̏̈́̊́̿͆̃̑́̓̚R̷̢̨̻̬̝̠̼̤̞̗͒̌̉̆̈́̀̚E̷̦̰̯͍̩̗̭̜̹͋̈́̈́͝ͅͅW̶̡̨̨̲̼͓̣̻͉̭̙̩͚̉E̴̛̜̟̟͙̗͙͓̗̯̘̳̰̥͙͔̋͑͆̌̿́ͅR̴̖̦̻̙͇̯̣͐̿͠Á̵̛̦̲͓͔̭̐͗̊̿̉̽͆͆̚̕͝͠͝Ṟ̶̹̜̟̲͇͕͇̹͕͔͍̣̱̻̂̀̑̅ͅẺ̷̡̛͖̰̘̯̭̓͗̊́̃̈͋̉́̈́̽͒̚͘̕͜͝W̴̫̪̯͎͍̬̟̬͊͒̔E̶͉͙̭̼̤͕̪͎͗͒R̸͙̘̘͕̝̘̲͍̲̘̜̄ͅÂ̴̛̛̠͓̗͙̠͎̒͌͛͑R̶͕̝̽͗̋̋͐͋́̓́̑̓̿̎̚̚͜͠͝Ę̵̢̳̣͎̅͊͌͛̿͝W̸̱̦̪̮̫̺̞̝̬̰̙̠̬̺̳͓̮̭͗̈́̃̍̊̋͊͘͜E̷̢͉̟͔̱̯̲̮͔̜̪̣̭̥̳̬͌̐̏͂̂̋͛̍̃̊͒̆̇͠R̵̢̳̩̤̼̖͍̠͛͂͑͛͝Á̵̬̺̟̖̞̜̿͋W̵̬̹̗͈̔̋͊̂̀͗̋̆̍̚͘A̵̧̯̪͕̪̱̗̻̠̰̰̓͋̌͗͝Ê̶͍̘̙̮͋̏̾̍R̷̶̨̨̩̖̱̺̦̳̼̻͖̳͇̯̫͚͓̭̩̻̫͓͖̞̝̟̬͎̖͐̔̃̎̊̌̐͑̈͂͘̕͜͠ͅḚ̷̅̆͌̂̾̌͌A̸̡̨̪͇̰̹̱̳͒͑̃̓̓̈́͘͜͝Ȓ̵̡̼͍̭̫͇̥͓̱͔̼̠̟̿̌̏̊̀̈́̕̕͝͝È̴̢̪͈̱͙̑̾͗̽̓̃Ẉ̶̛̛̫̻̩̦̣̦̠͇̎̈̎̀̀̄̐̈́̈́͗̊̒͊̈̾̃͘E̷͍̗̅̌͌͛́̈́̆̾̀̑͆̈́̉̃͂̓͆̚͝Ȓ̴̺̆̔̒͋̔͌̈́̐̑̊̽́̎͘̚A̶̡̢̡̢̧̳̣̳͓̞̞̘̫̗̜̰̖̝̫̓͊̅̏̂̌̇͂̕͠R̴̨͎̫̻̭̰͚̙̯̦̜̟͇̺̎͛̈́̔̆̉͂̔̂͒͜͜͜ͅȨ̴̣͖͚͉͍̭̩͉͇̊́͐̽́͌̐̕͘Ẅ̴̹̼͇̣̱͔́̿͝Ẻ̴͎̬͔̱̭̱͔̭͉͎̙̰̺̲̠̜̽̃̿̒̃̾̀͋́͘͝ͅṚ̸̛̤͕͕̮̒̆̄̾̊̌́̉̄͋̉̐͆́̅̉̚͝ͅA̷̛̩͉͆̇̇̿̓̋̀̀͂͒͑̀̊̃̚̚̚͝R̵̢̢̼̺̹̙͉͕̻̳̣̹̖̩̬̓͊̾̄͑Ȩ̵̭̫̞̪̬̥̮̠̯̘͎͈̽̐̓͒̔͆̾̀̓̚̚W̵̨͊͆͆͐̊͒̕̚Ĕ̷̺̼̊R̵̙̗̟̘̥̯̤͎̱̟̘̟̅́̃̈́̾̋̈́̓͐̾̅̽͊̋̕͜ͅA̶̧̯̠̜̬̻̠͇̻͇̰͔͇̦̯͇̤̎͜Ȓ̷͙̗̰̭͓̌̓͆̅͊̉̈́̅̓̈́̿͂͗̕̕͜͠Ë̵͍̭́̔̓̔̕͠W̶̡͓͖̣͕̳̟̟͔̖͖̳̎̈́͗̀̓̿̀͗͑͐͐̔̉Ą̴̸̡̧̛̛̛͈͉͇̼̱̱̙̘̳̦̪̭̫̫̟͖͎̞̯̮̫͋̔̓͐̓͂̔̽̍̈́̔̀̆̏͒͗́̍͂͐͘͜͜͝ͅŖ̸̬̜͖͕̱̰͈̭̎͌̎̍̀̏̽͆̍̂͊̃͌͗̚͘̚̚͠ͅẺ̶̡̡̢̟͍̭̰̜̜̜͚̼͍̥̰̀̅͊̊́͊̋̆͒̄͆̍̒̒̊̈́̊͝ͅR̶͙̘͒̽̋͆̄͐́Ě̵͔̖̲̱͛͊̅̂͛̋̈́̉͘̕͠ͅW̴̲͖͖̆̀̄̎͋̔̅̃͝͠E̸̛͉̣̟̬̟̰̣͑̈́̓̿̆́͜Ṙ̷̢͔̺͙͕̰̰̱́Ą̶̡̡̯̪̙͚͈͙̞͖͎̫̮̝̮̪̳̄̃̅̓̾͋̋̓̓̃͐̽̐̾́̕̚R̴̨̨̭̰̞̭̭͙͖̀̆̐̋͂̒̃͐̔͆̋́͝Ȩ̵̛̼̻̼̥̤̭̼̦̼͔̪̮̝͓͙̽̓̽̈́́͗̄̉̈́̈́̾͜͠͝ͅW̴̡̢̫͕̥̟̥̫̮͚̻͚͕̯̺̌͑̋̈́͘͘͝ͅE̸̡͙͒̎́̾̋̄̒̂̋̚R̵̢͈̲̱͔͚̬̈́͗̆̿̀͐̀͒͑̅̽̍̽͂A̴̢̛̩͎͙͕̥̲̖̼̮̦͈̟̟̟̗͓̋̽͐̈́̿́̾͆̈̍͊̚͝ͅR̷̡̛͔̦̝͖̗͇̙͔̩̫̭̹̯̓͆͐̇̊͊̅̈́̎̈́̑̔̿̅́̿̕͜E̵͚̹̥̟͚̮̜̟̼̲͕̍͒̐͐̐͌́̀̐̐̔̕W̶̧̧̨̨̗͍̬̳̣͕̟̭̏̽Ę̵̢̠͉̙̗̖͔͈͓͚̖̩͊Ř̸̠̰̣̻̲̣̘͈̖́̓A̵͕̦̖̗̯̪̟̥̅͆̈̏̈́͠R̶͍̼͍̲͇̜̰͎͈̭̣͕̦̮͙͔̙̜͆̀̎̈̀̈́Ą̸̷̢̢̛̝̜̙̯̜̥̖̮̞̞̞̤̠͇̬͍͎̳̮͚͍̘̥̜̩̮͕͌̈͑̋̿̌̉͑̍̊̐̀̊́̈̕̕͜͜͠͠ͅĄ̸̲͖͓̩̺̱̝̤͖̤̞̖̰̱̣̈́̈͛̈͋̈̃̿͜Ř̷̢̪̭̩̜̤̞͔̭͂̔̀̏̄͛̒̂̇͛͝W̶̺̗̹̯̯̙̤̫̼͕͙̍̍̈̎͌̽͑̿̎̉̿̿̃̚̕̚͝Ȩ̷̡̢̞̖̞͔͕͍̦̣̟͕̟͚͉͇̄͒͛R̸̫͔̮̗̙͚̙͎͇̰̼̤̈̒͌͊̑͋̐̀͆͐̄̿̐̚͘͜͝È̶̢̧̨̞̣͍͔̲̹̻̊̂̃͛̂̏͑̈̐̎̌̈̐͋̿̚͘͠W̶̧̫̬̣̻̖̟͔̤̱̙͙̜̃̾̀̈͛̚͘Ẹ̵̛͔̀̈́́̂̓́̒̅͒̈͛͌̓̆͗͝R̵̝̩̤̳̞͈̠̺͋̑̅̽̃͊͐̄͘̚͜Ã̵̢̡̨͙͙̻͖̌̿̂̌̈́̈́̔̑̾̂̈́̈́̅̊͋̚͜͝ͅŘ̵̢̹̰̯͔̟̭̎̀̌É̴̳͉̥͚̜̭͕͍̱̣͍̭͖̓̓̓̀̎̔̈́͐̇̀̎̀̌͂̕͘͜͜͝͝ͅͅẄ̶̗̗͓͕̦͉͕͈̼̖̰̬̱̰̦́͗̋̊̐Ę̸̢̫̱̖͎͓̟̩̖̼̓Ŕ̴͕̦̠̹͕̓̈́̍͗̈́̍͒͆̕̚͝͝͝A̶̢̛̹͕̜̫̖̱̩͔̰̠̟͒̉̾̑̋̌̓̒̓̍̓̉̈́̐͑̕̚͠R̸͇̞̠̭̭͗̍̿̆̐͒́̽͑̏̾͑̓̂͌̈́̔̚̚É̴̜̺̪̼͉̰͎̳̏̆̕W̸̨̢̳̳̼̹̳͍̪̤͇̬̤͂̈́̇͛͋́̒̑͂́̌͗̂͑̕͜͝͝E̷͕̮͛͂̒̔R̵̛͍̣͚̠̼̞̙̬̟̹̰̤̯̥̉͑͋͊̋͆Ą̵̛̈́̏̈̑"
@@ -733,7 +696,6 @@
 			{
 				"name": "Victarn",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Victarn is something of a safe-haven for arcane avengers. It is home to one of the world's only recorded academies for monster hunters."
@@ -763,7 +725,6 @@
 			{
 				"name": "Thorintoft",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"One could argue that Thorntoft is more of a glorified mine than a town. Regardless of how you categorize the settlement, its residents love nothing more than digging holes.",
@@ -781,10 +742,9 @@
 			{
 				"name": "Carnalyn",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
-					"Carnalyn is a barbarian's dream-come-true. The rules are scarce, and law enforcement does not exist. Brawls are not only expected, but encouraged. Carnalyn is an exceedingly violent place, and certainly not for the feint of heart."
+					"Carnalyn is a barbarian's dream-come-true. The rules are scarce, and law enforcement does not exist. Brawls are not only expected, but encouraged. Carnalyn is an exceedingly violent place, and certainly not for the faint of heart."
 				],
 				"culture": [],
 				"dmNotes": [],
@@ -798,7 +758,6 @@
 			{
 				"name": "Pendale",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Pendale is a small community created to perserve knowledge. The general populace is notably unintelligent, ruled by the handful of more learned officials. This allows for a large amount of manpower to defend the libraries, but not enough literacy to spread their contents."
@@ -816,7 +775,6 @@
 			{
 				"name": "Troutbeck",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"The citizens of Troutbeck structure their lives and beliefs around the lessons gleaned from aquatic animals. This city is definitely a bit... fishy."
@@ -834,7 +792,6 @@
 			{
 				"name": "Rrostar",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Rrostar is a community of artists. It hosts annual festivals focused almost entirely on song, and is home to one of the most successful bardic colleges. All visitors are welcome, as long as they have an appreciation for music."
@@ -852,7 +809,6 @@
 			{
 				"name": "Planehaven",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Planehaven is effectively a village-sized rehabilitation clinic. Criminals sentenced to punishments overly harsh for their crimes are occaisionally given the option to relocate to Planehaven instead of facing their assigned comeuppance."
@@ -869,7 +825,6 @@
 			{
 				"name": "Thistleton",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Thistleton is home to a race of peculiar frog people known as Grippli. It was built to be a safe haven for the Grippli and their Fey allies, and is very well hidden deep within the trees. The existence and approximate location of Thistleton is widely known, but few outsiders know how to find it."
@@ -891,7 +846,6 @@
 			{
 				"name": "Okham",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Okham is a small but remarkably sophisticated city on the Verdant Isle. Okham was founded by 5 tinkerers who wanted a workshop far away from any lesser minds. Over time, their ambitions grew, and the town grew with them. The tinkerers recruited citizens with the promise of free homes for anyone able to aid in the advance of science.",
@@ -914,7 +868,6 @@
 			{
 				"name": "Acfirth",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Seated firmly between a village of myth and a city of science, Acfirth is torn between two wildly different worlds. As such, it is a popular home for those who wish to master the best of both worlds."
@@ -932,7 +885,6 @@
 			{
 				"name": "Riverport",
 				"nameLocation": "bottom left",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Riverport is the much lesser known port town on the Verdant Isle. With little of note to help it stand out from Vidan's Rest, Riverport is constantly looked over by traders and travelers alike. Riverportians make full use of this low profile to encourage business from traders with... less savory cargo."
@@ -950,7 +902,6 @@
 			{
 				"name": "Duforth",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Duforth was founded by Wood Elves, and its culture is saturated with the influence of Fey. Outsiders are permitted within the walls of Duforth, but they may find the experience rather bemusing."
@@ -967,7 +918,6 @@
 			{
 				"name": "Becktoft",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Becktoft was the product of a gold rush several decades ago. One lucky traveler found a small amount of gold in the nearby river. Once word got out, the town sprang up practically overnight.",
@@ -986,7 +936,6 @@
 			{
 				"name": "Akorsfield",
 				"nameLocation": "top",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Akorsfield is a small, idyllic town built near the site of mysterious ruins. The town is the subject of many urban legends, most of which speak of giant squid or men with tentacles."
@@ -1003,7 +952,6 @@
 			{
 				"name": "Ritchton",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
 					"Ritchton is a place where ambitious old heroes go to wait out old age. Here they keep an ear to the ground, and try to monitor the world to ensure it stays on the right track."
@@ -1020,10 +968,9 @@
 			{
 				"name": "Grinford",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
-					"Grinford is little more than a small community built around a large factory. The factory staff was chosen based on the cheapest labor available, and as such is mostly monsters or undesireables. These are trained to mass produce metal or mechanical products for the masses, with the designs usually being provided by outside businesses."
+					"Grinford is little more than a small community built around a large factory. The factory staff was chosen based on the cheapest labor available, and as such is mostly monsters or undesirables. These are trained to mass produce metal or mechanical products for the masses, with the designs usually being provided by outside businesses."
 				],
 				"culture": [],
 				"dmNotes": [],
@@ -1037,10 +984,9 @@
 			{
 				"name": "Carriglean",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "village",
 				"description": [
-					"Carriglean is a training ground for warriors. Here, anyone strong of heart can dedicate theemselves to the study of warfare. Members of any non-monstrous race are welcome, as long as they are unflinching in the face of danger."
+					"Carriglean is a training ground for warriors. Here, anyone strong of heart can dedicate themselves to the study of warfare. Members of any non-monstrous race are welcome, as long as they are unflinching in the face of danger."
 				],
 				"culture": [],
 				"dmNotes": [
@@ -1070,7 +1016,6 @@
 			{
 				"name": "Chupajiji",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "metropolis",
 				"fontSize": 110,
 				"description": [
@@ -1088,7 +1033,6 @@
 			{
 				"name": "Immordan's Sweaty Anus",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "metropolis",
 				"fontSize": 55,
 				"description": [
@@ -1107,6 +1051,7 @@
 			},
 			{
 				"name": "Vatsunir",
+				"nameLocation": "right",
 				"type": "metropolis",
 				"fontSize": 110,
 				"description": [
@@ -1118,21 +1063,14 @@
 				],
 				"url": "#",
 				"position": {
-					"left": "620px",
-					"top": "1100px"
+					"left": "578px",
+					"top": "1172px"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0%",
-						"top": "0%"
-					}
-				}
+				"marker": "town"
 			},
 			{
 				"name": "Keenok",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "metropolis",
 				"fontSize": 110,
 				"description": [
@@ -1148,25 +1086,8 @@
 				"marker": "town"
 			},
 			{
-				"name": "Location Test",
-				"nameLocation": "right",
-				"useNewLocation": "true",
-				"type": "metropolis",
-				"fontSize": 110,
-				"description": [],
-				"culture": [],
-				"dmNotes": [],
-				"url": "#",
-				"position": {
-					"left": "578px",
-					"top": "1172px"
-				},
-				"marker": "town"
-			},
-			{
 				"name": "Yaggi's Hut",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "metropolis",
 				"fontSize": 55,
 				"description": [
@@ -1184,7 +1105,6 @@
 			{
 				"name": "Potadrui",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "metropolis",
 				"fontSize": 110,
 				"description": [
@@ -1202,7 +1122,6 @@
 			{
 				"name": "???",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "metropolis",
 				"fontSize": 110,
 				"description": [
@@ -1220,7 +1139,6 @@
 			{
 				"name": "Halfpint Hill",
 				"nameLocation": "bottom",
-				"useNewLocation": "true",
 				"type": "metropolis",
 				"fontSize": 110,
 				"description": [
@@ -1238,7 +1156,6 @@
 			{
 				"name": "Hensar",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "metropolis",
 				"fontSize": 110,
 				"description": [
@@ -1258,7 +1175,6 @@
 			{
 				"name": "Ozfnak",
 				"nameLocation": "right",
-				"useNewLocation": "true",
 				"type": "metropolis",
 				"fontSize": 55,
 				"description": [
@@ -1275,6 +1191,7 @@
 			},
 			{
 				"name": "The Great Rampart",
+				"nameLocation": "right",
 				"type": "metropolis",
 				"fontSize": 220,
 				"description": [],
@@ -1283,18 +1200,13 @@
 				"url": "#",
 				"position": {
 					"left": "3150px",
-					"top": "1570px"
+					"top": "1700px"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0%",
-						"top": "0%"
-					}
-				}
+				"marker": "none"
 			},
 			{
 				"name": "Stonweald",
+				"nameLocation": "right",
 				"type": "metropolis",
 				"fontSize": 110,
 				"description": [
@@ -1319,19 +1231,14 @@
 				],
 				"url": "/dnd/pages/maps/cities/paros/stonweald.html",
 				"position": {
-					"left": "3850px",
-					"top": "2570px"
+					"left": "3793px",
+					"top": "2660px"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0%",
-						"top": "0%"
-					}
-				}
+				"marker": "town"
 			},
 			{
 				"name": "Thunder Plains",
+				"nameLocation": "right",
 				"type": "metropolis",
 				"fontSize": 110,
 				"description": [
@@ -1343,16 +1250,10 @@
 				],
 				"url": "#",
 				"position": {
-					"left": "3950px",
-					"top": "3570px"
+					"left": "3847px",
+					"top": "3723px"
 				},
-				"marker": {
-					"type": "none",
-					"position": {
-						"left": "0%",
-						"top": "0%"
-					}
-				}
+				"marker": "town"
 			}
 		]
 	},

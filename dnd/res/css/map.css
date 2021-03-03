@@ -214,6 +214,8 @@ ul.character-list {
 	margin:0;
 	padding:0;
 	line-height: 1px;
+	position: absolute;
+	display:block;
 }
 
 .map-marker-icon {
@@ -225,6 +227,7 @@ ul.character-list {
 	margin: 0;
 	padding: 0;
 	text-shadow:none;
+	top:0;
 }
 
 .map-marker-name {

@@ -19,7 +19,7 @@
 	/* margin-top:15px; */
 	position:relative;
 	border:20px solid;
-	border-image:url("/img/renn_frame2.png");
+	border-image:url("/dnd/img/renn_frame2.png");
 	border-image-slice:50;
 	box-sizing: border-box;
 	box-shadow:5px 2px 15px 5px black;

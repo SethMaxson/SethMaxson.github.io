@@ -52,7 +52,9 @@ interface ICitiesJsonContinentSection {
 declare const MapMarkerRadii: {
     [key in CityMarkerTypes]: number;
 };
+declare var _totalLoadedCities: number;
 declare function getCityData(): JQuery.jqXHR<any>;
+declare function getMapLocationData(continent: string): JQuery.jqXHR<any>;
 declare function getCitiesByContinent(destinationElement: JQuery<HTMLElement>, continentName: string, specialTreatmentForHyperLinks?: boolean): Promise<unknown>;
 /**
  * Get a city marker as an HTML Element

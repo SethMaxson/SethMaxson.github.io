@@ -69,7 +69,6 @@ function GetURLParameter(sParam: string)
 	return null;
 };
 
-
 function arrayAppend(array: any, item: any): Array<any> {
 	if (array !== undefined && array !== null) {
 		if (array.constructor === Array) {

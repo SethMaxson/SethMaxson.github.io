@@ -99,13 +99,17 @@
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
 		<script>
 			$(document).ready(() => {
-				getCitiesByContinent($(".map-decapos"), "Decapos");
-				getCitiesByContinent($(".map-lagos"), "Lagos");
-				getCitiesByContinent($(".map-notre"), "Notre");
-				getCitiesByContinent($(".map-paros"), "Paros");
-				getCitiesByContinent($(".map-peku"), "Peku");
-				getCitiesByContinent($(".map-sutre"), "Sutre");
-				getCitiesByContinent($(".map-terrapim"), "Terrapim");
+				Promise.all([
+					getCitiesByContinent($(".map-decapos"), "Decapos"),
+					getCitiesByContinent($(".map-lagos"), "Lagos"),
+					getCitiesByContinent($(".map-notre"), "Notre"),
+					getCitiesByContinent($(".map-paros"), "Paros"),
+					getCitiesByContinent($(".map-peku"), "Peku"),
+					getCitiesByContinent($(".map-sutre"), "Sutre"),
+					getCitiesByContinent($(".map-terrapim"), "Terrapim")
+				]).then(data => {
+					console.log(`Total cities loaded:${_totalLoadedCities}`)
+				})
 			})
 		</script>
 	</head>
@@ -170,19 +174,9 @@
 				Noseyus Island
 				<span class="city-preview">
 					<h1>Noseyus Island</h1>
-					<!-- <p>
-						Population:
-						Erina
-
-						Culture:
-						This island is home to a small but fierce tribe of Erina. The tribe has only a few dozen members, and as such has no formal leader. Most of the tribe are foragers, but they have 12 warriors. The strongest of these, Hunnip, is often looked to for guidance by the rest of the tribe.
-
-						Biome:
-						The island is absolutely tiny, but has a very temperate climate. Coconuts and palm trees abound.
-
-						Plot Hook:
-						The Erina consider it their divine mission to protect a large pearl with an arcane sheen. This is enchanted with powerful chronomancy magic. A creature who activates the pearl is sent 1000 years back in time.
-					</p> -->
+					<p>
+						A small, perfectly circular island. This does not appear on any maps or charts.
+					</p>
 				</span>
 			</a>
 			<div class="map-lagos">
@@ -195,7 +189,7 @@
 				<!-- <a href="#" class="smith continent" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);">
 					Bravagg
 				</a> -->
-				<a href="#" class="smith metropolis" style="position:absolute; font-size:110px; top:50%; left:50%; transform:translate(-50%, -50%);">
+				<a href="bravagg.html" class="smith metropolis" style="position:absolute; font-size:110px; top:50%; left:50%; transform:translate(-50%, -50%);">
 					Bravagg&nbsp;Isle
 					<span class="city-preview">
 						<h1>Bravagg Isle</h1>
@@ -253,18 +247,6 @@
 				<a href="#" class="smith continent" style="position:absolute; top:82.5%; left:61.5%; transform:translate(-50%, -50%);">Notre
 					<span class="city-preview">
 						<h1>Notre</h1>
-						<!-- <p>
-							Population:
-							Yeti
-							Walrus Folk
-
-							Culture:
-							The Yeti and Walrus tend to distance themselves from each other. The two cultures signed a peace treaty 38 years ago preventing war, but their cultures are too different to mingle effectively.
-
-								Yeti: Stoic and standoffish. Yeti speak only when necessary, and using only as many words as needed to convey their intended message. The yeti are herbivores. They subsist on the rare frostflower. This is incredibly rich in nutrients and curative power, but grows only in small numbers beneath the snow. Due to the limited food supply, the yeti population tends to remain small.
-
-								Walrusfolk: Boisterous and hearty. Walrusfolk are fond of large gatherings, and love nothing more than a good recreational fight, adult party, or feast. Their diet consists almost exclusively of seafood.
-						</p> -->
 					</span>
 				</a>
 				<img src="/dnd/img/maps/landmasses/Notre.png" style="width:100%; z-index:1;">
@@ -273,17 +255,6 @@
 				<a href="#" class="smith continent" style="position:absolute; top:28%; left:45%; transform:translate(-50%, -50%);">Sutre
 					<span class="city-preview">
 						<h1>Sutre</h1>
-						<!-- <p>
-							Population:
-							Centaurs
-							The weird antler walrus things from TLoZ: Phantom Hourglass
-
-							Culture:
-							Both primary cultures on Sutre are welcoming to outsiders, but hate each other with a fiery passion. They are constantly at war over the few viable feeding grounds on Sutre.
-
-							Biome:
-							Sutre is the very definition of arctic. The handful of locations on Suture that are not covered in ice are coveted and fought over.
-						</p> -->
 					</span>
 				</a>
 				<img src="/dnd/img/maps/landmasses/Notre.png" style="width:100%; z-index:1;">

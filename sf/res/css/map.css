@@ -448,16 +448,6 @@ ul.character-list {
 	width:100%;
 }
 
-.cloud {
-	position:absolute;
-	width:1500px;
-	height:1500px;
-	background-image: url("/img/maps/Cloud.png");
-	background-size:contain;
-	animation: fog 8s linear 0s infinite alternate;
-	transform: translate(-50%, -50%);
-}
-
 .hover {
 	animation: hover 4s linear 0s infinite alternate;
 }
@@ -518,7 +508,7 @@ span.purple {
 	position:fixed;
 	top:0;
 	left:0;
-	background-image: url("/img/sf/PactWorlds.jpg");
+	background-image: url("/sf/img/PactWorlds.jpg");
 	background-size: 100vw 100vh;
 	background-repeat: no-repeat;
 	z-index:10;

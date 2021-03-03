@@ -6,66 +6,10 @@
 		<title>Decapos</title>
 		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/travel-agency-map.css" rel="stylesheet" type="text/css" media="all" />
 		<style>
-			html, body {margin: 0; height: 100%; overflow: hidden}
-
 			.city {
 				font-size:22px;
-			}
-
-			.travel-brochure .location-info {
-				width:30%;
-				display:block;
-				position:absolute;
-				top:0px;
-				left:0px;
-				box-shadow: 1px 0px 10px black,
-				8px 0px 8px inset rgba(255,255,255,0.5);
-				z-index:6;
-				height:100%;
-				overflow-y:auto;
-				background-color:rgb(253, 243, 229);
-			}
-
-			.location-info h2 {
-				background-color:#bbb;
-				box-shadow:0px 0px 5px #ddd;
-				margin:0.5em 0.4em;
-				padding:7px 10px;
-				font-size:16pt;
-				text-shadow: 0px 0px 1px #ddd;
-				text-align:center;
-				font-weight:600;
-				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-				color:#333
-			}
-
-			.location-info h3 {
-				text-align-last: justify;
-				margin:0.5em 1em;
-				font-size:13pt;
-				text-shadow: 0px 0px 1px #ddd;
-				font-weight:900;
-				font-family:monospace;
-				color:#222;
-				text-shadow: 0px 0px 1px #000;
-				text-transform: uppercase;
-			}
-
-			.location-info p {
-				text-align: justify;
-				margin:1em 1em;
-				font-size:1em;
-				text-shadow: 0px 0px 1px #ddd;
-				font-weight:500;
-				color:#222;
-				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
-			}
-
-			.travel-brochure #map-body {
-				width:70%;
-				display:block;
-				float:right;
 			}
 		</style>
 		<script
@@ -78,9 +22,11 @@
 			crossorigin="anonymous"></script>
 		<script src="/dnd/res/js/map.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
+		<script src="/dnd/res/js/world-map-viewer/city-placement-helper.js"></script>
 		<script>
 			$(document).ready(() => {
 				getCitiesByContinent($(".map-decapos"), "Decapos", true);
+				attachPlacementHelper(".map-decapos");
 			})
 		</script>
 	</head>
@@ -95,37 +41,13 @@
 			<p>
 				Whether you're a literate nerd, or are too cool to learn to read, Decapos has something for you. <i>DO NOT READ ALOUD: if you can read this, the Amarillo Airship Agency loves you more than your illiterate travel companions.</i>
 			</p>
-			<!-- <p>
-				Population:
-				Myconids
-				Nagpa
-				Mongrelfolk
-				Hobgoblin
-				Kuo-Toa
-				Subek
-				Tabaxi
-				Doppelganger
-
-
-
-				Cities:
-				An ancient ruined city full of rusted constructs surrounded by many thriving smaller villages. The city was once the seat of a great Nagpa empire, but was overthrown by an uprising its oppressed conquerees with the help of the Myconids. The newly liberated races settled the surrounding area.
-
-				The survivors of the great Nagpa empire make their home atop the southern mountains. Here they bide their time and regrow their numbers, waiting for the day they can return to glory. They make heavy use of scrying and illusion magic to manipulate outside events to prepare for their return.
-
-				Harborhome - Halfling surfer bros who train/ride dolphins and farm crops underwater.
-
-				Encounters:
-					Salad Fingers mongrelfolk
-
-			</p> -->
 		</div>
 		<div id="map-body" style="overflow: hidden; background:#25325f;">
 			<div class="map-controls" style="z-index: 2; padding-left:80px;">
 				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
 				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
 			</div>
-			<div class="map-container map map-decapos" style="background-image:url('/dnd/img/maps/landmasses/Decapos.png'); background-repeat: no-repeat; background-size: contain; width:4750px; height:3160px; text-align: center; transform-origin:center center; image-rendering: pixelated;">
+			<div class="map-container map map-decapos" style="background-image:url('/dnd/img/maps/landmasses/Decapos.png'); width:4750px; height:3160px;">
 			</div>
 		</div>
 	</body>

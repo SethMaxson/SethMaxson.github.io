@@ -512,16 +512,6 @@ ul.character-list {
 	animation: reversebob 4s linear 0s infinite alternate;
 } */
 
-.cloud {
-	position:absolute;
-	width:1500px;
-	height:1500px;
-	background-image: url("/img/maps/Cloud.png");
-	background-size:contain;
-	animation: fog 8s linear 0s infinite alternate;
-	transform: translate(-50%, -50%);
-}
-
 .hover {
 	animation: hover 4s linear 0s infinite alternate;
 }
@@ -665,30 +655,6 @@ button.manage-crew {
 	white-space: nowrap;
 	visibility: hidden;
 }
-
-.jasper-battle {
-	width:100px !important;
-	height:100px !important;
-	background: url("/img/maps/icons/jasper_blink.png") no-repeat;
-	background-size: 1500px 100px;
-	background-position: 0px, 0px;
-	background-attachment: scroll;
-	overflow: hidden;
-	position: absolute;
-	left:0px;
-	top:0px;
-	z-index: 2;
-	image-rendering: pixelated;
-}
-
-.idle {
-	-webkit-animation: idle 2s steps(15) infinite;
-	-moz-animation: idle 2s steps(15) infinite;
-	-ms-animation: idle 2s steps(15) infinite;
-	-o-animation: idle 2s steps(15) infinite;
-	animation: idle 2s steps(15) infinite;
-}
-
 
 @-webkit-keyframes idle {
 	from { background-position-x:  0px; }

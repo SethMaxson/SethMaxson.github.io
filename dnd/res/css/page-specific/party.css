@@ -157,7 +157,7 @@ a.slide_btn {
 	margin-left:15px;
 	position:relative;
 	border:20px solid;
-	border-image:url("/img/renn_frame.png");
+	border-image:url("/dnd/img/renn_frame.png");
 	border-image-slice:50;
 	box-sizing: border-box;
 	box-shadow:0px 0px 5px 0px black;

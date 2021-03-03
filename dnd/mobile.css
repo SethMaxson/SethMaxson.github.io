@@ -512,7 +512,7 @@
 		position:absolute;
 		width:1500px;
 		height:1500px;
-		background-image: url("/img/maps/Cloud.png");
+		background-image: url("/dnd/img/maps/Cloud.png");
 		background-size:contain;
 		animation: fog 8s linear 0s infinite alternate;
 		transform: translate(-50%, -50%);
@@ -665,7 +665,7 @@
 	.jasper-battle {
 		width:100px !important;
 		height:100px !important;
-		background: url("/img/maps/icons/jasper_blink.png") no-repeat;
+		background: url("/dnd/img/maps/icons/jasper_blink.png") no-repeat;
 		background-size: 1500px 100px;
 		background-position: 0px, 0px;
 		background-attachment: scroll;

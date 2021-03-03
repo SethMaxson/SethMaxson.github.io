@@ -22,24 +22,54 @@ const MapMarkerRadii = {
     none: 0,
     town: 8
 };
+var _totalLoadedCities = 0;
 function getCityData() {
     return $.ajax({ crossDomain: true, url: "/dnd/res/data/world-map-data/cities.json", dataType: 'json' });
 }
+function getMapLocationData(continent) {
+    return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/map-locations/${continent}.json`, dataType: 'json' });
+}
 function getCitiesByContinent(destinationElement, continentName, specialTreatmentForHyperLinks = false) {
     return new Promise(function (resolve, reject) {
+        /** Counts the cities for this continent so that we can log them later. */
+        var cityCount = 0;
+        /** Tracks how many data fetches have completed so that this promise knows when to resolve. */
+        var completedFetches = 0;
+        /** The number of fetches performed. When completedFetches matches this, the promise can resolve. */
+        const totalExpectedFetches = 2;
         var cityData = getCityData();
         $.when(cityData).done(function (continentSections) {
             continentSections = continentSections.filter(function (entry) {
                 return entry.name === continentName;
             });
-            let cities = [];
             if (continentSections.length > 0) {
-                cities = continentSections[0].cities;
+                let cities = continentSections[0].cities;
+                for (let i = 0; i < cities.length; i++) {
+                    destinationElement.append(getCityMarkup(cities[i], continentSections[0].cartographer, specialTreatmentForHyperLinks));
+                    cityCount++;
+                    _totalLoadedCities++;
+                }
             }
-            for (let i = 0; i < cities.length; i++) {
-                destinationElement.append(getCityMarkup(cities[i], continentSections[0].cartographer, specialTreatmentForHyperLinks));
+            completedFetches++;
+            if (completedFetches == totalExpectedFetches) {
+                console.log(`Cities on ${continentName}: ${cityCount}`);
+                resolve();
             }
-            resolve();
+        });
+        $.when(getMapLocationData(continentName)).done(function (locations) {
+            for (let i = 0; i < locations.length; i++) {
+                destinationElement.append($(`<a href="#" class="point-of-interest smith village" style="left: calc(${locations[i].left} - 8px); top: calc(${locations[i].top} - 8px);">
+								<div class="map-marker-icon marker-town" style="background-color:#f3b;">&nbsp;</div>
+								<span class="map-marker-name" style="position: absolute; top:50%; left:100%; transform: translate(10px, -50%);">${locations[i].name}</span>
+							</a>`));
+                cityCount++;
+                _totalLoadedCities++;
+            }
+            completedFetches++;
+            if (completedFetches == totalExpectedFetches) {
+                console.log(`Cities on ${continentName}: ${cityCount}`);
+                resolve();
+            }
         });
     });
 }
@@ -50,84 +80,41 @@ function getCitiesByContinent(destinationElement, continentName, specialTreatmen
  * @param specialTreatmentForHyperLinks If true, the returned marker will be yellow if the city is associated to a city map
  */
 function getCityMarkup(city, cartographer, specialTreatmentForHyperLinks = false) {
-    //#region new experimental version for the new location placement format
-    if (city.useNewLocation == "true") {
-        let description = "";
-        for (let i = 0; i < city.description.length; i++) {
-            description += "<p>" + city.description[i] + "</p>";
-        }
-        let culture = city.culture.length > 0 ? "<h1>Culture.</h1>" : "";
-        for (let i = 0; i < city.culture.length; i++) {
-            culture += "<p>" + city.culture[i] + "</p>";
-        }
-        let dmNotes = "";
-        for (let i = 0; i < city.dmNotes.length; i++) {
-            dmNotes += "<p class=\"dmnotes\" style=\"display:none;\">" + city.dmNotes[i] + "</p>";
-        }
-        let cm = city.marker;
-        let marker = cm != CityMarkerTypes.None ? `<div class="map-marker-icon marker-${cm}" style="position:absolute; top:0; background-color:#00ff00;">&#160;</div>` : "";
-        //#region get extra CSS properties and store them to the extraCssProperties variable
-        let offset = MapMarkerRadii[cm] || 0;
-        let extraCssProperties = getPositionString(city.position, offset);
-        if (city.fontSize) {
-            extraCssProperties += ` font-size:${city.fontSize}px;`;
-        }
-        if (specialTreatmentForHyperLinks && (city.url != "#" || city.useCityViewer)) {
-            extraCssProperties += " color:#ffff00;";
-        }
-        //#endregion
-        let url = (city.url == "#" || !city.url) && city.useCityViewer ? "/dnd/pages/maps/city-viewer.html?city=" + city.name : city.url;
-        return $(`<a href="${url}" class="point-of-interest ${cartographer} ${city.type}" style="position:absolute; ${extraCssProperties}">
-			${marker}
-			<span class="map-marker-name" style="${getNamePositionString(city.nameLocation, Math.round(offset * 1.3))}">${city.name}</span>
-			<span class="city-preview">
-				<h1>${city.name}</h1>
-				${description}
-				${culture}
-				${dmNotes}
-			</span>
-		</a>`);
+    let description = "";
+    for (let i = 0; i < city.description.length; i++) {
+        description += "<p>" + city.description[i] + "</p>";
+    }
+    let culture = city.culture.length > 0 ? "<h1>Culture.</h1>" : "";
+    for (let i = 0; i < city.culture.length; i++) {
+        culture += "<p>" + city.culture[i] + "</p>";
+    }
+    let dmNotes = "";
+    for (let i = 0; i < city.dmNotes.length; i++) {
+        dmNotes += "<p class=\"dmnotes\" style=\"display:none;\">" + city.dmNotes[i] + "</p>";
+    }
+    let cm = city.marker;
+    let marker = cm != CityMarkerTypes.None ? `<div class="map-marker-icon marker-${cm}">&#160;</div>` : "";
+    //#region get extra CSS properties and store them to the extraCssProperties variable
+    let offset = MapMarkerRadii[cm] || 0;
+    let extraCssProperties = getPositionString(city.position, offset);
+    if (city.fontSize) {
+        extraCssProperties += ` font-size:${city.fontSize}px;`;
+    }
+    if (specialTreatmentForHyperLinks && (city.url != "#" || city.useCityViewer)) {
+        extraCssProperties += " color:#ffff00;";
     }
     //#endregion
-    //#region original version. Works well enough, but will be deprecated once the new location placement format is finalized.
-    else {
-        let description = "";
-        for (let i = 0; i < city.description.length; i++) {
-            description += "<p>" + city.description[i] + "</p>";
-        }
-        let culture = city.culture.length > 0 ? "<h1>Culture.</h1>" : "";
-        for (let i = 0; i < city.culture.length; i++) {
-            culture += "<p>" + city.culture[i] + "</p>";
-        }
-        let dmNotes = "";
-        for (let i = 0; i < city.dmNotes.length; i++) {
-            dmNotes += "<p class=\"dmnotes\" style=\"display:none;\">" + city.dmNotes[i] + "</p>";
-        }
-        let cm = city.marker;
-        let marker = cm.type != CityMarkerTypes.None ? `<div class="map-marker-icon marker-${cm.type}" style="${getPositionString(cm.position)}">&#160;</div>` : "";
-        //#region get extra CSS properties and store them to the extraCssProperties variable
-        let extraCssProperties = "";
-        extraCssProperties += ` ${getPositionString(city.position)}`;
-        if (city.fontSize) {
-            extraCssProperties += ` font-size:${city.fontSize}px;`;
-        }
-        if (specialTreatmentForHyperLinks && (city.url != "#" || city.useCityViewer)) {
-            extraCssProperties += " color:#ffff00;";
-        }
-        //#endregion
-        let url = (city.url == "#" || !city.url) && city.useCityViewer ? "/dnd/pages/maps/city-viewer.html?city=" + city.name : city.url;
-        return $(`<a href="${url}" class="${cartographer} ${city.type}" style="position:absolute; ${extraCssProperties}">
-			${city.name}
-			<span class="city-preview">
-				<h1>${city.name}</h1>
-				${description}
-				${culture}
-				${dmNotes}
-			</span>
-			${marker}
-		</a>`);
-    }
-    //#endregion
+    let url = (city.url == "#" || !city.url) && city.useCityViewer ? "/dnd/pages/maps/city-viewer.html?city=" + city.name : city.url;
+    return $(`<a href="${url}" class="point-of-interest ${cartographer} ${city.type}" style="${extraCssProperties}">
+		${marker}
+		<span class="map-marker-name" style="${getNamePositionString(city.nameLocation, Math.round(offset * 1.3))}">${city.name}</span>
+		<span class="city-preview">
+			<h1>${city.name}</h1>
+			${description}
+			${culture}
+			${dmNotes}
+		</span>
+	</a>`);
 }
 function getPositionString(position, offset = 0) {
     let mapObjPosition = "";

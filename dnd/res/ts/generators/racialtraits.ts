@@ -118,7 +118,7 @@ const RacialTraits: {misc: RacialTraitSet, [key: string]: RacialTraitSet|undefin
 		adultAge: 40,
 		maxAge: 500,
 		alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
-		spawnFrequency: 50
+		spawnFrequency: 40
 	},
 	"goblin": {
 		genders: ["female", "male"],

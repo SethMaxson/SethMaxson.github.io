@@ -2,6 +2,7 @@
 	{
 		"name": "Carousing Events",
 		"description": "Over one hundred different things that can happen to your players during a night of drinking.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"You wake up on a throne wearing a crown of twigs, surrounding you are 30 sleeping goblins.",
@@ -118,6 +119,7 @@
 	{
 		"name": "Cave Skill Challenges",
 		"description": "Over 100 skill challenges that the party must face in the deep depths of a cave.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"The party comes across a large lake of mud. There are large rocks jetting out of the mud, and the party must make an acrobatics check to get across. If they fall in, they will wake the creatures that live in the deep mud.",
@@ -231,6 +233,7 @@
 	{
 		"name": "City Street Encounters",
 		"description": "One hundred different situations that your players can encounter while in a busy city street.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"A homeless urchin approaches the party and claims that he used to be a great magician. He says that if the party were to give him a gold piece, he could make one of them disappear. The urchin has a teleportation sigil on the ground in front of him that is incredibly difficult to see and only activates with his command word, which happens to be ‘PRESTO!’. The character standing on the sigil is teleported to an alleyway 3 blocks down the road, into a trash pile.",
@@ -338,6 +341,7 @@
 	{
 		"name": "Colorful Hosts",
 		"description": "One hundred colorful hosts, from warm to begrudging and innocent to suspicious.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"A large family of gnomes. They are quite welcoming to guests, and serve dishes upon dishes of rich, steaming food at their meals, often accompanied by the father and the older sons singing.",
@@ -445,6 +449,7 @@
 	{
 		"name": "Curses",
 		"description": "A hundred different curses to bestow upon your unsuspecting players.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"The character cannot turn right until the curse is lifted.",
@@ -552,6 +557,7 @@
 	{
 		"name": "Dungeon Graffiti",
 		"description": "The walls of ancient tombs and dungeons aren't sacred when an adventuring party passes through. One hundred different instances of dungeon graffiti!",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"‘Here Lies Big Benson – Didn’t Bring His Ten Foot Pole And Paid The Price’",
@@ -659,6 +665,7 @@
 	{
 		"name": "Fey Pranks",
 		"description": "One hundred different pranks that Fey creatures can pull on an unsuspecting party.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"Replacing a metal sword with a limp tree branch.",
@@ -780,6 +787,7 @@
 	{
 		"name": "Inn Patrons",
 		"description": "One hundred different people you might find in your local tavern.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"A mysterious man sits in the corner of the bar wearing temple robes. He looks worried. If asked why, he will tell you that he saw an omen this morning that signifies the end of the world.",
@@ -887,6 +895,7 @@
 	{
 		"name": "Interesting Pirates",
 		"description": "One hundred of the most interesting, saltiest dogs to ever sail the seas.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"Captain Bronzebeard II – Following his father’s legacy, this dwarf has been scouring the seas looking for the medallion that was stolen from his family. He is getting close to pinpointing it’s location, and may hire the players as mercenaries on his quest.",
@@ -994,6 +1003,7 @@
 	{
 		"name": "Interesting Shopkeepers And Merchants",
 		"description": "One hundred different shopkeepers and merchants that will bring life to bartering in your game.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"A tall and husky Gold Dragonborn, clad in bright colored and decorative clothing, sits on an equally ornate rug. He’s fidgeting with something in his mouth. It’s has a small garnet, chipped by his teeth and covered in spit. He has a small pouch in his vest full of these gross little gems. He sells very beautiful jewelry, thankfully with no bite marks.",
@@ -1101,6 +1111,7 @@
 	{
 		"name": "Murder Mystery Plot Hooks",
 		"description": "One hundred plot hooks to help you run your own whodunits.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"The town elder was brutally killed in his home on the full moon. Large claw marks lead to a local tavern.",
@@ -1208,6 +1219,7 @@
 	{
 		"name": "Mushrooms and Their Effects",
 		"description": "One hundred interesting mushrooms and their strange effects.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"Arachnus Phylarkus. This delicate mushroom looks like a small black bowl with thin brown gills about 10cm across. It is poisonous to simply ingest but when steeped in boiling water for 10 minutes a thin black tea is created. This tea when consumed grants the drinker resist poison and disease for 4 hours. The mushroom is often the home of a particularly venomous type of spider and is difficult to harvest.",
@@ -1315,6 +1327,7 @@
 	{
 		"name": "NPC Physical Traits",
 		"description": "A hundred different physical traits for players and NPCs.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"A long, glorious beard. Each braid represents another person that has asked him what the braids mean.",
@@ -1422,6 +1435,7 @@
 	{
 		"name": "Odd 'Landmarks' To Spread Across Your Fantasy World",
 		"description": "One hundred different interesting landmarks that your players could come across in a fantasy world.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"The Pillar of First Blood – A 15ft dark stone pillar that has engraved writing on each side ‘The spot where the first blood was split between a batch of common devils”.",
@@ -1534,6 +1548,7 @@
 	{
 		"name": "Personality Quirks",
 		"description": "One hundred personality quirks for your players and NPCs!",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"You’re a vegan, and make sure everyone you meet knows.",
@@ -1641,6 +1656,7 @@
 	{
 		"name": "Random Boons",
 		"description": "One random random boons for your players/NPCs! This would be for a location (a spring) that grants a random 24 hr boon to a player that interacts with it in the approriate manner (like bathing in it or drinking from it). Alternatively, this can simply serve as inspiration for a spring with a single effect. The effect will always last for 24 hours unless stated otherwise.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"An invisible nymph sings to you. Gain a d10 Bardic inspiration die.",
@@ -1748,6 +1764,7 @@
 	{
 		"name": "Random Effects",
 		"description": "A list of 100 random effects for potions, spells, scrolls, anything you need!",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"Grow considerable body hair for 1 minute.",
@@ -1855,6 +1872,7 @@
 	{
 		"name": "Secrets Revealed Through Detect Thoughts",
 		"description": "One hundred different things your NPC might be thinking!",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"“If these people bring up my embezzlement, just lie like hell and head for the next town first thing tomorow.”",
@@ -1962,6 +1980,7 @@
 	{
 		"name": "Teleportation Mishaps",
 		"description": "I hope you cast the teleportation spell right!",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"The caster is teleported to a plane of Fire Elementals inside a heavy iron cage. An incredibly brilliant Fire Elemental has harnessed the power to ‘trap’ teleporters in their tracks and intend on using their arcane energy to power the device. If the caster is able to kill the fire elemental, they are instantly transported to their intended location.",
@@ -2069,6 +2088,7 @@
 	{
 		"name": "Travelers Met On The Road",
 		"description": "One hundred different NPCs you can find traveling along the road.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"You come across an older gentleman traveling down the path with a group of 6 small dogs walking behind him. He has them each on a small leash that is attached to his large backpack, filled with dog clothes and toys. Over the last few years, this man has trained these dogs to preform tricks. He is traveling from town to town to try and become a famous performer.",
@@ -2176,6 +2196,7 @@
 	{
 		"name": "Unique Magical Services",
 		"description": "From shops to magical traveling salesmen, magical healers to item enchanters, Magic creates many different opportunities for fun little things for players to stumble upon.",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"Magical Memory Deletion – Will delete unwanted or unhappy memories for a price.",
@@ -2283,6 +2304,7 @@
 	{
 		"name": "Zero HP Injuries",
 		"description": "What happens after you reach zero HP? How bad was that final blow?",
+		"author": "Internet Collaboration",
 		"show": true,
 		"rows": [
 			"Upon reaching 0 HP, you lose 1d4 teeth.",
@@ -2390,6 +2412,7 @@
 	{
 		"name": "Geoss Continents",
 		"description": "Select a Continent",
+		"author": "Seth",
 		"show": true,
 		"rows": [
 			"Decapos",
@@ -2404,6 +2427,7 @@
 	{
 		"name": "Classes",
 		"description": "Select a character class",
+		"author": "Seth",
 		"show": true,
 		"rows": [
 			"Artificer",

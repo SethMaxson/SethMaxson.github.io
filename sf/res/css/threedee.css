@@ -44,7 +44,7 @@ div.speech {
 	bottom: 1vh;
 	z-index: 1;
 	border:20px solid;
-	border-image:url("/img/uiborder.svg");
+	border-image:url("/sf/img/uiborder.svg");
 	border-image-slice:50;
 	background:#245659;
 	border-radius:40px;
@@ -151,7 +151,7 @@ div.characterInfo{
 	background: rgba(0, 0, 0, 0.25);
 	z-index: 1;
 	border:10px solid;
-	border-image:url("/img/uiborder.svg");
+	border-image:url("/sf/img/uiborder.svg");
 	border-image-slice:80;
 	background:#245659;
 	border-radius:20px;

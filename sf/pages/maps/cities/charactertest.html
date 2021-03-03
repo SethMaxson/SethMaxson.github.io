@@ -161,7 +161,7 @@
 				var Budopolis = new THREE.Object3D();
 				var w = 100, h = 100;
 
-				budLoader.load( '/res/models/architecture/budopolis.gltf', function ( gltf ) {
+				budLoader.load( '/res/models/Architecture/budopolis.gltf', function ( gltf ) {
 					gltf.scene.traverse( function ( thing ) {
 						if ( thing.material && ( thing.material.isMeshStandardMaterial) && thing.name !="Hut") {
 							var node = thing.clone();

@@ -324,7 +324,7 @@ ul.character-list {
 	position:fixed;
 	top:0;
 	left:0;
-	background-image: url("/img/sf/PactWorlds.jpg");
+	background-image: url("/sf/img/PactWorlds.jpg");
 	background-size: 100vw 100vh;
 	background-repeat: no-repeat;
 	z-index:10;

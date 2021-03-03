@@ -22,21 +22,16 @@ body {
 }
 
 .location-info h2 {
-	box-shadow: 0px 2px 0px #342b24,
-		2px 0px 0px #342b24,
-		2px 2px 0px #342b24,
-		2px -2px 0px #b0a59c,
-		-2px -2px 0px #b0a59c,
-		-2px 2px 0px #b0a59c;
-	margin: 2em 0.5em 1em 0.5em;
-	padding: 7px 10px;
-	font-size: 14pt;
-	text-align: center;
-	font-weight: 600;
-	font-family: 'Merienda One', cursive;
-	color: #5ea04a;
-	background-color: #665343;
-	text-shadow: 0px -1px 0px rgba(255, 255, 255, .2), -1px 0px 0px rgba(255, 255, 255, .2), 0px 2px 0px rgba(0, 0, 0, .7), 2px 0px 0px rgba(0, 0, 0, .7);
+	background-color:#bbb;
+	box-shadow:0px 0px 5px #ddd;
+	margin:0.5em 0.4em;
+	padding:7px 10px;
+	font-size:16pt;
+	text-shadow: 0px 0px 1px #ddd;
+	text-align:center;
+	font-weight:600;
+	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	color:#333
 }
 
 .location-info h1 {
@@ -59,12 +54,13 @@ body {
 
 .location-info h3 {
 	text-align-last: justify;
-	margin: 0.5em 1em;
-	font-size: 13pt;
-	text-shadow: 0px 0px 1px #555;
-	font-weight: 900;
-	font-family: monospace;
-	color: #999;
+	margin:0.5em 1em;
+	font-size:13pt;
+	text-shadow: 0px 0px 1px #ddd;
+	font-weight:900;
+	font-family:monospace;
+	color:#222;
+	text-shadow: 0px 0px 1px #000;
 	text-transform: uppercase;
 }
 
@@ -110,4 +106,12 @@ body {
 	width: 70%;
 	display: block;
 	float: right;
+}
+
+.map {
+	background-repeat: no-repeat;
+	background-size: contain;
+	text-align: center;
+	transform-origin:center center;
+	image-rendering: pixelated;
 }

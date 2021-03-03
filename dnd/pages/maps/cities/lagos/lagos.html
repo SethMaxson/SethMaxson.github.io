@@ -6,21 +6,11 @@
 		<title>Lagos</title>
 		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/travel-agency-map.css" rel="stylesheet" type="text/css" media="all" />
 		<style>
-			html, body {margin: 0; height: 100%; overflow: hidden}
-
 			.travel-brochure .location-info {
-				width:30%;
-				display:block;
-				position:absolute;
-				top:0px;
-				left:0px;
-				box-shadow: 1px 0px 10px black,
-				8px 0px 8px inset rgba(255,255,255,0.5);
-				z-index:6;
-				height:100%;
-				overflow-y:auto;
 				background-color:#121212;
+				background-image: none;
 			}
 
 			.location-info h2 {
@@ -94,12 +84,6 @@
 			.location-info ul li {
 				padding-top:0.5em;
 			}
-
-			.travel-brochure #map-body {
-				width:70%;
-				display:block;
-				float:right;
-			}
 		</style>
 		<script
 			src="https://code.jquery.com/jquery-3.3.1.js"
@@ -111,9 +95,11 @@
 			crossorigin="anonymous"></script>
 		<script src="/dnd/res/js/map.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
+		<script src="/dnd/res/js/world-map-viewer/city-placement-helper.js"></script>
 		<script>
 			$(document).ready(() => {
 				getCitiesByContinent($(".map-lagos"), "Lagos", true);
+				attachPlacementHelper(".map-lagos");
 			})
 		</script>
 	</head>
@@ -152,7 +138,7 @@
 				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
 				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
 			</div>
-			<div class="map-container map" style="background-repeat: no-repeat; background-size: contain; width:2600px; height:3600px; text-align: center; transform-origin:center center; image-rendering: pixelated;">
+			<div class="map-container map" style="width:2600px; height:3600px;">
 
 				<div class="map-lagos" style="width:2500px; height:2500px; position:relative; top:50%; left:50%; transform:translate(-50%, -50%); z-index:2;">
 					<a href="#" class="smith continent" style="position:absolute; top:1130px; left:1040px;font-size:300px;">

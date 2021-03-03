@@ -132,11 +132,11 @@
 					var textureLoader = new THREE.TextureLoader();
 					var texture = textureLoader.load(getTexture());
 
-					planeMaterial.map = textureLoader.load("/img/SunriseMaiden.png");
+					planeMaterial.map = textureLoader.load("/sf/img/SunriseMaiden.png");
 					planeMaterial.transparent = true;
 					planeMaterial.bumpMap = texture;
 					planeMaterial.roughnessMap = texture;
-					planeMaterial.alphaMap = textureLoader.load("/img/SunriseMaiden_Alpha.png");
+					planeMaterial.alphaMap = textureLoader.load("/sf/img/SunriseMaiden_Alpha.png");
 					planeMaterial.roughness = 0.65;
 					planeMaterial.metalness = 0;
 					planeMaterial.bumpScale = -0.2;
@@ -194,7 +194,7 @@
 					var mesh = new THREE.Mesh(geo, material);
 					mesh.castShadow = true;
 					mesh.receiveShadow = true;
-					var doorTexture = new THREE.TextureLoader().load("/img/textures/scifi_door.png");
+					var doorTexture = new THREE.TextureLoader().load("/sf/img/textures/scifi_door.png");
 					mesh.material.map = doorTexture;
 					mesh.material.roughnessMap = doorTexture;
 					mesh.material.roughness = 0.15;
@@ -218,7 +218,7 @@
 					var mesh = new THREE.Mesh(geo, material);
 					mesh.castShadow = true;
 					mesh.receiveShadow = true;
-					mesh.material.bumpMap = new THREE.TextureLoader().load("/img/textures/steel.png");
+					mesh.material.bumpMap = new THREE.TextureLoader().load("/sf/img/textures/steel.png");
 					mesh.material.bumpScale = 0.1;
 					var textures = ['bumpMap'];
 					textures.forEach((mapName) => {
@@ -252,7 +252,7 @@
 					var mesh = new THREE.Mesh(geo, material);
 					mesh.castShadow = true;
 					mesh.receiveShadow = true;
-					var crateTexture = new THREE.TextureLoader().load("/img/crate.png");
+					var crateTexture = new THREE.TextureLoader().load("/sf/img/crate.png");
 
 					mesh.material.map = crateTexture;
 					mesh.material.bumpMap = crateTexture;
@@ -343,8 +343,8 @@
 						color: 0xffffff,
 						emissive: 0xdddddd,
 					});
-					roofTexture = new THREE.TextureLoader().load("/img/textures/cactus_boards.png");
-					roofBump = new THREE.TextureLoader().load("/img/textures/boards_bump.png");
+					roofTexture = new THREE.TextureLoader().load("/sf/img/textures/cactus_boards.png");
+					roofBump = new THREE.TextureLoader().load("/sf/img/textures/boards_bump.png");
 					geo.vertices[0] = new THREE.Vector3(-widthMod, heightMod, -depthMod);
 					geo.vertices[1] = new THREE.Vector3(0, heightMod + 1, -depthMod);
 					geo.vertices[2] = new THREE.Vector3(widthMod, heightMod, -depthMod);
@@ -412,7 +412,7 @@
 					var rectLightGrid = new THREE.Mesh(new THREE.PlaneBufferGeometry(), new THREE.MeshStandardMaterial({color: 0x6600aa, transparent: true,}) );
 					rectLightGrid.scale.x = rectLight.width;
 					rectLightGrid.scale.y = rectLight.height;
-					rectLightGrid.material.alphaMap = new THREE.TextureLoader().load("/img/textures/gridBump.png");
+					rectLightGrid.material.alphaMap = new THREE.TextureLoader().load("/sf/img/textures/gridBump.png");
 					rectLightGrid.material.alphaMap.wrapS = THREE.RepeatWrapping;
 					rectLightGrid.material.alphaMap.wrapT = THREE.RepeatWrapping;
 					rectLightGrid.material.alphaMap.repeat.set(w, h);
@@ -427,9 +427,9 @@
 					var material = new THREE.MeshStandardMaterial({
 						color: 0xffffff,
 						side: THREE.FrontSide,
-						map: textureLoader.load("/img/textures/steel.png"),
-						bumpMap: textureLoader.load("/img/textures/gridBump.png"),
-						roughnessMap: textureLoader.load("/img/textures/steel.png"),
+						map: textureLoader.load("/sf/img/textures/steel.png"),
+						bumpMap: textureLoader.load("/sf/img/textures/gridBump.png"),
+						roughnessMap: textureLoader.load("/sf/img/textures/steel.png"),
 						roughness: 0.65,
 						metalness: 0.5,
 						bumpScale: 2,
@@ -454,9 +454,9 @@
 				function getMetalTiles(x, y, z, w, h) {
 					var tiles = getTiles(x, y, z, w, h);
 					var textureLoader = new THREE.TextureLoader();
-					tiles.material.map =  textureLoader.load("/img/textures/MetalDiamond.jpg");
-					tiles.material.bumpMap=  textureLoader.load("/img/textures/gridBump.png");
-					tiles.material.roughnessMap = textureLoader.load("/img/textures/MetalDiamond.jpg");
+					tiles.material.map =  textureLoader.load("/sf/img/textures/MetalDiamond.jpg");
+					tiles.material.bumpMap=  textureLoader.load("/sf/img/textures/gridBump.png");
+					tiles.material.roughnessMap = textureLoader.load("/sf/img/textures/MetalDiamond.jpg");
 					tiles.material.roughness= 0.65;
 					tiles.material.metalness= 0.1;
 					tiles.material.bumpScale= 1;
@@ -476,7 +476,7 @@
 					// var texture = new THREE.TextureLoader().load( "images/space.jpg" );
 					// var sky = new THREE.Mesh(skyGeo, new THREE.MeshPhongMaterial({map: texture, color: 0x7ec0ee, emissive: 0x7ec0ee,}));
 					var material =  new THREE.MeshLambertMaterial({color: 0xffffff, emissive: 0x000000});
-					material.map = new THREE.TextureLoader().load("/img/final_frontier.png");
+					material.map = new THREE.TextureLoader().load("/sf/img/final_frontier.png");
 					var textures = ['map'];
 					textures.forEach((mapName) => {
 						material[mapName].wrapS = THREE.RepeatWrapping;
@@ -524,11 +524,11 @@
 				init();
 
 				function getTexture() {
-					return "/img/textures/desert_sand.png";
+					return "/sf/img/textures/desert_sand.png";
 				}
 
 				function getCactusTexture() {
-					return "/img/textures/green_boards.jpg";
+					return "/sf/img/textures/green_boards.jpg";
 				}
 			});
 		</script>

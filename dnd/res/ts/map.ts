@@ -164,14 +164,14 @@ $(document).ready(function(){
 		else
 			delta = oe.deltaY * -1;
 
-			if(delta > 0) {
-				newZoom += 5;
-			}
-			else{
-				newZoom -= 5;
-			}
-			$("#map-zoom").val(newZoom);
-			$("#map-zoom").change();
+		if(delta > 0) {
+			newZoom += 5;
+		}
+		else{
+			newZoom -= 5;
+		}
+		$("#map-zoom").val(newZoom);
+		$("#map-zoom").change();
 	});
 	$(".map-container").draggable({
 		drag: function(event, ui) {
@@ -545,9 +545,11 @@ function partyDragStart(event: JQueryEventObject, ui: JQueryUI.DraggableEventUIP
 	dragStartY = Math.round(((event.pageY/zoom) - $(".map-container").position().top/zoom - (ui.helper.height() as number/2))/airshipGrid)*airshipGrid;
 }
 
-function partyDroppable() {
+function partyDroppable()
+{
 	$(".airship.party").droppable({
 		accept: ".pedestrian",
+		//@ts-ignore
 		classes: {
 			"ui-droppable-hover": "ui-state-hover"
 		},

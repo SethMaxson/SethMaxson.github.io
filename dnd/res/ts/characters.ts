@@ -1537,7 +1537,7 @@ export module Characters
 	}
 
 	export function getSprite(x: number, y: number, z: number, texture: string, size?: number, name?: string) {
-		texture = texture || "/img/characters/npc/Smith.png";
+		texture = texture || "/dnd/img/characters/npc/Smith.png";
 		size = size || 1;
 		name = name || "???";
 		var spriteMap = FOUR.Texture(texture);
