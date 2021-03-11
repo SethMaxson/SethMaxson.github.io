@@ -1,5 +1,10 @@
 [
 	{
+		"name":"Alghanayim",
+		"left": "60%",
+		"top": "75%"
+	},
+	{
 		"name":"City of Canyon Winds",
 		"left": "71.74%",
 		"top": "51.05%"
@@ -15,9 +20,24 @@
 		"top": "5.7%"
 	},
 	{
+		"name":"Ithcuil",
+		"left": "26.22%",
+		"top": "46.52%"
+	},
+	{
 		"name":"Nezhitrud",
 		"left": "92.7%",
 		"top": "3.2%"
+	},
+	{
+		"name":"Perevorot",
+		"left": "38.2%",
+		"top": "39.5%"
+	},
+	{
+		"name":"Vaudība",
+		"left": "75.5%",
+		"top": "19%"
 	},
 	{
 		"name":"Vedechi",

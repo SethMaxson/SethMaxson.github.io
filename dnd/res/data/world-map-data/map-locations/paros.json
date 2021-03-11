@@ -1,5 +1,10 @@
 [
 	{
+		"name":"Hearth's Respite",
+		"left": "55%",
+		"top": "6.35%"
+	},
+	{
 		"name":"Leatrom",
 		"left": "73.55%",
 		"top": "30.91%"

@@ -11,6 +11,29 @@
 			.city {
 				font-size:22px;
 			}
+
+			.travel-brochure .location-info {
+				background-color:#2C3D55;
+				background-image: none;
+			}
+
+			.location-info h1,
+			.location-info h2 {
+				background-color:#6A687A;
+				box-shadow:0px 0px 1px #84828F;
+				text-shadow: 0px 0px 1px #bbb;
+				color:#ddd;
+			}
+
+			.location-info h3 {
+				text-shadow: 0px 0px 1px #555;
+				color:#999;
+			}
+
+			.location-info p,
+			.location-info ul {
+				color:#eee;
+			}
 		</style>
 		<script
 			src="https://code.jquery.com/jquery-3.3.1.js"
@@ -22,11 +45,9 @@
 			crossorigin="anonymous"></script>
 		<script src="/dnd/res/js/map.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
-		<script src="/dnd/res/js/world-map-viewer/city-placement-helper.js"></script>
 		<script>
 			$(document).ready(() => {
 				getCitiesByContinent($(".map-decapos"), "Decapos", true);
-				attachPlacementHelper(".map-decapos");
 			})
 		</script>
 	</head>
@@ -34,7 +55,7 @@
 	<body class="travel-brochure">
 		<div class="location-info">
 			<h3>Amarillo Airship Agency</h3>
-			<h2>Historic Decapos</h2>
+			<h1>Historic Decapos</h1>
 			<p>
 				Decapos boasts one of the most diverse and storied histories of any continent. Decapos is a history buff's dreamland, but don't think that means it's only for nerds.
 			</p>

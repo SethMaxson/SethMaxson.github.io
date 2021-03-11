@@ -7,6 +7,30 @@
 		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/travel-agency-map.css" rel="stylesheet" type="text/css" media="all" />
+		<style>
+			.travel-brochure .location-info {
+				background-color:#071013;
+				background-image: none;
+			}
+
+			.location-info h1,
+			.location-info h2 {
+				background-color:#23B5D3;
+				box-shadow:0px 0px 2px #75ABBC;
+				text-shadow: 0px 0px 1px #A2AEBB;
+				color:#071013
+			}
+
+			.location-info h3 {
+				text-shadow: 0px 0px 1px #555;
+				color:#999;
+			}
+
+			.location-info p,
+			.location-info ul {
+				color:#DFE0E2;
+			}
+		</style>
 		<script
 			src="https://code.jquery.com/jquery-3.3.1.js"
 			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -17,11 +41,9 @@
 			crossorigin="anonymous"></script>
 		<script src="/dnd/res/js/map.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
-		<script src="/dnd/res/js/world-map-viewer/city-placement-helper.js"></script>
 		<script>
 			$(document).ready(() => {
 				getCitiesByContinent($(".map-paros"), "Paros", true);
-				attachPlacementHelper(".map-paros");
 			})
 		</script>
 	</head>
@@ -29,9 +51,21 @@
 	<body class="travel-brochure">
 		<div class="location-info">
 			<h3>Amarillo Airship Agency</h3>
-			<h2>Welcome to Paros!!</h2>
+			<h1>Perilous Paros!!</h1>
 			<p>
-				A description will be added here eventually.
+				The largest continent in the world is home to a diverse range of cultures and biomes to confound and amaze you. The Great Rampart mountains conveniently divide Paros into three easier to digest super regions.
+			</p>
+			<h2>The Eastern Region</h2>
+			<p>
+				Home to some impressive industrial cities as well as many smaller, more idyllic communities. This region is primarily inhabited by dwarves, elves, halflings, and gnomes.
+			</p>
+			<h2>The Western Region</h2>
+			<p>
+				Covered by a thick tree canopy and largely uncharted, the western region is a tantalizing destination for any true adventurer.
+			</p>
+			<h2>The Southern Region</h2>
+			<p>
+				This area is beset by more planar rifts than anywhere else in the world. This has given the southern region an almost incomprehensibly unique makeup of otherworldly creatures and cultures.
 			</p>
 		</div>
 		<div id="map-body" style="overflow: hidden; background:#25325f;">

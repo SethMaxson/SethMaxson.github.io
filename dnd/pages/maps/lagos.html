@@ -13,76 +13,22 @@
 				background-image: none;
 			}
 
+			.location-info h1,
 			.location-info h2 {
 				background-color:#cc0000;
 				box-shadow:0px 0px 1px #770000;
-				margin:2em 0.5em 1em 0.5em;
-				padding:7px 10px;
-				font-size:13pt;
 				text-shadow: 0px 0px 1px #ad9300;
-				text-align:center;
-				font-weight:600;
-				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-				color:#ffd700
-			}
-
-			.location-info h1 {
-				background-color:#cc0000;
-				box-shadow:0px 0px 1px #770000;
-				margin:0.5em 0.4em;
-				padding:7px 10px;
-				font-size:16pt;
-				text-shadow: 0px 0px 1px #ad9300;
-				text-align:center;
-				font-weight:600;
-				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 				color:#ffd700
 			}
 
 			.location-info h3 {
-				text-align-last: justify;
-				margin:0.5em 1em;
-				font-size:13pt;
 				text-shadow: 0px 0px 1px #555;
-				font-weight:900;
-				font-family:monospace;
 				color:#999;
-				text-transform: uppercase;
 			}
 
-			.location-info h3 {
-				text-align-last: justify;
-				margin:0.5em 1em;
-				font-size:13pt;
-				text-shadow: 0px 0px 1px #555;
-				font-weight:900;
-				font-family:monospace;
-				color:#999;
-				text-transform: uppercase;
-			}
-
-			.location-info p {
-				text-align: justify;
-				margin:1em 1em;
-				font-size:1em;
-				text-shadow: 0px 0px 1px #111;
-				font-weight:500;
-				color:#eee;
-				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
-			}
-
+			.location-info p,
 			.location-info ul {
-				text-align: left;
-				margin:0em 1em 0.5em 0.5em;
-				font-size:1em;
-				text-shadow: 0px 0px 1px #111;
-				font-weight:500;
 				color:#eee;
-				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
-			}
-
-			.location-info ul li {
-				padding-top:0.5em;
 			}
 		</style>
 		<script
@@ -95,11 +41,9 @@
 			crossorigin="anonymous"></script>
 		<script src="/dnd/res/js/map.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
-		<script src="/dnd/res/js/world-map-viewer/city-placement-helper.js"></script>
 		<script>
 			$(document).ready(() => {
 				getCitiesByContinent($(".map-lagos"), "Lagos", true);
-				attachPlacementHelper(".map-lagos");
 			})
 		</script>
 	</head>

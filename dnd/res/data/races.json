@@ -21,7 +21,9 @@
 	},
 	{
 		"name": "Brokkos",
-		"ID": "brokkos"
+		"ID": "brokkos",
+		"size": "Medium",
+		"type": "Humanoid (Brokkos)"
 	},
 	{
 		"name": "Bugbear",

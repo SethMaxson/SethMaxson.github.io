@@ -1,11 +1,11 @@
 [
 	{
 		"name": "Acfirth",
-		"image": "/dnd/img/maps/cities/Acfirth.svg"
+		"image": "/dnd/img/maps/cities/lagos/Acfirth.svg"
 	},
 	{
 		"name": "Amarillo",
-		"image": "/dnd/img/maps/cities/Amarillo.svg"
+		"image": "/dnd/img/maps/cities/lagos/Amarillo.svg"
 	},
 	{
 		"name": "Aphotia",
@@ -13,86 +13,86 @@
 	},
 	{
 		"name": "Becktoft",
-		"image": "/dnd/img/maps/cities/Becktoft.svg"
+		"image": "/dnd/img/maps/cities/lagos/Becktoft.svg"
 	},
 	{
 		"name": "budopolis",
-		"image": "/dnd/img/maps/cities/Budopolis.png"
+		"image": "/dnd/img/maps/cities/lagos/Budopolis.png"
 	},
 	{
 		"name": "carriglean",
-		"image": "/dnd/img/maps/cities/carriglean.svg"
+		"image": "/dnd/img/maps/cities/lagos/carriglean.svg"
 	},
 	{
 		"name": "elmusk",
-		"image": "/dnd/img/maps/cities/elmusk.svg"
+		"image": "/dnd/img/maps/cities/lagos/elmusk.svg"
 	},
 	{
 		"name": "firelake",
-		"image": "/dnd/img/maps/cities/firelake.png"
+		"image": "/dnd/img/maps/cities/lagos/firelake.png"
 	},
 	{
 		"name": "Graisham",
-		"image": "/dnd/img/maps/cities/Graisham.png"
+		"image": "/dnd/img/maps/cities/lagos/Graisham.png"
 	},
 	{
 		"name": "Ithcuil",
-		"image": "/dnd/img/maps/cities/ithcuil.svg"
+		"image": "/dnd/img/maps/cities/decapos/ithcuil.svg"
 	},
 	{
 		"name": "Laketon",
-		"image": "/dnd/img/maps/cities/Laketon.svg"
+		"image": "/dnd/img/maps/cities/lagos/Laketon.svg"
 	},
 	{
 		"name": "pendale",
-		"image": "/dnd/img/maps/cities/pendale.svg"
+		"image": "/dnd/img/maps/cities/lagos/pendale.svg"
 	},
 	{
 		"name": "Riverport",
-		"image": "/dnd/img/maps/cities/Riverport.svg"
+		"image": "/dnd/img/maps/cities/lagos/Riverport.svg"
 	},
 	{
 		"name": "rrostar",
-		"image": "/dnd/img/maps/cities/rrostar.svg"
+		"image": "/dnd/img/maps/cities/lagos/rrostar.svg"
 	},
 	{
 		"name": "salem",
-		"image": "/dnd/img/maps/cities/salem.svg"
+		"image": "/dnd/img/maps/cities/lagos/salem.svg"
 	},
 	{
 		"name": "Southport",
-		"image": "/dnd/img/maps/cities/southport.svg"
+		"image": "/dnd/img/maps/cities/lagos/southport.svg"
 	},
 	{
 		"name": "stonweald",
-		"image": "/dnd/img/maps/cities/stonweald.png"
+		"image": "/dnd/img/maps/cities/paros/stonweald.png"
 	},
 	{
 		"name": "Tahl Town",
-		"image": "/dnd/img/maps/cities/TahlTown.png"
+		"image": "/dnd/img/maps/cities/lagos/TahlTown.png"
 	},
 	{
 		"name": "Thistleton",
-		"image": "/dnd/img/maps/cities/Thistleton.png"
+		"image": "/dnd/img/maps/cities/lagos/Thistleton.png"
 	},
 	{
 		"name": "tilaporth",
-		"image": "/dnd/img/maps/cities/tilaporth.svg"
+		"image": "/dnd/img/maps/cities/lagos/tilaporth.svg"
 	},
 	{
 		"name": "troutbeck",
-		"image": "/dnd/img/maps/cities/troutbeck.svg"
+		"image": "/dnd/img/maps/cities/lagos/troutbeck.svg"
 	},
 	{
 		"name": "victarn",
-		"image": "/dnd/img/maps/cities/victarn.svg"
+		"image": "/dnd/img/maps/cities/lagos/victarn.svg"
 	},
 	{
 		"name": "Vidan's Rest",
-		"image": "/dnd/img/maps/cities/VidansRest.png"
+		"image": "/dnd/img/maps/cities/lagos/VidansRest.png"
 	},
 	{
 		"name": "Wüstebie",
-		"image": "/dnd/img/maps/cities/Wustebie.png"
+		"image": "/dnd/img/maps/cities/lagos/Wustebie.png"
 	}
 ]

@@ -10,8 +10,43 @@
 		"top": "44.73%"
 	},
 	{
+		"name":"Igavik",
+		"left": "67.1%",
+		"top": "71.45%"
+	},
+	{
+		"name":"Isevaras",
+		"left": "52%",
+		"top": "43.1%"
+	},
+	{
 		"name":"Monastery of the Final Element",
 		"left": "48%",
 		"top": "58.84%"
+	},
+	{
+		"name":"Pryon Gon",
+		"left": "71%",
+		"top": "88.15%"
+	},
+	{
+		"name":"Joroard",
+		"left": "92.5%",
+		"top": "73.7%"
+	},
+	{
+		"name":"Tasavägi",
+		"left": "55.2%",
+		"top": "79.5%"
+	},
+	{
+		"name":"Vatnslaug",
+		"left": "76.8%",
+		"top": "52.55%"
+	},
+	{
+		"name":"Vin's Oasis",
+		"left": "68.5%",
+		"top": "56.04%"
 	}
 ]

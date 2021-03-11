@@ -147,13 +147,6 @@
 								);
 								distanceFromCenter += planetSize;
 							} else if (planet.type == "Planet") {
-								// div.append(
-								// 	$(`<div class="planet" style="left: ${distanceFromCenter + size/2}px; width: ${planetSize}px; height:${planetSize}px;">
-								// 		<a href="/pages/maps/cities/lagos/lagos.html" class="smith planet-label">${planet.Name}</a>
-								// 		<div>${planet.Name}</div>
-								// 		<div>${planet.Titles.toString()}</div>
-								// 	</div>`);
-								// );
 								planetsSoFar++;
 								const s = planetsSoFar * (90/totalPlanets) + 10;
 								const pr = (150/s).toString() + '%';

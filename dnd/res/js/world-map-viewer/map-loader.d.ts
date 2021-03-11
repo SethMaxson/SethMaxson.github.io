@@ -39,8 +39,6 @@ interface ICity {
     dmNotes: string[];
     /** The address of the city's standalone map. */
     url: string;
-    /** Should this city be opened in the generic city map viewer when clicked? */
-    useCityViewer: boolean;
     position: IMapObjectPosition;
     marker: ICityMarker | CityMarkerTypes;
 }
@@ -53,8 +51,10 @@ declare const MapMarkerRadii: {
     [key in CityMarkerTypes]: number;
 };
 declare var _totalLoadedCities: number;
+declare var _cityMapImageData: ICityMapNode[];
 declare function getCityData(): JQuery.jqXHR<any>;
 declare function getMapLocationData(continent: string): JQuery.jqXHR<any>;
+declare function getMapImageData(): JQuery.jqXHR<any>;
 declare function getCitiesByContinent(destinationElement: JQuery<HTMLElement>, continentName: string, specialTreatmentForHyperLinks?: boolean): Promise<unknown>;
 /**
  * Get a city marker as an HTML Element
@@ -71,3 +71,8 @@ declare function getPositionString(position: IMapObjectPosition, offset?: number
  */
 declare function getPositionSubstring(position: string, offset?: number): string;
 declare function getNamePositionString(nameLocation?: string, iconRadius?: number): string;
+/**
+ * Adds helper behavior to a map element to aid in placing locations.
+ * @param mapElement The css selector for the element that houses the targeted map.
+ */
+declare function attachPlacementHelper(mapElement: JQuery<HTMLElement>): void;

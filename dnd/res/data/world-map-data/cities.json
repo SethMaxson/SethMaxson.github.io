@@ -209,7 +209,6 @@
 				],
 				"dmNotes":[],
 				"url":"#",
-				"useCityViewer": true,
 				"position": {
 					"left": "41.55%",
 					"top": "29%"
@@ -276,7 +275,6 @@
 				],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer":true,
 				"position": {
 					"left": "27.8%",
 					"top": "70%"
@@ -297,7 +295,6 @@
 				],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "62.55%",
 					"top": "79.1%"
@@ -349,7 +346,6 @@
 				"culture": [],
 				"dmNotes": [],
 				"url":"#",
-				"useCityViewer":true,
 				"position": {
 					"left": "85.35%",
 					"top": "79%"
@@ -532,7 +528,6 @@
 				],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "1948px",
 					"top": "2300px"
@@ -540,18 +535,17 @@
 				"marker": "town"
 			},
 			{
-				"name": "W&#252;stebie",
+				"name": "Wüstebie",
 				"nameLocation": "top",
 				"type": "village",
 				"description": [
-					"W&#252;stebie is a small kobold village at the western edge of the Scorchwind Desert. The kobolds use the arid climate to experiment with jerky making, and are non-hostile to visitors with coin."
+					"Wüstebie is a small kobold village at the western edge of the Scorchwind Desert. The kobolds use the arid climate to experiment with jerky making, and are non-hostile to visitors with coin."
 				],
 				"culture": [
-					"Visitors of all races are permitted in W&#252;stebie, although Kobolds do tend to have unpredictable prejudices."
+					"Visitors of all races are permitted in Wüstebie, although Kobolds do tend to have unpredictable prejudices."
 				],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "1724px",
 					"top": "1657px"
@@ -614,7 +608,6 @@
 				],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "1488px",
 					"top": "2230px"
@@ -654,7 +647,6 @@
 				],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "1881px",
 					"top": "1507px"
@@ -663,7 +655,7 @@
 			},
 			{
 				"name": "Mortadus' Colosseum",
-				"nameLocation": "bottom",
+				"nameLocation": "right",
 				"type": "village",
 				"description": [
 					"Mortadus' Colosseum is usually spoken of in awed whispers. It is one of few places where a mortal is guaranteed to be in the presence of a god, but with this honor comes a great cost. Countless warriors have met their end here, trying to prove themselves to Mortadus."
@@ -672,10 +664,10 @@
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "72.56%",
-					"top": "55.2%"
+					"left": "75.3%",
+					"top": "55.4%"
 				},
-				"marker": "none"
+				"marker": "town"
 			},
 			{
 				"name": "Duskhaven",
@@ -715,7 +707,6 @@
 					"    Voiced kinda like Sylvester Stallone"
 				],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "2033px",
 					"top": "1800px"
@@ -765,7 +756,6 @@
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "2145px",
 					"top": "1840px"
@@ -782,7 +772,6 @@
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "1936px",
 					"top": "1995px"
@@ -799,7 +788,6 @@
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "2013px",
 					"top": "80.7%"
@@ -875,7 +863,6 @@
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "638px",
 					"top": "1461px"
@@ -892,7 +879,6 @@
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "454px",
 					"top": "1604px"
@@ -926,7 +912,6 @@
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "1211px",
 					"top": "1865px"
@@ -995,7 +980,6 @@
 					"Taylor - Air genasi lore bard/divination wizard. Heavily based on Cortana."
 				],
 				"url": "#",
-				"useCityViewer": true,
 				"position": {
 					"left": "1223px",
 					"top": "2186px"

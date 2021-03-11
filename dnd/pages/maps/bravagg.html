@@ -7,6 +7,30 @@
 		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/dnd/res/css/travel-agency-map.css" rel="stylesheet" type="text/css" media="all" />
+		<style>
+			.travel-brochure .location-info {
+				background-color:#1C1C1C;
+				background-image: none;
+			}
+
+			.location-info h1,
+			.location-info h2 {
+				background-color:#444444;
+				box-shadow:0px 0px 1px #282828;
+				text-shadow: 0px 0px 1px #6b6b6b;
+				color:#bebebe;
+			}
+
+			.location-info h3 {
+				text-shadow: 0px 0px 1px #555;
+				color:#999;
+			}
+
+			.location-info p,
+			.location-info ul {
+				color:#eee;
+			}
+		</style>
 		<script
 			src="https://code.jquery.com/jquery-3.3.1.js"
 			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -17,11 +41,9 @@
 			crossorigin="anonymous"></script>
 		<script src="/dnd/res/js/map.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
-		<script src="/dnd/res/js/world-map-viewer/city-placement-helper.js"></script>
 		<script>
 			$(document).ready(() => {
 				getCitiesByContinent($(".map-bravagg"), "Bravagg", true);
-				attachPlacementHelper(".map-bravagg");
 				$("#map-zoom").val(25);
 				$("#map-zoom").change();
 			})

@@ -23,13 +23,24 @@ const MapMarkerRadii = {
     town: 8
 };
 var _totalLoadedCities = 0;
+var _cityMapImageData;
 function getCityData() {
     return $.ajax({ crossDomain: true, url: "/dnd/res/data/world-map-data/cities.json", dataType: 'json' });
 }
 function getMapLocationData(continent) {
     return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/map-locations/${continent}.json`, dataType: 'json' });
 }
+function getMapImageData() {
+    return $.ajax({
+        crossDomain: true,
+        url: "/dnd/res/data/world-map-data/city-map.json",
+        dataType: 'json',
+    });
+}
 function getCitiesByContinent(destinationElement, continentName, specialTreatmentForHyperLinks = false) {
+    if (specialTreatmentForHyperLinks) {
+        attachPlacementHelper(destinationElement);
+    }
     return new Promise(function (resolve, reject) {
         /** Counts the cities for this continent so that we can log them later. */
         var cityCount = 0;
@@ -37,39 +48,38 @@ function getCitiesByContinent(destinationElement, continentName, specialTreatmen
         var completedFetches = 0;
         /** The number of fetches performed. When completedFetches matches this, the promise can resolve. */
         const totalExpectedFetches = 2;
-        var cityData = getCityData();
-        $.when(cityData).done(function (continentSections) {
-            continentSections = continentSections.filter(function (entry) {
+        $.when(getMapImageData(), getCityData(), getMapLocationData(continentName)).done(function (cityMapImageDataRaw, continentSections, locationsRaw) {
+            _cityMapImageData = cityMapImageDataRaw[0];
+            //#region getCityData
+            let continents = continentSections[0].filter(function (entry) {
                 return entry.name === continentName;
             });
-            if (continentSections.length > 0) {
-                let cities = continentSections[0].cities;
+            if (continents.length > 0) {
+                let cities = continents[0].cities;
                 for (let i = 0; i < cities.length; i++) {
-                    destinationElement.append(getCityMarkup(cities[i], continentSections[0].cartographer, specialTreatmentForHyperLinks));
+                    destinationElement.append(getCityMarkup(cities[i], continents[0].cartographer, specialTreatmentForHyperLinks));
                     cityCount++;
                     _totalLoadedCities++;
                 }
             }
-            completedFetches++;
-            if (completedFetches == totalExpectedFetches) {
-                console.log(`Cities on ${continentName}: ${cityCount}`);
-                resolve();
-            }
-        });
-        $.when(getMapLocationData(continentName)).done(function (locations) {
+            //#endregion
+            //#region getMapLocationData
+            let locations = locationsRaw[0];
             for (let i = 0; i < locations.length; i++) {
-                destinationElement.append($(`<a href="#" class="point-of-interest smith village" style="left: calc(${locations[i].left} - 8px); top: calc(${locations[i].top} - 8px);">
+                let relevantMapImage = _cityMapImageData.filter(function (entry) {
+                    return entry.name.toLowerCase() === locations[i].name.toLowerCase();
+                });
+                let url = relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + locations[i].name : "#";
+                destinationElement.append($(`<a href="${url}" class="point-of-interest smith village" style="left: calc(${locations[i].left} - 8px); top: calc(${locations[i].top} - 8px); ${specialTreatmentForHyperLinks && url != "#" ? " color:#ffff00;" : ""}">
 								<div class="map-marker-icon marker-town" style="background-color:#f3b;">&nbsp;</div>
 								<span class="map-marker-name" style="position: absolute; top:50%; left:100%; transform: translate(10px, -50%);">${locations[i].name}</span>
 							</a>`));
                 cityCount++;
                 _totalLoadedCities++;
             }
-            completedFetches++;
-            if (completedFetches == totalExpectedFetches) {
-                console.log(`Cities on ${continentName}: ${cityCount}`);
-                resolve();
-            }
+            //#endregion
+            console.log(`Cities on ${continentName}: ${cityCount}`);
+            resolve();
         });
     });
 }
@@ -94,17 +104,20 @@ function getCityMarkup(city, cartographer, specialTreatmentForHyperLinks = false
     }
     let cm = city.marker;
     let marker = cm != CityMarkerTypes.None ? `<div class="map-marker-icon marker-${cm}">&#160;</div>` : "";
+    let relevantMapImage = _cityMapImageData.filter(function (entry) {
+        return entry.name.toLowerCase() === city.name.toLowerCase();
+    });
+    let url = (city.url == "#" || !city.url) && relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + city.name : city.url;
     //#region get extra CSS properties and store them to the extraCssProperties variable
     let offset = MapMarkerRadii[cm] || 0;
     let extraCssProperties = getPositionString(city.position, offset);
     if (city.fontSize) {
         extraCssProperties += ` font-size:${city.fontSize}px;`;
     }
-    if (specialTreatmentForHyperLinks && (city.url != "#" || city.useCityViewer)) {
+    if (specialTreatmentForHyperLinks && url != "#") {
         extraCssProperties += " color:#ffff00;";
     }
     //#endregion
-    let url = (city.url == "#" || !city.url) && city.useCityViewer ? "/dnd/pages/maps/city-viewer.html?city=" + city.name : city.url;
     return $(`<a href="${url}" class="point-of-interest ${cartographer} ${city.type}" style="${extraCssProperties}">
 		${marker}
 		<span class="map-marker-name" style="${getNamePositionString(city.nameLocation, Math.round(offset * 1.3))}">${city.name}</span>
@@ -210,5 +223,30 @@ function getNamePositionString(nameLocation, iconRadius = 0) {
         }
     }
     return locationString;
+}
+/**
+ * Adds helper behavior to a map element to aid in placing locations.
+ * @param mapElement The css selector for the element that houses the targeted map.
+ */
+function attachPlacementHelper(mapElement) {
+    mapElement.click(function (evt) {
+        $(".location-tester").remove();
+        var zoom = $("#map-zoom").val() * 0.01;
+        let map = $(this);
+        //@ts-ignore
+        var x = (evt.pageX + 8 - map.offset().left) / (map.width() * zoom);
+        //@ts-ignore
+        var y = (evt.pageY + 8 - map.offset().top) / (map.height() * zoom);
+        // console.log(`evt.pageX: ${evt.pageX}, evt.pageY: ${evt.pageY}`);
+        // //@ts-ignore
+        // console.log(`map.offset().left: ${map.offset().left}, map.offset().top: ${map.offset().top}`);
+        // console.log(`X: ${x}, X: ${y}`);
+        var newMarker = $(`<a href="#" class="point-of-interest smith village location-tester">
+			<div class="map-marker-icon marker-town">&nbsp;</div>
+		</a>`);
+        map.append(newMarker);
+        newMarker.css("left", (Math.round(x * 10000) / 100) + "%");
+        newMarker.css("top", (Math.round(y * 10000) / 100) + "%");
+    });
 }
 //# sourceMappingURL=map-loader.js.map
