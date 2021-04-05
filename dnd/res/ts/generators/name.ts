@@ -1,10 +1,12 @@
 const NameGenerator = {
 	first: function(species: string = "human", gender: string = "female", age: string = "adult"): string {
 		var name = "";
-		switch (species) {
+		switch (species)
+		{
 			//#region Aarakocra
 			case "aarakocra":
-				name = randomize([
+				// define non-gendered aarakocra names
+				let aarakocraNames = [
 					"Aera",
 					"Aial",
 					"Aur",
@@ -27,7 +29,20 @@ const NameGenerator = {
 					"Tuk",
 					"Urreek",
 					"Zeed"
-				]);
+				];
+				// add gender specific names
+				if (gender == "male") {
+					aarakocraNames.concat([
+					]);
+
+				} else
+				{
+					aarakocraNames.concat([
+						"Asharra"
+					]);
+				}
+
+				name = randomize(aarakocraNames);
 				break;
 			//#endregion
 			//#region Anime
@@ -771,6 +786,7 @@ const NameGenerator = {
 						"Gilthur",
 						"Gimgen",
 						"Gimurt",
+						"Gundren",
 						"Harbek",
 						"Kildrak",
 						"Kilvar",
@@ -803,6 +819,7 @@ const NameGenerator = {
 					]);
 				} else {
 					name = randomize([
+						"Amarith",
 						"Amber",
 						"Anbera",
 						"Artin",
@@ -829,6 +846,7 @@ const NameGenerator = {
 						"Hilda",
 						"Hlin",
 						"Ilde",
+						"Istrid",
 						"Jarana",
 						"Kathra",
 						"Kilia",
@@ -1887,6 +1905,50 @@ const NameGenerator = {
 				name = name.charAt(0).toUpperCase() + name.slice(1);
 				break;
 			//#endregion
+			//#region Goliath
+			case "goliath":
+				// goliath birth names
+				name = randomize([
+					"Aukan",
+					"Eglath",
+					"Gae-Al",
+					"Gauthak",
+					"Ilikan",
+					"Keothi",
+					"Kuori",
+					"Lo-Kag",
+					"Manneo",
+					"Maveith",
+					"Nalla",
+					"Orilo",
+					"Paavu",
+					"Pethani",
+					"Thalai",
+					"Thotham",
+					"Uthal",
+					"Vaunea",
+					"Vimak"
+				]);
+				// nicknames
+				name += " " + randomize([
+					"Bearkiller",
+					"Dawncaller",
+					"Fearless",
+					"Flintfinder",
+					"Horncarver",
+					"Keeneye",
+					"Lonehunter",
+					"Longleaper",
+					"Rootsmasher",
+					"Skywatcher",
+					"Steadyhand",
+					"Threadtwister",
+					"Twice-Orphaned",
+					"Twistedlimb",
+					"Wordpainter"
+				]);
+				break;
+			//#endregion
 			//#region Gnome
 			case "gnome":
 				if (gender == "male") {
@@ -2031,8 +2093,10 @@ const NameGenerator = {
 						"Alton",
 						"Ander",
 						"Atherton",
+						"Bepis",
 						"Bernie",
 						"Bobbin",
+						"Broxley",
 						"Cade",
 						"Callus",
 						"Corrin",
@@ -2054,6 +2118,7 @@ const NameGenerator = {
 						"Harol",
 						"Jasper",
 						"Keith",
+						"Kelso",
 						"Kevin",
 						"Lazam",
 						"Lerry",
@@ -2083,7 +2148,8 @@ const NameGenerator = {
 						"Wellby",
 						"Wendel",
 						"Wenner",
-						"Wes"
+						"Wes",
+						"Wiggan"
 					]);
 				} else {
 					name = randomize([
@@ -2094,10 +2160,12 @@ const NameGenerator = {
 						"Bella",
 						"Blossom",
 						"Bree",
+						"Brynn",
 						"Cellica",
 						"Callie",
 						"Chenna",
 						"Cora",
+						"Danika",
 						"Dee",
 						"Dell",
 						"Eida",
@@ -2107,6 +2175,7 @@ const NameGenerator = {
 						"Georgina",
 						"Gynnie",
 						"Harriet",
+						"Havia",
 						"Jasmine",
 						"Jillian",
 						"Jo",
@@ -2131,6 +2200,8 @@ const NameGenerator = {
 						"Portia",
 						"Robbie",
 						"Rose",
+						"Rosie",
+						"Samara",
 						"Saral",
 						"Seraphina",
 						"Shaena",
@@ -2673,6 +2744,7 @@ const NameGenerator = {
 						"Ohr",
 						"Rendar",
 						"Resh",
+						"Ront",
 						"Rrath",
 						"Sark",
 						"Scrag",
@@ -2748,6 +2820,7 @@ const NameGenerator = {
 			case "tabaxi":
 				name = randomize([
 					"Afternoon Nap (Nap)",
+					"Bag of Nails (Nails)",
 					"Cloud on the Mountaintop (Cloud)",
 					"Defiant Time (Defiant)",
 					"Drifting Snowflake (Snowflake)",
@@ -2765,6 +2838,8 @@ const NameGenerator = {
 					"Snow of the Mountain (Snow)",
 					"Spring Blossom (Spring)",
 					"Storm at Sea (Sea)",
+					"Three Earrings (Three)",
+					"Two Dry Cloaks (Cloaks)",
 					"Winter Breath (Winter)"
 				]);
 				break;
@@ -2772,6 +2847,7 @@ const NameGenerator = {
 			//#region Tortle
 			case "tortle":
 				name = randomize([
+					"Ambie",
 					"Baka",
 					"Damu",
 					"Gar",
@@ -2994,6 +3070,19 @@ const NameGenerator = {
 	last: function(species: string = "human", gender: string = "female", age: string = "adult"): string {
 		var name = "";
 		switch (species) {
+			//#region Aarakocra
+			case "aarakocra":
+				name = randomize([
+					"Cloudwalker",
+					"Galerunner",
+					"Gustfeather",
+					"Skyherald",
+					"Stormtalon",
+					"Thunderwing",
+					"Windfeather"
+				]);
+				break
+			//#endregion Aarakocra
 			//#region Anime
 			case "anime":
 				name = randomize([
@@ -3016,7 +3105,7 @@ const NameGenerator = {
 					"Yamamoto"
 				]);
 				break
-			//#endregion
+			//#endregion Anime
 			//#region Brokkos
 			case "brokkos":
 				/*
@@ -3030,20 +3119,27 @@ const NameGenerator = {
 					Produ - maker, craftsman
 					Raccogli - gatherer/forager
 					Scavo - digger
+					Zitellu - fledgling
 				*/
-				name = randomize([
-					"Aiutatu (Helper)",
-					"Cuocu (Cook)",
-					"Doto (Healer)",
-					"Fermia (Childcare)",
-					"Guardia (Warrior)",
-					"Maestru (Teacher)",
-					"Produ (Craftsman)",
-					"Raccogli (Forager)",
-					"Scavo (Digger)"
-				]);
+				if (age == "child") {
+					name = "Zitellu (Fledgling)";
+				}
+				else
+				{
+					name = randomize([
+						"Aiutatu (Helper)",
+						"Cuocu (Cook)",
+						"Doto (Healer)",
+						"Fermia (Childcare)",
+						"Guardia (Warrior)",
+						"Maestru (Teacher)",
+						"Produ (Craftsman)",
+						"Raccogli (Forager)",
+						"Scavo (Digger)"
+					]);
+				}
 				break;
-			//#endregion
+			//#endregion Brokkos
 			//#region Dragonborn
 			case "dragonborn":
 				name = randomize([
@@ -3099,7 +3195,7 @@ const NameGenerator = {
 					"Zzzxaaxthroth"
 				]);
 				break;
-			//#endregion
+			//#endregion Dragonborn
 			//#region Drow
 			case "drow":
 				name = randomize([
@@ -3184,7 +3280,7 @@ const NameGenerator = {
 					"Zeizerer",
 					"Zolond"
 				]);
-			//#endregion
+			//#endregion Drow
 			//#region Dwarf
 			case "dwarf":
 				name = randomize([
@@ -3200,10 +3296,12 @@ const NameGenerator = {
 					"Broodfist",
 					"Burrowfound",
 					"Caebrek",
+					"Coppervein",
 					"Daerdahk",
 					"Dankil",
 					"Daraln",
 					"Deepdelver",
+					"Deepforge",
 					"Diamondpick",
 					"Durthane",
 					"Eversharp",
@@ -3220,18 +3318,22 @@ const NameGenerator = {
 					"Helcral",
 					"Holderhek",
 					"Ironfist",
+					"Ironheart",
 					"Kreel",
 					"Loderr",
 					"Lutgehr",
 					"Morigak",
 					"Orcfoe",
 					"Rakankrak",
+					"Rockseeker",
 					"RubyEye",
 					"Rumnaheim",
 					"Silveraxe",
 					"Silverstone",
 					"Steelfist",
+					"Steelshadow",
 					"Stonespire",
+					"Stormforge",
 					"Stoutale",
 					"Strakeln",
 					"Strongbellows",
@@ -3244,7 +3346,7 @@ const NameGenerator = {
 					"Trueblood",
 					"Ungart"
 				]);
-			//#endregion
+			//#endregion Dwarf
 			//#region Elf
 			case "elf":
 				name = randomize([
@@ -3440,6 +3542,7 @@ const NameGenerator = {
 					"Moonflower",
 					"Moonglade",
 					"Moonglamaer",
+					"Moonshadow",
 					"Moonsnow",
 					"Moonweather",
 					"Morningdove",
@@ -3590,7 +3693,23 @@ const NameGenerator = {
 					"Yundraer"
 				]);
 				break;
-			//#endregion
+			//#endregion Elf
+			//#region Goliath
+			case "goliath":
+				name = randomize([
+					"Anakalathai",
+					"Elanithino",
+					"Gathakanathi",
+					"Kalagiano",
+					"Katho-Olavi",
+					"Kolae-Gileana",
+					"Ogolakanu",
+					"Thuliaga",
+					"Thunukalathi",
+					"Vaimei-Laga"
+				]);
+				break;
+			//#endregion Goliath
 			//#region Gnome
 			case "gnome":
 				name = randomize([
@@ -3610,7 +3729,7 @@ const NameGenerator = {
 					"Stumbleduck"
 				]);
 				break;
-			//#endregion
+			//#endregion Gnome
 			//#region Halfling
 			case "halfling":
 				name = randomize([
@@ -3619,12 +3738,14 @@ const NameGenerator = {
 					"Brightmoon",
 					"Brushgather",
 					"Cherrycheeks",
+					"Cherryport",
 					"Copperkettle",
 					"Deephollow",
 					"Elderberry",
 					"Fairkettle",
 					"Fastfoot",
 					"Fatrabbit",
+					"Fiddlewick",
 					"Glenfellow",
 					"Goldfound",
 					"Goodbarrel",
@@ -3636,6 +3757,7 @@ const NameGenerator = {
 					"Hilltopple",
 					"Hogcollar",
 					"Honeypot",
+					"Honeymaker",
 					"Jamjar",
 					"Kettlewhistle",
 					"Leagallow",
@@ -3643,6 +3765,7 @@ const NameGenerator = {
 					"Moxie",
 					"Nimblefingers",
 					"Porridgepot",
+					"Quickknife",
 					"Quickstep",
 					"Reedfellow",
 					"Satinleaf",
@@ -3670,7 +3793,7 @@ const NameGenerator = {
 					"Wiseacre"
 				]);
 				break;
-			//#endregion
+			//#endregion Halfling
 			//#region Hobgoblin
 			case "hobgoblin":
 				name = randomize([
@@ -3692,7 +3815,7 @@ const NameGenerator = {
 					"Volaar"
 				]);
 				break;
-			//#endregion
+			//#endregion Hobgoblin
 			//#region Human
 			case "human":
 				name = randomize([
@@ -3747,7 +3870,7 @@ const NameGenerator = {
 					"Wright"
 				]);
 				break;
-			//#endregion
+			//#endregion Human
 			//#region Tabaxi
 			case "tabaxi":
 				name = randomize([
@@ -3758,7 +3881,7 @@ const NameGenerator = {
 					"Snoring Mountain"
 				]);
 				break;
-			//#endregion
+			//#endregion Tabaxi
 			//#region Triton
 			case "triton":
 				name = randomize([
@@ -3767,7 +3890,7 @@ const NameGenerator = {
 					"Dnoth"
 				]);
 				break;
-			//#endregion
+			//#endregion Triton
 			default:
 				break;
 		}
@@ -3776,6 +3899,13 @@ const NameGenerator = {
 	full: function(species: string = "human", gender: string = "female", age: string = "adult"): string {
 		let n = NameGenerator;
 		switch (species) {
+			case "aarakocra":
+				// roughly 1 in 4 aarakocra should have a last name to aid in communications with other species.
+				if (Math.round(Math.random() * 3) == 3) {
+					return n.first("aarakocra", gender, age) + n.last("aarakocra", gender, age);
+				} else {
+					return n.first("aarakocra", gender, age);
+				}
 			case "aasimar":
 				return n.first("human", gender, age) + " " + n.last("human", gender, age);
 			case "brokkos":
@@ -3790,6 +3920,8 @@ const NameGenerator = {
 				return (n.first("elf", gender, age) + " " + n.last("elf", gender, age));
 			case "genasi":
 				return n.first("human", gender, age);
+			case "goliath":
+				return (n.first("goliath", gender, age) + " " + n.last("goliath", gender, age));
 			case "gnome":
 				return (n.first("gnome", gender, age) + " " + n.last("gnome", gender, age));
 			case "halfling":
@@ -3808,17 +3940,16 @@ const NameGenerator = {
 			case "kuo-toa":
 				return n.first("kuo-toa", gender, age);
 			case "tabaxi":
-				return n.first("tabaxi", gender, age) + " " + n.last("tabaxi", gender, age);
+				// return n.first("tabaxi", gender, age) + " " + n.last("tabaxi", gender, age);
+				return n.first("tabaxi", gender, age);
 			case "triton":
 				return n.first("triton", gender, age) + " " + n.last("triton", gender, age);
 			case "tiefling":
-				var name;
 				if (Math.round(Math.random()) == 0) {
-					name = n.first("virtue", gender, age);
+					return n.first("virtue", gender, age);
 				} else {
-					name = n.first("infernal", gender, age);
+					return n.first("infernal", gender, age);
 				}
-				return name;
 			default:
 				return n.first(species, gender, age);
 		}

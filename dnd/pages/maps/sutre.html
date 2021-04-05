@@ -3,22 +3,22 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>Bravagg Isle</title>
+		<title>Sutre</title>
 		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/dnd/res/css/travel-agency-map.css" rel="stylesheet" type="text/css" media="all" />
 		<style>
 			.travel-brochure .location-info {
-				background-color:#1C1C1C;
+				background-color:#6C756B;
 				background-image: none;
 			}
 
 			.location-info h1,
 			.location-info h2 {
-				background-color:#444444;
-				box-shadow:0px 0px 1px #282828;
-				text-shadow: 0px 0px 1px #6b6b6b;
-				color:#bebebe;
+				background-color:#93ACB5;
+				box-shadow:0px 0px 1px #A9D3FF;
+				text-shadow: 0px 0px 1px #000;
+				color:#F2F4FF
 			}
 
 			.location-info h3 {
@@ -28,7 +28,7 @@
 
 			.location-info p,
 			.location-info ul {
-				color:#eee;
+				color:#F2F4FF;
 			}
 		</style>
 		<script
@@ -43,8 +43,8 @@
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
 		<script>
 			$(document).ready(() => {
-				getCitiesByContinent($(".map-bravagg"), "Bravagg", true);
-				$("#map-zoom").val(25);
+				getCitiesByContinent($(".map-sutre"), "Sutre", true);
+				$("#map-zoom").val(20);
 				$("#map-zoom").change();
 			})
 		</script>
@@ -53,9 +53,9 @@
 	<body class="travel-brochure">
 		<div class="location-info">
 			<h3>Amarillo Airship Agency</h3>
-			<h2>The Land of Dragons</h2>
+			<h1>Bottom of the Barrel</h1>
 			<p>
-				Bravagg Isle is home to more species of reptile than any other location in the known world. Do with that what you will.
+				Sutre is the southernmost continent in the world. It's so cool, even the ground is made of ice.
 			</p>
 		</div>
 		<div id="map-body" style="overflow: hidden; background:#25325f;">
@@ -63,9 +63,7 @@
 				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
 				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
 			</div>
-			<div class="map-container map map-bravagg" style="background-image:url('/dnd/img/maps/landmasses/Bravagg.svg'); width:3200px; height:2600px;">
-
-			</div>
+			<div class="map-container map map-sutre" style="background-image:url('/dnd/img/maps/landmasses/sutre.png'); width:4450px; height:4116px;"></div>
 		</div>
 	</body>
 

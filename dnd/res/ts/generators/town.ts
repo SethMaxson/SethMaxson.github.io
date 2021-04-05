@@ -1,4 +1,4 @@
-type CitySizes = "empty" | "micro" | "tiny" | "small" | "medium" | "large";
+type CitySizes = "empty" | "micro" | "tiny" | "small" | "medium" | "large" | "huge";
 interface ITown
 {
 	alignment: Alignment;
@@ -7,6 +7,9 @@ interface ITown
 	primaryCulture: keyof typeof racesWeighted;
 	type: string;
 	government: string;
+	defense: string;
+	commerce: string;
+	organizations: string;
 	qualities: string[];
 	maxItemRarity: ItemRarity;
 	size: CitySizes;
@@ -74,6 +77,7 @@ const cityBySize: {
 	small: IWeightedKeyList,
 	medium: IWeightedKeyList,
 	large: IWeightedKeyList,
+	huge: IWeightedKeyList,
 } = {
 	empty: {
 		"abandoned township": 10,
@@ -109,7 +113,7 @@ const cityBySize: {
 		"military base": 10,
 		"mining town": 10,
 		"outpost": 10,
-		"resort": 10,
+		"resort": 1,
 		"town": 10,
 		"township": 10,
 		"trading post": 10,
@@ -137,6 +141,21 @@ const cityBySize: {
 		"underwater city": 10,
 	},
 	large: {
+		"city": 10,
+		"city state": 10,
+		"colony": 10,
+		"holy city": 10,
+		"large city": 10,
+		"metropolis": 10,
+		"mining colony": 10,
+		"occupied city": 10,
+		"port city": 10,
+		"trading post": 10,
+		"treetop city": 10,
+		"underground city": 10,
+		"underwater city": 10,
+	},
+	huge: {
 		"city": 10,
 		"city state": 10,
 		"colony": 10,
@@ -565,12 +584,13 @@ const cityNameParts = {
 };
 
 const numOfShops = {
-  "empty": 0,
-  "micro": 0,
-  "tiny": 1,
-  "small": 2,
-  "medium": 3,
-  "large": 5
+	"empty": 0,
+	"micro": 0,
+	"tiny": 1,
+	"small": 2,
+	"medium": 3,
+	"large": 5,
+	"huge": 10
 };
 //#endregion
 
@@ -585,10 +605,10 @@ function getPopulation(size: CitySizes): number {
 			pop = 0;
 			break;
 		case "micro":
-			pop = getRandomInt(2, 20);//two to two hundred
+			pop = getRandomInt(2, 20);//two to twenty
 			break;
 		case "tiny":
-			pop = getRandomInt(20, 200);//two to two hundred
+			pop = getRandomInt(20, 200);//twenty to two hundred
 			break;
 		case "small":
 			pop = getRandomInt(200, 1000);//two hundred to one thousand
@@ -599,7 +619,11 @@ function getPopulation(size: CitySizes): number {
 			pop = Math.round(pop/100)*100;
 			break;
 		case "large":
-			pop = getRandomInt(6000, 50000);//six thousand to fifty thousand
+			pop = getRandomInt(6000, 25000);//six thousand to fifty thousand
+			pop = Math.round(pop/100)*100;
+			break;
+		case "huge":
+			pop = getRandomInt(25000, 50000);//six thousand to fifty thousand
 			pop = Math.round(pop/100)*100;
 			break;
 	}
@@ -810,6 +834,9 @@ function generateSettlement() {
 		population: 0,
 		populationPercentages: "",
 		government: "",
+		defense: "",
+		commerce: "",
+		organizations: "",
 		maxItemRarity: "None",
 		primaryCulture: "human",
 		qualities: [],
@@ -818,7 +845,7 @@ function generateSettlement() {
 	};
 
 	//size & type
-	town.size = ($('#sizePicker').val() as string).trim().replace('null', randomize(["empty","micro","tiny","small","medium","large"])) as CitySizes;
+	town.size = ($('#sizePicker').val() as string).trim().replace('null', randomize(["empty","micro","tiny","small","medium","large","huge"])) as CitySizes;
 	town.maxItemRarity = ($('#itemPicker').val() as string).trim().replace('null', randomize(["None","Common","Uncommon","Rare","Very Rare","Legendary","Artifact"])) as ItemRarity;
 
 	town.type = weightedRandom(cityBySize[town.size]);

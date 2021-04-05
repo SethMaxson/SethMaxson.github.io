@@ -1,4 +1,4 @@
-declare type CitySizes = "empty" | "micro" | "tiny" | "small" | "medium" | "large";
+declare type CitySizes = "empty" | "micro" | "tiny" | "small" | "medium" | "large" | "huge";
 interface ITown {
     alignment: Alignment;
     population: number;
@@ -6,6 +6,9 @@ interface ITown {
     primaryCulture: keyof typeof racesWeighted;
     type: string;
     government: string;
+    defense: string;
+    commerce: string;
+    organizations: string;
     qualities: string[];
     maxItemRarity: ItemRarity;
     size: CitySizes;
@@ -45,6 +48,7 @@ declare const cityBySize: {
     small: IWeightedKeyList;
     medium: IWeightedKeyList;
     large: IWeightedKeyList;
+    huge: IWeightedKeyList;
 };
 declare const wateringHole: {
     prefixes: string[];
@@ -115,6 +119,7 @@ declare const numOfShops: {
     small: number;
     medium: number;
     large: number;
+    huge: number;
 };
 /**
  * Returns the number of citizens for a given city.

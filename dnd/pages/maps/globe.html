@@ -1,0 +1,173 @@
+<html>
+
+	<head>
+		<title>Globe</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/res/css/threedee.css" />
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<script src="/res/data/dialog.js"></script>
+		<script src="/res/js/three.min.js"></script>
+		<script src="/res/js/generators/npc.js"></script>
+		<script src="/node_modules/three/examples/js/controls/OrbitControls.js"></script>
+		<script src="/dnd/res/js/mechanics.js"></script>
+		<script src="/res/js/loaders/GLTFLoader.js"></script>
+		<script src="/res/js/utils/SkeletonUtils.js"></script>
+		<script src="/res/js/characters.js"></script>
+		<script src="/res/js/environment.js"></script>
+		<script src="/res/js/PointerLockControls.js"></script>
+		<script>
+			/** @namespace */
+			var THREEx	= THREEx || {}
+
+			/**
+			* Update renderer and camera when the window is resized
+			*
+			* @param {Object} renderer the renderer to update
+			* @param {Object} Camera the camera to update
+			* @param {Function} dimension callback for renderer size
+			*/
+			THREEx.WindowResize	= function(renderer, camera, dimension)
+			{
+				dimension 	= dimension || function(){ return { width: window.innerWidth, height: window.innerHeight } }
+				var callback	= function(){
+					// fetch target renderer size
+					var rendererSize = dimension();
+					// notify the renderer of the size change
+					renderer.setSize( rendererSize.width, rendererSize.height )
+					renderer.gammaFactor = 2.2;
+					renderer.gammaInput = true;
+					renderer.gammaOutput = true;
+					renderer.physicallyCorrectLights;
+					renderer.toneMapping = THREE.Uncharted2ToneMapping;
+					// update the camera
+					camera.aspect	= rendererSize.width / rendererSize.height
+					camera.updateProjectionMatrix()
+				}
+				// bind the resize event
+				window.addEventListener('resize', callback, false)
+				// return .stop() the function to stop watching window resize
+				return {
+					trigger	: function(){
+						callback()
+					},
+					/**
+					* Stop watching window resize
+					*/
+					destroy	: function(){
+						window.removeEventListener('resize', callback)
+					}
+				}
+			}
+		</script>
+		<script>
+			var onRenderFcts= [];
+			$(document).ready(function(){
+				var camera, controls, renderer, scene, sky, fps = 30;
+				function init() {
+					scene = new THREE.Scene();
+					scene.background = new THREE.Color( 0x11aaff );
+					camera = new THREE.PerspectiveCamera(
+						45,
+						window.innerWidth/window.innerHeight,
+						0.1,
+						1000
+					);
+
+					renderer = new THREE.WebGLRenderer( { antialias: true } );
+					renderer.setPixelRatio( window.devicePixelRatio );
+					renderer.sortObjects = true;
+					renderer.shadowMap.enabled = true;
+					// renderer.shadowMap.shadowSide = THREE.CullFaceFrontBack;
+					// renderer.shadowMap.type = THREE.BasicShadowMap;
+					document.getElementById('container').appendChild(renderer.domElement);
+					renderer.setSize(window.innerWidth, window.innerHeight);
+					renderer.gammaFactor = 2.2;
+					renderer.gammaInput = true;
+					renderer.gammaOutput = true;
+					renderer.physicallyCorrectLights;
+					renderer.toneMapping = THREE.Uncharted2ToneMapping;
+					renderer.toneMappingExposure = 3;
+					renderer.toneMappingWhitePoint = 5;
+
+
+
+					camera.position.x = 0;
+					camera.position.y = 0;
+					camera.position.z = 0;
+					camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+
+					var controls = new THREE.OrbitControls( camera, renderer.domElement );
+					camera.position.set( 0, 0, 1.2 );
+					controls.update();
+
+
+					// Create and add globe
+					var geoss = getSimplePlanet("Geoss", '/dnd/img/maps/globe.png', 1);
+					geoss.position.set(0, 0, 0);
+					scene.add(geoss);
+
+
+					// create the geometry sphere
+					// create the material, using a texture of starfield
+					var material = new THREE.MeshLambertMaterial();
+					// material.map = new THREE.TextureLoader().load('/sf/img/textures/worlds/8k_stars.jpg');;
+					// material.emissiveMap = material.map;
+					material.color = new THREE.Color(0x000000);
+					material.side = THREE.BackSide;
+					// create the mesh based on geometry and material
+					sky  = new THREE.Mesh(
+						new THREE.SphereGeometry(500, 32, 32),
+						material
+					);
+					scene.add(sky);
+					// End Planet Test Stuff
+
+					// var ambLight = new THREE.HemisphereLight(0xffffff, 0x222222, 1);
+					var ambLight = new THREE.HemisphereLight(0xffffff, 0x888888, 1);
+					ambLight.position.set(0, 20, 0);
+					scene.add(ambLight);
+
+					// transform objects
+					var winResize = new THREEx.WindowResize(renderer, camera);
+					update();
+				}
+
+				function update() {
+					// if ( controls.isLocked === true ) {
+					if ( true ) {
+						renderer.render(scene, camera);
+					}
+					renderer.render( scene, camera );
+					setTimeout( function() {
+						requestAnimationFrame( update );
+					}, 1000 / fps );
+				}
+
+				function getSimplePlanet(name, texture, diameter) {
+					diameter = diameter || 1;
+					var geometry = new THREE.SphereGeometry(0.5 * diameter, 128, 128);
+					var planetMaterial = new THREE.MeshPhongMaterial();
+					var planetMesh = new THREE.Mesh(geometry, planetMaterial);
+					planetMesh.position.set(0, 0, 0);
+					planetMaterial.map = new THREE.TextureLoader().load(texture);
+					planetMaterial.bumpScale = 0.05;
+					planetMaterial.specular = new THREE.Color('grey');
+					planetMesh.name = name;
+					return planetMesh;
+				}
+
+				init();
+			});
+		</script>
+	</head>
+
+	<body style="margin:0px; padding:0px;">
+		<div id="container">
+			<!-- prevent null -->
+		</div>
+	</body>
+
+</html>
