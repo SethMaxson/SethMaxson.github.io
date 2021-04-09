@@ -4,19 +4,11 @@
 		<title>Globe</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="/res/css/threedee.css" />
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 			crossorigin="anonymous"></script>
-		<script src="/res/data/dialog.js"></script>
 		<script src="/res/js/three.min.js"></script>
-		<script src="/res/js/generators/npc.js"></script>
 		<script src="/node_modules/three/examples/js/controls/OrbitControls.js"></script>
 		<script src="/dnd/res/js/mechanics.js"></script>
-		<script src="/res/js/loaders/GLTFLoader.js"></script>
-		<script src="/res/js/utils/SkeletonUtils.js"></script>
-		<script src="/res/js/characters.js"></script>
-		<script src="/res/js/environment.js"></script>
-		<script src="/res/js/PointerLockControls.js"></script>
 		<script>
 			/** @namespace */
 			var THREEx	= THREEx || {}
@@ -36,11 +28,6 @@
 					var rendererSize = dimension();
 					// notify the renderer of the size change
 					renderer.setSize( rendererSize.width, rendererSize.height )
-					renderer.gammaFactor = 2.2;
-					renderer.gammaInput = true;
-					renderer.gammaOutput = true;
-					renderer.physicallyCorrectLights;
-					renderer.toneMapping = THREE.Uncharted2ToneMapping;
 					// update the camera
 					camera.aspect	= rendererSize.width / rendererSize.height
 					camera.updateProjectionMatrix()
@@ -79,33 +66,26 @@
 					renderer.setPixelRatio( window.devicePixelRatio );
 					renderer.sortObjects = true;
 					renderer.shadowMap.enabled = true;
-					// renderer.shadowMap.shadowSide = THREE.CullFaceFrontBack;
-					// renderer.shadowMap.type = THREE.BasicShadowMap;
+					renderer.shadowMap.shadowSide = THREE.CullFaceFrontBack;
+					renderer.shadowMap.type = THREE.BasicShadowMap;
 					document.getElementById('container').appendChild(renderer.domElement);
 					renderer.setSize(window.innerWidth, window.innerHeight);
 					renderer.gammaFactor = 2.2;
-					renderer.gammaInput = true;
-					renderer.gammaOutput = true;
+					renderer.outputEncoding = THREE.sRGBEncoding;
 					renderer.physicallyCorrectLights;
 					renderer.toneMapping = THREE.Uncharted2ToneMapping;
 					renderer.toneMappingExposure = 3;
 					renderer.toneMappingWhitePoint = 5;
 
 
-
-					camera.position.x = 0;
-					camera.position.y = 0;
-					camera.position.z = 0;
 					camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-
 					var controls = new THREE.OrbitControls( camera, renderer.domElement );
 					camera.position.set( 0, 0, 1.2 );
 					controls.update();
 
 
 					// Create and add globe
-					var geoss = getSimplePlanet("Geoss", '/dnd/img/maps/globe.png', 1);
+					var geoss = getSimplePlanet("Geoss", '/dnd/img/maps/globe.svg', 1);
 					geoss.position.set(0, 0, 0);
 					scene.add(geoss);
 
@@ -114,7 +94,6 @@
 					// create the material, using a texture of starfield
 					var material = new THREE.MeshLambertMaterial();
 					// material.map = new THREE.TextureLoader().load('/sf/img/textures/worlds/8k_stars.jpg');;
-					// material.emissiveMap = material.map;
 					material.color = new THREE.Color(0x000000);
 					material.side = THREE.BackSide;
 					// create the mesh based on geometry and material
@@ -136,10 +115,6 @@
 				}
 
 				function update() {
-					// if ( controls.isLocked === true ) {
-					if ( true ) {
-						renderer.render(scene, camera);
-					}
 					renderer.render( scene, camera );
 					setTimeout( function() {
 						requestAnimationFrame( update );
@@ -153,7 +128,9 @@
 					var planetMesh = new THREE.Mesh(geometry, planetMaterial);
 					planetMesh.position.set(0, 0, 0);
 					planetMaterial.map = new THREE.TextureLoader().load(texture);
+					planetMaterial.map.minFilter = THREE.LinearFilter;
 					planetMaterial.bumpScale = 0.05;
+					planetMaterial.anisotropy = renderer.capabilities.getMaxAnisotropy();
 					planetMaterial.specular = new THREE.Color('grey');
 					planetMesh.name = name;
 					return planetMesh;

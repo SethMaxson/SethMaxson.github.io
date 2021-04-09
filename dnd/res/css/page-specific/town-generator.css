@@ -1,0 +1,52 @@
+.background div.container {
+	padding: 10px;
+}
+
+th {
+	font-weight: bold;
+	border: 2px solid #555;
+	background: #333;
+	color: floralwhite;
+	padding: 4px;
+}
+
+td {
+	border: 2px solid #555;
+	padding: 4px;
+}
+
+.collapsible.collapsed table {
+	display: none;
+}
+
+.collapse-button {
+	width: 2em;
+}
+
+.collapse-button:before {
+	content: "\25B2";
+}
+
+.collapsed .collapse-button:before {
+	content: "\25BC";
+}
+
+.town * {
+	margin-bottom: 12pt;
+	font-size: 11pt;
+	font-family: Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.town-attribute {
+	font-size: 11pt;
+}
+
+.town-attribute .label {
+	font-weight: bold;
+	font-style: italic;
+}
+
+.town .town-name {
+	font-size: 17pt;
+	font-weight: bold;
+}

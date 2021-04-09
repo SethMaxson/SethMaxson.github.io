@@ -9,7 +9,9 @@
 			.background div.container {padding:10px;}
 			th {font-weight: bold; border:2px solid #555; background:#333; color:floralwhite; padding:4px;}
 			td{border:2px solid #555; padding:4px;}
+			.collapsible {background:rgba(50, 50, 50, 0.1); border-radius: 1em;}
 			.collapsible.collapsed table {display:none;}
+			.collapsible > h3 {cursor: pointer; padding-left: 1em; padding-right: 1em;}
 			.collapse-button {width:2em;}
 			.collapse-button:before {content:"\25B2";}
 			.collapsed .collapse-button:before {content:"\25BC";}
@@ -27,13 +29,15 @@
 		</style>
 		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
 		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-		<script src="/res/js/mechanics.js"></script>
+		<script src="/dnd/res/js/mechanics.js"></script>
 		<script src="/dnd/res/js/npc.js"></script>
-		<script src="/dnd/res/js/npc-viewer.js"></script>
+		<script src="/dnd/res/js/generators/npc.js"></script>
+		<script src="/dnd/res/js/page-specific/npc-generator.js"></script>
 		<script src="/dnd/res/js/generators/racialtraits.js"></script>
+		<script src="/dnd/res/js/generators/racialappearance.js"></script>
 		<script src="/dnd/res/js/generators/name.js"></script>
 		<script src="/dnd/res/js/common/weighted-random.js"></script>
-		<script src="/dnd/res/js/generators/npc.js"></script>
+		<script src="/dnd/res/js/common/length.js"></script>
 		<script src="/res/js/sort-table.js"></script>
 	</head>
 
@@ -41,7 +45,7 @@
 		<div class="background">
 			<div class="container">
 				<h1>NPCs</h1>
-				<div id="loaded" style="background:rgba(50, 50, 50, 0.1); border-radius: 1em;" class="collapsible collapsed">
+				<div id="loaded" class="collapsible collapsed">
 					<h3>Loaded <a class="collapse-button"></a></h3>
 					<table style="width:100%; margin:auto; border-collapse: collapse;">
 						<tr>
@@ -61,8 +65,10 @@
 						</tr>
 					</table>
 				</div>
-				<div id="random">
-					<h3>Random</h3>
+				<div id="random" class="collapsible">
+					<h3>Random <a class="collapse-button"></a></h3>
+				<!-- <div id="random">
+					<h3>Random</h3> -->
 					<table style="width:100%; margin:auto; border-collapse: collapse;">
 						<tr>
 							<td>
@@ -82,11 +88,11 @@
 							<td>
 								<label for="age-select">Age:</label>
 								<select name="age-select" id="age-select">
-									<option value="0">Surprise Me</option>
-									<option value="1">Child</option>
-									<option value="2">Young Adult</option>
-									<option value="3">Middle Age</option>
-									<option value="4">Elder</option>
+									<option value="null">Surprise Me</option>
+									<option value="child">Child</option>
+									<option value="young adult">Young Adult</option>
+									<option value="adult">Middle Age</option>
+									<option value="old">Elder</option>
 								</select>
 							</td>
 							<td>

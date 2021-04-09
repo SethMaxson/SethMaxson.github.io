@@ -1,50 +1,92 @@
+declare enum NPCGenFilterCategory {
+    Age = "age",
+    Alignment = "alignment",
+    Gender = "gender",
+    Intelligence = "intelligence",
+    PersonalityTags = "personality tags",
+    Profession = "profession",
+    Species = "species"
+}
+declare enum NPCGenFilterType {
+    Exclude = "exclude",
+    Include = "include"
+}
+declare enum AgeCategory {
+    Child = "child",
+    YoungAdult = "young adult",
+    Adult = "adult",
+    Old = "old"
+}
+interface IFilterableWeightedKeyListEntry {
+    type: NPCGenFilterType;
+    category: NPCGenFilterCategory;
+    values: any[];
+    keys: IWeightedKeyList;
+}
+interface IFilterableWeightedKeyList {
+    generic: IWeightedKeyList;
+    specific: IFilterableWeightedKeyListEntry[];
+}
 declare var races: string[];
-declare var racesWeighted: IWeightedKeyList;
-declare var spawnFrequencySum: number;
-declare const totaledWeights: {
-    Adjectives: number;
-    Age: number;
-    From: number;
-    Personality: number;
-    Profession: number;
-    Race: number;
-    Threat: number;
-    Who: number;
-};
-declare const adjectives: string[];
-declare const threatLevels: IWeightedKeyList;
-declare var professions: IWeightedKeyList;
-declare var AgeRanks: {
-    1: number;
-    2: number;
-    3: number;
-    4: number;
-};
-declare var AgeList: string[];
-declare var PersonalityList: string[];
-declare var FromList: string[];
-declare var WhoList: string[];
-declare function getArticle(word: string): string;
+declare class NPCDeepGenerator {
+    totaledWeights: {
+        Age: number;
+        Race: number;
+        Threat: number;
+    };
+    racesWeighted: IWeightedKeyList;
+    threatLevels: IWeightedKeyList;
+    intelligenceLevels: IFilterableWeightedKeyList;
+    professions: IFilterableWeightedKeyList;
+    PersonalityTagList: IFilterableWeightedKeyList;
+    AgeList: IWeightedKeyList;
+    PersonalityList: IFilterableWeightedKeyList;
+    FromList: IFilterableWeightedKeyList;
+    WhoList: IFilterableWeightedKeyList;
+    /**
+     * Determines which word is correct for the specified pronoun based on an array of possible values
+     * @param pronoun The pronoun from which to determine the correct word
+     * @param wordForms Possible word forms. The first index is for 'he' or 'she'. The second is for 'they'.
+     */
+    conjugate(pronoun: string, wordForms: string[]): string;
+    getArticle(word: string): string;
+    /**
+     * Sets the age properties for an NPC.
+     * @param npc Target NPC
+     * @param rt The Traits for the NPC's species
+     * @param ageCategory On a scale of 1-4, how old are they?
+     */
+    getNPCAge(npc: NPC, rt: RacialTraitSet, ageCategory?: AgeCategory): void;
+    getNPCDescription(npc: NPC): string;
+    getNPCHeight(npc: NPC): Length;
+    getNPCOldness(npc: NPC): number;
+    getNPCPersonalityTags(npc: NPC): void;
+    getNPCRacialAppearance(race: string): RacialAppearanceSet;
+    /**
+     * Is this NPC a 'he', 'she', or 'they'?
+     * @param gender e.g. 'female', 'male', etc.
+     * @param wordForms Possible word forms. Must have 3 entries. The first index is for 'they', the second for 'she', and the third for 'he'.
+     */
+    getPronoun(gender: string, wordForms?: string[]): string;
+    resolvePlaceholders(npc: NPC, stringToFix: string): string;
+    initializeNPCGen(): void;
+    randomizeNPC(npc: NPC, race?: string, gender?: string, age?: AgeCategory, alignment?: string): void;
+}
 /**
- * Is this NPC a 'he', 'she', or 'they'?
- * @param gender e.g. 'female', 'male', etc.
+ * Returns a random value from an appropriately filtered list of weighted keys.
+ * @param npc The NPC to check against the filters
+ * @param filterable The filterable weighted key list to use
  */
-declare function getPronoun(gender: string): string;
+declare function filteredWeightedRandom(npc: NPC, filterable: IFilterableWeightedKeyList): string;
 /**
- * Determines which word is correct for the specified pronoun based on an array of possible values
- * @param pronoun The pronoun from which to determine the correct word
- * @param wordForms Possible word forms. The first index is for 'he' or 'she'. The second is for 'they'.
+ * Returns an appropriately filtered list of weighted keys.
+ * @param npc The NPC to check against the filters
+ * @param filterable The filterable weighted key list to use
  */
-declare function conjugate(pronoun: string, wordForms: string[]): string;
-declare function getNPCOldness(npc: NPC): number;
-declare function randomizeNPC(npc: NPC, name?: string, race?: string, gender?: string, age?: number | string, alignment?: string): void;
+declare function getFilteredWeightedKeyList(npc: NPC, filterable: IFilterableWeightedKeyList): IWeightedKeyList;
 /**
- * Sets the age properties for an NPC.
- * @param npc Target NPC
- * @param rt The Traits for the NPC's species
- * @param ageCategory On a scale of 1-4, how old are they?
+ * Returns true if the IFilterableWeightedKeyListEntry is applicable, false if not.
+ * @param npc The NPC to check against the filter
+ * @param kle
  */
-declare function getNPCAge(npc: NPC, rt: RacialTraitSet, ageCategory?: number | string): void;
-declare function getNPCDescription(race?: string, age?: string, profession?: string, gender?: string): string;
-declare function initializeNPCGen(): void;
-declare function testRaceMapping(): void;
+declare function isWeightedKeyListEntryApplicable(npc: NPC, kle: IFilterableWeightedKeyListEntry): boolean;

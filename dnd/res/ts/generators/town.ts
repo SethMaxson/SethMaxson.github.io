@@ -658,8 +658,11 @@ function printPanel(town: ITown) {
 	$outputArea.empty();
 
 	var panelBody = `<p>${ town.alignment } ${ town.type }
-					<br/><b>Population: </b> ${town.populationPercentages}
-					<br/><b>Government: </b> ${town.government.toLowerCase()}
+					<div class="town-attribute"><span class="label">Population. </span> ${town.populationPercentages}</div>
+					<div class="town-attribute"><span class="label">Government. </span> ${town.government}</div>
+					<div class="town-attribute"><span class="label">Defense. </span> ${town.defense}</div>
+					<div class="town-attribute"><span class="label">Commerce. </span> ${town.commerce}</div>
+					<div class="town-attribute"><span class="label">Organizations. </span> ${town.organizations}</div>
 					<br/><b>Qualities: </b> ${town.qualities.join(', ').toLowerCase()}
 					<br/><b>Maximum Item Level: </b> ${town.maxItemRarity} </p>`;
 
@@ -688,8 +691,8 @@ function printPanel(town: ITown) {
 		}
 	}
 
-	var panel = $("<div class=\"panel\">");
-	panel.append("<div class=\"panel-heading panel-bottom\"><h4>" + getCityName(town) + "</h4></div>");
+	var panel = $("<div class=\"town\">");
+	panel.append("<div class=\"town-name\">" + getCityName(town) + "</div>");
 	var index = $("<div class=\"panel-body\">");
 	panel.append(index);
 	index.append(panelBody);
@@ -901,7 +904,7 @@ $(document).ready(function ()
 
 	$(document).on("click", ".remove-city", function (e)
 	{
-		$(this).closest(".panel").remove();
+		$(this).closest(".town").remove();
 	})
 });
 
