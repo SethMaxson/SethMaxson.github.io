@@ -85,6 +85,12 @@
 		"type": "Humanoid (Goblinoid)"
 	},
 	{
+		"name": "Goliath",
+		"ID": "goliath",
+		"size": "Medium",
+		"type": "Humanoid"
+	},
+	{
 		"name": "Grippli",
 		"ID": "grippli",
 		"size": "Small",
@@ -157,8 +163,16 @@
 		"type": "Humanoid (Orc)"
 	},
 	{
+		"name": "Ratfolk",
+		"ID": "ratfolk",
+		"size": "Small",
+		"type": "Humanoid (Ratfolk)"
+	},
+	{
 		"name": "Tabaxi",
-		"ID": "tabaxi"
+		"ID": "tabaxi",
+		"size": "Medium",
+		"type": "Humanoid (Tabaxi)"
 	},
 	{
 		"name": "Tiefling",

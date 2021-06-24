@@ -136,6 +136,7 @@ class NPCManager {
                     });
                     if (hits.length == 0)
                         matchFound = true;
+                    counter++;
                 } while (matchFound == false);
                 npc.id = newID;
             }

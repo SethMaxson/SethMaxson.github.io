@@ -35,6 +35,7 @@ iframe[name="mainFrame"] {
 	box-sizing: border-box;
 	width: 100%;
 	height: calc(100vh - 40px);
+	margin:0;
 }
 
 .container {
@@ -127,6 +128,7 @@ iframe[name="mainFrame"] {
 	/* Add a top margin to avoid content overlay */
 	box-sizing: border-box;
 	overflow: hidden;
+	padding: 0;
 }
 
 @font-face {
@@ -730,3 +732,14 @@ button.manage-crew {
 	from { background-position-x:  0%; }
 	to { background-position-x: -1500px; }
   }
+
+@media print
+{
+	.no-print,
+	.no-print *,
+	.noprint,
+	.noprint *
+	{
+		display: none !important;
+	}
+}

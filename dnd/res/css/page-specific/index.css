@@ -1,0 +1,65 @@
+body.no-overflow {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+}
+
+body.no-overflow .navbar {
+	height: 40px;
+	flex-grow: 0;
+	flex-shrink: 0;
+	position: initial;
+}
+
+body.no-overflow .main {
+	margin: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+	padding: 0;
+	flex-grow: 10;
+	flex-shrink: 1;
+}
+
+body.no-overflow .main iframe {
+	height: 100%;
+}
+
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+
+	body.no-overflow .navbar.responsive {
+		position: relative;
+		min-height: 40px;
+		flex-grow: 10;
+	}
+
+	.navbar.responsive {position: relative;}
+	.navbar.responsive a.icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.navbar.responsive .dropdown {
+		float: none;
+		display: block;
+		text-align: left;
+		border-bottom:2px solid #444;
+	}
+
+	.navbar.responsive .dropdown>button,
+	.navbar.responsive .dropdown>a{
+		width:100%;
+		text-align:center;
+		padding:none;
+	}
+
+	.dropdown-content {
+		min-width: 100%;
+	}
+
+	/* .dropdown:hover>.dropdown-content {
+		display:none;
+	} */
+}

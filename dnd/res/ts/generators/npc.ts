@@ -125,6 +125,7 @@ class NPCDeepGenerator
 			"Counselor": 40,
 			"Dancer": 80,
 			"Dockworker": 100,
+			"Dove Farmer": 50,
 			"Engineer": 60,
 			"Executioner": 60,
 			"Exorcist": 50,
@@ -175,6 +176,7 @@ class NPCDeepGenerator
 			"Scribe": 15,
 			"Seer": 20,
 			"Shepherd": 80,
+			"Snake Farmer": 10,
 			"Spy": 10,
 			"Squire": 100,
 			"Starving Artist": 90,
@@ -187,7 +189,6 @@ class NPCDeepGenerator
 			"Translator": 50,
 			"Undertaker": 20,
 			"Urchin": 100,
-			"Wizard": 55,
 			"Writer": 50
 		},
 		specific: [
@@ -220,6 +221,7 @@ class NPCDeepGenerator
 				values: ["high", "very high"],
 				keys: {
 					"Clock Maker": 50,
+					"Wizard": 55,
 				}
 			},
 			{
@@ -248,6 +250,7 @@ class NPCDeepGenerator
 				category: NPCGenFilterCategory.Species,
 				values: ["halforc"],
 				keys: {
+					"Gladiator": 1000,
 					"Mercenary": 1500,
 				}
 			},
@@ -257,6 +260,14 @@ class NPCDeepGenerator
 				values: ["grippli"],
 				keys: {
 					"Alchemist": 500,
+				}
+			},
+			{
+				type: NPCGenFilterType.Include,
+				category: NPCGenFilterCategory.Species,
+				values: ["tabaxi"],
+				keys: {
+					"Snake Farmer": 100,
 				}
 			},
 		]
@@ -508,7 +519,6 @@ class NPCDeepGenerator
 
 	PersonalityList: IFilterableWeightedKeyList = {
 		generic: {
-			"A {Gendered:person|woman|man} of few words": 10,
 			"A Know-it-all": 10,
 			"Accusative": 10,
 			"Active": 10,
@@ -925,7 +935,7 @@ class NPCDeepGenerator
 			//#endregion
 			//#region Loud/Quiet
 			{
-				// Loud only
+				// Exclude Quiet
 				type: NPCGenFilterType.Exclude,
 				category: NPCGenFilterCategory.PersonalityTags,
 				values: ["Quiet"],
@@ -935,11 +945,12 @@ class NPCDeepGenerator
 				}
 			},
 			{
-				// Quiet only
+				// Exclude Loud
 				type: NPCGenFilterType.Exclude,
 				category: NPCGenFilterCategory.PersonalityTags,
 				values: ["Loud"],
 				keys: {
+					"A {Gendered:person|woman|man} of few words": 10,
 					"Quiet": 10,
 					"Shy": 10,
 					"Timid": 10,
@@ -969,7 +980,7 @@ class NPCDeepGenerator
 				category: NPCGenFilterCategory.PersonalityTags,
 				values: ["Nice"],
 				keys: {
-					"Agist": 10,
+					"Ageist": 10,
 					"Bigoted": 10,
 					"Bullying": 10,
 					"Callous": 10,
@@ -1085,6 +1096,7 @@ class NPCDeepGenerator
 				category: NPCGenFilterCategory.PersonalityTags,
 				values: ["Material"],
 				keys: {
+					"Greedy": 10,
 				}
 			},
 			{
@@ -1163,8 +1175,8 @@ class NPCDeepGenerator
 			"a place only {GenderPronoun} can pronounce": 5,
 			"a powerful trading city": 10,
 			"a royal lineage": 10,
-			"a run down bar": 10,
-			"a rundown adventurers guild": 10,
+			"a run-down bar": 10,
+			"a run-down adventurers guild": 10,
 			"a rural construction guild": 10,
 			"a secret barracks": 10,
 			"a shanty town in a scrapyard": 10,
@@ -1195,8 +1207,8 @@ class NPCDeepGenerator
 			"an engineer's guild": 10,
 			"an extremist cult": 10,
 			"an orphanage": 10,
-			"an underwater bubble city": 10,
-			"an underwater city protected by a magical force field": 10,
+			"an underwater bubble city": 1,
+			"an underwater city protected by a magical force field": 1,
 			"beyond the known world": 5,
 			"one of the great libraries": 10,
 			"the city post office": 10,
@@ -1213,6 +1225,22 @@ class NPCDeepGenerator
 			{
 				type: NPCGenFilterType.Include,
 				category: NPCGenFilterCategory.Species,
+				values: ["aarakocra"],
+				keys: {
+					"the peaks of Notriven": 50,
+				}
+			},
+			{
+				type: NPCGenFilterType.Include,
+				category: NPCGenFilterCategory.Species,
+				values: ["bullywug"],
+				keys: {
+					"a vile village in a swamp": 50,
+				}
+			},
+			{
+				type: NPCGenFilterType.Include,
+				category: NPCGenFilterCategory.Species,
 				values: ["grung"],
 				keys: {
 					"the jungles of Chupajiji": 50,
@@ -1221,11 +1249,12 @@ class NPCDeepGenerator
 			{
 				type: NPCGenFilterType.Include,
 				category: NPCGenFilterCategory.Species,
-				values: ["aarakocra"],
+				values: ["triton"],
 				keys: {
-					"the peaks of Notriven": 50,
+					"an underwater bubble city": 10,
+					"an underwater city protected by a magical force field": 10,
 				}
-			}
+			},
 		]
 	};
 
@@ -1239,9 +1268,10 @@ class NPCDeepGenerator
 			"always wears the sweetest kicks": 10,
 			"avoids the city guard at all costs": 10,
 			"believes dungeon crawling is just breaking and entering": 10,
+			"believes lizardfolk control the government": 10,
 			"believes plate armour is just a sign of being posh and over privileged": 10,
 			"believes they are destined for a higher calling": 10,
-			"believes they can speak to plants": 10,
+			"believes {GenderPronoun} can speak to plants": 10,
 			"blames all {HisHer} misfortune on ghosts": 10,
 			"can pilot any vehicle": 10,
 			"can't read": 10,
@@ -1252,8 +1282,8 @@ class NPCDeepGenerator
 			"covered in maze tattoos": 10,
 			"deserted the military": 10,
 			"distrusts all authority": 10,
-			"distrusts anyone shorter than them": 10,
-			"distrusts anyone taller than them": 10,
+			"distrusts anyone shorter than {HimHer}": 10,
+			"distrusts anyone taller than {HimHer}": 10,
 			"doesn't believe in magic": 10,
 			"doesn't know {HisHer} own strength": 10,
 			"doesn't speak a word of common": 10,
@@ -1358,7 +1388,7 @@ class NPCDeepGenerator
 			"knows how to ride most creatures": 10,
 			"knows the location of a huge weapons cache": 10,
 			"knows {HisHer} way around a workshop": 10,
-			"knows what its like to die": 10,
+			"knows what it's like to die": 10,
 			"likes to craft personal items rather than buy them": 10,
 			"looks down on anyone who is poorer than they are": 10,
 			"lost the love of {HisHer} life. In a bet.": 10,
@@ -1441,14 +1471,6 @@ class NPCDeepGenerator
 				values: ["bloodfin", "lizardfolk"],
 				keys: {
 					"is vegetarian": 10,
-				}
-			},
-			{
-				type: NPCGenFilterType.Exclude,
-				category: NPCGenFilterCategory.Species,
-				values: ["lizardfolk"],
-				keys: {
-					"believes lizardfolk control the government": 10,
 				}
 			},
 			{
@@ -1551,19 +1573,32 @@ class NPCDeepGenerator
 	 * @param rt The Traits for the NPC's species
 	 * @param ageCategory On a scale of 1-4, how old are they?
 	 */
-	getNPCAge(npc: NPC, rt: RacialTraitSet, ageCategory?: AgeCategory)
+	getNPCAge(npc: NPC, rt: RacialTraitSet, ageCategory?: AgeCategory|AgeCategory[])
 	{
+		/**Declare variable and set placeholder value. */
+		let selectedAgeCategory: AgeCategory = AgeCategory.Old;
 		if (ageCategory == undefined)
 		{
-			ageCategory = weightedRandom(this.AgeList, this.totaledWeights.Age) as AgeCategory;
+			selectedAgeCategory = weightedRandom(this.AgeList, this.totaledWeights.Age) as AgeCategory;
+		}
+		else if (Array.isArray(ageCategory))
+		{
+			let filteredAges: IWeightedKeyList = {};
+			let filteredWeight = 0;
+			for (let index = 0; index < ageCategory.length; index++) {
+				const element = this.AgeList[ageCategory[index]];
+				filteredAges[ageCategory[index]] = element;
+				filteredWeight += element;
+			}
+			this.AgeList
+			selectedAgeCategory = weightedRandom(filteredAges, filteredWeight) as AgeCategory;
 		}
 
-		npc.relativeAge = ageCategory;
-		switch (ageCategory) {
+		npc.relativeAge = selectedAgeCategory;
+		switch (selectedAgeCategory) {
 			case AgeCategory.Child:
 				// Child
 				npc.age = Math.max(rollDie(rt.adultAge), 1);
-
 				break;
 			case AgeCategory.YoungAdult:
 				// Young Adult
@@ -1679,7 +1714,13 @@ class NPCDeepGenerator
 		this.totaledWeights.Threat = getTotalWeight(this.threatLevels);
 	}
 
-	randomizeNPC(npc: NPC, race?: string, gender?: string, age?: AgeCategory, alignment?: string)
+	randomizeNPC(
+		npc: NPC,
+		race?: string,
+		gender?: string,
+		age?: AgeCategory | AgeCategory[],
+		alignment?: string
+	)
 	{
 		if (this.totaledWeights.Race < 0) {
 			this.initializeNPCGen();
@@ -1688,7 +1729,7 @@ class NPCDeepGenerator
 		let rt = getRacialTraits(npc.race);
 		npc.gender = gender || randomize(rt.genders);
 		this.getNPCAge(npc, rt, age);
-		npc.name = name || NameGenerator.full(npc.race, npc.gender, npc.relativeAge);
+		npc.name = NameGenerator.full(npc.race, npc.gender, npc.relativeAge);
 		npc.alignment = alignment || randomize(rt.alignments);
 		npc.threat = weightedRandom(this.threatLevels, this.totaledWeights.Threat);
 		npc.intelligence = filteredWeightedRandom(npc, this.intelligenceLevels);
@@ -1773,4 +1814,23 @@ function isWeightedKeyListEntryApplicable(npc: NPC, kle: IFilterableWeightedKeyL
 	}
 
 	return booleanToMatch == booleanTestResult;
+}
+
+/**
+ * Selects a probability weighted species from a provided subset of those available.
+ * @param availableRaces The list of species from which to choose
+ */
+function getRandomRaceFromList(availableRaces: string[]): string
+{
+	let totalWeight = 0;
+	let weightedRaces: IWeightedKeyList = {};
+	for (let i = 0; i < races.length; i++)
+	{
+		const e = races[i];
+		if (availableRaces.includes(e)) {
+			weightedRaces[e] = getRacialTraits(e).spawnFrequency;
+			totalWeight += getRacialTraits(e).spawnFrequency;
+		}
+	}
+	return weightedRandom(weightedRaces, totalWeight);
 }

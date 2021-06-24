@@ -33,7 +33,7 @@ $(document).ready(function() {
 			(main.Controls.motion as PersonMotion).physicsBody = playerModel.Motion.physicsBody;
 			playerModel.Motion = main.Controls.motion as PersonMotion;
 			playerModel.Motion.attachPhysics();
-			main.world.addBody(playerModel.Motion.physicsBody);
+			main.world.addBody(playerModel.Motion.physicsBody as CANNON.Body);
 			playerModel.Model.visible = false;
 			main.Controls.mesh = playerModel.Model;
 			main.Motions = [];
@@ -54,6 +54,7 @@ $(document).ready(function() {
 			main.MainStage.Entities.Add(testerMan);
 
 			//#region add NPCs
+			main.MainStage.Entities.AddMesh(Characters.getRandom(3, 0, -82, "drow", "m"));
 			main.MainStage.Entities.AddMesh(Characters.getPC("Kevin", 1, 1, -19) as CharactersModular.Person3D);
 			main.MainStage.Entities.AddMesh(Characters.getPC("Torque", 0, 1, -20) as CharactersModular.Person3D);
 			main.MainStage.Entities.AddMesh(Characters.getPC("Raven", 1, 2, -10) as CharactersModular.Person3D);
@@ -96,7 +97,7 @@ $(document).ready(function() {
 					let dis = getHorizontalDistance(testerMan.Motion.position, playerModel.Model.position);
 					testerMan.Motion.speed = dis > easeUp? testerMan.Motion.baseSpeed : Math.max(dis - socialDistance, 0) * testerMan.Motion.baseSpeed;
 					testerMan.Motion.face(playerModel);
-					// testerMan.Motion.walk()
+					testerMan.Motion.walk()
 					if(dis <= socialDistance) {
 						testerMan.Motion.speed = -testerMan.Motion.baseSpeed;
 					}

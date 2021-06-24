@@ -1,5 +1,10 @@
 [
 	{
+		"name":"Autumn's Embrace",
+		"left": "23%",
+		"top": "66.18%"
+	},
+	{
 		"name":"Bushberry",
 		"left": "55.2%",
 		"top": "62.23%"
@@ -10,14 +15,19 @@
 		"top": "44.73%"
 	},
 	{
+		"name":"Crumblemoore",
+		"left": "52%",
+		"top": "43.1%"
+	},
+	{
+		"name":"Hunaja",
+		"left": "46.8%",
+		"top": "77.54%"
+	},
+	{
 		"name":"Igavik",
 		"left": "67.1%",
 		"top": "71.45%"
-	},
-	{
-		"name":"Isevaras",
-		"left": "52%",
-		"top": "43.1%"
 	},
 	{
 		"name":"Monastery of the Final Element",
@@ -28,11 +38,6 @@
 		"name":"Pryon Gon",
 		"left": "71%",
 		"top": "88.15%"
-	},
-	{
-		"name":"Joroard",
-		"left": "92.5%",
-		"top": "73.7%"
 	},
 	{
 		"name":"Tasavägi",

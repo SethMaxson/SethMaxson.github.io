@@ -538,13 +538,191 @@ const settlementFlavour = [
 ];
 const cityNameParts = {
     fullNames: [
-        "Aegis", "Olympus", "Miracle", "Memento", "Infinity", "Beacon", "Genesis", "Exposure", "Curiosity", "Fortuna", "Eternity", "Atlas", "Beggar's End", "Havoc", "Promise", "Terminus", "Seclusion", "Serenity", "Solitude", "Paradise", "Hope", "Harmony", "Misery", "City of Dawn", "Eternity", "Forsaken", "Tranquility", "Vestige"
+        "Aegis",
+        "Atlas",
+        "Beacon",
+        "Beggar's End",
+        "City of Dawn",
+        "Curiosity",
+        "Eternity",
+        "Exposure",
+        "Forsaken",
+        "Fortuna",
+        "Genesis",
+        "Harmony",
+        "Havoc",
+        "Hope",
+        "Infinity",
+        "Memento",
+        "Miracle",
+        "Misery",
+        "Olympus",
+        "Paradise",
+        "Promise",
+        "Seclusion",
+        "Serenity",
+        "Solitude",
+        "Terminus",
+        "Tranquility",
+        "Vestige",
     ],
     nameStarts: [
-        "Aeon", "Aban", "Ale", "Ash", "End", "Bane", "Nova", "Atmos", "Mem", "Dream", "Ender", "Fable", "Glory", "Luna", "Mag", "Chrono", "Aura", "Nether", "Ark", "Lore", "Enigma", "Quiet", "Snow", "Awe", "Wolf", "Bear", "Rain", "Drought", "Voyage", "Glimmer", "Glitter", "Wind", "Miracle", "Moon", "Birds", "Ill", "Lost", "Crash", "Light", "Fools", "Back", "Kill", "Cat", "Dark", "Dread", "Ever", "Hope", "Ember", "Happy", "Dead", "Dog", "Dawn", "Dire", "Ditch", "Dirt", "Void", "Demon", "Angel", "Cruel", "Crumble", "Somer", "Cloud", "Border", "Break", "Bliss", "Doom", "Water", "Fire", "Earth", "Boom", "Air", "Metal", "Space", "Zero", "Black", "White", "Blue", "Red", "Yellow", "Purple", "Green", "Gray", "Rose", "Outland", "Elf", "Dwarf", "Beast", "Pioneer", "Prism", "Relic", "Scout", "Settler", "Scout", "Terra", "Cosmo", "Shere"
+        "Aban",
+        "Aeon",
+        "Air",
+        "Ale",
+        "Angel",
+        "Ark",
+        "Ash",
+        "Atmos",
+        "Aura",
+        "Awe",
+        "Back",
+        "Bane",
+        "Bear",
+        "Beast",
+        "Birds",
+        "Black",
+        "Bliss",
+        "Blue",
+        "Boom",
+        "Border",
+        "Break",
+        "Cat",
+        "Chrono",
+        "Cloud",
+        "Cosmo",
+        "Crash",
+        "Cruel",
+        "Crumble",
+        "Dark",
+        "Dawn",
+        "Dead",
+        "Demon",
+        "Dire",
+        "Dirt",
+        "Ditch",
+        "Dog",
+        "Doom",
+        "Dread",
+        "Dream",
+        "Drought",
+        "Dwarf",
+        "Earth",
+        "Elf",
+        "Ember",
+        "End",
+        "Ender",
+        "Enigma",
+        "Ever",
+        "Fable",
+        "Fire",
+        "Fools",
+        "Glimmer",
+        "Glitter",
+        "Glory",
+        "Gray",
+        "Green",
+        "Happy",
+        "Hope",
+        "Ill",
+        "Kill",
+        "Light",
+        "Lore",
+        "Lost",
+        "Luna",
+        "Mag",
+        "Mem",
+        "Metal",
+        "Miracle",
+        "Moon",
+        "Nether",
+        "Nova",
+        "Outland",
+        "Pioneer",
+        "Prism",
+        "Purple",
+        "Quiet",
+        "Rain",
+        "Red",
+        "Relic",
+        "Rose",
+        "Scout",
+        "Scout",
+        "Settler",
+        "Shere",
+        "Snow",
+        "Somer",
+        "Space",
+        "Terra",
+        "Void",
+        "Voyage",
+        "Water",
+        "White",
+        "Wind",
+        "Wolf",
+        "Yellow",
+        "Zero",
     ],
     nameEnds: [
-        "dale", "moor", "ton", "more", "haunt", "bed", "'s Landing", "'s End", "rast", " Gate", "rise", "town", "bound", "spire", "winter", "burg", "bourne", "water", "fire", "set", "shore", "ville", "ton", "sley", " End", "dawn", "waters", "ridge", "sley", "age", "mere", "shire", "feld", "field", "wall", " Falls", "bury", "ford", "arm", " City", " Fork", "fall", "caster", "moor", "cliff", "sby", "chapel", "blight", " Falls", "bend", "hope", " Point", " Rise", "lone", "side", " Gate", "ham", "melt"
+        " City",
+        " End",
+        " Falls",
+        " Falls",
+        " Fork",
+        " Gate",
+        " Gate",
+        " Point",
+        " Rise",
+        "'s End",
+        "'s Landing",
+        "age",
+        "arm",
+        "bed",
+        "bend",
+        "blight",
+        "bound",
+        "bourne",
+        "burg",
+        "bury",
+        "caster",
+        "chapel",
+        "cliff",
+        "dale",
+        "dawn",
+        "fall",
+        "feld",
+        "field",
+        "fire",
+        "ford",
+        "ham",
+        "haunt",
+        "hope",
+        "lone",
+        "melt",
+        "mere",
+        "moor",
+        "moor",
+        "more",
+        "rast",
+        "ridge",
+        "rise",
+        "sby",
+        "set",
+        "shire",
+        "shore",
+        "side",
+        "sley",
+        "sley",
+        "spire",
+        "ton",
+        "ton",
+        "town",
+        "ville",
+        "wall",
+        "water",
+        "waters",
+        "winter",
     ]
 };
 const numOfShops = {
@@ -568,25 +746,25 @@ function getPopulation(size) {
             pop = 0;
             break;
         case "micro":
-            pop = getRandomInt(2, 20); //two to twenty
+            pop = getRandomInt(2, 20); // 2 - 20
             break;
         case "tiny":
-            pop = getRandomInt(20, 200); //twenty to two hundred
+            pop = getRandomInt(20, 200); // 20 - 200
             break;
         case "small":
-            pop = getRandomInt(200, 1000); //two hundred to one thousand
+            pop = getRandomInt(200, 1000); // 200 - 1,000
             pop = Math.round(pop / 10) * 10;
             break;
         case "medium":
-            pop = getRandomInt(1000, 6000); //one thousand to six thousand
+            pop = getRandomInt(1000, 6000); // 1,000 - 6,000
             pop = Math.round(pop / 100) * 100;
             break;
         case "large":
-            pop = getRandomInt(6000, 25000); //six thousand to fifty thousand
+            pop = getRandomInt(6000, 25000); // 6,000 - 25,000
             pop = Math.round(pop / 100) * 100;
             break;
         case "huge":
-            pop = getRandomInt(25000, 50000); //six thousand to fifty thousand
+            pop = getRandomInt(25000, 50000); // 25,000 - 50,000
             pop = Math.round(pop / 100) * 100;
             break;
     }
@@ -666,14 +844,20 @@ function genWateringHole() {
 }
 function genPlaceOfWorship(alignment) {
     const listOfDeities = {};
-    $.extend(true, listOfDeities, Deities.PrimePantheon);
-    var alignedDeities = [];
-    for (var deity in listOfDeities) {
-        if (listOfDeities[deity].Alignment == alignment) {
-            alignedDeities.push(deity);
+    const weightedListOfDeities = {};
+    Object.keys(Deities.PrimePantheon).forEach(function (v) {
+        if (Deities.PrimePantheon[v].Alignment == alignment) {
+            weightedListOfDeities[v] = 1;
         }
-    }
-    var chosenDeity = randomize(alignedDeities);
+    });
+    Object.keys(Deities.Demigods).forEach(function (v) {
+        if (Deities.Demigods[v].Alignment == alignment) {
+            weightedListOfDeities[v] = 0.3;
+        }
+    });
+    $.extend(true, listOfDeities, Deities.PrimePantheon);
+    $.extend(true, listOfDeities, Deities.Demigods);
+    var chosenDeity = weightedRandom(weightedListOfDeities);
     var deityName = randomize([`${listOfDeities[chosenDeity].Title} (${chosenDeity})`, chosenDeity]);
     let placeName = randomize(placeofWorship.names).replace('DX', deityName);
     let description = "This place of worship " + randomize(placeofWorship.flavour).replace('SX', listOfDeities[chosenDeity].Symbol).toLowerCase();

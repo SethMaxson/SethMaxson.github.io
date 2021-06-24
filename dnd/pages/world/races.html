@@ -7,61 +7,8 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 		crossorigin="anonymous"></script>
 		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/filterable.css" rel="stylesheet" type="text/css" media="all">
 		<style>
-			html,
-			body {
-				background: #F7F5E6;
-				height: 100vh;
-				margin: 0;
-				padding: 0;
-				width: 100vw;
-				position:relative;
-				top: 0;
-				left: 0;
-			}
-
-			.background {
-				transition: background-image 0.5s ease-in-out;
-			}
-
-			.filter-thing {
-				position: absolute;
-				box-sizing: content-box !important;
-				top: 0;
-				left: 0;
-				height: 100%;
-				width: 10%;
-				overflow-x: hidden;
-				overflow-y: auto;
-				background:slategray;
-			}
-
-			.filter-thing input.search{
-				width: 100%;
-			}
-
-			.filter-thing .filterable-item {
-				border:1px solid darkslategray;
-				padding:0.1em;
-				cursor: pointer;
-			}
-
-			.filter-thing .filterable-item:hover {
-				border-color:gold;
-				color:gold;
-			}
-
-			.filter-thing .filterable-item.selected {
-				border-color:darkslategray;
-				background:darkslategray;
-			}
-
-			.container {
-				width: 70%;
-				height:100%;
-				overflow-y: auto;
-			}
-
 			#species-viewer-panel {
 				width: 100%;
 				min-height: 100%;

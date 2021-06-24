@@ -16,13 +16,22 @@ function displaySpecies(data: ISpeciesFluff)
 	}
 	$("#species-viewer-panel .name").text(data.name);
 	$("#species-viewer-panel .properties").text(data.tagline);
-	$("#species-viewer-panel .description p").remove();
-	for (let i = 0; i < data.description.length; i++) {
-		$(".description").append($(`<p>${data.description[i]}</p>`));
+	$("#species-viewer-panel .description *").remove();
+	for (let i = 0; i < data.description.length; i++)
+	{
+		let descText = data.description[i].trim();
+		if (descText.startsWith("---") && descText.endsWith("---")) {
+			$(".description").append($(`<h3>${descText.split("---")[1]}</h3>`));
+		}
+		else
+		{
+			$(".description").append($(`<p>${descText}</p>`));
+		}
 	}
 	if (data.images.standee.length > 0) {
 		$("#species-viewer-panel .standee").show();
 		$("#species-viewer-panel .standee").attr("src", data.images.standee);
+		// $(".description").append($(`<img class="standee" alt="standee" src="${data.images.standee}" />`));
 	}
 	else
 	{

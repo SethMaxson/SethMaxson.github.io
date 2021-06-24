@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- code copyright (c) 2009-2021 drow <drow@bin.sh>                     -->
+	<!-- https://twitter.com/donjon_bin_sh                                   -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+	<head>
+		<meta charset="utf-8" />
+		<title>The Chrysalis Lair</title>
+
+		<link rel="shortcut icon" href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAAAAAAAABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAHAADgBwAA4AcAAP5/AAD4HwAA+98AAPvfAAD73wAA+98AAPvfAAD73wAA+B8AAP5/AADgBwAA4AcAAOAHAAA=" type="image/vnd.microsoft.icon" />
+
+		<link rel="stylesheet" media="all" href="data:text/css;base64,LyogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKi8KLyogZHVuZ2Vvbi9zdHlsZS5jc3MgKi8KCiAgYm9keS5jb2RleCB7CiAgICBtYXJnaW46IDBweDsKICAgIHBhZGRpbmc6IDJleCAyZW07CiAgICBmb250LWZhbWlseTogJ0FzdWwnLCBzYW5zLXNlcmlmOwogIH0KICBib2R5LmNvZGV4IGgxIHsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIGZvbnQtc2l6ZTogMjAwJTsgZm9udC13ZWlnaHQ6IGJvbGQ7CiAgfQogIGJvZHkuY29kZXggaDIgewogICAgdGV4dC1hbGlnbjogY2VudGVyOwogICAgZm9udC1zaXplOiAxNTAlOyBmb250LXdlaWdodDogYm9sZDsKICB9CgogIHRhYmxlLmR1bmdlb24gewogICAgbWFyZ2luOiAyZXggYXV0bzsKICAgIGJvcmRlcjogbm9uZTsgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTsKICB9CiAgZGl2LmZvb3Rub3RlcyBwIHsKICAgIG1hcmdpbjogMmV4IDJlbTsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICB9CgovKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqLwovKiBkdW5nZW9uIG1hcCAqLwoKICBkaXYuZHVuZ2Vvbl9tYXAgewogICAgbWFyZ2luOiAyZXggMmVtOwogICAgdGV4dC1hbGlnbjogY2VudGVyOwogIH0KICBkaXYuZHVuZ2Vvbl9rZXkgewogICAgbWFyZ2luOiAyZXggMmVtOwogICAgdGV4dC1hbGlnbjogY2VudGVyOwogIH0KCi8qICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICovCi8qIHRhYmxlIG1hcCAqLwoKICB0YWJsZS5tYXAgewogICAgbWFyZ2luOiAyZXggYXV0bzsKICAgIGJvcmRlci1sZWZ0OiAxcHggc29saWQ7IGJvcmRlci10b3A6IDFweCBzb2xpZDsKICAgICAgYm9yZGVyLWNvbG9yOiAjMzMzMzMzOwogIH0KICB0YWJsZS5tYXAgdGQuY2VsbCB7CiAgICBtaW4taGVpZ2h0OiAxMHB4OyBtaW4td2lkdGg6IDEwcHg7CiAgICBib3JkZXItcmlnaHQ6IDFweCBzb2xpZDsgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkOwogICAgICBib3JkZXItY29sb3I6ICNjY2NjY2M7CiAgICBwYWRkaW5nOiAwcHg7CiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsgdmVydGljYWwtYWxpZ246IG1pZGRsZTsKICAgIGZvbnQtZmFtaWx5OiBIZWx2ZXRpY2EsIEdlbmV2YSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiA5cHg7CiAgfQogIHRhYmxlLm1hcCB0ZC5jZWxsIGEgewogICAgdGV4dC1kZWNvcmF0aW9uOiBub25lOwogIH0KICB0YWJsZS5tYXAgdGQuZmlsbCB7CiAgICBib3JkZXItY29sb3I6ICMzMzMzMzM7CiAgICBiYWNrZ3JvdW5kOiAjMDAwMDAwOwogIH0KCi8qICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICovCi8qIGRldGFpbHMgKi8KCiAgdGFibGUuZHVuZ2Vvbi5kZXRhaWxzIHsKICAgIGJvcmRlci10b3A6IDFweCBzb2xpZDsKICAgIGJvcmRlci1jb2xvcjogI2NjY2NjYzsKICB9CiAgdGFibGUuZHVuZ2Vvbi5kZXRhaWxzIHRyLnNlY3Rpb24gewogICAgcGFkZGluZzogMWV4IDFlbTsKICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZDsKICAgIGJvcmRlci1jb2xvcjogI2NjY2NjYzsKICB9CiAgdGFibGUuZHVuZ2Vvbi5kZXRhaWxzIHRyLnNlY3Rpb24gPiB0ZC50aXRsZSB7CiAgICBmb250LXNpemU6IDEyMCU7CiAgICBsaW5lLWhlaWdodDogMjAwJTsKICB9CgogIHRhYmxlLmR1bmdlb24uZGV0YWlscyB0ZCB7CiAgICBwYWRkaW5nOiAxZXggMWVtOwogICAgdmVydGljYWwtYWxpZ246IHRvcDsKICB9CiAgdGFibGUuZHVuZ2Vvbi5kZXRhaWxzIHRkLnRpdGxlIHsKICAgIG1pbi13aWR0aDogMTBlbTsKICAgIHRleHQtYWxpZ246IHJpZ2h0OwogICAgZm9udC13ZWlnaHQ6IGJvbGQ7CiAgfQogIHRhYmxlLmR1bmdlb24uZGV0YWlscyB0ZC5kb29yIHsKICAgIG1pbi13aWR0aDogMTBlbTsKICAgIHRleHQtYWxpZ246IHJpZ2h0OwogICAgZm9udC1zdHlsZTogaXRhbGljOwogIH0KCi8qIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtICovCi8qIGNvbnRlbnQgKi8KCiAgdGFibGUuZHVuZ2Vvbi5kZXRhaWxzIHRkLmNvbnRlbnQgewogICAgd2lkdGg6IDEwMCU7CiAgfQogIHRhYmxlLmR1bmdlb24uZGV0YWlscyB0ZC5jb250ZW50IHRhYmxlIHsKICAgIGJvcmRlcjogbm9uZTsgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTsKICB9CiAgdGFibGUuZHVuZ2Vvbi5kZXRhaWxzIHRkLmNvbnRlbnQgcCB7CiAgICBtYXJnaW46IDBweDsgcGFkZGluZzogMHB4OwogIH0KICB0YWJsZS5kdW5nZW9uLmRldGFpbHMgdGQuY29udGVudCBociB7CiAgICBtYXJnaW46IDBweDsKICAgIGJvcmRlcjogbm9uZTsgYm9yZGVyLXRvcDogMXB4IHNvbGlkOwogICAgYm9yZGVyLWNvbG9yOiAjY2NjY2NjOwogIH0KICB0YWJsZS5kdW5nZW9uLmRldGFpbHMgdGQuY29udGVudCA+ICogKyAqIHsKICAgIG1hcmdpbi10b3A6IDFleCAhaW1wb3J0YW50OwogIH0KCi8qIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtIC0gLSAtICovCi8qIGhvdmVyIGVmZmVjdHMgKi8KCiAgdGFibGUuZHVuZ2Vvbi5kZXRhaWxzIHRyLnNlY3Rpb246aG92ZXIgPiB0ZCB7CiAgICBiYWNrZ3JvdW5kOiAjZGVkZWRlOwogIH0KICB0YWJsZS5kdW5nZW9uLmRldGFpbHMgdHIucm93OmhvdmVyIHRkIHsKICAgIGJhY2tncm91bmQ6IHdoaXRlOwogIH0KCi8qICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICovCi8qIGR1bmdlb24gYWN0aW9ucyAqLwoKICBkaXYuZHVuZ2Vvbl9hY3Rpb25zIHsKICAgIG1hcmdpbjogMmV4IDRlbTsgbWFyZ2luLXRvcDogNGV4OwogIH0KICBkaXYuZHVuZ2Vvbl9hY3Rpb25zIGRpdi5hY3Rpb25zIHsKICAgIGJhY2tncm91bmQ6ICNkZWRlZGU7CiAgfQogIGRpdi5kdW5nZW9uX2FjdGlvbnMgZGl2LmZpbGVfdHlwZSB7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogIH0KICBkaXYuZHVuZ2Vvbl9hY3Rpb25zIGRpdi5maWxlX3R5cGUgZGl2IHsKICAgIGZsZXgtYmFzaXM6IDI1JTsKICAgIGZsZXgtZ3JvdzogMDsKICB9CiAgZGl2LmR1bmdlb25fYWN0aW9ucyBkaXYuZmlsZV90eXBlIGRpdi5pY29uIHsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICB9CiAgZGl2LmR1bmdlb25fYWN0aW9ucyBkaXYuZmlsZV90eXBlIGRpdi5pY29uIGltZyB7CiAgICBtYXgtd2lkdGg6IDI0cHg7IG1heC1oZWlnaHQ6IDI0cHg7CiAgfQogIGRpdi5kdW5nZW9uX2FjdGlvbnMgZGl2LmZpbGVfdHlwZSBkaXYuYnV0dG9uIGlucHV0IHsKICAgIG1pbi13aWR0aDogMTBlbTsKICB9CiAgZGl2LmR1bmdlb25fYWN0aW9ucyBkaXYuZmlsZV90eXBlIGRpdi5kZXNjIHsKICAgIGZsZXgtZ3JvdzogMTsKICB9CgovKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqLwovKiBtb2JpbGUgKi8KCiAgQG1lZGlhIHNjcmVlbiBhbmQgKGhvdmVyOiBub25lKSB7CiAgICB0YWJsZS5kdW5nZW9uLmRldGFpbHMgdHIuc2VjdGlvbiB7IGRpc3BsYXk6IGJsb2NrOyB9CiAgICB0YWJsZS5kdW5nZW9uLmRldGFpbHMgdHIuc2VjdGlvbiA+IHRkIHsgZGlzcGxheTogYmxvY2s7IH0KICAgIHRhYmxlLmR1bmdlb24uZGV0YWlscyB0ci5zZWN0aW9uID4gdGQudGl0bGUgeyB0ZXh0LWFsaWduOiBsZWZ0OyB9CiAgICB0YWJsZS5kdW5nZW9uLmRldGFpbHMgdHIuc2VjdGlvbiA+IHRkLmNvbnRlbnQgeyB3aWR0aDogYXV0bzsgfQogICAgdGFibGUuZHVuZ2Vvbi5kZXRhaWxzIHRkLnRpdGxlIHsgbWluLXdpZHRoOiA1ZW07IH0KICAgIHRhYmxlLmR1bmdlb24uZGV0YWlscyB0ZC5kb29yIHsgbWluLXdpZHRoOiA1ZW07IH0KICAgIGRpdi5kdW5nZW9uX2FjdGlvbnMgZGl2LmZpbGVfdHlwZSBkaXYuaWNvbiB7IGRpc3BsYXk6IG5vbmU7IH0KICB9CgovKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqLwovKiBwcmludCAqLwoKICBAbWVkaWEgcHJpbnQgewogICAgYm9keS5jb2RleCB7IHBhZGRpbmc6IDBweCAxZXg7IGZvbnQtc2l6ZTogNjAlOyB9CiAgICBkaXYuZHVuZ2Vvbl9tYXAgaW1nIHsgbWF4LXdpZHRoOiAxMDAlOyB9CiAgICBkaXYuZHVuZ2Vvbl9rZXkgaW1nIHsgbWF4LXdpZHRoOiAxMDAlOyB9CiAgICBkaXYuZHVuZ2Vvbl9hY3Rpb25zIHsgZGlzcGxheTogbm9uZTsgfQogIH0KCi8qICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICogKiAqICovCg==" />
+		<style>
+			.rollable-table {
+				border-collapse: collapse;
+			}
+			.rollable-table td {
+				border:2px solid gray;
+			}
+			table.dungeon.details table.rollable-table tr td p {
+				margin-top:0.5em;
+			}
+			.rollable-table th {
+				border:2px solid gray;
+				font-weight: bold;
+				background: silver;
+			}
+		</style>
+	</head>
+
+	<body class="codex">
+		<h1>The Chrysalis Lair</h1>
+
+		<h2>Designed for a group of 3 Level 3 characters</h2>
+
+		<!-- BEGIN OF CONTENT -->
+		<div id="dungeon_map" class="dungeon_map">
+			<img src="data:image/png;base64,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" alt="[ dungeon map ]" usemap="#dungeon_areas" />
+			<map name="dungeon_areas" id="dungeon_areas" style="display: block;"><area shape="rect" href="#room_1" coords="18,90,144,216" alt="Room #1, 70' x 70', 4 x Reduced-Threat Gray Ooze" title="Room #1, 70' x 70', 4 x Reduced-Threat Gray Ooze" /><area coords="162,90,288,216" alt="Room #2, 70' x 70', Empty" title="Room #2, 70' x 70', Empty" shape="rect" href="#room_2" /><area href="#room_3" shape="rect" title="Room #3, 70' x 70', Empty" alt="Room #3, 70' x 70', Empty" coords="18,234,144,360" /><area title="Room #4, 70' x 70', 3 x Dust Mephit" alt="Room #4, 70' x 70', 3 x Dust Mephit" coords="162,234,288,360" href="#room_4" shape="rect" /><area href="#room_5" shape="rect" title="Room #5, 50' x 50', Gelatinous Cube, Idol of Evil" alt="Room #5, 50' x 50', Gelatinous Cube, Idol of Evil" coords="54,414,144,504" /><area title="Room #6, 30' x 70', 4 x Violet Fungus" alt="Room #6, 30' x 70', 4 x Violet Fungus" coords="342,18,396,144" shape="rect" href="#room_6" /><area alt="Room #7, 30' x 70', Empty" title="Room #7, 30' x 70', Empty" coords="162,378,216,504" href="#room_7" shape="rect" /><area alt="Room #8, 50' x 50'" title="Room #8, 50' x 50'" coords="270,378,360,468" href="#room_8" shape="rect" /><area title="Room #9, 50' x 70', Bata Marbh" alt="Room #9, 50' x 70', Bata Marbh" coords="306,162,396,288" shape="rect" href="#room_9" /><area coords="144,126,162,144" title="Secret (DC 25 to find) Locked Strong Wooden Door (DC 10 to open, DC 20 to break; 20 hp)" alt="Secret (DC 25 to find) Locked Strong Wooden Door (DC 10 to open, DC 20 to break; 20 hp)" shape="rect" /><area alt="Locked Iron Door (DC 10 to open, DC 30 to break; 60 hp)" title="Locked Iron Door (DC 10 to open, DC 30 to break; 60 hp)" coords="126,216,144,234" shape="rect" /><area coords="90,72,108,90" title="Trapped and Unlocked Good Wooden Door (15 hp)" alt="Trapped and Unlocked Good Wooden Door (15 hp)" shape="rect" /><area shape="rect" alt="Trapped and Unlocked Stone Door (60 hp)" title="Trapped and Unlocked Stone Door (60 hp)" coords="54,72,72,90" /><area shape="rect" coords="18,72,36,90" title="Trapped and Unlocked Stone Door (60 hp) (slides up)" alt="Trapped and Unlocked Stone Door (60 hp) (slides up)" /><area coords="288,126,306,144" title="Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)" alt="Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)" shape="rect" /><area alt="Trapped and Unlocked Strong Wooden Door (20 hp)" title="Trapped and Unlocked Strong Wooden Door (20 hp)" coords="288,198,306,216" shape="rect" /><area shape="rect" title="Secret (DC 20 to find) Stuck Simple Wooden Door (DC 10 to break; 10 hp)" alt="Secret (DC 20 to find) Stuck Simple Wooden Door (DC 10 to break; 10 hp)" coords="198,216,216,234" /><area shape="rect" alt="Trapped and Locked Iron Door (DC 10 to open, DC 30 to break; 60 hp)" title="Trapped and Locked Iron Door (DC 10 to open, DC 30 to break; 60 hp)" coords="126,360,144,378" /><area title="Secret (DC 15 to find) Locked Stone Door (DC 25 to open, DC 25 to break; 60 hp)" alt="Secret (DC 15 to find) Locked Stone Door (DC 25 to open, DC 25 to break; 60 hp)" coords="90,360,108,378" shape="rect" /><area alt="Secret (DC 15 to find) Stuck Stone Door (DC 20 to break; 60 hp)" title="Secret (DC 15 to find) Stuck Stone Door (DC 20 to break; 60 hp)" coords="162,360,180,378" shape="rect" /><area shape="rect" coords="288,342,306,360" alt="Secret (DC 15 to find) Unlocked Good Wooden Door (15 hp)" title="Secret (DC 15 to find) Unlocked Good Wooden Door (15 hp)" /><area coords="288,306,306,324" alt="Trapped and Unlocked Good Wooden Door (15 hp)" title="Trapped and Unlocked Good Wooden Door (15 hp)" shape="rect" /><area shape="rect" coords="144,414,162,432" alt="Trapped and Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)" title="Trapped and Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)" /><area coords="54,396,72,414" alt="Locked Good Wooden Door (DC 10 to open, DC 15 to break; 15 hp)" title="Locked Good Wooden Door (DC 10 to open, DC 15 to break; 15 hp)" shape="rect" /><area shape="rect" title="Secret (DC 20 to find) Stuck Good Wooden Door (DC 15 to break; 15 hp)" alt="Secret (DC 20 to find) Stuck Good Wooden Door (DC 15 to break; 15 hp)" coords="126,396,144,414" /><area alt="Trapped and Locked Stone Door (DC 25 to open, DC 25 to break; 60 hp)" title="Trapped and Locked Stone Door (DC 25 to open, DC 25 to break; 60 hp)" coords="324,18,342,36" shape="rect" /><area coords="342,144,360,162" title="Trapped and Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)" alt="Trapped and Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)" shape="rect" /><area shape="rect" coords="252,414,270,432" title="Trapped and Unlocked Good Wooden Door (15 hp)" alt="Trapped and Unlocked Good Wooden Door (15 hp)" /></map>
+		</div>
+		<div class="dungeon_key"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtAAAAAhCAIAAAB/ZAteAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDowMTgwMTE3NDA3MjA2ODExODcxRkVBNTg2RjMxQjI3OCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo4RUVBMTQ3NEExOTAxMUVCQUFFMDgyMjQzNDM0QUNCQSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo4RUVBMTQ3M0ExOTAxMUVCQUFFMDgyMjQzNDM0QUNCQSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjAyODAxMTc0MDcyMDY4MTE4OEM2RTAyNTI4NjZFNzZDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjAxODAxMTc0MDcyMDY4MTE4NzFGRUE1ODZGMzFCMjc4Ii8+IDwvcmRmOkRlc2NyaXB0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" alt="[ map key ]" /></div>
+		<table class="dungeon details">
+			<tr class="section">
+				<td class="title">General</td>
+				<td class="content">
+					<table>
+						<tr class="row">
+							<td class="title">History</td>
+							<td class="content">The dungeon was created by kuo-toa as a stronghold. It was eventually conquered by invaders, and has lain empty for many centuries until recently.</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Walls</td>
+							<td class="content">Masonry (DC 15 to climb)</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Floor</td>
+							<td class="content">Flagstone</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Temperature</td>
+							<td class="content">Average</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Illumination</td>
+							<td class="content">Shadowy (phosphorescent fungus or candles every 20 ft.)</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="section">
+				<td class="title">Corridor Features</td>
+				<td class="content">
+					<table />
+				</td>
+			</tr>
+			<tr class="section">
+				<td class="title"><span id="room_1">Room #1</span></td>
+				<td class="content">
+					<table>
+						<tr class="row">
+							<td class="door">North Entry #1</td>
+							<td class="content">
+								<p>Trapped and Unlocked Stone Door (60 hp) (slides up)</p>
+								<p class="icon">&#9417; &nbsp; Earthmaw Trap: DC 15 to find, DC 10 to disable;
+									+7 to hit against one target, 2d10 piercing damage</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">North Entry #2</td>
+							<td class="content">
+								<p>Trapped and Unlocked Stone Door (60 hp)</p>
+								<p class="icon">&#9417; &nbsp; Rune of Hypnosis: DC 15 to find, DC 15 to disable;
+									affects all targets within 10 ft., DC 13 save or become incapacitated for 1d4 rounds</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">North Entry #3</td>
+							<td class="content">
+								<p>Trapped and Unlocked Good Wooden Door (15 hp)</p>
+								<p class="icon">&#9417; &nbsp; Fire Spray: DC 10 to find, DC 15 to disable;
+									affects all targets within a 20 ft. cone, DC 15 save or take 2d10 fire damage</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">East Entry</td>
+							<td class="content">
+								<p>Secret (DC 25 to find) Locked Strong Wooden Door (DC 10 to open, DC 20 to break; 20 hp)</p>
+								<p class="icon">&#9416; &nbsp; The door is concealed within an upright sarcophagus</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_2">room #2</a></p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">South Entry</td>
+							<td class="content">
+								<p>Locked Iron Door (DC 10 to open, DC 30 to break; 60 hp)</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_3">room #3</a></p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Room Features</td>
+							<td class="content">
+								<p>A mural of vile acts covers the ceiling, and the sound of rushing water can be faintly heard near the west wall</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Monster</td>
+							<td class="content">
+								<p>4 x Reduced-Threat Gray Ooze (cr 1/2, TftYP 113); hard, 400 xp</p>
+								<hr />
+								<p>Treasure: 2500 cp, 1200 sp, 80 gp, Small Silver Mirror (25 gp), Ceramic Ring (25 gp), Painted Glass Figurine (of a Goddess of Love) (25 gp), Leather Boots with Brass Buckles (25 gp), Silk Pennant threaded with Fine Steel (25 gp), Bronze Cloth Gloves (25 gp)</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="section">
+				<td class="title"><span id="room_2">Room #2</span></td>
+				<td class="content">
+					<table>
+						<tr class="row">
+							<td class="door">West Entry</td>
+							<td class="content">
+								<p>Secret (DC 25 to find) Locked Strong Wooden Door (DC 10 to open, DC 20 to break; 20 hp)</p>
+								<p class="icon">&#9416; &nbsp; The door is concealed within an upright sarcophagus</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_1">room #1</a>, inhabited by 4 x Reduced-Threat Gray Ooze</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">East Entry #1</td>
+							<td class="content">
+								<p>Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">East Entry #2</td>
+							<td class="content">
+								<p>Trapped and Unlocked Strong Wooden Door (20 hp)</p>
+								<p class="icon">&#9417; &nbsp; Ice Dart Trap: DC 15 to find, DC 10 to disable;
+									+6 to hit against one target, 2d10 cold damage</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_9">room #9</a>, inhabited by Bata Marbh</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">South Entry</td>
+							<td class="content">
+								<p>Secret (DC 20 to find) Stuck Simple Wooden Door (DC 10 to break; 10 hp)</p>
+								<p class="icon">&#9416; &nbsp; The door is concealed within the mouth of a gargantuan skull carved from stone</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_4">room #4</a>, inhabited by 3 x Dust Mephit</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Room Features</td>
+							<td class="content">
+								<p>A shallow pit lies in the north side of the room, and a simple fireplace sits against the east wall</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="section">
+				<td class="title"><span id="room_3">Room #3</span></td>
+				<td class="content">
+					<table>
+						<tr class="row">
+							<td class="door">North Entry</td>
+							<td class="content">
+								<p>Locked Iron Door (DC 10 to open, DC 30 to break; 60 hp)</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_1">room #1</a>, inhabited by 4 x Reduced-Threat Gray Ooze</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">South Entry #1</td>
+							<td class="content">
+								<p>Secret (DC 15 to find) Locked Stone Door (DC 25 to open, DC 25 to break; 60 hp)</p>
+								<p class="icon">&#9416; &nbsp; A stone statue and section of wall pivots open when a command word is spoken</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">South Entry #2</td>
+							<td class="content">
+								<p>Trapped and Locked Iron Door (DC 10 to open, DC 30 to break; 60 hp)</p>
+								<p class="icon">&#9417; &nbsp; Rune of Confusion: DC 15 to find, DC 15 to disable;
+									affects all targets within 10 ft., DC 13 save or become confused (phb 224) for 1d4 rounds</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Empty</td>
+							<td class="content">&nbsp;</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="section">
+				<td class="title"><span id="room_4">Room #4</span></td>
+				<td class="content">
+					<table>
+						<tr class="row">
+							<td class="door">North Entry</td>
+							<td class="content">
+								<p>Secret (DC 20 to find) Stuck Simple Wooden Door (DC 10 to break; 10 hp)</p>
+								<p class="icon">&#9416; &nbsp; The door is concealed within the mouth of a gargantuan skull carved from stone</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_2">room #2</a></p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">East Entry #1</td>
+							<td class="content">
+								<p>Trapped and Unlocked Good Wooden Door (15 hp)</p>
+								<p class="icon">&#9417; &nbsp; Falling Block: DC 15 to find, DC 15 to disable;
+									affects all targets within a 10 ft. square area, DC 15 save or take 2d10 damage</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">East Entry #2</td>
+							<td class="content">
+								<p>Secret (DC 15 to find) Unlocked Good Wooden Door (15 hp)</p>
+								<p class="icon">&#9416; &nbsp; The door is concealed behind a statue of an armored warrior, and opened by moving his sword</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">South Entry</td>
+							<td class="content">
+								<p>Secret (DC 15 to find) Stuck Stone Door (DC 20 to break; 60 hp)</p>
+								<p class="icon">&#9416; &nbsp; A trap door in the floor leads to a short tunnel beneath the wall</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_7">room #7</a></p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Room Features</td>
+							<td class="content">
+								<p>A faded and torn tapestry hangs from the south wall, and lit candles are scattered across the floor</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Monster</td>
+							<td class="content">
+								<p>3 x Dust Mephit (cr 1/2, mm 215); medium, 300 xp</p>
+								<hr />
+								<p>Treasure: 7 sp; 12 gp; 18 sp</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="section">
+				<td class="title"><span id="room_5">Room #5</span></td>
+				<td class="content">
+					<table>
+						<tr class="row">
+							<td class="door">North Entry #1</td>
+							<td class="content">
+								<p>Locked Good Wooden Door (DC 10 to open, DC 15 to break; 15 hp)</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">North Entry #2</td>
+							<td class="content">
+								<p>Secret (DC 20 to find) Stuck Good Wooden Door (DC 15 to break; 15 hp)</p>
+								<p class="icon">&#9416; &nbsp; The door is concealed within the mouth of a gargantuan skull carved from stone</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">East Entry</td>
+							<td class="content">
+								<p>Trapped and Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)</p>
+								<p class="icon">&#9417; &nbsp; Arrow Trap: DC 15 to find, DC 15 to disable;
+									+5 to hit against one target, 1d10 piercing damage</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_7">room #7</a></p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Room Features</td>
+							<td class="content">
+								<p>The sparse, dimly lit room is immaculately clean and spotless.</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Monster</td>
+							<td class="content">
+								<p>Gelatinous Cube (cr 2, mm 222); medium, 450 xp</p>
+								<hr />
+								<p>Treasure: 19 cp; 20 sp</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Trap</td>
+							<td class="content">
+								<p>Idol of Evil: DC 20 to find, DC 15 to disable;
+									affects good creatures which touch the idol, DC 12 save or take 2d10 damage</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="section">
+				<td class="title"><span id="room_6">Room #6</span></td>
+				<td class="content">
+					<table>
+						<tr class="row">
+							<td class="door">West Entry</td>
+							<td class="content">
+								<p>Trapped and Locked Stone Door (DC 25 to open, DC 25 to break; 60 hp)</p>
+								<p class="icon">&#9417; &nbsp; Earthmaw Trap: DC 15 to find, DC 15 to disable;
+									+4 to hit against one target, 1d10 piercing damage</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">South Entry</td>
+							<td class="content">
+								<p>Trapped and Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)</p>
+								<p class="icon">&#9417; &nbsp; Falling Block: DC 10 to find, DC 10 to disable;
+									affects all targets within a 10 ft. square area, DC 15 save or take 2d10 damage</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_9">room #9</a>, inhabited by Bata Marbh</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Room Features</td>
+							<td class="content">
+								<p>A rope ascends to a wooden platform in the south side of the room, and a sundered club lies in the north-west corner of the room</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Monster</td>
+							<td class="content">
+								<p>4 x Violet Fungus (cr 1/4, mm 138); easy, 400 xp</p>
+								<hr />
+								<p>Treasure: 13 sp; 19 cp</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="section">
+				<td class="title"><span id="room_7">Room #7</span></td>
+				<td class="content">
+					<table>
+						<tr class="row">
+							<td class="door">North Entry</td>
+							<td class="content">
+								<p>Secret (DC 15 to find) Stuck Stone Door (DC 20 to break; 60 hp)</p>
+								<p class="icon">&#9416; &nbsp; A trap door in the floor leads to a short tunnel beneath the wall</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_4">room #4</a>, inhabited by 3 x Dust Mephit</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">West Entry</td>
+							<td class="content">
+								<p>Trapped and Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)</p>
+								<p class="icon">&#9417; &nbsp; Arrow Trap: DC 15 to find, DC 15 to disable;
+									+5 to hit against one target, 1d10 piercing damage</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_5">room #5</a>, inhabited by Gelatinous Cube</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Room Features</td>
+							<td class="content">
+								<p>A sloped pit lined with iron spikes lies in the east side of the room, and the ceiling is covered with cobwebs</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="section">
+				<td class="title"><span id="room_8">Room #8</span></td>
+				<td class="content">
+					<table>
+						<tr class="row">
+							<td class="door">West Entry</td>
+							<td class="content">
+								<p>Trapped and Unlocked Good Wooden Door (15 hp)</p>
+								<p class="icon">&#9417; &nbsp; Ice Dart Trap: DC 20 to find, DC 10 to disable;
+									+11 to hit against one target, 4d10 cold damage</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Room Features</td>
+							<td class="content">
+								<p>A dozen identical lizards bask upon a stone statue of the demigod Irwodile, seated in the center of the chamber.</p>
+								<hr />
+								<p>Boons: If the players choose to pray to Irwodile, he will explain that Bata Marbh's plan goes against his wishes, and that he needs to be stopped. He can answer some questions the party may have about Bata Marbh, including how best to defeat him. Irwodile explains that he can attempt to bestow aid upon the party through the lizards. They can each select one lizard and allow it to bite them. Once a lizard has bitten a player, it dissolves into a small beam of light and disappears. Allow the party to roll once each on the following table of boons.</p>
+								<table class="rollable-table">
+									<tr>
+										<th>1d12</th>
+										<th>Blessing/Boon/Charm</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>
+											<b>Yuan-Ti Pureblood Transformation</b>
+											<p>
+												A human can be transformed into a yuan-ti pureblood. The transformation can be undone only by a wish spell or divine intervention. A character who survives it gains a random form of indefinite madness (see "Madness" in chapter 8 of the Dungeon Master's Guide). A human that undergoes and survives the ritual retains its traits and gains the following yuan-ti racial traits.
+
+											</p>
+											<p>
+												<b>Darkvision.</b>
+												You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+											</p>
+											<p>
+												<b>Innate Spellcasting.</b>
+												You know the poison spray cantrip. You can cast animal friendship an unlimited number of times with this trait, but you can target only snakes with it. Starting at 3rd level, you can also cast suggestion with this trait. Once you cast it, you can't do so again until you finish a long rest. Charisma is your spellcasting ability for these spells.
+											</p>
+											<p>
+												<b>Magic Resistance.</b>
+												You have advantage on saving throws against spells and other magical effects.
+											</p>
+											<p>
+												<b>Poison Immunity.</b>
+												You are immune to poison damage and the poisoned condition.
+											</p>
+											<p>Source: ToA, page 119</p>
+										</td>
+									</tr>
+									<tr>
+										<td>2-3</td>
+										<td>
+											<b>Blessing of Understanding</b>
+											<p>Your Wisdom score increases by 2, up to a maximum of 22.</p>
+											<p>Source: DMG, page 228</p>
+										</td>
+									</tr>
+									<tr>
+										<td>4-5</td>
+										<td>
+											<b>Blessing of Weapon Enchantment</b>
+											<p>One nonmagical weapon in your possession becomes a +1 weapon whenever you wield it.</p>
+											<p>Source: DMG, page 228</p>
+										</td>
+									</tr>
+									<tr>
+										<td>6-7</td>
+										<td>
+											<b>Blessing of Protection</b>
+											<p>You gain a +1 bonus to AC and saving throws.</p>
+											<p>Source: DMG, page 228</p>
+										</td>
+									</tr>
+									<tr>
+										<td>8-9</td>
+										<td>
+											<b>Charm of Heroism</b>
+											<p>This charm allows you to give yourself the benefit of a potion of heroism as an action. Once you do so, the charm vanishes from you.</p>
+											<p>Note: A potion of heroism functions as a bless spell with no concentration, lasting for one hour. For the duration, you can roll 1d4 and add it to any saving throws and attack rolls you make.</p>
+											<p>Source: DMG, page 228</p>
+										</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td>
+											<b>Boon of Luck</b>
+											<p>You can add a d10 roll to any ability check, attack roll, or saving throw you make. Once you use this boon, you can't use it again until you finish a short rest.</p>
+											<p>Source: DMG, page 232</p>
+										</td>
+									</tr>
+									<tr>
+										<td>11</td>
+										<td>
+											<b>Boon of Fate</b>
+											<p>When another creature that you can see within 60 feet of you makes an ability check, an attack roll, or a saving throw, you can roll a d10 and apply the result as a bonus or penalty to the roll. Once you use this boon, you can't use it again until you finish a short rest.</p>
+											<p>Source: DMG, page 232</p>
+										</td>
+									</tr>
+									<tr>
+										<td>12</td>
+										<td>
+											<b>Boon of Combat Prowess</b>
+											<p>When you miss with a melee weapon attack, you can choose to hit instead. Once you use this boon, you can't use it again until you finish a short rest.</p>
+											<p>Source: DMG, page 232</p>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr class="section">
+				<td class="title"><span id="room_9">Room #9</span></td>
+				<td class="content">
+					<table>
+						<tr class="row">
+							<td class="door">North Entry</td>
+							<td class="content">
+								<p>Trapped and Locked Strong Wooden Door (DC 15 to open, DC 20 to break; 20 hp)</p>
+								<p class="icon">&#9417; &nbsp; Falling Block: DC 10 to find, DC 10 to disable;
+									affects all targets within a 10 ft. square area, DC 15 save or take 2d10 damage</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_6">room #6</a>, inhabited by 4 x Violet Fungus</p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="door">West Entry</td>
+							<td class="content">
+								<p>Trapped and Unlocked Strong Wooden Door (20 hp)</p>
+								<p class="icon">&#9417; &nbsp; Ice Dart Trap: DC 15 to find, DC 10 to disable;
+									+6 to hit against one target, 2d10 cold damage</p>
+								<p class="icon">&rarr; &nbsp; Leads to <a href="#room_2">room #2</a></p>
+							</td>
+						</tr>
+						<tr class="row">
+							<td class="title">Monster</td>
+							<td class="content">
+								<p>Bata Marbh - Weretiger (has resistance to all damage except that which is dealt by Carol or Rondel. Has two bonus actions per round, one for Carol, and one for Rondel.) (cr 4, mm 210); hard, 1,100 xp</p>
+								<hr />
+								<p>Treasure: 180 gp; Carol (sentient Dancing Blade); Rondel (sentient Dancing Blade); Cape of Tiger Strength (Belt of Frost Giant Strength)</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table> <!-- END OF CONTENT -->
+	</body>
+
+</html>

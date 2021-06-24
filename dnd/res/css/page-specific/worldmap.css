@@ -1,3 +1,5 @@
+html, body {margin: 0; height: 100%; overflow: hidden}
+
 .landmass {
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -16,6 +18,7 @@
 	left: 47.42%;
 	transform: translate(-50%, -50%);
 	z-index: 1;
+	background-image:url('/dnd/img/maps/landmasses/Lagos.svg');
 }
 
 .map-bravagg {
@@ -24,7 +27,8 @@
 	position: absolute;
 	top: 28.8%;
 	left: 56.4%;
-	z-index: 9;
+	z-index: 1;
+	background-image:url('/dnd/img/maps/landmasses/Bravagg.svg');
 }
 
 .map-paros {
@@ -34,7 +38,7 @@
 	top: 11%;
 	left: 15.2%;
 	transform: translate(-50%, -50%);
-	background-image:url('/dnd/img/maps/landmasses/Paros.png');
+	background-image:url('/dnd/img/maps/landmasses/Paros.svg');
 }
 
 .map-peku {
@@ -44,6 +48,7 @@
 	top: 24.1%;
 	left: 89.23%;
 	transform: translate(-50%, -50%);
+	background-image:url('/dnd/img/maps/landmasses/Peku.png');
 }
 
 .map-terrapim {
@@ -53,6 +58,7 @@
 	top: 70.5%;
 	left: 83.74%;
 	transform: translate(-50%, -50%);
+	background-image:url('/dnd/img/maps/landmasses/Terrapim.svg');
 }
 
 .map-decapos {
@@ -62,6 +68,7 @@
 	top: 55.6%;
 	left: 52.88%;
 	transform: translate(-50%, -50%);
+	background-image:url('/dnd/img/maps/landmasses/Decapos.svg');
 }
 
 .map-notre {
@@ -89,4 +96,16 @@
 	top: 100%;
 	left: 0%;
 	transform: translate(0%, -70%);
+}
+
+.map-overlay {
+	background-repeat: no-repeat;
+	background-size: contain;
+	width:100%;
+	height:100%;
+	z-index:1;
+	position:absolute;
+	top:0;
+	left:0;
+	pointer-events: none;
 }

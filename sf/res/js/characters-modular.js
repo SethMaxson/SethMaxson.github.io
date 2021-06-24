@@ -887,7 +887,7 @@ export var CharactersModular;
     }
     CharactersModular.cleanBone = cleanBone;
     function getSprite(x, y, z, texture, size, name) {
-        texture = texture || "/dnd/img/characters/npc/Smith.png";
+        texture = texture || "/img/characters/monsters/zombies.png";
         size = size || 1;
         name = name || "???";
         var spriteMap = FOUR.Texture(texture);

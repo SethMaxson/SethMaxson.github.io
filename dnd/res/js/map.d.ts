@@ -11,7 +11,7 @@ declare const keys: {
     shift: boolean;
 };
 declare var centerX: any;
-declare function Airship(left: number, top: number, name: string, image: string, crew?: string[]): void;
+declare function Airship(left: string, top: string, name?: string, image?: string, crew?: string[]): void;
 declare function Pedestrian(left?: string, top?: string, name?: string | string[], image?: string | string[]): void;
 declare function PedestrianNPC(left?: string, top?: string, name?: string | string[], image?: string | string[]): void;
 declare function PartyBattle(left?: string, top?: string, name?: string | string[], image?: string | string[], target?: string): void;

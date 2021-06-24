@@ -56,7 +56,7 @@ declare class NPCDeepGenerator {
      * @param rt The Traits for the NPC's species
      * @param ageCategory On a scale of 1-4, how old are they?
      */
-    getNPCAge(npc: NPC, rt: RacialTraitSet, ageCategory?: AgeCategory): void;
+    getNPCAge(npc: NPC, rt: RacialTraitSet, ageCategory?: AgeCategory | AgeCategory[]): void;
     getNPCDescription(npc: NPC): string;
     getNPCHeight(npc: NPC): Length;
     getNPCOldness(npc: NPC): number;
@@ -70,7 +70,7 @@ declare class NPCDeepGenerator {
     getPronoun(gender: string, wordForms?: string[]): string;
     resolvePlaceholders(npc: NPC, stringToFix: string): string;
     initializeNPCGen(): void;
-    randomizeNPC(npc: NPC, race?: string, gender?: string, age?: AgeCategory, alignment?: string): void;
+    randomizeNPC(npc: NPC, race?: string, gender?: string, age?: AgeCategory | AgeCategory[], alignment?: string): void;
 }
 /**
  * Returns a random value from an appropriately filtered list of weighted keys.
@@ -90,3 +90,8 @@ declare function getFilteredWeightedKeyList(npc: NPC, filterable: IFilterableWei
  * @param kle
  */
 declare function isWeightedKeyListEntryApplicable(npc: NPC, kle: IFilterableWeightedKeyListEntry): boolean;
+/**
+ * Selects a probability weighted species from a provided subset of those available.
+ * @param availableRaces The list of species from which to choose
+ */
+declare function getRandomRaceFromList(availableRaces: string[]): string;

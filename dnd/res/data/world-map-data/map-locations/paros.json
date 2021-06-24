@@ -1,5 +1,10 @@
 [
 	{
+		"name":"Altubreste",
+		"left": "83.02%",
+		"top": "33.31%"
+	},
+	{
 		"name":"Hearth's Respite",
 		"left": "55%",
 		"top": "6.35%"
@@ -10,7 +15,12 @@
 		"top": "30.91%"
 	},
 	{
-		"name":"",
+		"name":"Fortune's Favor",
+		"left": "55.23%",
+		"top": "48%"
+	},
+	{
+		"name":"Monastery of the Others",
 		"left": "50.9%",
 		"top": "38.35%"
 	}

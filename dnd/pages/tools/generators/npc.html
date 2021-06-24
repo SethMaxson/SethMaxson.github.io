@@ -5,30 +5,11 @@
 		<meta charset="UTF-8">
 		<title>Casting</title>
 
-		<style>
-			.background div.container {padding:10px;}
-			th {font-weight: bold; border:2px solid #555; background:#333; color:floralwhite; padding:4px;}
-			td{border:2px solid #555; padding:4px;}
-			.collapsible {background:rgba(50, 50, 50, 0.1); border-radius: 1em;}
-			.collapsible.collapsed table {display:none;}
-			.collapsible > h3 {cursor: pointer; padding-left: 1em; padding-right: 1em;}
-			.collapse-button {width:2em;}
-			.collapse-button:before {content:"\25B2";}
-			.collapsed .collapse-button:before {content:"\25BC";}
-			div.token {
-				position:absolute;
-				top:0;
-				left:0;
-				width: 100%;
-				height: 100%;
-				background-position: center;
-				background-size: contain;
-				background-repeat: no-repeat;
-				image-rendering: pixelated;
-			}
-		</style>
-		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/res/css/page-specific/npc-generator.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/res/css/jquery.multiselect.css" rel="stylesheet" type="text/css" media="all">
 		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/res/js/jquery.multiselect.js"></script>
 		<script src="/dnd/res/js/mechanics.js"></script>
 		<script src="/dnd/res/js/npc.js"></script>
 		<script src="/dnd/res/js/generators/npc.js"></script>
@@ -44,51 +25,58 @@
 	<body>
 		<div class="background">
 			<div class="container">
-				<h1>NPCs</h1>
+				<h1 class="noprint">NPCs</h1>
 				<div id="loaded" class="collapsible collapsed">
 					<h3>Loaded <a class="collapse-button"></a></h3>
-					<table style="width:100%; margin:auto; border-collapse: collapse;">
+					<table style="width:100%; margin:auto; border-collapse: collapse;" class="noprint">
 						<tr>
-							<td><button id="save-npcs">Save!</button></td>
+							<td>
+								<button id="save-npcs">Save!</button>
+								<label for="loaded-sort-select">Sort by:</label>
+								<select name="loaded-sort-select" id="loaded-sort-select">
+									<option value="name">Name</option>
+									<option value="race">Race</option>
+									<option value="gender">Gender</option>
+									<option value="age">Age</option>
+									<option value="alignment">Alignment</option>
+									<option value="threat">Threat</option>
+									<option value="intelligence">Intelligence</option>
+								</select>
+							</td>
 						</tr>
 					</table>
-					<table style="width:100%; margin:auto; border-collapse: collapse;" id="loaded-npcs">
+					<table class="npc-table" id="loaded-npcs">
 						<tr class="header-row">
-							<th onclick="sortTable(this, 0)">Name</th>
-							<th style="width:20%;" onclick="sortTable(this, 1)">Race</th>
-							<th style="width:12%;" onclick="sortTable(this, 2)">Gender</th>
-							<th style="width:10%;" onclick="sortTable(this, 3)">Age</th>
-							<th style="width:15%;" onclick="sortTable(this, 4)">Alignment</th>
-							<th style="width:15%;" onclick="sortTable(this, 5)">Threat Level</th>
-							<th style="width:20%;" onclick="sortTable(this, 6)">Description</th>
-							<th style="width:20%;">Token</th>
+							<th class="summary">Summary</th>
+							<th class="description">Description</th>
+							<th class="token">Token</th>
 						</tr>
 					</table>
 				</div>
 				<div id="random" class="collapsible">
-					<h3>Random <a class="collapse-button"></a></h3>
+					<h3 class="noprint">Random <a class="collapse-button"></a></h3>
 				<!-- <div id="random">
 					<h3>Random</h3> -->
-					<table style="width:100%; margin:auto; border-collapse: collapse;">
+					<table class="generator-settings noprint">
 						<tr>
 							<td>
 								<label for="race-select">Species:</label>
 								<select name="race-select" id="race-select">
-									<option value="null">Surprise Me</option>
+									<option value="null" selected>Surprise Me</option>
 								</select>
 							</td>
 							<td>
 								<label for="gender-select">Gender:</label>
 								<select name="gender-select" id="gender-select">
-									<option value="null">Surprise Me</option>
+									<option value="null" selected>Surprise Me</option>
 									<option value="female">Female</option>
 									<option value="male">Male</option>
 								</select>
 							</td>
 							<td>
 								<label for="age-select">Age:</label>
-								<select name="age-select" id="age-select">
-									<option value="null">Surprise Me</option>
+								<select name="age-select" id="age-select" multiple>
+									<option value="null" selected>Surprise Me</option>
 									<option value="child">Child</option>
 									<option value="young adult">Young Adult</option>
 									<option value="adult">Middle Age</option>
@@ -98,7 +86,7 @@
 							<td>
 								<label for="alignment-select">Alignment:</label>
 								<select name="alignment-select" id="alignment-select">
-									<option value="null">Surprise Me</option>
+									<option value="null" selected>Surprise Me</option>
 									<option value="LG">Lawful Good</option>
 									<option value="NG">Neutral Good</option>
 									<option value="CG">Chaotic Good</option>
@@ -108,26 +96,47 @@
 									<option value="LE">Lawful Evil</option>
 									<option value="NE">Neutral Evil</option>
 									<option value="CE">Chaotic Evil</option>
+									<optgroup label="Alignment Subsets">
+										<option value="LG,NG,CG">Any Good</option>
+										<option value="LN,N,CN">Any Neutral (Morality axis)</option>
+										<option value="LE,NE,CE">Any Evil</option>
+										<option value="LG,LN,LE">Any Lawful</option>
+										<option value="NG,N,NE">Any Neutral (Lawful axis)</option>
+										<option value="CG,CN,CE">Any Chaotic</option>
+									</optgroup>
 								</select>
+								<label for="alignment-restrict-races">Only use races matching alignment:</label>
+								<input type="checkbox" name="alignment-restrict-races" id="alignment-restrict-races" />
 							</td>
 							<td>
 								<label for="records-to-generate">Number to create:</label>
-								<input type="number" name="records-to-generate" id="records-to-generate" value="20" />
+								<input type="number" name="records-to-generate" id="records-to-generate" initial="20" value="20" />
 							</td>
 							<td><button id="generate-npcs">Generate!</button></td>
-							<td><button id="clear-npcs">Clear NPCs</button></td>
+							<td>
+								<button id="default-settings">Default Settings</button>
+								<button id="clear-npcs">Clear NPCs</button>
+							</td>
 						</tr>
 					</table>
-					<table style="width:100%; margin:auto; border-collapse: collapse;" id="random-npcs">
+					<div class="noprint">
+						<label for="random-sort-select">Sort by:</label>
+						<select name="random-sort-select" id="random-sort-select">
+							<option value="name">Name</option>
+							<option value="race">Race</option>
+							<option value="gender">Gender</option>
+							<option value="age">Age</option>
+							<option value="alignment">Alignment</option>
+							<option value="threat">Threat</option>
+							<option value="intelligence">Intelligence</option>
+						</select>
+					</div>
+					<table class="npc-table" id="random-npcs">
 						<tr class="header-row">
-							<th onclick="sortTable(this, 0)">Name</th>
-							<th style="width:20%;" onclick="sortTable(this, 1)">Race</th>
-							<th style="width:12%;" onclick="sortTable(this, 2)">Gender</th>
-							<th style="width:10%;" onclick="sortTable(this, 3)">Age</th>
-							<th style="width:15%;" onclick="sortTable(this, 4)">Alignment</th>
-							<th style="width:15%;" onclick="sortTable(this, 5)">Threat Level</th>
-							<th style="width:20%;" onclick="sortTable(this, 6)">Description</th>
-							<th style="width:20%;">Token</th>
+							<th class="summary">Summary</th>
+							<th class="description">Description</th>
+							<th class="token">Token</th>
+							<th class="controls noprint">Controls</th>
 						</tr>
 					</table>
 				</div>

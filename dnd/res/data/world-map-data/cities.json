@@ -11,15 +11,7 @@
 					"These ancient ruins are surprisingly advanced. In fact, some of the technology here appears to surpass anything in the current age."
 				],
 				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Skeleton",
-					"Zombie",
-					"Mummy",
-					"One decrepit Nagpa",
-					"The city that was once the childhood home of the Rewera, once known as Deimos. The darkness within Deimos spoke to something within the Nagpa. While all of the Nagpa's other underlings were subjected to horrible experiments, Deimos was treated as a member of the flock. Deimos' innate intelligence and lust for power quickly caused him to rise among their ranks. While the rest of the world prophesies the Rewera as the end of days, the Nagpa believe it to signal the rebirth of their empire.",
-					"Absolutely overrun with undead."
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "69.5%",
@@ -34,12 +26,7 @@
 					"An open field, littered with scattered tents."
 				],
 				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Tabaxi",
-					"Myconid",
-					"With their enslavement behind them, the Tabaxi of Decapos settled into the lives of peaceful nomads."
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "3550px",
@@ -55,12 +42,7 @@
 					"A small fortress lies inside walls made of sharpened logs."
 				],
 				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Hobgoblin",
-					"Myconid",
-					"After the fall of the Nagpa tyrants, the liberated Hobgoblins elected to put down roots just outside the ruined capital. In the event the mechanical mosnters inside are ever revived, they intend to be the first on the scene to exterminate them."
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "72.6%",
@@ -76,11 +58,7 @@
 					"There are no visible buildings, but it is known that a village exists here. The citizens are rumored to be nocturnal."
 				],
 				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Kuo-toa",
-					"Myconid"
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "80.7%",
@@ -96,11 +74,7 @@
 					"Simple huts dot the river. In a way, it's almost idyllic."
 				],
 				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Lizardfolk",
-					"Myconid"
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "61.7%",
@@ -116,11 +90,7 @@
 					"Were this village not constantly shrouded in the shadow cast by the mountains, it would almost seem <span style=\"font-style: italic\">too</span> normal."
 				],
 				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Mongrelfolk",
-					"Myconid"
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "63.7%",
@@ -136,11 +106,7 @@
 					"A large, bustling trade center that grew around a halfling fishing village."
 				],
 				"culture": [],
-				"dmNotes": [
-					"Population:",
-					"Halfling",
-					"Human"
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "42.75%",
@@ -225,16 +191,7 @@
 				"culture": [
 					"Budopolis is inhabited by giant shark and lizard people with a constant case of the munchies. Visitors are welcome, but may also become food. It's lit fam."
 				],
-				"dmNotes": [
-					"Estimated Population: 10,000",
-					"- Bloodfin: 3,100",
-					"- Aarakocra: 600",
-					"- Crocfolk: 1,400",
-					"- Kenku: 200",
-					"- Tortle: 1,600",
-					"- Fishfolk: 2,500",
-					"- Grung: 500"
-				],
+				"dmNotes": [],
 				"url": "/dnd/pages/maps/cities/lagos/budopolis.html",
 				"position": {
 					"left": "35%",
@@ -335,6 +292,21 @@
 					"top": "59%"
 				},
 				"marker": "city"
+			},
+			{
+				"name": "Joroard",
+				"nameLocation": "right",
+				"type": "village",
+				"fontSize": 18,
+				"description": [],
+				"culture": [],
+				"dmNotes": [],
+				"url": "#",
+				"position": {
+					"left": "92.5%",
+					"top": "73.7%"
+				},
+				"marker": "town"
 			},
 			{
 				"name": "Laketon",
@@ -500,7 +472,7 @@
 				"nameLocation": "right",
 				"type": "city",
 				"description": [
-					"Tilaporth is a small port city, and is the departure point for most of the expeditions into the new world."
+					"Tilaporth is a port city, and is the departure point for most of the expeditions into the new world."
 				],
 				"culture": [
 					"The import of exotic goods is Tilaporth's bread and butter. Due to the difficulty in obtaining many items from other continents, these goods can be sold at a <i>very</i> high price.",
@@ -563,32 +535,7 @@
 					"The teachings of the temple discourage the concept of ownership. They believe that a full belly, a warm place to sleep, and a sense of purpose within the universe are all one really needs in life.",
 					"Under the current grand master, the temple has become decidedly anti-Kenku. Other races are welcome."
 				],
-				"dmNotes": [
-					"19 active acolytes",
-					"WickerBeak's Rival = Dragonborn",
-					"Tortle F",
-					"Rock Gnome M",
-					"Goblin F",
-					"Lightfoot Halfling F",
-					"Triton F",
-					"Half-Orc F",
-					"Half-Elf F",
-					"Half-Elf M",
-					"Human M",
-					"High-Elf M",
-					"High-Elf F",
-					"Tabaxi M",
-					"Stout Halfling M",
-					"High-Elf M",
-					"Hill-Dwarf F",
-					"Human M",
-					"Mountain-Dwarf M",
-					"Human M",
-					"Dragonborn M",
-					"Wood-Elf M",
-					"",
-					"Former Master: Human Male, Age 142"
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "1184px",
@@ -601,7 +548,7 @@
 				"nameLocation": "bottom",
 				"type": "village",
 				"description": [
-					"Elmusk is a small settlement built around a large tower. The tower is inhabited by a strange old gnome known as \"The Right Honorable Royal Highness Emperor Princess Jeeb the Wise, First of His Name, Rocker of Parties, Petter of Small Mammals, and Generally Good Guy\". Elmusk has no official system of government, but the citizens usually look to the sole resident of the tower for guidance and wisdom."
+					"Elmusk is a small settlement built around a large tower. The tower is inhabited by a strange old gnome known as \"The Right Honorable Royal Highness Emperor Princess Jeeb the Wise, First of His Name, Rocker of Parties, Petter of Small Mammals, Freaker of Minds, and Generally Good Guy\". Elmusk has no official system of government, but the citizens usually look to the sole resident of the tower for guidance and wisdom."
 				],
 				"culture": [
 					"Visitors of all races are welcome in Elmusk. Well, maybe not Hobgoblins. They smell funny."
@@ -693,19 +640,7 @@
 					"Victarn is something of a safe-haven for arcane avengers. It is home to one of the world's only recorded academies for monster hunters."
 				],
 				"culture": [],
-				"dmNotes": [
-					"Cocky monster hunter:",
-					"    Wolfstan Slater",
-					"    Dark hair",
-					"    Thick stubble and or short beard. Need to see how they look in Heroforge to finalize.",
-					"    Voiced with generic Sidhon-esque voice.",
-					"Headmaster of the Monster Hunter Academy:",
-					"    Mr. Pennington",
-					"    White hair with dark roots.",
-					"    Right eye is missing and there is a large scar.",
-					"    Left arm is gone beneath the elbow.",
-					"    Voiced kinda like Sylvester Stallone"
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "2033px",
@@ -751,7 +686,7 @@
 				"nameLocation": "top",
 				"type": "village",
 				"description": [
-					"Pendale is a small community created to perserve knowledge. The general populace is notably unintelligent, ruled by the handful of more learned officials. This allows for a large amount of manpower to defend the libraries, but not enough literacy to spread their contents."
+					"Pendale is a small community created to preserve knowledge. The general populace is notably unintelligent, ruled by the handful of more learned officials. This allows for a large amount of manpower to defend the libraries, but not enough literacy to spread their contents."
 				],
 				"culture": [],
 				"dmNotes": [],
@@ -799,7 +734,7 @@
 				"nameLocation": "right",
 				"type": "village",
 				"description": [
-					"Planehaven is effectively a village-sized rehabilitation clinic. Criminals sentenced to punishments overly harsh for their crimes are occaisionally given the option to relocate to Planehaven instead of facing their assigned comeuppance."
+					"Planehaven is effectively a village-sized rehabilitation clinic. Criminals sentenced to punishments overly harsh for their crimes are occasionally given the option to relocate to Planehaven instead of facing their assigned comeuppance."
 				],
 				"culture": [],
 				"dmNotes": [],
@@ -821,9 +756,7 @@
 					"Thistleton's residents often refer to themselves as \"the good folk\", and this largely holds true. An evil Grippli is almost unheard of.",
 					"The Grippli are a simple people. Most are content to live out their days under the rule of their queen, or \"Tribe Mother\", and remain in the forest. Many Grippli live their entire lives without ever leaving the forest or meeting other races. Because of this, they are very wary of outsiders. They will not attack unless provoked, but most Grippli will hide from any outsiders."
 				],
-				"dmNotes": [
-					"Humanoid frog races, fey, and those descended from fey (elves) are welcome in Thistleton. Other races are allowed entry, but will be met by nothing but silent stares from the treetops."
-				],
+				"dmNotes": [],
 				"url": "/dnd/pages/maps/cities/lagos/thistleton.html",
 				"position": {
 					"left": "576px",
@@ -843,9 +776,7 @@
 					"Okham is a scientific community above all else. Intelligence and innovation are essential qualities in any persons looking to become citizens.",
 					"Okhamites value brains over brawn, and have little interest in a persons' race or beliefs. Members of any race are welcome, but all newcomers must either pass the entrance exam or possess an invitation from a member of The Razor."
 				],
-				"dmNotes": [
-					"One of the council members has an unseemly love of coin, and has taken to accepting bribes in exchange for invitations. The recent influx of citizens with average intelligence and above-average wealth has begun to cause civil unrest."
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "694px",
@@ -974,11 +905,7 @@
 					"Carriglean is a training ground for warriors. Here, anyone strong of heart can dedicate themselves to the study of warfare. Members of any non-monstrous race are welcome, as long as they are unflinching in the face of danger."
 				],
 				"culture": [],
-				"dmNotes": [
-					"John - A heavy armor wearing, man-of-few-words badass. Heavily based on Master Chief.",
-					"David - A shadow. Light armor, and able to move silently in order to spy on or dispatch his enemies. Heavily based on Solid Snake.",
-					"Taylor - Air genasi lore bard/divination wizard. Heavily based on Cortana."
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "1223px",
@@ -1023,9 +950,7 @@
 					"Name pending. The last apprentice I sent here came back mute with a dead-eyed stare. Whatever lives in these mountains clearly isn't nice.<br/>- Cartoholic"
 				],
 				"culture": [],
-				"dmNotes": [
-					"NEOGI. Lot's of 'em."
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "1870px",
@@ -1042,9 +967,7 @@
 					"Depending on your tastes, Vatsunir is either a real shithole, or paradise. Regardless, you're gonna wanna be carrying coin.<br/>- Cartoholic"
 				],
 				"culture": [],
-				"dmNotes": [
-					"Vatsunir is home to a thriving culture of ratfolk, ruled over by the mouse lord."
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "578px",
@@ -1146,9 +1069,7 @@
 					"The <span style=\"text-decoration:line-through;\">yokels</span> locals<br/> are quite friendly, but they're rather touchy about their traditions.<br/>- Cartoholic"
 				],
 				"culture": [],
-				"dmNotes": [
-					"The Wilkoss make their home in the Solfields. Their favorite beverage is a tea made from the fruit of the Stobark tree. They are evangelically enthusiastic about it."
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "1823px",
@@ -1197,22 +1118,7 @@
 					"Stonweald was carved out of a mountain by an alliance of Dwarves and Gnomes while mining for precious gems. The active mining conglomerate ensures that the the city is always expanding.<br/>- Cartoholic"
 				],
 				"culture": [],
-				"dmNotes": [
-					"Stonweald considers itself an independent nation, ruled by the Stonespire clan. The current ruler is Harbek Stonespire IV. He has fathered 9 children, 5 boys and 4 girls. He is eager to marry them off to high-profile outsiders to bolster his nation and forge lasting alliances.",
-					"Royal family:",
-						"King: Harbek Stonespire IV",
-						"Queen: Eldeth Stonespire (Deceased)",
-						"Children:",
-						"Eldeth Stonespire II (f 45, married)",
-						"Ragnar Stonespire (m 44, married)",
-						"Riswynn Stonespire (f 39) - Slightly melodramatic, but is a proven warrior.",
-						"Gardain Stonespire (m 37) - A quiet student of the arcane. Has a fondness for abjuration.",
-						"Ulfgar Stonespire (m 31) - Laid back and friendly. Doesn't have a mean bone in his body.",
-						"Dagnal Stonespire (f 29) - Far pefers spending time among her people to spending time in the palace. Knows most of her citizens by name.",
-						"Alberich Stonespire (m 26) - Currently attends a prestigious academy for dwarven naval officers.",
-						"Adrik Stonespire (m 20) - A gifted tinkerer and conjuration wizard. Despite his young age, he has already managed to invent a gem-powered, two-wheeled horseless cart.",
-						"Helja Stonespire (f 19) - Driven by duty and tradition. She feels protecting the heritage of her clan is of the utmost importance."
-				],
+				"dmNotes": [],
 				"url": "/dnd/pages/maps/cities/paros/stonweald.html",
 				"position": {
 					"left": "3793px",
@@ -1229,9 +1135,7 @@
 					"The name is accurate. Rolling thunder can always be heard here.<br/>- Cartoholic"
 				],
 				"culture": [],
-				"dmNotes": [
-					"A small community of Giff inhabit the Thunder Plains. They welcome outsiders, as long as they offer weapons or violence. There is a constant flow of random refuse from other planes through a particularly violent planar rift here. The Giff made their home here in hopes that they might be able to scavenge exotic weaponry."
-				],
+				"dmNotes": [],
 				"url": "#",
 				"position": {
 					"left": "3847px",

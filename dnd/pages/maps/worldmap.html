@@ -8,7 +8,6 @@
 		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/page-specific/worldmap.css" rel="stylesheet" type="text/css" media="all">
 		<style>
-			html, body {margin: 0; height: 100%; overflow: hidden}
 			.hideable{display:none;}
 			#Weather, #Calendar, #TripDistance, #TripTime {color:white; text-align: left;}
 		</style>
@@ -25,93 +24,8 @@
 		<script src="/dnd/res/js/map.js"></script>
 		<script src="/dnd/res/js/objects/calendar.js"></script>
 		<script src="/dnd/res/js/generators/weather.js"></script>
-		<script>
-			$(document).ready(function(){
-				var calendar;
-				if (localStorage.year !== undefined) {
-					calendar = new GeossCalendar(parseFloat(localStorage.year), parseFloat(localStorage.month), parseFloat(localStorage.day), parseFloat(localStorage.hour));
-					localStorage.removeItem("year");
-					localStorage.removeItem("month");
-					localStorage.removeItem("hour");
-					localStorage.removeItem("day");
-				} else {
-					calendar = new GeossCalendar(undefined, 11, 18);
-				}
-				var weather = new Weather();
-				$("#Corruption").click(function(){
-					if($("#Corruption").text() == 'Corruption Hidden'){
-						$("#Corruption").text('Corruption Shown');
-						$('#CorruptionMap').css("display","block");
-					} else {
-						$("#Corruption").text('Corruption Hidden');
-						$('#CorruptionMap').css("display","none");
-					}
-				});
-				$("#Airships").click(function(){
-					if($("#Airships").text() == 'Airships Hidden'){
-						$("#Airships").text('Airships Shown');
-						$('.airship.npc.hideable').css("display","block");
-					} else {
-						$("#Airships").text('Airships Hidden');
-						$('.airship.npc.hideable').css("display","none");
-					}
-				});
-				$("#NotableNPCs").click(function(){
-					if($("#NotableNPCs").text() == 'Notable NPCs Hidden'){
-						$("#NotableNPCs").text('Notable NPCs Shown');
-						$('.pedestrian.npc.hideable').css("display","block");
-					} else {
-						$("#NotableNPCs").text('Notable NPCs Hidden');
-						$('.pedestrian.npc.hideable').css("display","none");
-					}
-				});
-				$("body").on("dragstop", ".airship.party", function(){
-					let tripTime = parseFloat($("#TripTime").text());
-					if (!isNaN(tripTime)) {
-						calendar.addHours(tripTime);
-					}
-					$("#Calendar").text(calendar.getTime() + ' ' + calendar.getDisplayDate());
-					localStorage.year = calendar.getYear();
-					localStorage.month = calendar.getMonth();
-					localStorage.day = calendar.getDate();
-					localStorage.hour = calendar.getHours();
-					localStorage.minute = calendar.getMinutes();
-					setTimeout(() => {
-						if (!dragging) {
-							$("#TripTime").text("");
-							$("#TripDistance").text("");
-						}
-					}, 1500);
-				});
-				$("#Calendar").text(calendar.getTime() + ' ' + calendar.getDisplayDate());
-				$("#Weather").text(weather.weather + ', Wind: ' + weather.winds);
-				// Airship("57%", "47%");
-				// Pedestrian("24.5%", "25%", "Seabern", "/dnd/img/maps/icons/seabern.png");
-				// Pedestrian("47.2%", "28.8%", "Jasper", "/dnd/img/maps/icons/jasper.png");
-				// Pedestrian("49.6%", "38%", "Shamous", "/dnd/img/maps/icons/Shamous.png");
-				// Pedestrian("57.1%", "50%", ["Bud", "Namfoodle", "Redji", "Teomyr", "Zenrya"], ["/dnd/img/maps/icons/bud.png", "/dnd/img/maps/icons/namfoodle.png", "/dnd/img/maps/icons/redji.png", "/dnd/img/maps/icons/teomyr.png", "/dnd/img/maps/icons/zenerya.png"]);
-				// PedestrianNPC("47.2%", "28.7%", "Smith", "/dnd/img/maps/icons/smith.png");
-				// PedestrianNPC("47.3%", "31.8%", "Matthias", "/dnd/img/maps/icons/matthias.png");
-				// PedestrianNPC("47%", "27.7%", "Quintus", "/dnd/img/maps/icons/quintus.png");
-				$("#map-body").focus();
-			})
-		</script>
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
-		<script>
-			$(document).ready(() => {
-				Promise.all([
-					getCitiesByContinent($(".map-decapos"), "Decapos"),
-					getCitiesByContinent($(".map-lagos"), "Lagos"),
-					getCitiesByContinent($(".map-notre"), "Notre"),
-					getCitiesByContinent($(".map-paros"), "Paros"),
-					getCitiesByContinent($(".map-peku"), "Peku"),
-					getCitiesByContinent($(".map-sutre"), "Sutre"),
-					getCitiesByContinent($(".map-terrapim"), "Terrapim")
-				]).then(data => {
-					console.log(`Total cities loaded:${_totalLoadedCities}`)
-				})
-			})
-		</script>
+		<script src="/dnd/res/js/page-specific/world-map.js"></script>
 	</head>
 
 	<body id="map-body" style="overflow: hidden; background:#25325f;">
@@ -119,6 +33,7 @@
 			- <input type="range" min="10" max="125" value="50" class="slider" id="map-zoom"> +
 			<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
 			<!-- <button id="Corruption">Corruption Hidden</button> -->
+			<button id="Climates">Climates Hidden</button>
 			<!-- <button id="Airships">Airships Hidden</button>
 			<button id="NotableNPCs">Notable NPCs Hidden</button> -->
 			<span id="Calendar"></span>
@@ -128,136 +43,67 @@
 		</div>
 		<div id="map-container" class="map-container map" style="width:18750px; height:11250px; text-align: center; transform-origin:center center;">
 			<div class="grid-lines stay-visible"></div>
-			<!-- <div class="airship hover" style="height:150px; width:150px; left:44.4%; top:37.5%; animation-delay: 1s; box-shadow:0px 0px 2px rgba(250,100,0,0.5), 0px 0px 5px rgba(250,100,0,0.5), 10px 15px 5px rgba(0,0,0,0.4);">
-				<img class="scale-me" src="/dnd/img/maps/CrossShip.png" style="width:100%;" alt="image"/>
+			<a href="#" class="point-of-interest smith metropolis" style="left: calc(38.6% - 12.5px); top: calc(38% - 12.5px); font-size: 40px; z-index:6;">
+				<div class="map-marker-icon marker-city">&nbsp;</div>
+				<span class="map-marker-name" style="position: absolute; top:100%; left:0%; transform: translate(16px, -50%);">Osta Müü Turul</span>
 				<span class="city-preview">
-					<h1>The Retaliator (Cross' Ship)</h1>
-				</span>
-			</div>
-			<div class="airship party" style="height:200px; width:200px; left:44.8%; top:31%;">
-				<img src="/dnd/img/maps/Budmobile.png" style="width:100%;" alt="image"/>
-				<span class="city-preview">
-					<h1>Budmobile III</h1>
-				</span>
-			</div>
-			<div class="airship npc hideable" style="height:100px; width:100px; left:50%; top:40%;">
-				<img src="/dnd/img/maps/Airship.png" style="width:100%;" alt="image"/>
-				<span class="city-preview">
-					<h1>The Impatient</h1>
-				</span>
-			</div>
-			<div class="airship npc hideable" style="height:80px; width:80px; left:45%; top:30%; animation-delay:1s;">
-				<img src="/dnd/img/maps/Airship.png" style="width:100%;" alt="image"/>
-				<span class="city-preview">
-					<h1>The Dauntless</h1>
-				</span>
-			</div>
-			<div class="airship npc anchored hideable" style="height:80px; width:80px; left:45.6%; top:35.5%; animation-delay:1s;">
-				<img src="/dnd/img/maps/pirateship.png" style="width:100%;" alt="image"/>
-				<span class="city-preview">
-					<h1>Decimator</h1>
-				</span>
-			</div>
-			<div class="airship npc hideable" style="height:40px; width:40px; left:55%; top:35%; animation-delay:-1s;">
-				<img src="/dnd/img/maps/Airship.png" style="width:100%;" alt="image"/>
-				<span class="city-preview">
-					<h1>The Stumpy Toe</h1>
-				</span>
-			</div>
-			<div class="airship npc hideable" style="height:80px; width:80px; left:44%; top:36%; animation-delay:-2s;">
-				<img src="/dnd/img/maps/Airship.png" style="width:100%;" alt="image"/>
-				<span class="city-preview">
-					<h1>The High Ground</h1>
-				</span>
-			</div> -->
-			<a href="/dnd/pages/maps/noseyus.html" class="smith metropolis" style="position:absolute; top:4200px; left:15000px; font-size:80px; z-index:6;">
-				Noseyus Island
-				<span class="city-preview">
-					<h1>Noseyus Island</h1>
+					<h1>Osta Müü Turul</h1>
+					<p>Osta Müü Turul is a city covering a small island roughly midway between Paros, Lagos, and Decapos. The city is a massive trade hub where merchants from each continent can meet and conduct business. Security is tight, and the island has the highest known concentration of airship docks in the world.</p>
+					<h1>Culture.</h1>
 					<p>
-						A small, perfectly circular island. This does not appear on any maps or charts.
+						Visitors of any nationality and species are welcome in Osta Müü Turul, as long as they abide by its rules.
 					</p>
 				</span>
 			</a>
-			<div class="map-lagos">
+			<div class="landmass map-lagos">
 				<a href="lagos.html" class="smith continent" style="position:absolute; top:1130px; left:1040px;">
 					Lagos
 				</a>
-				<img src="/dnd/img/maps/landmasses/Lagos.png" style="z-index:1;">
 			</div>
-			<div class="map-bravagg">
-				<!-- <a href="#" class="smith continent" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);">
-					Bravagg
-				</a> -->
-				<a href="bravagg.html" class="smith metropolis" style="position:absolute; font-size:110px; top:50%; left:50%; transform:translate(-50%, -50%);">
+			<div class="landmass map-bravagg">
+				<a href="bravagg.html" class="smith continent" style="position:absolute; font-size:110px; top:50%; left:50%; transform:translate(-50%, -50%);">
 					Bravagg&nbsp;Isle
 					<span class="city-preview">
 						<h1>Bravagg Isle</h1>
 						<p>
 							Despite it's welcoming appearance, few dare to tread upon the shores of Bravagg Isle. It is widely believed that the mountain is home to a civilization of dragons.
 						</p>
-					<!-- <p>
-							Watched over by the ancient dragon Bravagg, this island is a haven for flying creatures. Home to nigh-countless Aarakocra, Urds, and dragonspawn, visitors would be hard pressed to find a flightless creature anywhere.
-
-							Outsiders with feathers are usually welcomed with open arms. A magical mark is required for any other outsiders. Those without the mark are fair game for the dragons inside.
-						</p> -->
 					</span>
 				</a>
-				<img src="/dnd/img/maps/landmasses/Bravagg.svg" style="height:100%; z-index:1;">
 			</div>
 			<div class="landmass map-paros">
 				<a href="paros.html" class="smith continent" style="position:absolute; top:2230px; left:2540px;">
 					Paros
 				</a>
 			</div>
-			<div class="map-peku">
+			<div class="landmass map-peku">
 				<a href="peku.html" class="smith continent" style="position:absolute; top:1140px; left:740px; transform:translate(-50%, -50%);">
 					Peku
 				</a>
-				<!--
-					Removed the animated version of the fog due to high GPU usage.
-					<div class="cloud" style="top:25%; left:50%; animation-delay: -4s;">&#160;</div>
-					<div class="cloud" style="top:50%; left:25%;">&#160;</div>
-					<div class="cloud" style="top:50%; left:48%; animation-delay: -2s;">&#160;</div>
-					<div class="cloud" style="top:50%; left:75%;">&#160;</div>
-					<div class="cloud" style="top:75%; left:50%; animation-delay: -4s;">&#160;</div>
-				-->
-
 				<div class="cloud-nonanimated" style="top:25%; left:50%;">&#160;</div>
 				<div class="cloud-nonanimated" style="top:50%; left:25%;">&#160;</div>
 				<div class="cloud-nonanimated" style="top:50%; left:48%;">&#160;</div>
 				<div class="cloud-nonanimated" style="top:50%; left:75%;">&#160;</div>
 				<div class="cloud-nonanimated" style="top:75%; left:50%;">&#160;</div>
-
-				<img src="/dnd/img/maps/landmasses/Peku.png" style="width:100%; z-index:1;">
 			</div>
-			<div class="map-terrapim">
+			<div class="landmass map-terrapim">
 				<a href="terrapim.html" class="smith continent" style="position:absolute; top:40%; left:55%; transform:translate(-50%, -50%);">Terrapim</a>
-				<img src="/dnd/img/maps/landmasses/Terrapim.png" style="width:100%; z-index:1;">
 			</div>
-			<div class="map-decapos">
+			<div class="landmass map-decapos">
 				<a href="decapos.html" class="smith continent" style="position:absolute; top:40%; left:55%; transform:translate(-50%, -50%);">Decapos</a>
-				<img src="/dnd/img/maps/landmasses/Decapos.png" style="width:100%; z-index:1;">
 			</div>
-			<div class="map-notre">
-				<a href="notre.html" class="smith continent" style="position:absolute; top:82.5%; left:61.5%; transform:translate(-50%, -50%);">Notre
-					<span class="city-preview">
-						<h1>Notre</h1>
-					</span>
-				</a>
+			<div class="landmass map-notre">
+				<a href="notre.html" class="smith continent" style="position:absolute; top:82.5%; left:61.5%; transform:translate(-50%, -50%);">Notre</a>
 				<img src="/dnd/img/maps/landmasses/Notre.png" style="width:100%; z-index:1;">
 			</div>
 			<div class="map-sutre">
-				<a href="#" class="smith continent" style="position:absolute; top:28%; left:45%; transform:translate(-50%, -50%);">Sutre
-					<span class="city-preview">
-						<h1>Sutre</h1>
-					</span>
-				</a>
+				<a href="#" class="smith continent" style="position:absolute; top:28%; left:45%; transform:translate(-50%, -50%);">Sutre</a>
 				<img src="/dnd/img/maps/landmasses/Sutre.png" style="width:100%; z-index:1;">
 			</div>
-			<div id="CorruptionMap" style="background-image:url('/dnd/img/maps/corruptionmap.png'); background-repeat: no-repeat; background-size: contain; width:100%; height:100%; z-index:1; position:absolute; top:0; left:0; opacity:0.6; pointer-events: none; display:none;">
-				<img src="/dnd/img/maps/corruptionmap.png" style="width:100%;" alt="image"/>
-			</div>
+			<div id="CorruptionMap" class="map-overlay" style="background-image:url('/dnd/img/maps/corruptionmap.png'); z-index:1; opacity:0.6; display:none;"> </div>
+			<div id="ClimateZones" class="map-overlay" style="background-image:url('/dnd/img/maps/Climate_Zones.png'); opacity:0.6; display:none;"> </div>
+			<div id="PossibleIslands" class="map-overlay" style="background-image:url('/dnd/img/maps/Possible_Islands.png'); opacity:0.6; display:none;"> </div>
+			<div id="DefiniteIslands" class="map-overlay" style="background-image:url('/dnd/img/maps/Definite_Islands.png'); z-index: 0; opacity:1.0; display:default;"> </div>
 		</div>
 	</body>
 

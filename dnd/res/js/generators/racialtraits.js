@@ -100,7 +100,7 @@ const RacialTraits = {
     },
     "genasi": {
         genders: ["female", "male"],
-        adultAge: 6,
+        adultAge: 18,
         maxAge: 120,
         alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 20
@@ -118,6 +118,13 @@ const RacialTraits = {
         maxAge: 60,
         alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 40
+    },
+    "goliath": {
+        genders: ["female", "male"],
+        adultAge: 18,
+        maxAge: 70,
+        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
+        spawnFrequency: 30
     },
     "grippli": {
         genders: ["female", "male"],
@@ -217,6 +224,13 @@ const RacialTraits = {
         alignments: ["LN"],
         spawnFrequency: 2
     },
+    "ratfolk": {
+        genders: ["female", "male"],
+        adultAge: 10,
+        maxAge: 60,
+        alignments: ["LN", "N", "CN"],
+        spawnFrequency: 40
+    },
     "tabaxi": {
         genders: ["female", "male"],
         adultAge: 18,
@@ -260,5 +274,22 @@ function getRacialTraits(race) {
     else {
         return RacialTraits.misc;
     }
+}
+/**
+ * Returns a list of speciesIDs for all the species that are known to appear in at least one of the specified alignments.
+ * @param alignments A list of alignments with which the return species should be compatible.
+ */
+function getRaceByAlignment(alignments) {
+    let results = [];
+    Object.keys(RacialTraits).forEach(function (species) {
+        let rt = RacialTraits[species];
+        for (let i = 0; i < alignments.length; i++) {
+            if (rt?.alignments.includes(alignments[i])) {
+                results.push(species);
+                break;
+            }
+        }
+    });
+    return results;
 }
 //# sourceMappingURL=racialtraits.js.map

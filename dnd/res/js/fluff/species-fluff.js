@@ -4,7 +4,7 @@ const SpeciesFluff = [
         name: "Aarakocra",
         tagline: "Guardians of the sky.",
         description: [
-            "Aarakocra are a birdlike people, gifted with the power of flight. They usually prefer to live in small communities in the wilderness, and have a particular fondness for mountaintop settlements.",
+            "Aarakocra are a birdlike people gifted with the power of flight. They usually prefer to live in small communities in the wilderness, and have a particular fondness for mountaintop settlements. They are usually good-hearted folk, though cultural differences can cause friction when dealing with other species.",
             "The most famous tribe of Aarakocra make their home at Notriven. Here they worship the goddess of wisdom, Notriv, and watch over the people below."
         ],
         images: {
@@ -226,7 +226,7 @@ const SpeciesFluff = [
         tagline: "A rainbow of death.",
         description: [
             "Descriptive text goes here.",
-            "Habitat information goes here."
+            "Grung prefer to make their homes in jungles and rain forests. They are most common in the jungles on the western side of Paros."
         ],
         images: {
             background: "/img/locales/jason-scheier-01bb.jpg",
@@ -239,7 +239,11 @@ const SpeciesFluff = [
         tagline: "Half the height, twice the heart.",
         description: [
             "Halflings may very well be the closest humanoid approximation of a Golden Retriever. Chipper, optimistic, and loyal to a fault, halflings are delightful traveling companions. While their physical size is well below average, their personalities are often larger than life.",
-            "Habitat information goes here."
+            "Halflings can turn up nearly anywhere in the world, but are most commonly found in Decapos, Lagos, and Paros.",
+            "---Ghostwise---",
+            "---Lightfoot---",
+            "---Oceanborn---",
+            "---Stout---",
         ],
         images: {
             background: "/img/locales/christian-dimitrov-albion-mountains-01.jpg",

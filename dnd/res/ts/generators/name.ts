@@ -1959,22 +1959,31 @@ const NameGenerator = {
 						"Brocc",
 						"Burgell",
 						"Dimble",
+						"Dorbo",
 						"Eldon",
 						"Erky",
+						"Falrinn",
+						"Flink",
 						"Fonkin",
 						"Frug",
 						"Gerbo",
 						"Gimble",
 						"Glim",
+						"Glint",
+						"Gurnik",
 						"Jebodah",
 						"Jebeddo",
 						"Kellen",
+						"Mev",
 						"Namfoodle",
+						"Norry",
 						"Orryn",
 						"Roondar",
 						"Seebo",
 						"Sindri",
+						"Skeemo",
 						"Warryn",
+						"Wingle",
 						"Wrenn",
 						"Zook"
 					]);
@@ -1989,34 +1998,61 @@ const NameGenerator = {
 						"Ella",
 						"Ellyjobell",
 						"Ellywick",
+						"Gellana",
+						"Jamna",
 						"Lilli",
 						"Loopmottin",
 						"Lorilla",
+						"Maralie",
 						"Mardnab",
+						"Naithee",
 						"Nissa",
+						"Nomi",
 						"Nyx",
 						"Oda",
 						"Orla",
 						"Roywyn",
+						"Rukhelmoth",
+						"Senni",
 						"Shamil",
 						"Tana",
+						"Villonah",
 						"Waywocket",
-						"Zanna"
+						"Wiri",
+						"Zanna",
 					]);
 				}
-				name += " " + randomize([
-					"Beren",
-					"Daergel",
-					"Folkor",
-					"Garrick",
-					"Nackle",
-					"Murnig",
-					"Ningel",
-					"Raulnor",
-					"Scheppen",
-					"Timbers",
-					"Turen"
-				]);
+				name += " \"" + randomize([
+					"Aleslosh",
+					"Ashhearth",
+					"Badger",
+					"Cloak",
+					"Diggermattock",
+					"Doublelock",
+					"Fiddlebender",
+					"Filchbatter",
+					"Flintknapper",
+					"Fnipper",
+					"Gardnersonson",
+					"Gleamsilver",
+					"Glitterstone",
+					"Greatorm",
+					"Hamisfore",
+					"Ku",
+					"Leadstopper",
+					"Mirrorshade",
+					"Nim",
+					"Oneshoe",
+					"Pathshutter",
+					"Pock",
+					"Sparklegem",
+					"Spewgold",
+					"Stumbleduck",
+					"Tapfinger",
+					"Thunderbonk",
+					"Waywocket",
+					"Weirdbottle",
+				]) + "\"";
 				break;
 			//#endregion
 			//#region Grippli
@@ -2144,7 +2180,6 @@ const NameGenerator = {
 						"Shardon",
 						"Tye",
 						"Ulmo",
-						"Violet",
 						"Wellby",
 						"Wendel",
 						"Wenner",
@@ -2213,6 +2248,7 @@ const NameGenerator = {
 						"Tyna",
 						"Vani",
 						"Verna",
+						"Violet",
 						"Wella",
 						"Willow"
 					]);
@@ -2789,7 +2825,7 @@ const NameGenerator = {
 						"Murook",
 						"Myev",
 						"Nagrette",
-						"Neega",
+						"Neeza",
 						"Nella",
 						"Nogu",
 						"Oolah",
@@ -2816,29 +2852,101 @@ const NameGenerator = {
 				}
 				break;
 			//#endregion
+			//#region Ratfolk
+			case "ratfolk":
+				if (gender == "male") {
+					name = randomize([
+						"Allophrys",
+						"Alticola",
+						"Bakeri",
+						"Baule",
+						"Bolami",
+						"Boylii",
+						"Bufo",
+						"Burti",
+						"Carletoni",
+						"Crinitus",
+						"Forresti",
+						"Gambelli",
+						"Gaumeri",
+						"Harbisoni",
+						"Haussa",
+						"Mattheyi",
+						"Salvini",
+						"Schmidli",
+						"Spretus",
+						"Stirtoni",
+						"Tenellus",
+					]);
+				} else {
+					name = randomize([
+						"Albula",
+						"Alpicola",
+						"Arianus",
+						"Attwateri",
+						"Baileyi",
+						"Beatae",
+						"Calabyi",
+						"Caroli",
+						"Chevrieri",
+						"Cookii",
+						"Cypriacus",
+						"Datae",
+						"Emesi",
+						"Epimelas",
+						"Gracilis",
+						"Keeni",
+						"Merriami",
+						"Musseri",
+						"Neave",
+						"Pahari",
+						"Sorella",
+					]);
+				}
+				break;
+			//#endregion Ratfolk
 			//#region Tabaxi
 			case "tabaxi":
 				name = randomize([
 					"Afternoon Nap (Nap)",
+					"Aurora of Winter (Aurora)",
 					"Bag of Nails (Nails)",
+					"Bronze Peak (Bronze)",
+					"Bush in the Forest (Forest)",
+					"Cadence of Water (Cadence)",
+					"Clever Star (Star)",
 					"Cloud on the Mountaintop (Cloud)",
+					"Coursing River (River)",
 					"Defiant Time (Defiant)",
 					"Drifting Snowflake (Snowflake)",
+					"Fallen Twig (Twig)",
 					"Five Timber (Timber)",
 					"Flask of Wine (Flask)",
+					"Flickering Fire (Fire)",
+					"Fresh Hide (Hide)",
 					"Game of Chance (Game)",
 					"Gold Wind (Wind)",
+					"Hearty Fang (Hearty)",
 					"Jade Shoe (Jade)",
+					"Lazy Flower (Flower)",
+					"Leaf on the Water (Leaf)",
 					"Left-Handed Hummingbird (Bird)",
+					"Merry River (River)",
+					"Rainbow After Rain (Rainbow)",
 					"River Mist (River)",
+					"Sapphire Clover (Sapphire)",
 					"Scratch on Wood (Scratch)",
 					"Seven Thundercloud (Thunder)",
+					"Shadows in the Wind (Shadow)",
 					"Skirt of Snakes (Snake)",
+					"Sky Full of Stars (Sky)",
 					"Smoking Mirror (Smoke)",
 					"Snow of the Mountain (Snow)",
+					"Sound of the Drum (Drum)",
 					"Spring Blossom (Spring)",
 					"Storm at Sea (Sea)",
 					"Three Earrings (Three)",
+					"Tree Blossom (Blossom)",
 					"Two Dry Cloaks (Cloaks)",
 					"Winter Breath (Winter)"
 				]);
@@ -3713,20 +3821,20 @@ const NameGenerator = {
 			//#region Gnome
 			case "gnome":
 				name = randomize([
-					"Aleslosh",
-					"Ashhearth",
-					"Badger",
-					"Cloak",
-					"Doublelock",
-					"Filchbatter",
-					"Fnipper",
-					"Hamisfore",
-					"Ku",
-					"Nim",
-					"Oneshoe",
-					"Pock",
-					"Sparklegem",
-					"Stumbleduck"
+					"Beren",
+					"Daergel",
+					"Fleagol",
+					"Folkor",
+					"Garrick",
+					"Glinckle",
+					"Nackle",
+					"Murnig",
+					"Ningel",
+					"Raulnor",
+					"Scheppen",
+					"Timbers",
+					"Turen",
+					"Uvarkk",
 				]);
 				break;
 			//#endregion Gnome
@@ -3753,7 +3861,6 @@ const NameGenerator = {
 					"Greenbottle",
 					"Greenleaf",
 					"Highhill",
-					"High-hill",
 					"Hilltopple",
 					"Hogcollar",
 					"Honeypot",
@@ -3773,7 +3880,6 @@ const NameGenerator = {
 					"Silvereyes",
 					"Smoothhands",
 					"Stonebridge",
-					"Stoutbridge",
 					"Stoutman",
 					"Strongbones",
 					"Sunmeadow",
@@ -3871,6 +3977,37 @@ const NameGenerator = {
 				]);
 				break;
 			//#endregion Human
+			//#region Ratfolk
+			case "ratfolk":
+				name = randomize([
+					"Arrogans",
+					"Blangorum",
+					"Devia",
+					"Elator",
+					"Enganus",
+					"Exulans",
+					"Ingens",
+					"Koopmani",
+					"Lepida",
+					"Leucopus",
+					"Losea",
+					"Lugens",
+					"Mordax",
+					"Niobe",
+					"Norvegicus",
+					"Ordii",
+					"Osgoodi",
+					"Palatina",
+					"Palmarum",
+					"Pococki",
+					"Rattus",
+					"Sanila",
+					"Satarae",
+					"Steini",
+					"Tanezumi",
+				]);
+				break;
+			//#endregion Ratfolk
 			//#region Tabaxi
 			case "tabaxi":
 				name = randomize([
@@ -3885,9 +4022,21 @@ const NameGenerator = {
 			//#region Triton
 			case "triton":
 				name = randomize([
-					"Paroxath",
+					"Bazath",
+					"Dnoth",
+					"Jastogoth",
+					"Mestoth",
+					"Modrith",
+					"Mokroth",
+					"Morjath",
+					"Morskath",
 					"Morskoth",
-					"Dnoth"
+					"Podith",
+					"Paroxath",
+					"Rakath",
+					"Toplath",
+					"Tyverith",
+					"Valovith",
 				]);
 				break;
 			//#endregion Triton
@@ -3939,6 +4088,8 @@ const NameGenerator = {
 			case "kuotoa":
 			case "kuo-toa":
 				return n.first("kuo-toa", gender, age);
+			case "ratfolk":
+				return n.first(species, gender, age) + " " + n.last(species, gender, age);
 			case "tabaxi":
 				// return n.first("tabaxi", gender, age) + " " + n.last("tabaxi", gender, age);
 				return n.first("tabaxi", gender, age);

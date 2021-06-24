@@ -250,7 +250,7 @@ $(document).ready(function(){
 	});
 })
 
-function Airship(left: number, top: number, name: string, image: string, crew?: string[]) {
+function Airship(left: string, top: string, name?: string, image?: string, crew?: string[]) {
 	crew = crew || ["Namfoodle", "Thunder", "Teomyr", "Redji", "Zenrya", "Bud"];
 	name = name || "Airship";
 	image = image || "/dnd/img/maps/Airship.png";
