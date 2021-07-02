@@ -71,15 +71,6 @@
 
 			class CharacterSlide extends React.Component {
 				render() {
-
-					const paragraphs = [];
-
-					this.props.character.information.forEach((paragraph) => {
-						paragraphs.push(
-							<CharacterInformationParagraph text={paragraph} />
-						)
-					});
-
 					return (
 						<div className="guild slide" style={{borderColor: this.props.character.themeColor}}>
 							<CharacterName name={this.props.character.name} tagline={this.props.character.tagline} />
@@ -93,7 +84,9 @@
 							/>
 							<CharacterTitles titles={this.props.character.titles} />
 							<CharacterInformationParagraph text={this.props.character.description} />
-							{paragraphs}
+							{this.props.character.information.map((paragraph, index) =>
+								<CharacterInformationParagraph text={paragraph} key={index} />
+							)}
 						</div>
 					);
 				}

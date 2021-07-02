@@ -48,10 +48,11 @@ class NPCDeepGenerator {
                 "very high": 10
             },
             specific: [
+                // Cultures more likely to be dumb
                 {
                     type: NPCGenFilterType.Include,
                     category: NPCGenFilterCategory.Species,
-                    values: ["orc"],
+                    values: ["bugbear", "orc"],
                     keys: {
                         "very low": 40,
                         "low": 60,
@@ -60,10 +61,11 @@ class NPCDeepGenerator {
                         "very high": 1,
                     }
                 },
+                // Cultures more likely to be smart
                 {
                     type: NPCGenFilterType.Include,
                     category: NPCGenFilterCategory.Species,
-                    values: ["elf", "gnome"],
+                    values: ["elf", "gnome", "hobgoblin"],
                     keys: {
                         "very low": 10,
                         "low": 20,
@@ -1142,7 +1144,6 @@ class NPCDeepGenerator {
                 "a royal lineage": 10,
                 "a run-down bar": 10,
                 "a run-down adventurers guild": 10,
-                "a rural construction guild": 10,
                 "a secret barracks": 10,
                 "a shanty town in a scrapyard": 10,
                 "a sheltered upbringing": 10,
@@ -1201,6 +1202,14 @@ class NPCDeepGenerator {
                     values: ["bullywug"],
                     keys: {
                         "a vile village in a swamp": 50,
+                    }
+                },
+                {
+                    type: NPCGenFilterType.Exclude,
+                    category: NPCGenFilterCategory.Species,
+                    values: ["firbolg"],
+                    keys: {
+                        "a rural construction guild": 10,
                     }
                 },
                 {
@@ -1398,7 +1407,7 @@ class NPCDeepGenerator {
                 "was once a completely different race": 5,
                 "was once very wealthy but lost everything": 10,
                 "was told by {HisHer} parents they'll never be good enough": 10,
-                "wears rings, which isn’t cool, but its cool that they don’t care if they’re cool": 10,
+                "wears rings, which isn’t cool, but it's cool that they don’t care if they’re cool": 10,
                 "who donates time to local charities": 10,
                 "will always choose to bluff an enemy": 10,
                 "will always go for a swim in bodies of water they come across": 10,

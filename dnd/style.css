@@ -15,6 +15,10 @@ body {
 	margin: 0px;
 }
 
+button {
+	cursor: pointer;
+}
+
 .i {
 	font-style: italic;
 }
@@ -71,19 +75,6 @@ iframe[name="mainFrame"] {
 	background-repeat: repeat;
 }
 
-/* The navigation bar */
-.navbar {
-	/* overflow: hidden; */
-	background-color: #333;
-	position: fixed;
-	/* Set the navbar to fixed position */
-	top: 0;
-	/* Position the navbar at the top of the page */
-	width: 100%;
-	/* Full width */
-	box-sizing: border-box;
-}
-
 .map-controls {
 	overflow: hidden;
 	position: fixed;
@@ -93,33 +84,6 @@ iframe[name="mainFrame"] {
 	width: 100%;
 	/* Full width */
 	box-sizing: border-box;
-}
-
-/* Links inside the navbar */
-.dropdown>a {
-	display: block;
-	color: #f2f2f2;
-	text-align: center;
-	padding: 0px 16px;
-	line-height: 40px;
-	text-decoration: none;
-}
-.navbar>a{
-	float: left;
-	display: block;
-	color: #f2f2f2;
-	text-align: center;
-	padding: 0px 16px;
-	line-height: 40px;
-	text-decoration: none;
-}
-
-/* Change background on mouse-over */
-.navbar>a:hover,
-.dropdown>a:hover,
-.dropdown:hover>a{
-	background: #ddd;
-	color: black;
 }
 
 /* Main content */
@@ -743,3 +707,41 @@ button.manage-crew {
 		display: none !important;
 	}
 }
+
+/*#region modal window */
+.modal-window {
+	position: fixed;
+	top:0;
+	right:0;
+	margin:none;
+	width: 50vw;
+	min-width: 500px;
+	height: 100vh;
+	box-sizing: border-box;
+	overflow-y: auto;
+	background: #E3CFB0;
+	border: 0.5em ridge #444;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: black;
+	font-size: 9pt;
+	border-radius: 5px;
+	z-index: 10;
+}
+
+.modal-window .render-panel {
+	padding:1em;
+}
+
+.modal-window .modal-close-button {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	line-height: 2em;
+	height: 2em;
+	width: 2em;
+	border:none;
+	position:absolute;
+	top: 0;
+	right: 0;
+}
+/*#endregion modal window */

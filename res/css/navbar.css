@@ -12,6 +12,7 @@
 	box-shadow: inset 0px -1px 4px #222;
 }
 
+.navbar>a,
 .dropdown {
 	float: left;
 	overflow: hidden;
@@ -19,6 +20,7 @@
 	top:0;
 	left:0;
 }
+
 /* Links inside the navbar */
 .dropdown>button,
 .dropdown>a {
@@ -33,6 +35,7 @@
 	font-family: inherit;
 	border:none;
 }
+
 .navbar>a{
 	float: left;
 	display: block;
@@ -82,15 +85,27 @@
 .dropdown-content a:hover {background-color: #ca8; color:black;}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover>.dropdown-content {
+.dropdown.shown>.dropdown-content,
+.navbar:not(.responsive) .dropdown:hover>.dropdown-content {
 	display: block;
 	opacity:1;
 	height:auto;
 	top:100%;
 }
 
-.dropdown:hover {
+.dropdown.shown,
+.navbar:not(.responsive) .dropdown:hover {
 	overflow:visible;
+}
+
+.dropdown>a::after {
+	padding-left: 0.5em;
+	content:'>';
+}
+
+.dropdown.shown>a::after,
+.navbar:not(.responsive) .dropdown:hover>a::after {
+	content: 'v';
 }
 
 .navbar .icon {
@@ -98,14 +113,6 @@
 }
 
 
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
-@media screen and (max-width: 600px) {
-	.navbar .dropdown:not(:first-child) {display: none;}
-	.navbar a.icon {
-		float: right;
-		display: block;
-	}
-}
 
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 @media screen and (max-width: 600px) {
@@ -115,10 +122,18 @@
 		right: 0;
 		top: 0;
 	}
+
 	.navbar.responsive .dropdown {
 		float: none;
 		display: block;
 		text-align: left;
+		border-bottom:2px solid #444;
+	}
+
+	.navbar.responsive>a {
+		float: none;
+		display: block;
+		text-align: center;
 		border-bottom:2px solid #444;
 	}
 
@@ -136,6 +151,21 @@
 	/* .dropdown:hover>.dropdown-content {
 		display:none;
 	} */
+
+	/* Sub-Dropdown */
+	.navbar.responsive .sub-dropdown .dropdown-content {
+		position: absolute;
+		width: 100%;
+		left:0%;
+		top:100%;
+	}
+
+	/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+	.navbar .dropdown:not(:first-child) {display: none;}
+	.navbar a.icon {
+		float: right;
+		display: block;
+	}
 }
 
 
@@ -173,6 +203,7 @@
 .sub-dropdown .dropdown-content a:hover {background-color: #ca8; color:black;}
 
 /* Show the dropdown menu on hover */
+.sub-dropdown.shown>.dropdown-content,
 .sub-dropdown:hover>.dropdown-content {
 	display: block;
 	opacity:1;
@@ -181,6 +212,7 @@
 	pointer-events: visible;
 }
 
+.sub-dropdown.shown,
 .sub-dropdown:hover {
 	overflow:visible;
 }

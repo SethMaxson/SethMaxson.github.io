@@ -2,6 +2,15 @@
 	padding: 10px;
 }
 
+button {
+	cursor: pointer;
+	border-radius: 0.5em;
+}
+
+button:hover {
+	border-color: white;
+}
+
 th {
 	font-weight: bold;
 	border: 2px solid #555;
@@ -55,6 +64,20 @@ div.token {
 	image-rendering: pixelated;
 }
 
+/*#region stuff for jquery.multiselect.js*/
+.ms-options-wrap,
+.ms-options-wrap>button {
+	width: 100%;
+}
+
+.ms-options-wrap>button>span {
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+ }
+/*#endregion stuff for jquery.multiselect.js*/
+
 /* th.species { width: 20% }
 th.gender { width: 12% }
 th.age { width: 10% }
@@ -74,16 +97,33 @@ th.controls {
 }
 
 .generator-settings {
+	box-sizing: border-box;
 	width: 100%;
 	max-width: 100%;
 	margin:auto;
 	border-collapse: collapse;
+	padding:0.5em;
+	border: 2px solid #555;
+}
+
+.generator-settings>div{
+	margin-top: 1em;
 }
 
 .npc-table {
 	width:100%;
 	margin:auto;
 	border-collapse: collapse;
+}
+
+#clear-npcs {
+	border:2pt solid #a00;
+	color:#a00;
+}
+
+#generate-npcs {
+	border:2pt solid #00a;
+	color:#00a;
 }
 
 @media print

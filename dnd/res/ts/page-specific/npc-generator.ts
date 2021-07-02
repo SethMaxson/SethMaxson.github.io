@@ -12,22 +12,36 @@ $(document).ready(function ()
 		return $.ajax({ crossDomain: true, url: "/dnd/res/data/races.json", dataType: 'json' });
 	}
 
-	getRaces().done(function (returnedData) {
+	getRaces().done(function (returnedData)
+	{
+		returnedData.sort
 		for (let i = 0; i < returnedData.length; i++) {
 			const e = returnedData[i];
-			if (e.hasOwnProperty("ID")) {
-				races.push(e.ID);
-				$("#race-select").append($("<option value=\"" + e.ID + "\">" + e.name + "</option>"));
-				$("#race-filter").append($("<option value=\"" + e.ID + "\">" + e.name + "</option>"));
-			} else {
-				races.push(e.name);
-				$("#race-select").append($("<option value=\"" + e.name + "\">" + e.name + "</option>"));
-				$("#race-filter").append($("<option value=\"" + e.name + "\">" + e.name + "</option>"));
-			}
+			let id = e.hasOwnProperty("ID") ? e.ID : e.name;
+			races.push(id);
+			//@ts-ignore
+			$("#race-select").multiselect('loadOptions', [{
+					name   : e.name,
+					value  : id,
+					checked: false
+				}],
+				false
+			);
+			// $("#race-select").append($("<option value=\"" + e.ID + "\">" + e.name + "</option>"));
+			$("#race-filter").append($("<option value=\"" + id + "\">" + e.name + "</option>"));
 		}
 		loadNPCs();
 		randomNPCs = new NPCManager();
 		generateNPCs(undefined, undefined, undefined, undefined, 20);
+	});
+
+	//#region initialize jquery.multiselect.js
+	//@ts-ignore
+	$('#race-select').multiselect({
+		columns: 1,
+		placeholder: 'Surprise Me',
+		search: true,
+		selectAll: true
 	});
 
 	//@ts-ignore
@@ -38,6 +52,21 @@ $(document).ready(function ()
 		selectAll: true
 	});
 
+	//@ts-ignore
+	$('#alignment-select').multiselect({
+		columns: 3,
+		placeholder: 'Surprise Me',
+		selectAll: true,
+		// selectGroup: true
+	});
+
+	//@ts-ignore
+	$('#gender-select').multiselect({
+		columns: 1,
+		placeholder: 'Surprise Me'
+	});
+	//#endregion initialize jquery.multiselect.js
+
 	$("#generate-npcs").on("click", function ()
 	{
 		var race = undefined,
@@ -45,10 +74,20 @@ $(document).ready(function ()
 			age = undefined,
 			availableAlignments = undefined;
 		var restrictRacesByAlignment = $("#alignment-restrict-races").prop("checked");
-		if ($("#race-select").val() !== "null") race = $("#race-select").val();
-		if ($("#gender-select").val() !== "null") gender = $("#gender-select").val();
-		// if ($("#age-select").val() !== "null" && $("#age-select").val()) age = $("#age-select").val();
+		// get species setting
+		if (($("#race-select").val() as string[]).length == 1)
+		{
+				race = ($("#race-select").val() as string[])[0];
+		}
+		else if (($("#race-select").val() as string[]).length > 1)
+		{
+				race = $("#race-select").val();
+		}
+		// get gender setting
+		if (($("#gender-select").val() as string[]).length == 1) gender = ($("#gender-select").val() as string[])[0];
+		// get age setting
 		age = getFilterValue("#age-select");
+		// get alignment setting
 		if ($("#alignment-select").val() !== "null")
 		{
 			let alnVal = $("#alignment-select").val()?.toString() as string;
@@ -58,6 +97,7 @@ $(document).ready(function ()
 				race = getRaceByAlignment(availableAlignments);
 			}
 		}
+		// create NPCs
 		generateNPCs(
 			race as string,
 			gender as string,
@@ -131,7 +171,6 @@ $(document).ready(function ()
 
 function deleteNPC(index: number, isRando: boolean)
 {
-	let tableId = isRando ? "#random-npcs" : "#loaded-npcs";
 	let npcCollection = isRando ? randomNPCs : loadedNPCs;
 	removeNPCFromManager(npcCollection, index);
 	isRando ? renderRandomNPCs() : renderLoadedNPCs();
@@ -139,32 +178,21 @@ function deleteNPC(index: number, isRando: boolean)
 
 function sortNPCs(isRando: boolean, property: string)
 {
-	let tableId = isRando ? "#random-npcs" : "#loaded-npcs";
 	let npcCollection = isRando ? randomNPCs : loadedNPCs;
 	npcCollection.sort(property);
 	isRando ? renderRandomNPCs() : renderLoadedNPCs();
 }
 
-function moveToRandom(index: number) {
+function transferNPCBetweenManagers(moveToRando: boolean, index: number)
+{
+	let donor = moveToRando ? loadedNPCs : randomNPCs;
+	let target = moveToRando ? randomNPCs : loadedNPCs;
 	// locate target npc
-	var npc = loadedNPCs.filtered[index];
+	var npc = donor.filtered[index];
 	// add to random npc collection
-	randomNPCs.all.push(npc);
-	randomNPCs.filtered.push(npc);
+	target.add(npc);
 	// remove from saved npc collection
-	removeNPCFromManager(loadedNPCs, index);
-	// redraw
-	renderLoadedNPCs();
-	renderRandomNPCs();
-}
-
-function moveToSaved(index: number) {
-	// locate target npc
-	var npc = randomNPCs.filtered[index];
-	// add to saved npc collection
-	loadedNPCs.add(npc);
-	// remove from random npc collection
-	removeNPCFromManager(randomNPCs, index);
+	removeNPCFromManager(donor, index);
 	// redraw
 	renderLoadedNPCs();
 	renderRandomNPCs();
@@ -204,7 +232,7 @@ function getNPCRow(npc: NPC, rando: boolean, index: number) {
 	var ageMod = npcGenerator.getNPCOldness(npc);
 	// var threatMod = threat.indexOf(npc.threat)/(threat.length);
 	rando = rando || false;
-	let moveButton = rando ? `<button onclick="moveToSaved(${index});">Add</button>` : `<button onclick="moveToRandom(${index});">Remove</button>`;
+	let moveButton = `<button onclick="transferNPCBetweenManagers(${!rando}, ${index});">${rando? "Add" : "Remove"}</button>`;
 	let imgSrc = getNPCImage(npc);
 	let ageColor = `rgb(${Math.round(200 * ageMod)},${Math.round(200 * (1 - ageMod))},00)`;
 	return $(

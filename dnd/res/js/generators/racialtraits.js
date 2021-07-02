@@ -60,7 +60,7 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 18,
         maxAge: 360,
-        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "NG", "CG", "LE", "NE", "CE"],
         spawnFrequency: 30
     },
     "drow": {
@@ -74,7 +74,7 @@ const RacialTraits = {
         genders: ["female", "male"],
         adultAge: 18,
         maxAge: 360,
-        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
+        alignments: ["LG", "LN", "LE"],
         spawnFrequency: 50
     },
     "elf": {
@@ -122,22 +122,22 @@ const RacialTraits = {
     "goliath": {
         genders: ["female", "male"],
         adultAge: 18,
-        maxAge: 70,
-        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
+        maxAge: 90,
+        alignments: ["LG", "LN", "LE"],
         spawnFrequency: 30
     },
     "grippli": {
         genders: ["female", "male"],
         adultAge: 30,
         maxAge: 180,
-        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
+        alignments: ["NG", "N"],
         spawnFrequency: 20
     },
     "grung": {
         genders: ["female", "male"],
-        adultAge: 18,
-        maxAge: 70,
-        alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
+        adultAge: 1,
+        maxAge: 50,
+        alignments: ["LE"],
         spawnFrequency: 10
     },
     "halfling": {
@@ -149,8 +149,8 @@ const RacialTraits = {
     },
     "halfelf": {
         genders: ["female", "male"],
-        adultAge: 14,
-        maxAge: 75,
+        adultAge: 18,
+        maxAge: 190,
         alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 50
     },
@@ -164,14 +164,14 @@ const RacialTraits = {
     "hobgoblin": {
         genders: ["female", "male"],
         adultAge: 18,
-        maxAge: 70,
+        maxAge: 90,
         alignments: ["LE"],
         spawnFrequency: 40
     },
     "human": {
         genders: ["female", "male"],
         adultAge: 18,
-        maxAge: 70,
+        maxAge: 90,
         alignments: ["LG", "NG", "CG", "LN", "N", "CN", "LE", "NE", "CE"],
         spawnFrequency: 100
     },
@@ -205,8 +205,8 @@ const RacialTraits = {
     },
     "kuotoa": {
         genders: ["female", "male"],
-        adultAge: 6,
-        maxAge: 120,
+        adultAge: 2,
+        maxAge: 20,
         alignments: ["NE"],
         spawnFrequency: 10
     },
@@ -234,7 +234,7 @@ const RacialTraits = {
     "tabaxi": {
         genders: ["female", "male"],
         adultAge: 18,
-        maxAge: 70,
+        maxAge: 90,
         alignments: ["CG", "CN"],
         spawnFrequency: 40
     },

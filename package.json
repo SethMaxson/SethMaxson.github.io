@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@types/react": "^17.0.13",
+    "@types/react-dom": "^17.0.8",
+    "bootstrap": "^5.0.2",
     "cannon": "^0.6.2",
     "three": "^0.114.0"
   },

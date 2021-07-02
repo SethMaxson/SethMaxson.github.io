@@ -57,68 +57,58 @@
 					<h3 class="noprint">Random <a class="collapse-button"></a></h3>
 				<!-- <div id="random">
 					<h3>Random</h3> -->
-					<table class="generator-settings noprint">
-						<tr>
-							<td>
-								<label for="race-select">Species:</label>
-								<select name="race-select" id="race-select">
-									<option value="null" selected>Surprise Me</option>
-								</select>
-							</td>
-							<td>
-								<label for="gender-select">Gender:</label>
-								<select name="gender-select" id="gender-select">
-									<option value="null" selected>Surprise Me</option>
-									<option value="female">Female</option>
-									<option value="male">Male</option>
-								</select>
-							</td>
-							<td>
-								<label for="age-select">Age:</label>
-								<select name="age-select" id="age-select" multiple>
-									<option value="null" selected>Surprise Me</option>
-									<option value="child">Child</option>
-									<option value="young adult">Young Adult</option>
-									<option value="adult">Middle Age</option>
-									<option value="old">Elder</option>
-								</select>
-							</td>
-							<td>
-								<label for="alignment-select">Alignment:</label>
-								<select name="alignment-select" id="alignment-select">
-									<option value="null" selected>Surprise Me</option>
+					<div class="generator-settings noprint">
+						<button id="default-settings">Default Settings</button>
+						<div>
+							<label for="race-select">Species:</label>
+							<select name="race-select" id="race-select" multiple>
+							</select>
+						</div>
+						<div>
+							<label for="gender-select">Gender:</label>
+							<select name="gender-select" id="gender-select" multiple>
+								<option value="female" selected>Female</option>
+								<option value="male"selected>Male</option>
+							</select>
+						</div>
+						<div>
+							<label for="age-select">Age:</label>
+							<select name="age-select" id="age-select" multiple>
+								<option value="child">Child</option>
+								<option value="young adult">Young Adult</option>
+								<option value="adult">Middle Age</option>
+								<option value="old">Elder</option>
+							</select>
+						</div>
+						<div>
+							<label for="alignment-select">Alignment:</label>
+							<select name="alignment-select" id="alignment-select" multiple>
+								<optgroup label="Good">
 									<option value="LG">Lawful Good</option>
 									<option value="NG">Neutral Good</option>
 									<option value="CG">Chaotic Good</option>
+								</optgroup>
+								<optgroup label="Neutral">
 									<option value="LN">Lawful Neutral</option>
 									<option value="N">Neutral</option>
 									<option value="CN">Chaotic Neutral</option>
+								</optgroup>
+								<optgroup label="Evil">
 									<option value="LE">Lawful Evil</option>
 									<option value="NE">Neutral Evil</option>
 									<option value="CE">Chaotic Evil</option>
-									<optgroup label="Alignment Subsets">
-										<option value="LG,NG,CG">Any Good</option>
-										<option value="LN,N,CN">Any Neutral (Morality axis)</option>
-										<option value="LE,NE,CE">Any Evil</option>
-										<option value="LG,LN,LE">Any Lawful</option>
-										<option value="NG,N,NE">Any Neutral (Lawful axis)</option>
-										<option value="CG,CN,CE">Any Chaotic</option>
-									</optgroup>
-								</select>
-								<label for="alignment-restrict-races">Only use races matching alignment:</label>
-								<input type="checkbox" name="alignment-restrict-races" id="alignment-restrict-races" />
-							</td>
-							<td>
-								<label for="records-to-generate">Number to create:</label>
-								<input type="number" name="records-to-generate" id="records-to-generate" initial="20" value="20" />
-							</td>
-							<td><button id="generate-npcs">Generate!</button></td>
-							<td>
-								<button id="default-settings">Default Settings</button>
-								<button id="clear-npcs">Clear NPCs</button>
-							</td>
-						</tr>
-					</table>
+								</optgroup>
+							</select>
+							<label for="alignment-restrict-races">Only use races matching alignment:</label>
+							<input type="checkbox" name="alignment-restrict-races" id="alignment-restrict-races" />
+						</div>
+						<div>
+							<label for="records-to-generate">Number to create:</label>
+							<input type="number" name="records-to-generate" id="records-to-generate" initial="20" value="20" />
+							<button id="generate-npcs">Generate!</button>
+							<button id="clear-npcs">Clear NPCs</button>
+						</div>
+					</div>
 					<div class="noprint">
 						<label for="random-sort-select">Sort by:</label>
 						<select name="random-sort-select" id="random-sort-select">

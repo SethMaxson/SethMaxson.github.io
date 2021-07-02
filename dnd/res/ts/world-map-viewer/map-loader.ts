@@ -1,3 +1,5 @@
+type CityType = "city" | "metropolis" | "village";
+
 interface IMapObjectPosition
 {
 	bottom?: string;
@@ -37,17 +39,19 @@ interface ICity
 {
 	/** The name of the city */
 	name: string;
-	/** Indicates where the name should be displayed relative to the map icon. Vertical position followed by horizontal (e.g. "top left") */
-	nameLocation: string;
-	/** Strictly for debugging the newer, better location placement format. Need to remove once this is finalized. */
-	useNewLocation?: "true";
-	type: string;
-	fontSize?: number;
+	type: CityType;
 	description: string[];
 	culture: string[];
 	dmNotes: string[];
 	/** The address of the city's standalone map. */
 	url: string;
+}
+
+interface ICitiesJsonObject extends ICity
+{
+	/** Indicates where the name should be displayed relative to the map icon. Vertical position followed by horizontal (e.g. "top left") */
+	nameLocation: string;
+	fontSize?: number;
 	position: IMapObjectPosition;
 	marker: ICityMarker|CityMarkerTypes;
 }
@@ -56,7 +60,7 @@ interface ICitiesJsonContinentSection
 {
 	name: string;
 	cartographer: string;
-	cities: ICity[];
+	cities: ICitiesJsonObject[];
 }
 
 const MapMarkerRadii: {
@@ -67,8 +71,17 @@ const MapMarkerRadii: {
 	town: 8
 }
 
-var _totalLoadedCities = 0;
 var _cityMapImageData: ICityMapNode[];
+
+class City implements ICity
+{
+	name: string = "";
+	type: CityType = "village";
+	description: string[] = [];
+	culture: string[] = [];
+	dmNotes: string[] = [];
+	url: string = "#";
+}
 
 function getCityData() {
 	return $.ajax({ crossDomain: true, url: "/dnd/res/data/world-map-data/cities.json", dataType: 'json' });
@@ -80,261 +93,71 @@ function getMapLocationData(continent: string) {
 
 function getMapImageData()
 {
-	return $.ajax({
-		crossDomain: true,
-		url: "/dnd/res/data/world-map-data/city-map.json",
-		dataType: 'json',
-		// success: function (returnedData: ICityMapNode[]) {
-		// 	let city = returnedData.filter(function (entry) {
-		// 		return entry.name.toLowerCase() === targetCity.toLowerCase();
-		// 	})[0];
-		// 	if (city) {
-
-		// 	}
-		// }
-	});
+	return $.ajax({ crossDomain: true, url: "/dnd/res/data/world-map-data/city-map.json", dataType: 'json' });
 }
 
-function getCitiesByContinent(destinationElement:JQuery<HTMLElement>, continentName: string, specialTreatmentForHyperLinks: boolean = false)
+function getCityObject(cityName: string, continentName: string, dataLocatedInCitiesJson: boolean = false)
 {
-	if (specialTreatmentForHyperLinks) {
-		attachPlacementHelper(destinationElement);
-	}
 	return new Promise(
-		function (resolve, reject)
+		function (resolve: (value: ICity|undefined) => void, reject)
 		{
-			/** Counts the cities for this continent so that we can log them later. */
-			var cityCount = 0;
-			/** Tracks how many data fetches have completed so that this promise knows when to resolve. */
-			var completedFetches = 0;
-			/** The number of fetches performed. When completedFetches matches this, the promise can resolve. */
-			const totalExpectedFetches = 2;
+			var city: ICity|undefined = undefined;
 			$.when(getMapImageData(), getCityData(), getMapLocationData(continentName)).done(function (cityMapImageDataRaw: ICityMapNode[][], continentSections: ICitiesJsonContinentSection[][], locationsRaw: IMapLocation[][])
 			{
 				_cityMapImageData = cityMapImageDataRaw[0];
-				//#region getCityData
-				let continents = continentSections[0].filter(function (entry)
+				if (dataLocatedInCitiesJson)
 				{
-					return entry.name === continentName;
-				});
-				if (continents.length > 0) {
-					let cities = continents[0].cities;
-					for (let i = 0; i < cities.length; i++) {
-						destinationElement.append(getCityMarkup(cities[i], continents[0].cartographer, specialTreatmentForHyperLinks));
-						cityCount++;
-						_totalLoadedCities++;
-					}
-				}
-				//#endregion
-				//#region getMapLocationData
-				let locations = locationsRaw[0];
-				for (let i = 0; i < locations.length; i++) {
-					let relevantMapImage = _cityMapImageData.filter(function (entry) {
-						return entry.name.toLowerCase() === locations[i].name.toLowerCase();
+					//#region getCityData
+					let continents = continentSections[0].filter(function (entry)
+					{
+						return entry.name === continentName;
 					});
-					let url = relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + locations[i].name : "#";
-					destinationElement.append(
-						$(
-							`<a href="${url}" class="point-of-interest smith village" style="left: calc(${locations[i].left} - 8px); top: calc(${locations[i].top} - 8px); ${specialTreatmentForHyperLinks && url != "#" ? " color:#ffff00;" : ""}">
-								<div class="map-marker-icon marker-town" style="background-color:#f3b;">&nbsp;</div>
-								<span class="map-marker-name" style="position: absolute; top:50%; left:100%; transform: translate(10px, -50%);">${locations[i].name}</span>
-							</a>`
-						)
-					);
-					cityCount++;
-					_totalLoadedCities++;
+					if (continents.length == 1)
+					{
+						city = ensureSingleCityResult(continents[0].cities, cityName, continentName) as ICity;
+					}
+					//#endregion
 				}
-				//#endregion
-				console.log(`Cities on ${continentName}: ${cityCount}`);
-				resolve();
+				else
+				{
+					//#region getMapLocationData
+					let locationNode = ensureSingleCityResult(locationsRaw[0], cityName, continentName) as IMapLocation;
+					if (locationNode)
+					{
+						city = new City();
+						city.name = cityName;
+						let relevantMapImage = _cityMapImageData.filter(function (entry)
+						{
+							return entry.name.toLowerCase() === cityName.toLowerCase();
+						});
+						city.url = relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + cityName : "#";
+					}
+					//#endregion
+				}
+				resolve(city);
 			});
 		}
 	);
 }
 
-/**
- * Get a city marker as an HTML Element
- * @param city The city for which a map marker is needed
- * @param cartographer The name of the cartographer who mapped the city. This will determine the font used
- * @param specialTreatmentForHyperLinks If true, the returned marker will be yellow if the city is associated to a city map
- */
-function getCityMarkup(city: ICity, cartographer: string, specialTreatmentForHyperLinks: boolean = false)
+function ensureSingleCityResult(citiesToFilter: ICity[] | IMapLocation[], cityName: string, continentName: string): ICity | IMapLocation | undefined
 {
-	let description = "";
-	for (let i = 0; i < city.description.length; i++) {
-		description += "<p>" + city.description[i] + "</p>";
-	}
 
-	let culture = city.culture.length > 0 ? "<h1>Culture.</h1>" : "";
-	for (let i = 0; i < city.culture.length; i++) {
-		culture += "<p>" + city.culture[i] + "</p>";
-	}
-
-	let dmNotes = "";
-	for (let i = 0; i < city.dmNotes.length; i++) {
-		dmNotes += "<p class=\"dmnotes\" style=\"display:none;\">" + city.dmNotes[i] + "</p>";
-	}
-
-	let cm = city.marker as CityMarkerTypes;
-	let marker = cm != CityMarkerTypes.None ? `<div class="map-marker-icon marker-${cm}">&#160;</div>` : "";
-
-	let relevantMapImage = _cityMapImageData.filter(function (entry) {
-		return entry.name.toLowerCase() === city.name.toLowerCase();
+	let foundCities = (citiesToFilter as { name: string}[]).filter(function (entry)
+	{
+		return entry.name === cityName;
 	});
-	let url = (city.url == "#" || !city.url) && relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + city.name : city.url;
-
-	//#region get extra CSS properties and store them to the extraCssProperties variable
-	let offset = MapMarkerRadii[cm] || 0;
-	let extraCssProperties = getPositionString(city.position, offset);
-	if (city.fontSize) {
-		extraCssProperties += ` font-size:${city.fontSize}px;`;
-	}
-	if (specialTreatmentForHyperLinks && url != "#")
+	if (foundCities.length == 1)
 	{
-		extraCssProperties += " color:#ffff00;";
+		return foundCities[0] as ICity | IMapLocation;
 	}
-	//#endregion
-
-	return $(`<a href="${url}" class="point-of-interest ${cartographer} ${city.type}" style="${extraCssProperties}">
-		${marker}
-		<span class="map-marker-name" style="${getNamePositionString(city.nameLocation, Math.round(offset * 1.3))}">${city.name}</span>
-		<span class="city-preview">
-			<h1>${city.name}</h1>
-			${description}
-			${culture}
-			${dmNotes}
-		</span>
-	</a>`);
-}
-
-function getPositionString(position: IMapObjectPosition, offset: number = 0): string
-{
-	let mapObjPosition = "";
-	//#region get horizontal position property
-	if (position.left) {
-		mapObjPosition += `left:${getPositionSubstring(position.left, offset)};`;
-	}
-	else if (position.right) {
-		mapObjPosition += `right:${getPositionSubstring(position.right, offset)};`;
-	}
-	else  {
-		mapObjPosition += `left:0px;`;
-	}
-	//#endregion
-	mapObjPosition += " "; // Add space between CSS properties
-	//#region get vertical position property
-	if (position.top) {
-		mapObjPosition += `top:${getPositionSubstring(position.top, offset)};`;
-	}
-	else if (position.bottom) {
-		mapObjPosition += `bottom:${getPositionSubstring(position.bottom, offset)};`;
-	}
-	else  {
-		mapObjPosition += `top:0px;`;
-	}
-	//#endregion
-	return mapObjPosition;
-}
-
-/**
- * Returns the coordinate portion of the property's position string. Allows unneeded 'calc' to be omitted, thus reducing the work required for the browser to reflow the document.
- * @param position The position string for the chosen property (i.e. top, left, right, or bottom)
- * @param offset The offset to account for the radius of the map icon
- */
-function getPositionSubstring(position: string, offset: number = 0): string
-{
-	let newPosition = position;
-	if (position.includes('px') && offset != 0) {
-		let posValue = parseFloat(position.split('px')[0]);
-		newPosition = (posValue - offset) + 'px';
-	}
-	else
+	else if (foundCities.length == 0)
 	{
-		newPosition = offset > 0 ? `calc(${position} - ${offset}px);` : `${position};`;
+		console.warn(`Unable to find city: ${cityName} in continent: ${continentName} within cities.json`);
 	}
-	return newPosition;
-}
-
-function getNamePositionString(nameLocation?: string, iconRadius: number = 0): string
-{
-	let locationString = "";
-	if (nameLocation && nameLocation.length > 0)
+	else if (foundCities.length > 1)
 	{
-		let positions = nameLocation.split(" ");
-		let vert: VerticalAlignTypes | undefined;
-		let horz: HorizontalAlignTypes | undefined;
-		for (let i = 0; i < positions.length; i++) {
-			const element = positions[i].toLowerCase();
-			if (Object.values(HorizontalAlignTypes).includes(element as HorizontalAlignTypes)) {
-				horz = element as HorizontalAlignTypes;
-			}
-			if (Object.values(VerticalAlignTypes).includes(element as VerticalAlignTypes)) {
-				vert = element as VerticalAlignTypes;
-			}
-		}
-		if (vert || horz) {
-			locationString = "position: absolute;";
-			let translateVert = "0";
-			let translateHorz = "0";
-
-			// vertical stuff
-			if (vert == VerticalAlignTypes.Above) {
-				locationString += ` bottom:100%;`;
-				horz = horz || HorizontalAlignTypes.Center;
-				translateVert = "-" + iconRadius + "px";
-			}
-			else if (vert == VerticalAlignTypes.Below) {
-				locationString += ` top:100%;`;
-				horz = horz || HorizontalAlignTypes.Center;
-				translateVert = iconRadius + "px";
-			}
-			else  {
-				locationString += ` top:50%;`;
-				translateVert = "-50%";
-			}
-
-			// horizontal stuff
-			if (horz == HorizontalAlignTypes.Left) {
-				locationString += ` right:100%;`;
-				translateHorz = "-" + iconRadius + "px";
-			}
-			else if (horz == HorizontalAlignTypes.Center) {
-				locationString += ` left:0%;`;
-				translateHorz = "-50%";
-			}
-			else  {
-				locationString += ` left:100%;`;
-				translateHorz = iconRadius + "px";
-			}
-
-			locationString += ` transform: translate(${translateHorz}, ${translateVert});`;
-		}
+		console.warn(`Found multiple cities matching: ${cityName} in continent: ${continentName} within cities.json`);
 	}
-	return locationString;
-}
-
-/**
- * Adds helper behavior to a map element to aid in placing locations.
- * @param mapElement The css selector for the element that houses the targeted map.
- */
-function attachPlacementHelper(mapElement: JQuery<HTMLElement>) {
-	mapElement.click(function(evt) {
-		$(".location-tester").remove();
-		var zoom = ($("#map-zoom").val() as number) * 0.01;
-		let map = $(this) as JQuery<HTMLElement>;
-		//@ts-ignore
-		var x = (evt.pageX + 8 - map.offset().left)/(map.width() * zoom);
-		//@ts-ignore
-		var y = (evt.pageY + 8 - map.offset().top)/(map.height() * zoom);
-		// console.log(`evt.pageX: ${evt.pageX}, evt.pageY: ${evt.pageY}`);
-		// //@ts-ignore
-		// console.log(`map.offset().left: ${map.offset().left}, map.offset().top: ${map.offset().top}`);
-		// console.log(`X: ${x}, X: ${y}`);
-		var newMarker = $(`<a href="#" class="point-of-interest smith village location-tester">
-			<div class="map-marker-icon marker-town">&nbsp;</div>
-		</a>`);
-		map.append(newMarker);
-		newMarker.css("left", (Math.round(x * 10000) / 100) + "%");
-		newMarker.css("top", (Math.round(y * 10000) / 100) + "%");
-	});
+	return undefined;
 }

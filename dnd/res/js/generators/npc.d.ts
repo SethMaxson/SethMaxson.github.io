@@ -56,7 +56,7 @@ declare class NPCDeepGenerator {
      * @param rt The Traits for the NPC's species
      * @param ageCategory On a scale of 1-4, how old are they?
      */
-    getNPCAge(npc: NPC, rt: RacialTraitSet, ageCategory?: AgeCategory | AgeCategory[]): void;
+    getNPCAge(npc: NPC, rt: IRacialTraitSet, ageCategory?: AgeCategory | AgeCategory[]): void;
     getNPCDescription(npc: NPC): string;
     getNPCHeight(npc: NPC): Length;
     getNPCOldness(npc: NPC): number;

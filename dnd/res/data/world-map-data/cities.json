@@ -243,7 +243,7 @@
 				"nameLocation": "top",
 				"type": "city",
 				"description": [
-					"Graisham has one of the highest land to citizen ratio of any charted settlement. Legends say that Tordanei used these grounds eons ago to hone her weather controlling abilities. In her training, Tordanei caused fracture-like ridges to erupt from the ground, separating Graisham into 5 distinct segments. She then used these to experiment with new climates. The goddess Graisum was delighted at her sister Tordanei's handiwork, and promptly set to work filling these climate fragments with natural life."
+					"Graisham has one of the highest land to citizen ratios of any charted settlement. Legends say that Tordanei used these grounds eons ago to hone her weather controlling abilities. In her training, Tordanei caused fracture-like ridges to erupt from the ground, separating Graisham into 5 distinct segments. She then used these to experiment with new climates. The goddess Graisum was delighted at her sister Tordanei's handiwork, and promptly set to work filling these climate fragments with natural life."
 				],
 				"culture": [
 					"The climate displaced center of Graisham is home to the goddess Graisum and a small handful of carefully chosen followers. They are fiercely protective of this territory and the plant life within it. While most people are unable to survive within the circle, small farms pepper the outlying area. The largest cluster of civilization lies at the base of one of the ridges, and is populated by devout followers of Graisum.",
@@ -282,7 +282,7 @@
 				"nameLocation": "bottom",
 				"type": "city",
 				"description": [
-					"Emerald's Edge is home to a peculiar culture, shaped by centuries surrounded by beating waves and scorching sands. The driving force of nearly every citizen is greed. This town incredibly wealthy, fiercely protective of the wealth it has, and ever-desperate to become even wealthier."
+					"Emerald's Edge is home to a peculiar culture, shaped by centuries surrounded by beating waves and scorching sands. The driving force of nearly every citizen is greed. This town is incredibly wealthy, fiercely protective of the wealth it has, and ever-desperate to become even wealthier."
 				],
 				"culture": [],
 				"dmNotes": [],
@@ -844,8 +844,8 @@
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "1211px",
-					"top": "1865px"
+					"left": "48.44%",
+					"top": "74.9%"
 				},
 				"marker": "town"
 			},
@@ -860,8 +860,8 @@
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "1413px",
-					"top": "1680px"
+					"left": "56.55%",
+					"top": "67.6%"
 				},
 				"marker": "town"
 			},
@@ -1121,8 +1121,8 @@
 				"dmNotes": [],
 				"url": "/dnd/pages/maps/cities/paros/stonweald.html",
 				"position": {
-					"left": "3793px",
-					"top": "2660px"
+					"left": "62.25%",
+					"top": "35.9%"
 				},
 				"marker": "town"
 			},

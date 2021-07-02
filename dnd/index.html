@@ -9,6 +9,10 @@
 		<link href="/res/css/navbar.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/page-specific/index.css" rel="stylesheet" type="text/css" media="all">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.js"
+			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			crossorigin="anonymous"></script>
 
 		<script>
 			/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
@@ -20,103 +24,122 @@
 					x.className = "navbar";
 				}
 			}
+
+			$(document).ready(function() {
+				$(document).on("click", ".dropdown>a", function(e) {
+					e.preventDefault();
+					let parent = $(this).closest(".dropdown");
+					let hasClassAtStart = parent.hasClass("shown");
+					$(".dropdown").removeClass("shown");
+					$(".sub-dropdown").removeClass("shown");
+					if (!hasClassAtStart) {
+						parent.addClass("shown");
+					};
+				});
+
+				$(document).on("click", ".sub-dropdown>a", function(e) {
+					e.preventDefault();
+					let parent = $(this).closest(".sub-dropdown");
+					let hasClassAtStart = parent.hasClass("shown");
+					$(".sub-dropdown").removeClass("shown");
+					if (!hasClassAtStart) {
+						parent.addClass("shown");
+					};
+				});
+			});
 		</script>
 	</head>
 
 	<body class="no-overflow">
 		<div class="navbar" id="TopNav">
+			<a href="/sf/index.html">Starfinder</a>
+			<a href="/dnd/pages/maps/worldatlas.html" target="mainFrame">Home</a>
 			<div class="dropdown">
-				<a href="/sf/index.html">Starfinder</a>
-			</div>
-			<div class="dropdown">
-				<a href="pages/maps/worldmap.html" target="mainFrame">Home</a>
-			</div>
-			<div class="dropdown">
-				<a href="pages/world/races.html" target="mainFrame">
+				<a href="/dnd/pages/world/races.html" target="mainFrame">
 					World</a>
 				<div class="dropdown-content">
-					<a class="innerLink" href="pages/world/races.html" target="mainFrame">Races</a>
-					<a class="innerLink" href="pages/world/guilds.html" target="mainFrame">Guilds</a>
+					<a class="innerLink" href="/dnd/pages/world/races.html" target="mainFrame">Races</a>
+					<a class="innerLink" href="/dnd/pages/world/guilds.html" target="mainFrame">Guilds</a>
 					<div class="sub-dropdown">
-						<a href="pages/maps/worldmap.html" target="mainFrame">Map ></a>
+						<a href="/dnd/pages/maps/worldatlas.html" target="mainFrame">Map ></a>
 						<div class="dropdown-content">
 							<div class="sub-dropdown">
-								<a href="pages/maps/worldmap.html" target="mainFrame">Continents ></a>
+								<a href="/dnd/pages/maps/worldatlas.html" target="mainFrame">Continents ></a>
 								<div class="dropdown-content">
-									<a class="innerLink" href="pages/maps/bravagg.html" target="mainFrame">Bravagg Isle</a>
-									<a class="innerLink" href="pages/maps/decapos.html" target="mainFrame">Decapos</a>
-									<a class="innerLink" href="pages/maps/lagos.html" target="mainFrame">Lagos</a>
-									<a class="innerLink" href="pages/maps/notre.html" target="mainFrame">Notre</a>
-									<a class="innerLink" href="pages/maps/paros.html" target="mainFrame">Paros</a>
-									<a class="innerLink" href="pages/maps/peku.html" target="mainFrame">Peku</a>
-									<a class="innerLink" href="pages/maps/sutre.html" target="mainFrame">Sutre</a>
-									<a class="innerLink" href="pages/maps/terrapim.html" target="mainFrame">Terrapim</a>
+									<a class="innerLink" href="/dnd/pages/maps/bravagg.html" target="mainFrame">Bravagg Isle</a>
+									<a class="innerLink" href="/dnd/pages/maps/decapos.html" target="mainFrame">Decapos</a>
+									<a class="innerLink" href="/dnd/pages/maps/lagos.html" target="mainFrame">Lagos</a>
+									<a class="innerLink" href="/dnd/pages/maps/notre.html" target="mainFrame">Notre</a>
+									<a class="innerLink" href="/dnd/pages/maps/paros.html" target="mainFrame">Paros</a>
+									<a class="innerLink" href="/dnd/pages/maps/peku.html" target="mainFrame">Peku</a>
+									<a class="innerLink" href="/dnd/pages/maps/sutre.html" target="mainFrame">Sutre</a>
+									<a class="innerLink" href="/dnd/pages/maps/terrapim.html" target="mainFrame">Terrapim</a>
 								</div>
 							</div>
-							<a class="innerLink" href="pages/maps/cities/skyisle/cartref.html" target="mainFrame">Cartref</a>
-							<a class="innerLink" href="pages/maps/ships/partyship.html" target="mainFrame">Ship</a>
-							<a class="innerLink" href="pages/maps/globe.html" target="mainFrame">Globe</a>
-							<a class="innerLink" href="pages/maps/worldmap.html" target="mainFrame">World Map</a>
-							<a class="innerLink" href="pages/maps/worldatlas.html" target="mainFrame">World Atlas</a>
+							<a class="innerLink" href="/dnd/pages/maps/cities/skyisle/cartref.html" target="mainFrame">Cartref</a>
+							<a class="innerLink" href="/dnd/pages/maps/ships/partyship.html" target="mainFrame">Ship</a>
+							<a class="innerLink" href="/dnd/pages/maps/globe.html" target="mainFrame">Globe</a>
+							<a class="innerLink" href="/dnd/pages/maps/worldmap.html" target="mainFrame">World Map</a>
+							<a class="innerLink" href="/dnd/pages/maps/worldatlas.html" target="mainFrame">World Atlas</a>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="dropdown">
-				<a href="pages/lore/pantheon.html" target="mainFrame">
+				<a href="/dnd/pages/lore/pantheon.html" target="mainFrame">
 					Lore</a>
 				<div class="dropdown-content">
 					<div class="sub-dropdown">
-						<a href="pages/lore/characters/hallofheroes.html" target="mainFrame">Characters ></a>
+						<a href="/dnd/pages/lore/characters/hallofheroes.html" target="mainFrame">Characters ></a>
 						<div class="dropdown-content">
-							<a href="pages/lore/characters/hallofheroes.html" target="mainFrame">Hall of Heroes</a>
-							<a href="pages/lore/characters/party.html" target="mainFrame">Party</a>
-							<a href="pages/lore/characters/allies.html" target="mainFrame">Allies</a>
+							<a href="/dnd/pages/lore/characters/hallofheroes.html" target="mainFrame">Hall of Heroes</a>
+							<a href="/dnd/pages/lore/characters/party.html" target="mainFrame">Party</a>
+							<a href="/dnd/pages/lore/characters/allies.html" target="mainFrame">Allies</a>
 						</div>
 					</div>
-					<a href="pages/lore/pantheon.html" target="mainFrame">Pantheon</a>
-					<a href="pages/lore/godfall_artifacts.html" target="mainFrame">Godfall Artifacts</a>
-					<a href="pages/lore/sessionnotes.html" target="mainFrame">Session Notes</a>
+					<a href="/dnd/pages/lore/pantheon.html" target="mainFrame">Pantheon</a>
+					<a href="/dnd/pages/lore/godfall_artifacts.html" target="mainFrame">Godfall Artifacts</a>
+					<a href="/dnd/pages/lore/sessionnotes.html" target="mainFrame">Session Notes</a>
 				</div>
 			</div>
 			<div class="dropdown">
-				<a href="pages/rules/reincarnation.html" target="mainFrame">Rules</a>
+				<a href="/dnd/pages/rules/reincarnation.html" target="mainFrame">Rules</a>
 				<div class="dropdown-content">
-					<a href="pages/rules/reincarnation.html" target="mainFrame">Reincarnation</a>
-					<a href="pages/rules/tenetsofgodhood.html" target="mainFrame">Tenets of Godhood</a>
-					<a href="pages/rules/items/weapons.html" target="mainFrame">Weapons</a>
+					<a href="/dnd/pages/rules/reincarnation.html" target="mainFrame">Reincarnation</a>
+					<a href="/dnd/pages/rules/tenetsofgodhood.html" target="mainFrame">Tenets of Godhood</a>
+					<a href="/dnd/pages/rules/items/weapons.html" target="mainFrame">Weapons</a>
 				</div>
 			</div>
 			<div class="dropdown">
-				<a href="pages/rules/items/weapons.html" target="mainFrame">Tools</a>
+				<a href="/dnd/pages/rules/items/weapons.html" target="mainFrame">Tools</a>
 				<div class="dropdown-content">
-					<a href="pages/tools/militarystrength.html" target="mainFrame">Military Strength</a>
-					<!-- <a href="pages/npccreation.html" target="mainFrame">NPC Generator</a> -->
+					<a href="/dnd/pages/tools/militarystrength.html" target="mainFrame">Military Strength</a>
+					<!-- <a href="/dnd/pages/npccreation.html" target="mainFrame">NPC Generator</a> -->
 					<div class="sub-dropdown">
-						<a href="pages/tools/generators/npc.html" target="mainFrame">Generators ></a>
+						<a href="/dnd/pages/tools/generators/npc.html" target="mainFrame">Generators ></a>
 						<div class="dropdown-content">
-							<a href="pages/tools/generators/npc.html" target="mainFrame">NPC Generator</a>
-							<a href="pages/tools/generators/relationship.html" target="mainFrame">Character Relationship</a>
-							<a href="pages/tools/generators/citizen.html" target="mainFrame">Citizenship</a>
-							<a href="pages/tools/generators/town.html" target="mainFrame">Town Generator</a>
-							<a href="pages/tools/itemcreation.html" target="mainFrame">Shop Generator</a>
+							<a href="/dnd/pages/tools/generators/npc.html" target="mainFrame">NPC Generator</a>
+							<a href="/dnd/pages/tools/generators/relationship.html" target="mainFrame">Character Relationship</a>
+							<a href="/dnd/pages/tools/generators/citizen.html" target="mainFrame">Citizenship</a>
+							<a href="/dnd/pages/tools/generators/town.html" target="mainFrame">Town Generator</a>
+							<a href="/dnd/pages/tools/itemcreation.html" target="mainFrame">Shop Generator</a>
 						</div>
 					</div>
-					<a href="pages/tools/random-tables.html" target="mainFrame">Random Tables</a>
-					<a href="pages/tools/table.html" target="mainFrame">Table</a>
-					<a href="pages/tools/travel-calculator.html" target="mainFrame">Travel Calculator</a>
-					<a href="pages/tools/charactercreation.html" target="mainFrame">Character Creation</a>
+					<a href="/dnd/pages/tools/random-tables.html" target="mainFrame">Random Tables</a>
+					<a href="/dnd/pages/tools/table.html" target="mainFrame">Table</a>
+					<a href="/dnd/pages/tools/travel-calculator.html" target="mainFrame">Travel Calculator</a>
+					<a href="/dnd/pages/tools/charactercreation.html" target="mainFrame">Character Creation</a>
 					<div class="sub-dropdown">
-						<a href="pages/world/moods/scorchwind.html" target="mainFrame">Mood ></a>
+						<a href="/dnd/pages/world/moods/scorchwind.html" target="mainFrame">Mood ></a>
 						<div class="dropdown-content">
-							<a href="pages/world/moods/scorchwind.html" target="mainFrame">Scorchwind Desert</a>
-							<a href="pages/world/moods/wickerbeak-temple.html" target="mainFrame">WickerBeak's Temple</a>
-							<a href="pages/world/moods/decapos.html" target="mainFrame">Decapos</a>
-							<a href="pages/world/moods/peku.html" target="mainFrame">Peku</a>
-							<a href="pages/world/moods/terrapim.html" target="mainFrame">Terrapim</a>
-							<a href="pages/world/moods/sutre.html" target="mainFrame">Sutre</a>
-							<a href="pages/world/moods/notre.html" target="mainFrame">Notre</a>
-							<a href="pages/world/moods/paros.html" target="mainFrame">Paros</a>
+							<a href="/dnd/pages/world/moods/scorchwind.html" target="mainFrame">Scorchwind Desert</a>
+							<a href="/dnd/pages/world/moods/wickerbeak-temple.html" target="mainFrame">WickerBeak's Temple</a>
+							<a href="/dnd/pages/world/moods/decapos.html" target="mainFrame">Decapos</a>
+							<a href="/dnd/pages/world/moods/peku.html" target="mainFrame">Peku</a>
+							<a href="/dnd/pages/world/moods/terrapim.html" target="mainFrame">Terrapim</a>
+							<a href="/dnd/pages/world/moods/sutre.html" target="mainFrame">Sutre</a>
+							<a href="/dnd/pages/world/moods/notre.html" target="mainFrame">Notre</a>
+							<a href="/dnd/pages/world/moods/paros.html" target="mainFrame">Paros</a>
 						</div>
 					</div>
 				</div>
