@@ -1,111 +1,23 @@
-html, body {margin: 0; height: 100%; overflow: hidden}
-
-.landmass {
-	background-repeat: no-repeat;
-	background-size: contain;
-	text-align: center;
-	transform-origin:center center;
-	/* image-rendering: pixelated; */
-	position: absolute;
-	z-index:1;
-}
-
 .map-lagos {
-	width: 2500px;
-	height: 2500px;
-	position: relative;
-	top: 35%;
-	left: 47.42%;
-	transform: translate(-50%, -50%);
-	z-index: 1;
 	background-image:url('/dnd/img/maps/landmasses/Lagos.svg');
 }
 
 .map-bravagg {
-	width: 1168px;
-	height: 949px;
-	position: absolute;
-	top: 28.8%;
-	left: 56.4%;
-	z-index: 1;
 	background-image:url('/dnd/img/maps/landmasses/Bravagg.svg');
 }
 
 .map-paros {
-	width: 5949px;
-	height: 7400px;
-	position: relative;
-	top: 11%;
-	left: 15.2%;
-	transform: translate(-50%, -50%);
 	background-image:url('/dnd/img/maps/landmasses/Paros.svg');
 }
 
 .map-peku {
-	width: 1853px;
-	height: 2077px;
-	position: absolute;
-	top: 24.1%;
-	left: 89.23%;
-	transform: translate(-50%, -50%);
 	background-image:url('/dnd/img/maps/landmasses/Peku.png');
 }
 
 .map-terrapim {
-	width: 6000px;
-	height: 4240px;
-	position: absolute;
-	top: 70.5%;
-	left: 83.74%;
-	transform: translate(-50%, -50%);
 	background-image:url('/dnd/img/maps/landmasses/Terrapim.svg');
 }
 
 .map-decapos {
-	width: 4750px;
-	height: 3160px;
-	position: absolute;
-	top: 55.6%;
-	left: 52.88%;
-	transform: translate(-50%, -50%);
 	background-image:url('/dnd/img/maps/landmasses/Decapos.svg');
-}
-
-.map-notre {
-	width: 4450px;
-	height: 4116px;
-	position: absolute;
-	top: -3.9%;
-	left: 52.8%;
-	transform: translate(-50%, -50%);
-}
-
-/* .map-sutre {
-	width: 4450px;
-	height: 4116px;
-	position: absolute;
-	bottom: -32.5%;
-	left: 52.8%;
-	transform: translate(-50%, -50%);
-} */
-
-.map-sutre {
-	width: 100%;
-	/* height: 4116px; */
-	position: absolute;
-	top: 100%;
-	left: 0%;
-	transform: translate(0%, -70%);
-}
-
-.map-overlay {
-	background-repeat: no-repeat;
-	background-size: contain;
-	width:100%;
-	height:100%;
-	z-index:1;
-	position:absolute;
-	top:0;
-	left:0;
-	pointer-events: none;
 }

@@ -218,55 +218,6 @@ class CharacterSlide extends ReactHideableContainer<ICharacterSlideProps, IReact
 	}
 }
 
-
-interface ICityBlurbProps
-{
-	JsonObject: ICity;
-}
-class CityBlurb extends ReactHideableContainer<ICityBlurbProps, IReactHideableContainerState> {
-	constructor(props: ICharacterSlideProps) {
-		super(props);
-	}
-
-	render()
-	{
-		return (
-			super.renderIfAppropriate(
-				<div>
-					<h1>{this.props.JsonObject.name}</h1>
-					{this.props.JsonObject.description.map((paragraph, index: number) =>
-						<ParagraphFromRawHTML text={paragraph} key={index} />
-					)}
-					{this.props.JsonObject.culture.length > 0 && <h2>Culture.</h2>}
-					{this.props.JsonObject.culture.map((paragraph, index: number) =>
-						<ParagraphFromRawHTML text={paragraph} key={index} />
-					)}
-					{this.props.JsonObject.dmNotes.map((paragraph, index: number) =>
-						// <ParagraphFromRawHTML className="dmnotes" text={paragraph} key={index} />
-						<p className="dmnotes" style={{ display: 'none' }}>{paragraph}</p>
-					)}
-					{/* <CharacterPortrait image={this.props.city.url} /> */}
-				</div>
-			)
-		)
-	}
-}
-
-const CITY: ICity = {
-	"name": "Graisham",
-	"type": "city",
-	"description": [
-		"Graisham has one of the highest land to citizen ratio of any charted settlement. Legends say that Tordanei used these grounds eons ago to hone her weather controlling abilities. In her training, Tordanei caused fracture-like ridges to erupt from the ground, separating Graisham into 5 distinct segments. She then used these to experiment with new climates. The goddess Graisum was delighted at her sister Tordanei's handiwork, and promptly set to work filling these climate fragments with natural life."
-	],
-	"culture": [
-		"The climate displaced center of Graisham is home to the goddess Graisum and a small handful of carefully chosen followers. They are fiercely protective of this territory and the plant life within it. While most people are unable to survive within the circle, small farms pepper the outlying area. The largest cluster of civilization lies at the base of one of the ridges, and is populated by devout followers of Graisum.",
-		"Most people who travel to Graisham do so during a religious pilgrimage. The vast majority wish to make an offering to Graisum in exchange for blessings upon their harvest, but there are some who make offerings to Tordanei. While Tordenei is seldom seen in Graisham, it is said that she returns frequently to keep up the climate zones for her sister.",
-		"Nearly all races are welcome on the outskirts of the climate circle, so long as they respect nature. All Graishamites detest destruction of plants, but none so much as Graisum's chosen followers. Many an adventurer has entered the climate circle, only to be slain as punishment for treading on a sacred blade of grass."
-	],
-	"dmNotes": [],
-	"url": "#",
-}
-
 const CHARACTER = {
 	name: "Jasper Nightbreeze",
 	tagline: "Adrift in Time",

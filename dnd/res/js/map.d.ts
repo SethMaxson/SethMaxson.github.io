@@ -11,6 +11,7 @@ declare const keys: {
     shift: boolean;
 };
 declare var centerX: any;
+declare function initializeMap(): void;
 declare function Airship(left: string, top: string, name?: string, image?: string, crew?: string[]): void;
 declare function Pedestrian(left?: string, top?: string, name?: string | string[], image?: string | string[]): void;
 declare function PedestrianNPC(left?: string, top?: string, name?: string | string[], image?: string | string[]): void;
@@ -23,3 +24,4 @@ declare function partyDroppable(): void;
 declare function characterList(characters: string[]): string;
 declare function CrewManager(object1: any, object2: any, name1: string, name2: string): void;
 declare function SortByY(a: HTMLElement, b: HTMLElement): 0 | 1 | -1;
+declare function updateMapCSSForZoom(zoom: number): void;

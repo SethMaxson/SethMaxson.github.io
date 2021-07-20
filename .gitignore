@@ -8,3 +8,5 @@ dnd/res/js/generators/
 dnd/res/js/page-specific/
 dnd/res/js/world-data/
 dnd/res/js/world-map-viewer/
+**/*.js.map
+*.js.map

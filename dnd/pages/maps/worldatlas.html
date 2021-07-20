@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>World Atlas</title>
-		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/page-specific/worldatlas.css" rel="stylesheet" type="text/css" media="all">
 		<style>
@@ -27,6 +27,26 @@
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-renderer.js"></script>
 		<script src="/dnd/res/js/page-specific/world-atlas.js"></script>
+
+		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/controls/modal-window.js"></script>
+		<script src="/dnd/res/js/controls/city-blurb-viewer.js"></script>
+		<script type="text/babel">
+			var modalWindow;
+			$(document).ready(function() {
+				window.modalWindow = new CityBlurbViewer("#map-body");
+				window.modalWindow.close();
+				$(document).on("click", "a.point-of-interest", function(e) {
+					e.preventDefault();
+					$.when(getCityObject($(this).attr("data-city"), $(this).attr("data-continent"), $(this).attr("data-structure") == "cities.json")).done(function(city) {
+						modalWindow.displayCity(city);
+					})
+				});
+
+			});
+		</script>
 	</head>
 
 	<body id="map-body" style="overflow: hidden; background:#25325f;">
@@ -107,7 +127,7 @@
 					</p>
 				</span>
 			</a>
-			<div class="map-lagos">
+			<div class="landmass map-lagos">
 				<a href="lagos.html" class="smith continent" style="position:absolute; top:1130px; left:1040px;">
 					Lagos
 				</a>
@@ -116,7 +136,7 @@
 			<a href="#" class="smith continent" style="position:absolute; top:40%; left:27%; font-size:110px; z-index:1;">
 				Seiklus Ocean
 			</a>
-			<div class="map-bravagg">
+			<div class="landmass map-bravagg">
 				<a href="bravagg.html" class="smith metropolis" style="position:absolute; font-size:110px; top:50%; left:50%; transform:translate(-50%, -50%);">
 					Bravagg&nbsp;Isle
 					<span class="city-preview">
@@ -138,7 +158,7 @@
 					Paros
 				</a>
 			</div>
-			<div class="map-peku">
+			<div class="landmass map-peku">
 				<a href="peku.html" class="smith continent" style="position:absolute; top:1140px; left:740px; transform:translate(-50%, -50%);">
 					Peku
 				</a>
@@ -159,19 +179,19 @@
 
 				<img src="/dnd/img/maps/landmasses/Peku.png" style="width:100%; z-index:1;">
 			</div>
-			<div class="map-terrapim">
+			<div class="landmass map-terrapim">
 				<a href="terrapim.html" class="smith continent" style="position:absolute; top:40%; left:55%; transform:translate(-50%, -50%);">Terrapim</a>
 				<img src="/dnd/img/maps/landmasses/Terrapim.png" style="width:100%; z-index:1;">
 			</div>
-			<div class="map-decapos">
+			<div class="landmass map-decapos">
 				<a href="decapos.html" class="smith continent" style="position:absolute; top:40%; left:55%; transform:translate(-50%, -50%);">Decapos</a>
 				<img src="/dnd/img/maps/landmasses/Decapos.png" style="width:100%; z-index:1;">
 			</div>
-			<div class="map-notre">
+			<div class="landmass map-notre">
 				<a href="notre.html" class="smith continent" style="position:absolute; top:82.5%; left:61.5%; transform:translate(-50%, -50%);">Notre</a>
 				<img src="/dnd/img/maps/landmasses/Notre.png" style="width:100%; z-index:1;">
 			</div>
-			<div class="map-sutre">
+			<div class="landmass map-sutre">
 				<a href="#" class="smith continent" style="position:absolute; top:28%; left:45%; transform:translate(-50%, -50%);">Sutre</a>
 				<img src="/dnd/img/maps/landmasses/Sutre.png" style="width:100%; z-index:1;">
 			</div>
@@ -179,6 +199,7 @@
 			<div id="ClimateZones" class="map-overlay" style="background-image:url('/dnd/img/maps/Climate_Zones.png'); opacity:0.6; display:none;"> </div>
 			<div id="PossibleIslands" class="map-overlay" style="background-image:url('/dnd/img/maps/Possible_Islands.png'); opacity:0.6; display:none;"> </div>
 			<div id="DefiniteIslands" class="map-overlay" style="background-image:url('/dnd/img/maps/Definite_Islands.png'); z-index: 0; opacity:1.0; display:default;"> </div>
+			<div id="TectonicPlates" class="map-overlay" style="background-image:url('/dnd/img/maps/Tectonic_Plates.png'); z-index: 0; opacity:1.0; display:none;"> </div>
 		</div>
 	</body>
 

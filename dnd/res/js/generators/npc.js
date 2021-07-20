@@ -283,6 +283,7 @@ class NPCDeepGenerator {
                 "Material": 10,
                 "Serious": 10,
                 "Shallow": 10,
+                //#endregion
             },
             specific: [
                 //#region Handle mutually exclusive personality traits
@@ -483,6 +484,8 @@ class NPCDeepGenerator {
                         "Proper": 0,
                     }
                 },
+                //#endregion
+                //#endregion
             ]
         };
         this.AgeList = {
@@ -1105,6 +1108,8 @@ class NPCDeepGenerator {
                         "Wisecracking": 10,
                     }
                 },
+                //#endregion
+                //#endregion
             ]
         };
         this.FromList = {

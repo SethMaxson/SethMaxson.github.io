@@ -11,21 +11,23 @@ const keys = {
 };
 var centerX;
 $(document).ready(function () {
+    initializeMap();
+});
+function initializeMap() {
     centerX = parseFloat($(".map-container").css("left"));
-    $("#map-zoom").change(function () {
+    $(document).on("change", "#map-zoom", function () {
         var zoom = $(this).val() * 0.01;
         const previousZoom = parseFloat($("#previous-zoom").val());
-        const factor = previousZoom / zoom;
-        var zoomString = "scale(" + zoom + ")";
         const windowHeight = $(window).height();
         const windowWidth = $("#map-body").width();
+        // $(".map").css("transform-origin", originLeft + "px " + originTop + "px");
         const windowScale = ($(window).width() / (previousZoom * 2));
         const newWindowScale = ($(window).width() / (zoom * 2));
         const mapContainer = $(".map-container");
         // var initialLeft = parseFloat($(".map-container").css("left")) + newWindowScale - windowScale;
         var initialLeft = parseFloat(mapContainer.css("left"));
         const initialWidth = mapContainer[0].clientWidth;
-        mapContainer.css("transform", zoomString);
+        mapContainer.css("transform", `scale(${zoom})`);
         const heightMod = -1 * (mapContainer[0].clientHeight / 2);
         const widthMod = -1 * (mapContainer[0].clientWidth / 2);
         const topPos = (heightMod * (1 - zoom));
@@ -36,25 +38,17 @@ $(document).ready(function () {
         mapContainer.offset().left = 0;
         const curTop = parseFloat(mapContainer.css("top"));
         const curLeft = parseFloat(mapContainer.css("left"));
-        const clihi = mapContainer[0].clientHeight * zoom;
-        const cliwi = mapContainer[0].clientWidth * zoom;
-        if (clihi < windowHeight) {
-            if (curTop <= topPos) {
-                mapContainer.css("top", topPos + "px");
-            }
-            else if (curTop > bottomPos) {
-                mapContainer.css("top", bottomPos + "px");
-            }
+        const adjustedClientHeight = mapContainer[0].clientHeight * zoom;
+        const adjustedClientWidth = mapContainer[0].clientWidth * zoom;
+        const verticalPositionMinimum = adjustedClientHeight < windowHeight ? topPos : bottomPos;
+        const verticalPositionMaximum = adjustedClientHeight < windowHeight ? bottomPos : topPos;
+        if (curTop < verticalPositionMinimum) {
+            mapContainer.css("top", verticalPositionMinimum + "px");
         }
-        else {
-            if (curTop >= topPos) {
-                mapContainer.css("top", topPos + "px");
-            }
-            else if (curTop < bottomPos) {
-                mapContainer.css("top", bottomPos + "px");
-            }
+        else if (curTop > verticalPositionMaximum) {
+            mapContainer.css("top", verticalPositionMaximum + "px");
         }
-        if (cliwi < windowWidth) {
+        if (adjustedClientWidth < windowWidth) {
             if (curLeft <= leftPos) {
                 mapContainer.css("left", leftPos + "px");
             }
@@ -73,61 +67,9 @@ $(document).ready(function () {
                 mapContainer.css("left", (initialLeft) + "px");
             }
         }
-        $(".map-container .smol").css("fontSize", (18 / zoom) + "px");
-        $(".map-container .med").css("fontSize", (20 / zoom) + "px");
-        $(".city-preview").find("p").css("fontSize", (18 / zoom) + "px");
-        $(".city-preview").find("ul").css("fontSize", (18 / zoom) + "px");
-        $(".city-preview").find("ul").css("lineHeight", (20 / zoom) + "px");
-        $(".city-preview").find("h1").css("fontSize", (20 / zoom) + "px");
-        $(".stay-visible").find("img.scale-me").css({
-            "width": (50 / zoom) + "px",
-            "height": (50 / zoom) + "px",
-        });
-        $(".stay-visible").find("div.scale-me").css({
-            "width": (100 / zoom) + "px",
-            "height": (100 / zoom) + "px",
-        });
-        $(".city-preview").css("width", Math.round(500 / zoom) + "px");
-        $(".city-preview").css("padding", Math.round(10 / zoom) + "px");
-        $(".map-container").removeClass("z50");
-        $("#previous-zoom").val(zoom);
-        if (zoom >= 0.45) {
-            $('.village').css("display", "block");
-            $('.city').css("display", "block");
-            $('.metropolis').css("display", "block");
-            $('.continent').css("display", "none");
-            $(".map-container").addClass("z50");
-        }
-        else if (zoom > 0.3) {
-            $('.village').css("display", "none");
-            $('.city').css("display", "block");
-            $('.metropolis').css("display", "block");
-            $('.continent').css("display", "none");
-        }
-        else if (zoom > 0.1) {
-            $('.village').css("display", "none");
-            $('.city').css("display", "none");
-            $('.metropolis').css("display", "block");
-            $('.continent').css("display", "block");
-        }
-        else {
-            $('.village').css("display", "none");
-            $('.city').css("display", "none");
-            $('.metropolis').css("display", "none");
-            $('.continent').css("display", "block");
-        }
+        updateMapCSSForZoom(zoom);
     });
-    $("#map-container").mousedown(function () {
-        var zoom = $("#map-zoom").val() * 0.01;
-        var zoomString = "scale(" + zoom + ")";
-        var originLeft = $("#map-body").scrollLeft() + ($("#map-body").width() / 2);
-        var originTop = $("#map-body").scrollTop() + ($("#map-body").height() / 2);
-        // $(".map").css("transform-origin", originLeft + "px " + originTop + "px");
-        $(".map").css("transform", zoomString);
-        $(".city-preview").find("p").css("fontSize", (18 / zoom) + "px");
-        $(".city-preview").find("h1").css("fontSize", (20 / zoom) + "px");
-    });
-    $('#map-body').on('keydown', function (e) {
+    $(document).on("keydown", "#map-body", function (e) {
         if (e.keyCode == 16) {
             shiftkey = true;
         }
@@ -135,7 +77,7 @@ $(document).ready(function () {
             ctrlkey = true;
         }
     });
-    $('#map-body').on('keyup', function (e) {
+    $(document).on("keyup", "#map-body", function (e) {
         if (e.keyCode == 16) {
             shiftkey = false;
         }
@@ -143,7 +85,7 @@ $(document).ready(function () {
             ctrlkey = false;
         }
     });
-    $('#map-body').on('wheel mousewheel', function (e) {
+    $(document).on("wheel mousewheel", "#map-body", function (e) {
         var delta;
         var startZoom = $("#map-zoom").val() * 1;
         var newZoom = startZoom;
@@ -177,42 +119,18 @@ $(document).ready(function () {
             const bottomPos = (heightMod * (1 + zoom)) + windowHeight;
             const leftPos = (widthMod * (1 - zoom));
             const rightPos = (widthMod * (1 + zoom)) + windowWidth;
-            const clihi = ui.helper[0].clientHeight * zoom;
-            const cliwi = ui.helper[0].clientWidth * zoom;
-            if (clihi < windowHeight) {
-                if ((ui.position.top) < topPos) {
-                    ui.position.top = topPos;
-                }
-                else if ((ui.position.top) > bottomPos) {
-                    ui.position.top = bottomPos;
-                }
-            }
-            else {
-                if ((ui.position.top) > topPos) {
-                    ui.position.top = topPos;
-                }
-                else if ((ui.position.top) < bottomPos) {
-                    ui.position.top = bottomPos;
-                }
-            }
-            if (cliwi < windowWidth) {
-                if ((ui.position.left) < leftPos) {
-                    ui.position.left = leftPos;
-                }
-                else if ((ui.position.left) > rightPos) {
-                    ui.position.left = rightPos;
-                }
-            }
-            else {
-                if ((ui.position.left) > leftPos) {
-                    ui.position.left = leftPos;
-                }
-                else if ((ui.position.left) < rightPos) {
-                    ui.position.left = rightPos;
-                }
-            }
+            const clientHeight = ui.helper[0].clientHeight * zoom;
+            const clientWidth = ui.helper[0].clientWidth * zoom;
+            const maxTopPosition = clientHeight < windowHeight ? topPos : bottomPos;
+            const minTopPosition = clientHeight < windowHeight ? bottomPos : topPos;
+            ui.position.top = Math.max(ui.position.top, maxTopPosition);
+            ui.position.top = Math.min(ui.position.top, minTopPosition);
+            const maxLeftPosition = clientWidth < windowWidth ? leftPos : rightPos;
+            const minLeftPosition = clientWidth < windowWidth ? rightPos : leftPos;
+            ui.position.left = Math.max(ui.position.left, maxLeftPosition);
+            ui.position.left = Math.min(ui.position.left, minLeftPosition);
             centerX = ui.position.left - (windowWidth / (zoom * 2));
-            $("#CenterX").text("Center: " + centerX + "px | Adjusted Map Width: " + Math.round(cliwi) + "px | Pixels shown in viewport: " + Math.round(windowWidth / (zoom * 2)) + "px");
+            $("#CenterX").text("Center: " + centerX + "px | Adjusted Map Width: " + Math.round(clientWidth) + "px | Pixels shown in viewport: " + Math.round(windowWidth / (zoom * 2)) + "px");
         },
         scroll: false
     });
@@ -233,7 +151,8 @@ $(document).ready(function () {
         },
         scroll: false,
     });
-});
+    $("#map-zoom").change();
+}
 function Airship(left, top, name, image, crew) {
     crew = crew || ["Namfoodle", "Thunder", "Teomyr", "Redji", "Zenrya", "Bud"];
     name = name || "Airship";
@@ -632,5 +551,50 @@ function SortByY(a, b) {
     var aTop = parseFloat($(a).css("top"));
     var bTop = parseFloat($(b).css("top"));
     return ((aTop < bTop) ? -1 : ((aTop > bTop) ? 1 : 0));
+}
+function updateMapCSSForZoom(zoom) {
+    $(".map-container .smol").css("fontSize", (18 / zoom) + "px");
+    $(".map-container .med").css("fontSize", (20 / zoom) + "px");
+    $(".city-preview").find("p").css("fontSize", (18 / zoom) + "px");
+    $(".city-preview").find("ul").css("fontSize", (18 / zoom) + "px");
+    $(".city-preview").find("ul").css("lineHeight", (20 / zoom) + "px");
+    $(".city-preview").find("h1").css("fontSize", (20 / zoom) + "px");
+    $(".stay-visible").find("img.scale-me").css({
+        "width": (50 / zoom) + "px",
+        "height": (50 / zoom) + "px",
+    });
+    $(".stay-visible").find("div.scale-me").css({
+        "width": (100 / zoom) + "px",
+        "height": (100 / zoom) + "px",
+    });
+    $(".city-preview").css("width", Math.round(500 / zoom) + "px");
+    $(".city-preview").css("padding", Math.round(10 / zoom) + "px");
+    $(".map-container").removeClass("z50");
+    $("#previous-zoom").val(zoom);
+    if (zoom >= 0.45) {
+        $('.village').css("display", "block");
+        $('.city').css("display", "block");
+        $('.metropolis').css("display", "block");
+        $('.continent').css("display", "none");
+        $(".map-container").addClass("z50");
+    }
+    else if (zoom > 0.3) {
+        $('.village').css("display", "none");
+        $('.city').css("display", "block");
+        $('.metropolis').css("display", "block");
+        $('.continent').css("display", "none");
+    }
+    else if (zoom > 0.1) {
+        $('.village').css("display", "none");
+        $('.city').css("display", "none");
+        $('.metropolis').css("display", "block");
+        $('.continent').css("display", "block");
+    }
+    else {
+        $('.village').css("display", "none");
+        $('.city').css("display", "none");
+        $('.metropolis').css("display", "none");
+        $('.continent').css("display", "block");
+    }
 }
 //# sourceMappingURL=map.js.map

@@ -135,5 +135,6 @@ $(document).ready(function () {
         }
     });
 });
+export {};
 //#endregion
 //# sourceMappingURL=citizen-generator.js.map

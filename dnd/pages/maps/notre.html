@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Notre</title>
-		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/dnd/res/css/travel-agency-map.css" rel="stylesheet" type="text/css" media="all" />
 		<style>
@@ -42,6 +42,13 @@
 		<script src="/dnd/res/js/map.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-renderer.js"></script>
+
+
+		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/controls/modal-window.js"></script>
+		<script src="/dnd/res/js/controls/city-blurb-viewer.js"></script>
 		<script>
 			$(document).ready(() => {
 				getCitiesByContinent($(".map-notre"), "Notre", true);

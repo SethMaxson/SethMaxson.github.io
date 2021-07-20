@@ -79,14 +79,6 @@ declare class CharacterSlide extends ReactHideableContainer<ICharacterSlideProps
     constructor(props: ICharacterSlideProps);
     render(): JSX.Element | null;
 }
-interface ICityBlurbProps {
-    JsonObject: ICity;
-}
-declare class CityBlurb extends ReactHideableContainer<ICityBlurbProps, IReactHideableContainerState> {
-    constructor(props: ICharacterSlideProps);
-    render(): JSX.Element | null;
-}
-declare const CITY: ICity;
 declare const CHARACTER: {
     name: string;
     tagline: string;

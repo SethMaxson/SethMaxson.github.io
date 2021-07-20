@@ -98,30 +98,41 @@ function getMapImageData()
 
 function getCityObject(cityName: string, continentName: string, dataLocatedInCitiesJson: boolean = false)
 {
+	var city: ICity|undefined = undefined;
 	return new Promise(
 		function (resolve: (value: ICity|undefined) => void, reject)
 		{
-			var city: ICity|undefined = undefined;
-			$.when(getMapImageData(), getCityData(), getMapLocationData(continentName)).done(function (cityMapImageDataRaw: ICityMapNode[][], continentSections: ICitiesJsonContinentSection[][], locationsRaw: IMapLocation[][])
+			//#region getCityData
+			if (dataLocatedInCitiesJson)
 			{
-				_cityMapImageData = cityMapImageDataRaw[0];
-				if (dataLocatedInCitiesJson)
+
+				$.when(getMapImageData(), getCityData()).done(function (cityMapImageDataRaw: ICityMapNode[][], continentSections: ICitiesJsonContinentSection[][])
 				{
-					//#region getCityData
+					_cityMapImageData = cityMapImageDataRaw[0];
 					let continents = continentSections[0].filter(function (entry)
 					{
 						return entry.name === continentName;
 					});
 					if (continents.length == 1)
 					{
-						city = ensureSingleCityResult(continents[0].cities, cityName, continentName) as ICity;
+						city = ensureSingleCityResult(continents[0].cities, cityName, continentName, "cities.json") as ICity;
+						let relevantMapImage = _cityMapImageData.filter(function (entry)
+						{
+							return entry.name.toLowerCase() === cityName.toLowerCase();
+						});
+						city.url = (city.url == "#" || !city.url) && relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + city.name : city.url;
 					}
-					//#endregion
-				}
-				else
+					resolve(city);
+				});
+			}
+			//#endregion
+			//#region getMapLocationData
+			else
+			{
+				$.when(getMapImageData(), getMapLocationData(continentName)).done(function (cityMapImageDataRaw: ICityMapNode[][], locationsRaw: IMapLocation[][])
 				{
-					//#region getMapLocationData
-					let locationNode = ensureSingleCityResult(locationsRaw[0], cityName, continentName) as IMapLocation;
+					_cityMapImageData = cityMapImageDataRaw[0];
+					let locationNode = ensureSingleCityResult(locationsRaw[0], cityName, continentName, continentName.toLowerCase() + ".json") as IMapLocation;
 					if (locationNode)
 					{
 						city = new City();
@@ -131,16 +142,17 @@ function getCityObject(cityName: string, continentName: string, dataLocatedInCit
 							return entry.name.toLowerCase() === cityName.toLowerCase();
 						});
 						city.url = relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + cityName : "#";
+						city.description.push("City description was not found in JSON files. Check DM notes.");
 					}
-					//#endregion
-				}
-				resolve(city);
-			});
+					resolve(city);
+				});
+			}
+			//#endregion
 		}
 	);
 }
 
-function ensureSingleCityResult(citiesToFilter: ICity[] | IMapLocation[], cityName: string, continentName: string): ICity | IMapLocation | undefined
+function ensureSingleCityResult(citiesToFilter: ICity[] | IMapLocation[], cityName: string, continentName: string, fileName: string): ICity | IMapLocation | undefined
 {
 
 	let foundCities = (citiesToFilter as { name: string}[]).filter(function (entry)
@@ -153,11 +165,11 @@ function ensureSingleCityResult(citiesToFilter: ICity[] | IMapLocation[], cityNa
 	}
 	else if (foundCities.length == 0)
 	{
-		console.warn(`Unable to find city: ${cityName} in continent: ${continentName} within cities.json`);
+		console.warn(`Unable to find city: ${cityName} in continent: ${continentName} within ${fileName}`);
 	}
 	else if (foundCities.length > 1)
 	{
-		console.warn(`Found multiple cities matching: ${cityName} in continent: ${continentName} within cities.json`);
+		console.warn(`Found multiple cities matching: ${cityName} in continent: ${continentName} within ${fileName}`);
 	}
 	return undefined;
 }

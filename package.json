@@ -1,21 +1,22 @@
 {
   "name": "neocities-maxquest",
   "version": "1.0.0",
-  "description": "",
+  "description": "A code playground",
   "main": "index.js",
   "dependencies": {
-    "@types/react": "^17.0.13",
-    "@types/react-dom": "^17.0.8",
     "bootstrap": "^5.0.2",
     "cannon": "^0.6.2",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.1",
     "three": "^0.114.0"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.0.2",
-    "@types/cannon": "^0.1.5",
-    "@types/jquery": "^3.3.33",
-    "@types/jqueryui": "^1.12.14",
-    "@types/node": "^13.9.2",
+    "@types/cannon": "^0.1.6",
+    "@types/jquery": "^3.5.6",
+    "@types/jqueryui": "^1.12.16",
+    "@types/node": "^13.13.52",
+    "@types/react": "^17.0.14",
+    "@types/react-dom": "^17.0.9",
     "@types/three": "^0.103.2"
   },
   "scripts": {

@@ -62,5 +62,5 @@ declare class City implements ICity {
 declare function getCityData(): JQuery.jqXHR<any>;
 declare function getMapLocationData(continent: string): JQuery.jqXHR<any>;
 declare function getMapImageData(): JQuery.jqXHR<any>;
-declare function getCityObject(cityName: string, continentName: string, dataLocatedInCitiesJson?: boolean): Promise<ICity>;
-declare function ensureSingleCityResult(citiesToFilter: ICity[] | IMapLocation[], cityName: string, continentName: string): ICity | IMapLocation | undefined;
+declare function getCityObject(cityName: string, continentName: string, dataLocatedInCitiesJson?: boolean): Promise<ICity | undefined>;
+declare function ensureSingleCityResult(citiesToFilter: ICity[] | IMapLocation[], cityName: string, continentName: string, fileName: string): ICity | IMapLocation | undefined;

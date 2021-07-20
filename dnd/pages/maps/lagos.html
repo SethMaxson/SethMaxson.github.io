@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Lagos</title>
-		<link href="/dnd/res/css/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/map.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/travel-agency-map.css" rel="stylesheet" type="text/css" media="all" />
 		<style>
@@ -42,6 +42,13 @@
 		<script src="/dnd/res/js/map.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
 		<script src="/dnd/res/js/world-map-viewer/map-renderer.js"></script>
+
+
+		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/controls/modal-window.js"></script>
+		<script src="/dnd/res/js/controls/city-blurb-viewer.js"></script>
 		<script>
 			$(document).ready(() => {
 				getCitiesByContinent($(".map-lagos"), "Lagos", true);
@@ -83,7 +90,7 @@
 				- <input type="range" min="10" max="150" value="50" class="slider" id="map-zoom"> +
 				<input type="number" name="previous-zoom" id="previous-zoom" value="50" style="display:none;"/>
 			</div>
-			<div class="map-container map" style="width:2600px; height:3600px;">
+			<div class="map-container map" style="width:2600px; height:2600px;">
 
 				<div class="map-lagos" style="width:2500px; height:2500px; position:relative; top:50%; left:50%; transform:translate(-50%, -50%); z-index:2;">
 					<a href="#" class="smith continent" style="position:absolute; top:1130px; left:1040px;font-size:300px;">

@@ -1,0 +1,46 @@
+.hideable {
+	display: none;
+}
+
+#Weather,
+#Calendar,
+#TripDistance,
+#TripTime {
+	color: white;
+	text-align: left;
+}
+
+body {
+	position: absolute;
+}
+
+#map-goes-here {
+	height: 100%;
+	width: 100%;
+}
+
+.map-body {
+	overflow: hidden;
+	background: #001;
+	height: 100%;
+	width: 100%;
+}
+
+.map {
+	background: #25325f;
+}
+
+.map-controls {
+	position: absolute;
+	z-index: 2;
+	padding-left: 20px;
+}
+
+.map-controls-overflow-tray {
+	background: #224;
+	color: white;
+}
+
+.modal-window {
+	position:absolute;
+}

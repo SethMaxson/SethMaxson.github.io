@@ -36,7 +36,7 @@ function getCitiesByContinent(destinationElement: JQuery<HTMLElement>, continent
 					let url = relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + locations[i].name : "#";
 					destinationElement.append(
 						$(
-							`<a href="${url}" class="point-of-interest smith village" style="left: calc(${locations[i].left} - 8px); top: calc(${locations[i].top} - 8px); ${specialTreatmentForHyperLinks && url != "#" ? " color:#ffff00;" : ""}" data-continent="${continentName}" data-structure="map-location">
+							`<a href="${url}" class="point-of-interest smith village" style="left: calc(${locations[i].left} - 8px); top: calc(${locations[i].top} - 8px); ${specialTreatmentForHyperLinks && url != "#" ? " color:#ffff00;" : ""}" data-city="${locations[i].name}" data-continent="${continentName}" data-structure="map-location">
 								<div class="map-marker-icon marker-town" style="background-color:#f3b;">&nbsp;</div>
 								<span class="map-marker-name" style="position: absolute; top:50%; left:100%; transform: translate(10px, -50%);">${locations[i].name}</span>
 							</a>`
@@ -96,15 +96,15 @@ function getCityMarkup(city: ICitiesJsonObject, continent: ICitiesJsonContinentS
 	}
 	//#endregion
 
-	return $(`<a href="${url}" class="point-of-interest ${continent.cartographer} ${city.type}" style="${extraCssProperties}" data-continent="${continent.name}" data-structure="cities.json">
+	return $(`<a href="${url}" class="point-of-interest ${continent.cartographer} ${city.type}" style="${extraCssProperties}" data-city="${city.name}" data-continent="${continent.name}" data-structure="cities.json">
 		${marker}
 		<span class="map-marker-name" style="${getNamePositionString(city.nameLocation, Math.round(offset * 1.3))}">${city.name}</span>
-		<span class="city-preview">
+		<!--<span class="city-preview">
 			<h1>${city.name}</h1>
 			${description}
 			${culture}
 			${dmNotes}
-		</span>
+		</span>-->
 	</a>`);
 }
 
@@ -239,3 +239,23 @@ function attachPlacementHelper(mapElement: JQuery<HTMLElement>) {
 		newMarker.css("top", (Math.round(y * 10000) / 100) + "%");
 	});
 }
+
+
+$(document).ready(function ()
+{
+	var modalWindow: CityBlurbViewer;
+	$(document).ready(function ()
+	{
+		//@ts-ignore
+		window.modalWindow = new CityBlurbViewer("#map-body");
+		//@ts-ignore
+		window.modalWindow.close();
+		$(document).on("click", "a.point-of-interest", function(e) {
+			e.preventDefault();
+			$.when(getCityObject($(this).attr("data-city") as string, $(this).attr("data-continent") as string, $(this).attr("data-structure") == "cities.json")).done(function(city) {
+				//@ts-ignore
+				window.modalWindow.displayCity(city as ICity);
+			})
+		});
+	});
+})
