@@ -19,6 +19,7 @@ class MapViewer extends React.Component {
             }
         };
         __mapPan.scale = this.state.zoom.currentZoom;
+        // __mapPan.mapPanBounds.left = -this.props.width;
     }
     render() {
         return (React.createElement("div", { id: "map-body", className: "map-body" },
@@ -249,6 +250,7 @@ $(document).ready(function () {
             __mapPan.dx = ui.position.left - ui.originalPosition.left;
             __mapPan.dy = ui.position.top - ui.originalPosition.top;
             ui.position.left = ui.originalPosition.left + (__mapPan.dx / __mapPan.scale);
+            // ui.position.left = Math.max(ui.originalPosition.left + ( __mapPan.dx/__mapPan.scale), __mapPan.mapPanBounds.left);
             ui.position.top = ui.originalPosition.top + (__mapPan.dy / __mapPan.scale);
             // ui.position.left = ui.originalPosition.left + (__dx);
             // ui.position.top = ui.originalPosition.top + (__dy);

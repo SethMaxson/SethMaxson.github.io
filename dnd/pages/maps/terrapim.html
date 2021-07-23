@@ -48,23 +48,12 @@
 		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/controls/common-controls.js"></script>
 		<script src="/dnd/res/js/controls/modal-window.js"></script>
 		<script src="/dnd/res/js/controls/city-blurb-viewer.js"></script>
 		<script>
 			$(document).ready(() => {
 				getCitiesByContinent($(".map-terrapim"), "Terrapim", true);
-
-				// var area = $(".map-terrapim")[0];
-				// window.pz = panzoom(area, {
-				// 	autocenter: true,
-				// 	bounds: true,
-  				// 	boundsPadding: 0.1,
-				// 	maxZoom: 1.5,
-				// 	minZoom: 0.1,
-				// 	initialX: 0,
-				// 	initialY: 0,
-				// 	initialZoom: 0.5
-				// })
 			})
 		</script>
 		<style>
@@ -81,7 +70,19 @@
 			<h3>Amarillo Airship Agency</h3>
 			<h2>Welcome to Terrapim!!</h2>
 			<p>
-				Description goes here.
+				Unfortunately, Terrapim's harsh and untamed environments have prevented our expeditions from returning any detailed information. However, our limited surveys of Terrapim have determined that it is split into three highly distinct regions. These regions seem to be largely isolated from each other.
+			</p>
+			<h2>The Wildlands</h2>
+			<p>
+				A frontier of harsh, unexplored lands filled with all manner of mysterious (and often lethal) new things to discover.
+			</p>
+			<h2>The Cradle of Kings</h2>
+			<p>
+				A beautiful, vast region where numerous kingdoms forge alliances and wage war on each other.
+			</p>
+			<h2>Apexis Peninsula</h2>
+			<p>
+				The Apexis Peninsula is home to the most brutal, lethal aerial warriors in the known world. Visit at your own peril.
 			</p>
 		</div>
 		<div id="map-body" style="overflow: hidden; background:#25325f; position: relative;">

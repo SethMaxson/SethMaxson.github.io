@@ -58,21 +58,21 @@ a.slide_btn {
 	cursor: pointer;
 }
 
-.slide .name{
+.name{
 	font-size:2em;
 	font-weight: bold;
 	font-family: 'Cinzel', serif;
 }
 
 
-.slide .tagline{
+.tagline{
 	font-size:0.9em;
 	font-weight: bold;
 	font-style: italic;
 	color:#444;
 	font-family: 'Cinzel', serif;
 }
-.slide .titles{
+.titles{
 	font-size:1.2em;
 	font-weight: bold;
 	font-style: italic;

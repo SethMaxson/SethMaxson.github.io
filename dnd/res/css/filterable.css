@@ -14,7 +14,7 @@ body {
 	transition: background-image 0.5s ease-in-out;
 }
 
-.filter-thing {
+.filter-panel {
 	position: absolute;
 	box-sizing: content-box !important;
 	top: 0;
@@ -26,22 +26,22 @@ body {
 	background:slategray;
 }
 
-.filter-thing input.search{
+.filter-panel input.search{
 	width: 100%;
 }
 
-.filter-thing .filterable-item {
+.filter-panel .filterable-item {
 	border:1px solid darkslategray;
 	padding:0.1em;
 	cursor: pointer;
 }
 
-.filter-thing .filterable-item:hover {
+.filter-panel .filterable-item:hover {
 	border-color:gold;
 	color:gold;
 }
 
-.filter-thing .filterable-item.selected {
+.filter-panel .filterable-item.selected {
 	border-color:darkslategray;
 	background:darkslategray;
 }

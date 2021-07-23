@@ -5,8 +5,12 @@ body.no-overflow {
 	width: 100vw;
 }
 
+/* body.no-overflow>.top-nav, */
 body.no-overflow .navbar {
-	height: 40px;
+	/* height: 40px; */
+	padding-left: .5rem;
+	padding-right: .5rem;
+	flex-basis: 1;
 	flex-grow: 0;
 	flex-shrink: 0;
 	position: initial;
@@ -17,8 +21,9 @@ body.no-overflow .main {
 	box-sizing: border-box;
 	overflow: hidden;
 	padding: 0;
+	flex-basis: 2;
 	flex-grow: 10;
-	flex-shrink: 1;
+	flex-shrink: 2;
 }
 
 body.no-overflow .main iframe {

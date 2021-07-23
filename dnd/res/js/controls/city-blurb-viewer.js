@@ -14,9 +14,6 @@ class CityBlurbViewer extends ModalWindow {
     }
 }
 class CityBlurb extends ReactHideableContainer {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (super.renderIfAppropriate(React.createElement("div", null,
             React.createElement("h1", null, this.props.JsonObject.name),

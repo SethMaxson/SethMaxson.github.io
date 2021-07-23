@@ -23,10 +23,6 @@ interface ICityBlurbProps
 }
 
 class CityBlurb extends ReactHideableContainer<ICityBlurbProps, IReactHideableContainerState> {
-	constructor(props: ICharacterSlideProps) {
-		super(props);
-	}
-
 	render()
 	{
 		return (

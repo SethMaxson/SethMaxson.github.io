@@ -6,15 +6,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Maximum Questing!</title>
 		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
-		<link href="/res/css/navbar.css" rel="stylesheet" type="text/css" media="all">
+		<!-- <link href="/res/css/navbar.css" rel="stylesheet" type="text/css" media="all"> -->
 		<link href="/dnd/res/css/page-specific/index.css" rel="stylesheet" type="text/css" media="all">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
 		<script
 			src="https://code.jquery.com/jquery-3.3.1.js"
 			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
 			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-		<script>
+		<!-- <script>
 			/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
 			function myFunction() {
 				var x = document.getElementById("TopNav");
@@ -47,11 +50,11 @@
 					};
 				});
 			});
-		</script>
+		</script> -->
 	</head>
 
 	<body class="no-overflow">
-		<div class="navbar" id="TopNav">
+		<!-- <div class="navbar" id="TopNav">
 			<a href="/sf/index.html">Starfinder</a>
 			<a href="/dnd/pages/maps/worldatlas.html" target="mainFrame">Home</a>
 			<div class="dropdown">
@@ -60,6 +63,7 @@
 				<div class="dropdown-content">
 					<a class="innerLink" href="/dnd/pages/world/races.html" target="mainFrame">Races</a>
 					<a class="innerLink" href="/dnd/pages/world/guilds.html" target="mainFrame">Guilds</a>
+					<a class="innerLink" href="/dnd/pages/world/census-data-viewer.html" target="mainFrame">Census Data</a>
 					<div class="sub-dropdown">
 						<a href="/dnd/pages/maps/worldatlas.html" target="mainFrame">Map ></a>
 						<div class="dropdown-content">
@@ -96,6 +100,7 @@
 							<a href="/dnd/pages/lore/characters/hallofheroes.html" target="mainFrame">Hall of Heroes</a>
 							<a href="/dnd/pages/lore/characters/party.html" target="mainFrame">Party</a>
 							<a href="/dnd/pages/lore/characters/allies.html" target="mainFrame">Allies</a>
+							<a href="/dnd/pages/lore/characters/character-viewer.html" target="mainFrame">Character Viewer</a>
 						</div>
 					</div>
 					<a href="/dnd/pages/lore/pantheon.html" target="mainFrame">Pantheon</a>
@@ -115,7 +120,6 @@
 				<a href="/dnd/pages/rules/items/weapons.html" target="mainFrame">Tools</a>
 				<div class="dropdown-content">
 					<a href="/dnd/pages/tools/militarystrength.html" target="mainFrame">Military Strength</a>
-					<!-- <a href="/dnd/pages/npccreation.html" target="mainFrame">NPC Generator</a> -->
 					<div class="sub-dropdown">
 						<a href="/dnd/pages/tools/generators/npc.html" target="mainFrame">Generators ></a>
 						<div class="dropdown-content">
@@ -149,6 +153,74 @@
 				<i class="fa fa-bars"></i>
 			</a>
 
+		</div> -->
+
+		<div class="top-nav">
+			<div class="navbar navbar-expand-lg navbar-dark bg-dark" id="TopNav">
+				<a class="navbar-brand" target="mainFrame" href="/dnd/pages/maps/worldatlas.html">Geoss</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<div class="navbar-nav">
+						<a class="nav-item nav-link" href="/sf/index.html">Starfinder</a>
+						<a class="nav-item nav-link" href="/dnd/pages/maps/worldatlas.html" target="mainFrame">Home <span class="sr-only">(current)</span></a>
+
+						<div class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarWorldDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								World
+							</a>
+							<div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarWorldDropdown">
+								<a class="dropdown-item" class="innerLink" href="/dnd/pages/world/races.html" target="mainFrame">Races</a>
+								<a class="dropdown-item" class="innerLink" href="/dnd/pages/world/guilds.html" target="mainFrame">Guilds</a>
+								<a class="dropdown-item" class="innerLink" href="/dnd/pages/world/census-data-viewer.html" target="mainFrame">Census Data</a>
+								<a class="dropdown-item" class="innerLink" href="/dnd/pages/maps/index.html" target="mainFrame">Maps</a>
+							</div>
+						</div>
+						<div class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarLoreDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Lore
+							</a>
+							<div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarLoreDropdown">
+								<a class="dropdown-item" href="/dnd/pages/lore/pantheon.html" target="mainFrame">Pantheon</a>
+								<a class="dropdown-item" href="/dnd/pages/lore/godfall_artifacts.html" target="mainFrame">Godfall Artifacts</a>
+								<a class="dropdown-item" href="/dnd/pages/lore/sessionnotes.html" target="mainFrame">Session Notes</a>
+								<div class="dropdown-divider"></div>
+								<h6 class="dropdown-header">Characters</h6>
+								<a class="dropdown-item" href="/dnd/pages/lore/characters/hallofheroes.html" target="mainFrame">Hall of Heroes</a>
+								<a class="dropdown-item" href="/dnd/pages/lore/characters/character-viewer.html" target="mainFrame">Party</a>
+								<a class="dropdown-item" href="/dnd/pages/lore/characters/allies.html" target="mainFrame">Allies</a>
+							</div>
+						</div>
+						<div class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarRulesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Rules
+							</a>
+							<div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarRulesDropdown">
+								<a class="dropdown-item" href="/dnd/pages/rules/reincarnation.html" target="mainFrame">Reincarnation</a>
+								<a class="dropdown-item" href="/dnd/pages/rules/tenetsofgodhood.html" target="mainFrame">Tenets of Godhood</a>
+								<a class="dropdown-item" href="/dnd/pages/rules/items/weapons.html" target="mainFrame">Weapons</a>
+							</div>
+						</div>
+						<div class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarToolDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Tools
+							</a>
+							<div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarToolDropdown">
+								<a class="dropdown-item" href="/dnd/pages/tools/militarystrength.html" target="mainFrame">Military Strength</a>
+								<a class="dropdown-item" href="/dnd/pages/tools/random-tables.html" target="mainFrame">Random Tables</a>
+								<a class="dropdown-item" href="/dnd/pages/tools/table.html" target="mainFrame">Table</a>
+								<a class="dropdown-item" href="/dnd/pages/tools/travel-calculator.html" target="mainFrame">Travel Calculator</a>
+								<a class="dropdown-item disabled" href="/dnd/pages/tools/charactercreation.html" target="mainFrame">Character Creation</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="/dnd/pages/world/moods/index.html" target="mainFrame">Moods</a>
+								<a class="dropdown-item" href="/dnd/pages/tools/generators/index.html" target="mainFrame">Random Generators</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="main">
 			<iframe src="pages/maps/worldatlas.html" frameborder="0" name="mainFrame"></iframe>

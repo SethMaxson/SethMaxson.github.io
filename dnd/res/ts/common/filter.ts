@@ -25,7 +25,10 @@ $(document).ready(() =>
 	});
 })
 
-function fuzzySearch(needle: string, haystack: string): boolean {
+function fuzzySearch(find: string, searchIn: string, caseSensitive: boolean = false): boolean
+{
+	let needle = caseSensitive ? find : find.toLowerCase();
+	let haystack = caseSensitive ? searchIn : searchIn.toLowerCase();
 	var hlen = haystack.length;
 	var nlen = needle.length;
 	if (nlen > hlen) {

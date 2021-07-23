@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>City Blurb Viewer Test</title>
+		<title>Census Data</title>
 
 		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
 		<link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
@@ -15,29 +15,24 @@
 		<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
-		<script src="/dnd/res/js/world-map-viewer/map-loader.js"></script>
+		<script src="/dnd/res/js/world-data/region-census.js"></script>
 		<script src="/dnd/res/js/controls/common-controls.js"></script>
 		<script src="/dnd/res/js/controls/modal-window.js"></script>
-		<script src="/dnd/res/js/controls/city-blurb-viewer.js"></script>
+		<script src="/dnd/res/js/controls/census-data-viewer.js"></script>
 		<script type="text/babel">
-			var modalWindow;
-			$(document).ready(function() {
-				window.modalWindow = new CityBlurbViewer(".background");
-				window.modalWindow.close();
-				$.when(getCityObject("Amarillo", "Lagos", true)).done(function(city) {
-					modalWindow.displayCity(city);
-				})
-			});
+
+			ReactDOM.render(
+				<RegionCensusContainer regionCensus={censusData} />,
+				document.getElementById("background")
+			);
+
 		</script>
 		<style>
 		</style>
 	</head>
 
 	<body style="position: relative;">
-		<div style="position: absolute; top:0; right:0; display: inline-block; z-index: 1;">
-			<button onclick="modalWindow.open()">open modal</button>
-		</div>
-		<div class="background" style="position: absolute; top:0; left:0; width: 100vw; height: 100vh;">
+		<div id="background" class="background" style="position: absolute; top:0; left:0; width: 100vw; height: 100vh;">
 
 		</div>
 	</body>

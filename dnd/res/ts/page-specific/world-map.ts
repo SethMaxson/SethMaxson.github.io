@@ -79,6 +79,7 @@ $(document).ready(function(){
 
 $(document).ready(() => {
 	Promise.all([
+		getCitiesByContinent($(".map-bravagg"), "Bravagg"),
 		getCitiesByContinent($(".map-decapos"), "Decapos"),
 		getCitiesByContinent($(".map-lagos"), "Lagos"),
 		getCitiesByContinent($(".map-notre"), "Notre"),
