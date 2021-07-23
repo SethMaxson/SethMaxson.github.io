@@ -383,7 +383,7 @@ const CHARACTERS: ICharacterSlideObject[] = [
 		name: "Zenrya Fastfoot",
 		tagline: "Chaotic fun",
 		status: "Fine",
-		image: "/dnd/img/characters/party/Zenrya_portrait.png",
+		image: "/dnd/img/characters/party/zenrya_portrait.png",
 		themeColor: "#ac3b9b",
 		alignment: "CN",
 		race: "Halfling",
