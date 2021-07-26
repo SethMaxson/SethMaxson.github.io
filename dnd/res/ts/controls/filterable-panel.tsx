@@ -29,19 +29,26 @@ class FilterPanel extends React.Component<IFilterPanelProps, IFilterPanelState> 
 	}
 	render() {
 		return (
-			<div className="filter-panel">
-				<FilterSearch search={this.search} />
-				{this.props.items.map((item, index: number) =>
-					this.state.itemDisplay[index] &&
-					<FilterableItem
-						index={index}
-						key={index}
-						onClick={this.handleClick}
-						selected={index == this.props.selectedIndex}
-						tags={item.tags}
-						text={item.text}
-					/>
-				)}
+			<div className="offcanvas offcanvas-start" id="filterable-panel" aria-labelledby="filterable-panel-label">
+				<div className="offcanvas-header">
+					<FilterSearch search={this.search} />
+					<button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+				<div className="offcanvas-body">
+					<div className="list-group">
+						{this.props.items.map((item, index: number) =>
+							this.state.itemDisplay[index] &&
+							<FilterableItem
+								index={index}
+								key={index}
+								onClick={this.handleClick}
+								selected={index == this.props.selectedIndex}
+								tags={item.tags}
+								text={item.text}
+							/>
+						)}
+					</div>
+				</div>
 			</div>
 		);
 	}
@@ -122,7 +129,18 @@ class FilterableItem extends React.Component<IFilterableItemProps> {
 	}
 	render() {
 		return (
-			<div className={"filterable-item" + (this.props.selected ? " selected" : "")} data-tags={this.props.tags.join(",")} onClick={e => this.handleClick(e)}>{this.props.text}</div>
+			<div className={"list-group-item filterable-item" + (this.props.selected ? " selected" : "")} data-tags={this.props.tags.join(",")} onClick={e => this.handleClick(e)}>{this.props.text}</div>
+		);
+	}
+}
+
+
+class FilterPanelToggleButton extends React.Component {
+	render() {
+		return (
+			<button className="btn btn-primary navbar-light position-absolute top-0 start-0 m-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterable-panel" aria-controls="filterable-panel">
+				<span className="navbar-toggler-icon"></span>
+			</button>
 		);
 	}
 }

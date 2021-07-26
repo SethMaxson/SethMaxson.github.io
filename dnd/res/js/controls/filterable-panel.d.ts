@@ -42,3 +42,6 @@ declare class FilterableItem extends React.Component<IFilterableItemProps> {
     handleClick(e: React.MouseEvent): void;
     render(): JSX.Element;
 }
+declare class FilterPanelToggleButton extends React.Component {
+    render(): JSX.Element;
+}

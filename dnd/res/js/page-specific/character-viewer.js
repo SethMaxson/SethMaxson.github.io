@@ -80,6 +80,7 @@ class CharacterViewer extends React.Component {
         let filterableItems = this.props.characters.map(a => { return { text: a.name, tags: [] }; });
         return (React.createElement("div", { className: "bg-dark bg-gradient", style: { padding: "0px", height: "100%" } },
             React.createElement(FilterPanel, { items: filterableItems, selectedIndex: this.state.selectedIndex, onChange: this.changeCharacter }),
+            React.createElement(FilterPanelToggleButton, null),
             React.createElement("div", { className: "container bg-body", style: { padding: "0px", height: "100%", overflowY: "auto" } },
                 React.createElement(CharacterView, { JsonObject: this.state.selectedCharacter }))));
     }

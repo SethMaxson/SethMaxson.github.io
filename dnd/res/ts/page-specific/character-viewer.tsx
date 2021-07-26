@@ -177,6 +177,7 @@ class CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterV
 		return (
 			<div className="bg-dark bg-gradient" style={{ padding: "0px", height: "100%"}}>
 				<FilterPanel items={filterableItems} selectedIndex={this.state.selectedIndex} onChange={this.changeCharacter} />
+				<FilterPanelToggleButton />
 				<div className="container bg-body" style={{ padding: "0px", height: "100%", overflowY: "auto"}}>
 					<CharacterView JsonObject={this.state.selectedCharacter} />
 				</div>
