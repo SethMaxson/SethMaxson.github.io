@@ -37,7 +37,7 @@ function getCityData() {
     return $.ajax({ crossDomain: true, url: "/dnd/res/data/world-map-data/cities.json", dataType: 'json' });
 }
 function getMapLocationData(continent) {
-    return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/map-locations/${continent}.json`, dataType: 'json' });
+    return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/map-locations/${continent.toLowerCase()}.json`, dataType: 'json' });
 }
 function getMapImageData() {
     return $.ajax({ crossDomain: true, url: "/dnd/res/data/world-map-data/city-map.json", dataType: 'json' });
