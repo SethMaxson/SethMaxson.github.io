@@ -5,13 +5,6 @@ interface ICutout
 	img: string;
 }
 
-interface IDiorama
-{
-	title: string;
-	background: string;
-	cutouts: ICutout[];
-}
-
 function getCardboardCutout(cutout: ICutout)
 {
 	return $(`
@@ -22,7 +15,7 @@ function getCardboardCutout(cutout: ICutout)
 	`);
 }
 
-function getDiorama(diorama: IDiorama)
+function getDiorama(diorama: IDioramaProps)
 {
 	$(document).ready(function(){
 		document.title = diorama.title;

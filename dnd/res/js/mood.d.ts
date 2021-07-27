@@ -5,10 +5,5 @@ interface ICutout {
     name: string;
     img: string;
 }
-interface IDiorama {
-    title: string;
-    background: string;
-    cutouts: ICutout[];
-}
 declare function getCardboardCutout(cutout: ICutout): JQuery<HTMLElement>;
-declare function getDiorama(diorama: IDiorama): void;
+declare function getDiorama(diorama: IDioramaProps): void;

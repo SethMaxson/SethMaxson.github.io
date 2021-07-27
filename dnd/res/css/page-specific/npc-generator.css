@@ -1,57 +1,3 @@
-.background div.container {
-	padding: 10px;
-}
-
-button {
-	cursor: pointer;
-	border-radius: 0.5em;
-}
-
-button:hover {
-	border-color: white;
-}
-
-th {
-	font-weight: bold;
-	border: 2px solid #555;
-	background: #333;
-	color: floralwhite;
-	padding: 4px;
-}
-
-td {
-	border: 2px solid #555;
-	padding: 4px;
-}
-
-.collapsible {
-	background: rgba(50, 50, 50, 0.1);
-	border-radius: 1em;
-	position: relative;
-}
-
-.collapsible.collapsed table {
-	display: none;
-}
-
-.collapsible>h3 {
-	cursor: pointer;
-	padding-left: 1em;
-	padding-right: 1em;
-}
-
-.collapse-button {
-	width: 2em;
-}
-
-.collapse-button:before {
-	content: "\25B2";
-}
-
-.collapsed .collapse-button:before {
-	content: "\25BC";
-}
-
 div.token {
 	position: absolute;
 	top: 0;
@@ -78,58 +24,10 @@ div.token {
  }
 /*#endregion stuff for jquery.multiselect.js*/
 
-/* th.species { width: 20% }
-th.gender { width: 12% }
-th.age { width: 10% }
-th.alignment { width: 15% }
-th.threat-level { width: 15% }
-th.intelligence { width: 15% } */
-th.description {
-	width: 50%
-}
-
-th.token {
-	width: 10%
-}
-
-th.controls {
-	width: 10%
-}
-
-.generator-settings {
-	box-sizing: border-box;
-	width: 100%;
-	max-width: 100%;
-	margin:auto;
-	border-collapse: collapse;
-	padding:0.5em;
-	border: 2px solid #555;
-}
-
-.generator-settings>div{
-	margin-top: 1em;
-}
-
-.npc-table {
-	width:100%;
-	margin:auto;
-	border-collapse: collapse;
-}
-
-#clear-npcs {
-	border:2pt solid #a00;
-	color:#a00;
-}
-
-#generate-npcs {
-	border:2pt solid #00a;
-	color:#00a;
-}
-
 @media print
 {
-	.collapsed,
-	.collapsed *
+	.collapse:not(.show),
+	.collapse:not(.show) *
 	{
 		display: none !important;
 	}
@@ -148,9 +46,5 @@ th.controls {
 	.npc-table tr {
 		break-inside: avoid;
 		page-break-inside: avoid;
-	}
-
-	.collapsible {
-		background: none;
 	}
 }

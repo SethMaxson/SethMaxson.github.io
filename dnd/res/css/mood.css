@@ -74,6 +74,13 @@ body {
 	-webkit-text-stroke-color: black;
 }
 
+.slider .gravity {
+	height:100%;
+	width:1px;
+	max-width:1px;
+	min-width: 1px;
+}
+
 .slider > div > img {
 	height: 100%;
 }

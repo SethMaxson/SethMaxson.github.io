@@ -4,11 +4,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Casting</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
+		<!-- <link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all"> -->
 		<link href="/dnd/res/css/page-specific/npc-generator.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/res/css/jquery.multiselect.css" rel="stylesheet" type="text/css" media="all">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
 		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 		<script src="/res/js/jquery.multiselect.js"></script>
 		<script src="/dnd/res/js/mechanics.js"></script>
 		<script src="/dnd/res/js/npc.js"></script>
@@ -22,113 +27,147 @@
 		<script src="/res/js/sort-table.js"></script>
 	</head>
 
-	<body>
-		<div class="background">
-			<div class="container">
-				<h1 class="noprint">NPCs</h1>
-				<div id="loaded" class="collapsible collapsed">
-					<h3>Loaded <a class="collapse-button"></a></h3>
-					<table style="width:100%; margin:auto; border-collapse: collapse;" class="noprint">
-						<tr>
-							<td>
-								<button id="save-npcs">Save!</button>
-								<label for="loaded-sort-select">Sort by:</label>
-								<select name="loaded-sort-select" id="loaded-sort-select">
-									<option value="name">Name</option>
-									<option value="race">Race</option>
-									<option value="gender">Gender</option>
-									<option value="age">Age</option>
-									<option value="alignment">Alignment</option>
-									<option value="threat">Threat</option>
-									<option value="intelligence">Intelligence</option>
-								</select>
-							</td>
-						</tr>
-					</table>
-					<table class="npc-table" id="loaded-npcs">
-						<tr class="header-row">
-							<th class="summary">Summary</th>
-							<th class="description">Description</th>
-							<th class="token">Token</th>
-						</tr>
-					</table>
+	<body class="background bg-dark">
+		<div class="container bg-secondary" style="padding:0px;">
+			<div class="accordion accordion-flush" id="accordionExample">
+				<div class="accordion-item">
+					<h2 class="accordion-header noprint" id="headingOne">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+						Loaded NPCs
+					</button>
+					</h2>
+					<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+						<div class="accordion-body bg-secondary">
+							<div class="row noprint mb-3">
+								<div class="col-auto">
+									<div class="row noprint">
+										<label class="col-auto col-form-label" for="loaded-sort-select">Sort by:</label>
+										<div class="col-auto">
+											<select class="form-select" id="loaded-sort-select">
+												<option value="name">Name</option>
+												<option value="race">Race</option>
+												<option value="gender">Gender</option>
+												<option value="age">Age</option>
+												<option value="alignment">Alignment</option>
+												<option value="threat">Threat</option>
+												<option value="intelligence">Intelligence</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-auto">
+									<button class="btn btn-primary" id="save-npcs">Save!</button>
+								</div>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-light table-striped table-bordered" id="loaded-npcs">
+									<tr class="header-row table-dark">
+										<th class="summary">Summary</th>
+										<th class="description">Description</th>
+										<th class="token">Token</th>
+										<th class="controls">Controls</th>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div id="random" class="collapsible">
-					<h3 class="noprint">Random <a class="collapse-button"></a></h3>
-				<!-- <div id="random">
-					<h3>Random</h3> -->
-					<div class="generator-settings noprint">
-						<button id="default-settings">Default Settings</button>
-						<div>
-							<label for="race-select">Species:</label>
-							<select name="race-select" id="race-select" multiple>
-							</select>
-						</div>
-						<div>
-							<label for="gender-select">Gender:</label>
-							<select name="gender-select" id="gender-select" multiple>
-								<option value="female" selected>Female</option>
-								<option value="male"selected>Male</option>
-							</select>
-						</div>
-						<div>
-							<label for="age-select">Age:</label>
-							<select name="age-select" id="age-select" multiple>
-								<option value="child">Child</option>
-								<option value="young adult">Young Adult</option>
-								<option value="adult">Middle Age</option>
-								<option value="old">Elder</option>
-							</select>
-						</div>
-						<div>
-							<label for="alignment-select">Alignment:</label>
-							<select name="alignment-select" id="alignment-select" multiple>
-								<optgroup label="Good">
-									<option value="LG">Lawful Good</option>
-									<option value="NG">Neutral Good</option>
-									<option value="CG">Chaotic Good</option>
-								</optgroup>
-								<optgroup label="Neutral">
-									<option value="LN">Lawful Neutral</option>
-									<option value="N">Neutral</option>
-									<option value="CN">Chaotic Neutral</option>
-								</optgroup>
-								<optgroup label="Evil">
-									<option value="LE">Lawful Evil</option>
-									<option value="NE">Neutral Evil</option>
-									<option value="CE">Chaotic Evil</option>
-								</optgroup>
-							</select>
-							<label for="alignment-restrict-races">Only use races matching alignment:</label>
-							<input type="checkbox" name="alignment-restrict-races" id="alignment-restrict-races" />
-						</div>
-						<div>
-							<label for="records-to-generate">Number to create:</label>
-							<input type="number" name="records-to-generate" id="records-to-generate" initial="20" value="20" />
-							<button id="generate-npcs">Generate!</button>
-							<button id="clear-npcs">Clear NPCs</button>
+				<div class="accordion-item">
+					<h2 class="accordion-header noprint" id="headingTwo">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+						Random NPCs
+					</button>
+					</h2>
+					<div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+						<div class="accordion-body bg-secondary">
+							<div class="generator-settings noprint bg-light rounded p-2 border border-1 mb-3">
+								<button class="btn btn-secondary" id="default-settings">Default Settings</button>
+								<div class="mb-3 row">
+									<label class="col-sm-2 col-form-label" for="race-select">Species:</label>
+									<div class="col-sm-10">
+										<select class="form-select" id="race-select" multiple>
+										</select>
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label class="col-sm-2 col-form-label" for="gender-select">Gender:</label>
+									<div class="col-sm-10">
+										<select class="form-select" id="gender-select" multiple>
+											<option value="female" selected>Female</option>
+											<option value="male"selected>Male</option>
+										</select>
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label class="col-sm-2 col-form-label" for="age-select">Age:</label>
+									<div class="col-sm-10">
+										<select class="form-select" id="age-select" multiple>
+											<option value="child">Child</option>
+											<option value="young adult">Young Adult</option>
+											<option value="adult">Middle Age</option>
+											<option value="old">Elder</option>
+										</select>
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label class="col-sm-2 col-form-label" for="alignment-select">Alignment:</label>
+									<div class="col-sm-10">
+										<select class="form-select" id="alignment-select" multiple>
+											<optgroup label="Good">
+												<option value="LG">Lawful Good</option>
+												<option value="NG">Neutral Good</option>
+												<option value="CG">Chaotic Good</option>
+											</optgroup>
+											<optgroup label="Neutral">
+												<option value="LN">Lawful Neutral</option>
+												<option value="N">Neutral</option>
+												<option value="CN">Chaotic Neutral</option>
+											</optgroup>
+											<optgroup label="Evil">
+												<option value="LE">Lawful Evil</option>
+												<option value="NE">Neutral Evil</option>
+												<option value="CE">Chaotic Evil</option>
+											</optgroup>
+										</select>
+									</div>
+								</div>
+								<label class="form-label" for="alignment-restrict-races">Only use races matching alignment:</label>
+								<input type="checkbox" name="alignment-restrict-races" id="alignment-restrict-races" />
+								<div class="mb-3 row">
+									<label class="col-sm-2 col-form-label" for="records-to-generate">Number to create:</label>
+									<div class="col-sm-10">
+										<input type="number" class="form-control" id="records-to-generate" initial="20" value="20" />
+									</div>
+								</div>
+								<button class="btn btn-primary" id="generate-npcs">Generate!</button>
+								<button class="btn btn-danger" id="clear-npcs">Clear NPCs</button>
+							</div>
+							<div class="mb-3 row noprint">
+								<label class="col-sm-1 col-form-label" for="random-sort-select">Sort by:</label>
+								<div class="col-sm-11">
+									<select class="form-select" id="random-sort-select">
+										<option value="name">Name</option>
+										<option value="race">Race</option>
+										<option value="gender">Gender</option>
+										<option value="age">Age</option>
+										<option value="alignment">Alignment</option>
+										<option value="threat">Threat</option>
+										<option value="intelligence">Intelligence</option>
+									</select>
+								</div>
+							</div>
+							<div class="table-responsive">
+								<table class="table table-light table-striped table-bordered" id="random-npcs">
+									<tr class="header-row table-dark">
+										<th class="summary">Summary</th>
+										<th class="description">Description</th>
+										<th class="token">Token</th>
+										<th class="controls noprint">Controls</th>
+									</tr>
+								</table>
+							</div>
 						</div>
 					</div>
-					<div class="noprint">
-						<label for="random-sort-select">Sort by:</label>
-						<select name="random-sort-select" id="random-sort-select">
-							<option value="name">Name</option>
-							<option value="race">Race</option>
-							<option value="gender">Gender</option>
-							<option value="age">Age</option>
-							<option value="alignment">Alignment</option>
-							<option value="threat">Threat</option>
-							<option value="intelligence">Intelligence</option>
-						</select>
-					</div>
-					<table class="npc-table" id="random-npcs">
-						<tr class="header-row">
-							<th class="summary">Summary</th>
-							<th class="description">Description</th>
-							<th class="token">Token</th>
-							<th class="controls noprint">Controls</th>
-						</tr>
-					</table>
 				</div>
 			</div>
 		</div>

@@ -232,7 +232,7 @@ function getNPCRow(npc: NPC, rando: boolean, index: number) {
 	var ageMod = npcGenerator.getNPCOldness(npc);
 	// var threatMod = threat.indexOf(npc.threat)/(threat.length);
 	rando = rando || false;
-	let moveButton = `<button onclick="transferNPCBetweenManagers(${!rando}, ${index});">${rando? "Add" : "Remove"}</button>`;
+	let moveButton = `<button class="btn btn-secondary" onclick="transferNPCBetweenManagers(${!rando}, ${index});">${rando? "Add" : "Remove"}</button>`;
 	let imgSrc = getNPCImage(npc);
 	let ageColor = `rgb(${Math.round(200 * ageMod)},${Math.round(200 * (1 - ageMod))},00)`;
 	return $(
@@ -247,8 +247,8 @@ function getNPCRow(npc: NPC, rando: boolean, index: number) {
 			<td style="position:relative;"><div class="token" style="background-image: url('${imgSrc}');"></div></td>
 			<td class="noprint">
 				${moveButton}
-				<button class="map-page-description${rando? " rando" : ""}">Copy map page desc</button>
-				<button onclick="deleteNPC(${index}, ${rando})">Delete</button>
+				<button class="btn btn-secondary map-page-description${rando? " rando" : ""}">Copy map page desc</button>
+				<button class="btn btn-danger" onclick="deleteNPC(${index}, ${rando})">Delete</button>
 			</td>
 		</tr>
 	`);
