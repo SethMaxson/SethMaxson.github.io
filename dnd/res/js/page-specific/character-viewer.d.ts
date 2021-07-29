@@ -40,7 +40,7 @@ interface ICharacterSlideObject {
     name: string;
     themeColor: string;
     tagline: string;
-    alignment: string;
+    alignment: Alignment;
     firstAppearance: string;
     race: string;
     class: string;

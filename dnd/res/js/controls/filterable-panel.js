@@ -66,7 +66,7 @@ class FilterableItem extends React.Component {
         this.props.onClick(this.props.index);
     }
     render() {
-        return (React.createElement("div", { className: "list-group-item filterable-item" + (this.props.selected ? " selected" : ""), "data-tags": this.props.tags.join(","), onClick: e => this.handleClick(e) }, this.props.text));
+        return (React.createElement("button", { className: "list-group-item list-group-item-action filterable-item" + (this.props.selected ? " active" : ""), "data-tags": this.props.tags.join(","), onClick: e => this.handleClick(e) }, this.props.text));
     }
 }
 class FilterPanelToggleButton extends React.Component {
