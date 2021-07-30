@@ -5,12 +5,13 @@ declare type KillingGameStatus = "Alive" | "Dead" | "Missing" | "Unknown";
 interface IKillingGameCharacter extends INPC {
     /**Should be 0-1 */
     desperation: number;
-    dmNotes: string[];
+    dmNotes?: string[];
+    dislikes: string[];
     gender: KillingGameGender;
     image: string;
-    information: string[];
     /**Should be 0-1 */
     killingInstinct: number;
+    likes: string[];
     status: KillingGameStatus;
     title: string;
 }
