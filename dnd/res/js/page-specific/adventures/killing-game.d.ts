@@ -49,6 +49,13 @@ interface IKillingGameCharacterPageProps {
 declare class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPageProps> {
     render(): JSX.Element;
 }
+interface IKillingGameVoteResultsProps {
+    image: string;
+    percentage: number;
+}
+declare class KillingGameVoteResults extends React.Component<IKillingGameVoteResultsProps> {
+    render(): JSX.Element;
+}
 interface ICharacterLinkProps {
     character: IKillingGameCharacter;
     onClick: {
@@ -58,9 +65,10 @@ interface ICharacterLinkProps {
 declare class CharacterLink extends React.Component<ICharacterLinkProps> {
     render(): JSX.Element;
 }
+declare const AscendantAspirationsAcademy: IMapLayer[];
 interface IKillingGameIndex {
     characters: IKillingGameCharacter[];
-    mapLayers: string[];
+    mapLayers: IMapLayer[];
     misc: IDioramaProps[];
 }
 declare const KILLINGGAMEDATA: IKillingGameIndex;

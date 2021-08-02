@@ -88,10 +88,6 @@ class KillingGameCharacterPage extends React.Component {
                                     React.createElement("i", null, this.props.character.title)),
                                 React.createElement("h5", { id: "item-1-1" }, "Description"),
                                 React.createElement("p", null, this.props.character.description),
-                                React.createElement("h5", { id: "item-1-2" }, "Item 1-2"),
-                                React.createElement("p", null, "..."),
-                                React.createElement("h4", { id: "item-2" }, "Item 2"),
-                                React.createElement("p", null, "..."),
                                 React.createElement("h4", { id: "item-3" }, "Interests"),
                                 React.createElement("h5", { id: "item-3-1" }, "Likes"),
                                 React.createElement("p", null, this.props.character.likes.join(", ")),
@@ -110,6 +106,25 @@ class KillingGameCharacterPage extends React.Component {
                                             this.props.character.race))))))))));
     }
 }
+class KillingGameVoteResults extends React.Component {
+    render() {
+        return (React.createElement("div", { className: "h-100 w-100 overflow-hidden p-0 overflow-auto" },
+            React.createElement("div", { className: "row justify-content-md-center py-2" },
+                React.createElement("div", { className: "col-auto col-md-3" },
+                    React.createElement("div", { className: "card" },
+                        React.createElement("img", { className: "card-img-top img-fluid", src: this.props.image }))),
+                React.createElement("div", { className: "col-auto col-md-3 d-none d-lg-block" },
+                    React.createElement("div", { className: "card" },
+                        React.createElement("img", { className: "card-img-top img-fluid", src: this.props.image }))),
+                React.createElement("div", { className: "col-auto col-md-3 d-none d-lg-block" },
+                    React.createElement("div", { className: "card" },
+                        React.createElement("img", { className: "card-img-top img-fluid", src: this.props.image })))),
+            React.createElement("div", { className: "row bg-dark text-center text-light" },
+                React.createElement("h3", null,
+                    this.props.percentage,
+                    "%"))));
+    }
+}
 class CharacterLink extends React.Component {
     render() {
         let statusColor = this.props.character.status == "Alive" ? " bg-success" : this.props.character.status == "Dead" ? " bg-danger" : "bg-secondary";
@@ -120,6 +135,101 @@ class CharacterLink extends React.Component {
             React.createElement("span", { className: "badge position-absolute top-50 end-0 translate-middle-y me-1 rounded-pill " + statusColor }, this.props.character.status)));
     }
 }
+const AscendantAspirationsAcademy = [
+    {
+        image: "/dnd/img/maps/adventures/killinggame/floor1.png",
+        objects: [
+            {
+                name: "Room 1",
+                popoverText: "Room #1",
+                position: {
+                    x: 658,
+                    y: 198
+                },
+                size: {
+                    width: 19,
+                    height: 36
+                }
+            },
+            {
+                name: "Room 2",
+                popoverText: "Room #2",
+                position: {
+                    x: 682,
+                    y: 198
+                },
+                size: {
+                    width: 19,
+                    height: 36
+                }
+            },
+            {
+                name: "Room 3",
+                popoverText: "Room #3",
+                position: {
+                    x: 707,
+                    y: 198
+                },
+                size: {
+                    width: 19,
+                    height: 36
+                }
+            },
+            {
+                name: "Room 4",
+                popoverText: "Room #4",
+                position: {
+                    x: 731,
+                    y: 198
+                },
+                size: {
+                    width: 19,
+                    height: 36
+                }
+            },
+            {
+                name: "Room 5",
+                popoverText: "Room #5",
+                position: {
+                    x: 755,
+                    y: 198
+                },
+                size: {
+                    width: 19,
+                    height: 36
+                }
+            },
+            {
+                name: "Room 6",
+                popoverText: "Room #6",
+                position: {
+                    x: 779,
+                    y: 198
+                },
+                size: {
+                    width: 19,
+                    height: 36
+                }
+            },
+        ]
+    },
+    {
+        image: "/dnd/img/maps/adventures/killinggame/floor2.png",
+        objects: []
+    },
+    {
+        image: "/dnd/img/maps/adventures/killinggame/floor3.png",
+        objects: []
+    },
+    {
+        image: "/dnd/img/maps/adventures/killinggame/floor4.png",
+        objects: []
+    },
+    {
+        image: "/dnd/img/maps/adventures/killinggame/floor5.png",
+        objects: []
+    }
+];
 const KILLINGGAMEDATA = {
     characters: [
         {
@@ -170,7 +280,7 @@ const KILLINGGAMEDATA = {
             id: "gribak",
             name: "Gribak",
             title: "Ultimate Animal Tamer",
-            image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+            image: "/dnd/img/characters/npc/killinggame/gribak.png",
             race: "Goblin",
             subrace: "",
             gender: "Male",
@@ -214,7 +324,7 @@ const KILLINGGAMEDATA = {
             id: "randal",
             name: "Randal Baker",
             title: "Ultimate Fisher",
-            image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+            image: "/dnd/img/characters/npc/killinggame/randal.png",
             race: "Human",
             subrace: "",
             gender: "Male",
@@ -236,7 +346,7 @@ const KILLINGGAMEDATA = {
             id: "eliot",
             name: "Eliot Brewer",
             title: "Ultimate Kidnapper",
-            image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+            image: "/dnd/img/characters/npc/killinggame/eliot.png",
             race: "Water Genasi",
             subrace: "",
             gender: "Male",
@@ -258,7 +368,7 @@ const KILLINGGAMEDATA = {
             id: "salvini",
             name: "Salvini Devia",
             title: "Ultimate Entrepreneur",
-            image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+            image: "/dnd/img/characters/npc/killinggame/salvini.png",
             race: "Ratfolk",
             subrace: "",
             gender: "Male",
@@ -280,7 +390,7 @@ const KILLINGGAMEDATA = {
             id: "rosewood",
             name: "Rosewood",
             title: "Ultimate Botanist",
-            image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+            image: "/dnd/img/characters/npc/killinggame/rosewood.png",
             race: "Firbolg",
             subrace: "",
             gender: "Male",
@@ -324,7 +434,7 @@ const KILLINGGAMEDATA = {
             id: "chenna",
             name: "Chenna Honeymaker",
             title: "Ultimate Bartender",
-            image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+            image: "/dnd/img/characters/npc/killinggame/chenna.png",
             race: "Halfling",
             subrace: "",
             gender: "Female",
@@ -346,7 +456,7 @@ const KILLINGGAMEDATA = {
             id: "nora",
             name: "Nora Shaeremae",
             title: "Ultimate Ventriloquist",
-            image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+            image: "/dnd/img/characters/npc/killinggame/nora.png",
             race: "Dwarf",
             subrace: "",
             gender: "Female",
@@ -368,7 +478,7 @@ const KILLINGGAMEDATA = {
             id: "nueleth",
             name: "Nueleth Symbaern",
             title: "Ultimate Librarian",
-            image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+            image: "/dnd/img/characters/npc/killinggame/nueleth.png",
             race: "Elf",
             subrace: "",
             gender: "Female",
@@ -390,7 +500,7 @@ const KILLINGGAMEDATA = {
             id: "aym",
             name: "Aym",
             title: "Ultimate Painter",
-            image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+            image: "/dnd/img/characters/npc/killinggame/aym.png",
             race: "Tiefling",
             subrace: "",
             gender: "Female",
@@ -434,7 +544,7 @@ const KILLINGGAMEDATA = {
             id: "forest",
             name: "Bush in the Forest (Forest)",
             title: "Ultimate Acrobat",
-            image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+            image: "/dnd/img/characters/npc/killinggame/forest.png",
             race: "Tabaxi",
             subrace: "",
             gender: "Female",
@@ -475,13 +585,7 @@ const KILLINGGAMEDATA = {
             killingInstinct: 0.7,
         }
     ],
-    mapLayers: [
-        "/dnd/img/maps/adventures/killinggame/floor1.png",
-        "/dnd/img/maps/adventures/killinggame/floor2.png",
-        "/dnd/img/maps/adventures/killinggame/floor3.png",
-        "/dnd/img/maps/adventures/killinggame/floor4.png",
-        "/dnd/img/maps/adventures/killinggame/floor5.png"
-    ],
+    mapLayers: AscendantAspirationsAcademy,
     misc: [
         {
             title: "Temple of the Forest",

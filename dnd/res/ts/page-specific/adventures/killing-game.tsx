@@ -102,6 +102,12 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps> {
 						<li className="nav-item" role="presentation">
 							<button className="nav-link" id="prizes-tab" data-bs-toggle="tab" data-bs-target="#prizes" type="button" role="tab" aria-controls="prizes" aria-selected="false">Prizes</button>
 						</li>
+						{/* <li className="nav-item" role="presentation">
+							<button className="nav-link" id="trial-tab" data-bs-toggle="tab" data-bs-target="#trial" type="button" role="tab" aria-controls="prizes" aria-selected="false">Trial</button>
+						</li>
+						<li className="nav-item" role="presentation">
+							<button className="nav-link" id="file-tab" data-bs-toggle="tab" data-bs-target="#file" type="button" role="tab" aria-controls="file" aria-selected="false">File</button>
+						</li> */}
 					</ul>
 
 					<div className="tab-content row flex-grow-1 flex-shrink-1 flex-column align-items-stretch overflow-hidden">
@@ -170,6 +176,14 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps> {
 						<div className="tab-pane h-100 overflow-hidden" id="prizes" role="tabpanel" aria-labelledby="prizes-tab">
 							<GiftMachine gifts={GIFTS} />
 						</div>
+
+						{/* <div className="tab-pane h-100 overflow-hidden" id="trial" role="tabpanel" aria-labelledby="trial-tab">
+							<KillingGameVoteResults image={KILLINGGAMEDATA.characters[0].image} percentage={85} />
+						</div>
+
+						<div className="tab-pane h-100 overflow-hidden" id="file" role="tabpanel" aria-labelledby="file-tab">
+
+						</div> */}
 					</div>
 				</div>
 			</div>
@@ -225,10 +239,6 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 									<h3 id="item-1">{this.props.character.name} | <i>{this.props.character.title}</i></h3>
 									<h5 id="item-1-1">Description</h5>
 									<p>{this.props.character.description}</p>
-									<h5 id="item-1-2">Item 1-2</h5>
-									<p>...</p>
-									<h4 id="item-2">Item 2</h4>
-									<p>...</p>
 									<h4 id="item-3">Interests</h4>
 									<h5 id="item-3-1">Likes</h5>
 									<p>{this.props.character.likes.join(", ")}</p>
@@ -259,6 +269,41 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 	}
 }
 
+interface IKillingGameVoteResultsProps
+{
+	image: string;
+	percentage: number;
+}
+class KillingGameVoteResults extends React.Component<IKillingGameVoteResultsProps> {
+	render()
+	{
+		return (
+			<div className="h-100 w-100 overflow-hidden p-0 overflow-auto">
+				<div className="row justify-content-md-center py-2">
+					<div className="col-auto col-md-3">
+						<div className="card">
+							<img className="card-img-top img-fluid" src={this.props.image} />
+						</div>
+					</div>
+					<div className="col-auto col-md-3 d-none d-lg-block">
+						<div className="card">
+							<img className="card-img-top img-fluid" src={this.props.image} />
+						</div>
+					</div>
+					<div className="col-auto col-md-3 d-none d-lg-block">
+						<div className="card">
+							<img className="card-img-top img-fluid" src={this.props.image} />
+						</div>
+					</div>
+				</div>
+				<div className="row bg-dark text-center text-light">
+					<h3>{this.props.percentage}%</h3>
+				</div>
+			</div>
+		);
+	}
+}
+
 interface ICharacterLinkProps
 {
 	character: IKillingGameCharacter;
@@ -279,10 +324,107 @@ class CharacterLink extends React.Component<ICharacterLinkProps> {
 	}
 }
 
+
+const AscendantAspirationsAcademy: IMapLayer[] = [
+	{
+		image: "/dnd/img/maps/adventures/killinggame/floor1.png",
+		objects: [
+			{
+				name: "Room 1",
+				popoverText: "Room #1",
+				position: {
+					x: 658,
+					y: 198
+				},
+				size: {
+					width: 19,
+					height: 36
+				}
+			},
+			{
+				name: "Room 2",
+				popoverText: "Room #2",
+				position: {
+					x: 682,
+					y: 198
+				},
+				size: {
+					width: 19,
+					height: 36
+				}
+			},
+			{
+				name: "Room 3",
+				popoverText: "Room #3",
+				position: {
+					x: 707,
+					y: 198
+				},
+				size: {
+					width: 19,
+					height: 36
+				}
+			},
+			{
+				name: "Room 4",
+				popoverText: "Room #4",
+				position: {
+					x: 731,
+					y: 198
+				},
+				size: {
+					width: 19,
+					height: 36
+				}
+			},
+			{
+				name: "Room 5",
+				popoverText: "Room #5",
+				position: {
+					x: 755,
+					y: 198
+				},
+				size: {
+					width: 19,
+					height: 36
+				}
+			},
+			{
+				name: "Room 6",
+				popoverText: "Room #6",
+				position: {
+					x: 779,
+					y: 198
+				},
+				size: {
+					width: 19,
+					height: 36
+				}
+			},
+		]
+	},
+	{
+		image: "/dnd/img/maps/adventures/killinggame/floor2.png",
+		objects: []
+	},
+	{
+		image: "/dnd/img/maps/adventures/killinggame/floor3.png",
+		objects: []
+	},
+	{
+		image: "/dnd/img/maps/adventures/killinggame/floor4.png",
+		objects: []
+	},
+	{
+		image: "/dnd/img/maps/adventures/killinggame/floor5.png",
+		objects: []
+	}
+];
+
 interface IKillingGameIndex
 {
 	characters: IKillingGameCharacter[];
-	mapLayers: string[];
+	mapLayers: IMapLayer[];
 	misc: IDioramaProps[];
 }
 const KILLINGGAMEDATA: IKillingGameIndex = {
@@ -335,7 +477,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "gribak",
 			name: "Gribak",
 			title: "Ultimate Animal Tamer",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/gribak.png",
 			race: "Goblin",
 			subrace: "",
 			gender: "Male",
@@ -379,7 +521,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "randal",
 			name: "Randal Baker",
 			title: "Ultimate Fisher",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/randal.png",
 			race: "Human",
 			subrace: "",
 			gender: "Male",
@@ -401,7 +543,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "eliot",
 			name: "Eliot Brewer",
 			title: "Ultimate Kidnapper",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/eliot.png",
 			race: "Water Genasi",
 			subrace: "",
 			gender: "Male",
@@ -423,7 +565,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "salvini",
 			name: "Salvini Devia",
 			title: "Ultimate Entrepreneur",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/salvini.png",
 			race: "Ratfolk",
 			subrace: "",
 			gender: "Male",
@@ -445,7 +587,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "rosewood",
 			name: "Rosewood",
 			title: "Ultimate Botanist",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/rosewood.png",
 			race: "Firbolg",
 			subrace: "",
 			gender: "Male",
@@ -489,7 +631,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "chenna",
 			name: "Chenna Honeymaker",
 			title: "Ultimate Bartender",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/chenna.png",
 			race: "Halfling",
 			subrace: "",
 			gender: "Female",
@@ -511,7 +653,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "nora",
 			name: "Nora Shaeremae",
 			title: "Ultimate Ventriloquist",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/nora.png",
 			race: "Dwarf",
 			subrace: "",
 			gender: "Female",
@@ -533,7 +675,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "nueleth",
 			name: "Nueleth Symbaern",
 			title: "Ultimate Librarian",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/nueleth.png",
 			race: "Elf",
 			subrace: "",
 			gender: "Female",
@@ -555,7 +697,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "aym",
 			name: "Aym",
 			title: "Ultimate Painter",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/aym.png",
 			race: "Tiefling",
 			subrace: "",
 			gender: "Female",
@@ -599,7 +741,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "forest",
 			name: "Bush in the Forest (Forest)",
 			title: "Ultimate Acrobat",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/forest.png",
 			race: "Tabaxi",
 			subrace: "",
 			gender: "Female",
@@ -640,13 +782,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			killingInstinct: 0.7,
 		}
 	],
-	mapLayers: [
-		"/dnd/img/maps/adventures/killinggame/floor1.png",
-		"/dnd/img/maps/adventures/killinggame/floor2.png",
-		"/dnd/img/maps/adventures/killinggame/floor3.png",
-		"/dnd/img/maps/adventures/killinggame/floor4.png",
-		"/dnd/img/maps/adventures/killinggame/floor5.png"
-	],
+	mapLayers: AscendantAspirationsAcademy,
 	misc: [
 		{
 			title: "Temple of the Forest",
