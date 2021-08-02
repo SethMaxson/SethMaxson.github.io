@@ -1599,8 +1599,11 @@ class NPCDeepGenerator
 				filteredAges[ageCategory[index]] = element;
 				filteredWeight += element;
 			}
-			this.AgeList
 			selectedAgeCategory = weightedRandom(filteredAges, filteredWeight) as AgeCategory;
+		}
+		else
+		{
+			selectedAgeCategory = ageCategory;
 		}
 
 		npc.relativeAge = selectedAgeCategory;
