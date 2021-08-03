@@ -187,4 +187,28 @@ class Stats {
         this.hp = hp || 6 + this.attributes.conMod;
     }
 }
+class LocalStorageHelper {
+    get day() {
+        return parseFloat(localStorage.day);
+    }
+    get hour() {
+        return parseFloat(localStorage.hour);
+    }
+    get isGM() {
+        return localStorage.isGM;
+    }
+    get month() {
+        return parseFloat(localStorage.month);
+    }
+    get userId() {
+        return parseFloat(localStorage.userId);
+    }
+    get userName() {
+        return parseFloat(localStorage.userName);
+    }
+    get year() {
+        return parseFloat(localStorage.year);
+    }
+}
+const storage = new LocalStorageHelper();
 //# sourceMappingURL=mechanics.js.map

@@ -227,3 +227,37 @@ class Stats
 		this.hp = hp || 6 + this.attributes.conMod;
 	}
 }
+
+class LocalStorageHelper
+{
+	public get day()
+	{
+		return parseFloat(localStorage.day);
+	}
+	public get hour()
+	{
+		return parseFloat(localStorage.hour);
+	}
+	public get isGM()
+	{
+		return localStorage.isGM;
+	}
+	public get month()
+	{
+		return parseFloat(localStorage.month);
+	}
+	public get userId()
+	{
+		return parseFloat(localStorage.userId);
+	}
+	public get userName()
+	{
+		return parseFloat(localStorage.userName);
+	}
+	public get year()
+	{
+		return parseFloat(localStorage.year);
+	}
+}
+
+const storage = new LocalStorageHelper();

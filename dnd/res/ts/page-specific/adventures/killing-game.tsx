@@ -204,7 +204,7 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 			<div className="container h-100 w-100 overflow-hidden p-0">
 				<div className="h-100 w-100 d-flex flex-column align-items-stretch overflow-hidden">
 
-					<div className="row m-0">
+					<div className="row m-0 pt-3">
 						<nav aria-label="breadcrumb">
 							<ol className="breadcrumb">
 								<li className="breadcrumb-item"><a href="#" onClick={this.props.close}>Home</a></li>
@@ -250,7 +250,7 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 								</div>
 								<div className="col-auto col-md-3 order-1 order-md-2 py-2">
 									<div className="card">
-										<img className="card-img-top img-fluid" src={this.props.character.image} alt={this.props.character.name} />
+										<img className="card-img-top img-fluid bg-secondary bg-gradient" src={this.props.character.image} alt={this.props.character.name} />
 										<div className="card-body">
 											<h5 className="card-title">{this.props.character.name}</h5>
 											<p className="card-text">
@@ -330,59 +330,156 @@ const AscendantAspirationsAcademy: IMapLayer[] = [
 		image: "/dnd/img/maps/adventures/killinggame/floor1.png",
 		objects: [
 			{
-				name: "Room 1",
-				popoverText: "Room #1",
+				name: "Gribak's Room",
+				popoverText: "Gribak's Room",
 				position: {
 					x: 658,
-					y: 198
+					y: 118
 				},
 				size: {
 					width: 19,
-					height: 36
+					height: 35
 				}
 			},
 			{
-				name: "Room 2",
-				popoverText: "Room #2",
+				name: "Nueleth's Room",
+				popoverText: "Nueleth Symbaern's Room",
 				position: {
 					x: 682,
-					y: 198
+					y: 118
 				},
 				size: {
 					width: 19,
-					height: 36
+					height: 35
 				}
 			},
 			{
-				name: "Room 3",
-				popoverText: "Room #3",
+				name: "Randal's Room",
+				popoverText: "Randal Baker's Room",
 				position: {
 					x: 707,
-					y: 198
+					y: 118
 				},
 				size: {
 					width: 19,
-					height: 36
+					height: 35
 				}
 			},
 			{
-				name: "Room 4",
-				popoverText: "Room #4",
+				name: "Lizette's Character's Room",
+				popoverText: "Lizette's Character's Room",
 				position: {
 					x: 731,
-					y: 198
+					y: 118
 				},
 				size: {
 					width: 19,
-					height: 36
+					height: 35
 				}
 			},
 			{
-				name: "Room 5",
-				popoverText: "Room #5",
+				name: "Empty Room",
+				popoverText: "This locked room appears to be uninhabited. Evidently the school simply had one more room than they needed.",
+				locked: true,
 				position: {
 					x: 755,
-					y: 198
+					y: 118
+				},
+				size: {
+					width: 19,
+					height: 35
+				}
+			},
+			{
+				name: "Hatharal's Room",
+				popoverText: "Hatharal Ward's Room",
+				position: {
+					x: 779,
+					y: 118
+				},
+				size: {
+					width: 19,
+					height: 35
+				}
+			},
+			{
+				name: "Dom's Character's Room",
+				popoverText: "Dom's Character's Room",
+				position: {
+					x: 658,
+					y: 158
+				},
+				size: {
+					width: 19,
+					height: 35
+				}
+			},
+			{
+				name: "Rosewood's Room",
+				popoverText: "Rosewood's Room",
+				position: {
+					x: 682,
+					y: 158
+				},
+				size: {
+					width: 19,
+					height: 35
+				}
+			},
+			{
+				name: "Mark's Character's Room",
+				popoverText: "Mark's Character's Room",
+				position: {
+					x: 707,
+					y: 158
+				},
+				size: {
+					width: 19,
+					height: 35
+				}
+			},
+			{
+				name: "Nora's Room",
+				popoverText: "Nora Shaeremae's Room",
+				position: {
+					x: 731,
+					y: 158
+				},
+				size: {
+					width: 19,
+					height: 35
+				}
+			},
+			{
+				name: "Forest's Room",
+				popoverText: "Bush in the Forest's Room",
+				position: {
+					x: 755,
+					y: 158
+				},
+				size: {
+					width: 19,
+					height: 35
+				}
+			},
+			{
+				name: "Chenna's Room",
+				popoverText: "Chenna Honeymaker's Room",
+				position: {
+					x: 779,
+					y: 158
+				},
+				size: {
+					width: 19,
+					height: 35
+				}
+			},
+			{
+				name: "Salvini's Room",
+				popoverText: "Salvini Devia's Room",
+				position: {
+					x: 658,
+					y: 214
 				},
 				size: {
 					width: 19,
@@ -390,15 +487,207 @@ const AscendantAspirationsAcademy: IMapLayer[] = [
 				}
 			},
 			{
-				name: "Room 6",
-				popoverText: "Room #6",
+				name: "Chuck's Character's Room",
+				popoverText: "Chuck's Character's Room",
 				position: {
-					x: 779,
-					y: 198
+					x: 682,
+					y: 214
 				},
 				size: {
 					width: 19,
 					height: 36
+				}
+			},
+			{
+				name: "Aym's Room",
+				popoverText: "Aym's Room",
+				position: {
+					x: 707,
+					y: 214
+				},
+				size: {
+					width: 19,
+					height: 36
+				}
+			},
+			{
+				name: "Eliot's Room",
+				popoverText: "Eliot Brewer's Room",
+				position: {
+					x: 731,
+					y: 214
+				},
+				size: {
+					width: 19,
+					height: 36
+				}
+			},
+			{
+				name: "Kendall's Character's Room",
+				popoverText: "Kendall's Character's Room",
+				position: {
+					x: 755,
+					y: 214
+				},
+				size: {
+					width: 19,
+					height: 36
+				}
+			},
+			{
+				name: "Queg's Room",
+				popoverText: "Queg's Room",
+				position: {
+					x: 779,
+					y: 214
+				},
+				size: {
+					width: 19,
+					height: 36
+				}
+			},
+			{
+				name: "Sindri's Room",
+				popoverText: "Sindri's Room",
+				position: {
+					x: 819,
+					y: 118
+				},
+				size: {
+					width: 36,
+					height: 19
+				}
+			},
+			{
+				name: "Yrthraethra's Room",
+				popoverText: "Yrthraethra Payne's Room",
+				position: {
+					x: 819,
+					y: 142
+				},
+				size: {
+					width: 36,
+					height: 19
+				}
+			},
+			{
+				name: "Diggory's Room",
+				popoverText: "Diggory Ward's Room",
+				position: {
+					x: 819,
+					y: 166
+				},
+				size: {
+					width: 36,
+					height: 19
+				}
+			},
+			{
+				name: "Gaaki's Room",
+				popoverText: "Gaaki's Room",
+				position: {
+					x: 819,
+					y: 190
+				},
+				size: {
+					width: 36,
+					height: 19
+				}
+			},
+			{
+				name: "Incinerator",
+				popoverText: "Incinerator",
+				position: {
+					x: 674,
+					y: 69
+				},
+				size: {
+					width: 92,
+					height: 27
+				}
+			},
+			{
+				name: "Cafeteria",
+				popoverText: "Cafeteria",
+				position: {
+					x: 521,
+					y: 239
+				},
+				size: {
+					width: 59,
+					height: 59
+				}
+			},
+			{
+				name: "Kitchen",
+				popoverText: "Kitchen",
+				position: {
+					x: 585,
+					y: 239
+				},
+				size: {
+					width: 20,
+					height: 27
+				}
+			},
+			{
+				name: "Storage",
+				popoverText: "Storage",
+				position: {
+					x: 610,
+					y: 247
+				},
+				size: {
+					width: 27,
+					height: 51
+				}
+			},
+			{
+				name: "Baths",
+				popoverText: "Baths",
+				position: {
+					x: 529,
+					y: 85
+				},
+				size: {
+					width: 43,
+					height: 60
+				}
+			},
+			{
+				name: "Changing Room",
+				popoverText: "Changing Room",
+				position: {
+					x: 577,
+					y: 85
+				},
+				size: {
+					width: 28,
+					height: 60
+				}
+			},
+			{
+				name: "Sauna",
+				popoverText: "Sauna",
+				position: {
+					x: 547,
+					y: 57
+				},
+				size: {
+					width: 25,
+					height: 23
+				}
+			},
+			{
+				name: "Laundry",
+				popoverText: "Laundry",
+				position: {
+					x: 618,
+					y: 134
+				},
+				size: {
+					width: 19,
+					height: 27
 				}
 			},
 		]

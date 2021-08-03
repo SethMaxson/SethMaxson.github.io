@@ -2,6 +2,7 @@
 interface IMapLayerObject {
     name: string;
     popoverText: string;
+    locked?: boolean;
     position: {
         x: number;
         y: number;
@@ -24,14 +25,17 @@ interface ILayeredMapProps {
 }
 interface ILayeredMapState {
     currentLayer: number;
+    scale: number;
 }
 declare class LayeredMap extends React.Component<ILayeredMapProps, ILayeredMapState> {
     constructor(props: ILayeredMapProps);
     render(): JSX.Element;
     changeLayer(event: React.ChangeEvent): void;
+    changeScale(event: React.ChangeEvent): void;
 }
 interface ILayeredMapLayerProps {
     layer: IMapLayer;
+    scale: number;
 }
 declare class LayeredMapLayer extends React.Component<ILayeredMapLayerProps> {
     render(): JSX.Element;

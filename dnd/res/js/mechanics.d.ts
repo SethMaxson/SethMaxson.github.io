@@ -37,3 +37,13 @@ declare class Stats {
     hp: number;
     constructor(attributes: Attributes | undefined, speed: number | undefined, size: string | undefined, ac: number, hp: number);
 }
+declare class LocalStorageHelper {
+    get day(): number;
+    get hour(): number;
+    get isGM(): any;
+    get month(): number;
+    get userId(): number;
+    get userName(): number;
+    get year(): number;
+}
+declare const storage: LocalStorageHelper;
