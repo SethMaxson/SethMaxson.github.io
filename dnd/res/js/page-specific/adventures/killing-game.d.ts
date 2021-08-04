@@ -1,7 +1,9 @@
 /// <reference types="react" />
 declare type KillingGameMenuDisplay = "Character" | "Diorama" | "Menu";
+declare type KillingGameMenuActiveTab = "character" | "evidence" | "map" | "rules" | "prizes" | "trial";
 declare type KillingGameGender = "Male" | "Female";
 declare type KillingGameStatus = "Alive" | "Dead" | "Missing" | "Unknown";
+declare function isOfTypeTab(keyInput: string): keyInput is KillingGameMenuActiveTab;
 interface IKillingGameCharacter extends INPC {
     /**Should be 0-1 */
     desperation: number;
@@ -36,9 +38,16 @@ interface IKillingGameViewerNavProps {
     displayCharacter: {
         (character: IKillingGameCharacter): void;
     };
+    showEvidenceTab: boolean;
+    showTrialTab: boolean;
 }
-declare class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps> {
+interface IKillingGameViewerNavState {
+    activeTab: KillingGameMenuActiveTab;
+}
+declare class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, IKillingGameViewerNavState> {
+    constructor(props: IKillingGameViewerNavProps);
     render(): JSX.Element;
+    changeTab(tab: KillingGameMenuActiveTab): void;
 }
 interface IKillingGameCharacterPageProps {
     character: IKillingGameCharacter;
@@ -65,7 +74,6 @@ interface ICharacterLinkProps {
 declare class CharacterLink extends React.Component<ICharacterLinkProps> {
     render(): JSX.Element;
 }
-declare const AscendantAspirationsAcademy: IMapLayer[];
 interface IKillingGameIndex {
     characters: IKillingGameCharacter[];
     mapLayers: IMapLayer[];

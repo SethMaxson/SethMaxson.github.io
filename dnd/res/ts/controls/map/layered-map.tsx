@@ -73,7 +73,6 @@ class LayeredMap extends React.Component<ILayeredMapProps, ILayeredMapState> {
 	}
 	changeScale(event: React.ChangeEvent)
 	{
-		console.log("set scale to " + parseFloat((event.target as HTMLInputElement).value));
 		this.setState({ scale: parseFloat((event.target as HTMLInputElement).value) });
 	}
 }
@@ -93,12 +92,10 @@ class LayeredMapLayer extends React.Component<ILayeredMapLayerProps> {
 							<div className="modal-dialog modal-dialog-centered">
 								<div className="modal-content">
 									<div className="modal-header">
-										<h5 className="modal-title" id={object.name.replaceAll(" ", "").replaceAll("'", "") + "ModalLabel"}>{object.name}</h5>
+										<h5 className="modal-title" id={object.name.replaceAll(" ", "").replaceAll("'", "") + "ModalLabel"}>{object.name + (object.locked ? " (Locked)" : "")}</h5>
 										<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
-									<div className="modal-body">
-										{object.popoverText}
-									</div>
+									<div className="modal-body" dangerouslySetInnerHTML={{__html: object.popoverText}} />
 									<div className="modal-footer">
 										<button type="button" className="btn btn-primary" data-bs-dismiss="modal">Close</button>
 									</div>

@@ -1,6 +1,11 @@
 type KillingGameMenuDisplay = "Character" | "Diorama" | "Menu";
+type KillingGameMenuActiveTab = "character" | "evidence" | "map" | "rules" | "prizes" | "trial";
 type KillingGameGender = "Male" | "Female";
 type KillingGameStatus = "Alive" | "Dead" | "Missing" | "Unknown";
+
+function isOfTypeTab (keyInput: string): keyInput is KillingGameMenuActiveTab {
+	return ["character", "evidence", "map", "rules", "prizes", "trial"].includes(keyInput);
+  }
 
 interface IKillingGameCharacter extends INPC
 {
@@ -56,7 +61,7 @@ class KillingGameViewer extends React.Component<IKillingGameViewerProps, IKillin
 	{
 		return (
 			<div className="h-100 w-100">
-				{this.state.displayType == "Menu" && <KillingGameViewerNav data={this.props.data} displayCharacter={this.viewCharacter} />}
+				{this.state.displayType == "Menu" && <KillingGameViewerNav data={this.props.data} displayCharacter={this.viewCharacter} showEvidenceTab={false} showTrialTab={false} />}
 				{this.state.displayType == "Character" && <KillingGameCharacterPage character={this.state.selectedCharacter} close={this.viewMenu} />}
 			</div>
 
@@ -82,8 +87,25 @@ interface IKillingGameViewerNavProps
 {
 	data: IKillingGameIndex;
 	displayCharacter: { (character: IKillingGameCharacter): void };
+	showEvidenceTab: boolean;
+	showTrialTab: boolean;
 }
-class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps> {
+interface IKillingGameViewerNavState
+{
+	activeTab: KillingGameMenuActiveTab;
+}
+class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, IKillingGameViewerNavState> {
+	constructor(props: IKillingGameViewerNavProps)
+	{
+		super(props);
+		this.changeTab = this.changeTab.bind(this);
+
+		let tab = GetURLParameter("tab")?.toLowerCase();
+
+		this.state = {
+			activeTab: (tab && isOfTypeTab(tab))? tab : "character"
+		};
+	}
 	render()
 	{
 		return (
@@ -91,27 +113,27 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps> {
 				<div className="d-flex h-100 w-100 flex-column">
 					<ul className="nav nav-tabs bg-dark" role="tablist">
 						<li className="nav-item" role="presentation">
-							<button className="nav-link active" id="characters-tab" data-bs-toggle="tab" data-bs-target="#characters" type="button" role="tab" aria-controls="characters" aria-selected="true">Candidates</button>
+							<button className={"nav-link" + (this.state.activeTab == "character" ? " active" : "")} id="characters-tab" data-bs-toggle="tab" data-bs-target="#characters" type="button" role="tab" aria-controls="characters" aria-selected="true" onClick={() => this.changeTab("character")}>Candidates</button>
 						</li>
 						<li className="nav-item" role="presentation">
-							<button className="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button" role="tab" aria-controls="map" aria-selected="false">Map</button>
+							<button className={"nav-link" + (this.state.activeTab == "map"? " active" : "")} id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button" role="tab" aria-controls="map" aria-selected="false" onClick={() => this.changeTab("map")}>Map</button>
 						</li>
 						<li className="nav-item" role="presentation">
-							<button className="nav-link" id="rules-tab" data-bs-toggle="tab" data-bs-target="#rules" type="button" role="tab" aria-controls="rules" aria-selected="false">Rules</button>
+							<button className={"nav-link" + (this.state.activeTab == "rules"? " active" : "")} id="rules-tab" data-bs-toggle="tab" data-bs-target="#rules" type="button" role="tab" aria-controls="rules" aria-selected="false" onClick={() => this.changeTab("rules")}>Rules</button>
 						</li>
 						<li className="nav-item" role="presentation">
-							<button className="nav-link" id="prizes-tab" data-bs-toggle="tab" data-bs-target="#prizes" type="button" role="tab" aria-controls="prizes" aria-selected="false">Prizes</button>
+							<button className={"nav-link" + (this.state.activeTab == "prizes"? " active" : "")} id="prizes-tab" data-bs-toggle="tab" data-bs-target="#prizes" type="button" role="tab" aria-controls="prizes" aria-selected="false" onClick={() => this.changeTab("prizes")}>Prizes</button>
 						</li>
-						{/* <li className="nav-item" role="presentation">
-							<button className="nav-link" id="trial-tab" data-bs-toggle="tab" data-bs-target="#trial" type="button" role="tab" aria-controls="prizes" aria-selected="false">Trial</button>
-						</li>
-						<li className="nav-item" role="presentation">
-							<button className="nav-link" id="file-tab" data-bs-toggle="tab" data-bs-target="#file" type="button" role="tab" aria-controls="file" aria-selected="false">File</button>
-						</li> */}
+						{this.props.showTrialTab && <li className="nav-item" role="presentation">
+							<button className={"nav-link" + (this.state.activeTab == "trial"? " active" : "")} id="trial-tab" data-bs-toggle="tab" data-bs-target="#trial" type="button" role="tab" aria-controls="prizes" aria-selected="false" onClick={() => this.changeTab("trial")}>Trial</button>
+						</li>}
+						{this.props.showEvidenceTab && <li className="nav-item" role="presentation">
+							<button className={"nav-link" + (this.state.activeTab == "evidence"? " active" : "")} id="file-tab" data-bs-toggle="tab" data-bs-target="#file" type="button" role="tab" aria-controls="file" aria-selected="false" onClick={() => this.changeTab("evidence")}>File</button>
+						</li>}
 					</ul>
 
 					<div className="tab-content row flex-grow-1 flex-shrink-1 flex-column align-items-stretch overflow-hidden">
-						<div className="tab-pane active h-100 overflow-hidden" id="characters" role="tabpanel" aria-labelledby="characters-tab">
+						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "character" ? " active" : "")} id="characters" role="tabpanel" aria-labelledby="characters-tab">
 							<div className="list-group h-100 overflow-auto">
 								{this.props.data.characters.sort((a, b) => a.name > b.name && 1 || -1).map((character, index: number) =>
 									<CharacterLink character={character} key={index} onClick={this.props.displayCharacter} />
@@ -119,11 +141,11 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps> {
 							</div>
 						</div>
 
-						<div className="tab-pane h-100 overflow-hidden" id="map" role="tabpanel" aria-labelledby="map-tab">
+						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "map" ? " active" : "")} id="map" role="tabpanel" aria-labelledby="map-tab">
 							<LayeredMap layers={this.props.data.mapLayers} displayStack={false} />
 						</div>
 
-						<div className="tab-pane h-100 overflow-hidden" id="rules" role="tabpanel" aria-labelledby="rules-tab">
+						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "rules" ? " active" : "")} id="rules" role="tabpanel" aria-labelledby="rules-tab">
 							<div className="bg-dark h-100 overflow-auto p-0">
 								<ol className="list-group list-group-numbered m-0">
 									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
@@ -173,22 +195,26 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps> {
 							</div>
 						</div>
 
-						<div className="tab-pane h-100 overflow-hidden" id="prizes" role="tabpanel" aria-labelledby="prizes-tab">
+						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "prizes" ? " active" : "")} id="prizes" role="tabpanel" aria-labelledby="prizes-tab">
 							<GiftMachine gifts={GIFTS} />
 						</div>
 
-						{/* <div className="tab-pane h-100 overflow-hidden" id="trial" role="tabpanel" aria-labelledby="trial-tab">
+						{this.props.showTrialTab && <div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "trial" ? " active" : "")} id="trial" role="tabpanel" aria-labelledby="trial-tab">
 							<KillingGameVoteResults image={KILLINGGAMEDATA.characters[0].image} percentage={85} />
-						</div>
+						</div>}
 
-						<div className="tab-pane h-100 overflow-hidden" id="file" role="tabpanel" aria-labelledby="file-tab">
+						{this.props.showEvidenceTab && <div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "evidence" ? " active" : "")} id="file" role="tabpanel" aria-labelledby="file-tab">
 
-						</div> */}
+						</div>}
 					</div>
 				</div>
 			</div>
 
 		);
+	}
+	changeTab(tab: KillingGameMenuActiveTab)
+	{
+		this.setState({ activeTab: tab });
 	}
 }
 
@@ -232,11 +258,11 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 							</nav>
 						</div> */}
 
-						<div className="col-auto overflow-auto bg-white">
+						<div className="col-auto overflow-auto bg-dark text-light">
 							<div className="row">
 								{/* <div className="col-auto" data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0"> */}
 								<div className="col order-2 order-md-1" data-bs-target="#navbar-example3" data-bs-offset="0">
-									<h3 id="item-1">{this.props.character.name} | <i>{this.props.character.title}</i></h3>
+									<h3 id="item-1" className="d-none d-lg-block">{this.props.character.name} | <i>{this.props.character.title}</i></h3>
 									<h5 id="item-1-1">Description</h5>
 									<p>{this.props.character.description}</p>
 									<h4 id="item-3">Interests</h4>
@@ -249,12 +275,14 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 									<p>{this.props.character.dislikes.join(", ")}</p>
 								</div>
 								<div className="col-auto col-md-3 order-1 order-md-2 py-2">
-									<div className="card">
-										<img className="card-img-top img-fluid bg-secondary bg-gradient" src={this.props.character.image} alt={this.props.character.name} />
+									<div className="card bg-secondary">
+										<img className="card-img-top img-fluid bg-secondary bg-gradient border border-1 border-dark rounded" src={this.props.character.image} alt={this.props.character.name} />
 										<div className="card-body">
 											<h5 className="card-title">{this.props.character.name}</h5>
 											<p className="card-text">
+												<h6><i>{this.props.character.title}</i></h6>
 												Age: {this.props.character.relativeAge}<br />
+												Gender: {this.props.character.gender}<br />
 												Species: {this.props.character.race}
 											</p>
 										</div>
@@ -312,403 +340,17 @@ interface ICharacterLinkProps
 class CharacterLink extends React.Component<ICharacterLinkProps> {
 	render()
 	{
-		let statusColor = this.props.character.status == "Alive" ? " bg-success" : this.props.character.status == "Dead" ? " bg-danger" : "bg-secondary";
+		let statusColor = this.props.character.status == "Alive" ? " bg-success" : this.props.character.status == "Dead" ? "bg-danger" : "bg-secondary";
 		let genderColor = this.props.character.gender == "Female" ? " text-danger" : "text-primary";
 		return (
 			<button className="list-group-item list-group-item-action list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" onClick={(ev) => this.props.onClick(this.props.character)}>
 				{this.props.character.name}
-				<span className={"mx-1 " + genderColor}>{this.props.character.gender == "Female"? "♀" : "♂"}</span>
+				<span className={"mx-1 " + genderColor} style={{ fontFamily: "Arial" }}>{this.props.character.gender == "Female"? "♀" : "♂"}</span>
 				<span className={"badge position-absolute top-50 end-0 translate-middle-y me-1 rounded-pill " + statusColor}>{this.props.character.status}</span>
 			</button>
 		);
 	}
 }
-
-
-const AscendantAspirationsAcademy: IMapLayer[] = [
-	{
-		image: "/dnd/img/maps/adventures/killinggame/floor1.png",
-		objects: [
-			{
-				name: "Gribak's Room",
-				popoverText: "Gribak's Room",
-				position: {
-					x: 658,
-					y: 118
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Nueleth's Room",
-				popoverText: "Nueleth Symbaern's Room",
-				position: {
-					x: 682,
-					y: 118
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Randal's Room",
-				popoverText: "Randal Baker's Room",
-				position: {
-					x: 707,
-					y: 118
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Lizette's Character's Room",
-				popoverText: "Lizette's Character's Room",
-				position: {
-					x: 731,
-					y: 118
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Empty Room",
-				popoverText: "This locked room appears to be uninhabited. Evidently the school simply had one more room than they needed.",
-				locked: true,
-				position: {
-					x: 755,
-					y: 118
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Hatharal's Room",
-				popoverText: "Hatharal Ward's Room",
-				position: {
-					x: 779,
-					y: 118
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Dom's Character's Room",
-				popoverText: "Dom's Character's Room",
-				position: {
-					x: 658,
-					y: 158
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Rosewood's Room",
-				popoverText: "Rosewood's Room",
-				position: {
-					x: 682,
-					y: 158
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Mark's Character's Room",
-				popoverText: "Mark's Character's Room",
-				position: {
-					x: 707,
-					y: 158
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Nora's Room",
-				popoverText: "Nora Shaeremae's Room",
-				position: {
-					x: 731,
-					y: 158
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Forest's Room",
-				popoverText: "Bush in the Forest's Room",
-				position: {
-					x: 755,
-					y: 158
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Chenna's Room",
-				popoverText: "Chenna Honeymaker's Room",
-				position: {
-					x: 779,
-					y: 158
-				},
-				size: {
-					width: 19,
-					height: 35
-				}
-			},
-			{
-				name: "Salvini's Room",
-				popoverText: "Salvini Devia's Room",
-				position: {
-					x: 658,
-					y: 214
-				},
-				size: {
-					width: 19,
-					height: 36
-				}
-			},
-			{
-				name: "Chuck's Character's Room",
-				popoverText: "Chuck's Character's Room",
-				position: {
-					x: 682,
-					y: 214
-				},
-				size: {
-					width: 19,
-					height: 36
-				}
-			},
-			{
-				name: "Aym's Room",
-				popoverText: "Aym's Room",
-				position: {
-					x: 707,
-					y: 214
-				},
-				size: {
-					width: 19,
-					height: 36
-				}
-			},
-			{
-				name: "Eliot's Room",
-				popoverText: "Eliot Brewer's Room",
-				position: {
-					x: 731,
-					y: 214
-				},
-				size: {
-					width: 19,
-					height: 36
-				}
-			},
-			{
-				name: "Kendall's Character's Room",
-				popoverText: "Kendall's Character's Room",
-				position: {
-					x: 755,
-					y: 214
-				},
-				size: {
-					width: 19,
-					height: 36
-				}
-			},
-			{
-				name: "Queg's Room",
-				popoverText: "Queg's Room",
-				position: {
-					x: 779,
-					y: 214
-				},
-				size: {
-					width: 19,
-					height: 36
-				}
-			},
-			{
-				name: "Sindri's Room",
-				popoverText: "Sindri's Room",
-				position: {
-					x: 819,
-					y: 118
-				},
-				size: {
-					width: 36,
-					height: 19
-				}
-			},
-			{
-				name: "Yrthraethra's Room",
-				popoverText: "Yrthraethra Payne's Room",
-				position: {
-					x: 819,
-					y: 142
-				},
-				size: {
-					width: 36,
-					height: 19
-				}
-			},
-			{
-				name: "Diggory's Room",
-				popoverText: "Diggory Ward's Room",
-				position: {
-					x: 819,
-					y: 166
-				},
-				size: {
-					width: 36,
-					height: 19
-				}
-			},
-			{
-				name: "Gaaki's Room",
-				popoverText: "Gaaki's Room",
-				position: {
-					x: 819,
-					y: 190
-				},
-				size: {
-					width: 36,
-					height: 19
-				}
-			},
-			{
-				name: "Incinerator",
-				popoverText: "Incinerator",
-				position: {
-					x: 674,
-					y: 69
-				},
-				size: {
-					width: 92,
-					height: 27
-				}
-			},
-			{
-				name: "Cafeteria",
-				popoverText: "Cafeteria",
-				position: {
-					x: 521,
-					y: 239
-				},
-				size: {
-					width: 59,
-					height: 59
-				}
-			},
-			{
-				name: "Kitchen",
-				popoverText: "Kitchen",
-				position: {
-					x: 585,
-					y: 239
-				},
-				size: {
-					width: 20,
-					height: 27
-				}
-			},
-			{
-				name: "Storage",
-				popoverText: "Storage",
-				position: {
-					x: 610,
-					y: 247
-				},
-				size: {
-					width: 27,
-					height: 51
-				}
-			},
-			{
-				name: "Baths",
-				popoverText: "Baths",
-				position: {
-					x: 529,
-					y: 85
-				},
-				size: {
-					width: 43,
-					height: 60
-				}
-			},
-			{
-				name: "Changing Room",
-				popoverText: "Changing Room",
-				position: {
-					x: 577,
-					y: 85
-				},
-				size: {
-					width: 28,
-					height: 60
-				}
-			},
-			{
-				name: "Sauna",
-				popoverText: "Sauna",
-				position: {
-					x: 547,
-					y: 57
-				},
-				size: {
-					width: 25,
-					height: 23
-				}
-			},
-			{
-				name: "Laundry",
-				popoverText: "Laundry",
-				position: {
-					x: 618,
-					y: 134
-				},
-				size: {
-					width: 19,
-					height: 27
-				}
-			},
-		]
-	},
-	{
-		image: "/dnd/img/maps/adventures/killinggame/floor2.png",
-		objects: []
-	},
-	{
-		image: "/dnd/img/maps/adventures/killinggame/floor3.png",
-		objects: []
-	},
-	{
-		image: "/dnd/img/maps/adventures/killinggame/floor4.png",
-		objects: []
-	},
-	{
-		image: "/dnd/img/maps/adventures/killinggame/floor5.png",
-		objects: []
-	}
-];
 
 interface IKillingGameIndex
 {
@@ -722,7 +364,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "hatharal",
 			name: "Hatharal Ward",
 			title: "Ultimate Carpenter",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/hatharal-ward-portrait.png",
 			race: "Half-elf",
 			subrace: "",
 			gender: "Male",
@@ -744,7 +386,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "sindri",
 			name: "Sindri \"Thunderbonk\" Raulnor",
 			title: "Ultimate Royal Taster",
-			image: "/dnd/img/characters/npc/killinggame/sindri.png",
+			image: "/dnd/img/characters/npc/killinggame/sindri-portrait.png",
 			race: "Gnome",
 			subrace: "",
 			gender: "Male",
@@ -766,7 +408,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "gribak",
 			name: "Gribak",
 			title: "Ultimate Animal Tamer",
-			image: "/dnd/img/characters/npc/killinggame/gribak.png",
+			image: "/dnd/img/characters/npc/killinggame/gribak-portrait.png",
 			race: "Goblin",
 			subrace: "",
 			gender: "Male",
@@ -788,7 +430,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "diggory",
 			name: "Diggory Ward",
 			title: "Ultimate Host",
-			image: "/dnd/img/characters/npc/killinggame/diggory-ward.png",
+			image: "/dnd/img/characters/npc/killinggame/diggory-ward-portrait.png",
 			race: "Human",
 			subrace: "",
 			gender: "Male",
@@ -810,7 +452,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "randal",
 			name: "Randal Baker",
 			title: "Ultimate Fisher",
-			image: "/dnd/img/characters/npc/killinggame/randal.png",
+			image: "/dnd/img/characters/npc/killinggame/randal-portrait.png",
 			race: "Human",
 			subrace: "",
 			gender: "Male",
@@ -832,7 +474,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "eliot",
 			name: "Eliot Brewer",
 			title: "Ultimate Kidnapper",
-			image: "/dnd/img/characters/npc/killinggame/eliot.png",
+			image: "/dnd/img/characters/npc/killinggame/eliot-portrait.png",
 			race: "Water Genasi",
 			subrace: "",
 			gender: "Male",
@@ -854,7 +496,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "salvini",
 			name: "Salvini Devia",
 			title: "Ultimate Entrepreneur",
-			image: "/dnd/img/characters/npc/killinggame/salvini.png",
+			image: "/dnd/img/characters/npc/killinggame/salvini-portrait.png",
 			race: "Ratfolk",
 			subrace: "",
 			gender: "Male",
@@ -876,7 +518,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "rosewood",
 			name: "Rosewood",
 			title: "Ultimate Botanist",
-			image: "/dnd/img/characters/npc/killinggame/rosewood.png",
+			image: "/dnd/img/characters/npc/killinggame/rosewood-portrait.png",
 			race: "Firbolg",
 			subrace: "",
 			gender: "Male",
@@ -898,7 +540,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "yrthraethra",
 			name: "Yrthraethra Payne",
 			title: "Ultimate Armorer",
-			image: "/dnd/img/characters/npc/killinggame/yrthraethra-payne.png",
+			image: "/dnd/img/characters/npc/killinggame/yrthraethra-payne-portrait.png",
 			race: "Half-Elf",
 			subrace: "",
 			gender: "Female",
@@ -920,7 +562,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "chenna",
 			name: "Chenna Honeymaker",
 			title: "Ultimate Bartender",
-			image: "/dnd/img/characters/npc/killinggame/chenna.png",
+			image: "/dnd/img/characters/npc/killinggame/chenna-portrait.png",
 			race: "Halfling",
 			subrace: "",
 			gender: "Female",
@@ -942,7 +584,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "nora",
 			name: "Nora Shaeremae",
 			title: "Ultimate Ventriloquist",
-			image: "/dnd/img/characters/npc/killinggame/nora.png",
+			image: "/dnd/img/characters/npc/killinggame/nora-portrait.png",
 			race: "Dwarf",
 			subrace: "",
 			gender: "Female",
@@ -964,7 +606,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "nueleth",
 			name: "Nueleth Symbaern",
 			title: "Ultimate Librarian",
-			image: "/dnd/img/characters/npc/killinggame/nueleth.png",
+			image: "/dnd/img/characters/npc/killinggame/nueleth-portrait.png",
 			race: "Elf",
 			subrace: "",
 			gender: "Female",
@@ -986,7 +628,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "aym",
 			name: "Aym",
 			title: "Ultimate Painter",
-			image: "/dnd/img/characters/npc/killinggame/aym.png",
+			image: "/dnd/img/characters/npc/killinggame/aym-portrait.png",
 			race: "Tiefling",
 			subrace: "",
 			gender: "Female",
@@ -1008,7 +650,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "gaaki",
 			name: "Gaaki Clark",
 			title: "Ultimate Strongwoman",
-			image: "/dnd/img/characters/npc/killinggame/gaaki-clark.png",
+			image: "/dnd/img/characters/npc/killinggame/gaaki-clark-portrait.png",
 			race: "Half-Orc",
 			subrace: "",
 			gender: "Female",
@@ -1030,7 +672,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "forest",
 			name: "Bush in the Forest (Forest)",
 			title: "Ultimate Acrobat",
-			image: "/dnd/img/characters/npc/killinggame/forest.png",
+			image: "/dnd/img/characters/npc/killinggame/forest-portrait.png",
 			race: "Tabaxi",
 			subrace: "",
 			gender: "Female",
@@ -1052,7 +694,7 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 			id: "queg",
 			name: "Queg",
 			title: "Ultimate Carnival Worker",
-			image: "/dnd/img/characters/npc/killinggame/queg.png",
+			image: "/dnd/img/characters/npc/killinggame/queg-portrait.png",
 			race: "Tortle",
 			subrace: "",
 			gender: "Female",

@@ -24,7 +24,6 @@ class LayeredMap extends React.Component {
         this.setState({ currentLayer: parseInt(event.target.value) });
     }
     changeScale(event) {
-        console.log("set scale to " + parseFloat(event.target.value));
         this.setState({ scale: parseFloat(event.target.value) });
     }
 }
@@ -35,9 +34,9 @@ class LayeredMapLayer extends React.Component {
                 React.createElement("div", { className: "modal-dialog modal-dialog-centered" },
                     React.createElement("div", { className: "modal-content" },
                         React.createElement("div", { className: "modal-header" },
-                            React.createElement("h5", { className: "modal-title", id: object.name.replaceAll(" ", "").replaceAll("'", "") + "ModalLabel" }, object.name),
+                            React.createElement("h5", { className: "modal-title", id: object.name.replaceAll(" ", "").replaceAll("'", "") + "ModalLabel" }, object.name + (object.locked ? " (Locked)" : "")),
                             React.createElement("button", { type: "button", className: "btn-close", "data-bs-dismiss": "modal", "aria-label": "Close" })),
-                        React.createElement("div", { className: "modal-body" }, object.popoverText),
+                        React.createElement("div", { className: "modal-body", dangerouslySetInnerHTML: { __html: object.popoverText } }),
                         React.createElement("div", { className: "modal-footer" },
                             React.createElement("button", { type: "button", className: "btn btn-primary", "data-bs-dismiss": "modal" }, "Close")))))),
             React.createElement("div", { className: "w-auto p-0 m-0 position-relative", style: { transformOrigin: "top left", transform: "scale(" + this.props.scale + ")" } },
