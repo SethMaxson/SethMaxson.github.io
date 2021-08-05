@@ -15,8 +15,8 @@ class LayeredMap extends React.Component {
                 React.createElement("label", { htmlFor: "zoom-range", className: "col-2 col-md-auto col-form-label" }, "Zoom:"),
                 React.createElement("div", { className: "col-10 col-md-auto" },
                     React.createElement("input", { type: "range", className: "form-range", min: "0.1", max: "10", defaultValue: "1", step: "0.1", id: "zoom-range", onChange: this.changeScale })),
-                React.createElement("label", { htmlFor: "layer-range", className: "col-2 col-md-auto col-form-label" }, "Layer:"),
-                React.createElement("div", { className: "col-10 col-md-auto" },
+                this.props.layers.length > 1 && React.createElement("label", { htmlFor: "layer-range", className: "col-2 col-md-auto col-form-label" }, "Layer:"),
+                this.props.layers.length > 1 && React.createElement("div", { className: "col-10 col-md-auto" },
                     React.createElement("input", { type: "range", className: "form-range", min: "0", max: this.props.layers.length - 1, defaultValue: "0", id: "layer-range", onChange: this.changeLayer }))),
             React.createElement("div", { className: "layer-container row flex-grow-1 h-100 w-100 m-0" }, this.props.layers.map((image, index) => (this.state.currentLayer == index || this.props.displayStack) && React.createElement(LayeredMapLayer, { layer: image, scale: this.state.scale, key: index })))));
     }

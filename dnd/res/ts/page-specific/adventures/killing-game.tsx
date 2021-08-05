@@ -1,10 +1,10 @@
 type KillingGameMenuDisplay = "Character" | "Diorama" | "Menu";
-type KillingGameMenuActiveTab = "character" | "evidence" | "map" | "rules" | "prizes" | "trial";
+type KillingGameMenuActiveTab = "character" | "evidence" | "map" | "rules" | "shop" | "trial";
 type KillingGameGender = "Male" | "Female";
 type KillingGameStatus = "Alive" | "Dead" | "Missing" | "Unknown";
 
 function isOfTypeTab (keyInput: string): keyInput is KillingGameMenuActiveTab {
-	return ["character", "evidence", "map", "rules", "prizes", "trial"].includes(keyInput);
+	return ["character", "evidence", "map", "rules", "shop", "trial"].includes(keyInput);
   }
 
 interface IKillingGameCharacter extends INPC
@@ -18,6 +18,7 @@ interface IKillingGameCharacter extends INPC
 	/**Should be 0-1 */
 	killingInstinct: number;
 	likes: string[];
+	loves: string[];
 	status: KillingGameStatus;
 	title: string;
 }
@@ -122,10 +123,10 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, I
 							<button className={"nav-link" + (this.state.activeTab == "rules"? " active" : "")} id="rules-tab" data-bs-toggle="tab" data-bs-target="#rules" type="button" role="tab" aria-controls="rules" aria-selected="false" onClick={() => this.changeTab("rules")}>Rules</button>
 						</li>
 						<li className="nav-item" role="presentation">
-							<button className={"nav-link" + (this.state.activeTab == "prizes"? " active" : "")} id="prizes-tab" data-bs-toggle="tab" data-bs-target="#prizes" type="button" role="tab" aria-controls="prizes" aria-selected="false" onClick={() => this.changeTab("prizes")}>Prizes</button>
+							<button className={"nav-link" + (this.state.activeTab == "shop"? " active" : "")} id="shop-tab" data-bs-toggle="tab" data-bs-target="#shop" type="button" role="tab" aria-controls="shop" aria-selected="false" onClick={() => this.changeTab("shop")}>Shop</button>
 						</li>
 						{this.props.showTrialTab && <li className="nav-item" role="presentation">
-							<button className={"nav-link" + (this.state.activeTab == "trial"? " active" : "")} id="trial-tab" data-bs-toggle="tab" data-bs-target="#trial" type="button" role="tab" aria-controls="prizes" aria-selected="false" onClick={() => this.changeTab("trial")}>Trial</button>
+							<button className={"nav-link" + (this.state.activeTab == "trial"? " active" : "")} id="trial-tab" data-bs-toggle="tab" data-bs-target="#trial" type="button" role="tab" aria-controls="shop" aria-selected="false" onClick={() => this.changeTab("trial")}>Trial</button>
 						</li>}
 						{this.props.showEvidenceTab && <li className="nav-item" role="presentation">
 							<button className={"nav-link" + (this.state.activeTab == "evidence"? " active" : "")} id="file-tab" data-bs-toggle="tab" data-bs-target="#file" type="button" role="tab" aria-controls="file" aria-selected="false" onClick={() => this.changeTab("evidence")}>File</button>
@@ -195,7 +196,7 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, I
 							</div>
 						</div>
 
-						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "prizes" ? " active" : "")} id="prizes" role="tabpanel" aria-labelledby="prizes-tab">
+						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "shop" ? " active" : "")} id="shop" role="tabpanel" aria-labelledby="shop-tab">
 							<GiftMachine gifts={GIFTS} />
 						</div>
 
@@ -222,8 +223,13 @@ interface IKillingGameCharacterPageProps
 {
 	character: IKillingGameCharacter;
 	close: { (): void };
+	/** Should be between 1 and 6 */
+	friendshipLevel: number;
 }
 class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPageProps> {
+	public static defaultProps = {
+		friendshipLevel: 1
+    };
 	render()
 	{
 		return (
@@ -252,7 +258,8 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 									<a className="nav-link" href="#item-3">Interests</a>
 									<nav className="nav nav-pills flex-column">
 										<a className="nav-link ms-3 my-1" href="#item-3-1">Likes</a>
-										<a className="nav-link ms-3 my-1" href="#item-3-2">Dislikes</a>
+										<a className="nav-link ms-3 my-1" href="#item-3-2">Loves</a>
+										<a className="nav-link ms-3 my-1" href="#item-3-3">Dislikes</a>
 									</nav>
 								</nav>
 							</nav>
@@ -267,11 +274,15 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 									<p>{this.props.character.description}</p>
 									<h4 id="item-3">Interests</h4>
 									<h5 id="item-3-1">Likes</h5>
-									<p>{this.props.character.likes.join(", ")}</p>
+									<p>{(this.props.friendshipLevel > 1? this.props.character.likes : this.props.character.likes.concat(this.props.character.loves)).join(", ")}</p>
 									{/* {this.props.character.likes.sort().map((like, index: number) =>
 										<p>{like}</p>
 									)} */}
-									<h5 id="item-3-2">Dislikes</h5>
+									{this.props.friendshipLevel > 1 && <div>
+										<h5 id="item-3-2">Loves</h5>
+										<p>{this.props.character.loves.join(", ")}</p>
+									</div>}
+									<h5 id="item-3-3">Dislikes</h5>
 									<p>{this.props.character.dislikes.join(", ")}</p>
 								</div>
 								<div className="col-auto col-md-3 order-1 order-md-2 py-2">
@@ -359,360 +370,7 @@ interface IKillingGameIndex
 	misc: IDioramaProps[];
 }
 const KILLINGGAMEDATA: IKillingGameIndex = {
-	characters: [
-		{
-			id: "hatharal",
-			name: "Hatharal Ward",
-			title: "Ultimate Carpenter",
-			image: "/dnd/img/characters/npc/killinggame/hatharal-ward-portrait.png",
-			race: "Half-elf",
-			subrace: "",
-			gender: "Male",
-			age: -1,
-			relativeAge: "Young Adult",
-			alignment: "CG",
-			threat: "slightly low",
-			intelligence: "average",
-			personalityTags: [],
-			profession: "carpenter",
-			description: "A young adult halfelf, who wears rings, which isn’t cool, but it's cool that they don’t care if they’re cool and comes from an engineer's guild. He is frightened and earthy, and has found work as a mercenary.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.1,
-			killingInstinct: 0.2,
-		},
-		{
-			id: "sindri",
-			name: "Sindri \"Thunderbonk\" Raulnor",
-			title: "Ultimate Royal Taster",
-			image: "/dnd/img/characters/npc/killinggame/sindri-portrait.png",
-			race: "Gnome",
-			subrace: "",
-			gender: "Male",
-			age: -1,
-			relativeAge: "Adult",
-			alignment: "CN",
-			threat: "slightly high",
-			intelligence: "very low",
-			personalityTags: [],
-			profession: "royal taster",
-			description: "An adult gnome, who has bad hygiene and comes from a strict, religious temple. He is submissive and rigid, and has found work as a royal taster.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 1.0,
-			killingInstinct: 0.5,
-		},
-		{
-			id: "gribak",
-			name: "Gribak",
-			title: "Ultimate Animal Tamer",
-			image: "/dnd/img/characters/npc/killinggame/gribak-portrait.png",
-			race: "Goblin",
-			subrace: "",
-			gender: "Male",
-			age: -1,
-			relativeAge: "Young Adult",
-			alignment: "LG",
-			threat: "slightly high",
-			intelligence: "average",
-			personalityTags: [],
-			profession: "knight",
-			description: "A young adult goblin, who is not very good at sports and comes from a small village of barbarians. He is instructive and dramatic, and has found work as a knight.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.7,
-			killingInstinct: 0.2,
-		},
-		{
-			id: "diggory",
-			name: "Diggory Ward",
-			title: "Ultimate Host",
-			image: "/dnd/img/characters/npc/killinggame/diggory-ward-portrait.png",
-			race: "Human",
-			subrace: "",
-			gender: "Male",
-			age: -1,
-			relativeAge: "Adult",
-			alignment: "LE",
-			threat: "high",
-			intelligence: "high",
-			personalityTags: [],
-			profession: "adventurer",
-			description: "An adult human, who knows the location of a huge weapons cache and comes from a bustling underground city. He is playful and impatient, and has found work as an adventurer.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.3,
-			killingInstinct: 0.3,
-		},
-		{
-			id: "randal",
-			name: "Randal Baker",
-			title: "Ultimate Fisher",
-			image: "/dnd/img/characters/npc/killinggame/randal-portrait.png",
-			race: "Human",
-			subrace: "",
-			gender: "Male",
-			age: -1,
-			relativeAge: "Adult",
-			alignment: "CE",
-			threat: "medium",
-			intelligence: "average",
-			personalityTags: [],
-			profession: "smuggler",
-			description: "An adult human, who is superstitious and comes from a small island. He is solemn and disloyal, and has found work as a smuggler.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.4,
-			killingInstinct: 1.0,
-		},
-		{
-			id: "eliot",
-			name: "Eliot Brewer",
-			title: "Ultimate Kidnapper",
-			image: "/dnd/img/characters/npc/killinggame/eliot-portrait.png",
-			race: "Water Genasi",
-			subrace: "",
-			gender: "Male",
-			age: -1,
-			relativeAge: "Young Adult",
-			alignment: "NE",
-			threat: "slightly high",
-			intelligence: "average",
-			personalityTags: [],
-			profession: "monk",
-			description: "A young adult genasi, who has connections to underworld crime syndicates and comes from a powerful trading city. He is obnoxious and curious, and has found work as a monk.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.4,
-			killingInstinct: 0.2,
-		},
-		{
-			id: "salvini",
-			name: "Salvini Devia",
-			title: "Ultimate Entrepreneur",
-			image: "/dnd/img/characters/npc/killinggame/salvini-portrait.png",
-			race: "Ratfolk",
-			subrace: "",
-			gender: "Male",
-			age: -1,
-			relativeAge: "Young Adult",
-			alignment: "CN",
-			threat: "low",
-			intelligence: "slightly high",
-			personalityTags: [],
-			profession: "entrepreneur",
-			description: "A young adult ratfolk, who has a burning hatred for pirates and comes from a laid back beach town. He is loud and philosophical, and has found work as a farmhand.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.9,
-			killingInstinct: 0.4,
-		},
-		{
-			id: "rosewood",
-			name: "Rosewood",
-			title: "Ultimate Botanist",
-			image: "/dnd/img/characters/npc/killinggame/rosewood-portrait.png",
-			race: "Firbolg",
-			subrace: "",
-			gender: "Male",
-			age: -1,
-			relativeAge: "Adult",
-			alignment: "N",
-			threat: "high",
-			intelligence: "average",
-			personalityTags: [],
-			profession: "druid",
-			description: "An adult firbolg, who is scared of airship travel and comes from a company of mercenaries and sellswords. He is fatalistic and adventurous, and has found work as a druid.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.5,
-			killingInstinct: 0.7,
-		},
-		{
-			id: "yrthraethra",
-			name: "Yrthraethra Payne",
-			title: "Ultimate Armorer",
-			image: "/dnd/img/characters/npc/killinggame/yrthraethra-payne-portrait.png",
-			race: "Half-Elf",
-			subrace: "",
-			gender: "Female",
-			age: -1,
-			relativeAge: "Young Adult",
-			alignment: "CN",
-			threat: "high",
-			intelligence: "high",
-			personalityTags: [],
-			profession: "armorer",
-			description: "A young adult halfelf, who is a total gear-head and comes from a city no one else has ever heard of. She is humble and harsh, and has found work as an innkeeper.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.1,
-			killingInstinct: 0.9,
-		},
-		{
-			id: "chenna",
-			name: "Chenna Honeymaker",
-			title: "Ultimate Bartender",
-			image: "/dnd/img/characters/npc/killinggame/chenna-portrait.png",
-			race: "Halfling",
-			subrace: "",
-			gender: "Female",
-			age: -1,
-			relativeAge: "Adult",
-			alignment: "LG",
-			threat: "medium",
-			intelligence: "average",
-			personalityTags: [],
-			profession: "bartender",
-			description: "An adult halfling, who hates wearing armor face masks and comes from a large military outpost. She is risk-taking and agreeable, and has found work as a courtesan.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 1.0,
-			killingInstinct: 0.6,
-		},
-		{
-			id: "nora",
-			name: "Nora Shaeremae",
-			title: "Ultimate Ventriloquist",
-			image: "/dnd/img/characters/npc/killinggame/nora-portrait.png",
-			race: "Dwarf",
-			subrace: "",
-			gender: "Female",
-			age: -1,
-			relativeAge: "Adult",
-			alignment: "CG",
-			threat: "low",
-			intelligence: "low",
-			personalityTags: [],
-			profession: "blacksmith",
-			description: "An adult dwarf, who wants to open her own bar and comes from a place only she can pronounce. She is emotional and loving, and has found work as a blacksmith.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.8,
-			killingInstinct: 0.9,
-		},
-		{
-			id: "nueleth",
-			name: "Nueleth Symbaern",
-			title: "Ultimate Librarian",
-			image: "/dnd/img/characters/npc/killinggame/nueleth-portrait.png",
-			race: "Elf",
-			subrace: "",
-			gender: "Female",
-			age: -1,
-			relativeAge: "Young Adult",
-			alignment: "CN",
-			threat: "slightly low",
-			intelligence: "average",
-			personalityTags: [],
-			profession: "philosopher",
-			description: "A young adult elf, who has a split personality who is her complete opposite, changes personalities when exposed to a specific stimuli, and comes from a peaceful coastal town. She is restless and careless, and has found work as a philosopher.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.9,
-			killingInstinct: 0.3,
-		},
-		{
-			id: "aym",
-			name: "Aym",
-			title: "Ultimate Painter",
-			image: "/dnd/img/characters/npc/killinggame/aym-portrait.png",
-			race: "Tiefling",
-			subrace: "",
-			gender: "Female",
-			age: -1,
-			relativeAge: "Young Adult",
-			alignment: "CG",
-			threat: "slightly low",
-			intelligence: "slightly high",
-			personalityTags: [],
-			profession: "sailor",
-			description: "An adult tiefling, who is completely mute and comes from the forests of the Verdant Isle. She is unpredictable and argumentative, and has found work as a sailor.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.3,
-			killingInstinct: 0.3,
-		},
-		{
-			id: "gaaki",
-			name: "Gaaki Clark",
-			title: "Ultimate Strongwoman",
-			image: "/dnd/img/characters/npc/killinggame/gaaki-clark-portrait.png",
-			race: "Half-Orc",
-			subrace: "",
-			gender: "Female",
-			age: -1,
-			relativeAge: "Adult",
-			alignment: "LG",
-			threat: "very high",
-			intelligence: "very low",
-			personalityTags: [],
-			profession: "mercenary",
-			description: "An adult halforc, who has a twin and constantly gets confused for them and comes from an underwater city protected by a magical force field. She is shifty and affable, and has found work as a mercenary.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.5,
-			killingInstinct: 0.1,
-		},
-		{
-			id: "forest",
-			name: "Bush in the Forest (Forest)",
-			title: "Ultimate Acrobat",
-			image: "/dnd/img/characters/npc/killinggame/forest-portrait.png",
-			race: "Tabaxi",
-			subrace: "",
-			gender: "Female",
-			age: -1,
-			relativeAge: "Young Adult",
-			alignment: "CN",
-			threat: "medium",
-			intelligence: "low",
-			personalityTags: [],
-			profession: "airship pirate",
-			description: "A young adult tabaxi, who speaks to people as though she's being hunted and comes from the remains of a sunken city. She is courageous and self-effacing, and has found work as an airship pirate.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 0.9,
-			killingInstinct: 0.8,
-		},
-		{
-			id: "queg",
-			name: "Queg",
-			title: "Ultimate Carnival Worker",
-			image: "/dnd/img/characters/npc/killinggame/queg-portrait.png",
-			race: "Tortle",
-			subrace: "",
-			gender: "Female",
-			age: -1,
-			relativeAge: "Young Adult",
-			alignment: "LE",
-			threat: "medium",
-			intelligence: "average",
-			personalityTags: [],
-			profession: "carnival worker",
-			description: "A young adult tortle, who gives the best gifts and comes from a disease ridden city. She is irresponsible and sweet, and has found work as a smuggler.",
-			status: "Alive",
-			dislikes: [],
-			likes: [],
-			desperation: 1.0,
-			killingInstinct: 0.7,
-		}
-	],
+	characters: KILLINGGAMECHARACTERS,
 	mapLayers: AscendantAspirationsAcademy,
 	misc: [
 		{

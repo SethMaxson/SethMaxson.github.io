@@ -54,10 +54,10 @@ class LayeredMap extends React.Component<ILayeredMapProps, ILayeredMapState> {
 						<input type="range" className="form-range" min="0.1" max="10" defaultValue="1" step="0.1" id="zoom-range" onChange={this.changeScale} />
 					</div>
 
-					<label htmlFor="layer-range" className="col-2 col-md-auto col-form-label">Layer:</label>
-					<div className="col-10 col-md-auto">
+					{this.props.layers.length > 1 && <label htmlFor="layer-range" className="col-2 col-md-auto col-form-label">Layer:</label>}
+					{this.props.layers.length > 1 && <div className="col-10 col-md-auto">
 						<input type="range" className="form-range" min="0" max={this.props.layers.length - 1} defaultValue="0" id="layer-range" onChange={this.changeLayer} />
-					</div>
+					</div>}
 				</div>
 				<div className="layer-container row flex-grow-1 h-100 w-100 m-0">
 					{this.props.layers.map((image, index: number) =>

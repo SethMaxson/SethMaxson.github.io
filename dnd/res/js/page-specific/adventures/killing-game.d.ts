@@ -1,6 +1,6 @@
 /// <reference types="react" />
 declare type KillingGameMenuDisplay = "Character" | "Diorama" | "Menu";
-declare type KillingGameMenuActiveTab = "character" | "evidence" | "map" | "rules" | "prizes" | "trial";
+declare type KillingGameMenuActiveTab = "character" | "evidence" | "map" | "rules" | "shop" | "trial";
 declare type KillingGameGender = "Male" | "Female";
 declare type KillingGameStatus = "Alive" | "Dead" | "Missing" | "Unknown";
 declare function isOfTypeTab(keyInput: string): keyInput is KillingGameMenuActiveTab;
@@ -14,6 +14,7 @@ interface IKillingGameCharacter extends INPC {
     /**Should be 0-1 */
     killingInstinct: number;
     likes: string[];
+    loves: string[];
     status: KillingGameStatus;
     title: string;
 }
@@ -54,8 +55,13 @@ interface IKillingGameCharacterPageProps {
     close: {
         (): void;
     };
+    /** Should be between 1 and 6 */
+    friendshipLevel: number;
 }
 declare class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPageProps> {
+    static defaultProps: {
+        friendshipLevel: number;
+    };
     render(): JSX.Element;
 }
 interface IKillingGameVoteResultsProps {

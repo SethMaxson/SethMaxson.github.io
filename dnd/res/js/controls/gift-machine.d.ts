@@ -3,6 +3,7 @@ interface IGift {
     id: number;
     name: string;
     description: string;
+    cost: number;
 }
 interface IGiftMachineProps {
     gifts: IGift[];
