@@ -150,13 +150,13 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, I
 							<div className="bg-dark h-100 overflow-auto p-0">
 								<ol className="list-group list-group-numbered m-0">
 									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-										All candidates will live within the area they are trapped in. There is no limit as to the length of their stay.
+										All candidates will remain within Ascendant Aspirations Academy until such time as they are released by the headmaster.
 									</li>
 									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
 										"Nighttime" is from 10 pm to 7 am. Some areas are off-limits at night, so please exercise caution.
 									</li>
 									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-										Sleeping anywhere other than the dormitory will be seen as sleeping in class and punished accordingly.
+										Sleeping anywhere other than the inn will be seen as sleeping in class and punished accordingly.
 									</li>
 									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
 										With minimal restrictions, you are free to explore Ascendant Aspirations Academy at your discretion.
