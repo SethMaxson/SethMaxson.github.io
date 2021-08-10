@@ -195,7 +195,10 @@ class LocalStorageHelper {
         return parseFloat(localStorage.hour);
     }
     get isGM() {
-        return localStorage.isGM;
+        return localStorage.isGM == "true";
+    }
+    set isGM(value) {
+        localStorage.isGM = value;
     }
     get month() {
         return parseFloat(localStorage.month);
@@ -203,8 +206,14 @@ class LocalStorageHelper {
     get userId() {
         return parseFloat(localStorage.userId);
     }
+    set userId(value) {
+        localStorage.userId = value;
+    }
     get userName() {
-        return parseFloat(localStorage.userName);
+        return localStorage.userName;
+    }
+    set userName(value) {
+        localStorage.userName = value;
     }
     get year() {
         return parseFloat(localStorage.year);

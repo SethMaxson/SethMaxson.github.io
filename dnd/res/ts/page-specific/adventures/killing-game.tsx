@@ -1,5 +1,5 @@
 type KillingGameMenuDisplay = "Character" | "Diorama" | "Menu";
-type KillingGameMenuActiveTab = "character" | "evidence" | "map" | "rules" | "shop" | "trial";
+type KillingGameMenuActiveTab = "characters" | "evidence" | "map" | "rules" | "shop" | "trial";
 type KillingGameGender = "Male" | "Female";
 type KillingGameStatus = "Alive" | "Dead" | "Missing" | "Unknown";
 
@@ -104,7 +104,7 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, I
 		let tab = GetURLParameter("tab")?.toLowerCase();
 
 		this.state = {
-			activeTab: (tab && isOfTypeTab(tab))? tab : "character"
+			activeTab: (tab && isOfTypeTab(tab))? tab : "characters"
 		};
 	}
 	render()
@@ -113,30 +113,18 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, I
 			<div className="container killing-game-nav h-100 px-0">
 				<div className="d-flex h-100 w-100 flex-column">
 					<ul className="nav nav-tabs bg-dark" role="tablist">
-						<li className="nav-item" role="presentation">
-							<button className={"nav-link" + (this.state.activeTab == "character" ? " active" : "")} id="characters-tab" data-bs-toggle="tab" data-bs-target="#characters" type="button" role="tab" aria-controls="characters" aria-selected="true" onClick={() => this.changeTab("character")}>Candidates</button>
-						</li>
-						<li className="nav-item" role="presentation">
-							<button className={"nav-link" + (this.state.activeTab == "map"? " active" : "")} id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button" role="tab" aria-controls="map" aria-selected="false" onClick={() => this.changeTab("map")}>Map</button>
-						</li>
-						<li className="nav-item" role="presentation">
-							<button className={"nav-link" + (this.state.activeTab == "rules"? " active" : "")} id="rules-tab" data-bs-toggle="tab" data-bs-target="#rules" type="button" role="tab" aria-controls="rules" aria-selected="false" onClick={() => this.changeTab("rules")}>Rules</button>
-						</li>
-						<li className="nav-item" role="presentation">
-							<button className={"nav-link" + (this.state.activeTab == "shop"? " active" : "")} id="shop-tab" data-bs-toggle="tab" data-bs-target="#shop" type="button" role="tab" aria-controls="shop" aria-selected="false" onClick={() => this.changeTab("shop")}>Shop</button>
-						</li>
-						{this.props.showTrialTab && <li className="nav-item" role="presentation">
-							<button className={"nav-link" + (this.state.activeTab == "trial"? " active" : "")} id="trial-tab" data-bs-toggle="tab" data-bs-target="#trial" type="button" role="tab" aria-controls="shop" aria-selected="false" onClick={() => this.changeTab("trial")}>Trial</button>
-						</li>}
-						{this.props.showEvidenceTab && <li className="nav-item" role="presentation">
-							<button className={"nav-link" + (this.state.activeTab == "evidence"? " active" : "")} id="file-tab" data-bs-toggle="tab" data-bs-target="#file" type="button" role="tab" aria-controls="file" aria-selected="false" onClick={() => this.changeTab("evidence")}>File</button>
-						</li>}
+						<KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="Candidates" id="characters" />
+						<KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="Map" id="map" />
+						<KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="Rules" id="rules" />
+						<KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="Shop" id="shop" />
+						{this.props.showTrialTab && <KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="Trial" id="trial" />}
+						{this.props.showEvidenceTab && <KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="File" id="evidence" />}
 					</ul>
 
 					<div className="tab-content row flex-grow-1 flex-shrink-1 flex-column align-items-stretch overflow-hidden">
-						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "character" ? " active" : "")} id="characters" role="tabpanel" aria-labelledby="characters-tab">
+						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "characters" ? " active" : "")} id="characters" role="tabpanel" aria-labelledby="characters-tab">
 							<div className="list-group h-100 overflow-auto">
-								{this.props.data.characters.sort((a, b) => a.name > b.name && 1 || -1).map((character, index: number) =>
+								{this.props.data.characters.sort((a, b) => a.status > b.status && 1 || -1).sort((a, b) => a.name > b.name && a.status == b.status && 1 || a.status == b.status && -1 || 0).map((character, index: number) =>
 									<CharacterLink character={character} key={index} onClick={this.props.displayCharacter} />
 								)}
 							</div>
@@ -244,30 +232,10 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 							</ol>
 						</nav>
 					</div>
-					<div className="row bg-dark flex-grow-1 m-0 overflow-auto">
-						{/* <div className="col-4 col-sm-2">
-							<nav id="navbar-example3" className="navbar navbar-light bg-light flex-column align-items-stretch p-2 m-2 rounded">
-								<a className="navbar-brand" href="#">Navbar</a>
-								<nav className="nav nav-pills flex-column">
-									<a className="nav-link" href="#item-1">Summary</a>
-									<nav className="nav nav-pills flex-column">
-										<a className="nav-link ms-3 my-1" href="#item-1-1">Description</a>
-										<a className="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
-									</nav>
-									<a className="nav-link" href="#item-2">Item 2</a>
-									<a className="nav-link" href="#item-3">Interests</a>
-									<nav className="nav nav-pills flex-column">
-										<a className="nav-link ms-3 my-1" href="#item-3-1">Likes</a>
-										<a className="nav-link ms-3 my-1" href="#item-3-2">Loves</a>
-										<a className="nav-link ms-3 my-1" href="#item-3-3">Dislikes</a>
-									</nav>
-								</nav>
-							</nav>
-						</div> */}
 
+					<div className="row bg-dark flex-grow-1 m-0 overflow-auto">
 						<div className="col-auto overflow-auto bg-dark text-light">
 							<div className="row">
-								{/* <div className="col-auto" data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0"> */}
 								<div className="col order-2 order-md-1" data-bs-target="#navbar-example3" data-bs-offset="0">
 									<h3 id="item-1" className="d-none d-lg-block">{this.props.character.name} | <i>{this.props.character.title}</i></h3>
 									<h5 id="item-1-1">Description</h5>
@@ -275,9 +243,6 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 									<h4 id="item-3">Interests</h4>
 									<h5 id="item-3-1">Likes</h5>
 									<p>{(this.props.friendshipLevel > 1? this.props.character.likes : this.props.character.likes.concat(this.props.character.loves)).join(", ")}</p>
-									{/* {this.props.character.likes.sort().map((like, index: number) =>
-										<p>{like}</p>
-									)} */}
 									{this.props.friendshipLevel > 1 && <div>
 										<h5 id="item-3-2">Loves</h5>
 										<p>{this.props.character.loves.join(", ")}</p>
@@ -343,6 +308,24 @@ class KillingGameVoteResults extends React.Component<IKillingGameVoteResultsProp
 	}
 }
 
+interface IKillingGameViewerNavTabProps
+{
+	activeTab: KillingGameMenuActiveTab;
+	changeTab: { (tab: KillingGameMenuActiveTab): void }
+	displayName: string;
+	id: KillingGameMenuActiveTab;
+}
+class KillingGameViewerNavTab extends React.Component<IKillingGameViewerNavTabProps> {
+	render()
+	{
+		return (
+			<li className="nav-item" role="presentation">
+				<button className={"nav-link" + (this.props.activeTab == this.props.id ? " active" : "")} id={this.props.id + "-tab"} data-bs-toggle="tab" data-bs-target={"#" + this.props.id} type="button" role="tab" aria-controls={this.props.id} aria-selected="false" onClick={() => this.props.changeTab(this.props.id)}>{this.props.displayName}</button>
+			</li>
+		);
+	}
+}
+
 interface ICharacterLinkProps
 {
 	character: IKillingGameCharacter;
@@ -356,7 +339,7 @@ class CharacterLink extends React.Component<ICharacterLinkProps> {
 		return (
 			<button className="list-group-item list-group-item-action list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" onClick={(ev) => this.props.onClick(this.props.character)}>
 				{this.props.character.name}
-				<span className={"mx-1 " + genderColor} style={{ fontFamily: "Arial" }}>{this.props.character.gender == "Female"? "♀" : "♂"}</span>
+				<span className={"mx-1 " + genderColor} style={{ fontFamily: "Arial, Helvatica, sans-serif" }}>{this.props.character.gender == "Female"? "♀" : "♂"}</span>
 				<span className={"badge position-absolute top-50 end-0 translate-middle-y me-1 rounded-pill " + statusColor}>{this.props.character.status}</span>
 			</button>
 		);

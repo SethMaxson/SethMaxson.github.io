@@ -1,6 +1,6 @@
 /// <reference types="react" />
 declare type KillingGameMenuDisplay = "Character" | "Diorama" | "Menu";
-declare type KillingGameMenuActiveTab = "character" | "evidence" | "map" | "rules" | "shop" | "trial";
+declare type KillingGameMenuActiveTab = "characters" | "evidence" | "map" | "rules" | "shop" | "trial";
 declare type KillingGameGender = "Male" | "Female";
 declare type KillingGameStatus = "Alive" | "Dead" | "Missing" | "Unknown";
 declare function isOfTypeTab(keyInput: string): keyInput is KillingGameMenuActiveTab;
@@ -69,6 +69,17 @@ interface IKillingGameVoteResultsProps {
     percentage: number;
 }
 declare class KillingGameVoteResults extends React.Component<IKillingGameVoteResultsProps> {
+    render(): JSX.Element;
+}
+interface IKillingGameViewerNavTabProps {
+    activeTab: KillingGameMenuActiveTab;
+    changeTab: {
+        (tab: KillingGameMenuActiveTab): void;
+    };
+    displayName: string;
+    id: KillingGameMenuActiveTab;
+}
+declare class KillingGameViewerNavTab extends React.Component<IKillingGameViewerNavTabProps> {
     render(): JSX.Element;
 }
 interface ICharacterLinkProps {

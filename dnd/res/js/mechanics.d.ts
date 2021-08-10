@@ -40,10 +40,13 @@ declare class Stats {
 declare class LocalStorageHelper {
     get day(): number;
     get hour(): number;
-    get isGM(): any;
+    get isGM(): boolean;
+    set isGM(value: boolean);
     get month(): number;
     get userId(): number;
-    get userName(): number;
+    set userId(value: number);
+    get userName(): string;
+    set userName(value: string);
     get year(): number;
 }
 declare const storage: LocalStorageHelper;

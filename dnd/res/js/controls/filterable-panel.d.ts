@@ -45,3 +45,6 @@ declare class FilterableItem extends React.Component<IFilterableItemProps> {
 declare class FilterPanelToggleButton extends React.Component {
     render(): JSX.Element;
 }
+declare class FilterPanelToggleButtonMobile extends React.Component {
+    render(): JSX.Element;
+}

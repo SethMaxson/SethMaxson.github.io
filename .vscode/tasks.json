@@ -20,6 +20,16 @@
 			],
 			"group": "build",
 			"label": "tsc: watch - D&D"
+		},
+		{
+			"type": "typescript",
+			"tsconfig": "pages/JRPG/tsconfig.json",
+			"option": "watch",
+			"problemMatcher": [
+				"$tsc-watch"
+			],
+			"group": "build",
+			"label": "tsc: watch - JRPG"
 		}
 	]
 }

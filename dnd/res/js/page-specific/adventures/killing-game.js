@@ -44,28 +44,22 @@ class KillingGameViewerNav extends React.Component {
         this.changeTab = this.changeTab.bind(this);
         let tab = GetURLParameter("tab")?.toLowerCase();
         this.state = {
-            activeTab: (tab && isOfTypeTab(tab)) ? tab : "character"
+            activeTab: (tab && isOfTypeTab(tab)) ? tab : "characters"
         };
     }
     render() {
         return (React.createElement("div", { className: "container killing-game-nav h-100 px-0" },
             React.createElement("div", { className: "d-flex h-100 w-100 flex-column" },
                 React.createElement("ul", { className: "nav nav-tabs bg-dark", role: "tablist" },
-                    React.createElement("li", { className: "nav-item", role: "presentation" },
-                        React.createElement("button", { className: "nav-link" + (this.state.activeTab == "character" ? " active" : ""), id: "characters-tab", "data-bs-toggle": "tab", "data-bs-target": "#characters", type: "button", role: "tab", "aria-controls": "characters", "aria-selected": "true", onClick: () => this.changeTab("character") }, "Candidates")),
-                    React.createElement("li", { className: "nav-item", role: "presentation" },
-                        React.createElement("button", { className: "nav-link" + (this.state.activeTab == "map" ? " active" : ""), id: "map-tab", "data-bs-toggle": "tab", "data-bs-target": "#map", type: "button", role: "tab", "aria-controls": "map", "aria-selected": "false", onClick: () => this.changeTab("map") }, "Map")),
-                    React.createElement("li", { className: "nav-item", role: "presentation" },
-                        React.createElement("button", { className: "nav-link" + (this.state.activeTab == "rules" ? " active" : ""), id: "rules-tab", "data-bs-toggle": "tab", "data-bs-target": "#rules", type: "button", role: "tab", "aria-controls": "rules", "aria-selected": "false", onClick: () => this.changeTab("rules") }, "Rules")),
-                    React.createElement("li", { className: "nav-item", role: "presentation" },
-                        React.createElement("button", { className: "nav-link" + (this.state.activeTab == "shop" ? " active" : ""), id: "shop-tab", "data-bs-toggle": "tab", "data-bs-target": "#shop", type: "button", role: "tab", "aria-controls": "shop", "aria-selected": "false", onClick: () => this.changeTab("shop") }, "Shop")),
-                    this.props.showTrialTab && React.createElement("li", { className: "nav-item", role: "presentation" },
-                        React.createElement("button", { className: "nav-link" + (this.state.activeTab == "trial" ? " active" : ""), id: "trial-tab", "data-bs-toggle": "tab", "data-bs-target": "#trial", type: "button", role: "tab", "aria-controls": "shop", "aria-selected": "false", onClick: () => this.changeTab("trial") }, "Trial")),
-                    this.props.showEvidenceTab && React.createElement("li", { className: "nav-item", role: "presentation" },
-                        React.createElement("button", { className: "nav-link" + (this.state.activeTab == "evidence" ? " active" : ""), id: "file-tab", "data-bs-toggle": "tab", "data-bs-target": "#file", type: "button", role: "tab", "aria-controls": "file", "aria-selected": "false", onClick: () => this.changeTab("evidence") }, "File"))),
+                    React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Candidates", id: "characters" }),
+                    React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Map", id: "map" }),
+                    React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Rules", id: "rules" }),
+                    React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Shop", id: "shop" }),
+                    this.props.showTrialTab && React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Trial", id: "trial" }),
+                    this.props.showEvidenceTab && React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "File", id: "evidence" })),
                 React.createElement("div", { className: "tab-content row flex-grow-1 flex-shrink-1 flex-column align-items-stretch overflow-hidden" },
-                    React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "character" ? " active" : ""), id: "characters", role: "tabpanel", "aria-labelledby": "characters-tab" },
-                        React.createElement("div", { className: "list-group h-100 overflow-auto" }, this.props.data.characters.sort((a, b) => a.name > b.name && 1 || -1).map((character, index) => React.createElement(CharacterLink, { character: character, key: index, onClick: this.props.displayCharacter })))),
+                    React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "characters" ? " active" : ""), id: "characters", role: "tabpanel", "aria-labelledby": "characters-tab" },
+                        React.createElement("div", { className: "list-group h-100 overflow-auto" }, this.props.data.characters.sort((a, b) => a.status > b.status && 1 || -1).sort((a, b) => a.name > b.name && a.status == b.status && 1 || a.status == b.status && -1 || 0).map((character, index) => React.createElement(CharacterLink, { character: character, key: index, onClick: this.props.displayCharacter })))),
                     React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "map" ? " active" : ""), id: "map", role: "tabpanel", "aria-labelledby": "map-tab" },
                         React.createElement(LayeredMap, { layers: this.props.data.mapLayers, displayStack: false })),
                     React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "rules" ? " active" : ""), id: "rules", role: "tabpanel", "aria-labelledby": "rules-tab" },
@@ -157,13 +151,19 @@ class KillingGameVoteResults extends React.Component {
                     "%"))));
     }
 }
+class KillingGameViewerNavTab extends React.Component {
+    render() {
+        return (React.createElement("li", { className: "nav-item", role: "presentation" },
+            React.createElement("button", { className: "nav-link" + (this.props.activeTab == this.props.id ? " active" : ""), id: this.props.id + "-tab", "data-bs-toggle": "tab", "data-bs-target": "#" + this.props.id, type: "button", role: "tab", "aria-controls": this.props.id, "aria-selected": "false", onClick: () => this.props.changeTab(this.props.id) }, this.props.displayName)));
+    }
+}
 class CharacterLink extends React.Component {
     render() {
         let statusColor = this.props.character.status == "Alive" ? " bg-success" : this.props.character.status == "Dead" ? "bg-danger" : "bg-secondary";
         let genderColor = this.props.character.gender == "Female" ? " text-danger" : "text-primary";
         return (React.createElement("button", { className: "list-group-item list-group-item-action list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0", onClick: (ev) => this.props.onClick(this.props.character) },
             this.props.character.name,
-            React.createElement("span", { className: "mx-1 " + genderColor, style: { fontFamily: "Arial" } }, this.props.character.gender == "Female" ? "♀" : "♂"),
+            React.createElement("span", { className: "mx-1 " + genderColor, style: { fontFamily: "Arial, Helvatica, sans-serif" } }, this.props.character.gender == "Female" ? "♀" : "♂"),
             React.createElement("span", { className: "badge position-absolute top-50 end-0 translate-middle-y me-1 rounded-pill " + statusColor }, this.props.character.status)));
     }
 }

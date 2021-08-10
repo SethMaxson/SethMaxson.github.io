@@ -71,8 +71,15 @@ class FilterableItem extends React.Component {
 }
 class FilterPanelToggleButton extends React.Component {
     render() {
-        return (React.createElement("button", { className: "btn btn-primary navbar-light position-absolute top-0 start-0 m-1", type: "button", "data-bs-toggle": "offcanvas", "data-bs-target": "#filterable-panel", "aria-controls": "filterable-panel" },
+        return (React.createElement("button", { className: "btn btn-primary d-none d-lg-block navbar-light position-absolute top-0 start-0 m-1", type: "button", "data-bs-toggle": "offcanvas", "data-bs-target": "#filterable-panel", "aria-controls": "filterable-panel" },
             React.createElement("span", { className: "navbar-toggler-icon" })));
+    }
+}
+class FilterPanelToggleButtonMobile extends React.Component {
+    render() {
+        return (React.createElement("div", { className: "d-block d-lg-none navbar navbar-dark bg-secondary" },
+            React.createElement("button", { className: "btn btn-primary navbar-light m-1", type: "button", "data-bs-toggle": "offcanvas", "data-bs-target": "#filterable-panel", "aria-controls": "filterable-panel" },
+                React.createElement("span", { className: "navbar-toggler-icon" }))));
     }
 }
 //# sourceMappingURL=filterable-panel.js.map

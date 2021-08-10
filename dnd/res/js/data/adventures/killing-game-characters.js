@@ -15,7 +15,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "average",
         personalityTags: [],
         profession: "carpenter",
-        description: "A young adult halfelf, who wears rings, which isn’t cool, but it's cool that they don’t care if they’re cool and comes from an engineer's guild. He is frightened and earthy, and has found work as a mercenary.",
+        description: "A young adult half-elf, who wears rings, which isn’t cool, but it's cool that he doesn’t care if they’re cool and comes from an engineer's guild. He is frightened and earthy, and has found work as a carpenter.",
         status: "Alive",
         dislikes: [
             "poor workmanship",
@@ -44,7 +44,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "very low",
         personalityTags: [],
         profession: "royal taster",
-        description: "An adult gnome, who has bad hygiene and comes from a strict, religious temple. He is submissive and rigid, and has found work as a royal taster.",
+        description: "Sindri has bad hygiene and comes from a strict, religious temple. He is submissive and rigid, and has found work as a royal taster.",
         status: "Alive",
         dislikes: [
             "being judged",
@@ -75,7 +75,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "average",
         personalityTags: [],
         profession: "knight",
-        description: "A young adult goblin, who is not very good at sports and comes from a small village of barbarians. He is instructive and dramatic, and has found work as a knight.",
+        description: "Gribak is not very good at sports and comes from a small village of barbarians. He is instructive and dramatic, and has found work as a knight.",
         status: "Alive",
         dislikes: [
             "vegetables",
@@ -86,7 +86,9 @@ const KILLINGGAMECHARACTERS = [
             "animals",
             "bright colors"
         ],
-        loves: [],
+        loves: [
+            "frogs"
+        ],
         desperation: 0.7,
         killingInstinct: 0.2,
     },
@@ -117,7 +119,7 @@ const KILLINGGAMECHARACTERS = [
             "fine dining"
         ],
         loves: [
-            "tea"
+            "dark teas"
         ],
         desperation: 0.3,
         killingInstinct: 0.3,
@@ -137,7 +139,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "average",
         personalityTags: [],
         profession: "smuggler",
-        description: "An adult human, who is superstitious and comes from a small island. He is solemn and disloyal, and has found work as a smuggler.",
+        description: "Randal is a superstitious fisherman and comes from a small island. He usually seems very serious, but occasionally reveals a secret sense of humor.",
         status: "Alive",
         dislikes: [
             "dryness",
@@ -166,7 +168,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "average",
         personalityTags: [],
         profession: "monk",
-        description: "A young adult genasi, who has connections to underworld crime syndicates and comes from a powerful trading city. He is obnoxious and curious, and has found work as a monk.",
+        description: "Eliot has connections to underworld crime syndicates and comes from a powerful trading city. He comes across as obnoxious and curious.",
         status: "Alive",
         dislikes: [
             "bright light",
@@ -197,7 +199,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "slightly high",
         personalityTags: [],
         profession: "entrepreneur",
-        description: "A young adult ratfolk, who has a burning hatred for pirates and comes from a laid back beach town. He is loud and philosophical, and has found work as a farmhand.",
+        description: "Salvini has a burning hatred for pirates and comes from the market city of Vatsunir. He is loud and philosophical.",
         status: "Alive",
         dislikes: [
             "frogs",
@@ -227,11 +229,12 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "average",
         personalityTags: [],
         profession: "druid",
-        description: "An adult firbolg, who is scared of airship travel and comes from a company of mercenaries and sellswords. He is fatalistic and adventurous, and has found work as a druid.",
+        description: "Rosewood comes from a company of mercenaries and sellswords. He is fatalistic and adventurous, and has found work as a druid.",
         status: "Alive",
         dislikes: [
+            "airship travel",
             "loud noises",
-            "any food involving poultry or eggs"
+            "any food involving poultry or eggs",
         ],
         likes: [
             "plants",
@@ -258,7 +261,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "high",
         personalityTags: [],
         profession: "armorer",
-        description: "A young adult halfelf, who is a total gear-head and comes from a city no one else has ever heard of. She is humble and harsh, and has found work as an innkeeper.",
+        description: "Yrthraethra (or 'Rae' for short) is a total gear-head and comes from a city no one else has ever heard of. She is humble and harsh.",
         status: "Alive",
         dislikes: [
             "tea",
@@ -294,7 +297,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "average",
         personalityTags: [],
         profession: "bartender",
-        description: "An adult halfling, who hates wearing armor face masks and comes from a large military outpost. She is risk-taking and agreeable, and has found work as a courtesan.",
+        description: "Chenna hates wearing armor face masks and comes from a large military outpost. She is risk-taking and agreeable, and has found work as an innkeeper.",
         status: "Alive",
         dislikes: [
             "bitter flavors",
@@ -357,7 +360,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "average",
         personalityTags: [],
         profession: "philosopher",
-        description: "A young adult elf, who has a split personality who is her complete opposite, changes personalities when exposed to a specific stimuli, and comes from a peaceful coastal town. She is restless and careless, and has found work as a philosopher.",
+        description: "Nueleth is a quiet, bookish person who comes from a peaceful coastal town. She is restless and careless, and has found work as a philosopher.",
         status: "Alive",
         dislikes: [
             "loud noises",
@@ -387,7 +390,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "slightly high",
         personalityTags: [],
         profession: "sailor",
-        description: "An adult tiefling, who is completely mute and comes from the forests of the Verdant Isle. She is unpredictable and argumentative, and has found work as a sailor.",
+        description: "Aym is completely mute and comes from the forests of the Verdant Isle. She is unpredictable and argumentative, and has found work as a sailor.",
         status: "Alive",
         dislikes: [
             "bullying",
@@ -452,7 +455,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "low",
         personalityTags: [],
         profession: "airship pirate",
-        description: "A young adult tabaxi, who speaks to people as though she's being hunted and comes from the remains of a sunken city. She is courageous and self-effacing, and has found work as an airship pirate.",
+        description: "Forest is famous for being one of the most fearsome airship pirate captains to have ever sailed under a black flag. She looks much younger than her reputation suggests, and comes from the remains of a sunken city. She is courageous and self-effacing.",
         status: "Alive",
         dislikes: [
             "water",
@@ -472,7 +475,7 @@ const KILLINGGAMECHARACTERS = [
     {
         id: "queg",
         name: "Queg",
-        title: "Ultimate Carnival Worker",
+        title: "Ultimate Carnival Entertainer",
         image: "/dnd/img/characters/npc/killinggame/queg-portrait.png",
         race: "Tortle",
         subrace: "",
@@ -484,7 +487,7 @@ const KILLINGGAMECHARACTERS = [
         intelligence: "average",
         personalityTags: [],
         profession: "carnival worker",
-        description: "A young adult tortle, who gives the best gifts and comes from a disease ridden city. She is irresponsible and sweet, and has found work as a smuggler.",
+        description: "Queg gives the best gifts and comes from a disease ridden city. She is irresponsible and sweet, and has made a name for herself as the ultimate Carnival Entertainer.",
         status: "Alive",
         dislikes: [
             "meat",
@@ -592,11 +595,11 @@ const KILLINGGAMECHARACTERS = [
     // 	killingInstinct: 1.0,
     // },
     // {
-    // 	id: "pc5",
-    // 	name: "Mark's Character",
-    // 	title: "Ultimate Player Character",
+    // 	id: "enix",
+    // 	name: "Enix Thelukie",
+    // 	title: "Ultimate Survivor",
     // 	image: "/dnd/img/characters/npc/killinggame/pc.png",
-    // 	race: "Human",
+    // 	race: "Tiefling",
     // 	subrace: "",
     // 	gender: "Male",
     // 	age: -1,

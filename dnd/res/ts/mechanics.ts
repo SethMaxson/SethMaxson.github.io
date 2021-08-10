@@ -240,7 +240,11 @@ class LocalStorageHelper
 	}
 	public get isGM()
 	{
-		return localStorage.isGM;
+		return localStorage.isGM == "true";
+	}
+	public set isGM(value: boolean)
+	{
+		localStorage.isGM = value;
 	}
 	public get month()
 	{
@@ -250,9 +254,17 @@ class LocalStorageHelper
 	{
 		return parseFloat(localStorage.userId);
 	}
+	public set userId(value: number)
+	{
+		localStorage.userId = value;
+	}
 	public get userName()
 	{
-		return parseFloat(localStorage.userName);
+		return localStorage.userName;
+	}
+	public set userName(value: string)
+	{
+		localStorage.userName = value;
 	}
 	public get year()
 	{

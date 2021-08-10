@@ -138,9 +138,21 @@ class FilterableItem extends React.Component<IFilterableItemProps> {
 class FilterPanelToggleButton extends React.Component {
 	render() {
 		return (
-			<button className="btn btn-primary navbar-light position-absolute top-0 start-0 m-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterable-panel" aria-controls="filterable-panel">
+			<button className="btn btn-primary d-none d-lg-block navbar-light position-absolute top-0 start-0 m-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterable-panel" aria-controls="filterable-panel">
 				<span className="navbar-toggler-icon"></span>
 			</button>
+		);
+	}
+}
+
+class FilterPanelToggleButtonMobile extends React.Component {
+	render() {
+		return (
+			<div className="d-block d-lg-none navbar navbar-dark bg-secondary">
+				<button className="btn btn-primary navbar-light m-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterable-panel" aria-controls="filterable-panel">
+					<span className="navbar-toggler-icon"></span>
+				</button>
+			</div>
 		);
 	}
 }
