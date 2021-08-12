@@ -76,45 +76,6 @@ class Nav extends React.Component<INavProps> {
 	}
 }
 
-interface ILoginButtonProps
-{
-}
-interface ILoginButtonState
-{
-	loggedIn: boolean;
-}
-class LoginButton extends React.Component<ILoginButtonProps, ILoginButtonState> {
-	constructor(props: ILoginButtonProps)
-	{
-		super(props);
-		this.logout = this.logout.bind(this);
-
-		this.state = {
-			loggedIn: (storage.userId != undefined && storage.userId > 0)
-		}
-	}
-	render()
-	{
-		if (this.state.loggedIn) {
-			return (
-				<div className="nav-item">
-					<button className="nav-link bg-transparent border-0" onClick={this.logout}>Log out</button>
-				</div>
-			);
-		}
-		else {
-			return (
-				<a className="nav-item nav-link" href="pages/login.html">Sign in</a>
-			);
-		}
-	}
-	logout()
-	{
-		storage.userId = -1;
-		storage.userName = "";
-		this.setState({ loggedIn: false });
-	}
-}
 
 ReactDOM.render(
 	<Nav />,

@@ -49,28 +49,5 @@ class Nav extends React.Component {
                 React.createElement(LoginButton, null))));
     }
 }
-class LoginButton extends React.Component {
-    constructor(props) {
-        super(props);
-        this.logout = this.logout.bind(this);
-        this.state = {
-            loggedIn: (storage.userId != undefined && storage.userId > 0)
-        };
-    }
-    render() {
-        if (this.state.loggedIn) {
-            return (React.createElement("div", { className: "nav-item" },
-                React.createElement("button", { className: "nav-link bg-transparent border-0", onClick: this.logout }, "Log out")));
-        }
-        else {
-            return (React.createElement("a", { className: "nav-item nav-link", href: "pages/login.html" }, "Sign in"));
-        }
-    }
-    logout() {
-        storage.userId = -1;
-        storage.userName = "";
-        this.setState({ loggedIn: false });
-    }
-}
 ReactDOM.render(React.createElement(Nav, null), document.getElementById("top-nav"));
 //# sourceMappingURL=nav.js.map

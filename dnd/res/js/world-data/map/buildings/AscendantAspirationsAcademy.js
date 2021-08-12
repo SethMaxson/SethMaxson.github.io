@@ -83,7 +83,7 @@ const AscendantAspirationsAcademy = [
             },
             {
                 name: "Dom's Character's Room",
-                popoverText: "Dom's Character's Room",
+                popoverText: "Carrie's Room",
                 locked: false,
                 position: {
                     x: 658,

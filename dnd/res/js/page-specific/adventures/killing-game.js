@@ -56,23 +56,16 @@ class KillingGameViewerNav extends React.Component {
                     React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Rules", id: "rules" }),
                     React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Shop", id: "shop" }),
                     this.props.showTrialTab && React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Trial", id: "trial" }),
-                    this.props.showEvidenceTab && React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "File", id: "evidence" })),
+                    this.props.showEvidenceTab && React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "File", id: "evidence" }),
+                    storage.userName == "" && React.createElement("li", { className: "me-0 ms-auto" },
+                        React.createElement(LoginButton, { redirectUrl: "/dnd/pages/adventures/killing-game.html" }))),
                 React.createElement("div", { className: "tab-content row flex-grow-1 flex-shrink-1 flex-column align-items-stretch overflow-hidden" },
                     React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "characters" ? " active" : ""), id: "characters", role: "tabpanel", "aria-labelledby": "characters-tab" },
-                        React.createElement("div", { className: "list-group h-100 overflow-auto" }, this.props.data.characters.sort((a, b) => a.status > b.status && 1 || -1).sort((a, b) => a.name > b.name && a.status == b.status && 1 || a.status == b.status && -1 || 0).map((character, index) => React.createElement(CharacterLink, { character: character, key: index, onClick: this.props.displayCharacter })))),
+                        React.createElement(KillingGameCharacterIndex, { characters: this.props.data.characters, displayCharacter: this.props.displayCharacter })),
                     React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "map" ? " active" : ""), id: "map", role: "tabpanel", "aria-labelledby": "map-tab" },
                         React.createElement(LayeredMap, { layers: this.props.data.mapLayers, displayStack: false })),
                     React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "rules" ? " active" : ""), id: "rules", role: "tabpanel", "aria-labelledby": "rules-tab" },
-                        React.createElement("div", { className: "bg-dark h-100 overflow-auto p-0" },
-                            React.createElement("ol", { className: "list-group list-group-numbered m-0" },
-                                React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" }, "All candidates will remain within Ascendant Aspirations Academy until such time as they are released by the headmaster."),
-                                React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" }, "\"Nighttime\" is from 10 pm to 7 am. Some areas are off-limits at night, so please exercise caution."),
-                                React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" }, "Sleeping anywhere other than the inn will be seen as sleeping in class and punished accordingly."),
-                                React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" }, "With minimal restrictions, you are free to explore Ascendant Aspirations Academy at your discretion."),
-                                React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" }, "Violence against the headmaster is strictly prohibited, as is destruction of floating orbs."),
-                                React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" }, "An anointed who kills another candidate will graduate, but only if they can convince the other candidates that they are not the anointed. If the anointed succeeds, the anointed can leave, and all other living candidates will be killed in the anointed's place. If the anointed is proven guilty, the anointed alone will be rightfully executed."),
-                                React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" }, "After three or more people discover a dead body, a \u201Cbody discovery announcement\u201D shall be made to inform everyone of the death."),
-                                React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" }, "Additional regulations may be added if necessary.")))),
+                        React.createElement(KillingGameRegulationViewer, { regulations: this.props.data.regulations })),
                     React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "shop" ? " active" : ""), id: "shop", role: "tabpanel", "aria-labelledby": "shop-tab" },
                         React.createElement(GiftMachine, { gifts: GIFTS })),
                     this.props.showTrialTab && React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "trial" ? " active" : ""), id: "trial", role: "tabpanel", "aria-labelledby": "trial-tab" },
@@ -83,6 +76,15 @@ class KillingGameViewerNav extends React.Component {
         this.setState({ activeTab: tab });
     }
 }
+const KillingGameFriendshipTitles = [
+    "Strangers",
+    "Acquaintances",
+    "Casual Friends",
+    "Friends",
+    "Close Friends",
+    "Very Close Friends",
+    "BFFs"
+];
 class KillingGameCharacterPage extends React.Component {
     render() {
         return (React.createElement("div", { className: "container h-100 w-100 overflow-hidden p-0" },
@@ -130,8 +132,19 @@ class KillingGameCharacterPage extends React.Component {
     }
 }
 KillingGameCharacterPage.defaultProps = {
-    friendshipLevel: 1
+    friendshipLevel: storage.isGM ? 6 : 1
 };
+class KillingGameCharacterIndex extends React.Component {
+    render() {
+        return (React.createElement("div", { className: "list-group h-100 overflow-auto" }, this.props.characters.sort((a, b) => a.status > b.status && 1 || -1).sort((a, b) => a.name > b.name && a.status == b.status && 1 || a.status == b.status && -1 || 0).map((character, index) => React.createElement(CharacterLink, { character: character, key: index, onClick: this.props.displayCharacter }))));
+    }
+}
+class KillingGameRegulationViewer extends React.Component {
+    render() {
+        return (React.createElement("div", { className: "bg-dark h-100 overflow-auto p-0" },
+            React.createElement("ol", { className: "list-group list-group-numbered m-0" }, this.props.regulations.map((rule, index) => React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0", key: index }, rule)))));
+    }
+}
 class KillingGameVoteResults extends React.Component {
     render() {
         return (React.createElement("div", { className: "h-100 w-100 overflow-hidden p-0 overflow-auto" },
@@ -182,6 +195,22 @@ const KILLINGGAMEDATA = {
                 }
             ]
         }
+    ],
+    regulations: [
+        "All candidates will remain within Ascendant Aspirations Academy until such time as they are released by the headmaster.",
+        "\"Nighttime\" is from 10 pm to 7 am. Some areas are off-limits at night, so please exercise caution.",
+        "Sleeping anywhere other than the inn will be seen as sleeping in class and punished accordingly.",
+        "With minimal restrictions, you are free to explore Ascendant Aspirations Academy at your discretion.",
+        "Violence against the headmaster is strictly prohibited, as is destruction of floating orbs.",
+        "An anointed who kills another candidate will graduate, but only if they can convince the other candidates that they are not the anointed. If the anointed succeeds, the anointed can leave, and all other living candidates will be killed in the anointed's place. If the anointed is proven guilty, the anointed alone will be rightfully executed.",
+        "After three or more people discover a dead body, a “body discovery announcement” shall be made to inform everyone of the death.",
+        // "Once a murder takes place, a class trial will begin shortly thereafter. Participation is mandatory for all surviving students.",
+        // "If the guilty party is exposed during the class trial, they alone will be executed.",
+        // "If the guilty party is not exposed, they alone will graduate, and all remaining students will be executed.",
+        // "Lending your e-Handbook to another student is strictly prohibited.",
+        // "The guilty party may only kill a maximum of two people during any single \"Killing Game.\"",
+        // "Attempting to break into locked rooms is strictly prohibited.",
+        "Additional regulations may be added if necessary."
     ]
 };
 ReactDOM.render(React.createElement(KillingGameViewer, { data: KILLINGGAMEDATA }), document.getElementById("killing-game-panel"));

@@ -1,5 +1,6 @@
 function login()
 {
+	let redirectUrl = GetURLParameter("redirect");
 	let pass = $("#login-password").val() as string;
 	let un = $("#login-username").val() as string;
 	console.log("Unencrypted:")
@@ -18,7 +19,7 @@ function login()
 			storage.isGM = a.gm;
 			storage.userId = a.id;
 			storage.userName = decryptedUn;
-			window.location.href = "/dnd/index.html";
+			window.location.href = redirectUrl? redirectUrl : "/dnd/index.html";
 		}
 	}
 	return false;

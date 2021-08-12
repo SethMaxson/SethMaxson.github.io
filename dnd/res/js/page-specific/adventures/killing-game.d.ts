@@ -50,6 +50,7 @@ declare class KillingGameViewerNav extends React.Component<IKillingGameViewerNav
     render(): JSX.Element;
     changeTab(tab: KillingGameMenuActiveTab): void;
 }
+declare const KillingGameFriendshipTitles: string[];
 interface IKillingGameCharacterPageProps {
     character: IKillingGameCharacter;
     close: {
@@ -62,6 +63,21 @@ declare class KillingGameCharacterPage extends React.Component<IKillingGameChara
     static defaultProps: {
         friendshipLevel: number;
     };
+    render(): JSX.Element;
+}
+interface IKillingGameCharacterIndexProps {
+    characters: IKillingGameCharacter[];
+    displayCharacter: {
+        (character: IKillingGameCharacter): void;
+    };
+}
+declare class KillingGameCharacterIndex extends React.Component<IKillingGameCharacterIndexProps> {
+    render(): JSX.Element;
+}
+interface IKillingGameRegulationViewerProps {
+    regulations: string[];
+}
+declare class KillingGameRegulationViewer extends React.Component<IKillingGameRegulationViewerProps> {
     render(): JSX.Element;
 }
 interface IKillingGameVoteResultsProps {
@@ -95,5 +111,6 @@ interface IKillingGameIndex {
     characters: IKillingGameCharacter[];
     mapLayers: IMapLayer[];
     misc: IDioramaProps[];
+    regulations: string[];
 }
 declare const KILLINGGAMEDATA: IKillingGameIndex;

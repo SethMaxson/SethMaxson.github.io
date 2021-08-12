@@ -3,17 +3,16 @@
 
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Peoples of Geoss</title>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-		crossorigin="anonymous"></script>
 		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
 		<link href="/dnd/res/css/filterable.css" rel="stylesheet" type="text/css" media="all">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
 		<style>
 			#species-viewer-panel {
 				width: 100%;
-				min-height: 100%;
 				margin:0%;
-				box-sizing: border-box;
 				z-index:99;
 			}
 
@@ -21,31 +20,27 @@
 				max-width: 50%;
 			}
 		</style>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+		<script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
+		<script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
+
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
+		<!-- <script src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+		<script src="/dnd/res/js/mechanics.js"></script>
+		<script src="/dnd/res/js/controls/react-controls.js"></script>
+		<script src="/dnd/res/js/controls/filterable-panel.js"></script>
 		<script src="/dnd/res/js/common/filter.js"></script>
 		<script src="/dnd/res/js/fluff/species-fluff.js"></script>
-		<script src="/dnd/res/js/page-specific/species-viewer.js"></script>
+		<script type="module" src="/dnd/res/js/page-specific/species-viewer.js"></script>
 	</head>
 
 	<body>
-		<div class="filter-thing filter-panel">
-			<input type="text" name="search" class="search" placeholder="Filter..." />
-		</div>
-		<div class="background" style="padding:0px; height:100%;">
-			<div class="container" style="padding:0px; height:100%;">
-				<div id="species-viewer-panel" class="race">
-					<div class="name">Aarakocra</div>
-					<div class="properties">Guardians of the sky.</div>
-					<div class="description">
-						<p>
-							Aarakocra are a birdlike people, gifted with the power of flight. They usually prefer to live in small communities in the wilderness, and have a particular fondness for mountaintop settlements.
-						</p>
-						<p>
-							The most famous tribe of Aarakocra make their home at Notriven. Here they worship the goddess of wisdom, Notriv, and watch over the people below.
-						</p>
-					</div>
-					<img class="standee" src="/dnd/img/races/raceEntry/Aarakocra.png" alt="standee">
-				</div>
-			</div>
+		<div id="viewer-panel" class="w-100 h-100">
+
 		</div>
 	</body>
 

@@ -119,15 +119,14 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, I
 						<KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="Shop" id="shop" />
 						{this.props.showTrialTab && <KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="Trial" id="trial" />}
 						{this.props.showEvidenceTab && <KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="File" id="evidence" />}
+						{storage.userName == "" && <li className="me-0 ms-auto">
+							<LoginButton redirectUrl="/dnd/pages/adventures/killing-game.html" />
+						</li>}
 					</ul>
 
 					<div className="tab-content row flex-grow-1 flex-shrink-1 flex-column align-items-stretch overflow-hidden">
 						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "characters" ? " active" : "")} id="characters" role="tabpanel" aria-labelledby="characters-tab">
-							<div className="list-group h-100 overflow-auto">
-								{this.props.data.characters.sort((a, b) => a.status > b.status && 1 || -1).sort((a, b) => a.name > b.name && a.status == b.status && 1 || a.status == b.status && -1 || 0).map((character, index: number) =>
-									<CharacterLink character={character} key={index} onClick={this.props.displayCharacter} />
-								)}
-							</div>
+							<KillingGameCharacterIndex characters={this.props.data.characters} displayCharacter={this.props.displayCharacter} />
 						</div>
 
 						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "map" ? " active" : "")} id="map" role="tabpanel" aria-labelledby="map-tab">
@@ -135,53 +134,7 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, I
 						</div>
 
 						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "rules" ? " active" : "")} id="rules" role="tabpanel" aria-labelledby="rules-tab">
-							<div className="bg-dark h-100 overflow-auto p-0">
-								<ol className="list-group list-group-numbered m-0">
-									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-										All candidates will remain within Ascendant Aspirations Academy until such time as they are released by the headmaster.
-									</li>
-									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-										"Nighttime" is from 10 pm to 7 am. Some areas are off-limits at night, so please exercise caution.
-									</li>
-									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-										Sleeping anywhere other than the inn will be seen as sleeping in class and punished accordingly.
-									</li>
-									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-										With minimal restrictions, you are free to explore Ascendant Aspirations Academy at your discretion.
-									</li>
-									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-										Violence against the headmaster is strictly prohibited, as is destruction of floating orbs.
-									</li>
-									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-										An anointed who kills another candidate will graduate, but only if they can convince the other candidates that they are not the anointed. If the anointed succeeds, the anointed can leave, and all other living candidates will be killed in the anointed's place. If the anointed is proven guilty, the anointed alone will be rightfully executed.
-									</li>
-									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-										After three or more people discover a dead body, a “body discovery announcement” shall be made to inform everyone of the death.
-									</li>
-									{/* <li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-											Once a murder takes place, a class trial will begin shortly thereafter. Participation is mandatory for all surviving students.
-									</li> */}
-									{/* <li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-											If the guilty party is exposed during the class trial, they alone will be executed.
-									</li> */}
-									{/* <li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-											If the guilty party is not exposed, they alone will graduate, and all remaining students will be executed.
-									</li> */}
-									{/* <li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-											Lending your e-Handbook to another student is strictly prohibited.
-									</li> */}
-									{/* <li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-											The guilty party may only kill a maximum of two people during any single "Killing Game."
-									</li> */}
-									{/* <li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-											Attempting to break into locked rooms is strictly prohibited.
-									</li> */}
-									{/* <li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">Rule</li> */}
-									<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0">
-										Additional regulations may be added if necessary.
-									</li>
-								</ol>
-							</div>
+							<KillingGameRegulationViewer regulations={this.props.data.regulations} />
 						</div>
 
 						<div className={"tab-pane h-100 overflow-hidden" + (this.state.activeTab == "shop" ? " active" : "")} id="shop" role="tabpanel" aria-labelledby="shop-tab">
@@ -207,6 +160,16 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, I
 	}
 }
 
+
+const KillingGameFriendshipTitles = [
+	"Strangers",
+	"Acquaintances",
+	"Casual Friends",
+	"Friends",
+	"Close Friends",
+	"Very Close Friends",
+	"BFFs"
+];
 interface IKillingGameCharacterPageProps
 {
 	character: IKillingGameCharacter;
@@ -216,7 +179,7 @@ interface IKillingGameCharacterPageProps
 }
 class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPageProps> {
 	public static defaultProps = {
-		friendshipLevel: 1
+		friendshipLevel: storage.isGM? 6 : 1
     };
 	render()
 	{
@@ -268,6 +231,47 @@ class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPage
 						</div>
 					</div>
 				</div>
+			</div>
+		);
+	}
+}
+
+
+
+interface IKillingGameCharacterIndexProps
+{
+	characters: IKillingGameCharacter[];
+	displayCharacter: { (character: IKillingGameCharacter): void };
+}
+class KillingGameCharacterIndex extends React.Component<IKillingGameCharacterIndexProps> {
+	render()
+	{
+		return (
+			<div className="list-group h-100 overflow-auto">
+				{this.props.characters.sort((a, b) => a.status > b.status && 1 || -1).sort((a, b) => a.name > b.name && a.status == b.status && 1 || a.status == b.status && -1 || 0).map((character, index: number) =>
+					<CharacterLink character={character} key={index} onClick={this.props.displayCharacter} />
+				)}
+			</div>
+		);
+	}
+}
+
+interface IKillingGameRegulationViewerProps
+{
+	regulations: string[];
+}
+class KillingGameRegulationViewer extends React.Component<IKillingGameRegulationViewerProps> {
+	render()
+	{
+		return (
+			<div className="bg-dark h-100 overflow-auto p-0">
+				<ol className="list-group list-group-numbered m-0">
+					{this.props.regulations.map((rule, index: number) =>
+						<li className="list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0" key={index}>
+							{rule}
+						</li>
+					)}
+				</ol>
 			</div>
 		);
 	}
@@ -351,6 +355,7 @@ interface IKillingGameIndex
 	characters: IKillingGameCharacter[];
 	mapLayers: IMapLayer[];
 	misc: IDioramaProps[];
+	regulations: string[];
 }
 const KILLINGGAMEDATA: IKillingGameIndex = {
 	characters: KILLINGGAMECHARACTERS,
@@ -367,6 +372,22 @@ const KILLINGGAMEDATA: IKillingGameIndex = {
 				}
 			]
 		}
+	],
+	regulations: [
+		"All candidates will remain within Ascendant Aspirations Academy until such time as they are released by the headmaster.",
+		"\"Nighttime\" is from 10 pm to 7 am. Some areas are off-limits at night, so please exercise caution.",
+		"Sleeping anywhere other than the inn will be seen as sleeping in class and punished accordingly.",
+		"With minimal restrictions, you are free to explore Ascendant Aspirations Academy at your discretion.",
+		"Violence against the headmaster is strictly prohibited, as is destruction of floating orbs.",
+		"An anointed who kills another candidate will graduate, but only if they can convince the other candidates that they are not the anointed. If the anointed succeeds, the anointed can leave, and all other living candidates will be killed in the anointed's place. If the anointed is proven guilty, the anointed alone will be rightfully executed.",
+		"After three or more people discover a dead body, a “body discovery announcement” shall be made to inform everyone of the death.",
+		// "Once a murder takes place, a class trial will begin shortly thereafter. Participation is mandatory for all surviving students.",
+		// "If the guilty party is exposed during the class trial, they alone will be executed.",
+		// "If the guilty party is not exposed, they alone will graduate, and all remaining students will be executed.",
+		// "Lending your e-Handbook to another student is strictly prohibited.",
+		// "The guilty party may only kill a maximum of two people during any single \"Killing Game.\"",
+		// "Attempting to break into locked rooms is strictly prohibited.",
+		"Additional regulations may be added if necessary."
 	]
 };
 
