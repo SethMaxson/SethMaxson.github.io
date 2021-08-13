@@ -22,7 +22,7 @@ class LoginButton extends React.Component<ILoginButtonProps, ILoginButtonState> 
 		if (this.state.loggedIn) {
 			return (
 				<div className="nav-item">
-					<button className="nav-link bg-transparent border-0" onClick={this.logout}>Logged in as {storage.userName}. <u>Log out</u></button>
+					<button className="nav-link bg-transparent border-0" onClick={this.logout}><i>Logged in as {storage.userName}. </i>Log out</button>
 				</div>
 			);
 		}

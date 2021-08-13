@@ -1,4 +1,16 @@
 "use strict";
+const SPECIESFILTERS = [
+    {
+        andOr: "or",
+        multiSelect: true,
+        name: "Size",
+        values: [
+            "Small",
+            "Medium",
+            "Large"
+        ]
+    }
+];
 class SpeciesName extends React.Component {
     render() {
         if (this.props.tagline.length > 0) {
@@ -53,9 +65,9 @@ class SpeciesViewer extends React.Component {
         };
     }
     render() {
-        let filterableItems = this.props.Species.map(a => { return { text: a.name, tags: [] }; });
+        let filterableItems = this.props.Species.map(a => { return { text: a.name, tags: a.tags || [] }; });
         return (React.createElement("div", { className: "bg-dark bg-gradient p-0 h-100 overflow-hidden" },
-            React.createElement(FilterPanel, { items: filterableItems, selectedIndex: this.state.selectedIndex, onChange: this.changeSpecies }),
+            React.createElement(FilterPanel, { filters: SPECIESFILTERS, items: filterableItems, selectedIndex: this.state.selectedIndex, onChange: this.changeSpecies }),
             React.createElement(FilterPanelToggleButton, null),
             React.createElement("div", { className: "container-fluid bg-dark p-0 h-100 overflow-hidden", style: {
                     backgroundRepeat: "no-repeat",

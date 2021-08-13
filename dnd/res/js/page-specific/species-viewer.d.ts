@@ -1,4 +1,5 @@
 /// <reference types="react" />
+declare const SPECIESFILTERS: IFilterCategory[];
 interface ISpeciesNameProps {
     name: string;
     tagline: string;

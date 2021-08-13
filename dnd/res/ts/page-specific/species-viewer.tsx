@@ -1,3 +1,16 @@
+const SPECIESFILTERS: IFilterCategory[] = [
+	{
+		andOr: "or",
+		multiSelect: true,
+		name: "Size",
+		values: [
+			"Small",
+			"Medium",
+			"Large"
+		]
+	}
+];
+
 interface ISpeciesNameProps
 {
 	name: string;
@@ -104,10 +117,15 @@ class SpeciesViewer extends React.Component<ISpeciesViewerProps, ISpeciesViewerS
 	}
 	render()
 	{
-		let filterableItems: IFilterableItemObject[] = this.props.Species.map(a => { return { text: a.name, tags: [] } });
+		let filterableItems: IFilterableItemObject[] = this.props.Species.map(a => { return { text: a.name, tags: a.tags || [] } });
 		return (
 			<div className="bg-dark bg-gradient p-0 h-100 overflow-hidden">
-				<FilterPanel items={filterableItems} selectedIndex={this.state.selectedIndex} onChange={this.changeSpecies} />
+				<FilterPanel
+					filters={SPECIESFILTERS}
+					items={filterableItems}
+					selectedIndex={this.state.selectedIndex}
+					onChange={this.changeSpecies}
+				/>
 				<FilterPanelToggleButton />
 				<div className="container-fluid bg-dark p-0 h-100 overflow-hidden" style={{
 					backgroundRepeat: "no-repeat",
