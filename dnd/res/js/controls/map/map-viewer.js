@@ -22,7 +22,7 @@ class MapViewer extends React.Component {
         // __mapPan.mapPanBounds.left = -this.props.width;
     }
     render() {
-        return (React.createElement("div", { id: "map-body", className: "map-body" },
+        return (React.createElement("div", { id: "map-body", className: "map-body sharp" },
             React.createElement(MapControls, { centerMap: this.centerMap, overlayDisplay: this.state.overlayDisplay, overlays: this.props.overlays, setImageType: this.setImageType, setOverlayDisplay: this.setOverlayDisplay, zoom: this.state.zoom }),
             React.createElement(MapContainer, { landmasses: landmasses, overlayDisplay: this.state.overlayDisplay, overlays: this.props.overlays, size: { height: this.props.height, width: this.props.width }, useVectorImages: this.state.useVectorImages, zoom: this.state.zoom })));
     }
@@ -59,18 +59,21 @@ MapViewer.defaultProps = {
 };
 class MapControls extends React.Component {
     render() {
-        return (React.createElement("div", { className: "map-controls navbar navbar-dark bg-dark" },
-            React.createElement("div", { className: "map-controls-top-row" },
-                React.createElement(MapControlToggler, { targetID: "map-controls-overflow-tray" }),
-                React.createElement(MapZoomControl, { zoom: this.props.zoom }),
-                React.createElement(MapControlButton, { onClick: this.props.centerMap, text: "Reset Map Position" }),
-                React.createElement("span", { id: "Calendar" }),
-                React.createElement("span", { id: "Weather", style: { paddingLeft: "10px" } }),
-                React.createElement("div", { id: "TripDistance" }),
-                React.createElement("div", { id: "TripTime" })),
-            React.createElement("div", { id: "map-controls-overflow-tray", className: "collapse card card-body bg-dark" },
-                React.createElement(MapControlToggle, { onChange: this.props.setImageType, text: "Use SVG Maps" }),
-                React.createElement(MapControlOverlayToggle, { overlayDisplay: this.props.overlayDisplay, overlays: this.props.overlays, setOverlayDisplay: this.props.setOverlayDisplay }))));
+        return (React.createElement("div", { className: "map-controls navbar navbar-dark bg-dark text-light overflow-visible" },
+            React.createElement("div", { className: "container-fluid" },
+                React.createElement("div", { className: "map-controls-top-row" },
+                    React.createElement(MapControlToggler, { targetID: "map-controls-overflow-tray" }),
+                    React.createElement(MapZoomControl, { zoom: this.props.zoom }),
+                    React.createElement("span", { className: "navbar-text ps-2" },
+                        React.createElement("span", { id: "Calendar" }),
+                        React.createElement("span", { id: "Weather", style: { paddingLeft: "10px" } })),
+                    React.createElement("div", { id: "TripDistance" }),
+                    React.createElement("div", { id: "TripTime" }))),
+            React.createElement("div", { id: "map-controls-overflow-tray", className: "collapse bg-dark row overflow-show" },
+                React.createElement("div", { className: "btn-group", role: "group", "aria-label": "Button group with nested dropdown" },
+                    React.createElement(MapControlButton, { onClick: this.props.centerMap, text: "Reset Map Position" }),
+                    React.createElement(MapControlToggle, { onChange: this.props.setImageType, text: "Use SVG Maps" }),
+                    React.createElement(MapControlOverlayToggle, { overlayDisplay: this.props.overlayDisplay, overlays: this.props.overlays, setOverlayDisplay: this.props.setOverlayDisplay })))));
     }
 }
 class MapControlToggler extends React.Component {
@@ -87,7 +90,7 @@ class MapControlButton extends React.Component {
         };
     }
     render() {
-        return (React.createElement("button", { className: "btn btn-dark", onClick: this.handleClick }, this.props.text));
+        return (React.createElement("button", { className: "btn btn-outline-primary", onClick: this.handleClick }, this.props.text));
     }
 }
 class MapControlToggle extends React.Component {
@@ -116,9 +119,12 @@ class MapControlOverlayToggle extends React.Component {
             alert(`this.props.overlays.length != this.props.overlayDisplay.length (${this.props.overlays.length} != ${this.props.overlayDisplay.length})`);
         }
         if (this.props.overlays.length > 0 && this.props.overlays.length == this.props.overlayDisplay.length) {
-            return (React.createElement("div", { className: "btn-group", role: "group", "aria-label": "Basic checkbox toggle button group" }, this.props.overlays.map((overlay, index) => React.createElement("span", { key: index },
-                React.createElement("input", { id: overlay.name.replaceAll(" ", "-"), type: "checkbox", className: "btn-check", onChange: (e) => this.handleChange(e, index), defaultChecked: this.props.overlayDisplay[index] }),
-                React.createElement("label", { className: "btn btn-outline-primary", htmlFor: overlay.name.replaceAll(" ", "-") }, overlay.name)))));
+            return (React.createElement("div", { className: "btn-group", role: "group" },
+                React.createElement("button", { id: "btnGroupLayersDrop", type: "button", className: "btn btn-outline-primary dropdown-toggle", "data-bs-toggle": "dropdown", "aria-expanded": "false" }, "Map Layers"),
+                React.createElement("ul", { className: "dropdown-menu bg-dark text-light ps-1", "aria-labelledby": "btnGroupLayersDrop" }, this.props.overlays.map((overlay, index) => React.createElement("li", { key: index },
+                    React.createElement("div", { className: "form-check" },
+                        React.createElement("input", { id: overlay.name.replaceAll(" ", "-"), type: "checkbox", className: "form-check-input", onChange: (e) => this.handleChange(e, index), defaultChecked: this.props.overlayDisplay[index] }),
+                        React.createElement("label", { className: "form-check-label", htmlFor: overlay.name.replaceAll(" ", "-") }, overlay.name)))))));
         }
         else {
             return null;
@@ -134,7 +140,7 @@ class MapZoomControl extends React.Component {
         };
     }
     render() {
-        return (React.createElement("div", { className: "zoom-controls", style: { display: "inline-block" } },
+        return (React.createElement("div", { className: "zoom-controls mx-2", style: { display: "inline-block" } },
             "- ",
             React.createElement("input", { type: "range", className: "slider", id: "map-viewer-zoom", name: "map-viewer-zoom", min: this.props.zoom.minZoom, max: this.props.zoom.maxZoom, onChange: this.handleChange, step: this.props.zoom.step, value: this.props.zoom.currentZoom }),
             " +",

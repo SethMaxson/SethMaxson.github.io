@@ -39,7 +39,7 @@ class LayeredMapLayer extends React.Component {
                         React.createElement("div", { className: "modal-body", dangerouslySetInnerHTML: { __html: object.popoverText } }),
                         React.createElement("div", { className: "modal-footer" },
                             React.createElement("button", { type: "button", className: "btn btn-primary", "data-bs-dismiss": "modal" }, "Close")))))),
-            React.createElement("div", { className: "w-auto p-0 m-0 position-relative", style: { transformOrigin: "top left", transform: "scale(" + this.props.scale + ")" } },
+            React.createElement("div", { className: "w-auto p-0 m-0 position-relative", style: { display: "inline-block", transformOrigin: "top left", transform: "scale(" + this.props.scale + ")" } },
                 this.props.layer.objects.map((object, index) => React.createElement("a", { className: "border border-1 position-absolute d-block " + (object.locked ? "border-danger" : "border-info"), role: "button", "data-bs-toggle": "modal", "data-bs-target": "#" + object.name.replaceAll(" ", "").replaceAll("'", "") + "Modal", style: { left: object.position.x + "px", top: object.position.y + "px", width: object.size.width + "px", height: object.size.height + "px" }, title: object.name, key: index })),
                 React.createElement("img", { src: this.props.layer.image, style: { imageRendering: "pixelated" } }))));
     }

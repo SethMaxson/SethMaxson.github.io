@@ -4,99 +4,259 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Pantheon</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
-		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(function() {
+				$("#select-pantheon-era").on("change", function() {
+					$(".newgods").hide();
+					$(".oldgods").hide();
+					$($(this).val()).show();
+				})
+			});
+		</script>
+
 		<style>
 			.missing {
-				color:#de2222;
+				color: #de2222;
 				font-weight: bold;
 			}
 
 			.oldgods {
-				display:none;
+				display: none;
 			}
 		</style>
 	</head>
 
 	<body>
-		<div class="background">
-			<div class="container">
+		<div class="bg-dark bg-gradient bg-light">
+			<div class="container bg-light">
 				<h1>Pantheon</h1>
 
-				<p>The following is the most widely accepted pantheon in the known world. While there are countless other systems
-					of belief, nearly everyone agrees that these beings play a part in the everyday function of reality.</p>
-
-				<p><b>GOD OF CHAOS - Spaxis.</b> Spaxis thrives on chance and relishes absurdity. He frequently offers deals to
-					mortals under various guises, only to have the deal backfire on his victims in unpredictable ways. His arrival is
-					usually signaled by loud cackling. Over the centuries, this behavior has caused many a mortal to refer to Spaxis
-					as THE MAD GOD.</p>
-
-				<p><b>GODDESS OF CREATION - Rachi.</b> Rachi is the flower child of the gods. She promotes new ideas, new
-					inventions, and all other general newness. Because of this, she is often associated with science and invention,
-					and is often thought to be the patron of tinkerers.</p>
-
-				<p class="oldgods"><b>GOD OF DEATH - Immordan.</b> <span class="missing">DECEASED</span> Most mortals know little of Immordan, for he usually only reveals himself to
-					them at the time of their death. He watches over the souls of the deceased. This includes ensuring that everyone
-					is assigned an afterlife befitting their deeds during their time on the mortal coil.</p>
-
-				<p class="newgods"><b>GOD OF DEATH - Namfoodle.</b>
-
+				<p>
+					Geoss is a world full of mystery and opportunity, watched over by many deities. The ranks of the deities have grown slowly over the centuries. The following is the most widely accepted pantheon in the known world. While there are countless other systems of belief, nearly everyone agrees that these beings play a part in the everyday function of reality.
 				</p>
 
-				<p class="oldgods"><b>GODDESS OF THE HARVEST - Graisum.</b>
-					Graisum is responsible for maintaining the balance of nature. Farms, forests, and all naturally occurring biomes fall under her domain. She is depicted in most religious texts as somewhat aloof, caring far more for flora than fauna.
-				</p>
+				<select id="select-pantheon-era" class="form-select mb-3" aria-label="Select Era of Pantheon to Display">
+					<option value=".oldgods">Show Old Pantheon (Campaign #1)</option>
+					<option value=".newgods" selected>Show Current Pantheon</option>
+				</select>
 
-				<p class="newgods"><b>GOD OF THE HARVEST - Bud. (Lord God King Brrawd)</b>
-					Bud is responsible for maintaining the balance of nature. Farms, forests, and all naturally occurring biomes fall under his domain.
-				</p>
+				<div class="card mt-4 mb-5 my-md-0 mb-lg-5 text-muted">
+					<strong class="d-block h6 ps-3 my-2 pb-2 border-bottom">On this page</strong>
+					<nav id="TableOfContents">
+						<ul>
+							<li><a href="#prime-pantheon">Prime Pantheon</a></li>
+							<li><a href="#lesser-deities">Lesser Deities</a></li>
+						</ul>
+					</nav>
+				</div>
 
-				<p class="oldgods"><b>GODDESS OF LAW - Larazi.</b>
-					Larazi is the guardian of law, order, and justice. Out of all the gods, she is easily one of the most respected. And feared. Her tenets require that her followers adhere to a strict code. Breaking the code is severely punished in nearly all cases. While few can argue that Larazi is unjust, she tends to be unforgiving.
-				</p>
 
-				<p class="newgods"><b>GOD OF LAW - Falimur.</b>
-					Falimur is the guardian of law, order, and justice. He was mortal until relatively recently, and was a loyal servant of the gods during his previous life. His tenets require that his followers adhere to a strict code. Breaking the code is severely punished in many cases.<br/>
-					<br/>
-					Despite being one of the youngest members of the pantheon, his prior service meant he was accepted by most of the other deities with open arms upon his ascension.
-				</p>
+				<div name="PrimePantheon" class="border-bottom pb-3 mb-4">
+					<h2 id="prime-pantheon">Prime Pantheon</h2>
+					<p>
+						Order is kept by the twelve oldest and most powerful of the deities, known as prime deities. Collectively they are referred to as the Prime Pantheon.
+					</p>
+					<div class="row row-cols-1 row-cols-md-3 g-4">
+						<div class="col">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Spaxis</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF CHAOS</h6>
+									<p class="card-text">
+										Spaxis thrives on chance and relishes absurdity. He frequently offers deals to mortals under various guises, only to have the deal backfire on his victims in unpredictable ways. His arrival is usually signaled by loud cackling. Over the centuries, this behavior has caused many a mortal to refer to Spaxis as THE MAD GOD.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card h-100">
+								<!-- <img src="/dnd/img/emblems/Rachi.png" class="card-img-top" alt="..."> -->
+								<div class="card-body">
+									<h5 class="card-title">Rachi</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF CREATION</h6>
+									<p class="card-text">
+										Rachi is the flower child of the gods. She promotes new ideas, new inventions, and all other general newness. Because of this, she is often associated with science and invention, and is often thought to be the patron of tinkerers.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col oldgods">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Immordan <span class="missing">DECEASED</span></h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF DEATH</h6>
+									<p class="card-text">
+										Most mortals know little of Immordan, for he usually only reveals himself to them at the time of their death. He watches over the souls of the deceased. This includes ensuring that everyone is assigned an afterlife befitting their deeds during their time on the mortal coil.
+									</p>
+								</div>
+								<div class="card-footer text-muted">
+									Usurped by the Rewera
+								</div>
+							</div>
+						</div>
+						<div class="col newgods">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Namfoodle</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF DEATH</h6>
+									<p class="card-text">
 
-				<p><b>GOD OF LIFE - Vidan.</b> Vidan is responsible for ushering new souls into existence. He is often regarded as
-					the kindest of the gods, and is beloved by most mortals. It has been said that he has retrieved the souls of dead
-					mortals on a few occasions so that they could be reincarnated into a new life. If this is true, it doesn't happen
-					often. These souls would have to be retrieved from the underworld, and Immordan is not easy to steal from.</p>
-
-				<p><b>GODDESS OF WISDOM - Notriv.</b> Notriv is the patron deity of lessons well-learned. She is thought to be
-					something of a parental figure to most mortal life, and is associated with knowledge and self-preservation. What many people
-					consider to be common sense, is believed by others to be the guiding voice of Notriv.</p>
-
-				<p><b>GODDESS OF STORMS - Tordanei.</b> Tordanei is the most passionate of the gods, and changes moods as often as
-					the wind changes directions. Despite her emotional inconsistency, Tordanei is generally believed to be benevolent.
-				</p>
-
-				<p class="oldgods"><b>GOD OF TIME - Chromus.</b> Chromus is the deity responsible for the passage of time. Ancient texts speak of
-					time resembling a roaring river, eroding everything in its path. Chromus harnessed this flow and controls it,
-					allowing mortals a chance at a proper lifespan. This is a very delicate balance. If too much of the flow were to
-					be let through, the lifespans of most mortals would be over in a moment. If too little were to be let through, the
-					passage of time could stop completely, resulting in the material plane being locked in one moment forever.</p>
-
-				<p class="newgods"><b>GODDESS OF TIME - Aetas.</b> Aetas is the deity responsible for the passage of time. Ancient texts speak of
-					time resembling a roaring river, eroding everything in its path. Aetas harnesses this flow and controls it,
-					allowing mortals a chance at a proper lifespan. This is a very delicate balance. If too much of the flow were to
-					be let through, the lifespans of most mortals would be over in a moment. If too little were to be let through, the
-					passage of time could stop completely, resulting in the material plane being locked in one moment forever.</p>
-
-				<p><b>GOD OF WAR - Mortadus.</b> Mortadus lives for combat. He becomes restless in times of peace, and has even
-					been known to stage large gladiatorial tournaments for his own amusement.</p>
-
-				<p><b>LORD OF THE CHAMPION - Lonic.</b> Lonic is the patron deity of heroes and adventurers who seek to better the
-					world. Lonic's core tenet is courage, and he strongly encourages his followers to overthrow evil wherever it
-					arises. He and Fouvil are mortal enemies.</p>
-
-				<p><b>LORD OF THE VILE - Fouvil.</b> Fouvil is the dark god of those who seek to obtain power through whatever
-					means necessary. His worshippers almost universally identify with evil alignments. People of Neutral or Good
-					alignments tend to despise Fouvil. Fouvil and Lonic have a long-standing rivalry, and constantly instruct their
-					followers to wage war on each other.</p>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col oldgods">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Graisum <span class="missing">DECEASED</span></h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF THE HARVEST</h6>
+									<p class="card-text">
+										Graisum is responsible for maintaining the balance of nature. Farms, forests, and all naturally occurring biomes fall under her domain. She is depicted in most religious texts as somewhat aloof, caring far more for flora than fauna.
+									</p>
+								</div>
+								<div class="card-footer text-muted">
+									Slain in the final confrontation against the Rewera.
+								</div>
+							</div>
+						</div>
+						<div class="col newgods">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Bud (Lord God King Brrawd)</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF THE HARVEST</h6>
+									<p class="card-text">
+										Bud is responsible for maintaining the balance of nature. Farms, forests, and all naturally occurring biomes fall under his domain.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col oldgods">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Larazi <span class="missing">DECEASED</span></h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF LAW</h6>
+									<p class="card-text">
+										Larazi is the guardian of law, order, and justice. Out of all the gods, she is easily one of the most respected. And feared. Her tenets require that her followers adhere to a strict code. Breaking the code is severely punished in nearly all cases. While few can argue that Larazi is unjust, she tends to be unforgiving.
+									</p>
+								</div>
+								<div class="card-footer text-muted">
+									Slain in the final confrontation against the Rewera.
+								</div>
+							</div>
+						</div>
+						<div class="col newgods">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Falimur</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF LAW</h6>
+									<p class="card-text">
+										Falimur is the guardian of law, order, and justice. He was mortal until relatively recently, and was a loyal servant of the gods during his previous life. His tenets require that his followers adhere to a strict code. Breaking the code is severely punished in many cases.
+									</p>
+									<p class="card-text">
+										Despite being one of the youngest members of the pantheon, his prior service meant he was accepted by most of the other deities with open arms upon his ascension.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Vidan</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF LIFE</h6>
+									<p class="card-text">
+										Vidan is responsible for ushering new souls into existence. He is often regarded as the kindest of the gods, and is beloved by most mortals. It has been said that he has retrieved the souls of dead mortals on a few occasions so that they could be reincarnated into a new life. If this is true, it doesn't happen often. These souls would have to be retrieved from the underworld, and Immordan is not easy to steal from.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Notriv</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF WISDOM</h6>
+									<p class="card-text">
+										Notriv is the patron deity of lessons well-learned. She is thought to be something of a parental figure to most mortal life, and is associated with knowledge and self-preservation. What many people consider to be common sense, is believed by others to be the guiding voice of Notriv.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Tordanei</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF STORMS</h6>
+									<p class="card-text">
+										Tordanei is the most passionate of the gods, and changes moods as often as the wind changes directions. Despite her emotional inconsistency, Tordanei is generally believed to be benevolent.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col oldgods">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Chromus <span class="missing">DECEASED</span></h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF TIME</h6>
+									<p class="card-text">
+										Chromus is the deity responsible for the passage of time. Ancient texts speak of time resembling a roaring river, eroding everything in its path. Chromus harnessed this flow and controls it, allowing mortals a chance at a proper lifespan. This is a very delicate balance. If too much of the flow were to be let through, the lifespans of most mortals would be over in a moment. If too little were to be let through, the passage of time could stop completely, resulting in the material plane being locked in one moment forever.
+									</p>
+								</div>
+								<div class="card-footer text-muted">
+									Slain in the final confrontation against the Rewera.
+								</div>
+							</div>
+						</div>
+						<div class="col newgods">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Aetas</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF TIME</h6>
+									<p class="card-text">
+										Aetas is the deity responsible for the passage of time. Ancient texts speak of time resembling a roaring river, eroding everything in its path. Aetas harnesses this flow and controls it, allowing mortals a chance at a proper lifespan. This is a very delicate balance. If too much of the flow were to be let through, the lifespans of most mortals would be over in a moment. If too little were to be let through, the passage of time could stop completely, resulting in the material plane being locked in one moment forever.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Mortadus</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF WAR</h6>
+									<p class="card-text">
+										Mortadus lives for combat. He becomes restless in times of peace, and has even been known to stage large gladiatorial tournaments for his own amusement.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Lonic</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">LORD OF THE CHAMPION</h6>
+									<p class="card-text">
+										Lonic is the patron deity of heroes and adventurers who seek to better the world. Lonic's core tenet is courage, and he strongly encourages his followers to overthrow evil wherever it arises. He and Fouvil are mortal enemies.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card h-100">
+								<div class="card-body">
+									<h5 class="card-title">Fouvil</h5>
+									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">LORD OF THE VILE</h6>
+									<p class="card-text">
+										Fouvil is the dark god of those who seek to obtain power through whatever means necessary. His worshippers almost universally identify with evil alignments. People of Neutral or Good alignments tend to despise Fouvil. Fouvil and Lonic have a long-standing rivalry, and constantly instruct their followers to wage war on each other.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<!-- GOD OF CHAOS - Spaxis.
 					Appearance: Long, wirey beard pulled over his head and fastened as a topknot.
@@ -145,55 +305,61 @@
 					LORD OF THE VILE - Fouvil.
 					Appearance: Overweight with curly mustache
 					RP: Hammy villain -->
+				</div>
 
-				<h2>Lesser Deities</h2>
-				<p><b>Nilbog</b> - Chaos Imp - goblin god of comedy and revenge</p>
-				<p><b>Veland</b> - Gob of Goblins - protector of goblins
-					<!-- Little is known about the god Veland. His worshippers are almost exclusively
-					goblins, and their priests are always adorned with purple, feathered hats. Beyond this, Veland's motivations and
-					powers remain a mystery. -->
-				</p>
-				<p class="oldgods"><b>Gillywung</b> - Frog All-Mother - protector of frogfolk <span class="missing">MISSING, PRESUMED DEAD</span></p>
-				<p class="newgods"><b>Felty</b> - Frog All-Mother - protector of frogfolk</p>
-				<p><b>Captain Chad</b> - Pirate Idol - god of pirates</p>
-				<p><b>Pteros</b> - Dragon Ancestor</p>
-				<p><b>Ghoyzhu</b> - Fiery Anger - god of rage and flame</p>
-				<p class="newgods"><b>Jasper</b> - Winged Warrior</p>
-				<p><b>Limerick</b> - Immortal Prankster - god of pranks</p>
-				<p><b>Praisidio</b> - Death Delayer</p>
-				<p><b>Stefanson</b> - Villain Tutor</p>
-				<p><b>Doujien</b> - Sultan of Smiles - god of happiness</p>
-				<p><b>Benterton</b> - Bad Day Buddy - god of sadness and mourning</p>
-				<p><b>Liaxon</b> - Purveyor of Untruth - god of lies and deception</p>
-				<p><b>Irwodile</b> - Reptile Representative - god of reptilian creatures</p>
-				<p><b>Mosoc</b> - Ballad Boi - god of song
-					<!-- <p>
-						There was once a reclusive druid who loved to sing. Despite his hatred of the outside world, he wished to perform as part of a barbershop quartet. During one of his lonely practice sessions, he began to hear a wolf howling along. This continued the next day, and the day after that. Over time, he and the wolf became fast friends. Hoping to make his barbershop quartet dream a reality, the druid awakened the wolf so that he could howl with actual lyrics.
-					</p>
+				<div name="LesserDeities">
+					<h2 id="lesser-deities">Lesser Deities</h2>
 					<p>
-						The local tribe of goblins had never seen a singing wolf, and quickly decided that he must be a god. It was through this worship that Mosoc the singing wolf first ascended.
-					</p> -->
-				</p>
-				<p><b>Kragene</b> - Commerce Commander - god of commerce and wealth
-					<!-- <p>
-						Kragene's acolytes call on him for guidance in buying and selling. His interventions on his followers behalf is usually to simply tell them what something is actually worth.
-					</p> -->
-				</p>
-				<p><b>Robyll Cypress</b> - Maker of Monsters <span class="missing">DECEASED</span></p>
-				<p><b>Makolo</b> - Prince of Naptime - god of rest</p>
-				<p><b><del>Klause</del></b> - Jolly Fat Man - god of solstice charity</p>
-				<p><b>Lago</b> - Hider of Eggs - god of the spring festival</p>
-				<p><b>Enamela</b> - Tooth Collector</p>
-				<p><b>Thobos</b> - Squirrel Supreme - divine messenger of the harvest</p>
-				<p><b>Rinald</b> - Mercenary Master - god of good fortune for sellswords</p>
-				<p><b>Leosut</b> - Plane Jane - god of inter-dimensional travel</p>
-				<p><b>Aviiha</b> - Soul Pirate</p>
-				<p><b>Jackael</b> - Electrifying Moves - god of dance</p>
-				<p><b>Telov</b> - Keeper of History - god of records and history</p>
-				<!-- <p><b>Ociphe (oh - see - feh)</b> - Matron of Mistakes <span class="missing">MISSING, PRESUMED DEAD</span></p> -->
-				<p><b><del>Ochipe (oh - see - feh)</del></b> - Matron of Mistakes - goddess of misfortune</p>
-				<p><b>Santiago</b> - The Unavoidable</p>
-				<p><b>Fielum</b> - Creature Categorizer - god of animal classification and identification</p>
+						The remaining gods and goddesses each swear their fealty to a single member of the prime pantheon. These subservient divines are known as lesser deities or demigods. While the origin of prime deities predates recorded history, most of the lesser deities are mortals who ascended to godhood. This occurs when a mortal receives genuine, sincere worship from another mortal. The strength of the worshiper's belief causes the recipient of the worship to transcend into divinity. The more active worshippers a demigod has, the more powerful they become. Theoretically, a demigod could become a prime deity with enough worshippers.
+					</p>
+					<div class="list-group">
+						<div class="list-group-item"><b>Aviiha</b> - Soul Pirate</div>
+						<div class="list-group-item"><b>Benterton</b> - Bad Day Buddy - god of sadness and mourning</div>
+						<div class="list-group-item"><b>Captain Chad</b> - Pirate Idol - god of pirates</div>
+						<div class="list-group-item"><b>Doujien</b> - Sultan of Smiles - god of happiness</div>
+						<div class="list-group-item"><b>Enamela</b> - Tooth Collector</div>
+						<div class="list-group-item newgods"><b>Felty</b> - Frog All-Mother - protector of frogfolk</div>
+						<div class="list-group-item"><b>Fielum</b> - Creature Categorizer - god of animal classification and identification</div>
+						<div class="list-group-item oldgods"><b>Gillywung</b> - Frog All-Mother - protector of frogfolk <span class="missing">MISSING, PRESUMED DEAD</span></div>
+						<div class="list-group-item"><b>Ghoyzhu</b> - Fiery Anger - god of rage and flame</div>
+						<div class="list-group-item"><b>Irwodile</b> - Reptile Representative - god of reptilian creatures</div>
+						<div class="list-group-item"><b>Jackael</b> - Electrifying Moves - god of dance</div>
+						<div class="list-group-item newgods"><b>Jasper</b> - Winged Warrior</div>
+						<div class="list-group-item"><b><del>Klause</del></b> - Jolly Fat Man - god of solstice charity</div>
+						<div class="list-group-item"><b>Kragene</b> - Commerce Commander - god of commerce and wealth
+							<!-- <p>
+							Kragene's acolytes call on him for guidance in buying and selling. His interventions on his followers behalf is usually to simply tell them what something is actually worth.
+						</p> -->
+						</div>
+						<div class="list-group-item"><b>Lago</b> - Hider of Eggs - god of the spring festival</div>
+						<div class="list-group-item"><b>Leosut</b> - Plane Jane - god of inter-dimensional travel</div>
+						<div class="list-group-item"><b>Liaxon</b> - Purveyor of Untruth - god of lies and deception</div>
+						<div class="list-group-item"><b>Limerick</b> - Immortal Prankster - god of pranks</div>
+						<div class="list-group-item"><b>Makolo</b> - Prince of Naptime - god of rest</div>
+						<div class="list-group-item"><b>Mosoc</b> - Ballad Boi - god of song
+							<!-- <p>
+							There was once a reclusive druid who loved to sing. Despite his hatred of the outside world, he wished to perform as part of a barbershop quartet. During one of his lonely practice sessions, he began to hear a wolf howling along. This continued the next day, and the day after that. Over time, he and the wolf became fast friends. Hoping to make his barbershop quartet dream a reality, the druid awakened the wolf so that he could howl with actual lyrics.
+						</p>
+						<p>
+							The local tribe of goblins had never seen a singing wolf, and quickly decided that he must be a god. It was through this worship that Mosoc the singing wolf first ascended.
+						</p> -->
+						</div>
+						<div class="list-group-item"><b>Nilbog</b> - Chaos Imp - goblin god of comedy and revenge</div>
+						<!-- <div class="list-group-item"><b>Ociphe (oh - see - feh)</b> - Matron of Mistakes <span class="missing">MISSING, PRESUMED DEAD</span></div> -->
+						<div class="list-group-item oldgods"><b><del>Ochipe (oh - see - feh)</del></b> - Matron of Mistakes - goddess of misfortune</div>
+						<div class="list-group-item"><b>Pteros</b> - Dragon Ancestor</div>
+						<div class="list-group-item"><b>Praisidio</b> - Death Delayer</div>
+						<div class="list-group-item"><b>Rinald</b> - Mercenary Master - god of good fortune for sellswords</div>
+						<div class="list-group-item oldgods"><b>Robyll Cypress</b> - Maker of Monsters <span class="missing">DECEASED</span></div>
+						<div class="list-group-item"><b>Santiago</b> - The Unavoidable</div>
+						<div class="list-group-item"><b>Stefanson</b> - Villain Tutor</div>
+						<div class="list-group-item"><b>Telov</b> - Keeper of History - god of records and history</div>
+						<div class="list-group-item"><b>Thobos</b> - Squirrel Supreme - divine messenger of the harvest</div>
+						<div class="list-group-item"><b>Veland</b> - Gob of Goblins - protector of goblins
+							<!-- Little is known about the god Veland. His worshippers are almost exclusively goblins, and their priests are always adorned with purple, feathered hats. Beyond this, Veland's motivations and powers remain a mystery. -->
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>

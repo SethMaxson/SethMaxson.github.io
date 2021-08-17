@@ -4,9 +4,18 @@ declare class CityBlurbViewer extends ModalWindow {
     close(): void;
     displayCity(city: ICity): void;
 }
+interface ICityBlurbOffCanvasProps {
+    city?: ICity;
+}
+declare class CityBlurbOffCanvas extends React.Component<ICityBlurbOffCanvasProps> {
+    render(): JSX.Element;
+}
 interface ICityBlurbProps {
     JsonObject: ICity;
 }
-declare class CityBlurb extends ReactHideableContainer<ICityBlurbProps, IReactHideableContainerState> {
+declare class CityBlurbDeprecated extends ReactHideableContainer<ICityBlurbProps, IReactHideableContainerState> {
     render(): JSX.Element | null;
+}
+declare class CityBlurb extends React.Component<ICityBlurbProps> {
+    render(): JSX.Element;
 }

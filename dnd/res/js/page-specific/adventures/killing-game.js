@@ -57,9 +57,9 @@ class KillingGameViewerNav extends React.Component {
                     React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Shop", id: "shop" }),
                     this.props.showTrialTab && React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Trial", id: "trial" }),
                     this.props.showEvidenceTab && React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "File", id: "evidence" }),
-                    storage.userName == "" && React.createElement("li", { className: "me-0 ms-auto" },
+                    (storage.userName == "" || storage.userName == undefined) && React.createElement("li", { className: "me-0 ms-auto" },
                         React.createElement(LoginButton, { redirectUrl: "/dnd/pages/adventures/killing-game.html" }))),
-                React.createElement("div", { className: "tab-content row flex-grow-1 flex-shrink-1 flex-column align-items-stretch overflow-hidden" },
+                React.createElement("div", { className: "tab-content row flex-grow-1 flex-shrink-1 flex-column align-items-stretch overflow-hidden bg-dark" },
                     React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "characters" ? " active" : ""), id: "characters", role: "tabpanel", "aria-labelledby": "characters-tab" },
                         React.createElement(KillingGameCharacterIndex, { characters: this.props.data.characters, displayCharacter: this.props.displayCharacter })),
                     React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "map" ? " active" : ""), id: "map", role: "tabpanel", "aria-labelledby": "map-tab" },
@@ -142,7 +142,7 @@ class KillingGameCharacterIndex extends React.Component {
 class KillingGameRegulationViewer extends React.Component {
     render() {
         return (React.createElement("div", { className: "bg-dark h-100 overflow-auto p-0" },
-            React.createElement("ol", { className: "list-group list-group-numbered m-0" }, this.props.regulations.map((rule, index) => React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0", key: index }, rule)))));
+            React.createElement("ol", { className: "list-group list-group-numbered m-0" }, this.props.regulations.map((rule, index) => React.createElement("li", { className: "list-group-item list-group-item-dark bg-dark text-light border-secondary border-end-0 border-start-0", dangerouslySetInnerHTML: { __html: rule }, key: index })))));
     }
 }
 class KillingGameVoteResults extends React.Component {
@@ -197,18 +197,20 @@ const KILLINGGAMEDATA = {
         }
     ],
     regulations: [
-        "All candidates will remain within Ascendant Aspirations Academy until such time as they are released by the headmaster.",
+        "All candidates will remain within <i>Ascendant Aspirations Academy</i> until such time as they are released by the headmaster.",
         "\"Nighttime\" is from 10 pm to 7 am. Some areas are off-limits at night, so please exercise caution.",
         "Sleeping anywhere other than the inn will be seen as sleeping in class and punished accordingly.",
-        "With minimal restrictions, you are free to explore Ascendant Aspirations Academy at your discretion.",
+        "With minimal restrictions, you are free to explore <i>Ascendant Aspirations Academy</i> at your discretion.",
         "Violence against the headmaster is strictly prohibited, as is destruction of floating orbs.",
         "An anointed who kills another candidate will graduate, but only if they can convince the other candidates that they are not the anointed. If the anointed succeeds, the anointed can leave, and all other living candidates will be killed in the anointed's place. If the anointed is proven guilty, the anointed alone will be rightfully executed.",
+        "Candidates shall not remove training weapons from the <i>Combat Training Area</i>.",
+        "Candidates shall not remove bows or crossbows from the <i>Archery Range</i>.",
         "After three or more people discover a dead body, a “body discovery announcement” shall be made to inform everyone of the death.",
-        // "Once a murder takes place, a class trial will begin shortly thereafter. Participation is mandatory for all surviving students.",
+        // "Once a murder takes place, a class trial will begin shortly thereafter. Participation is mandatory for all surviving candidates.",
         // "If the guilty party is exposed during the class trial, they alone will be executed.",
-        // "If the guilty party is not exposed, they alone will graduate, and all remaining students will be executed.",
-        // "Lending your e-Handbook to another student is strictly prohibited.",
-        // "The guilty party may only kill a maximum of two people during any single \"Killing Game.\"",
+        // "If the guilty party is not exposed, they alone will graduate, and all remaining candidates will be executed.",
+        // "Lending your e-Handbook to another candidate is strictly prohibited.",
+        "Each candidate may only kill a maximum of two people during any single \"Killing Game.\"",
         // "Attempting to break into locked rooms is strictly prohibited.",
         "Additional regulations may be added if necessary."
     ]

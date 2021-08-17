@@ -1,7 +1,7 @@
 "use strict";
 class Nav extends React.Component {
     render() {
-        return (React.createElement("div", { className: "navbar navbar-expand-lg navbar-dark bg-dark" },
+        return (React.createElement("div", { className: "navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary" },
             React.createElement("a", { className: "navbar-brand", target: "mainFrame", href: "/dnd/pages/maps/worldatlas.html" }, "Geoss"),
             React.createElement("button", { className: "navbar-toggler", type: "button", "data-bs-toggle": "collapse", "data-bs-target": "#navbarSupportedContent", "aria-controls": "navbarSupportedContent", "aria-expanded": "false", "aria-label": "Toggle navigation" },
                 React.createElement("span", { className: "navbar-toggler-icon" })),

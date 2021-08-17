@@ -4,11 +4,20 @@ class ModalWindow {
         this.reactRef = null;
         this.reactComponentMounted = true;
         let me = this;
-        this.element = $(`<div class="modal-window">
-			<button class="modal-close-button">X</button>
-			<div class="render-panel">
+        // this.element = $(`<div class="modal-window">
+        // 	<button class="modal-close-button">X</button>
+        // 	<div class="render-panel">
+        // 	</div>
+        // </div>`);
+        this.element = $(`
+			<div class="modal-window offcanvas offcanvas-end" tabIndex="-1" id="city-blurb-offcanvas" aria-labelledby="city-blurb-offcanvas-label">
+				<div class="offcanvas-header">
+					<button type="button" class="btn-close text-reset modal-close-button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+				</div>
+				<div class="offcanvas-body render-panel">
+				</div>
 			</div>
-		</div>`);
+		`);
         $(container).append(this.element);
         this.element.find(".modal-close-button").on("click", function () {
             me.close();
@@ -19,6 +28,7 @@ class ModalWindow {
     close() {
         this.reactRef?.hide();
         this.element.hide();
+        this.element.removeClass("show");
     }
     dispose() {
         this.element.remove();
@@ -27,6 +37,8 @@ class ModalWindow {
     open() {
         this.reactRef?.show();
         this.element.show();
+        this.element.css({ visibility: "visible" });
+        this.element.addClass("show");
     }
     mountReact(element) {
         ReactDOM.render(element, this.element.find(".render-panel")[0]);

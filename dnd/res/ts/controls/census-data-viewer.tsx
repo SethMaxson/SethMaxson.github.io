@@ -12,7 +12,7 @@ class RegionCensusViewer extends ModalWindow
 	displayCity(city: ICity)
 	{
 		let me = this;
-		super.mountReact(<CityBlurb JsonObject={city} ref={(component) => { me.reactRef = component }} />);
+		super.mountReact(<CityBlurbDeprecated JsonObject={city} ref={(component) => { me.reactRef = component }} />);
 		super.open();
 	}
 }

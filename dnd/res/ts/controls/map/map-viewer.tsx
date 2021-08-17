@@ -59,7 +59,7 @@ class MapViewer extends React.Component<IMapViewerProps, IMapViewerState> {
 	}
 	render() {
 		return (
-			<div id="map-body" className="map-body">
+			<div id="map-body" className="map-body sharp">
 				<MapControls
 					centerMap={this.centerMap}
 					overlayDisplay={this.state.overlayDisplay}
@@ -76,6 +76,7 @@ class MapViewer extends React.Component<IMapViewerProps, IMapViewerState> {
 					useVectorImages={this.state.useVectorImages}
 					zoom={this.state.zoom}
 				/>
+				{/* <CityBlurbOffCanvas /> */}
 			</div>
 		);
 	}
@@ -126,19 +127,25 @@ interface IMapControlsState {}
 class MapControls extends React.Component<IMapControlsProps, IMapControlsState> {
 	render() {
 		return (
-			<div className="map-controls navbar navbar-dark bg-dark">
-				<div className="map-controls-top-row">
-					<MapControlToggler targetID="map-controls-overflow-tray" />
-					<MapZoomControl zoom={this.props.zoom} />
-					<MapControlButton onClick={this.props.centerMap} text="Reset Map Position" />
-					<span id="Calendar"></span>
-					<span id="Weather" style={{paddingLeft: "10px"}}></span>
-					<div id="TripDistance"></div>
-					<div id="TripTime"></div>
+			<div className="map-controls navbar navbar-dark bg-dark text-light overflow-visible">
+				<div className="container-fluid">
+					<div className="map-controls-top-row">
+						<MapControlToggler targetID="map-controls-overflow-tray" />
+						<MapZoomControl zoom={this.props.zoom} />
+						<span className="navbar-text ps-2">
+							<span id="Calendar"></span>
+							<span id="Weather" style={{paddingLeft: "10px"}}></span>
+						</span>
+						<div id="TripDistance"></div>
+						<div id="TripTime"></div>
+					</div>
 				</div>
-				<div id="map-controls-overflow-tray" className="collapse card card-body bg-dark">
-					<MapControlToggle onChange={this.props.setImageType} text="Use SVG Maps" />
-					<MapControlOverlayToggle overlayDisplay={this.props.overlayDisplay} overlays={this.props.overlays} setOverlayDisplay={this.props.setOverlayDisplay} />
+				<div id="map-controls-overflow-tray" className="collapse bg-dark row overflow-show">
+					<div className="btn-group" role="group" aria-label="Button group with nested dropdown">
+						<MapControlButton onClick={this.props.centerMap} text="Reset Map Position" />
+						<MapControlToggle onChange={this.props.setImageType} text="Use SVG Maps" />
+						<MapControlOverlayToggle overlayDisplay={this.props.overlayDisplay} overlays={this.props.overlays} setOverlayDisplay={this.props.setOverlayDisplay} />
+					</div>
 				</div>
 			</div>
 		);
@@ -171,7 +178,7 @@ class MapControlButton extends React.Component<IMapControlButtonProps, IMapContr
     };
 	render() {
 		return (
-			<button className="btn btn-dark" onClick={this.handleClick}>{this.props.text}</button>
+			<button className="btn btn-outline-primary" onClick={this.handleClick}>{this.props.text}</button>
 		);
 	}
 }
@@ -217,13 +224,20 @@ class MapControlOverlayToggle extends React.Component<IMapControlOverlayTogglePr
 		}
 		if (this.props.overlays.length > 0 && this.props.overlays.length == this.props.overlayDisplay.length) {
 			return (
-				<div className="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-					{this.props.overlays.map((overlay, index: number) =>
-						<span key={index}>
-							<input id={overlay.name.replaceAll(" ", "-")} type="checkbox" className="btn-check" onChange={(e) => this.handleChange(e, index)} defaultChecked={this.props.overlayDisplay[index]} />
-							<label className="btn btn-outline-primary" htmlFor={overlay.name.replaceAll(" ", "-")}>{overlay.name}</label>
-						</span>
-					)}
+				<div className="btn-group" role="group">
+					<button id="btnGroupLayersDrop" type="button" className="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+						Map Layers
+					</button>
+					<ul className="dropdown-menu bg-dark text-light ps-1" aria-labelledby="btnGroupLayersDrop">
+						{this.props.overlays.map((overlay, index: number) =>
+							<li key={index}>
+								<div className="form-check">
+									<input id={overlay.name.replaceAll(" ", "-")} type="checkbox" className="form-check-input" onChange={(e) => this.handleChange(e, index)} defaultChecked={this.props.overlayDisplay[index]} />
+									<label className="form-check-label" htmlFor={overlay.name.replaceAll(" ", "-")}>{overlay.name}</label>
+								</div>
+							</li>
+						)}
+					</ul>
 				</div>
 			)
 		}
@@ -246,7 +260,7 @@ class MapZoomControl extends React.Component<IMapZoomControlProps, IMapZoomContr
     };
 	render() {
 		return (
-			<div className="zoom-controls" style={{ display: "inline-block"}}>
+			<div className="zoom-controls mx-2" style={{ display: "inline-block"}}>
 				- <input type="range" className="slider" id="map-viewer-zoom" name="map-viewer-zoom"
 					min={this.props.zoom.minZoom}
 					max={this.props.zoom.maxZoom}
@@ -460,7 +474,6 @@ class MapLabel extends React.Component<IMapLabelProps> {
 		);
 	}
 }
-
 
 
 //css3 transform bug with jquery ui drag - fixed(works fine whether position, absolute or relative)

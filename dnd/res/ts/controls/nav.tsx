@@ -5,7 +5,7 @@ class Nav extends React.Component<INavProps> {
 	render()
 	{
 		return (
-			<div className="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
 				<a className="navbar-brand" target="mainFrame" href="/dnd/pages/maps/worldatlas.html">Geoss</a>
 				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon"></span>

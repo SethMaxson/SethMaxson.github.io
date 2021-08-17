@@ -12,46 +12,6 @@ $(document).ready(function () {
         calendar = new GeossCalendar(undefined, 11, 18);
     }
     var weather = new Weather();
-    $(document).on("click", "#Corruption", function () {
-        if ($("#Corruption").text() == 'Corruption Hidden') {
-            $("#Corruption").text('Corruption Shown');
-            $('#CorruptionMap').css("display", "block");
-        }
-        else {
-            $("#Corruption").text('Corruption Hidden');
-            $('#CorruptionMap').css("display", "none");
-        }
-    });
-    $(document).on("click", "#Climates", function () {
-        if ($("#Climates").text() == 'Climates Hidden') {
-            $("#Climates").text('Climates Shown');
-            $('#ClimateZones').css("display", "block");
-        }
-        else {
-            $("#Climates").text('Climates Hidden');
-            $('#ClimateZones').css("display", "none");
-        }
-    });
-    $(document).on("click", "#Airships", function () {
-        if ($("#Airships").text() == 'Airships Hidden') {
-            $("#Airships").text('Airships Shown');
-            $('.airship.npc.hideable').css("display", "block");
-        }
-        else {
-            $("#Airships").text('Airships Hidden');
-            $('.airship.npc.hideable').css("display", "none");
-        }
-    });
-    $(document).on("click", "#NotableNPCs", function () {
-        if ($("#NotableNPCs").text() == 'Notable NPCs Hidden') {
-            $("#NotableNPCs").text('Notable NPCs Shown');
-            $('.pedestrian.npc.hideable').css("display", "block");
-        }
-        else {
-            $("#NotableNPCs").text('Notable NPCs Hidden');
-            $('.pedestrian.npc.hideable').css("display", "none");
-        }
-    });
     $("body").on("dragstop", ".airship.party", function () {
         let tripTime = parseFloat($("#TripTime").text());
         if (!isNaN(tripTime)) {

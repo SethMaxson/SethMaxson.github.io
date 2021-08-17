@@ -103,7 +103,7 @@ class LayeredMapLayer extends React.Component<ILayeredMapLayerProps> {
 							</div>
 						</div>
 					)}
-				<div className="w-auto p-0 m-0 position-relative" style={{ transformOrigin: "top left", transform: "scale(" + this.props.scale + ")" }}>
+				<div className="w-auto p-0 m-0 position-relative" style={{ display: "inline-block", transformOrigin: "top left", transform: "scale(" + this.props.scale + ")" }}>
 					{this.props.layer.objects.map((object, index: number) =>
 						<a
 							className={"border border-1 position-absolute d-block " + (object.locked? "border-danger" : "border-info")}
