@@ -42,7 +42,7 @@ class RegionCensusContainer extends React.Component<IRegionCensusContainerProps,
 	{
 		return (
 			<div>
-				<button onClick={this.home}>Home</button>
+				<button className="btn btn-primary mb-3" onClick={this.home}>Home</button>
 				{this.state.currentRegion && <RegionCensus JsonObject={this.state.currentRegion} />}
 				<RegionCensusNavigation regions={this.state.currentRegion ? this.state.currentRegion.subregions : this.props.regionCensus} displayRegion={this.displayRegion} />
 			</div>
@@ -66,7 +66,7 @@ class RegionCensus extends React.Component<IRegionCensusProps> {
 	render()
 	{
 		return (
-			<div>
+			<div className="mb-2">
 				<h1>{this.props.JsonObject.name}</h1>
 				<ul>
 					{this.props.JsonObject.inhabitants.map((inhabitant, index: number) =>
@@ -92,13 +92,19 @@ class RegionCensusNavigation extends React.Component<IRegionCensusNavigationProp
 	{
 		if (this.props.regions) {
 			return (
-				<div>
+				<div className="mb-2">
 					<h3>Subregions</h3>
-					<ul>
+					<div className="list-group">
 						{this.props.regions.map((region, index: number) =>
-							<li key={index}><button onClick={(e) => this.navigate(region)}>{region.name}</button></li>
+							<button
+								className="list-group-item list-group-item-action list-group-item-light"
+								onClick={(e) => this.navigate(region)}
+								key={index}
+							>
+								{region.name}
+							</button>
 						)}
-					</ul>
+					</div>
 				</div>
 			)
 		}

@@ -24,7 +24,7 @@ class RegionCensusContainer extends React.Component {
     }
     render() {
         return (React.createElement("div", null,
-            React.createElement("button", { onClick: this.home }, "Home"),
+            React.createElement("button", { className: "btn btn-primary mb-3", onClick: this.home }, "Home"),
             this.state.currentRegion && React.createElement(RegionCensus, { JsonObject: this.state.currentRegion }),
             React.createElement(RegionCensusNavigation, { regions: this.state.currentRegion ? this.state.currentRegion.subregions : this.props.regionCensus, displayRegion: this.displayRegion })));
     }
@@ -37,7 +37,7 @@ class RegionCensusContainer extends React.Component {
 }
 class RegionCensus extends React.Component {
     render() {
-        return (React.createElement("div", null,
+        return (React.createElement("div", { className: "mb-2" },
             React.createElement("h1", null, this.props.JsonObject.name),
             React.createElement("ul", null, this.props.JsonObject.inhabitants.map((inhabitant, index) => React.createElement("li", { key: index },
                 inhabitant.name,
@@ -52,10 +52,9 @@ class RegionCensusNavigation extends React.Component {
     }
     render() {
         if (this.props.regions) {
-            return (React.createElement("div", null,
+            return (React.createElement("div", { className: "mb-2" },
                 React.createElement("h3", null, "Subregions"),
-                React.createElement("ul", null, this.props.regions.map((region, index) => React.createElement("li", { key: index },
-                    React.createElement("button", { onClick: (e) => this.navigate(region) }, region.name))))));
+                React.createElement("div", { className: "list-group" }, this.props.regions.map((region, index) => React.createElement("button", { className: "list-group-item list-group-item-action list-group-item-light", onClick: (e) => this.navigate(region), key: index }, region.name)))));
         }
         else {
             return null;

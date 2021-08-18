@@ -1,4 +1,5 @@
 "use strict";
+/**A table where each row describes a possible outcome and the associated odds in terms of dice result. The header of the dice result column can be clicked to automatically roll. */
 class RollableTable extends React.Component {
     constructor(props) {
         super(props);
