@@ -396,7 +396,9 @@
 				"name": "Matthias Manor",
 				"nameLocation": "bottom",
 				"type": "village",
-				"description": [],
+				"description": [
+					"A mysterious, isolated mansion lies deep within the wood."
+				],
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",
@@ -412,7 +414,9 @@
 				"type": "village",
 				"description": [],
 				"culture": [],
-				"dmNotes": [],
+				"dmNotes": [
+					"A small city that has been governed by an elven baronness for decades."
+				],
 				"url": "#",
 				"position": {
 					"left": "68%",
@@ -424,7 +428,9 @@
 				"name": "Louth",
 				"nameLocation": "right",
 				"type": "village",
-				"description": [],
+				"description": [
+					"A town built long ago under orders from the Lim family to carry out secret research experiments. Though still populated, the city was largely forgotten about years ago"
+				],
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",
