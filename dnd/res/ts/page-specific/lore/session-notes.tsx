@@ -1458,23 +1458,19 @@ class SessionNotesViewer extends React.Component<ISessionNotesViewerProps> {
 			<div className="container px-0">
 				<ul className="nav nav-tabs sticky-top fixed-top bg-dark" id="myTab" role="tablist">
 					<li className="nav-item" role="presentation">
-						<button className="nav-link active" id="campaign-1-tab" data-bs-toggle="tab" data-bs-target="#campaign-1" type="button" role="tab" aria-controls="campaign-1" aria-selected="true">Campaign #1</button>
+						<button className="nav-link active" id="campaign-1-tab" data-bs-toggle="tab" data-bs-target="#campaign-1" type="button" role="tab" aria-controls="campaign-1" aria-selected="true">Campaign I</button>
 					</li>
 					<li className="nav-item" role="presentation">
-						<button className="nav-link" id="campaign-1-revised-tab" data-bs-toggle="tab" data-bs-target="#campaign-1-revised" type="button" role="tab" aria-controls="campaign-1-revised" aria-selected="true">Campaign #1 (Revised)</button>
+						<button className="nav-link" id="campaign-2-tab" data-bs-toggle="tab" data-bs-target="#campaign-2" type="button" role="tab" aria-controls="campaign-2" aria-selected="false">Campaign II</button>
 					</li>
 					<li className="nav-item" role="presentation">
-						<button className="nav-link" id="campaign-2-tab" data-bs-toggle="tab" data-bs-target="#campaign-2" type="button" role="tab" aria-controls="campaign-2" aria-selected="false">Campaign #2</button>
+						<button className="nav-link" id="campaign-1-unedited-tab" data-bs-toggle="tab" data-bs-target="#campaign-1-unedited" type="button" role="tab" aria-controls="campaign-1-unedited" aria-selected="true">Campaign I (Unedited)</button>
 					</li>
 				</ul>
 				<div className="tab-content container" id="myTabContent">
+
 					<div className="tab-pane row show active" id="campaign-1" role="tabpanel" aria-labelledby="campaign-1-tab">
 						<SessionNotesCategoryHeader text="Geoss Campaign I: The Godfall Fallout" />
-						<Campaign1OriginalNotes />
-					</div>
-
-					<div className="tab-pane row" id="campaign-1-revised" role="tabpanel" aria-labelledby="campaign-1-revised-tab">
-						<SessionNotesCategoryHeader text="Geoss Campaign I: The Godfall Fallout (Revised)" />
 						<CampaignNotes campaignId={++campaignId}>
 							{`
 							Land Ho (01/13/2018)
@@ -1657,11 +1653,7 @@ class SessionNotesViewer extends React.Component<ISessionNotesViewerProps> {
 
 							Once she was confident no one could hear her from her private quarters, Zora made her daily report to Cross. He took particular interest in the dagger, and suggested it was far more valuable than the party realized. He instructed Zora to ensure that the dagger remain safe and accounted for.
 
-							-may need to write a different retirement for WickerBeak in the version I send Roger. Probably an uncomfortable subject for him.
 							Meanwhile, WickerBeak became bored and turned to drink. He had lost control when drinking from his enchanted flask before, but this time felt different. He became both brilliant purple, and a dryad. He was no longer a flightless, voiceless bird. She was now a champion of nature, complete with a voice all her own. She decided to spend the next few weeks in meditation and come to terms with her new connection to nature.
-
-							-version for Roger
-							Meanwhile, WickerBeak became bored and turned to drink from his enchanted flask. He became a brilliant purple dryad. He was no longer a flightless, voiceless bird. He was now a champion of nature, complete with a voice all his own. He decided to spend the next few weeks in meditation and come to terms with his new connection to nature.
 
 
 							Settling In (06/02/2018)
@@ -1730,7 +1722,6 @@ class SessionNotesViewer extends React.Component<ISessionNotesViewerProps> {
 
 							A courier came to the sky island bearing a letter from the capital city.
 
-
 							Namfoodle was both concerned and intrigued. He had seen the zombified head of Pehr Lim inside a safe, so who or what sent this letter?
 
 							Namfoodle and Uriver decided to attend court as representatives of their crew and made haste for the court of Amarillo. They were escorted to the throne room to meet with the Brothers Lim. Inside, they saw what were unmistakably both Pehr and Osbeck Lim sitting upon their thrones alive and well.
@@ -1777,7 +1768,6 @@ class SessionNotesViewer extends React.Component<ISessionNotesViewerProps> {
 							Zora Onguh
 
 							Once again, a courier from Amarillo arrived carrying a letter from the Brothers Lim.
-
 
 							Quicheday was in fact not a sacred tradition, as there had never been one before. The party set a course for Amarillo to observe this new holiday. Upon their arrival at Amarillo, the party was met by the sights and sounds of a lively festival. The party paused to enjoy the festivities for a while. Once they were content, they made their way to the palace to meet once more with the Brothers Lim.
 
@@ -2843,6 +2833,11 @@ class SessionNotesViewer extends React.Component<ISessionNotesViewerProps> {
 								</SessionBody>
 							</SessionEntry>
 						</div>
+					</div>
+
+					<div className="tab-pane row" id="campaign-1-unedited" role="tabpanel" aria-labelledby="campaign-1-unedited-tab">
+						<SessionNotesCategoryHeader text="Geoss Campaign I: The Godfall Fallout (unedited, messy)" />
+						<Campaign1OriginalNotes />
 					</div>
 
 				</div>
