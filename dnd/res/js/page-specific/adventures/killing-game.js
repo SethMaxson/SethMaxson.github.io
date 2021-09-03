@@ -20,11 +20,13 @@ class KillingGameViewer extends React.Component {
             dioramaShownAtLoad: matches.length > 0,
             displayType: view == "character" ? "Character" : "Menu",
             selectedCharacter: selectedCharacter,
-            selectedDiorama: selectedDiorama
+            selectedDiorama: selectedDiorama,
+            showStatic: false
         };
     }
     render() {
         return (React.createElement("div", { className: "h-100 w-100" },
+            this.state.showStatic && React.createElement("div", { className: "static" }),
             this.state.displayType == "Menu" && React.createElement(KillingGameViewerNav, { data: this.props.data, displayCharacter: this.viewCharacter, showEvidenceTab: false, showTrialTab: false }),
             this.state.displayType == "Character" && React.createElement(KillingGameCharacterPage, { character: this.state.selectedCharacter, close: this.viewMenu })));
     }
@@ -56,9 +58,7 @@ class KillingGameViewerNav extends React.Component {
                     React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Rules", id: "rules" }),
                     React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Shop", id: "shop" }),
                     this.props.showTrialTab && React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "Trial", id: "trial" }),
-                    this.props.showEvidenceTab && React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "File", id: "evidence" }),
-                    (storage.userName == "" || storage.userName == undefined) && React.createElement("li", { className: "me-0 ms-auto" },
-                        React.createElement(LoginButton, { redirectUrl: "/dnd/pages/adventures/killing-game.html" }))),
+                    this.props.showEvidenceTab && React.createElement(KillingGameViewerNavTab, { activeTab: this.state.activeTab, changeTab: this.changeTab, displayName: "File", id: "evidence" })),
                 React.createElement("div", { className: "tab-content row flex-grow-1 flex-shrink-1 flex-column align-items-stretch overflow-hidden bg-dark" },
                     React.createElement("div", { className: "tab-pane h-100 overflow-hidden" + (this.state.activeTab == "characters" ? " active" : ""), id: "characters", role: "tabpanel", "aria-labelledby": "characters-tab" },
                         React.createElement(KillingGameCharacterIndex, { characters: this.props.data.characters, displayCharacter: this.props.displayCharacter })),

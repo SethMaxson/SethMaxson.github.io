@@ -34,6 +34,7 @@ interface IKillingGameViewerState
 	displayType: KillingGameMenuDisplay;
 	selectedCharacter: IKillingGameCharacter;
 	selectedDiorama: IDioramaProps;
+	showStatic: boolean;
 }
 class KillingGameViewer extends React.Component<IKillingGameViewerProps, IKillingGameViewerState> {
 	constructor(props: IKillingGameViewerProps)
@@ -55,13 +56,15 @@ class KillingGameViewer extends React.Component<IKillingGameViewerProps, IKillin
 			dioramaShownAtLoad: matches.length > 0,
 			displayType: view == "character" ? "Character" : "Menu",
 			selectedCharacter: selectedCharacter,
-			selectedDiorama: selectedDiorama
+			selectedDiorama: selectedDiorama,
+			showStatic: false
 		};
 	}
 	render()
 	{
 		return (
 			<div className="h-100 w-100">
+				{this.state.showStatic && <div className="static"></div>}
 				{this.state.displayType == "Menu" && <KillingGameViewerNav data={this.props.data} displayCharacter={this.viewCharacter} showEvidenceTab={false} showTrialTab={false} />}
 				{this.state.displayType == "Character" && <KillingGameCharacterPage character={this.state.selectedCharacter} close={this.viewMenu} />}
 			</div>
@@ -119,9 +122,9 @@ class KillingGameViewerNav extends React.Component<IKillingGameViewerNavProps, I
 						<KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="Shop" id="shop" />
 						{this.props.showTrialTab && <KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="Trial" id="trial" />}
 						{this.props.showEvidenceTab && <KillingGameViewerNavTab activeTab={this.state.activeTab} changeTab={this.changeTab} displayName="File" id="evidence" />}
-						{(storage.userName == "" || storage.userName == undefined) && <li className="me-0 ms-auto">
+						{/* {(storage.userName == "" || storage.userName == undefined) && <li className="me-0 ms-auto">
 							<LoginButton redirectUrl="/dnd/pages/adventures/killing-game.html" />
-						</li>}
+						</li>} */}
 					</ul>
 
 					<div className="tab-content row flex-grow-1 flex-shrink-1 flex-column align-items-stretch overflow-hidden bg-dark">

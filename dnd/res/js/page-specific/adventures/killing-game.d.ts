@@ -26,6 +26,7 @@ interface IKillingGameViewerState {
     displayType: KillingGameMenuDisplay;
     selectedCharacter: IKillingGameCharacter;
     selectedDiorama: IDioramaProps;
+    showStatic: boolean;
 }
 declare class KillingGameViewer extends React.Component<IKillingGameViewerProps, IKillingGameViewerState> {
     constructor(props: IKillingGameViewerProps);

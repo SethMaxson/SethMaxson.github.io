@@ -30,6 +30,25 @@
 			.oldgods {
 				display: none;
 			}
+
+			.card-img {
+				opacity: 0.1;
+			}
+
+			.card-img-overlay {
+				text-shadow: 2px 2px 3px white,
+				0px 2px 3px white,
+				-2px 2px 3px white,
+				-2px 0px 3px white,
+				2px -2px 3px white,
+				-2px -2px 3px white,
+				0px -2px 3px white;
+			}
+
+			.demigod-emblem {
+				height: 1.5rem;
+				float:right;
+			}
 		</style>
 	</head>
 
@@ -66,7 +85,8 @@
 					<div class="row row-cols-1 row-cols-md-3 g-4">
 						<div class="col">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Spaxxis.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Spaxis</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF CHAOS</h6>
 									<p class="card-text">
@@ -77,8 +97,8 @@
 						</div>
 						<div class="col">
 							<div class="card h-100">
-								<!-- <img src="/dnd/img/emblems/Rachi.png" class="card-img-top" alt="..."> -->
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Rachi.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Rachi</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF CREATION</h6>
 									<p class="card-text">
@@ -89,7 +109,8 @@
 						</div>
 						<div class="col oldgods">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Immordan.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Immordan <span class="missing">DECEASED</span></h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF DEATH</h6>
 									<p class="card-text">
@@ -97,24 +118,29 @@
 									</p>
 								</div>
 								<div class="card-footer text-muted">
-									Usurped by the Rewera
+									Usurped by the Rewera.
 								</div>
 							</div>
 						</div>
 						<div class="col newgods">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Immordan.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Namfoodle</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF DEATH</h6>
 									<p class="card-text">
-
+										Namfoodle is tasked with collecting of the souls of the departed. He judges the dead from atop the throne of Hel, and oversees their delivery to the appropriate afterlife.
 									</p>
+								</div>
+								<div class="card-footer text-muted">
+									Ascended after the Divine Incursion.
 								</div>
 							</div>
 						</div>
 						<div class="col oldgods">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Graisam.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Graisum <span class="missing">DECEASED</span></h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF THE HARVEST</h6>
 									<p class="card-text">
@@ -122,24 +148,29 @@
 									</p>
 								</div>
 								<div class="card-footer text-muted">
-									Slain in the final confrontation against the Rewera.
+									Slain during the Divine Incursion.
 								</div>
 							</div>
 						</div>
 						<div class="col newgods">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Graisam.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Bud (Lord God King Brrawd)</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF THE HARVEST</h6>
 									<p class="card-text">
 										Bud is responsible for maintaining the balance of nature. Farms, forests, and all naturally occurring biomes fall under his domain.
 									</p>
 								</div>
+								<div class="card-footer text-muted">
+									Ascended after the Divine Incursion.
+								</div>
 							</div>
 						</div>
 						<div class="col oldgods">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Larazi.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Larazi <span class="missing">DECEASED</span></h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF LAW</h6>
 									<p class="card-text">
@@ -147,13 +178,14 @@
 									</p>
 								</div>
 								<div class="card-footer text-muted">
-									Slain in the final confrontation against the Rewera.
+									Slain during the Divine Incursion.
 								</div>
 							</div>
 						</div>
 						<div class="col newgods">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Larazi.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Falimur</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF LAW</h6>
 									<p class="card-text">
@@ -163,11 +195,15 @@
 										Despite being one of the youngest members of the pantheon, his prior service meant he was accepted by most of the other deities with open arms upon his ascension.
 									</p>
 								</div>
+								<div class="card-footer text-muted">
+									Ascended after the Divine Incursion.
+								</div>
 							</div>
 						</div>
 						<div class="col">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Vidan.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Vidan</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF LIFE</h6>
 									<p class="card-text">
@@ -178,7 +214,8 @@
 						</div>
 						<div class="col">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Notriv.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Notriv</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF WISDOM</h6>
 									<p class="card-text">
@@ -189,7 +226,8 @@
 						</div>
 						<div class="col">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Tordenei.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Tordanei</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF STORMS</h6>
 									<p class="card-text">
@@ -200,7 +238,8 @@
 						</div>
 						<div class="col oldgods">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Chromus.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Chromus <span class="missing">DECEASED</span></h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF TIME</h6>
 									<p class="card-text">
@@ -208,24 +247,29 @@
 									</p>
 								</div>
 								<div class="card-footer text-muted">
-									Slain in the final confrontation against the Rewera.
+									Slain during the Divine Incursion.
 								</div>
 							</div>
 						</div>
 						<div class="col newgods">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Chromus.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Aetas</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GODDESS OF TIME</h6>
 									<p class="card-text">
 										Aetas is the deity responsible for the passage of time. Ancient texts speak of time resembling a roaring river, eroding everything in its path. Aetas harnesses this flow and controls it, allowing mortals a chance at a proper lifespan. This is a very delicate balance. If too much of the flow were to be let through, the lifespans of most mortals would be over in a moment. If too little were to be let through, the passage of time could stop completely, resulting in the material plane being locked in one moment forever.
 									</p>
 								</div>
+								<div class="card-footer text-muted">
+									Ascended after the Divine Incursion.
+								</div>
 							</div>
 						</div>
 						<div class="col">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Mortadus.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Mortadus</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">GOD OF WAR</h6>
 									<p class="card-text">
@@ -236,7 +280,8 @@
 						</div>
 						<div class="col">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Lonic.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Lonic</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">LORD OF THE CHAMPION</h6>
 									<p class="card-text">
@@ -247,7 +292,8 @@
 						</div>
 						<div class="col">
 							<div class="card h-100">
-								<div class="card-body">
+								<img src="/dnd/img/emblems/Fouvil.png" class="card-img" alt="...">
+								<div class="card-img-overlay">
 									<h5 class="card-title">Fouvil</h5>
 									<h6 class="card-subtitle pb-1 mb-2 text-muted border-bottom">LORD OF THE VILE</h6>
 									<p class="card-text">
@@ -313,19 +359,22 @@
 						The remaining gods and goddesses each swear their fealty to a single member of the prime pantheon. These subservient divines are known as lesser deities or demigods. While the origin of prime deities predates recorded history, most of the lesser deities are mortals who ascended to godhood. This occurs when a mortal receives genuine, sincere worship from another mortal. The strength of the worshiper's belief causes the recipient of the worship to transcend into divinity. The more active worshippers a demigod has, the more powerful they become. Theoretically, a demigod could become a prime deity with enough worshippers.
 					</p>
 					<div class="list-group">
-						<div class="list-group-item"><b>Aviiha</b> - Soul Pirate</div>
+						<div class="list-group-item">
+							<b>Aviiha</b> - Soul Pirate
+							<!-- <img src="/dnd/img/emblems/Graisam.png" class="demigod-emblem" alt="..." /> -->
+						</div>
 						<div class="list-group-item"><b>Benterton</b> - Bad Day Buddy - god of sadness and mourning</div>
 						<div class="list-group-item"><b>Captain Chad</b> - Pirate Idol - god of pirates</div>
 						<div class="list-group-item"><b>Doujien</b> - Sultan of Smiles - god of happiness</div>
 						<div class="list-group-item"><b>Enamela</b> - Tooth Collector</div>
 						<div class="list-group-item newgods"><b>Felty</b> - Frog All-Mother - protector of frogfolk</div>
 						<div class="list-group-item"><b>Fielum</b> - Creature Categorizer - god of animal classification and identification</div>
-						<div class="list-group-item oldgods"><b>Gillywung</b> - Frog All-Mother - protector of frogfolk <span class="missing">MISSING, PRESUMED DEAD</span></div>
+						<div class="list-group-item oldgods"><b>Gillywung</b> - Frog All-Mother - protector of frogfolk <span class="missing">DECEASED. Slain by the Rewera.</span></div>
 						<div class="list-group-item"><b>Ghoyzhu</b> - Fiery Anger - god of rage and flame</div>
 						<div class="list-group-item"><b>Irwodile</b> - Reptile Representative - god of reptilian creatures</div>
 						<div class="list-group-item"><b>Jackael</b> - Electrifying Moves - god of dance</div>
 						<div class="list-group-item newgods"><b>Jasper</b> - Winged Warrior</div>
-						<div class="list-group-item"><b><del>Klause</del></b> - Jolly Fat Man - god of solstice charity</div>
+						<div class="list-group-item oldgods"><b>Klause</b> - Jolly Fat Man - god of solstice charity <span class="missing">DECEASED. Slain by the Rewera.</span></div>
 						<div class="list-group-item"><b>Kragene</b> - Commerce Commander - god of commerce and wealth
 							<!-- <p>
 							Kragene's acolytes call on him for guidance in buying and selling. His interventions on his followers behalf is usually to simply tell them what something is actually worth.
@@ -345,12 +394,11 @@
 						</p> -->
 						</div>
 						<div class="list-group-item"><b>Nilbog</b> - Chaos Imp - goblin god of comedy and revenge</div>
-						<!-- <div class="list-group-item"><b>Ociphe (oh - see - feh)</b> - Matron of Mistakes <span class="missing">MISSING, PRESUMED DEAD</span></div> -->
-						<div class="list-group-item oldgods"><b><del>Ochipe (oh - see - feh)</del></b> - Matron of Mistakes - goddess of misfortune</div>
+						<div class="list-group-item oldgods"><b>Ociphe (oh - see - feh)</b> - Matron of Mistakes <span class="missing">DECEASED. Slain by the Rewera.</span></div>
 						<div class="list-group-item"><b>Pteros</b> - Dragon Ancestor</div>
 						<div class="list-group-item"><b>Praisidio</b> - Death Delayer</div>
 						<div class="list-group-item"><b>Rinald</b> - Mercenary Master - god of good fortune for sellswords</div>
-						<div class="list-group-item oldgods"><b>Robyll Cypress</b> - Maker of Monsters <span class="missing">DECEASED</span></div>
+						<div class="list-group-item oldgods"><b>Robyll Cypress</b> - Maker of Monsters <span class="missing">DECEASED. Slain by the Heroes of Renovamen.</span></div>
 						<div class="list-group-item"><b>Santiago</b> - The Unavoidable</div>
 						<div class="list-group-item"><b>Stefanson</b> - Villain Tutor</div>
 						<div class="list-group-item"><b>Telov</b> - Keeper of History - god of records and history</div>

@@ -446,8 +446,8 @@ const AscendantAspirationsAcademy = [
                 }
             },
             {
-                name: "Classroom 1-A",
-                popoverText: "Classroom 1-A",
+                name: "Ultimate Sanctuary",
+                popoverText: "This room is dedicated to a specific candidate, and contains a sundry of items to help them excel in practicing their talent.",
                 locked: false,
                 position: {
                     x: 392,
@@ -459,8 +459,8 @@ const AscendantAspirationsAcademy = [
                 }
             },
             {
-                name: "Classroom 1-B",
-                popoverText: "Classroom 1-B",
+                name: "Ultimate Sanctuary",
+                popoverText: "This room is dedicated to a specific candidate, and contains a sundry of items to help them excel in practicing their talent.",
                 locked: false,
                 position: {
                     x: 392,
@@ -485,8 +485,8 @@ const AscendantAspirationsAcademy = [
                 }
             },
             {
-                name: "Trophy Room",
-                popoverText: "Trophy Room",
+                name: "Armory",
+                popoverText: "This room contains a varied assortment of armor to fit any shape or size. This is only to be worn in the armory and the <b>Combat Training Area</b>. Taking the armor anywhere besides these two rooms is strictly prohibited.",
                 locked: false,
                 position: {
                     x: 196,
