@@ -7,8 +7,8 @@ function getCitiesByContinent(destinationElement, continentName, specialTreatmen
     return new Promise(function (resolve, reject) {
         /** Counts the cities for this continent so that we can log them later. */
         var cityCount = 0;
-        $.when(getMapImageData(), getCityData(), getMapLocationData(continentName)).done(function (cityMapImageDataRaw, continentSections, locationsRaw) {
-            _cityMapImageData = cityMapImageDataRaw[0];
+        $.when(getMapImageData(continentName), getCityData(), getMapLocationData(continentName)).done(function (cityMapImageDataRaw, continentSections, locationsRaw) {
+            const cityMapImageData = cityMapImageDataRaw[0];
             //#region getCityData
             let continents = continentSections[0].filter(function (entry) {
                 return entry.name === continentName;
@@ -16,7 +16,7 @@ function getCitiesByContinent(destinationElement, continentName, specialTreatmen
             if (continents.length == 1) {
                 let cities = continents[0].cities;
                 for (let i = 0; i < cities.length; i++) {
-                    destinationElement.append(getCityMarkup(cities[i], continents[0], specialTreatmentForHyperLinks));
+                    destinationElement.append(getCityMarkup(cities[i], continents[0], cityMapImageData, specialTreatmentForHyperLinks));
                     cityCount++;
                     _totalLoadedCities++;
                 }
@@ -25,7 +25,7 @@ function getCitiesByContinent(destinationElement, continentName, specialTreatmen
             //#region getMapLocationData
             let locations = locationsRaw[0];
             for (let i = 0; i < locations.length; i++) {
-                let relevantMapImage = _cityMapImageData.filter(function (entry) {
+                let relevantMapImage = cityMapImageData.filter(function (entry) {
                     return entry.name.toLowerCase() === locations[i].name.toLowerCase();
                 });
                 let url = relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + locations[i].name : "#";
@@ -48,7 +48,7 @@ function getCitiesByContinent(destinationElement, continentName, specialTreatmen
  * @param continent The continent on which the city is located. This will determine the font used, and serve some other more functional purposes.
  * @param specialTreatmentForHyperLinks If true, the returned marker will be yellow if the city is associated to a city map
  */
-function getCityMarkup(city, continent, specialTreatmentForHyperLinks = false) {
+function getCityMarkup(city, continent, cityMapImageData, specialTreatmentForHyperLinks = false) {
     let description = "";
     for (let i = 0; i < city.description.length; i++) {
         description += "<p>" + city.description[i] + "</p>";
@@ -63,7 +63,7 @@ function getCityMarkup(city, continent, specialTreatmentForHyperLinks = false) {
     }
     let cm = city.marker;
     let marker = cm != CityMarkerTypes.None ? `<div class="map-marker-icon marker-${cm}">&#160;</div>` : "";
-    let relevantMapImage = _cityMapImageData.filter(function (entry) {
+    let relevantMapImage = cityMapImageData.filter(function (entry) {
         return entry.name.toLowerCase() === city.name.toLowerCase();
     });
     let url = (city.url == "#" || !city.url) && relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + city.name : city.url;

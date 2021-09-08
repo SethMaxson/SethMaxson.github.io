@@ -8,7 +8,7 @@ declare function getCitiesByContinent(destinationElement: JQuery<HTMLElement>, c
  * @param continent The continent on which the city is located. This will determine the font used, and serve some other more functional purposes.
  * @param specialTreatmentForHyperLinks If true, the returned marker will be yellow if the city is associated to a city map
  */
-declare function getCityMarkup(city: ICitiesJsonObject, continent: ICitiesJsonContinentSection, specialTreatmentForHyperLinks?: boolean): JQuery<HTMLElement>;
+declare function getCityMarkup(city: ICitiesJsonObject, continent: ICitiesJsonContinentSection, cityMapImageData: ICityMapNode[], specialTreatmentForHyperLinks?: boolean): JQuery<HTMLElement>;
 declare function getPositionString(position: IMapObjectPosition, offset?: number): string;
 /**
  * Returns the coordinate portion of the property's position string. Allows unneeded 'calc' to be omitted, thus reducing the work required for the browser to reflow the document.

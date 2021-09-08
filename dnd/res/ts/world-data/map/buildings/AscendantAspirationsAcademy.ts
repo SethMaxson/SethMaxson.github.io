@@ -173,7 +173,7 @@ const AscendantAspirationsAcademy: IMapLayer[] = [
 			},
 			{
 				name: "Chuck's Character's Room",
-				popoverText: "Chuck's Character's Room",
+				popoverText: "Gregory's Room",
 				locked: false,
 				position: {
 					x: 682,
@@ -212,7 +212,7 @@ const AscendantAspirationsAcademy: IMapLayer[] = [
 			},
 			{
 				name: "Kendall's Character's Room",
-				popoverText: "Kendall's Character's Room",
+				popoverText: "Phineas' Room",
 				locked: false,
 				position: {
 					x: 754,

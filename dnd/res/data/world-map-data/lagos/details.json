@@ -1,0 +1,94 @@
+[
+	{
+		"name":"Autumn's Embrace",
+		"description": [
+			"A sacred place where old druids go to pass on and become one with nature."
+		],
+		"culture": []
+	},
+	{
+		"name":"Bushberry",
+		"description": [
+			"A small, isolated farming and hunting village. The population is exceptionally efficient at producing food, and most of its money comes from exports to larger cities."
+		],
+		"culture": []
+	},
+	{
+		"name":"Brassington",
+		"description": [
+			"A large city with an abnormal amount of amenities. Despite its status as one of the more luxurious cities in the region, rumors suggest that citizenship is surprisingly affordable."
+		],
+		"culture": []
+	},
+	{
+		"name":"Crumblemoore",
+		"description": [
+			"A city whose ancient history is rumored to be steeped in blood and demonic pacts."
+		],
+		"culture": []
+	},
+	{
+		"name":"Gemma Alas",
+		"description": [
+			"A massive but increasingly deserted boomtown that sprung up around the area where a particularly large batch of airship crystals came through a planar tear."
+		],
+		"culture": []
+	},
+	{
+		"name":"Hunaja",
+		"description": [
+			"A quiet town whose primary trade is beekeeping."
+		],
+		"culture": []
+	},
+	{
+		"name":"Igavik",
+		"description": [
+			"A deeply spiritual elven enclave built on a fault where the influence of the plane of time can be felt much more strongly than anywhere else. Nearly all of the elves here are in perfect health, and appear to be at almost precisely the prime of their lives."
+		],
+		"culture": []
+	},
+	{
+		"name":"Monastery of the Final Element",
+		"description": [
+			"Very little is known of this secluded monastery. Even its existence is occasionally a subject of debate."
+		],
+		"culture": []
+	},
+	{
+		"name":"Pryon Gon",
+		"description": [
+			"Pryon Gon is a medium city that hosts the most infamous gladiatorial fights in all of Lagos."
+		],
+		"culture": []
+	},
+	{
+		"name":"Tasavägi",
+		"description": [
+			"Tasavägi is a large, open elven city deep within the plains. Its entire culture is built around horses."
+		],
+		"culture": [
+			"Children are taught to ride horses almost as soon as they can walk, and most spend the following centuries perfecting the art of mounted combat.",
+			"The skill of Tasavägi's horse breeders is legendary. Consequently, Tasavägian horses are always in high demand. The elves always keep more than enough horses for themselves, but they sometimes sell the surplus. They have trade arrangements with various organizations to carry excess horses to different markets via airship."
+		]
+	},
+	{
+		"name":"Vatnslaug",
+		"description": [
+			"Vatnslaug is an orcish village that has recently been ravaged by a terrible plague."
+		],
+		"culture": []
+	},
+	{
+		"name":"Vin's Oasis",
+		"description": [
+			"Vin's Oasis is the last bastion of safety and supplies for miles. For this reason, the orcish boardinghouse is frequented by many weary travelers."
+		],
+		"culture": []
+	},
+	{
+		"name":"Wyford",
+		"description": [],
+		"culture": []
+	}
+]

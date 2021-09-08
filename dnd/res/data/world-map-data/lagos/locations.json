@@ -2,66 +2,79 @@
 	{
 		"name":"Autumn's Embrace",
 		"left": "23%",
-		"top": "66.18%"
+		"top": "66.18%",
+		"type": "town"
 	},
 	{
 		"name":"Bushberry",
 		"left": "55.2%",
-		"top": "62.23%"
+		"top": "62.23%",
+		"type": "town"
 	},
 	{
 		"name":"Brassington",
 		"left": "63.13%",
-		"top": "44.73%"
+		"top": "44.73%",
+		"type": "town"
 	},
 	{
 		"name":"Crumblemoore",
 		"left": "52%",
-		"top": "43.1%"
+		"top": "43.1%",
+		"type": "town"
 	},
 	{
 		"name":"Gemma Alas",
 		"left": "43.78%",
-		"top": "62.58%"
+		"top": "62.58%",
+		"type": "town"
 	},
 	{
 		"name":"Hunaja",
 		"left": "46.8%",
-		"top": "77.54%"
+		"top": "77.54%",
+		"type": "town"
 	},
 	{
 		"name":"Igavik",
 		"left": "67.1%",
-		"top": "71.45%"
+		"top": "71.45%",
+		"type": "town"
 	},
 	{
 		"name":"Monastery of the Final Element",
 		"left": "48%",
-		"top": "58.84%"
+		"top": "58.84%",
+		"type": "town"
 	},
 	{
 		"name":"Pryon Gon",
 		"left": "71%",
-		"top": "88.15%"
+		"top": "88.15%",
+		"type": "town"
 	},
 	{
 		"name":"Tasavägi",
 		"left": "55.2%",
-		"top": "79.5%"
+		"top": "79.5%",
+		"type": "town"
 	},
 	{
 		"name":"Vatnslaug",
 		"left": "76.8%",
-		"top": "52.55%"
+		"top": "52.55%",
+		"type": "town"
 	},
 	{
 		"name":"Vin's Oasis",
 		"left": "68.5%",
-		"top": "56.04%"
+		"top": "56.04%",
+		"type": "town"
 	},
 	{
 		"name":"Wyford",
 		"left": "58.18%",
-		"top": "51.87%"
+		"top": "51.87%",
+		"type": "town"
 	}
 ]

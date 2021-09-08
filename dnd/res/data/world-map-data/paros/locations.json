@@ -2,31 +2,37 @@
 	{
 		"name":"Altubreste",
 		"left": "83.02%",
-		"top": "33.31%"
+		"top": "33.31%",
+		"type": "town"
 	},
 	{
 		"name":"Fortune's Favor",
 		"left": "55.23%",
-		"top": "48%"
+		"top": "48%",
+		"type": "town"
 	},
 	{
 		"name":"Hearth's Respite",
 		"left": "55%",
-		"top": "6.35%"
+		"top": "6.35%",
+		"type": "town"
 	},
 	{
 		"name":"Leatrom",
 		"left": "73.55%",
-		"top": "30.91%"
+		"top": "30.91%",
+		"type": "town"
 	},
 	{
 		"name":"Monastery of the Others",
 		"left": "50.9%",
-		"top": "38.35%"
+		"top": "38.35%",
+		"type": "town"
 	},
 	{
 		"name":"Peili",
 		"left": "64.25%",
-		"top": "15.99%"
+		"top": "15.99%",
+		"type": "town"
 	}
 ]

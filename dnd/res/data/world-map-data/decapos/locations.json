@@ -2,66 +2,79 @@
 	{
 		"name":"Alghanayim",
 		"left": "60%",
-		"top": "75%"
+		"top": "75%",
+		"type": "town"
 	},
 	{
 		"name":"City of Canyon Winds",
 		"left": "71.74%",
-		"top": "51.05%"
+		"top": "51.05%",
+		"type": "town"
 	},
 	{
 		"name":"City of Green Abundance",
 		"left": "73.36%",
-		"top": "46.76%"
+		"top": "46.76%",
+		"type": "town"
 	},
 	{
 		"name":"Eintönig",
 		"left": "50.2%",
-		"top": "35.7%"
+		"top": "35.7%",
+		"type": "town"
 	},
 	{
 		"name":"Fiorscéale",
 		"left": "64.5%",
-		"top": "5.7%"
+		"top": "5.7%",
+		"type": "town"
 	},
 	{
 		"name":"Ithcuil",
 		"left": "26.22%",
-		"top": "46.52%"
+		"top": "46.52%",
+		"type": "town"
 	},
 	{
 		"name":"Kuhluhnir",
 		"left": "17.33%",
-		"top": "75.41%"
+		"top": "75.41%",
+		"type": "town"
 	},
 	{
 		"name":"Nezhitrud",
 		"left": "92.7%",
-		"top": "3.2%"
+		"top": "3.2%",
+		"type": "town"
 	},
 	{
 		"name":"Osbeck Memorial Airship Graveyard",
 		"left": "18.57%",
-		"top": "61.46%"
+		"top": "61.46%",
+		"type": "town"
 	},
 	{
 		"name":"Perevorot",
 		"left": "38.2%",
-		"top": "39.5%"
+		"top": "39.5%",
+		"type": "town"
 	},
 	{
 		"name":"Tyveri",
 		"left": "40.57%",
-		"top": "17.87%"
+		"top": "17.87%",
+		"type": "town"
 	},
 	{
 		"name":"Vaudība",
 		"left": "75.5%",
-		"top": "19%"
+		"top": "19%",
+		"type": "town"
 	},
 	{
 		"name":"Vedechi",
 		"left": "48.5%",
-		"top": "63%"
+		"top": "63%",
+		"type": "town"
 	}
 ]

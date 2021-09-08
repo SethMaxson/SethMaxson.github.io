@@ -1,5 +1,5 @@
 /// <reference types="jquery" />
-declare type CityType = "city" | "metropolis" | "village";
+declare type CityType = "city" | "metropolis" | "town" | "village";
 interface IMapObjectPosition {
     bottom?: string;
     left?: string;
@@ -50,7 +50,6 @@ interface ICitiesJsonContinentSection {
 declare const MapMarkerRadii: {
     [key in CityMarkerTypes]: number;
 };
-declare var _cityMapImageData: ICityMapNode[];
 declare class City implements ICity {
     name: string;
     type: CityType;
@@ -61,6 +60,7 @@ declare class City implements ICity {
 }
 declare function getCityData(): JQuery.jqXHR<any>;
 declare function getMapLocationData(continent: string): JQuery.jqXHR<any>;
-declare function getMapImageData(): JQuery.jqXHR<any>;
+declare function getMapImageData(continent: string): JQuery.jqXHR<any>;
+declare function getLocationDetailData(continent: string): JQuery.jqXHR<any>;
 declare function getCityObject(cityName: string, continentName: string, dataLocatedInCitiesJson?: boolean): Promise<ICity | undefined>;
 declare function ensureSingleCityResult(citiesToFilter: ICity[] | IMapLocation[], cityName: string, continentName: string, fileName: string): ICity | IMapLocation | undefined;

@@ -1,6 +1,7 @@
 "use strict";
 class Nav extends React.Component {
     render() {
+        const loggedIn = (storage.userId != undefined && storage.userId > 0);
         return (React.createElement("div", { className: "navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary" },
             React.createElement("a", { className: "navbar-brand", target: "mainFrame", href: "/dnd/pages/maps/worldatlas.html" }, "Geoss"),
             React.createElement("button", { className: "navbar-toggler", type: "button", "data-bs-toggle": "collapse", "data-bs-target": "#navbarSupportedContent", "aria-controls": "navbarSupportedContent", "aria-expanded": "false", "aria-label": "Toggle navigation" },
@@ -14,7 +15,8 @@ class Nav extends React.Component {
                             React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/world/races.html", target: "mainFrame" }, "Races"),
                             React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/world/guilds.html", target: "mainFrame" }, "Guilds"),
                             React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/world/census-data-viewer.html", target: "mainFrame" }, "Census Data"),
-                            React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/maps/index.html", target: "mainFrame" }, "Maps"))),
+                            React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/maps/index.html", target: "mainFrame" }, "Maps"),
+                            loggedIn && React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/world/wiki.html", target: "mainFrame" }, "Wiki (WIP)"))),
                     React.createElement("div", { className: "nav-item dropdown" },
                         React.createElement("a", { className: "nav-link dropdown-toggle", href: "#", id: "navbarLoreDropdown", role: "button", "data-bs-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" }, "Lore"),
                         React.createElement("div", { className: "dropdown-menu dropdown-menu-dark", "aria-labelledby": "navbarLoreDropdown" },

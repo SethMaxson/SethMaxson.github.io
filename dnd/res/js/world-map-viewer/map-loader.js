@@ -22,7 +22,6 @@ const MapMarkerRadii = {
     none: 0,
     town: 8
 };
-var _cityMapImageData;
 class City {
     constructor() {
         this.name = "";
@@ -37,24 +36,27 @@ function getCityData() {
     return $.ajax({ crossDomain: true, url: "/dnd/res/data/world-map-data/cities.json", dataType: 'json' });
 }
 function getMapLocationData(continent) {
-    return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/map-locations/${continent.toLowerCase()}.json`, dataType: 'json' });
+    return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/${continent.toLowerCase()}/locations.json`, dataType: 'json' });
 }
-function getMapImageData() {
-    return $.ajax({ crossDomain: true, url: "/dnd/res/data/world-map-data/city-map.json", dataType: 'json' });
+function getMapImageData(continent) {
+    return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/${continent.toLowerCase()}/maps.json`, dataType: 'json' });
+}
+function getLocationDetailData(continent) {
+    return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/${continent.toLowerCase()}/details.json`, dataType: 'json' });
 }
 function getCityObject(cityName, continentName, dataLocatedInCitiesJson = false) {
     var city = undefined;
     return new Promise(function (resolve, reject) {
         //#region getCityData
         if (dataLocatedInCitiesJson) {
-            $.when(getMapImageData(), getCityData()).done(function (cityMapImageDataRaw, continentSections) {
-                _cityMapImageData = cityMapImageDataRaw[0];
+            $.when(getMapImageData(continentName), getCityData()).done(function (cityMapImageDataRaw, continentSections) {
+                const cityMapImageData = cityMapImageDataRaw[0];
                 let continents = continentSections[0].filter(function (entry) {
                     return entry.name === continentName;
                 });
                 if (continents.length == 1) {
                     city = ensureSingleCityResult(continents[0].cities, cityName, continentName, "cities.json");
-                    let relevantMapImage = _cityMapImageData.filter(function (entry) {
+                    let relevantMapImage = cityMapImageData.filter(function (entry) {
                         return entry.name.toLowerCase() === cityName.toLowerCase();
                     });
                     city.url = (city.url == "#" || !city.url) && relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + city.name : city.url;
@@ -65,17 +67,24 @@ function getCityObject(cityName, continentName, dataLocatedInCitiesJson = false)
         //#endregion
         //#region getMapLocationData
         else {
-            $.when(getMapImageData(), getMapLocationData(continentName)).done(function (cityMapImageDataRaw, locationsRaw) {
-                _cityMapImageData = cityMapImageDataRaw[0];
-                let locationNode = ensureSingleCityResult(locationsRaw[0], cityName, continentName, continentName.toLowerCase() + ".json");
+            $.when(getMapImageData(continentName), getMapLocationData(continentName), getLocationDetailData(continentName)).done(function (cityMapImageDataRaw, locationsRaw, locationDetailsRaw) {
+                const cityMapImageData = cityMapImageDataRaw[0];
+                const locationDetails = locationDetailsRaw[0];
+                let locationNode = ensureSingleCityResult(locationsRaw[0], cityName, continentName, continentName.toLowerCase() + "/locations.json");
                 if (locationNode) {
                     city = new City();
                     city.name = cityName;
-                    let relevantMapImage = _cityMapImageData.filter(function (entry) {
-                        return entry.name.toLowerCase() === cityName.toLowerCase();
-                    });
+                    let relevantMapImage = cityMapImageData.filter(entry => entry.name.toLowerCase() == cityName.toLowerCase());
+                    let relevantDetails = locationDetails.filter(entry => entry.name.toLowerCase() == cityName.toLowerCase());
+                    if (relevantDetails.length > 0) {
+                        const details = relevantDetails[0];
+                        city.description = details.description.slice();
+                        city.culture = details.culture.slice();
+                    }
                     city.url = relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + cityName : "#";
-                    city.description.push("City description was not found in JSON files. Check DM notes.");
+                    if (city.description.length == 0) {
+                        city.description.push("City description was not found in JSON files. Check DM notes.");
+                    }
                 }
                 resolve(city);
             });

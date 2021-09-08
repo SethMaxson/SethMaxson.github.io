@@ -4,6 +4,7 @@ interface INavProps
 class Nav extends React.Component<INavProps> {
 	render()
 	{
+		const loggedIn = (storage.userId != undefined && storage.userId > 0);
 		return (
 			<div className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
 				<a className="navbar-brand" target="mainFrame" href="/dnd/pages/maps/worldatlas.html">Geoss</a>
@@ -23,6 +24,7 @@ class Nav extends React.Component<INavProps> {
 								<a className="dropdown-item" href="/dnd/pages/world/guilds.html" target="mainFrame">Guilds</a>
 								<a className="dropdown-item" href="/dnd/pages/world/census-data-viewer.html" target="mainFrame">Census Data</a>
 								<a className="dropdown-item" href="/dnd/pages/maps/index.html" target="mainFrame">Maps</a>
+								{loggedIn && <a className="dropdown-item" href="/dnd/pages/world/wiki.html" target="mainFrame">Wiki (WIP)</a>}
 							</div>
 						</div>
 						<div className="nav-item dropdown">

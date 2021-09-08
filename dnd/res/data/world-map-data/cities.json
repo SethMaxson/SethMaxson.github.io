@@ -298,7 +298,9 @@
 				"nameLocation": "right",
 				"type": "village",
 				"fontSize": 18,
-				"description": [],
+				"description": [
+					"An orcish city whose culture is heavily based around local legends of giant dancing earth elementals."
+				],
 				"culture": [],
 				"dmNotes": [],
 				"url": "#",

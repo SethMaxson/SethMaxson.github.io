@@ -1,4 +1,4 @@
-type CityType = "city" | "metropolis" | "village";
+type CityType = "city" | "metropolis" | "town" | "village";
 
 interface IMapObjectPosition
 {
@@ -71,8 +71,6 @@ const MapMarkerRadii: {
 	town: 8
 }
 
-var _cityMapImageData: ICityMapNode[];
-
 class City implements ICity
 {
 	name: string = "";
@@ -88,12 +86,17 @@ function getCityData() {
 }
 
 function getMapLocationData(continent: string) {
-	return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/map-locations/${continent.toLowerCase()}.json`, dataType: 'json' });
+	return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/${continent.toLowerCase()}/locations.json`, dataType: 'json' });
 }
 
-function getMapImageData()
+function getMapImageData(continent: string)
 {
-	return $.ajax({ crossDomain: true, url: "/dnd/res/data/world-map-data/city-map.json", dataType: 'json' });
+	return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/${continent.toLowerCase()}/maps.json`, dataType: 'json' });
+}
+
+function getLocationDetailData(continent: string)
+{
+	return $.ajax({ crossDomain: true, url: `/dnd/res/data/world-map-data/${continent.toLowerCase()}/details.json`, dataType: 'json' });
 }
 
 function getCityObject(cityName: string, continentName: string, dataLocatedInCitiesJson: boolean = false)
@@ -106,9 +109,12 @@ function getCityObject(cityName: string, continentName: string, dataLocatedInCit
 			if (dataLocatedInCitiesJson)
 			{
 
-				$.when(getMapImageData(), getCityData()).done(function (cityMapImageDataRaw: ICityMapNode[][], continentSections: ICitiesJsonContinentSection[][])
+				$.when(
+					getMapImageData(continentName),
+					getCityData()
+				).done(function (cityMapImageDataRaw: ICityMapNode[][], continentSections: ICitiesJsonContinentSection[][])
 				{
-					_cityMapImageData = cityMapImageDataRaw[0];
+					const cityMapImageData = cityMapImageDataRaw[0];
 					let continents = continentSections[0].filter(function (entry)
 					{
 						return entry.name === continentName;
@@ -116,7 +122,7 @@ function getCityObject(cityName: string, continentName: string, dataLocatedInCit
 					if (continents.length == 1)
 					{
 						city = ensureSingleCityResult(continents[0].cities, cityName, continentName, "cities.json") as ICity;
-						let relevantMapImage = _cityMapImageData.filter(function (entry)
+						let relevantMapImage = cityMapImageData.filter(function (entry)
 						{
 							return entry.name.toLowerCase() === cityName.toLowerCase();
 						});
@@ -129,20 +135,31 @@ function getCityObject(cityName: string, continentName: string, dataLocatedInCit
 			//#region getMapLocationData
 			else
 			{
-				$.when(getMapImageData(), getMapLocationData(continentName)).done(function (cityMapImageDataRaw: ICityMapNode[][], locationsRaw: IMapLocation[][])
+				$.when(
+					getMapImageData(continentName),
+					getMapLocationData(continentName),
+					getLocationDetailData(continentName)
+				).done(function (cityMapImageDataRaw: ICityMapNode[][], locationsRaw: IMapLocation[][], locationDetailsRaw: IMapLocationDetails[][])
 				{
-					_cityMapImageData = cityMapImageDataRaw[0];
-					let locationNode = ensureSingleCityResult(locationsRaw[0], cityName, continentName, continentName.toLowerCase() + ".json") as IMapLocation;
+					const cityMapImageData = cityMapImageDataRaw[0];
+					const locationDetails = locationDetailsRaw[0];
+					let locationNode = ensureSingleCityResult(locationsRaw[0], cityName, continentName, continentName.toLowerCase() + "/locations.json") as IMapLocation;
 					if (locationNode)
 					{
 						city = new City();
 						city.name = cityName;
-						let relevantMapImage = _cityMapImageData.filter(function (entry)
+						let relevantMapImage = cityMapImageData.filter(entry => entry.name.toLowerCase() == cityName.toLowerCase());
+						let relevantDetails = locationDetails.filter(entry => entry.name.toLowerCase() == cityName.toLowerCase());
+						if (relevantDetails.length > 0)
 						{
-							return entry.name.toLowerCase() === cityName.toLowerCase();
-						});
+							const details = relevantDetails[0];
+							city.description = details.description.slice();
+							city.culture = details.culture.slice();
+						}
 						city.url = relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + cityName : "#";
-						city.description.push("City description was not found in JSON files. Check DM notes.");
+						if (city.description.length == 0) {
+							city.description.push("City description was not found in JSON files. Check DM notes.");
+						}
 					}
 					resolve(city);
 				});

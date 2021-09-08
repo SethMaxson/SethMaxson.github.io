@@ -1,0 +1,42 @@
+[
+	{
+		"name":"Altubreste",
+		"description": [
+			"An ancient city built by a long-dead civilization of dragonborn, said to hold a powerful artifact in a highly hidden vault."
+		],
+		"culture": []
+	},
+	{
+		"name":"Fortune's Favor",
+		"description": [
+			"Fortune's Favor was constructed as a base from which to record and catalogue things from other worlds that fall through rifts."
+		],
+		"culture": []
+	},
+	{
+		"name":"Hearth's Respite",
+		"description": [
+			"A small standalone inn at the edge of a frozen wasteland. Hearth's Respite serves as a safe-haven for those traveling into the tundra."
+		],
+		"culture": []
+	},
+	{
+		"name":"Leatrom",
+		"description": [
+			"A massive dwarven mining colony, and rival city to Stonweald. Some say that spending some time in Leatrom mines is the quickest way to find a fortune."
+		],
+		"culture": []
+	},
+	{
+		"name":"Monastery of the Others",
+		"description": [],
+		"culture": []
+	},
+	{
+		"name":"Peili",
+		"description": [
+			"A city where the lines between realities are incredibly blurred."
+		],
+		"culture": []
+	}
+]

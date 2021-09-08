@@ -6,4 +6,5 @@ interface IMapLocation
 	name: string;
 	left: string;
 	top: string;
+	type: CityType;
 }

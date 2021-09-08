@@ -36,10 +36,6 @@
 		"image": "/dnd/img/maps/cities/lagos/Graisham.png"
 	},
 	{
-		"name": "Ithcuil",
-		"image": "/dnd/img/maps/cities/decapos/ithcuil.svg"
-	},
-	{
 		"name": "Laketon",
 		"image": "/dnd/img/maps/cities/lagos/Laketon.svg"
 	},
@@ -62,10 +58,6 @@
 	{
 		"name": "Southport",
 		"image": "/dnd/img/maps/cities/lagos/southport.svg"
-	},
-	{
-		"name": "stonweald",
-		"image": "/dnd/img/maps/cities/paros/stonweald.png"
 	},
 	{
 		"name": "Tahl Town",

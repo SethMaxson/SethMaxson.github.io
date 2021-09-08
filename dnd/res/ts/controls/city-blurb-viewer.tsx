@@ -12,7 +12,6 @@ class CityBlurbViewer extends ModalWindow
 	displayCity(city: ICity)
 	{
 		let me = this;
-		console.log("showing city");
 		super.mountReact(<CityBlurbDeprecated JsonObject={city} ref={(component) => { me.reactRef = component }} />);
 		super.open();
 	}
