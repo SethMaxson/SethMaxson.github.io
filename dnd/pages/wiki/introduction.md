@@ -1,5 +1,4 @@
-Geoss
-=====
+# Geoss
 
 Geoss is a world full of mystery and opportunity, watched over by many deities. The ranks of the deities have grown slowly over the centuries. Order is kept by the twelve oldest and most powerful of the deities, known as prime deities. Collectively they are referred to as the Prime Pantheon. The remaining gods and goddesses each swear their fealty to a single member of the prime pantheon. These subservient divines are known as lesser deities or demigods. While the origin of prime deities predates recorded history, most of the lesser deities are mortals who ascended to godhood. This occurs when a mortal receives genuine, sincere worship from another mortal. The strength of the worshiper's belief causes the recipient of the worship to transcend into divinity. The more active worshippers a demigod has, the more powerful they become. Theoretically, a demigod could become a prime deity with enough worshippers.
 
