@@ -32,12 +32,14 @@ While its elemental energies are not concentrated enough to empower either Air o
 - Gray Way - Vacuum
 - Scald - Fire
 - Sea of Stars - Radiance
+
 ### Sites
 - Abandoned githyanki fortresses
 - The Ashen Fortress
 - The Choking Palace
 - Cinderwood
 - The Valley of Blinding Mist
+
 ### Cities
 - The Hidden City
 - Slaan

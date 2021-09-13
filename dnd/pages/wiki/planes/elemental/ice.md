@@ -19,8 +19,10 @@ Of course, the dangers of Ice aren't all so strange. The natural hazards commonl
 
 Access to Ice is somewhat limited, as is the case for all the secondary Inner Planes, with portals to the Floating Plane being comparatively rare. Elemental vortices to Ice from the Prime tend to only occur in arctic or glacial areas, or in the centers of the harshest blizzards, and thus aren't often very accessible to planar travelers. As for other major portals, it's known that a two-way gate exists connecting Ice to Cania, and portals are believed to connect Ice to two especially frigid layers of the Abyss. Of these, only one is thought to be two-way, that between this plane and Soulfreeze, but the key for that portal is usually said to be a mortal soul, consumed in the transition; thus, few wish to investigate this claim in too much detail. A small few also claim the existence of a gate between Ice and the fiery layer of Muspelheim, but most consider such theories the ravings of barmies.
 
+
 ## Magical Conditions
 On the plane of Ice, spells of Earth or Fire are impeded, and spells of Cold or ice are maximized. Other spells are unaffected by the conditions except as the environment would dictate.
+
 
 ## Locations
 ### Boundary Regions:
@@ -41,8 +43,10 @@ On the plane of Ice, spells of Earth or Fire are impeded, and spells of Cold or 
 - Teliggin
 - Tiera Minuut
 
+
 ## See Also
 - Inhabitants of Ice
+
 
 ## References
 - The Inner Planes, pp. 68-73

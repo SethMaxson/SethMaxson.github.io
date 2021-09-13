@@ -24,8 +24,10 @@ As the Negative Quasiplane of Water, Salt prevents nearly all spells associated 
 - Saline Sea - Water
 - Stagnant Sea - Ooze
 - Stinging Storm - Ice
+
 ### Sites
 - Citadel Sealt
+
 ### Cities
 - Coriandor
 

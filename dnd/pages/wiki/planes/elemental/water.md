@@ -29,11 +29,14 @@ Similar all the elemental planes, those spells of Water are extended and enlarge
 - Islands of Water - Steam
 - Saline Sea - Salt
 - Sea of Frozen Lives - Ice
+
 ### Sites
 - The Avenger
+
 ### Cities
 - Citadel of Ten Thousand Pearls
 - City of Glass
+
 ### Realms
 - Curling Wave (Ahto's realm)
 - The Murky Depths (Blibdoolpoolp's realm)

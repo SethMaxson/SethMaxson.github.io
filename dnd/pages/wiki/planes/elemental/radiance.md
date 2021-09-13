@@ -28,10 +28,12 @@ Ablaze with heat and light as it is, it's likely no surprise that upon the plane
 - Glowing Dunes - Magma
 - The Light - Positive Energy
 - Sea of Stars - Smoke
+
 ### Sites
 - Limitless Light
 - Refuge of Color
 - Tower of Light
+
 ### Cities
 - Kingdom of the Blind
 

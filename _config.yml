@@ -6,7 +6,7 @@ baseurl:
 # (string) Description of your wiki
 description:
 # (boolean) Enable/disable wiki page list in sidebar
-show_wiki_pages: false
+show_wiki_pages: true
 # (integer) Maximum number of wiki page to shown in sidebar
 show_wiki_pages_limit: 10
 # (boolean) Enable/disable blog feature
