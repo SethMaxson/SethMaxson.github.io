@@ -1,0 +1,3 @@
+# Elemental Plane of Fire
+
+The Demiplane of Time, also called the Temporal Energy Plane and Temporal Prime, is continually in motion. It is a gray windstorm with neither a base nor a top that buffets and overturns travelers who venture within. Everything that enters the plane is tossed and ground against itself until all that remains is more dust - the sands of time carried by the winds to erode new items.

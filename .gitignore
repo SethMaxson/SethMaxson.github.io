@@ -2,6 +2,8 @@
 final-fantasy-1-old-master/
 node_modules/
 res/js/yuka-master/
+dnd/wiki/_site/
+**/.jekyll-cache/
 # dnd/res/js/common/
 # dnd/res/js/engine/
 # dnd/res/js/generators/

@@ -1,0 +1,131 @@
+<table class="infobox" style="border-spacing: 2px 5px;">
+	<tbody>
+		<tr>
+			<th colspan="2" class="infobox-above" style="background: #DEDEE2;">{{ page.title }}</th>
+		</tr>
+		{% if page.image and page.image.size > 0 %}
+			<tr>
+				<td colspan="2" class="infobox-image">
+					<a href="{{ page.image }}" class="image">
+						<img src="{{ page.image }}" decoding="async" width="220" height="325" />
+					</a>
+
+					{% if page.caption and page.caption.size > 0 %}
+						<div class="infobox-caption">{{ page.caption }}</div>
+					{% endif %}
+				</td>
+			</tr>
+		{% endif %}
+		{% if page.firstAppearance and page.firstAppearance.size > 0 %}
+			<tr>
+				<th scope="row" class="infobox-label">First appearance</th>
+				<td class="infobox-data">{{ page.firstAppearance }}</td>
+			</tr>
+		{% endif %}
+		<!-- <tr>
+			<th colspan="2" class="infobox-header" style="background: #DEDEE2;">In-universe information</th>
+		</tr> -->
+		{% if page.species %}
+			<tr>
+				<th scope="row" class="infobox-label">Species</th>
+				<td class="infobox-data"><a href="/species/{{page.species|slugize}}" title="{{page.species}}">{{ page.species }}</a></td>
+			</tr>
+		{% endif %}
+		{% if page.gender %}
+			<tr>
+				<th scope="row" class="infobox-label">Gender</th>
+				<td class="infobox-data">{{ page.gender }}</td>
+			</tr>
+		{% endif %}
+		{% if page.lastKnownLocation and page.lastKnownLocation.size > 0 %}
+			<tr>
+				<th scope="row" class="infobox-label">Last known location</th>
+				<td class="infobox-data">{{ page.lastKnownLocation }}</td>
+			</tr>
+		{% endif %}
+		<!-- <tr>
+			<th scope="row" class="infobox-label">Title</th>
+			<td class="infobox-data">
+				<div class="plainlist">
+					<ul>
+						<li>Jedi Knight (<a href="/wiki/Return_of_the_Jedi" title="Return of the Jedi">Episode VI</a>)</li>
+						<li>Jedi Master (<a href="/wiki/The_Force_Awakens" class="mw-redirect" title="The Force Awakens">Episodes VII</a> - <a href="/wiki/The_Last_Jedi" class="mw-redirect" title="The Last Jedi">VIII</a>)</li>
+					</ul>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row" class="infobox-label">Occupation</th>
+			<td class="infobox-data">
+				<div class="plainlist">
+					<ul>
+						<li>Apprentice moisture farmer</li>
+						<li><a href="/wiki/Jedi" title="Jedi">Jedi</a></li>
+					</ul>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row" class="infobox-label">Affiliation</th>
+			<td class="infobox-data">
+				<ul>
+					<li>Galactic Alliance</li>
+					<li><a href="/wiki/Jedi_Council" class="mw-redirect" title="Jedi Council">Jedi Council</a></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row" class="infobox-label">Family</th>
+			<td class="infobox-data">
+				<div class="plainlist">
+					<ul>
+						<li><a href="/wiki/Padm%C3%A9_Amidala" title="Padmé Amidala">Padmé Amidala</a> (mother)</li>
+						<li><a href="/wiki/Darth_Vader" title="Darth Vader">Anakin Skywalker</a> (father)</li>
+						<li><a href="/wiki/Leia_Organa" class="mw-redirect" title="Leia Organa">Leia Organa</a> (sister)</li>
+						<li><a href="/wiki/Han_Solo" title="Han Solo">Han Solo</a> (brother-in-law)</li>
+						<li><a href="/wiki/Ben_Solo" class="mw-redirect" title="Ben Solo">Ben Solo</a> (nephew)</li>
+					</ul>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row" class="infobox-label">Spouse</th>
+			<td class="infobox-data"><a href="/wiki/Mara_Jade" title="Mara Jade">Mara Jade</a> (<i>Legends</i>)</td>
+		</tr>
+		<tr>
+			<th scope="row" class="infobox-label">Children</th>
+			<td class="infobox-data"><a href="/wiki/Ben_Skywalker" class="mw-redirect" title="Ben Skywalker">Ben Skywalker</a> (<i>Legends</i>)</td>
+		</tr>
+		<tr>
+			<th scope="row" class="infobox-label">Relatives</th>
+			<td class="infobox-data">
+				<div class="plainlist">
+					<ul>
+						<li><a href="/wiki/List_of_Star_Wars_characters" title="List of Star Wars characters">Cliegg Lars</a> (paternal step-grandfather)</li>
+						<li><a href="/wiki/Shmi_Skywalker" class="mw-redirect" title="Shmi Skywalker">Shmi Skywalker</a> (paternal grandmother)</li>
+						<li><a href="/wiki/Owen_Lars" class="mw-redirect" title="Owen Lars">Owen Lars</a> (paternal step-uncle)</li>
+						<li><a href="/wiki/Beru_Whitesun" class="mw-redirect" title="Beru Whitesun">Beru Lars</a> (paternal step-aunt)</li>
+						<li><b><i>Legends</i>:</b></li>
+						<li><a href="/wiki/Jacen_Solo" title="Jacen Solo">Jacen Solo</a> (nephew)</li>
+						<li><a href="/wiki/Jaina_Solo" class="mw-redirect" title="Jaina Solo">Jaina Solo</a> (niece)</li>
+						<li><a href="/wiki/Anakin_Solo" class="mw-redirect" title="Anakin Solo">Anakin Solo</a> (nephew)</li>
+						<li><a href="/wiki/Cade_Skywalker" class="mw-redirect" title="Cade Skywalker">Cade Skywalker</a> (descendant)</li>
+						<li><a href="/wiki/Luuke_Skywalker" class="mw-redirect" title="Luuke Skywalker">Luuke Skywalker</a> (clone)</li>
+					</ul>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row" class="infobox-label">Master</th>
+			<td class="infobox-data"><a href="/wiki/Obi-Wan_Kenobi" title="Obi-Wan Kenobi">Obi-Wan Kenobi</a><br><a href="/wiki/Yoda" title="Yoda">Yoda</a></td>
+		</tr>
+		<tr>
+			<th scope="row" class="infobox-label">Apprentice</th>
+			<td class="infobox-data">Leia Organa<br>New Jedi Order students<br><a href="/wiki/Grogu" title="Grogu">Grogu</a><br>Ben Solo<br><a href="/wiki/Rey_(Star_Wars)" title="Rey (Star Wars)">Rey</a></td>
+		</tr>
+		<tr>
+			<th scope="row" class="infobox-label">Homeworld</th>
+			<td class="infobox-data"><a href="/wiki/Tatooine" title="Tatooine">Tatooine</a> (homeworld)<br>Polis Massa (birthplace)</td>
+		</tr> -->
+	</tbody>
+</table>
