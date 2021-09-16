@@ -99,6 +99,11 @@ defaults:
       path: "dnd/wiki/characters"
     values:
       layout: "character"
+ -
+    scope:
+      path: "dnd/wiki/species"
+    values:
+      layout: "character"
 sass:
     style: compressed
 plugins:

@@ -1,13 +1,9 @@
 ---
-title: Althea Holimion
+title: Half-Elf
 categories:
-  - Characters
-  - Half-Elf
-# image: /dnd/img/characters/npc/smith.png
-caption: Green thumb
-species: Half-Elf
-gender: Female
-lastKnownLocation: Moonfire Falls
+  - Species
+  - Playable Races
+image: /dnd/img/races/raceEntry/Half-Elf.png
 # firstAppearance: Settling In (06/02/2018)
 # titles:
 #  - Champion
@@ -16,11 +12,11 @@ lastKnownLocation: Moonfire Falls
 # relationships:
 #  - type: Friend
 #    name: Bob
-# extra:
-#  - fieldName: Occupation
-#    value: Blacksmith
+extra:
+ - fieldName: Size
+   value: Medium
 ---
 
-# Althea Holimion
+# Half-Elf
 
 Kind, courageous, and loyal to a fault. Althea proved to be a useful ally to The Seekers.
