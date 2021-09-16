@@ -1,0 +1,30 @@
+---
+layout: git-wiki-default
+---
+<div class="categories">
+	<h1 class="h1 category-title">
+		Pages in Category:&nbsp;{{ page.category-name }}
+	</h1>
+	<div class="posts">
+		{% assign sortedCategories = site.categories | sort %}
+		{% for category in sortedCategories %}
+			{% assign cat4url = category[0] | remove:' ' | downcase %}
+			<a class="sidebar-nav-item" href="{{site.baseurl}}/category/{{cat4url}}">
+				{{category[0]}}
+			</a>
+		{% endfor %}
+
+		{% for page in site.categories[page.category-name] %}
+		<div class="post py3">
+			<a href="{{ page.url | relative_url }}" class="post-link">
+			<h3 class="h1 post-title">
+				{{ page.title }}
+			</h3>
+		  </a>
+			<span class="post-summary">
+				{{ post.excerpt }}
+			</span>
+		</div>
+		{% endfor %}
+	</div>
+</div>

@@ -12,6 +12,7 @@
     <div id="git-wiki-content">
       {{ content }}
     </div>
+	{% include git-wiki/components/categories/categories-footer.html %}
 
     {% if site.inc_after_content %}
     {% include {{ site.inc_after_content }} %}
