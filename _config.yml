@@ -2,7 +2,7 @@
 title: "Geoss Wiki"
 # (string) if you've installed your wiki in subfolder, you must change this configuration
 # with your folder name, otherwise leave it empty
-baseurl: /dnd/wiki
+baseurl:
 # (string) Description of your wiki
 description:
 # (boolean) Enable/disable wiki page list in sidebar
