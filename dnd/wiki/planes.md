@@ -1,20 +1,20 @@
 # Planes Index
 
 Demiplanes:
-- [Time](demiplanes/time)
+- [Time](planes/demiplanes/time)
 
 Elemental:
-- [Air](elemental/air)
-- [Earth](elemental/earth)
-- [Fire](elemental/fire)
-- [Ice](elemental/ice)
-- [Mineral](elemental/mineral)
-- [Negative Energy](elemental/negative_energy)
-- [Radiance](elemental/radiance)
-- [Salt](elemental/salt)
-- [Smoke](elemental/smoke)
-- [Vacuum](elemental/vacuum)
-- [Water](elemental/water)
+- [Air](planes/elemental/air)
+- [Earth](planes/elemental/earth)
+- [Fire](planes/elemental/fire)
+- [Ice](planes/elemental/ice)
+- [Mineral](planes/elemental/mineral)
+- [Negative Energy](planes/elemental/negative_energy)
+- [Radiance](planes/elemental/radiance)
+- [Salt](planes/elemental/salt)
+- [Smoke](planes/elemental/smoke)
+- [Vacuum](planes/elemental/vacuum)
+- [Water](planes/elemental/water)
 
 Outer:
-- [Mechanus](outer/mechanus)
+- [Mechanus](planes/outer/mechanus)

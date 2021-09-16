@@ -2,7 +2,7 @@
 title: "Geoss Wiki"
 # (string) if you've installed your wiki in subfolder, you must change this configuration
 # with your folder name, otherwise leave it empty
-baseurl:
+baseurl: dnd/wiki
 # (string) Description of your wiki
 description:
 # (boolean) Enable/disable wiki page list in sidebar
@@ -96,7 +96,7 @@ defaults:
       layout: "git-wiki-blog"
  -
     scope:
-      path: "characters"
+      path: "dnd/wiki/characters"
     values:
       layout: "character"
 sass:
