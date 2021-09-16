@@ -7,7 +7,7 @@
 			<tr>
 				<td colspan="2" class="infobox-image">
 					<a href="{{ page.image }}" class="image">
-						<img src="{{ page.image }}" decoding="async" width="220" height="325" />
+						<img src="{{ page.image }}" decoding="async" style="width:100%" />
 					</a>
 
 					{% if page.caption and page.caption.size > 0 %}
@@ -28,7 +28,7 @@
 		{% if page.species %}
 			<tr>
 				<th scope="row" class="infobox-label">Species</th>
-				<td class="infobox-data"><a href="{{site.baseurl}}/species/{{page.species|slugize}}" title="{{page.species}}">{{ page.species }}</a></td>
+				<td class="infobox-data"><a href="{{site.baseurl}}/species/{{page.species | downcase}}" title="{{page.species}}">{{ page.species }}</a></td>
 			</tr>
 		{% endif %}
 		{% if page.gender %}

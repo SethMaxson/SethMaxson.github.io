@@ -22,7 +22,7 @@ var jsondata=[
         "title"    : "{{ title | escape }}",
         "category" : "{{ page.category }}",
         "tags"     : "{{ page.tags | join: ', ' }}",
-        "url"      : "{{ site.baseurl }}{{ page.url }}",
+        "url"      : "{{ page.url }}",
         "date"     : "{{ page.date }}",
         "content"  : "{{ page.content | strip_html | strip_newlines | remove: '"' }}"
      {% endif %}
