@@ -126,7 +126,7 @@ function getCityObject(cityName: string, continentName: string, dataLocatedInCit
 						{
 							return entry.name.toLowerCase() === cityName.toLowerCase();
 						});
-						city.url = (city.url == "#" || !city.url) && relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + city.name : city.url;
+						city.url = (city.url == "#" || !city.url) && relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?continent=" + continentName + "&city=" + city.name : city.url;
 					}
 					resolve(city);
 				});
@@ -156,7 +156,7 @@ function getCityObject(cityName: string, continentName: string, dataLocatedInCit
 							city.description = details.description.slice();
 							city.culture = details.culture.slice();
 						}
-						city.url = relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?city=" + cityName : "#";
+						city.url = relevantMapImage.length > 0 ? "/dnd/pages/maps/city-viewer.html?continent=" + continentName + "&city=" + cityName : "#";
 						if (city.description.length == 0) {
 							city.description.push("City description was not found in JSON files. Check DM notes.");
 						}

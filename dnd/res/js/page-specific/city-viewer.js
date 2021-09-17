@@ -1,12 +1,13 @@
 "use strict";
 $(document).ready(function () {
     const targetCity = GetURLParameter("city");
+    const targetContinent = GetURLParameter("continent");
     if (targetCity) {
         document.title = targetCity;
         // Load map image
         $.ajax({
             crossDomain: true,
-            url: "/dnd/res/data/world-map-data/city-map.json",
+            url: `/dnd/res/data/world-map-data/${targetContinent}/maps.json`,
             dataType: 'json',
             success: function (returnedData) {
                 let city = returnedData.filter(function (entry) {
