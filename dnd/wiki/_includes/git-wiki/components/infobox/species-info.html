@@ -1,0 +1,38 @@
+{% assign info=page.speciesInfo %}
+{% if page.species %}
+	<tr>
+		<th scope="row" class="infobox-label">Species</th>
+		<td class="infobox-data"><a href="/species/{{page.species|slugize}}" title="{{page.species}}">{{ page.species }}</a></td>
+	</tr>
+{% endif %}
+{% if info.size and info.size.size > 0 %}
+	<tr>
+		<th scope="row" class="infobox-label">Size</th>
+		<td class="infobox-data">{{ info.size }}</td>
+	</tr>
+{% endif %}
+{% if info.diet and info.diet.size > 0 %}
+	<tr>
+		<th scope="row" class="infobox-label">Diet</th>
+		<td class="infobox-data">{{ info.diet }}</td>
+	</tr>
+{% endif %}
+{% if info.subraces and info.subraces.size > 0 %}
+<tr>
+	<th scope="row" class="infobox-label">Subraces</th>
+	<td class="infobox-data">
+		<div class="plainlist">
+			<ul>
+				{% for row in info.subraces %}
+				<li>{{row}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</td>
+</tr>
+{% endif %}
+{% if page.extra and page.extra.size > 0 %}
+<tr>
+	<th colspan="2" class="infobox-header">Additional information</th>
+</tr>
+{% endif %}

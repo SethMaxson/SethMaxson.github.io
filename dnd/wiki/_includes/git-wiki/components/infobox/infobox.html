@@ -85,6 +85,9 @@
 			</td>
 		</tr>
 		{% endif %}
+		{% if page.speciesInfo %}
+		{% include git-wiki/components/infobox/species-info.html %}
+		{% endif %}
 		{% if page.extra and page.extra.size > 0 %}
 		{% for row in page.extra %}
 		<tr>
