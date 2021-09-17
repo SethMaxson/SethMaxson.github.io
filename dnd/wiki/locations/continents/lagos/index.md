@@ -6,7 +6,8 @@ categories:
 
 # Lagos
 
-Rift Activity: Moderate
+![Lagos](/dnd/images/map/landmasses/Lagos.png)
+**Rift Activity:** Moderate
 
 ## Population:
 - Aarakocra
@@ -22,6 +23,9 @@ Rift Activity: Moderate
 
 
 ## Regions
+
+Lagos contains 11 different regions.
+![Lagos Regions](/dnd/images/map/landmasses/lagos-regions.png)
 
 1. Jhabal Adnari (The Firelake)
 2. Moonfire Mountains
