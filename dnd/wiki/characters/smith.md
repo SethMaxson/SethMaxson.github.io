@@ -11,13 +11,13 @@ lastKnownLocation: Moonfire Falls
 # firstAppearance: Settling In (06/02/2018)
 titles:
  - Guildmaster (Polyforce)
-# affiliations:
-#  - Guild #1
+affiliations:
+ - Polyforce
 # relationships:
 #  - type: Friend
 #    name: Bob
 # extra:
-#  - fieldName: Occupation
+#  - label: Occupation
 #    value: Blacksmith
 ---
 

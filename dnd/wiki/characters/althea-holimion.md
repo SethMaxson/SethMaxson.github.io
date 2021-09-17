@@ -17,7 +17,7 @@ lastKnownLocation: Moonfire Falls
 #  - type: Friend
 #    name: Bob
 # extra:
-#  - fieldName: Occupation
+#  - label: Occupation
 #    value: Blacksmith
 ---
 
