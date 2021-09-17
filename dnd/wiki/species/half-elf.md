@@ -17,9 +17,9 @@ speciesInfo:
 
 ## Personality
 
-Half-elves, as a result of their unique heritage, exhibited a confidence and strength of personality uncommon amongst both humans and elves, a result of the blending between elven perceptiveness and human passion and drive. Half-elves were natural leaders and negotiators, and, perhaps because of their reality of living in two worlds, were unusually open-minded.[13] Some half-elves manifested this leadership through confidence and bravery, but others were cordial and polite, manifesting their force of personality in a subtler but no less effective manner.[17]
+Half-elves, as a result of their unique heritage, exhibit a confidence and strength of personality uncommon amongst both humans and elves, a result of the blending between elven perceptiveness and human passion and drive. Half-elves are natural leaders and negotiators, and, perhaps because of their reality of living in two worlds, are unusually open-minded. Some half-elves manifest this leadership through confidence and bravery, but others are cordial and polite, manifesting their force of personality in a subtler but no less effective manner.
 
-Like elves, half-elves were curious and inventive creatures, though this was coupled with the powerful ambition of their human parents. Half-elves also shared a love of the natural world and art with their fey parents.[16]
+Like elves, half-elves are curious and inventive creatures, though this is coupled with the powerful ambition of their human parents. Half-elves also share a love of the natural world and art with their fey parents.
 
 Half-elves, like their fey parents, are free-spirited and chaotic, with a distaste for overbearing rules and regulations. However, like humans, half-elves lean neither towards good nor evil, and while they value creativity and liberty like their elven kin, half-elves lack the virtuous bent that moderate these tendencies in elves. As a result, half-elves can prove to be unreliable and unpredictable allies at times.
 
