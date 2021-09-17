@@ -4,8 +4,8 @@ categories:
   - Playable Races
 image: /dnd/img/races/raceEntry/brokkos2.png
 speciesInfo:
-	diet: Omnivore
-	size: Medium
+  - diet: Omnivore
+    size: Medium
 ---
 
 # Brokkos

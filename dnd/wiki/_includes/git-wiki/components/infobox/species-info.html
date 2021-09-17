@@ -1,4 +1,4 @@
-{% assign info=page.speciesInfo %}
+{% for info in page.speciesInfo %}
 {% if page.species %}
 	<tr>
 		<th scope="row" class="infobox-label">Species</th>
@@ -36,3 +36,4 @@
 	<th colspan="2" class="infobox-header">Additional information</th>
 </tr>
 {% endif %}
+{% endfor %}

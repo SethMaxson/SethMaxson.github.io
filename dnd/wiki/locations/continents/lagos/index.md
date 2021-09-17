@@ -6,7 +6,7 @@ categories:
 
 # Lagos
 
-![Lagos](/dnd/img/map/landmasses/Lagos.png)
+![Lagos](/dnd/img/maps/landmasses/Lagos.png)
 
 **Rift Activity:** Moderate
 
@@ -27,7 +27,7 @@ categories:
 
 Lagos contains 11 different regions.
 
-![Lagos Regions](/dnd/img/map/landmasses/lagos-regions.png)
+![Lagos Regions](/dnd/img/maps/landmasses/lagos-regions.png)
 
 1. Jhabal Adnari (The Firelake)
 2. Moonfire Mountains
