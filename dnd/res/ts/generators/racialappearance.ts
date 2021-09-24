@@ -1,4 +1,4 @@
-interface RacialAppearanceSet
+interface IRacialAppearanceSet
 {
 	baseHeight: string;
 	heightModifier: string;
@@ -8,7 +8,7 @@ interface RacialAppearanceSet
 	statureRatio: number;
 }
 
-const RacialAppearance: {misc: RacialAppearanceSet, [key: string]: RacialAppearanceSet|undefined} = {
+const RacialAppearance: {misc: IRacialAppearanceSet, [key: string]: IRacialAppearanceSet|undefined} = {
 	"misc": {
 		baseHeight: "4' 8\"",
 		heightModifier: "2d10",

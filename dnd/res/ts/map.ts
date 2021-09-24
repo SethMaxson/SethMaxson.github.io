@@ -95,10 +95,8 @@ function initializeMap()
 			ctrlkey = false;
 		}
 	});
-	$(document).on("wheel mousewheel", "#map-body", function(e){
-		var delta;
-		var startZoom = $("#map-zoom").val() as number * 1;
-		var newZoom = startZoom;
+	$(document).on("wheel mousewheel", ".map-container", function(e){
+		let delta = 0;
 		let oe = e.originalEvent as WheelEvent;
 		//@ts-ignore
 		if (oe.wheelDelta !== undefined)
@@ -107,14 +105,7 @@ function initializeMap()
 		else
 			delta = oe.deltaY * -1;
 
-		if(delta > 0) {
-			newZoom += 5;
-		}
-		else{
-			newZoom -= 5;
-		}
-		$("#map-zoom").val(newZoom);
-		$("#map-zoom").change();
+		handleZoomUpdate(delta);
 	});
 	$(".map-container").draggable({
 		drag: function(event, ui) {
@@ -644,4 +635,18 @@ function updateMapCSSForZoom(zoom: number)
 		$('.metropolis').css("display", "none");
 		$('.continent').css("display", "block");
 	}
+}
+
+function handleZoomUpdate(delta: number)
+{
+	const startZoom = $("#map-zoom").val() as number * 1;
+	let newZoom = startZoom;
+	if(delta > 0) {
+		newZoom += 5;
+	}
+	else{
+		newZoom -= 5;
+	}
+	$("#map-zoom").val(newZoom);
+	$("#map-zoom").change();
 }

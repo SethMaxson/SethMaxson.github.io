@@ -16,6 +16,7 @@ class Nav extends React.Component {
                             React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/world/guilds.html", target: "mainFrame" }, "Guilds"),
                             React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/world/census-data-viewer.html", target: "mainFrame" }, "Census Data"),
                             React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/maps/index.html", target: "mainFrame" }, "Maps"),
+                            React.createElement("a", { className: "dropdown-item", href: "/dnd/wiki", target: "mainFrame" }, "Wiki"),
                             loggedIn && React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/world/wiki.html", target: "mainFrame" }, "Wiki (WIP)"))),
                     React.createElement("div", { className: "nav-item dropdown" },
                         React.createElement("a", { className: "nav-link dropdown-toggle", href: "#", id: "navbarLoreDropdown", role: "button", "data-bs-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "false" }, "Lore"),

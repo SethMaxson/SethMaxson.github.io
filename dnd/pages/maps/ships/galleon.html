@@ -3,197 +3,15 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>Party Ship</title>
-		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
-		<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet">
-		<style>
-			html, body {margin: 0; height: 100%; overflow: hidden}
+		<title>Galleon</title>
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/dnd/res/css/travel-agency-map.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/dnd/res/css/deck-plan-viewer.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="https://fonts.googleapis.com/css?family=Merienda+One" rel="stylesheet" />
 
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
 
-			.travel-brochure .location-info {
-				width:30%;
-				display:block;
-				position:absolute;
-				top:0px;
-				left:0px;
-				box-shadow: 1px 0px 10px black,
-				8px 0px 8px inset rgba(255,255,255,0.5);
-				z-index:6;
-				height:100%;
-				overflow-y:auto;
-				background-color:#121212;
-			}
-
-			.location-info h2 {
-				background-color:#cc0000;
-				box-shadow:0px 0px 1px #770000;
-				margin:2em 0.5em 1em 0.5em;
-				padding:7px 10px;
-				font-size:13pt;
-				text-shadow: 0px 0px 1px #ad9300;
-				text-align:center;
-				font-weight:600;
-				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-				color:#ffd700
-			}
-
-			.location-info h1 {
-				background-color:#cc0000;
-				box-shadow:0px 0px 1px #770000;
-				margin:0.5em 0.4em;
-				padding:7px 10px;
-				font-size:16pt;
-				text-shadow: 0px 0px 1px #ad9300;
-				text-align:center;
-				font-weight:600;
-				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-				color:#ffd700
-			}
-
-			.location-info h3 {
-				text-align-last: justify;
-				margin:0.5em 1em;
-				font-size:13pt;
-				text-shadow: 0px 0px 1px #555;
-				font-weight:900;
-				font-family:monospace;
-				color:#999;
-				text-transform: uppercase;
-			}
-
-			.location-info h3 {
-				text-align-last: justify;
-				margin:0.5em 1em;
-				font-size:13pt;
-				text-shadow: 0px 0px 1px #555;
-				font-weight:900;
-				font-family:monospace;
-				color:#999;
-				text-transform: uppercase;
-			}
-
-			.location-info p {
-				text-align: justify;
-				margin:1em 1em;
-				font-size:1em;
-				text-shadow: 0px 0px 1px #111;
-				font-weight:500;
-				color:#eee;
-				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
-			}
-
-			.location-info ol {
-				text-align: left;
-				margin:0em 1em 0.5em 0.5em;
-				font-size:1em;
-				text-shadow: 0px 0px 1px #111;
-				font-weight:500;
-				color:#eee;
-				text-shadow: 0px 0px 1px rgba(0,0,0,0.5);
-			}
-
-			.location-info ol li {
-				padding-top:0.5em;
-			}
-
-			.travel-brochure #map-body {
-				width:70%;
-				display:block;
-				float:right;
-			}
-
-			@keyframes MOVE-BG {
-				from {
-					background-position: 0 0;
-				}
-				to {
-					background-position: -450px 0;
-				}
-			}
-
-			@keyframes CLOUDS {
-				from {
-					background-position: 0 0;
-				}
-				to {
-					background-position: -1028px 0;
-				}
-			}
-
-			.waves{
-				/* width:200%; */
-				height:100%;
-				position: absolute;
-				left: 0;
-				right: 0px;
-				top: 0;
-				bottom: 0;
-				background: url(/img/textures/ocean.jpg) 0% 0% repeat;
-				z-index: 0;
-
-				animation-name: MOVE-BG;
-				animation-duration: 10s;
-				animation-timing-function: linear;
-				animation-iteration-count: infinite;
-			}
-
-			.clouds{
-				/* width:200%; */
-				height:100%;
-				position: absolute;
-				left: 0;
-				right: 0px;
-				top: 0;
-				bottom: 0;
-				background: url(/img/textures/clouds.png) 0% 0% repeat;
-				z-index: 0;
-
-				animation-name: CLOUDS;
-				animation-duration: 6s;
-				animation-timing-function: linear;
-				animation-iteration-count: infinite;
-			}
-
-			#Decks .pedestrian {
-				z-index: 0;
-			}
-
-			#Decks>div {
-				z-index:1;
-				width:100%;
-				height:100%;
-				position:absolute;
-				top:0px;
-				left:0px;
-				background-size:contain;
-			}
-
-			#Decks>div>* {
-				pointer-events:auto;
-			}
-
-			.grid {
-				position:absolute;
-				top:0px;
-				left:0px;
-				width:100%;
-				height:100%;
-				z-index:2;
-				mix-blend-mode:screen;
-				pointer-events: none;
-				background-size: 40px 40px;
-   				background-image: linear-gradient(to right, grey 1px, transparent 1px), linear-gradient(to bottom, grey 1px, transparent 1px);
-
-			}
-		</style>
-		<script
-			src="https://code.jquery.com/jquery-3.3.1.js"
-			integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-			crossorigin="anonymous"></script>
-		<script
-			src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
-			integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
-			crossorigin="anonymous"></script>
 		<script src="/dnd/res/js/map.js"></script>
 
 		<script>
@@ -213,7 +31,7 @@
 				$("#map-deck-show").on('input', function() {
 					var topDeck = parseInt($(this).val());
 					var deck = 1;
-					$("#Decks").children().each(function(){
+					$(".map-object-layers").children().each(function(){
 						if (deck > topDeck) {
 							$(this).hide();
 						} else {
@@ -285,7 +103,7 @@
 				</li>
 			</ol>
 		</div>
-		<div id="map-body" class="map-body" style="overflow: hidden; background-image:url(/dnd/img/textures/ww_waves.gif); height:100vh;">
+		<div id="map-body" class="map-body" style="overflow: hidden; height:100vh;">
 			<div class="map-controls" style="z-index: 2; padding-left:80px;">
 				- <input type="range" min="10" max="200" value="50" class="slider" id="map-zoom"> +
 				<input type="number" name="previous-zoom" id="previous-zoom" value="0.50" style="display:none;"/>
@@ -304,7 +122,7 @@
 				<!-- <div class="grid">
 					&#160;
 				</div> -->
-				<div id="Decks" style="width:100%; height:100%; position:absolute; top:0px; left:0px;">
+				<div class="map-object-layers" id="Decks" style="width:100%; height:100%; position:absolute; top:0px; left:0px;">
 					<div id="LowerDeck" style="background-image:url(/dnd/img/maps/ships/galleon_deck1.png); ">
 						<a href="#" class="smith city" style="position:absolute; top:50%; left:67%; font-size:4em; transform:translate(-50%, -50%);">
 							13

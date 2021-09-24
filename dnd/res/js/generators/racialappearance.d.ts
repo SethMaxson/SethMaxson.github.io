@@ -1,4 +1,4 @@
-interface RacialAppearanceSet {
+interface IRacialAppearanceSet {
     baseHeight: string;
     heightModifier: string;
     baseWeight: number;
@@ -7,6 +7,6 @@ interface RacialAppearanceSet {
     statureRatio: number;
 }
 declare const RacialAppearance: {
-    misc: RacialAppearanceSet;
-    [key: string]: RacialAppearanceSet | undefined;
+    misc: IRacialAppearanceSet;
+    [key: string]: IRacialAppearanceSet | undefined;
 };

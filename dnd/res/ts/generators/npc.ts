@@ -1670,7 +1670,7 @@ class NPCDeepGenerator
 
 	getNPCRacialAppearance(race: string) {
 		if (RacialAppearance.hasOwnProperty(race)) {
-			return RacialAppearance[race] as RacialAppearanceSet;
+			return RacialAppearance[race] as IRacialAppearanceSet;
 		} else {
 			return RacialAppearance.misc;
 		}

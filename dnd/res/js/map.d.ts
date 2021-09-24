@@ -25,3 +25,4 @@ declare function characterList(characters: string[]): string;
 declare function CrewManager(object1: any, object2: any, name1: string, name2: string): void;
 declare function SortByY(a: HTMLElement, b: HTMLElement): 0 | 1 | -1;
 declare function updateMapCSSForZoom(zoom: number): void;
+declare function handleZoomUpdate(delta: number): void;

@@ -24,6 +24,7 @@ class Nav extends React.Component<INavProps> {
 								<a className="dropdown-item" href="/dnd/pages/world/guilds.html" target="mainFrame">Guilds</a>
 								<a className="dropdown-item" href="/dnd/pages/world/census-data-viewer.html" target="mainFrame">Census Data</a>
 								<a className="dropdown-item" href="/dnd/pages/maps/index.html" target="mainFrame">Maps</a>
+								<a className="dropdown-item" href="/dnd/wiki" target="mainFrame">Wiki</a>
 								{loggedIn && <a className="dropdown-item" href="/dnd/pages/world/wiki.html" target="mainFrame">Wiki (WIP)</a>}
 							</div>
 						</div>

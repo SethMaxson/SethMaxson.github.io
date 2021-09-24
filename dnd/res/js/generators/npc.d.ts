@@ -61,7 +61,7 @@ declare class NPCDeepGenerator {
     getNPCHeight(npc: NPC): Length;
     getNPCOldness(npc: NPC): number;
     getNPCPersonalityTags(npc: NPC): void;
-    getNPCRacialAppearance(race: string): RacialAppearanceSet;
+    getNPCRacialAppearance(race: string): IRacialAppearanceSet;
     /**
      * Is this NPC a 'he', 'she', or 'they'?
      * @param gender e.g. 'female', 'male', etc.

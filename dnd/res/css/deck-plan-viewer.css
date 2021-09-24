@@ -1,0 +1,193 @@
+.travel-brochure {
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+.travel-brochure > .navbar {
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+.travel-brochure > .content {
+	position: "relative";
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+	overflow: hidden
+}
+
+@keyframes MOVE-BG-LEFT {
+	from {
+		background-position: 0 0;
+	}
+
+	to {
+		background-position: -450px 0;
+	}
+}
+
+@keyframes CLOUDS-LEFT {
+	from {
+		background-position: 0 0;
+	}
+
+	to {
+		background-position: -1028px 0;
+	}
+}
+
+
+@keyframes MOVE-BG-DOWN {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 0 450px;
+	}
+}
+
+@keyframes CLOUDS-DOWN {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 0 1028px;
+	}
+}
+
+.animated .clouds,
+.animated .waves {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.animated .clouds {
+	animation-duration: 6s;
+}
+
+.animated .waves {
+	animation-duration: 10s;
+}
+
+.animated.down .clouds {
+	animation-name: CLOUDS-DOWN;
+}
+
+.animated.down .waves {
+	animation-name: MOVE-BG-DOWN;
+}
+
+.animated.left .clouds {
+	animation-name: CLOUDS-LEFT;
+}
+
+.animated.left .waves {
+	animation-name: MOVE-BG-LEFT;
+}
+
+.clouds,
+.waves {
+	height: 100%;
+	position: absolute;
+	left: 0;
+	right: 0px;
+	top: 0;
+	bottom: 0;
+	z-index: 0;
+}
+
+.waves {
+	background: url(/img/textures/ocean.jpg) 0% 0% repeat;
+}
+
+.clouds {
+	background: url(/img/textures/clouds.png) 0% 0% repeat;
+}
+
+.map-object-layers .pedestrian {
+	z-index: 0;
+}
+
+.map-object-layers>div {
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	image-rendering: pixelated;
+	transform-origin:center center;
+}
+
+.map-object-layers>div>* {
+	pointer-events: auto;
+}
+
+.grid {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	mix-blend-mode: screen;
+	pointer-events: none;
+	background-size: 40px 40px;
+	background-image: linear-gradient(to right, grey 1px, transparent 1px), linear-gradient(to bottom, grey 1px, transparent 1px);
+}
+
+.offcanvas > .offcanvas-body > .location-info {
+	width: 100%;
+	position: unset;
+}
+
+.map-body {
+	position: relative;
+	width: 100%;
+}
+
+.deck-location {
+	font-size: 4em;
+	position: absolute;
+	transform: translate(-50%, -50%);
+}
+
+.map-body .map-controls {
+	position:absolute;
+}
+
+.deck-plan .control-toggle-button {
+	position: absolute;
+	bottom: 100%;
+	right: 0;
+	/* display: none; */
+	cursor: pointer;
+}
+
+.deck-plan:hover .control-toggle-button {
+	display: inline-block;
+}
+
+.deck-plan .control-bar {
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	background:#333;
+	width:100%;
+	padding:0.5rem;
+	text-align: left;
+	/* font-size: 1rem; */
+}
+
+.deck-plan .control-bar .close-button {
+	float: right;
+}
