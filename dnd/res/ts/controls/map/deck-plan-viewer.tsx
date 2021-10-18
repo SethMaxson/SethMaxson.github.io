@@ -27,12 +27,20 @@ class DeckPlanViewer extends React.Component<IDeckPlanViewerProps, IDeckPlanView
 			displayMenu: false,
 		};
 	}
+	componentWillReceiveProps(nextProps: IDeckPlanViewerProps)
+	{
+		// You don't have to do this check first, but it can help prevent an unneeded render
+		if (nextProps.deckPlan.decks.length < this.state.currentDeck)
+		{
+			this.setState({ currentDeck: nextProps.deckPlan.decks.length });
+		}
+	}
 	public render()
 	{
 		return (
 			<div id="map-body" className="map-body" style={{ overflow: 'hidden', height: '100%', width: "100%" }}>
 				<div className="map-controls" style={{ zIndex: 2, paddingLeft: '80px' }}>
-					- <input type="range" min={10} max={200} defaultValue={50} className="slider" id="map-zoom" /> +
+					- <input type="range" min={10} max={400} defaultValue={50} className="slider" id="map-zoom" /> +
 					<input type="number" name="previous-zoom" id="previous-zoom" defaultValue="0.50" style={{ display: 'none' }} />
 				</div>
 				{this.props.displayWaves && <div className="waves">&nbsp;</div>}
@@ -72,7 +80,7 @@ class DeckPlanViewer extends React.Component<IDeckPlanViewerProps, IDeckPlanView
 										this.setState({ currentDeck: e.target.valueAsNumber });
 									}}
 								/>
-								<span className="input-group-text fs-2">/{this.props.deckPlan.decks.length} - {this.props.deckPlan.decks[this.state.currentDeck-1].name}</span>
+								<span className="input-group-text fs-2">/{this.props.deckPlan.decks.length} - {this.props.deckPlan.decks[this.state.currentDeck - 1].name}</span>
 							</div>
 							<div className="form-check form-switch">
 								<input
@@ -130,6 +138,9 @@ class Deck extends React.Component<IDeckProps> {
 				{this.props.displayLocations && this.props.object.locations.map((loc, index: number) =>
 					<DeckLocation object={loc} key={index} />
 				)}
+				{this.props.object.crew && this.props.object.crew.map((crew, index: number) =>
+					<CrewMember object={crew} key={index} />
+				)}
 			</div>
 		);
 	}
@@ -143,8 +154,8 @@ class DeckLocation extends React.Component<IDeckLocationProps> {
 	public render()
 	{
 		return (
-			<a href="#" className="smith city deck-location" style={{top: this.props.object.top, left: this.props.object.left}}>
-			{/* <a href="#" className="smith city deck-location d-none d-lg-block" style={{top: this.props.object.top, left: this.props.object.left}}> */}
+			<a href="#" className="smith city deck-location" style={{ top: this.props.object.top, left: this.props.object.left }}>
+				{/* <a href="#" className="smith city deck-location d-none d-lg-block" style={{top: this.props.object.top, left: this.props.object.left}}> */}
 				I
 				<span className="city-preview">
 					<h1>{this.props.object.name}</h1>
@@ -156,6 +167,35 @@ class DeckLocation extends React.Component<IDeckLocationProps> {
 				</span>
 			</a>
 
+		);
+	}
+}
+
+interface ICrewMemberProps
+{
+	object: ICrewMember;
+}
+class CrewMember extends React.Component<ICrewMemberProps> {
+	public render()
+	{
+		const size = airshipGrid + 'px';
+		return (
+			<div
+				className="pedestrian party pixels stay-visible battle-token"
+				style={{
+					width:size,
+					height:size,
+					top: (this.props.object.top * window.airshipGrid) + "px",
+					left: (this.props.object.left * window.airshipGrid) + "px"
+				}}
+			>
+				<img className="wide-shot scale-me" src={this.props.object.icon} alt={this.props.object.name}/>
+				{/* <img className="close-up" src={this.props.object.full} alt={this.props.object.name} /> */}
+				<div className="close-up" style={{backgroundImage: `url('${this.props.object.full}')`}}></div>
+				<span className="city-preview">
+					<h1>{this.props.object.name}</h1>
+				</span>
+			</div>
 		);
 	}
 }

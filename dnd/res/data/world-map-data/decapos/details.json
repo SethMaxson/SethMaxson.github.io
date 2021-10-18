@@ -1,17 +1,23 @@
 [
 	{
 		"name":"Alghanayim",
-		"description": [],
+		"description": [
+			"A massive, exquisitely ornate tabaxi city in the desert. The city remains closed off to its neighbors, so little is known of its inner workings."
+		],
 		"culture": []
 	},
 	{
 		"name":"City of Canyon Winds",
-		"description": [],
+		"description": [
+			"A beautiful tabaxi city with otherworldly architecture that is perched precariously above a canyon. The buildings and streets are constructed from light materials in such a way that any no unnecessary mass is added. The city's foundation is anchored on either side of the canyon ravine, and too much weight would surely send the city plummeting to the canyon floor below."
+		],
 		"culture": []
 	},
 	{
 		"name":"City of Green Abundance",
-		"description": [],
+		"description": [
+			"A sizeable tabaxi farming city. In recent years, it has become a popular stop on trade routes due to its supply of local spices."
+		],
 		"culture": []
 	},
 	{
@@ -21,27 +27,37 @@
 	},
 	{
 		"name":"Fiorscéale",
-		"description": [],
+		"description": [
+			"A town known for its incredible theater. They achieved this reputation by having only loosely scripted plays, and using gladiators or prisoners in place of actors. Fight scenes are written into the scripts, but the outcomes are not planned. Whichever \"actor\" survives the battle is then incorporated into the rest of the loosely planned story via improvisation."
+		],
 		"culture": []
 	},
 	{
 		"name":"Ithcuil",
-		"description": [],
+		"description": [
+			"The exact nature and location of Ithcuil are unknown. However, it is speculated that it was deliberately designed so that it would be difficult to find."
+		],
 		"culture": []
 	},
 	{
 		"name":"Kuhluhnir",
-		"description": [],
+		"description": [
+			"A ratfolk city constructed by the Devia family to harvest kola nuts and produce a sweet, bubbly beverage known as Kulu Cola. The actual ratfolk population is relatively small, with the bulk of the work force comprised of undead from hobgoblin labor markets."
+		],
 		"culture": []
 	},
 	{
 		"name":"Nezhitrud",
-		"description": [],
+		"description": [
+			"This hobgoblin city is a massive undead labor market, where zombies are sold to the highest bidder to be used for simple manual labor tasks such as working fields. The zombie workers come in a wide spectrum of sizes and builds, so starting bids are assigned per pound of weight for each zombie."
+		],
 		"culture": []
 	},
 	{
 		"name":"Osbeck Memorial Airship Graveyard",
-		"description": [],
+		"description": [
+			"A massive airship graveyard, where Lagos dumps their overly damaged airships."
+		],
 		"culture": []
 	},
 	{
@@ -50,8 +66,15 @@
 		"culture": []
 	},
 	{
-		"name":"Tyveri",
+		"name":"Starwell",
 		"description": [],
+		"culture": []
+	},
+	{
+		"name":"Tyveri",
+		"description": [
+			"A barracks built by renowned triton warriors to train new generations of warriors. Any warrior deemed mighty enough is welcome to train here."
+		],
 		"culture": []
 	},
 	{
@@ -61,7 +84,9 @@
 	},
 	{
 		"name":"Vedechi",
-		"description": [],
+		"description": [
+			"A small, primitive coastal village populated by a friendly, peaceful tribe of ghostwise halflings. They deliberately abstain from technological advancements, choosing instead to live as their ancestors did."
+		],
 		"culture": []
 	}
 ]

@@ -322,7 +322,7 @@ function PartyBattle(left: string = "50%", top: string = "50%", name: string | s
 		output = `
 		<div class=\"pedestrian party pixels stay-visible battle-token\" style=\"width:${size}; height:${size}; left:${left}; top:${top}\">
 			<img class="wide-shot scale-me" src="${image[0]}" style="width:100%;" alt="${name}"/>
-			<img class="close-up" src="${image[1]}" alt="${name}" style="width:200%; height:200%; position:absolute; top:70%; left:50%; transform:translate(-50%, -100%);pointer-events:none;" />
+			<img class="close-up" src="${image[1]}" alt="${name}" style="width:120%; height:120%; position:absolute; top:70%; left:50%; transform:translate(-50%, -100%);pointer-events:none;" />
 			<span class=\"city-preview\">
 				<h1>${name}</h1>
 			</span>

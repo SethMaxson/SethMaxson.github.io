@@ -5,10 +5,15 @@ function isOfTypeTravelDirection(keyInput: string): keyInput is TravelDirection
 	return ["down", "left", "right", "up"].includes(keyInput);
 }
 
+function isOfTypeShip (ship: IDeckPlan | IShip): ship is IShip {
+	return ship.hasOwnProperty("deckPlan");
+}
+
 const GALLEON: IDeckPlan = {
 	name: "Galleon",
 	width: 2160,
 	height: 564,
+	gridSize: 80,
 	decks: [
 		{
 			image: "/dnd/img/maps/ships/galleon_deck1.png",
@@ -153,70 +158,10 @@ const GALLEON: IDeckPlan = {
 	]
 }
 
-// interface IKillingGameViewerProps
-// {
-// 	data: IKillingGameIndex;
-// }
-// interface IKillingGameViewerState
-// {
-// 	dioramaShownAtLoad: boolean;
-// 	displayType: KillingGameMenuDisplay;
-// 	selectedCharacter: IKillingGameCharacter;
-// 	selectedDiorama: IDioramaProps;
-// 	showStatic: boolean;
-// }
-// class KillingGameViewer extends React.Component<IKillingGameViewerProps, IKillingGameViewerState> {
-// 	constructor(props: IKillingGameViewerProps)
-// 	{
-// 		super(props);
-// 		this.viewCharacter = this.viewCharacter.bind(this);
-// 		this.viewDiorama = this.viewDiorama.bind(this);
-// 		this.viewMenu = this.viewMenu.bind(this);
-// 		let view = GetURLParameter("view");
-// 		let characterName = GetURLParameter("name");
-// 		let matches: IKillingGameCharacter[] = [];
-// 		if (characterName) {
-// 			matches = matches.concat(this.props.data.characters.filter(el => el.name.toLowerCase() == characterName?.toLowerCase()));
-// 		}
-// 		let selectedDiorama = this.props.data.misc[0];
-// 		let selectedCharacter = matches.length > 0 ? matches[0] : this.props.data.characters[0];
-
-// 		this.state = {
-// 			dioramaShownAtLoad: matches.length > 0,
-// 			displayType: view == "character" ? "Character" : "Menu",
-// 			selectedCharacter: selectedCharacter,
-// 			selectedDiorama: selectedDiorama,
-// 			showStatic: false
-// 		};
-// 	}
-// 	render()
-// 	{
-// 		return (
-// 			<div className="h-100 w-100">
-// 				{this.state.showStatic && <div className="static"></div>}
-// 				{this.state.displayType == "Menu" && <KillingGameViewerNav data={this.props.data} displayCharacter={this.viewCharacter} showEvidenceTab={false} showTrialTab={false} />}
-// 				{this.state.displayType == "Character" && <ShipViewerPage character={this.state.selectedCharacter} close={this.viewMenu} />}
-// 			</div>
-
-// 		);
-// 	}
-// 	viewCharacter(character: IKillingGameCharacter)
-// 	{
-// 		this.setState({ selectedCharacter: character, displayType: "Character" });
-// 	}
-// 	viewDiorama(diorama: IDioramaProps)
-// 	{
-// 		this.setState({ selectedDiorama: diorama, displayType: "Diorama" });
-// 	}
-// 	viewMenu()
-// 	{
-// 		this.setState({ displayType: "Menu" });
-// 	}
-// }
-
 interface IShipViewerMenuProps
 {
-	data: IShipIndex;
+	shipIndex: IShipIndexEntry[];
+	changeShip: { (shipFile: string): void };
 }
 class ShipViewerMenu extends React.Component<IShipViewerMenuProps> {
 	// public static defaultProps = {
@@ -236,19 +181,39 @@ class ShipViewerMenu extends React.Component<IShipViewerMenuProps> {
 					<div className="collapse navbar-collapse" id="shipViewerMenuToggler">
 						<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 							<li className="nav-item">
-								<a className="nav-link active" aria-current="page" href="#">Home</a>
+								<select
+									className="form-select"
+									onChange={
+										(e: React.ChangeEvent<HTMLSelectElement>) =>
+										{
+											const newShip = e.target.value
+											if (newShip != undefined && newShip.length > 0) {
+												this.props.changeShip(newShip);
+											}
+										}
+									}
+								>
+									{this.props.shipIndex.map((ship, index: number) =>
+										<option
+											value={ship.name}
+											key={index}
+										>
+											{ship.name}
+										</option>
+									)}
+								</select>
 							</li>
-							<li className="nav-item">
+							{/* <li className="nav-item">
 								<a className="nav-link" href="#">Link</a>
 							</li>
 							<li className="nav-item">
 								<a className="nav-link disabled" href="#" tabIndex={-1} aria-disabled="true">Disabled</a>
-							</li>
+							</li> */}
 						</ul>
-						<form className="d-flex">
+						{/* <form className="d-flex">
 							<input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
 							<button className="btn btn-outline-success" type="submit">Search</button>
-						</form>
+						</form> */}
 					</div>
 				</div>
 			</nav>
@@ -264,6 +229,8 @@ interface IShipViewerPageProps
 interface IShipViewerPageState
 {
 	currentShip: IDeckPlan;
+	mapTokens: IMapToken[];
+	shipIndex: { name: string, file: string; }[];
 }
 class ShipViewerPage extends React.Component<IShipViewerPageProps, IShipViewerPageState> {
 	// public static defaultProps = {
@@ -273,8 +240,24 @@ class ShipViewerPage extends React.Component<IShipViewerPageProps, IShipViewerPa
 	{
 		super(props);
 
+		window.airshipGrid = 80;
 		this.state = {
 			currentShip: GALLEON,
+			mapTokens: [],
+			shipIndex: [
+				{
+					file: "/dnd/res/data/map/ships/deck-plans/galleon.json",
+					name: "Galleon"
+				},
+				{
+					file: "/dnd/res/data/map/ships/deck-plans/sloop.json",
+					name: "Sloop"
+				},
+				{
+					file: "/dnd/res/data/map/ships/named-ships/macaw.json",
+					name: "The Macaw"
+				}
+			],
 		};
 	}
 	render()
@@ -282,7 +265,8 @@ class ShipViewerPage extends React.Component<IShipViewerPageProps, IShipViewerPa
 		return (
 			<div className="travel-brochure">
 				<ShipViewerMenu
-					data={this.props.data}
+					changeShip={this.changeShip}
+					shipIndex={this.state.shipIndex}
 				/>
 				<div className="content">
 					<div className="offcanvas offcanvas-start" tabIndex={-1} id="brochureOffcanvas" aria-labelledby="brochureLabel">
@@ -320,6 +304,51 @@ class ShipViewerPage extends React.Component<IShipViewerPageProps, IShipViewerPa
 			</div>
 		);
 	}
+	// componentDidMount()
+	// {
+	// 	$.ajax({
+	// 		url: "/dnd/res/data/map/tokens.json"
+	// 	}).then((tokens: IMapToken[]) =>
+	// 	{
+	// 		this.setState({ mapTokens: tokens });
+	// 	});
+	// }
+	changeShip = (shipName: string) =>
+	{
+		const fileName = this.state.shipIndex.filter(ship => ship.name == shipName)[0].file;
+		$.ajax({
+			url: fileName,
+		}).then((ship: IDeckPlan|IShip) =>
+		{
+			if (isOfTypeShip(ship))
+			{
+				$.ajax({
+					url: ship.deckPlan
+				}).then((deckPlan: IDeckPlan) =>
+				{
+					const extendedShip = Object.assign({}, deckPlan);
+					extendedShip.name = ship.name;
+
+					ship.decks = ship.decks? ship.decks : [];
+					for (let i = 0; i < ship.decks.length; i++) {
+						const element = ship.decks[i];
+						let extendedDeck = extendedShip.decks.filter(deck => deck.name == element.name)[0];
+						extendedDeck.crew = element.crew;
+					}
+					this.loadShip(extendedShip);
+				});
+			}
+			else
+			{
+				this.loadShip(ship as IDeckPlan);
+			}
+		});
+	}
+	loadShip = (ship: IDeckPlan) =>
+	{
+		window.airshipGrid = ship.gridSize;
+		this.setState({ currentShip: ship });
+	}
 }
 
 // interface IKillingGameRegulationViewerProps
@@ -345,6 +374,11 @@ class ShipViewerPage extends React.Component<IShipViewerPageProps, IShipViewerPa
 // 	}
 // }
 
+interface IShipIndexEntry
+{
+	file: string;
+	name: string;
+}
 interface IShipIndex
 {
 	deckPlans: { option: string, value: string }[];

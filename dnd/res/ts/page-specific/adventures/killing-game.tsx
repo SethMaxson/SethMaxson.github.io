@@ -5,7 +5,7 @@ type KillingGameStatus = "Alive" | "Dead" | "Missing" | "Unknown";
 
 function isOfTypeTab (keyInput: string): keyInput is KillingGameMenuActiveTab {
 	return ["character", "evidence", "map", "rules", "shop", "trial"].includes(keyInput);
-  }
+}
 
 interface IKillingGameCharacter extends INPC
 {

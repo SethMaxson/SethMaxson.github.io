@@ -17,6 +17,7 @@ declare class DeckPlanViewer extends React.Component<IDeckPlanViewerProps, IDeck
         displayWaves: boolean;
     };
     constructor(props: IDeckPlanViewerProps);
+    componentWillReceiveProps(nextProps: IDeckPlanViewerProps): void;
     render(): JSX.Element;
 }
 interface IDeckProps {
@@ -33,5 +34,11 @@ interface IDeckLocationProps {
     object: IDeckLocation;
 }
 declare class DeckLocation extends React.Component<IDeckLocationProps> {
+    render(): JSX.Element;
+}
+interface ICrewMemberProps {
+    object: ICrewMember;
+}
+declare class CrewMember extends React.Component<ICrewMemberProps> {
     render(): JSX.Element;
 }

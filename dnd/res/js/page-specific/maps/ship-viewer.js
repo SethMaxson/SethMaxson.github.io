@@ -2,10 +2,14 @@
 function isOfTypeTravelDirection(keyInput) {
     return ["down", "left", "right", "up"].includes(keyInput);
 }
+function isOfTypeShip(ship) {
+    return ship.hasOwnProperty("deckPlan");
+}
 const GALLEON = {
     name: "Galleon",
     width: 2160,
     height: 564,
+    gridSize: 80,
     decks: [
         {
             image: "/dnd/img/maps/ships/galleon_deck1.png",
@@ -162,14 +166,12 @@ class ShipViewerMenu extends React.Component {
                 React.createElement("div", { className: "collapse navbar-collapse", id: "shipViewerMenuToggler" },
                     React.createElement("ul", { className: "navbar-nav me-auto mb-2 mb-lg-0" },
                         React.createElement("li", { className: "nav-item" },
-                            React.createElement("a", { className: "nav-link active", "aria-current": "page", href: "#" }, "Home")),
-                        React.createElement("li", { className: "nav-item" },
-                            React.createElement("a", { className: "nav-link", href: "#" }, "Link")),
-                        React.createElement("li", { className: "nav-item" },
-                            React.createElement("a", { className: "nav-link disabled", href: "#", tabIndex: -1, "aria-disabled": "true" }, "Disabled"))),
-                    React.createElement("form", { className: "d-flex" },
-                        React.createElement("input", { className: "form-control me-2", type: "search", placeholder: "Search", "aria-label": "Search" }),
-                        React.createElement("button", { className: "btn btn-outline-success", type: "submit" }, "Search"))))));
+                            React.createElement("select", { className: "form-select", onChange: (e) => {
+                                    const newShip = e.target.value;
+                                    if (newShip != undefined && newShip.length > 0) {
+                                        this.props.changeShip(newShip);
+                                    }
+                                } }, this.props.shipIndex.map((ship, index) => React.createElement("option", { value: ship.name, key: index }, ship.name)))))))));
     }
 }
 class ShipViewerPage extends React.Component {
@@ -178,13 +180,67 @@ class ShipViewerPage extends React.Component {
     // };
     constructor(props) {
         super(props);
+        // componentDidMount()
+        // {
+        // 	$.ajax({
+        // 		url: "/dnd/res/data/map/tokens.json"
+        // 	}).then((tokens: IMapToken[]) =>
+        // 	{
+        // 		this.setState({ mapTokens: tokens });
+        // 	});
+        // }
+        this.changeShip = (shipName) => {
+            const fileName = this.state.shipIndex.filter(ship => ship.name == shipName)[0].file;
+            $.ajax({
+                url: fileName,
+            }).then((ship) => {
+                if (isOfTypeShip(ship)) {
+                    $.ajax({
+                        url: ship.deckPlan
+                    }).then((deckPlan) => {
+                        const extendedShip = Object.assign({}, deckPlan);
+                        extendedShip.name = ship.name;
+                        ship.decks = ship.decks ? ship.decks : [];
+                        for (let i = 0; i < ship.decks.length; i++) {
+                            const element = ship.decks[i];
+                            let extendedDeck = extendedShip.decks.filter(deck => deck.name == element.name)[0];
+                            extendedDeck.crew = element.crew;
+                        }
+                        this.loadShip(extendedShip);
+                    });
+                }
+                else {
+                    this.loadShip(ship);
+                }
+            });
+        };
+        this.loadShip = (ship) => {
+            window.airshipGrid = ship.gridSize;
+            this.setState({ currentShip: ship });
+        };
+        window.airshipGrid = 80;
         this.state = {
             currentShip: GALLEON,
+            mapTokens: [],
+            shipIndex: [
+                {
+                    file: "/dnd/res/data/map/ships/deck-plans/galleon.json",
+                    name: "Galleon"
+                },
+                {
+                    file: "/dnd/res/data/map/ships/deck-plans/sloop.json",
+                    name: "Sloop"
+                },
+                {
+                    file: "/dnd/res/data/map/ships/named-ships/macaw.json",
+                    name: "The Macaw"
+                }
+            ],
         };
     }
     render() {
         return (React.createElement("div", { className: "travel-brochure" },
-            React.createElement(ShipViewerMenu, { data: this.props.data }),
+            React.createElement(ShipViewerMenu, { changeShip: this.changeShip, shipIndex: this.state.shipIndex }),
             React.createElement("div", { className: "content" },
                 React.createElement("div", { className: "offcanvas offcanvas-start", tabIndex: -1, id: "brochureOffcanvas", "aria-labelledby": "brochureLabel" },
                     React.createElement("div", { className: "offcanvas-header" },

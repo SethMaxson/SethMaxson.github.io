@@ -60,6 +60,12 @@
 		"type": "town"
 	},
 	{
+		"name":"Starwell",
+		"left": "47.1%",
+		"top": "70.7%",
+		"type": "city"
+	},
+	{
 		"name":"Tyveri",
 		"left": "40.57%",
 		"top": "17.87%",

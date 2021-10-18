@@ -5,12 +5,12 @@
 	flex-direction: column;
 }
 
-.travel-brochure > .navbar {
+.travel-brochure>.navbar {
 	flex-grow: 0;
 	flex-shrink: 0;
 }
 
-.travel-brochure > .content {
+.travel-brochure>.content {
 	position: "relative";
 	flex-grow: 1;
 	flex-shrink: 1;
@@ -48,6 +48,7 @@ body {
 	from {
 		background-position: 0 0;
 	}
+
 	to {
 		background-position: 0 450px;
 	}
@@ -57,6 +58,7 @@ body {
 	from {
 		background-position: 0 0;
 	}
+
 	to {
 		background-position: 0 1028px;
 	}
@@ -125,7 +127,7 @@ body {
 	background-repeat: no-repeat;
 	background-size: contain;
 	image-rendering: pixelated;
-	transform-origin:center center;
+	transform-origin: center center;
 }
 
 .map-object-layers>div>* {
@@ -145,7 +147,7 @@ body {
 	background-image: linear-gradient(to right, grey 1px, transparent 1px), linear-gradient(to bottom, grey 1px, transparent 1px);
 }
 
-.offcanvas > .offcanvas-body > .location-info {
+.offcanvas>.offcanvas-body>.location-info {
 	width: 100%;
 	position: unset;
 }
@@ -162,7 +164,7 @@ body {
 }
 
 .map-body .map-controls {
-	position:absolute;
+	position: absolute;
 }
 
 .deck-plan .control-toggle-button {
@@ -181,13 +183,50 @@ body {
 	position: absolute;
 	bottom: 100%;
 	left: 0;
-	background:#333;
-	width:100%;
-	padding:0.5rem;
+	background: #333;
+	min-width: 50vw;
+	width: 100%;
+	padding: 0.5rem;
 	text-align: left;
 	/* font-size: 1rem; */
 }
 
 .deck-plan .control-bar .close-button {
 	float: right;
+}
+
+.pedestrian img.close-up,
+img.close-up {
+	width: 120%;
+	height: 120%;
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%, -100%);
+	pointer-events: none;
+}
+
+.wide-shot {
+	width:100%;
+}
+
+div.close-up {
+	width: 120%;
+	height: 120%;
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%, -100%);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	pointer-events: none;
+	background-position: center;
+}
+
+.pedestrian {
+	border: 1px solid transparent;
+}
+
+.pedestrian:hover {
+	border: 1px solid royalblue;
 }

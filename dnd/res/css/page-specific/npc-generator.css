@@ -22,6 +22,10 @@ div.token {
 	overflow: hidden;
 	text-overflow: ellipsis;
  }
+
+ .ms-options-wrap {
+	 position: relative;
+ }
 /*#endregion stuff for jquery.multiselect.js*/
 
 @media print
@@ -35,6 +39,7 @@ div.token {
 	.background {
 		margin:0;
 		padding:0;
+		background: none;
 	}
 
 	.container {
@@ -46,5 +51,19 @@ div.token {
 	.npc-table tr {
 		break-inside: avoid;
 		page-break-inside: avoid;
+	}
+
+	.noprint {
+		display: none;
+	}
+
+	.accordion-body.bg-secondary {
+		padding:0;
+		margin: 0;
+		background: none !important;
+	}
+
+	table.table {
+		margin: 0;
 	}
 }

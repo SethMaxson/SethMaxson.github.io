@@ -2928,11 +2928,13 @@ const NameGenerator = {
             case "tabaxi":
                 name = randomize([
                     "Afternoon Nap (Nap)",
+                    "Arctic Dust (Arctic)",
                     "Aurora of Winter (Aurora)",
                     "Bag of Nails (Nails)",
                     "Bronze Peak (Bronze)",
                     "Bush in the Forest (Forest)",
                     "Cadence of Water (Cadence)",
+                    "Cool Morning (Morning)",
                     "Clever Star (Star)",
                     "Cloud on the Mountaintop (Cloud)",
                     "Coursing River (River)",
@@ -2945,12 +2947,15 @@ const NameGenerator = {
                     "Fresh Hide (Hide)",
                     "Game of Chance (Game)",
                     "Gold Wind (Wind)",
+                    "Hatchling Trout (Hatch)",
                     "Hearty Fang (Hearty)",
+                    "Hidden Treasure (Treasure)",
                     "Jade Shoe (Jade)",
                     "Lazy Flower (Flower)",
                     "Leaf on the Water (Leaf)",
                     "Left-Handed Hummingbird (Bird)",
                     "Merry River (River)",
+                    "Quiet Rain (Quiet)",
                     "Rainbow After Rain (Rainbow)",
                     "River Mist (River)",
                     "Sapphire Clover (Sapphire)",
@@ -2964,10 +2969,14 @@ const NameGenerator = {
                     "Sound of the Drum (Drum)",
                     "Spring Blossom (Spring)",
                     "Storm at Sea (Sea)",
+                    "Subtle River (Subtle)",
                     "Three Earrings (Three)",
                     "Tree Blossom (Blossom)",
+                    "True Clover (Clover)",
                     "Two Dry Cloaks (Cloaks)",
-                    "Winter Breath (Winter)"
+                    "Warm Day (Warm)",
+                    "Whisper on the Wind (Whisper)",
+                    "Winter Breath (Winter)",
                 ]);
                 break;
             //#endregion

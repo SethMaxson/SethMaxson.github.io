@@ -8,11 +8,17 @@ class DeckPlanViewer extends React.Component {
             displayMenu: false,
         };
     }
+    componentWillReceiveProps(nextProps) {
+        // You don't have to do this check first, but it can help prevent an unneeded render
+        if (nextProps.deckPlan.decks.length < this.state.currentDeck) {
+            this.setState({ currentDeck: nextProps.deckPlan.decks.length });
+        }
+    }
     render() {
         return (React.createElement("div", { id: "map-body", className: "map-body", style: { overflow: 'hidden', height: '100%', width: "100%" } },
             React.createElement("div", { className: "map-controls", style: { zIndex: 2, paddingLeft: '80px' } },
                 "- ",
-                React.createElement("input", { type: "range", min: 10, max: 200, defaultValue: 50, className: "slider", id: "map-zoom" }),
+                React.createElement("input", { type: "range", min: 10, max: 400, defaultValue: 50, className: "slider", id: "map-zoom" }),
                 " +",
                 React.createElement("input", { type: "number", name: "previous-zoom", id: "previous-zoom", defaultValue: "0.50", style: { display: 'none' } })),
             this.props.displayWaves && React.createElement("div", { className: "waves" }, "\u00A0"),
@@ -56,7 +62,9 @@ DeckPlanViewer.defaultProps = {
 };
 class Deck extends React.Component {
     render() {
-        return (React.createElement("div", { id: this.props.object.name, style: { backgroundImage: ('url(' + this.props.object.image + ')') } }, this.props.displayLocations && this.props.object.locations.map((loc, index) => React.createElement(DeckLocation, { object: loc, key: index }))));
+        return (React.createElement("div", { id: this.props.object.name, style: { backgroundImage: ('url(' + this.props.object.image + ')') } },
+            this.props.displayLocations && this.props.object.locations.map((loc, index) => React.createElement(DeckLocation, { object: loc, key: index })),
+            this.props.object.crew && this.props.object.crew.map((crew, index) => React.createElement(CrewMember, { object: crew, key: index }))));
     }
 }
 Deck.defaultProps = {
@@ -69,6 +77,21 @@ class DeckLocation extends React.Component {
             React.createElement("span", { className: "city-preview" },
                 React.createElement("h1", null, this.props.object.name),
                 this.props.object.description.map((paragraph, index) => React.createElement("p", { key: index }, paragraph)))));
+    }
+}
+class CrewMember extends React.Component {
+    render() {
+        const size = airshipGrid + 'px';
+        return (React.createElement("div", { className: "pedestrian party pixels stay-visible battle-token", style: {
+                width: size,
+                height: size,
+                top: (this.props.object.top * window.airshipGrid) + "px",
+                left: (this.props.object.left * window.airshipGrid) + "px"
+            } },
+            React.createElement("img", { className: "wide-shot scale-me", src: this.props.object.icon, alt: this.props.object.name }),
+            React.createElement("div", { className: "close-up", style: { backgroundImage: `url('${this.props.object.full}')` } }),
+            React.createElement("span", { className: "city-preview" },
+                React.createElement("h1", null, this.props.object.name))));
     }
 }
 //# sourceMappingURL=deck-plan-viewer.js.map

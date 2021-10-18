@@ -6,4 +6,6 @@ interface IDeck
 	name: string;
 	/**Noteworthy locations (such as cabins) on this deck. */
 	locations: IDeckLocation[];
+	/**Any crew members present on this deck. */
+	crew?: ICrewMember[];
 }
