@@ -33,23 +33,7 @@ class DeckPlanViewer extends React.Component {
                 !this.state.displayMenu &&
                     React.createElement("button", { className: "btn btn-light btn-lg control-toggle-button fs-2", onClick: () => { this.setState({ displayMenu: true }); } }, "Menu"),
                 this.state.displayMenu &&
-                    React.createElement("div", { className: "control-bar text-light fs-2" },
-                        React.createElement("label", { htmlFor: "current-deck", className: "form-label" }, "Current Deck:"),
-                        React.createElement("div", { className: "input-group mb-3 fs-2" },
-                            React.createElement("input", { type: "number", className: "form-control fs-2", id: "current-deck", step: 1, min: 1, max: this.props.deckPlan.decks.length, style: { minWidth: "30px", width: "10%", flex: "0 0 auto", textAlign: "right" }, value: this.state.currentDeck, onChange: (e) => {
-                                    this.setState({ currentDeck: e.target.valueAsNumber });
-                                } }),
-                            React.createElement("span", { className: "input-group-text fs-2" },
-                                "/",
-                                this.props.deckPlan.decks.length,
-                                " - ",
-                                this.props.deckPlan.decks[this.state.currentDeck - 1].name)),
-                        React.createElement("div", { className: "form-check form-switch" },
-                            React.createElement("input", { className: "form-check-input", type: "checkbox", id: "flexSwitchCheckDefault", checked: this.state.displayLocations, onChange: (e) => {
-                                    this.setState({ displayLocations: e.target.checked });
-                                } }),
-                            React.createElement("label", { className: "form-check-label text-light", htmlFor: "flexSwitchCheckDefault" }, "Display Notable Locations")),
-                        React.createElement("button", { className: "btn btn-danger btn-lg close-button fs-2", onClick: () => { this.setState({ displayMenu: false }); } }, "X")),
+                    React.createElement(BattleMapObjectMenu, { CurrentLayer: this.state.currentDeck, DisplayLocations: this.state.displayLocations, FloorPlan: this.props.deckPlan, CloseMenu: () => this.setState({ displayMenu: false }), SetCurrentLayer: (value) => this.setState({ currentDeck: value }), SetDisplayNotableLocations: (value) => this.setState({ displayLocations: value }) }),
                 this.props.displayGrid &&
                     React.createElement("div", { className: "grid" }, "\u00A0"),
                 React.createElement("div", { className: "map-object-layers", id: "Decks", style: { width: '100%', height: '100%', position: 'absolute', top: '0px', left: '0px' } }, this.props.deckPlan.decks.map((deck, index) => (index < this.state.currentDeck) && React.createElement(Deck, { displayLocations: this.state.displayLocations, object: deck, key: index }))))));
@@ -60,6 +44,27 @@ DeckPlanViewer.defaultProps = {
     displayGrid: false,
     displayWaves: true,
 };
+class DeckPlanMenu extends React.Component {
+    render() {
+        return (React.createElement("div", { className: "control-bar text-light fs-2" },
+            React.createElement("label", { htmlFor: "current-deck", className: "form-label" }, "Current Deck:"),
+            React.createElement("div", { className: "input-group mb-3 fs-2" },
+                React.createElement("input", { type: "number", className: "form-control fs-2", id: "current-deck", step: 1, min: 1, max: this.props.deckPlan.decks.length, style: { minWidth: "30px", width: "10%", flex: "0 0 auto", textAlign: "right" }, value: this.props.currentDeck, onChange: (e) => {
+                        this.setState({ currentDeck: e.target.valueAsNumber });
+                    } }),
+                React.createElement("span", { className: "input-group-text fs-2" },
+                    "/",
+                    this.props.deckPlan.decks.length,
+                    " - ",
+                    this.props.deckPlan.decks[this.props.currentDeck - 1].name)),
+            React.createElement("div", { className: "form-check form-switch" },
+                React.createElement("input", { className: "form-check-input", type: "checkbox", id: "flexSwitchCheckDefault", checked: this.props.displayLocations, onChange: (e) => {
+                        this.setState({ displayLocations: e.target.checked });
+                    } }),
+                React.createElement("label", { className: "form-check-label text-light", htmlFor: "flexSwitchCheckDefault" }, "Display Notable Locations")),
+            React.createElement("button", { className: "btn btn-danger btn-lg close-button fs-2", onClick: () => { this.setState({ displayMenu: false }); } }, "X")));
+    }
+}
 class Deck extends React.Component {
     render() {
         return (React.createElement("div", { id: this.props.object.name, style: { backgroundImage: ('url(' + this.props.object.image + ')') } },

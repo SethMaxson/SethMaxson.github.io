@@ -2,8 +2,8 @@
 <html>
 
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Ship Viewer</title>
 		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all" />
 		<link href="/dnd/res/css/travel-agency-map.css" rel="stylesheet" type="text/css" media="all" />
@@ -24,6 +24,7 @@
 		<script src="/dnd/res/js/map.js"></script>
 
 		<!-- Controls -->
+		<script src="/dnd/res/js/components/map/battle-map-object-menu.js"></script>
 		<script src="/dnd/res/js/controls/map/brochure.js"></script>
 		<script src="/dnd/res/js/controls/map/deck-plan-viewer.js"></script>
 
@@ -32,7 +33,7 @@
 		<script>
 			$(document).ready(function(){
 				airshipGrid = 80;
-				PartyBattle("37%", "18%", "Jasper", ["/dnd/img/maps/icons/jasper.png", "/dnd/img/maps/icons/jasper_full.png"], "#MainDeck");
+				PartyBattle("37%", "18%", "Jasper", ["/dnd/img/maps/icons/jasper.png", "/dnd/img/maps/icons/jasper_full.png"]);
 				PartyBattle("40%", "50%", "Zenrya", ["/dnd/img/maps/icons/Zenrya.png", "/dnd/img/maps/icons/Zenrya_full.png"]);
 				PartyBattle("40%", "40%", "Teomyr", ["/dnd/img/maps/icons/teomyr.png", "/dnd/img/maps/icons/teomyr_full.png"]);
 				PartyBattle("50%", "40%", "Redji", ["/dnd/img/maps/icons/redji.png", "/dnd/img/maps/icons/redji_full.png"]);

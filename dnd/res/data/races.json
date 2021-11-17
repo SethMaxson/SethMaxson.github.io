@@ -13,11 +13,15 @@
 	},
 	{
 		"name": "Bearfolk",
-		"ID": "bear"
+		"ID": "bear",
+		"size": "Medium",
+		"type": "Humanoid (Bearfolk)"
 	},
 	{
 		"name": "Bloodfin",
-		"ID": "bloodfin"
+		"ID": "bloodfin",
+		"size": "Medium",
+		"type": "Humanoid (Bloodfin)"
 	},
 	{
 		"name": "Brokkos",
@@ -27,7 +31,9 @@
 	},
 	{
 		"name": "Bugbear",
-		"ID": "bugbear"
+		"ID": "bugbear",
+		"size": "Medium",
+		"type": "Humanoid (Goblinoid)"
 	},
 	{
 		"name": "Burrowfolk",
@@ -61,11 +67,15 @@
 	},
 	{
 		"name": "Firbolg",
-		"ID": "firbolg"
+		"ID": "firbolg",
+		"size": "Medium",
+		"type": "Humanoid"
 	},
 	{
 		"name": "Firenewt",
-		"ID": "firenewt"
+		"ID": "firenewt",
+		"size": "Medium",
+		"type": "Humanoid"
 	},
 	{
 		"name": "Genasi",
@@ -82,6 +92,7 @@
 	{
 		"name": "Goblin",
 		"ID": "goblin",
+		"size": "Small",
 		"type": "Humanoid (Goblinoid)"
 	},
 	{
@@ -99,7 +110,9 @@
 	},
 	{
 		"name": "Grung",
-		"ID": "grung"
+		"ID": "grung",
+		"size": "Small",
+		"type": "Humanoid"
 	},
 	{
 		"name": "Half-elf",
@@ -133,11 +146,15 @@
 	},
 	{
 		"name": "Lizardfolk",
-		"ID": "lizardfolk"
+		"ID": "lizardfolk",
+		"size": "Medium",
+		"type": "Humanoid"
 	},
 	{
 		"name": "Kenku",
-		"ID": "kenku"
+		"ID": "kenku",
+		"size": "Medium",
+		"type": "Humanoid"
 	},
 	{
 		"name": "Kitsune",
@@ -149,12 +166,14 @@
 	{
 		"name": "Kobold",
 		"ID": "kobold",
-		"size": "Small"
+		"size": "Small",
+		"type": "Humanoid"
 	},
 	{
 		"name": "Kuo-Toa",
 		"ID": "kuotoa",
-		"size": "Medium"
+		"size": "Medium",
+		"type": "Humanoid"
 	},
 	{
 		"name": "Orc",
@@ -182,10 +201,14 @@
 	},
 	{
 		"name": "Tortle",
-		"ID": "tortle"
+		"ID": "tortle",
+		"size": "Medium",
+		"type": "Humanoid"
 	},
 	{
 		"name": "Triton",
-		"ID": "triton"
+		"ID": "triton",
+		"size": "Medium",
+		"type": "Humanoid"
 	}
 ]

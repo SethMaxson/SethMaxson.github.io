@@ -1,0 +1,34 @@
+{
+	"name": "SS Reaper's Blade",
+	"deckPlan": "/dnd/res/data/map/ships/deck-plans/reapers-blade.json",
+	"decks": [
+		{
+			"crew": [],
+			"name": "Lower Deck"
+		},
+		{
+			"crew": [
+				{
+					"name": "Flog",
+					"full": "/dnd/img/maps/icons/generic/goblin_f.png",
+					"icon": "/dnd/img/maps/icons/generic/goblin_f_icon.png",
+					"left": 2,
+					"top": 3
+				}
+			],
+			"name": "Main Deck"
+		},
+		{
+			"crew": [
+				{
+					"name": "Cade",
+					"full": "/dnd/img/maps/icons/generic/halfling_m.png",
+					"icon": "/dnd/img/maps/icons/generic/halfling_m_icon.png",
+					"left": 2,
+					"top": 5
+				}
+			],
+			"name": "Poop Deck"
+		}
+	]
+}

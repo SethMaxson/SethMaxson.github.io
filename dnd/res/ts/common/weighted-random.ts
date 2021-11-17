@@ -37,6 +37,12 @@ function getTotalWeight(weightedObject: any): number
 	return totalWeight;
 }
 
+/**
+ * Returns a random entry from a collection with weighted probabilities.
+ * @param prob the collection of items from which to select a random entry.
+ * @param totalWeight If not provided, this is automatically calculated.
+ * @returns
+ */
 function weightedRandom(prob: IWeightedKeyList|any[], totalWeight: number = getTotalWeight(prob)): string
 {
 	let i: number | string;

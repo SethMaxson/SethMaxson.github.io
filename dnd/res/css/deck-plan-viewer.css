@@ -113,6 +113,10 @@ body {
 	background: url(/img/textures/clouds.png) 0% 0% repeat;
 }
 
+.map-object-layers {
+	cursor: move;
+}
+
 .map-object-layers .pedestrian {
 	z-index: 0;
 }
@@ -169,10 +173,16 @@ body {
 
 .deck-plan .control-toggle-button {
 	position: absolute;
-	bottom: 100%;
+	top: 0;
 	right: 0;
 	/* display: none; */
 	cursor: pointer;
+	z-index: 99;
+	opacity: 0.6;
+}
+
+.deck-plan .control-toggle-button:hover {
+	opacity: 1;
 }
 
 .deck-plan:hover .control-toggle-button {
@@ -181,13 +191,14 @@ body {
 
 .deck-plan .control-bar {
 	position: absolute;
-	bottom: 100%;
+	top: 0;
 	left: 0;
 	background: #333;
 	min-width: 50vw;
 	width: 100%;
 	padding: 0.5rem;
 	text-align: left;
+	z-index: 99;
 	/* font-size: 1rem; */
 }
 
@@ -207,9 +218,14 @@ img.close-up {
 }
 
 .wide-shot {
+	pointer-events: none;
 	width:100%;
+	user-select: none;
+	background-position: center;
+	background-size: contain;
 }
 
+div.creature-token-img,
 div.close-up {
 	width: 120%;
 	height: 120%;
@@ -221,6 +237,7 @@ div.close-up {
 	background-size: 100% 100%;
 	pointer-events: none;
 	background-position: center;
+	user-select: none;
 }
 
 .pedestrian {

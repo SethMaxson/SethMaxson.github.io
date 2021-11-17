@@ -66,4 +66,13 @@ div.token {
 	table.table {
 		margin: 0;
 	}
+
+	.table-striped,
+	.table-striped > tbody,
+	.npc-row,
+	.npc-row > * {
+		background: white !important;
+		/* background-color: none !important; */
+		box-shadow: none !important;
+	}
 }

@@ -24,6 +24,12 @@ function getTotalWeight(weightedObject) {
     }
     return totalWeight;
 }
+/**
+ * Returns a random entry from a collection with weighted probabilities.
+ * @param prob the collection of items from which to select a random entry.
+ * @param totalWeight If not provided, this is automatically calculated.
+ * @returns
+ */
 function weightedRandom(prob, totalWeight = getTotalWeight(prob)) {
     let i;
     let sum = 0;

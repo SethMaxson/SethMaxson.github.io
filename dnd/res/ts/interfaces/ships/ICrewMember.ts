@@ -5,8 +5,8 @@ interface ICrewMember
 	full: string;
 	/**Example: "/dnd/img/maps/icons/bud.png" */
 	icon: string;
-	/**The index of the square in which this creature is located. */
+	/**The horizontal index of the square in which this creature is located. */
 	left: number;
-	/**The index of the square in which this creature is located. */
+	/**The vertical index of the square in which this creature is located. */
 	top: number;
 }

@@ -20,6 +20,14 @@ declare class DeckPlanViewer extends React.Component<IDeckPlanViewerProps, IDeck
     componentWillReceiveProps(nextProps: IDeckPlanViewerProps): void;
     render(): JSX.Element;
 }
+interface IDeckPlanMenuProps {
+    currentDeck: number;
+    deckPlan: IDeckPlan;
+    displayLocations: boolean;
+}
+declare class DeckPlanMenu extends React.Component<IDeckPlanMenuProps> {
+    render(): JSX.Element;
+}
 interface IDeckProps {
     displayLocations: boolean;
     object: IDeck;

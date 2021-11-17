@@ -383,21 +383,21 @@ const landmasses = [
 const overlays = [
     {
         displayedByDefault: false,
-        image: "/dnd/img/maps/corruptionmap.png",
+        image: "/dnd/img/maps/world-map-overlays/corruptionmap.png",
         name: "Corruption Map",
         opacity: 0.6,
         zIndex: 2,
     },
     {
         displayedByDefault: false,
-        image: "/dnd/img/maps/Climate_Zones.png",
+        image: "/dnd/img/maps/world-map-overlays/Climate_Zones.png",
         name: "Climate Zones",
         opacity: 0.6,
         zIndex: 2,
     },
     {
         displayedByDefault: false,
-        image: "/dnd/img/maps/Possible_Islands.png",
+        image: "/dnd/img/maps/world-map-overlays/Possible_Islands.png",
         name: "Possible Islands",
         opacity: 0.6,
         zIndex: 2,
@@ -411,7 +411,7 @@ const overlays = [
     },
     {
         displayedByDefault: true,
-        image: "/dnd/img/maps/Definite_Islands.png",
+        image: "/dnd/img/maps/world-map-overlays/Definite_Islands.png",
         name: "Definite Islands",
         opacity: 1,
         zIndex: 0,

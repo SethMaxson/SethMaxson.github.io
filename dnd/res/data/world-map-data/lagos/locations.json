@@ -54,6 +54,12 @@
 		"type": "town"
 	},
 	{
+		"name":"Prominence Bay",
+		"left": "40.9%",
+		"top": "60.36%",
+		"type": "city"
+	},
+	{
 		"name":"Tasavägi",
 		"left": "55.2%",
 		"top": "79.5%",

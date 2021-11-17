@@ -1248,7 +1248,7 @@ class NPCDeepGenerator {
                 "believes dungeon crawling is just breaking and entering": 10,
                 "believes lizardfolk control the government": 10,
                 "believes plate armour is just a sign of being posh and over privileged": 10,
-                "believes they are destined for a higher calling": 10,
+                "believes {GenderPronoun} is destined for a higher calling": 10,
                 "believes {GenderPronoun} can speak to plants": 10,
                 "blames all {HisHer} misfortune on ghosts": 10,
                 "can pilot any vehicle": 10,
@@ -1329,8 +1329,8 @@ class NPCDeepGenerator {
                 "is being hunted by a horrible beast": 10,
                 "is completely mute": 10,
                 "is endlessly amused by magic": 10,
-                "is much older than they look": 10,
-                "is much younger than they look": 10,
+                "is much older than {GenderPronoun} looks": 10,
+                "is much younger than {GenderPronoun} looks": 10,
                 "is nearly deaf": 10,
                 "is not very good at sports": 10,
                 "is obsessed with carriages": 10,
@@ -1344,7 +1344,7 @@ class NPCDeepGenerator {
                 "is secretly a hag": 5,
                 "is secretly a succubus/incubus": 5,
                 "is slightly overweight": 10,
-                "is so laid back they often come across as rude and uncaring": 10,
+                "is so laid back {GenderPronoun} often comes across as rude and uncaring": 10,
                 "is superstitious": 10,
                 "is the escaped clone of a wealthy politician": 5,
                 "is the first to loot every enemy": 10,
@@ -1358,7 +1358,7 @@ class NPCDeepGenerator {
                 "is very good at running": 10,
                 "is writing a novel about {HisHer} heroic adventures": 10,
                 "is writing an epic poem about the party's adventure": 10,
-                "keeps a diary of all the creatures they come across": 10,
+                "keeps a diary of all the creatures {GenderPronoun} comes across": 10,
                 "keeps getting mistaken for a famous knight": 5,
                 "keeps lists about everything": 10,
                 "keeps track of {HisHer} kills": 10,
@@ -1368,15 +1368,15 @@ class NPCDeepGenerator {
                 "knows {HisHer} way around a workshop": 10,
                 "knows what it's like to die": 10,
                 "likes to craft personal items rather than buy them": 10,
-                "looks down on anyone who is poorer than they are": 10,
+                "looks down on anyone who is poorer than {GenderPronoun} is": 10,
                 "lost the love of {HisHer} life. In a bet.": 10,
                 "lost {HisHer} family in a dragon attack": 10,
                 "loves to dance": 10,
                 "makes inappropriate jokes at the worst times": 10,
-                "must read every book they come across": 10,
+                "must read every book {GenderPronoun} comes across": 10,
                 "never takes {HisHer} armour off": 10,
                 "once started a rebellion": 10,
-                "only makes eye contact with people they like": 10,
+                "only makes eye contact with people {GenderPronoun} likes": 10,
                 "owes a debt collector an airship": 10,
                 "really knows how to party": 10,
                 "refuses to use a weapon": 10,
@@ -1396,9 +1396,9 @@ class NPCDeepGenerator {
                 "talks about stabbing people entirely too often": 10,
                 "talks to {HimHer}self": 10,
                 "thinks of {HimHer}self as a private investigator": 10,
-                "thinks that they are amazing at combat, but are the worst in the party": 10,
-                "thinks they are a brilliant wizard": 10,
-                "thinks they are always surrounded by a magical force field": 10,
+                "thinks that {GenderPronoun} is amazing at combat, but is the worst in the party": 10,
+                "thinks {GenderPronoun} are a brilliant wizard": 10,
+                "thinks {GenderPronoun} are always surrounded by a magical force field": 10,
                 "wants everyone to like them": 10,
                 "wants to be a dancer": 10,
                 "wants to be a famous adventurer": 10,
@@ -1411,11 +1411,11 @@ class NPCDeepGenerator {
                 "was grown in a vat and has no family": 5,
                 "was once a completely different race": 5,
                 "was once very wealthy but lost everything": 10,
-                "was told by {HisHer} parents they'll never be good enough": 10,
-                "wears rings, which isn’t cool, but it's cool that they don’t care if they’re cool": 10,
+                "was told by {HisHer} parents {GenderPronoun}'ll never be good enough": 10,
+                "wears rings, which isn't cool, but it's cool that {GenderPronoun} doesn't care if they're cool": 10,
                 "who donates time to local charities": 10,
                 "will always choose to bluff an enemy": 10,
-                "will always go for a swim in bodies of water they come across": 10,
+                "will always go for a swim in bodies of water {GenderPronoun} comes across": 10,
                 "will always try to bribe officials": 10,
                 "will follow {HisHer} friends and allies blindly": 10,
                 "will never dance": 10,
@@ -1588,6 +1588,19 @@ class NPCDeepGenerator {
                 break;
         }
     }
+    /**How attractive (cute if child) is this NPC on a scale of 1-10? */
+    getNPCAttractiveness(npc) {
+        const hotness = rollDie(10);
+        switch (npc.relativeAge) {
+            case AgeCategory.Child:
+            case AgeCategory.YoungAdult:
+            case AgeCategory.Adult:
+                return hotness;
+            case AgeCategory.Old:
+                return Math.min(hotness, rollDie(10));
+        }
+        return hotness;
+    }
     getNPCDescription(npc) {
         var Age = npc.relativeAge || weightedRandom(this.AgeList, this.totaledWeights.Age);
         var Race = npc.race || randomize(races);
@@ -1599,6 +1612,9 @@ class NPCDeepGenerator {
         let pronoun = this.getPronoun(Gender).capitalize();
         var result = `${this.getArticle(Age).capitalize()} ${Race.toLowerCase()}, who ${Who} and comes from ${From}. ${pronoun} ${this.conjugate(pronoun, ["is", "are"])} ${Personality.toLowerCase()}, and ${this.conjugate(pronoun, ["has", "have"])} found work as ${this.getArticle(Profession.toLowerCase())}.`;
         return result;
+    }
+    getNPCHairColor(npc) {
+        return HairGenerator.color(npc.race, npc.gender, npc.relativeAge);
     }
     getNPCHeight(npc) {
         let ra = this.getNPCRacialAppearance(npc.race);

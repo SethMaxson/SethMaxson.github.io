@@ -254,6 +254,10 @@ class ShipViewerPage extends React.Component<IShipViewerPageProps, IShipViewerPa
 					name: "Sloop"
 				},
 				{
+					file: "/dnd/res/data/map/ships/named-ships/reapers-blade.json",
+					name: "SS Reaper's Blade"
+				},
+				{
 					file: "/dnd/res/data/map/ships/named-ships/macaw.json",
 					name: "The Macaw"
 				}

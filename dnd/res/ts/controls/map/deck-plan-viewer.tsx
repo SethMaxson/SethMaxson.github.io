@@ -63,42 +63,14 @@ class DeckPlanViewer extends React.Component<IDeckPlanViewerProps, IDeckPlanView
 					}
 					{
 						this.state.displayMenu &&
-						<div className="control-bar text-light fs-2">
-							<label htmlFor="current-deck" className="form-label">Current Deck:</label>
-							<div className="input-group mb-3 fs-2">
-								<input
-									type="number"
-									className="form-control fs-2"
-									id="current-deck"
-									step={1}
-									min={1}
-									max={this.props.deckPlan.decks.length}
-									style={{ minWidth: "30px", width: "10%", flex: "0 0 auto", textAlign: "right" }}
-									value={this.state.currentDeck}
-									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-									{
-										this.setState({ currentDeck: e.target.valueAsNumber });
-									}}
-								/>
-								<span className="input-group-text fs-2">/{this.props.deckPlan.decks.length} - {this.props.deckPlan.decks[this.state.currentDeck - 1].name}</span>
-							</div>
-							<div className="form-check form-switch">
-								<input
-									className="form-check-input"
-									type="checkbox"
-									id="flexSwitchCheckDefault"
-									checked={this.state.displayLocations}
-									onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-									{
-										this.setState({ displayLocations: e.target.checked });
-									}}
-								/>
-								<label className="form-check-label text-light" htmlFor="flexSwitchCheckDefault">Display Notable Locations</label>
-							</div>
-							<button className="btn btn-danger btn-lg close-button fs-2" onClick={() => { this.setState({ displayMenu: false }) }}>
-								X
-							</button>
-						</div>
+						<BattleMapObjectMenu
+							CurrentLayer={this.state.currentDeck}
+							DisplayLocations={this.state.displayLocations}
+							FloorPlan={this.props.deckPlan}
+							CloseMenu={() => this.setState({ displayMenu: false })}
+							SetCurrentLayer={(value: number) => this.setState({ currentDeck: value })}
+							SetDisplayNotableLocations={(value: boolean) => this.setState({ displayLocations: value })}
+						/>
 					}
 					{
 						this.props.displayGrid &&
@@ -118,6 +90,56 @@ class DeckPlanViewer extends React.Component<IDeckPlanViewerProps, IDeckPlanView
 				</div>
 			</div>
 
+		);
+	}
+}
+
+interface IDeckPlanMenuProps
+{
+	currentDeck: number;
+	deckPlan: IDeckPlan;
+	displayLocations: boolean;
+}
+class DeckPlanMenu extends React.Component<IDeckPlanMenuProps> {
+	public render()
+	{
+		return (
+			<div className="control-bar text-light fs-2">
+				<label htmlFor="current-deck" className="form-label">Current Deck:</label>
+				<div className="input-group mb-3 fs-2">
+					<input
+						type="number"
+						className="form-control fs-2"
+						id="current-deck"
+						step={1}
+						min={1}
+						max={this.props.deckPlan.decks.length}
+						style={{ minWidth: "30px", width: "10%", flex: "0 0 auto", textAlign: "right" }}
+						value={this.props.currentDeck}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+						{
+							this.setState({ currentDeck: e.target.valueAsNumber });
+						}}
+					/>
+					<span className="input-group-text fs-2">/{this.props.deckPlan.decks.length} - {this.props.deckPlan.decks[this.props.currentDeck - 1].name}</span>
+				</div>
+				<div className="form-check form-switch">
+					<input
+						className="form-check-input"
+						type="checkbox"
+						id="flexSwitchCheckDefault"
+						checked={this.props.displayLocations}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+						{
+							this.setState({ displayLocations: e.target.checked });
+						}}
+					/>
+					<label className="form-check-label text-light" htmlFor="flexSwitchCheckDefault">Display Notable Locations</label>
+				</div>
+				<button className="btn btn-danger btn-lg close-button fs-2" onClick={() => { this.setState({ displayMenu: false }) }}>
+					X
+				</button>
+			</div>
 		);
 	}
 }

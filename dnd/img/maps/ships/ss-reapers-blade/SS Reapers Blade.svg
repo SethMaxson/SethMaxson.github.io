@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg2"
+   width="959"
+   height="2000"
+   viewBox="0 0 959 2000"
+   sodipodi:docname="SS Reapers Blade.svg"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)">
+  <metadata
+     id="metadata8">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview4"
+     showgrid="false"
+     inkscape:zoom="2.0258234"
+     inkscape:cx="604.31223"
+     inkscape:cy="453.31498"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer3" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Main Deck Ref (Larger)"
+     transform="translate(0,682)"
+     style="display:inline">
+    <image
+       sodipodi:absref="C:\Information\Misc, Other\Let's Do A Science\sites\maxquest\dnd\img\maps\ships\ss-reapers-blade\main-deck.png"
+       xlink:href="main-deck.png"
+       width="560"
+       height="2000"
+       preserveAspectRatio="none"
+       id="image4540"
+       x="199.5"
+       y="-682" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Reference Image"
+     style="display:none"
+     transform="translate(0,682)">
+    <image
+       sodipodi:absref="C:\Information\Misc, Other\Let's Do A Science\sites\maxquest\dnd\img\maps\ships\ss-reapers-blade\SS Reapers Blade.png"
+       xlink:href="SS Reapers Blade.png"
+       y="0"
+       x="0"
+       id="image10"
+       preserveAspectRatio="none"
+       height="1318"
+       width="959" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Main Deck"
+     style="display:inline"
+     transform="translate(0,682)">
+    <path
+       id="path4525"
+       style="fill:none;stroke:#000000;stroke-width:1.43366647px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 465.08071,-234.60797 -4.1577,14.41984 c 0,0 -32.3422,28.26559 -47.2387,43.70022 -14.81032,15.34537 -29.53077,31.00096 -41.75405,48.47715 -14.13357,20.20743 -25.68166,42.222957 -36.09248,64.577248 -8.01375,17.20728 -14.64822,35.0929 -20.16932,53.254087 -10.91824,35.914607 -18.7978,72.754315 -25.47704,109.692831 -6.49757,35.933784 -11.51401,72.210354 -14.15393,108.631304 -2.81422,38.82588 -1.75778,77.84207 -1.76924,116.76979 -0.0143,48.60027 0.80941,97.20283 2.1231,145.78532 0.80724,29.85355 1.51078,59.72796 3.53847,89.52351 3.16196,46.46278 8.16253,92.79265 13.44622,139.0622 5.73657,50.23526 12.77817,100.31567 19.81549,150.38532 7.38637,52.55305 15.89769,104.94269 23.51829,157.46225 3.95109,27.2301 8.6949,67.7091 11.51264,81.7388 5.42938,10.809 16.60926,17.7327 26.18475,25.1233 12.59486,9.7213 26.27532,18.2174 40.6925,24.9463 10.25794,4.7876 21.13757,8.391 32.20015,10.7923 11.64719,2.5282 21.39555,3.7155 32.20015,3.7155 10.8046,0 20.55296,-1.1873 32.20015,-3.7155 11.0626,-2.4013 21.94222,-6.0047 32.20015,-10.7923 14.41718,-6.7289 28.09765,-15.225 40.6925,-24.9463 9.57549,-7.3906 20.75536,-14.3143 26.18475,-25.1233 2.81775,-14.0297 7.56155,-54.5087 11.51264,-81.7388 7.62059,-52.51956 16.13192,-104.9092 23.51829,-157.46225 7.03733,-50.06965 14.07892,-100.15006 19.81548,-150.38532 5.28369,-46.26955 10.28426,-92.59942 13.44623,-139.0622 2.02769,-29.79555 2.73124,-59.66996 3.53848,-89.52351 1.31368,-48.58249 2.13742,-97.18505 2.12309,-145.78532 -0.0115,-38.92772 1.04498,-77.94391 -1.76925,-116.76979 -2.63991,-36.42095 -7.65635,-72.69752 -14.15392,-108.631304 -6.67924,-36.938516 -14.5588,-73.778224 -25.47703,-109.692831 -5.52111,-18.161187 -12.15558,-36.046807 -20.16933,-53.254087 -10.41081,-22.354291 -21.95891,-44.369818 -36.09248,-64.577248 -12.22328,-17.47619 -26.94373,-33.13178 -41.75405,-48.47715 -14.8965,-15.43463 -47.23869,-43.70022 -47.23869,-43.70022 l -4.15771,-14.41984 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccssssssssssssccccaccccssssssssssssccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 308.02291,806.1094 c 0,0 42.98432,-4.4646 64.17143,-1.4809 13.6564,1.92318 27.89343,4.87661 39.49012,12.3407 7.055,4.54088 12.52795,11.52699 16.7833,18.7578 4.32838,7.3549 6.78581,15.80613 8.39165,24.1877 4.27675,22.32224 2.5582,45.39371 3.04345,68.11677 0.29863,13.98413 1.4086,28.05417 -0.0817,41.96187 -1.33587,12.46653 -0.52606,26.6335 -7.89802,36.77516 -4.92006,6.7686 -13.96463,9.444 -21.71957,12.5875 -10.68849,4.3326 -22.22501,6.298 -33.5666,8.3916 -9.45298,1.745 -28.63033,3.4554 -28.63033,3.4554"
+       id="path4543"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaasaaaaac" />
+  </g>
+</svg>

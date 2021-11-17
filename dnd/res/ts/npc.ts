@@ -125,6 +125,7 @@ class NPCManager{
 		this.alignments = [];
 		this.relativeAges = [];
 	}
+	/** Converts raw JSON to JavaScript objects. Only needed when loading NPCs from a JSON file. */
 	parse() {
 		// Converts raw JSON to objects
 		const items = this.all;

@@ -50,6 +50,7 @@ declare class NPCManager {
     getByID(id: string): NPC | undefined;
     getPreview(name: string): JQuery<HTMLElement>;
     resetFilters(): void;
+    /** Converts raw JSON to JavaScript objects. Only needed when loading NPCs from a JSON file. */
     parse(): void;
     sort(property?: string, desc?: boolean): void;
     get json(): string;

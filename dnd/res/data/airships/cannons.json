@@ -1,0 +1,48 @@
+{
+	"fullSize": [
+		{
+			"name": "Iron",
+			"attack": "1d8",
+			"range": "150 ft",
+			"value": "200g"
+		},
+		{
+			"name": "Steel",
+			"attack": "1d10",
+			"range": "180 ft",
+			"value": "500g"
+		},
+		{
+			"name": "Meteor",
+			"attack": "2d12",
+			"range": "210 ft",
+			"value": "2,000g"
+		},
+		{
+			"name": "Comet",
+			"attack": "6d12",
+			"range": "300 ft",
+			"value": "10,000g"
+		}
+	],
+	"micro": [
+		{
+			"name": "Cricket",
+			"attack": "1d6",
+			"range": "50 ft",
+			"value": "150g"
+		},
+		{
+			"name": "Mantis",
+			"attack": "1d12",
+			"range": "80 ft",
+			"value": "2,000g"
+		},
+		{
+			"name": "Scorpion",
+			"attack": "3d12",
+			"range": "130 ft",
+			"value": "7,500g"
+		}
+	]
+}
