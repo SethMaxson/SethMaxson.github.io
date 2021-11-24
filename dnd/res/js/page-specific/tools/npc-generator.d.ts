@@ -4,12 +4,15 @@ declare const NPCCollectionHelpers: {
     AddNpcToCollection(collection: NPCManager, npc: NPC): void;
     ApplyFilters(collection: NPCManager, races?: string[] | undefined, genders?: string[] | undefined, alignments?: string[] | undefined): NPC[];
     ResetFilters(collection: NPCManager): void;
+    SortNPCsByProperty(npcCollection: NPC[], property?: string, desc?: boolean): NPC[];
 };
 interface INPCGeneratorProps {
 }
 interface INPCGeneratorState {
     loadedNPCs: NPCManager;
     randomNPCs: NPCManager;
+    sortLoaded: string;
+    sortRandom: string;
     species: IRace[];
 }
 declare class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorState> {
@@ -20,13 +23,12 @@ declare class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGener
     ClearRandomNPCs: () => void;
     /** Creates a deep clone version of the specified NPCManager, for use in updating state. */
     CloneNPCManager: (npcManager: NPCManager) => NPCManager;
-    DeleteNPC: (index: number, isRandomCollection: boolean) => void;
+    DeleteNPC: (id: string, isRandomCollection: boolean) => void;
     GenerateNPCs: (race: string | string[] | undefined, gender: string | undefined, age: AgeCategory[] | undefined, alignment: Alignment[], number: number) => void;
     GetRelativeNumericAge: (npc: NPC) => number;
-    RemoveNPCFromManager: (manager: NPCManager, index: number) => void;
+    RemoveNPCFromManager: (manager: NPCManager, id: string) => void;
     SaveNPCs: () => void;
-    SortNPCs: (isRandomCollection: boolean, property: string) => void;
-    TransferNPCBetweenManagers: (moveToRandomCollection: boolean, index: number) => void;
+    TransferNPCBetweenManagers: (moveToRandomCollection: boolean, id: string) => void;
 }
 interface INPCGeneratorSettingsProps {
     Species: IRace[];
@@ -56,34 +58,34 @@ declare class NPCGeneratorSettings extends React.Component<INPCGeneratorSettings
 }
 interface INpcCollectionDisplayProps {
     IsRandomCollection: boolean;
-    NpcCollection: NPCManager;
+    NpcCollection: NPC[];
+    SortProperty?: string;
     DeleteNPC: {
-        (index: number, isRandomCollection: boolean): void;
+        (id: string, isRandomCollection: boolean): void;
     };
     GetRelativeNumericAge: {
         (npc: NPC): number;
     };
     TransferNPCBetweenManagers: {
-        (moveToRandomCollection: boolean, index: number): void;
+        (moveToRandomCollection: boolean, id: string): void;
     };
 }
 interface INpcCollectionDisplayState {
 }
 declare class NpcCollectionDisplay extends React.Component<INpcCollectionDisplayProps, INpcCollectionDisplayState> {
     render(): JSX.Element;
-    Delete: (index: number) => void;
-    Transfer: (index: number) => void;
+    Delete: (id: string) => void;
+    Transfer: (id: string) => void;
 }
 interface INpcRowProps {
-    Index: number;
     NPC: NPC;
     RelativeNumericAge: number;
     TransferLabel: string;
     Delete: {
-        (index: number): void;
+        (id: string): void;
     };
     Transfer: {
-        (index: number): void;
+        (id: string): void;
     };
 }
 interface INpcRowState {
@@ -124,4 +126,4 @@ declare class MultiSelect extends React.Component<IMultiSelectProps, IMultiSelec
     toggleExpand: () => void;
     unselectAll: () => void;
 }
-declare function compareRaceJsonObjects(a: IRace, b: IRace): 0 | 1 | -1;
+declare function compareRaceJsonObjects(a: IRace, b: IRace): 1 | 0 | -1;

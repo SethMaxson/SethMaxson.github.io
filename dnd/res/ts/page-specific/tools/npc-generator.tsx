@@ -59,6 +59,30 @@ const NPCCollectionHelpers = {
 		collection.genders = [];
 		collection.alignments = [];
 		collection.relativeAges = [];
+	},
+	SortNPCsByProperty(npcCollection: NPC[], property: string = "name", desc: boolean = false)
+	{
+		if (npcCollection[0].hasOwnProperty(property)) {
+			if (desc) {
+				// Descending
+				npcCollection.sort((a, b) =>
+				{
+					if (a[property] == b[property]) {
+						return 0;
+					}
+					return (a[property] > b[property]) ? -1 : 1;
+				})
+			} else {
+				npcCollection.sort((a, b) =>
+				{
+					if (a[property] == b[property]) {
+						return 0;
+					}
+					return (a[property] > b[property]) ? 1 : -1;
+				})
+			}
+		}
+		return npcCollection;
 	}
 }
 
@@ -67,6 +91,8 @@ interface INPCGeneratorState
 {
 	loadedNPCs: NPCManager;
 	randomNPCs: NPCManager;
+	sortLoaded: string;
+	sortRandom: string;
 	species: IRace[];
 }
 class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorState> {
@@ -81,6 +107,8 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 		this.state = {
 			loadedNPCs: new NPCManager(),
 			randomNPCs: new NPCManager(),
+			sortLoaded: "unsorted",
+			sortRandom: "unsorted",
 			species: [],
 		};
 		this.npcGenerator = new NPCDeepGenerator();
@@ -105,12 +133,13 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 											<div className="col-auto">
 												<select
 													className="form-select"
-													id="loaded-sort-select"
 													onChange={e =>
 													{
-														this.SortNPCs(false, e.target.value);
+														this.setState({ sortLoaded: e.target.value });
 													}}
+													value={this.state.sortLoaded}
 												>
+													<option value="unsorted">Unsorted</option>
 													<option value="name">Name</option>
 													<option value="race">Race</option>
 													<option value="gender">Gender</option>
@@ -128,7 +157,8 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 								</div>
 								<NpcCollectionDisplay
 									IsRandomCollection={false}
-									NpcCollection={this.state.loadedNPCs}
+									NpcCollection={this.state.loadedNPCs.filtered}
+									SortProperty={this.state.sortLoaded}
 									DeleteNPC={this.DeleteNPC}
 									GetRelativeNumericAge={this.GetRelativeNumericAge}
 									TransferNPCBetweenManagers={this.TransferNPCBetweenManagers}
@@ -154,12 +184,13 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 									<div className="col-sm-11">
 										<select
 											className="form-select"
-											id="random-sort-select"
 											onChange={e =>
 											{
-												this.SortNPCs(true, e.target.value);
+												this.setState({ sortRandom: e.target.value });
 											}}
+											value={this.state.sortRandom}
 										>
+											<option value="unsorted">Unsorted</option>
 											<option value="name">Name</option>
 											<option value="race">Race</option>
 											<option value="gender">Gender</option>
@@ -172,7 +203,8 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 								</div>
 								<NpcCollectionDisplay
 									IsRandomCollection={true}
-									NpcCollection={this.state.randomNPCs}
+									NpcCollection={this.state.randomNPCs.filtered}
+									SortProperty={this.state.sortRandom}
 									DeleteNPC={this.DeleteNPC}
 									GetRelativeNumericAge={this.GetRelativeNumericAge}
 									TransferNPCBetweenManagers={this.TransferNPCBetweenManagers}
@@ -254,9 +286,9 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 		newManager.filtered = JSON.parse(JSON.stringify(npcManager.filtered));
 		return newManager;
 	}
-	DeleteNPC = (index: number, isRandomCollection: boolean) => {
+	DeleteNPC = (id: string, isRandomCollection: boolean) => {
 		let npcCollection = this.CloneNPCManager(isRandomCollection ? this.state.randomNPCs : this.state.loadedNPCs);
-		this.RemoveNPCFromManager(npcCollection, index);
+		this.RemoveNPCFromManager(npcCollection, id);
 		if (isRandomCollection) {
 			this.setState({ randomNPCs: npcCollection });
 		}
@@ -287,40 +319,30 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 	{
 		return this.npcGenerator.getNPCOldness(npc);
 	}
-	RemoveNPCFromManager = (manager: NPCManager, index: number) =>
+	RemoveNPCFromManager = (manager: NPCManager, id: string) =>
 	{
+		const allIndex = manager.all.findIndex(npc => npc.id === id);
+		const filteredIndex = manager.filtered.findIndex(npc => npc.id === id);
 		// remove from specified npc collection
-		manager.all.splice(index, 1);
-		manager.filtered.splice(index, 1);
+		manager.all.splice(allIndex, 1);
+		manager.filtered.splice(filteredIndex, 1);
 	}
 	SaveNPCs = () =>
 	{
 		this.state.loadedNPCs.save();
 	};
-	SortNPCs = (isRandomCollection: boolean, property: string) =>
-	{
-		let npcCollection = this.CloneNPCManager(isRandomCollection ? this.state.randomNPCs : this.state.loadedNPCs);
-		npcCollection.sort(property);
-		if (isRandomCollection) {
-			this.setState({ randomNPCs: npcCollection });
-		}
-		else
-		{
-			this.setState({ loadedNPCs: npcCollection });
-		}
-	}
-	TransferNPCBetweenManagers = (moveToRandomCollection: boolean, index: number) =>
+	TransferNPCBetweenManagers = (moveToRandomCollection: boolean, id: string) =>
 	{
 		const loadedNPCs = this.CloneNPCManager(this.state.loadedNPCs);
 		const randomNPCs = this.CloneNPCManager(this.state.randomNPCs);
-		let donor = moveToRandomCollection ? loadedNPCs : randomNPCs;
-		let target = moveToRandomCollection ? randomNPCs : loadedNPCs;
+		const donor = moveToRandomCollection ? loadedNPCs : randomNPCs;
+		const target = moveToRandomCollection ? randomNPCs : loadedNPCs;
 		// locate target npc
-		var npc = donor.filtered[index];
+		const npc = donor.filtered.filter(npc => npc.id == id)[0];
 		// add to random npc collection
 		NPCCollectionHelpers.AddNpcToCollection(target, npc);
 		// remove from saved npc collection
-		this.RemoveNPCFromManager(donor, index);
+		this.RemoveNPCFromManager(donor, npc.id);
 
 		this.setState({
 			loadedNPCs: loadedNPCs,
@@ -531,15 +553,18 @@ class NPCGeneratorSettings extends React.Component<INPCGeneratorSettingsProps, I
 interface INpcCollectionDisplayProps
 {
 	IsRandomCollection: boolean;
-	NpcCollection: NPCManager;
-	DeleteNPC: { (index: number, isRandomCollection: boolean): void };
+	NpcCollection: NPC[];
+	SortProperty?: string;
+	DeleteNPC: { (id: string, isRandomCollection: boolean): void };
 	GetRelativeNumericAge: { (npc: NPC): number }
-	TransferNPCBetweenManagers: { (moveToRandomCollection: boolean, index: number): void };
+	TransferNPCBetweenManagers: { (moveToRandomCollection: boolean, id: string): void };
 }
 interface INpcCollectionDisplayState { }
 class NpcCollectionDisplay extends React.Component<INpcCollectionDisplayProps, INpcCollectionDisplayState> {
 	render()
 	{
+
+		const NPCs = this.props.SortProperty == "unsorted" ? this.props.NpcCollection : NPCCollectionHelpers.SortNPCsByProperty(this.props.NpcCollection.slice(), this.props.SortProperty);
 		return (
 			<div className="table-responsive">
 				<table className="table table-light table-striped table-bordered">
@@ -552,12 +577,11 @@ class NpcCollectionDisplay extends React.Component<INpcCollectionDisplayProps, I
 						</tr>
 					</thead>
 					<tbody>
-						{this.props.NpcCollection.filtered.map((npc, index: number) =>
+						{NPCs.map((npc, index: number) =>
 							<NpcRow
 								Delete={this.Delete}
 								TransferLabel={this.props.IsRandomCollection? "Add" : "Remove"}
 								Transfer={this.Transfer}
-								Index={index}
 								NPC={npc}
 								RelativeNumericAge={this.props.GetRelativeNumericAge(npc)}
 								key={index}
@@ -568,24 +592,23 @@ class NpcCollectionDisplay extends React.Component<INpcCollectionDisplayProps, I
 			</div>
 		);
 	}
-	Delete = (index: number) =>
+	Delete = (id: string) =>
 	{
-		this.props.DeleteNPC(index, this.props.IsRandomCollection);
+		this.props.DeleteNPC(id, this.props.IsRandomCollection);
 	}
-	Transfer = (index: number) =>
+	Transfer = (id: string) =>
 	{
-		this.props.TransferNPCBetweenManagers(!this.props.IsRandomCollection, index);
+		this.props.TransferNPCBetweenManagers(!this.props.IsRandomCollection, id);
 	}
 }
 
 interface INpcRowProps
 {
-	Index: number;
 	NPC: NPC;
 	RelativeNumericAge: number;
 	TransferLabel: string;
-	Delete: { (index: number): void };
-	Transfer: { (index: number): void };
+	Delete: { (id: string): void };
+	Transfer: { (id: string): void };
 }
 interface INpcRowState { }
 class NpcRow extends React.Component<INpcRowProps, INpcRowState> {
@@ -615,10 +638,10 @@ class NpcRow extends React.Component<INpcRowProps, INpcRowState> {
 					<div className="token" style={{ backgroundImage: "url('" + imgSrc + "')" }}></div>
 				</td>
 				<td className="noprint">
-					<button className="btn btn-secondary m-1" onClick={() => this.props.Transfer(this.props.Index)}>{this.props.TransferLabel}</button>
+					<button className="btn btn-secondary m-1" onClick={() => this.props.Transfer(this.props.NPC.id)}>{this.props.TransferLabel}</button>
 					<button className="btn btn-secondary m-1" onClick={this.CopyMapDescription}>Copy description</button>
 					<button className="btn btn-secondary m-1" onClick={() => alert(HairGenerator.color(this.props.NPC.race, this.props.NPC.gender, this.props.NPC.relativeAge))}>Hair</button>
-					<button className="btn btn-danger m-1" onClick={() => this.props.Delete(this.props.Index)}>Delete</button>
+					<button className="btn btn-danger m-1" onClick={() => this.props.Delete(this.props.NPC.id)}>Delete</button>
 				</td>
 			</tr>
 		);
@@ -794,7 +817,6 @@ function compareRaceJsonObjects(a: IRace, b: IRace)
 	}
 	return 0;
 }
-
 
 ReactDOM.render(
 	<NPCGenerator />,
