@@ -1,4 +1,11 @@
 "use strict";
+class SettlementPointOfInterestData {
+    constructor() {
+        this.description = "";
+        this.name = "";
+        this.type = "place";
+    }
+}
 const townTotaledWeights = {
     governmentTypes: -1,
     Race: -1
@@ -770,10 +777,6 @@ function getPopulation(size) {
     }
     return pop; //add commas as necessary
 }
-function clearOutput() {
-    var outputArea = $(".output-area").first();
-    outputArea.empty();
-}
 /**
  * Generates a random city/town name.
  */
@@ -788,59 +791,15 @@ function getCityName(town) {
         return panelTitle;
     }
 }
-function printPanel(town) {
-    var $outputArea = $(".output-area").first();
-    var storeOutput = $("div.output-area").html();
-    $outputArea.empty();
-    var panelBody = `<p>${town.alignment} ${town.type}
-					<div class="town-attribute"><span class="label">Population. </span> ${town.populationPercentages}</div>
-					<div class="town-attribute"><span class="label">Government. </span> ${town.government}</div>
-					<div class="town-attribute"><span class="label">Defense. </span> ${town.defense}</div>
-					<div class="town-attribute"><span class="label">Commerce. </span> ${town.commerce}</div>
-					<div class="town-attribute"><span class="label">Organizations. </span> ${town.organizations}</div>
-					<br/><b>Qualities: </b> ${town.qualities.join(', ').toLowerCase()}
-					<br/><b>Maximum Item Level: </b> ${town.maxItemRarity} </p>`;
-    if (town.size != "empty") {
-        panelBody += "<hr>";
-    }
-    var worshipDone = false;
-    for (var i = 0; i < numOfShops[town.size]; i++) {
-        //only one place of worship
-        var oneTwoThree = randomize(["bar", "shop", "place"].concat(worshipDone ? [] : ["worship"]));
-        switch (oneTwoThree) {
-            case "bar":
-                panelBody += genWateringHole();
-                break;
-            case "worship":
-                panelBody += genPlaceOfWorship(town.alignment);
-                worshipDone = true;
-                break;
-            case "shop":
-                panelBody += genStore();
-                break;
-            case "place":
-                panelBody += genPlaceOfInterest();
-                break;
-        }
-    }
-    var panel = $("<div class=\"town\">");
-    panel.append("<div class=\"town-name\">" + getCityName(town) + "</div>");
-    var index = $("<div class=\"panel-body\">");
-    panel.append(index);
-    index.append(panelBody);
-    index.append("<button type=\"button\" class=\"remove-city\">Remove</button>");
-    $outputArea.append(panel);
-    if (storeOutput != "") {
-        $outputArea.append(storeOutput);
-    }
-}
 function getTavernName() {
     return `The ${randomize(wateringHole.prefixes)} ${randomize(wateringHole.suffixes)}`;
 }
 function genWateringHole() {
-    var place = getTavernName();
-    let description = "This " + randomize(wateringHole.establishment) + " " + randomize(wateringHole.flavour).toLowerCase() + " and " + randomize(buildingFlavour).toLowerCase();
-    return getPlaceOfInterestHTML(place, description);
+    const place = new SettlementPointOfInterestData();
+    place.type = "bar";
+    place.name = getTavernName();
+    place.description = `This ${randomize(wateringHole.establishment)} ${randomize(wateringHole.flavour).toLowerCase()} and ${randomize(buildingFlavour).toLowerCase()}`;
+    return place;
 }
 function genPlaceOfWorship(alignment) {
     const listOfDeities = {};
@@ -859,30 +818,27 @@ function genPlaceOfWorship(alignment) {
     $.extend(true, listOfDeities, Deities.Demigods);
     var chosenDeity = weightedRandom(weightedListOfDeities);
     var deityName = randomize([`${listOfDeities[chosenDeity].Title} (${chosenDeity})`, chosenDeity]);
-    let placeName = randomize(placeofWorship.names).replace('DX', deityName);
-    let description = "This place of worship " + randomize(placeofWorship.flavour).replace('SX', listOfDeities[chosenDeity].Symbol).toLowerCase();
-    return getPlaceOfInterestHTML(placeName, description);
+    const place = new SettlementPointOfInterestData();
+    place.type = "worship";
+    place.name = randomize(placeofWorship.names).replace('DX', deityName);
+    place.description = "This place of worship " + randomize(placeofWorship.flavour).replace('SX', listOfDeities[chosenDeity].Symbol).toLowerCase();
+    return place;
 }
 function genStore() {
-    var place = randomize(Object.keys(stores));
-    var description = `This ${place.toLowerCase()} ${randomize(stores[place].flavour).toLowerCase()} and ${randomize(buildingFlavour).toLowerCase()}`;
-    return getPlaceOfInterestHTML(randomize(stores[place].names), description);
+    const place = new SettlementPointOfInterestData();
+    place.type = "shop";
+    const placeType = randomize(Object.keys(stores));
+    place.name = randomize(stores[placeType].names);
+    place.description = `This ${placeType.toLowerCase()} ${randomize(stores[placeType].flavour).toLowerCase()} and ${randomize(buildingFlavour).toLowerCase()}`;
+    return place;
 }
 function genPlaceOfInterest() {
-    var place = randomize(Object.keys(placesOfInterest));
-    let description = `This ${place.toLowerCase()} ${randomize(placesOfInterest[place].flavour).toLowerCase()} and ${randomize(buildingFlavour).toLowerCase()}`;
-    return getPlaceOfInterestHTML(place, description);
-}
-/**
- * Returns a consistently formatted HTML string to display a place of interest
- * @param name The name of the place of interest
- * @param description A description of the location
- */
-function getPlaceOfInterestHTML(name, description) {
-    return `<p><b>${name}</b><br/>
-				${description}
-			</p>
-			<p></p>`;
+    const place = new SettlementPointOfInterestData();
+    const placeType = randomize(Object.keys(placesOfInterest));
+    place.type = "place";
+    place.name = placeType;
+    place.description = `This ${placeType.toLowerCase()} ${randomize(placesOfInterest[placeType].flavour).toLowerCase()} and ${randomize(buildingFlavour).toLowerCase()}`;
+    return place;
 }
 function sortNumber(a, b) {
     return b - a;
@@ -941,27 +897,26 @@ function popPercentages(population, primarySpecies) {
         return result;
     }
 }
-function generateSettlement() {
+function generateCity(citySize = randomize(["empty", "micro", "tiny", "small", "medium", "large", "huge"]), itemRarity = randomize(["None", "Common", "Uncommon", "Rare", "Very Rare", "Legendary", "Artifact"])) {
     if (townTotaledWeights.governmentTypes < 0) {
         initializeTownGen();
     }
-    let town = {
+    const town = {
         alignment: "N",
+        commerce: "",
+        defense: "",
+        government: "",
+        maxItemRarity: itemRarity,
+        name: "",
+        organizations: "",
+        pointsOfInterest: [],
         population: 0,
         populationPercentages: "",
-        government: "",
-        defense: "",
-        commerce: "",
-        organizations: "",
-        maxItemRarity: "None",
         primaryCulture: "human",
         qualities: [],
-        size: "empty",
+        size: citySize,
         type: ""
     };
-    //size & type
-    town.size = $('#sizePicker').val().trim().replace('null', randomize(["empty", "micro", "tiny", "small", "medium", "large", "huge"]));
-    town.maxItemRarity = $('#itemPicker').val().trim().replace('null', randomize(["None", "Common", "Uncommon", "Rare", "Very Rare", "Legendary", "Artifact"]));
     town.type = weightedRandom(cityBySize[town.size]);
     //qualities
     var qualNum = rollDie(3);
@@ -983,8 +938,30 @@ function generateSettlement() {
     town.alignment = randomize(getRacialTraits(town.primaryCulture).alignments);
     //government
     town.government = weightedRandom(governmentTypes, townTotaledWeights.governmentTypes);
-    //display
-    printPanel(town);
+    //name
+    town.name = getCityName(town);
+    //points of interest
+    var worshipDone = false;
+    for (var i = 0; i < numOfShops[town.size]; i++) {
+        //only one place of worship
+        var oneTwoThree = randomize(["bar", "shop", "place"].concat(worshipDone ? [] : ["worship"]));
+        switch (oneTwoThree) {
+            case "bar":
+                town.pointsOfInterest.push(genWateringHole());
+                break;
+            case "worship":
+                town.pointsOfInterest.push(genPlaceOfWorship(town.alignment));
+                worshipDone = true;
+                break;
+            case "shop":
+                town.pointsOfInterest.push(genStore());
+                break;
+            case "place":
+                town.pointsOfInterest.push(genPlaceOfInterest());
+                break;
+        }
+    }
+    return town;
 }
 $(document).ready(function () {
     function getRaces() {
@@ -1001,9 +978,6 @@ $(document).ready(function () {
             }
         }
         initializeTownGen();
-    });
-    $(document).on("click", ".remove-city", function (e) {
-        $(this).closest(".town").remove();
     });
 });
 function initializeTownGen() {

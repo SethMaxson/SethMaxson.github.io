@@ -375,423 +375,9 @@ class ReincarnationViewer extends React.Component<IReincarnationViewerProps> {
 											</div>
 										</div>
 									</div>
-									<div className="accordion-item">
-										<h2 className="accordion-header" id="headingWhoops">
-											<button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWhoops" aria-expanded="false" aria-controls="collapseWhoops">
-												Whoops!
-											</button>
-										</h2>
-										<div id="collapseWhoops" className="accordion-collapse collapse" aria-labelledby="headingWhoops" data-bs-parent="#mistakesTablesAccordion">
-											<div className="accordion-body p-0">
-												<p>
-													Well son, you done fucked up. Something really bad
-													happened. Your spell was sabotaged, those expensive
-													components you bought were actually just made of paper
-													mache, you mumbled the last word of the incantation and
-													now all you can say is "Whoops!"
-												</p>
-												<table className="table table-dark table-striped">
-													<tbody>
-														<tr>
-															<th>1d20</th>
-															<th>Mishap</th>
-														</tr>
-														<tr>
-															<td>1-10</td>
-															<td>The target is brought back as a race from the Exotic Races table</td>
-														</tr>
-														<tr>
-															<td>11-13</td>
-															<td>The target is brought back as a race from the Exotic Races table with one mutation from the Mutations table</td>
-														</tr>
-														<tr>
-															<td>14</td>
-															<td>The target is brought back as a zombie of the base race they rolled and retains their personality, mental ability scores, class levels, etc.</td>
-														</tr>
-														<tr>
-															<td>15</td>
-															<td>The target is brought back as a skeleton of the base race they rolled and retains their personality, mental ability scores, class levels, etc.</td>
-														</tr>
-														<tr>
-															<td>16</td>
-															<td>The target is brought back as a vampiric version of their old self. The DM chooses whether or not they are in control of this vampire, if the player retains their alignment and personality, etc.</td>
-														</tr>
-														<tr>
-															<td>17</td>
-															<td>The target is brought back under the effects of the feeblemind spell</td>
-														</tr>
-														<tr>
-															<td>18</td>
-															<td>The target is brought back as a familiar to the caster as described in the find familiar spell. They retain their personality, mental ability scores, and knowledge but cannot use their class features</td>
-														</tr>
-														<tr>
-															<td>19</td>
-															<td>The target's soul is brought back and instead of going into the new body created by reincarnate, goes into the nearest full suit of plate armor and becomes animated armor. They retain their personality, mental ability scores, class levels, etc.</td>
-														</tr>
-														<tr>
-															<td>20</td>
-															<td>The target's soul is brought back and instead of going into the new body created by reincarnate, goes into the nearest tree, shrub, etc. and becomes an awakened plant. They retain their personality, mental ability scores, class levels, etc.</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-									<div className="accordion-item">
-										<h2 className="accordion-header" id="headingExoticRaces">
-											<button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExoticRaces" aria-expanded="false" aria-controls="collapseExoticRaces">
-												Exotic Races
-											</button>
-										</h2>
-										<div id="collapseExoticRaces" className="accordion-collapse collapse" aria-labelledby="headingExoticRaces" data-bs-parent="#otherTablesAccordion">
-											<div className="accordion-body p-0">
-												<p>
-													Well, you ended up here one way or another. Someone's life is
-													about to seriously change. Are you ready for that? No matter
-													what is rolled the person being reincarnated still remembers
-													their previous life as they would normally, retains their
-													mental ability scores, their class levels, their alignment, and
-													their personality.
-												</p>
-												<table className="table table-dark table-striped">
-													<tbody>
-														<tr>
-															<th>1d100</th>
-															<th>Race</th>
-														</tr>
-														<tr>
-															<td>1</td>
-															<td>Blight*</td>
-														</tr>
-														<tr>
-															<td>2</td>
-															<td>Dryad</td>
-														</tr>
-														<tr>
-															<td>3</td>
-															<td>Nymph</td>
-														</tr>
-														<tr>
-															<td>4</td>
-															<td>Satyr</td>
-														</tr>
-														<tr>
-															<td>5</td>
-															<td>Selkie</td>
-														</tr>
-														<tr>
-															<td>6</td>
-															<td>Troglodyte</td>
-														</tr>
-														<tr>
-															<td>7</td>
-															<td>Doppelganger</td>
-														</tr>
-														<tr>
-															<td>8</td>
-															<td>Myconid</td>
-														</tr>
-														<tr>
-															<td>9</td>
-															<td>Cambion</td>
-														</tr>
-														<tr>
-															<td>10</td>
-															<td>Half-Dragon*</td>
-														</tr>
-														<tr>
-															<td>11</td>
-															<td>Rakshasa</td>
-														</tr>
-														<tr>
-															<td>12</td>
-															<td>Half-Demon*</td>
-														</tr>
-														<tr>
-															<td>13</td>
-															<td>Half- Devil*</td>
-														</tr>
-														<tr>
-															<td>14</td>
-															<td>Spriggan</td>
-														</tr>
-														<tr>
-															<td>15</td>
-															<td>Awakened Golem*</td>
-														</tr>
-														<tr>
-															<td>16</td>
-															<td>Shardmind</td>
-														</tr>
-														<tr>
-															<td>17</td>
-															<td>Oni</td>
-														</tr>
-														<tr>
-															<td>18</td>
-															<td>Yeti</td>
-														</tr>
-														<tr>
-															<td>19</td>
-															<td>Half-Dryad</td>
-														</tr>
-														<tr>
-															<td>20</td>
-															<td>Pixie</td>
-														</tr>
-														<tr>
-															<td>21</td>
-															<td>Dragon Wyrmling*</td>
-														</tr>
-														<tr>
-															<td>22</td>
-															<td>Illithid</td>
-														</tr>
-														<tr>
-															<td>23</td>
-															<td>Demon*</td>
-														</tr>
-														<tr>
-															<td>24</td>
-															<td>Devil*</td>
-														</tr>
-														<tr>
-															<td>25</td>
-															<td>Hag*</td>
-														</tr>
-														<tr>
-															<td>26</td>
-															<td>Elemental*</td>
-														</tr>
-														<tr>
-															<td>27</td>
-															<td>Drider</td>
-														</tr>
-														<tr>
-															<td>28</td>
-															<td>Darkling</td>
-														</tr>
-														<tr>
-															<td>29</td>
-															<td>Quickling</td>
-														</tr>
-														<tr>
-															<td>30</td>
-															<td>Ghoul</td>
-														</tr>
-														<tr>
-															<td>31</td>
-															<td>Medusa</td>
-														</tr>
-														<tr>
-															<td>32</td>
-															<td>Mimic</td>
-														</tr>
-														<tr>
-															<td>33</td>
-															<td>Gargoyle</td>
-														</tr>
-														<tr>
-															<td>34</td>
-															<td>Giant*</td>
-														</tr>
-														<tr>
-															<td>35</td>
-															<td>Slaad*</td>
-														</tr>
-														<tr>
-															<td>36</td>
-															<td>Boggle</td>
-														</tr>
-														<tr>
-															<td>37</td>
-															<td>Firenewt</td>
-														</tr>
-														<tr>
-															<td>38</td>
-															<td>Deep Scion</td>
-														</tr>
-														<tr>
-															<td>39</td>
-															<td>Flumph</td>
-														</tr>
-														<tr>
-															<td>40</td>
-															<td>Galeb Duhr</td>
-														</tr>
-														<tr>
-															<td>41</td>
-															<td>Ooze*</td>
-														</tr>
-														<tr>
-															<td>42</td>
-															<td>Gnoll</td>
-														</tr>
-														<tr>
-															<td>43</td>
-															<td>Grung*</td>
-														</tr>
-														<tr>
-															<td>44</td>
-															<td>Harpy</td>
-														</tr>
-														<tr>
-															<td>45</td>
-															<td>Redcap</td>
-														</tr>
-														<tr>
-															<td>46</td>
-															<td>Siren</td>
-														</tr>
-														<tr>
-															<td>47</td>
-															<td>Sprite</td>
-														</tr>
-														<tr>
-															<td>48</td>
-															<td>Lamia</td>
-														</tr>
-														<tr>
-															<td>49</td>
-															<td>Merperson</td>
-														</tr>
-														<tr>
-															<td>50</td>
-															<td>Tlincalli</td>
-														</tr>
-														<tr>
-															<td>51</td>
-															<td>Yuan-Ti (non-pureblood of player's choice)</td>
-														</tr>
-														<tr>
-															<td>52</td>
-															<td>Vegepygmy</td>
-														</tr>
-														<tr>
-															<td>53</td>
-															<td>Wood Woad</td>
-														</tr>
-														<tr>
-															<td>54</td>
-															<td>Banshee</td>
-														</tr>
-														<tr>
-															<td>55</td>
-															<td>Beholder</td>
-														</tr>
-														<tr>
-															<td>56</td>
-															<td>Half-Giant*</td>
-														</tr>
-														<tr>
-															<td>57</td>
-															<td>Brokkos</td>
-														</tr>
-														<tr>
-															<td>58</td>
-															<td>Ratfolk</td>
-														</tr>
-														<tr>
-															<td>59</td>
-															<td>Giff</td>
-														</tr>
-														<tr>
-															<td>60</td>
-															<td>Loxodon</td>
-														</tr>
-														<tr>
-															<td>61</td>
-															<td>Wilkoss</td>
-														</tr>
-														<tr>
-															<td>62</td>
-															<td>Bloodfin</td>
-														</tr>
-														<tr>
-															<td>63</td>
-															<td>Icenewt</td>
-														</tr>
-														<tr>
-															<td>64</td>
-															<td>Bearfolk</td>
-														</tr>
-														<tr>
-															<td>65</td>
-															<td>Simian</td>
-														</tr>
-														<tr>
-															<td>66</td>
-															<td>Vedalken</td>
-														</tr>
-														<tr>
-															<td>67</td>
-															<td>Mind-Flayer</td>
-														</tr>
-														<tr>
-															<td>68</td>
-															<td>Thri-Keen</td>
-														</tr>
-														<tr>
-															<td>69</td>
-															<td>Bullywug</td>
-														</tr>
-														<tr>
-															<td>70</td>
-															<td>Nsoki</td>
-														</tr>
-														<tr>
-															<td>71</td>
-															<td>Sahuagin</td>
-														</tr>
-														<tr>
-															<td>72</td>
-															<td>Merfolk</td>
-														</tr>
-														<tr>
-															<td>73</td>
-															<td>Kuo-toa</td>
-														</tr>
-														<tr>
-															<td>74</td>
-															<td>Nereid</td>
-														</tr>
-														<tr>
-															<td>75</td>
-															<td>Khenra</td>
-														</tr>
-														<tr>
-															<td>76</td>
-															<td>Naga</td>
-														</tr>
-														<tr>
-															<td>77</td>
-															<td>Aven</td>
-														</tr>
-														<tr>
-															<td>78</td>
-															<td>Kor</td>
-														</tr>
-														<tr>
-															<td>79</td>
-															<td>Aetherborn</td>
-														</tr>
-														<tr>
-															<td>80</td>
-															<td>Vampire</td>
-														</tr>
-														<tr>
-															<td>81-99</td>
-															<td>Reroll</td>
-														</tr>
-														<tr>
-															<td>100</td>
-															<td>DM chooses</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
+									{this.props.tableData.mistakes.map((slimData, index: number) =>
+										<ReincarnationSlimTableAccordionItem parentID="mistakesHeading" slimData={slimData} key={index} />
+									)}
 									<div className="accordion-item">
 										<h2 className="accordion-header" id="headingSorceryAndOtherPowers">
 											<button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSorceryAndOtherPowers" aria-expanded="false" aria-controls="collapseSorceryAndOtherPowers">
@@ -859,7 +445,7 @@ class ReincarnationViewer extends React.Component<IReincarnationViewerProps> {
 														Power Elaboration
 													</h4>
 													<p>
-														For the most part, the powers in the previous table simply correspond to sorcerer classes, but if the player rolls psionic powers there are a few options. They could gain access to mystic levels, or could gain the ability to speak telepathically, or gain a use of rary's telepathic bond twice per long rest, or the ability to lift objects telekinetically, using their Intelligence to calculate the amount they can lift instead of Strength. It's really up to the player and their DM to collaborate on.
+														For the most part, the powers in the previous table simply correspond to sorcerer classes, but if the player rolls psionic powers there are a few options. They could gain access to mystic levels, or could gain the ability to speak telepathically, or gain a use of Rary's Telepathic Bond twice per long rest, or the ability to lift objects telekinetically, using their Intelligence to calculate the amount they can lift instead of Strength. It's really up to the player and their DM to collaborate on.
 													</p>
 												</div>
 											</div>
@@ -1006,7 +592,7 @@ class ReincarnationSlimTableAccordionItem extends React.Component<IReincarnation
     };
 	render()
 	{
-		let idBase = this.props.slimData.title.replace(/[\s\(\)\[\]\{\}\,]/g, '');
+		let idBase = this.props.slimData.title.replace(/[\s\(\)\[\]\{\}\,\!]/g, '');
 		return (
 			<ReincarnationAccordionItem
 				parentID={this.props.parentID}
@@ -1090,7 +676,7 @@ interface IReincarnationTables
 	distortions: {
 		elemental: ISlimReincarnationTableData[];
 		magical: ISlimReincarnationTableData[];
-	}
+	};
 	gender: IRollableTableRowData[];
 	magicalDistortions: {
 		celestial: IRollableTableRowData[];
@@ -1098,6 +684,7 @@ interface IReincarnationTables
 		fiend: IRollableTableRowData[];
 		necrotic: IRollableTableRowData[];
 	};
+	mistakes: ISlimReincarnationTableData[];
 	otherTables: {
 		animals: IRollableTableRowData[];
 		lycanthropy: IRollableTableRowData[];
@@ -1521,6 +1108,388 @@ const ReincarnationTables: IReincarnationTables = {
 			},
 		],
 	},
+	mistakes: [
+		{
+			title: "Whoops!",
+			preface: [
+				"Well son, you done fucked up. Something really bad happened. Your spell was sabotaged, those expensive components you bought were actually just made of paper mache, you mumbled the last word of the incantation and now all you can say is \"Whoops!\""
+			],
+			rows: [
+				{
+					odds: 10,
+					result: "The target is brought back as a race from the Exotic Races table.",
+				},
+				{
+					odds: 3,
+					result: "The target is brought back as a race from the Exotic Races table with one mutation from the Mutations table.",
+				},
+				{
+					odds: 1,
+					result: "The target is brought back as a zombie of the base race they rolled and retains their personality, mental ability scores, class levels, etc.",
+				},
+				{
+					odds: 1,
+					result: "The target is brought back as a skeleton of the base race they rolled and retains their personality, mental ability scores, class levels, etc.",
+				},
+				{
+					odds: 1,
+					result: "The target is brought back as a vampiric version of their old self. The DM chooses whether or not they are in control of this vampire, if the player retains their alignment and personality, etc.",
+				},
+				{
+					odds: 1,
+					result: "	The target is brought back under the effects of the feeblemind spell.",
+				},
+				{
+					odds: 1,
+					result: "The target is brought back as a familiar to the caster as described in the find familiar spell. They retain their personality, mental ability scores, and knowledge but cannot use their class features.",
+				},
+				{
+					odds: 1,
+					result: "The target's soul is brought back and instead of going into the new body created by reincarnate, goes into the nearest full suit of plate armor and becomes animated armor. They retain their personality, mental ability scores, class levels, etc.",
+				},
+				{
+					odds: 1,
+					result: "The target's soul is brought back and instead of going into the new body created by reincarnate, goes into the nearest tree, shrub, etc. and becomes an awakened plant. They retain their personality, mental ability scores, class levels, etc.",
+				},
+			]
+		},
+		{
+			title: "Exotic Races",
+			preface: [
+				"Well, you ended up here one way or another. Someone's life is about to seriously change. Are you ready for that? No matter what is rolled the person being reincarnated still remembers their previous life as they would normally, retains their mental ability scores, their class levels, their alignment, and their personality."
+			],
+			rows: [
+				{
+					odds: 1,
+					result: "Aetherborn"
+				},
+				{
+					odds: 1,
+					result:"Aven"
+				},
+				{
+					odds: 1,
+					result:"Awakened Golem*"
+				},
+				{
+					odds: 1,
+					result:"Banshee"
+				},
+				{
+					odds: 1,
+					result:"Bearfolk"
+				},
+				{
+					odds: 1,
+					result:"Beholder"
+				},
+				{
+					odds: 1,
+					result:"Blight*"
+				},
+				{
+					odds: 1,
+					result:"Bloodfin"
+				},
+				{
+					odds: 1,
+					result:"Boggle"
+				},
+				{
+					odds: 1,
+					result:"Brokkos"
+				},
+				{
+					odds: 1,
+					result:"Bullywug"
+				},
+				{
+					odds: 1,
+					result:"Cambion"
+				},
+				{
+					odds: 1,
+					result:"Darkling"
+				},
+				{
+					odds: 1,
+					result:"Deep Scion"
+				},
+				{
+					odds: 1,
+					result:"Demon*"
+				},
+				{
+					odds: 1,
+					result:"Devil*"
+				},
+				{
+					odds: 1,
+					result:"Doppelganger"
+				},
+				{
+					odds: 1,
+					result:"Dragon Wyrmling*"
+				},
+				{
+					odds: 1,
+					result:"Drider"
+				},
+				{
+					odds: 1,
+					result:"Dryad"
+				},
+				{
+					odds: 1,
+					result:"Elemental*"
+				},
+				{
+					odds: 1,
+					result:"Firenewt"
+				},
+				{
+					odds: 1,
+					result:"Flumph"
+				},
+				{
+					odds: 1,
+					result:"Galeb Duhr"
+				},
+				{
+					odds: 1,
+					result:"Gargoyle"
+				},
+				{
+					odds: 1,
+					result:"Ghoul"
+				},
+				{
+					odds: 1,
+					result:"Giant*"
+				},
+				{
+					odds: 1,
+					result:"Giff"
+				},
+				{
+					odds: 1,
+					result:"Gnoll"
+				},
+				{
+					odds: 1,
+					result:"Grung*"
+				},
+				{
+					odds: 1,
+					result:"Hag*"
+				},
+				{
+					odds: 1,
+					result:"Half- Devil*"
+				},
+				{
+					odds: 1,
+					result:"Half-Demon*"
+				},
+				{
+					odds: 1,
+					result:"Half-Dragon*"
+				},
+				{
+					odds: 1,
+					result:"Half-Dryad"
+				},
+				{
+					odds: 1,
+					result:"Half-Giant*"
+				},
+				{
+					odds: 1,
+					result:"Harpy"
+				},
+				{
+					odds: 1,
+					result:"Icenewt"
+				},
+				{
+					odds: 1,
+					result:"Illithid"
+				},
+				{
+					odds: 1,
+					result:"Kor"
+				},
+				{
+					odds: 1,
+					result:"Kuo-toa"
+				},
+				{
+					odds: 1,
+					result:"Lamia"
+				},
+				{
+					odds: 1,
+					result:"Loxodon"
+				},
+				{
+					odds: 1,
+					result:"Medusa"
+				},
+				{
+					odds: 1,
+					result:"Merfolk"
+				},
+				{
+					odds: 1,
+					result:"Merperson"
+				},
+				{
+					odds: 1,
+					result:"Mimic"
+				},
+				{
+					odds: 1,
+					result:"Mind-Flayer"
+				},
+				{
+					odds: 1,
+					result:"Myconid"
+				},
+				{
+					odds: 1,
+					result:"Naga"
+				},
+				{
+					odds: 1,
+					result:"Nereid"
+				},
+				{
+					odds: 1,
+					result:"Nsoki"
+				},
+				{
+					odds: 1,
+					result:"Nymph"
+				},
+				{
+					odds: 1,
+					result:"Odenu"
+				},
+				{
+					odds: 1,
+					result:"Oni"
+				},
+				{
+					odds: 1,
+					result:"Ooze*"
+				},
+				{
+					odds: 1,
+					result:"Pixie"
+				},
+				{
+					odds: 1,
+					result:"Quickling"
+				},
+				{
+					odds: 1,
+					result:"Rakshasa"
+				},
+				{
+					odds: 1,
+					result:"Ratfolk"
+				},
+				{
+					odds: 1,
+					result:"Redcap"
+				},
+				{
+					odds: 1,
+					result:"Sahuagin"
+				},
+				{
+					odds: 1,
+					result:"Satyr"
+				},
+				{
+					odds: 1,
+					result:"Selkie"
+				},
+				{
+					odds: 1,
+					result:"Shardmind"
+				},
+				{
+					odds: 1,
+					result:"Simian"
+				},
+				{
+					odds: 1,
+					result:"Siren"
+				},
+				{
+					odds: 1,
+					result:"Slaad*"
+				},
+				{
+					odds: 1,
+					result:"Spriggan"
+				},
+				{
+					odds: 1,
+					result:"Sprite"
+				},
+				{
+					odds: 1,
+					result:"Thri-Keen"
+				},
+				{
+					odds: 1,
+					result:"Tlincalli"
+				},
+				{
+					odds: 1,
+					result:"Troglodyte"
+				},
+				{
+					odds: 1,
+					result:"Vampire"
+				},
+				{
+					odds: 1,
+					result:"Vedalken"
+				},
+				{
+					odds: 1,
+					result:"Vegepygmy"
+				},
+				{
+					odds: 1,
+					result:"Wilkoss"
+				},
+				{
+					odds: 1,
+					result:"Wood Woad"
+				},
+				{
+					odds: 1,
+					result:"Yeti"
+				},
+				{
+					odds: 1,
+					result:"Yuan-Ti (non-pureblood of player's choice)"
+				},
+				{
+					odds: 19,
+					result:"Reroll"
+				},
+				{
+					odds: 1,
+					result:"DM chooses"
+				}
+			]
+		},
+	],
 	otherTables: {
 		animals: [
 			{

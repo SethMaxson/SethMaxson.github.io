@@ -120,7 +120,7 @@ class SpeciesViewer extends React.Component<ISpeciesViewerProps, ISpeciesViewerS
 		let filterableItems: IFilterableItemObject[] = this.props.Species.map(a => { return { text: a.name, tags: a.tags || [] } });
 		return (
 			<div className="bg-dark bg-gradient p-0 h-100 overflow-hidden">
-				<FilterPanel
+				<FilterPanelOffCanvas
 					filters={SPECIESFILTERS}
 					items={filterableItems}
 					selectedIndex={this.state.selectedIndex}

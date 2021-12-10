@@ -353,6 +353,7 @@ class MapContainer extends React.Component<IMapContainerProps, IMapContainerStat
 						</span>
 					</a>
 					<MapLabel fontSize="110px" labelType="continent" name="Seiklus Ocean" position={{ left: "27%", top: "40%" }} />
+					<MapLabel fontSize="110px" labelType="continent" name="Nyr Ocean" position={{ left: "74%", top: "40%" }} />
 
 					{this.props.overlays.map((overlay, index: number) =>
 						this.props.overlayDisplay[index]? <Overlay key={index} image={overlay.image} zIndex={overlay.zIndex} opacity={overlay.opacity} display="default" /> : null

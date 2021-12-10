@@ -174,7 +174,7 @@ class CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterV
 		let filterableItems: IFilterableItemObject[] = this.props.characters.map(a => { return { text: a.name, tags: [] } });
 		return (
 			<div className="bg-dark bg-gradient" style={{ padding: "0px", height: "100%"}}>
-				<FilterPanel items={filterableItems} selectedIndex={this.state.selectedIndex} onChange={this.changeCharacter} />
+				<FilterPanelOffCanvas items={filterableItems} selectedIndex={this.state.selectedIndex} onChange={this.changeCharacter} />
 				<FilterPanelToggleButton />
 				<div className="container bg-body d-flex flex-column" style={{ padding: "0px", height: "100%", overflowY: "hidden"}}>
 					<FilterPanelToggleButtonMobile />

@@ -1,0 +1,382 @@
+[
+	{
+		"name": "Vox Laudis",
+		"notes": {
+			"dm": [],
+			"player": []
+		}
+	},
+	{
+		"name": "Pro Omnibus",
+		"notes": {
+			"dm": [],
+			"player": []
+		}
+	},
+	{
+		"name": "PWWF",
+		"notes": {
+			"dm": [
+				"Pact Worlds Wrestling Federation"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Verday",
+		"notes": {
+			"dm": [
+				"Green Day. Members:Enialis Faire, Seirgol, Koseemo"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Darklight",
+		"notes": {
+			"dm": [
+				"Blackpink"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "ET Bois",
+		"notes": {
+			"dm": [
+				"Beastie Boys. Members:Altronus Rumbling River, Dexar, Enzo"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "The Murderers",
+		"notes": {
+			"dm": [
+				"The Killers"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Asthmatic",
+		"notes": {
+			"dm": [
+				"Wheezer"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Velox",
+		"notes": {
+			"dm": [
+				"Star Fox"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Canis Dirus",
+		"notes": {
+			"dm": [
+				"Star Wolf"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Murder Inc.",
+		"notes": {
+			"dm": [],
+			"player": []
+		}
+	},
+	{
+		"name": "The Plague",
+		"notes": {
+			"dm": [],
+			"player": []
+		}
+	},
+	{
+		"name": "Nuclear Ninjas",
+		"notes": {
+			"dm": [],
+			"player": []
+		}
+	},
+	{
+		"name": "The Firm",
+		"notes": {
+			"dm": [],
+			"player": []
+		}
+	},
+	{
+		"name": "Space Cowboys",
+		"notes": {
+			"dm": [],
+			"player": []
+		}
+	},
+	{
+		"name": "The Disposables",
+		"notes": {
+			"dm": [
+				"The Expendables"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Battlewugs",
+		"notes": {
+			"dm": [
+				"Battletoads"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "The Swarm",
+		"notes": {
+			"dm": [],
+			"player": []
+		}
+	},
+	{
+		"name": "12th Dimension",
+		"notes": {
+			"dm": [
+				"D12"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Steel Balloon",
+		"notes": {
+			"dm": [
+				"Led Zepplin"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Legal Aliens",
+		"notes": {
+			"dm": [
+				"Foreigner"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Skalding Red Reaper",
+		"notes": {
+			"dm": [
+				"Red Hot Chili Peppers"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Expedition",
+		"notes": {
+			"dm": [
+				"Journey"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Scarab",
+		"notes": {
+			"dm": [
+				"The Beatles"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Our Elemental Friendship",
+		"notes": {
+			"dm": [
+				"MCR"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Fear at the Dance Hall",
+		"notes": {
+			"dm": [
+				"Panic"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Two Lefts",
+		"notes": {
+			"dm": [
+				"One Direction"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "BAD C",
+		"notes": {
+			"dm": [
+				"AC/DC"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Whipping Maggie",
+		"notes": {
+			"dm": [
+				"Flogging Molly"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Peculiar Group",
+		"notes": {
+			"dm": [
+				"Motlëy Crüe"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Plastico",
+		"notes": {
+			"dm": [
+				"Metallica"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Superlife",
+		"notes": {
+			"dm": [
+				"Megadeth"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Tower Major",
+		"notes": {
+			"dm": [
+				"Fort Minor"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Jatimbe Park",
+		"notes": {
+			"dm": [
+				"Linkin Park"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Garlicnaut",
+		"notes": {
+			"dm": [
+				"Italian Slipknot"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Pedestrian 12",
+		"notes": {
+			"dm": [
+				"21 pilots"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Everything+Kitch",
+		"notes": {
+			"dm": [
+				"N-Sync"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Radioactive Men",
+		"notes": {
+			"dm": [
+				"FOB"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Dope and the Homies",
+		"notes": {
+			"dm": [
+				"Kool and the Gang"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Sikk",
+		"notes": {
+			"dm": [
+				"KISS"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Blind Tiger",
+		"notes": {
+			"dm": [
+				"Def Leppard"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Pennyfront",
+		"notes": {
+			"dm": [
+				"Nickelback"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Royale",
+		"notes": {
+			"dm": [
+				"Queen"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Blast Processing",
+		"notes": {
+			"dm": [
+				"Sonic the Hedgehog and friends. Members: Zoomer (Sonic), Boomer (Knuckles), (Amy), (Tails)"
+			],
+			"player": []
+		}
+	}
+]

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Quest Generator</title>
+		<!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+		<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+		<style>
+			.background div.container {padding:10px;}
+			th {font-weight: bold; border:2px solid #555; background:#333; color:floralwhite; padding:4px;}
+			td{border:2px solid #555; padding:4px;}
+		</style>
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all">
+		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<script src="/dnd/res/js/mechanics.js"></script>
+		<script src="/dnd/res/js/common/weighted-random.js"></script>
+		<script src="/res/js/sort-table.js"></script>
+		<script src="/dnd/res/js/npc.js"></script>
+		<script src="/dnd/res/js/generators/racialtraits.js"></script>
+		<script src="/dnd/res/js/generators/name.js"></script>
+		<script src="/dnd/res/js/generators/npc.js"></script>
+		<script src="/dnd/res/js/generators/quest.js"></script>
+		<script>
+			$(document).ready(function(){
+				const container = $("#items");
+				races = [];
+				var systems = [];
+				var randomQuests = [];
+				const self = this;
+
+				$.ajax({
+					crossDomain: true,
+					url: "/dnd/res/data/races.json",
+					dataType: 'json'
+				}).done(function (items)
+				{
+					for (let i = 0; i < items.length; i++) {
+						const e = items[i];
+						if (e.hasOwnProperty("ID")) {
+							races.push(e.ID);
+						} else {
+							races.push(e.name);
+						}
+					}
+					$.ajax({
+						crossDomain: true,
+						url: "/sf/res/data/systems.json",
+						dataType: 'json',
+						error: function (xmlHttpReq, status, err) {
+							var something = xmlHttpReq;
+						},
+						success: function (returnedData) {
+							var items = returnedData.items;
+							for (let index = 0; index < items.length; index++) {
+								const sys = items[index];
+								let newArray = sys.stars.concat(sys.planets);
+								systems.push({ name: sys.name, space: sys.space, planets: newArray });
+							}
+							generateQuests(20);
+						}
+					});
+				});
+
+
+				function generateQuests(number) {
+					for (let index = 0; index < number; index++) {
+						const quest = QuestGenerator.generateQuest(systems);
+						randomQuests.push(quest);
+						const tr = $(`
+							<tr>
+								<td>${quest.name}</td>
+								<td>${quest.issuer.name} (${quest.issuer.alignment} ${quest.issuer.relativeAge} ${quest.issuer.gender} ${quest.issuer.race})</td>
+								<td>${quest.location}</td>
+								<td>${quest.rank}</td>
+								<td>${quest.payment.credits} cr</td>
+							</tr>
+						`);
+						container.append(tr);
+					}
+				}
+
+
+				$("#generate-quests").click(function(){
+					generateQuests(
+						$("#records-to-generate").val()
+					);
+				})
+				$("#clear-items").click(function(){
+					randomQuests = [];
+					$("#items tr:not(.header-row)").remove();
+				})
+
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="background">
+			<div class="container">
+				<h1>Jobs</h1>
+				<table style="width:100%; margin:auto; border-collapse: collapse;">
+					<tr>
+						<td>
+							<label for="race-select">Species:</label>
+							<select name="race-select" id="race-select">
+								<option value="null">Surprise Me</option>
+							</select>
+						</td>
+						<td>
+							<label for="gender-select">Gender:</label>
+							<select name="gender-select" id="gender-select">
+								<option value="null">Surprise Me</option>
+								<option value="female">Female</option>
+								<option value="male">Male</option>
+							</select>
+						</td>
+						<td>
+							<label for="age-select">Age:</label>
+							<select name="age-select" id="age-select">
+								<option value="0">Surprise Me</option>
+								<option value="1">Child</option>
+								<option value="2">Young Adult</option>
+								<option value="3">Middle Age</option>
+								<option value="4">Elder</option>
+							</select>
+						</td>
+						<td>
+							<label for="alignment-select">Alignment:</label>
+							<select name="alignment-select" id="alignment-select">
+								<option value="null">Surprise Me</option>
+								<option value="LG">Lawful Good</option>
+								<option value="NG">Neutral Good</option>
+								<option value="CG">Chaotic Good</option>
+								<option value="LN">Lawful Neutral</option>
+								<option value="NN">Neutral</option>
+								<option value="CN">Chaotic Neutral</option>
+								<option value="LE">Lawful Evil</option>
+								<option value="NE">Neutral Evil</option>
+								<option value="CE">Chaotic Evil</option>
+							</select>
+						</td>
+						<td>
+							<label for="records-to-generate">Number to create:</label>
+							<input type="number" name="records-to-generate" id="records-to-generate" value="20" />
+						</td>
+						<td><button id="generate-quests">Generate!</button></td>
+						<td><button id="clear-items">Clear Quests</button></td>
+					</tr>
+				</table>
+				<table style="width:100%; margin:auto; border-collapse: collapse;" id="items">
+					<tr class="header-row">
+						<th onclick="sortTable(this, 0)">Name</th>
+						<th style="width:20%;" onclick="sortTable(this, 1)">Issuer</th>
+						<th style="width:12%;" onclick="sortTable(this, 2)">Location</th>
+						<th style="width:10%;" onclick="sortTable(this, 3)">Rank</th>
+						<th style="width:15%;" onclick="sortTable(this, 4)">Payment</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+
+</html>

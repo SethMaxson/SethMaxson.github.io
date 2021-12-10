@@ -239,301 +239,7 @@ class ReincarnationViewer extends React.Component {
                                                     React.createElement("tr", null,
                                                         React.createElement("td", null, "19-20"),
                                                         React.createElement("td", null, "Sorcery! Roll on the Sorcery and Other Powers table!"))))))),
-                                React.createElement("div", { className: "accordion-item" },
-                                    React.createElement("h2", { className: "accordion-header", id: "headingWhoops" },
-                                        React.createElement("button", { className: "accordion-button collapsed", type: "button", "data-bs-toggle": "collapse", "data-bs-target": "#collapseWhoops", "aria-expanded": "false", "aria-controls": "collapseWhoops" }, "Whoops!")),
-                                    React.createElement("div", { id: "collapseWhoops", className: "accordion-collapse collapse", "aria-labelledby": "headingWhoops", "data-bs-parent": "#mistakesTablesAccordion" },
-                                        React.createElement("div", { className: "accordion-body p-0" },
-                                            React.createElement("p", null, "Well son, you done fucked up. Something really bad happened. Your spell was sabotaged, those expensive components you bought were actually just made of paper mache, you mumbled the last word of the incantation and now all you can say is \"Whoops!\""),
-                                            React.createElement("table", { className: "table table-dark table-striped" },
-                                                React.createElement("tbody", null,
-                                                    React.createElement("tr", null,
-                                                        React.createElement("th", null, "1d20"),
-                                                        React.createElement("th", null, "Mishap")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "1-10"),
-                                                        React.createElement("td", null, "The target is brought back as a race from the Exotic Races table")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "11-13"),
-                                                        React.createElement("td", null, "The target is brought back as a race from the Exotic Races table with one mutation from the Mutations table")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "14"),
-                                                        React.createElement("td", null, "The target is brought back as a zombie of the base race they rolled and retains their personality, mental ability scores, class levels, etc.")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "15"),
-                                                        React.createElement("td", null, "The target is brought back as a skeleton of the base race they rolled and retains their personality, mental ability scores, class levels, etc.")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "16"),
-                                                        React.createElement("td", null, "The target is brought back as a vampiric version of their old self. The DM chooses whether or not they are in control of this vampire, if the player retains their alignment and personality, etc.")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "17"),
-                                                        React.createElement("td", null, "The target is brought back under the effects of the feeblemind spell")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "18"),
-                                                        React.createElement("td", null, "The target is brought back as a familiar to the caster as described in the find familiar spell. They retain their personality, mental ability scores, and knowledge but cannot use their class features")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "19"),
-                                                        React.createElement("td", null, "The target's soul is brought back and instead of going into the new body created by reincarnate, goes into the nearest full suit of plate armor and becomes animated armor. They retain their personality, mental ability scores, class levels, etc.")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "20"),
-                                                        React.createElement("td", null, "The target's soul is brought back and instead of going into the new body created by reincarnate, goes into the nearest tree, shrub, etc. and becomes an awakened plant. They retain their personality, mental ability scores, class levels, etc."))))))),
-                                React.createElement("div", { className: "accordion-item" },
-                                    React.createElement("h2", { className: "accordion-header", id: "headingExoticRaces" },
-                                        React.createElement("button", { className: "accordion-button collapsed", type: "button", "data-bs-toggle": "collapse", "data-bs-target": "#collapseExoticRaces", "aria-expanded": "false", "aria-controls": "collapseExoticRaces" }, "Exotic Races")),
-                                    React.createElement("div", { id: "collapseExoticRaces", className: "accordion-collapse collapse", "aria-labelledby": "headingExoticRaces", "data-bs-parent": "#otherTablesAccordion" },
-                                        React.createElement("div", { className: "accordion-body p-0" },
-                                            React.createElement("p", null, "Well, you ended up here one way or another. Someone's life is about to seriously change. Are you ready for that? No matter what is rolled the person being reincarnated still remembers their previous life as they would normally, retains their mental ability scores, their class levels, their alignment, and their personality."),
-                                            React.createElement("table", { className: "table table-dark table-striped" },
-                                                React.createElement("tbody", null,
-                                                    React.createElement("tr", null,
-                                                        React.createElement("th", null, "1d100"),
-                                                        React.createElement("th", null, "Race")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "1"),
-                                                        React.createElement("td", null, "Blight*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "2"),
-                                                        React.createElement("td", null, "Dryad")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "3"),
-                                                        React.createElement("td", null, "Nymph")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "4"),
-                                                        React.createElement("td", null, "Satyr")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "5"),
-                                                        React.createElement("td", null, "Selkie")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "6"),
-                                                        React.createElement("td", null, "Troglodyte")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "7"),
-                                                        React.createElement("td", null, "Doppelganger")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "8"),
-                                                        React.createElement("td", null, "Myconid")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "9"),
-                                                        React.createElement("td", null, "Cambion")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "10"),
-                                                        React.createElement("td", null, "Half-Dragon*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "11"),
-                                                        React.createElement("td", null, "Rakshasa")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "12"),
-                                                        React.createElement("td", null, "Half-Demon*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "13"),
-                                                        React.createElement("td", null, "Half- Devil*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "14"),
-                                                        React.createElement("td", null, "Spriggan")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "15"),
-                                                        React.createElement("td", null, "Awakened Golem*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "16"),
-                                                        React.createElement("td", null, "Shardmind")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "17"),
-                                                        React.createElement("td", null, "Oni")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "18"),
-                                                        React.createElement("td", null, "Yeti")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "19"),
-                                                        React.createElement("td", null, "Half-Dryad")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "20"),
-                                                        React.createElement("td", null, "Pixie")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "21"),
-                                                        React.createElement("td", null, "Dragon Wyrmling*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "22"),
-                                                        React.createElement("td", null, "Illithid")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "23"),
-                                                        React.createElement("td", null, "Demon*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "24"),
-                                                        React.createElement("td", null, "Devil*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "25"),
-                                                        React.createElement("td", null, "Hag*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "26"),
-                                                        React.createElement("td", null, "Elemental*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "27"),
-                                                        React.createElement("td", null, "Drider")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "28"),
-                                                        React.createElement("td", null, "Darkling")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "29"),
-                                                        React.createElement("td", null, "Quickling")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "30"),
-                                                        React.createElement("td", null, "Ghoul")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "31"),
-                                                        React.createElement("td", null, "Medusa")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "32"),
-                                                        React.createElement("td", null, "Mimic")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "33"),
-                                                        React.createElement("td", null, "Gargoyle")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "34"),
-                                                        React.createElement("td", null, "Giant*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "35"),
-                                                        React.createElement("td", null, "Slaad*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "36"),
-                                                        React.createElement("td", null, "Boggle")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "37"),
-                                                        React.createElement("td", null, "Firenewt")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "38"),
-                                                        React.createElement("td", null, "Deep Scion")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "39"),
-                                                        React.createElement("td", null, "Flumph")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "40"),
-                                                        React.createElement("td", null, "Galeb Duhr")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "41"),
-                                                        React.createElement("td", null, "Ooze*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "42"),
-                                                        React.createElement("td", null, "Gnoll")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "43"),
-                                                        React.createElement("td", null, "Grung*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "44"),
-                                                        React.createElement("td", null, "Harpy")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "45"),
-                                                        React.createElement("td", null, "Redcap")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "46"),
-                                                        React.createElement("td", null, "Siren")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "47"),
-                                                        React.createElement("td", null, "Sprite")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "48"),
-                                                        React.createElement("td", null, "Lamia")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "49"),
-                                                        React.createElement("td", null, "Merperson")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "50"),
-                                                        React.createElement("td", null, "Tlincalli")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "51"),
-                                                        React.createElement("td", null, "Yuan-Ti (non-pureblood of player's choice)")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "52"),
-                                                        React.createElement("td", null, "Vegepygmy")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "53"),
-                                                        React.createElement("td", null, "Wood Woad")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "54"),
-                                                        React.createElement("td", null, "Banshee")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "55"),
-                                                        React.createElement("td", null, "Beholder")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "56"),
-                                                        React.createElement("td", null, "Half-Giant*")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "57"),
-                                                        React.createElement("td", null, "Brokkos")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "58"),
-                                                        React.createElement("td", null, "Ratfolk")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "59"),
-                                                        React.createElement("td", null, "Giff")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "60"),
-                                                        React.createElement("td", null, "Loxodon")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "61"),
-                                                        React.createElement("td", null, "Wilkoss")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "62"),
-                                                        React.createElement("td", null, "Bloodfin")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "63"),
-                                                        React.createElement("td", null, "Icenewt")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "64"),
-                                                        React.createElement("td", null, "Bearfolk")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "65"),
-                                                        React.createElement("td", null, "Simian")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "66"),
-                                                        React.createElement("td", null, "Vedalken")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "67"),
-                                                        React.createElement("td", null, "Mind-Flayer")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "68"),
-                                                        React.createElement("td", null, "Thri-Keen")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "69"),
-                                                        React.createElement("td", null, "Bullywug")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "70"),
-                                                        React.createElement("td", null, "Nsoki")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "71"),
-                                                        React.createElement("td", null, "Sahuagin")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "72"),
-                                                        React.createElement("td", null, "Merfolk")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "73"),
-                                                        React.createElement("td", null, "Kuo-toa")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "74"),
-                                                        React.createElement("td", null, "Nereid")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "75"),
-                                                        React.createElement("td", null, "Khenra")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "76"),
-                                                        React.createElement("td", null, "Naga")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "77"),
-                                                        React.createElement("td", null, "Aven")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "78"),
-                                                        React.createElement("td", null, "Kor")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "79"),
-                                                        React.createElement("td", null, "Aetherborn")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "80"),
-                                                        React.createElement("td", null, "Vampire")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "81-99"),
-                                                        React.createElement("td", null, "Reroll")),
-                                                    React.createElement("tr", null,
-                                                        React.createElement("td", null, "100"),
-                                                        React.createElement("td", null, "DM chooses"))))))),
+                                this.props.tableData.mistakes.map((slimData, index) => React.createElement(ReincarnationSlimTableAccordionItem, { parentID: "mistakesHeading", slimData: slimData, key: index })),
                                 React.createElement("div", { className: "accordion-item" },
                                     React.createElement("h2", { className: "accordion-header", id: "headingSorceryAndOtherPowers" },
                                         React.createElement("button", { className: "accordion-button collapsed", type: "button", "data-bs-toggle": "collapse", "data-bs-target": "#collapseSorceryAndOtherPowers", "aria-expanded": "false", "aria-controls": "collapseSorceryAndOtherPowers" }, "Sorcery and Other Powers")),
@@ -580,7 +286,7 @@ class ReincarnationViewer extends React.Component {
                                             "*roll on the dragon types table",
                                             React.createElement("div", { id: "PowerElaboration", className: "aside" },
                                                 React.createElement("h4", null, "Power Elaboration"),
-                                                React.createElement("p", null, "For the most part, the powers in the previous table simply correspond to sorcerer classes, but if the player rolls psionic powers there are a few options. They could gain access to mystic levels, or could gain the ability to speak telepathically, or gain a use of rary's telepathic bond twice per long rest, or the ability to lift objects telekinetically, using their Intelligence to calculate the amount they can lift instead of Strength. It's really up to the player and their DM to collaborate on."))))))))),
+                                                React.createElement("p", null, "For the most part, the powers in the previous table simply correspond to sorcerer classes, but if the player rolls psionic powers there are a few options. They could gain access to mystic levels, or could gain the ability to speak telepathically, or gain a use of Rary's Telepathic Bond twice per long rest, or the ability to lift objects telekinetically, using their Intelligence to calculate the amount they can lift instead of Strength. It's really up to the player and their DM to collaborate on."))))))))),
                 React.createElement("div", { className: "accordion-item" },
                     React.createElement("h2", { className: "accordion-header", id: "subracesHeading" },
                         React.createElement("button", { className: "accordion-button collapsed", type: "button", "data-bs-toggle": "collapse", "data-bs-target": "#subracesCollapse", "aria-expanded": "false", "aria-controls": "subracesCollapse" },
@@ -634,7 +340,7 @@ class ReincarnationViewer extends React.Component {
 }
 class ReincarnationSlimTableAccordionItem extends React.Component {
     render() {
-        let idBase = this.props.slimData.title.replace(/[\s\(\)\[\]\{\}\,]/g, '');
+        let idBase = this.props.slimData.title.replace(/[\s\(\)\[\]\{\}\,\!]/g, '');
         return (React.createElement(ReincarnationAccordionItem, { parentID: this.props.parentID, idBase: idBase, title: this.props.slimData.title, preface: this.props.slimData.preface, postface: this.props.slimData.postface, rows: this.props.slimData.rows }));
     }
 }
@@ -1072,6 +778,388 @@ const ReincarnationTables = {
             },
         ],
     },
+    mistakes: [
+        {
+            title: "Whoops!",
+            preface: [
+                "Well son, you done fucked up. Something really bad happened. Your spell was sabotaged, those expensive components you bought were actually just made of paper mache, you mumbled the last word of the incantation and now all you can say is \"Whoops!\""
+            ],
+            rows: [
+                {
+                    odds: 10,
+                    result: "The target is brought back as a race from the Exotic Races table.",
+                },
+                {
+                    odds: 3,
+                    result: "The target is brought back as a race from the Exotic Races table with one mutation from the Mutations table.",
+                },
+                {
+                    odds: 1,
+                    result: "The target is brought back as a zombie of the base race they rolled and retains their personality, mental ability scores, class levels, etc.",
+                },
+                {
+                    odds: 1,
+                    result: "The target is brought back as a skeleton of the base race they rolled and retains their personality, mental ability scores, class levels, etc.",
+                },
+                {
+                    odds: 1,
+                    result: "The target is brought back as a vampiric version of their old self. The DM chooses whether or not they are in control of this vampire, if the player retains their alignment and personality, etc.",
+                },
+                {
+                    odds: 1,
+                    result: "	The target is brought back under the effects of the feeblemind spell.",
+                },
+                {
+                    odds: 1,
+                    result: "The target is brought back as a familiar to the caster as described in the find familiar spell. They retain their personality, mental ability scores, and knowledge but cannot use their class features.",
+                },
+                {
+                    odds: 1,
+                    result: "The target's soul is brought back and instead of going into the new body created by reincarnate, goes into the nearest full suit of plate armor and becomes animated armor. They retain their personality, mental ability scores, class levels, etc.",
+                },
+                {
+                    odds: 1,
+                    result: "The target's soul is brought back and instead of going into the new body created by reincarnate, goes into the nearest tree, shrub, etc. and becomes an awakened plant. They retain their personality, mental ability scores, class levels, etc.",
+                },
+            ]
+        },
+        {
+            title: "Exotic Races",
+            preface: [
+                "Well, you ended up here one way or another. Someone's life is about to seriously change. Are you ready for that? No matter what is rolled the person being reincarnated still remembers their previous life as they would normally, retains their mental ability scores, their class levels, their alignment, and their personality."
+            ],
+            rows: [
+                {
+                    odds: 1,
+                    result: "Aetherborn"
+                },
+                {
+                    odds: 1,
+                    result: "Aven"
+                },
+                {
+                    odds: 1,
+                    result: "Awakened Golem*"
+                },
+                {
+                    odds: 1,
+                    result: "Banshee"
+                },
+                {
+                    odds: 1,
+                    result: "Bearfolk"
+                },
+                {
+                    odds: 1,
+                    result: "Beholder"
+                },
+                {
+                    odds: 1,
+                    result: "Blight*"
+                },
+                {
+                    odds: 1,
+                    result: "Bloodfin"
+                },
+                {
+                    odds: 1,
+                    result: "Boggle"
+                },
+                {
+                    odds: 1,
+                    result: "Brokkos"
+                },
+                {
+                    odds: 1,
+                    result: "Bullywug"
+                },
+                {
+                    odds: 1,
+                    result: "Cambion"
+                },
+                {
+                    odds: 1,
+                    result: "Darkling"
+                },
+                {
+                    odds: 1,
+                    result: "Deep Scion"
+                },
+                {
+                    odds: 1,
+                    result: "Demon*"
+                },
+                {
+                    odds: 1,
+                    result: "Devil*"
+                },
+                {
+                    odds: 1,
+                    result: "Doppelganger"
+                },
+                {
+                    odds: 1,
+                    result: "Dragon Wyrmling*"
+                },
+                {
+                    odds: 1,
+                    result: "Drider"
+                },
+                {
+                    odds: 1,
+                    result: "Dryad"
+                },
+                {
+                    odds: 1,
+                    result: "Elemental*"
+                },
+                {
+                    odds: 1,
+                    result: "Firenewt"
+                },
+                {
+                    odds: 1,
+                    result: "Flumph"
+                },
+                {
+                    odds: 1,
+                    result: "Galeb Duhr"
+                },
+                {
+                    odds: 1,
+                    result: "Gargoyle"
+                },
+                {
+                    odds: 1,
+                    result: "Ghoul"
+                },
+                {
+                    odds: 1,
+                    result: "Giant*"
+                },
+                {
+                    odds: 1,
+                    result: "Giff"
+                },
+                {
+                    odds: 1,
+                    result: "Gnoll"
+                },
+                {
+                    odds: 1,
+                    result: "Grung*"
+                },
+                {
+                    odds: 1,
+                    result: "Hag*"
+                },
+                {
+                    odds: 1,
+                    result: "Half- Devil*"
+                },
+                {
+                    odds: 1,
+                    result: "Half-Demon*"
+                },
+                {
+                    odds: 1,
+                    result: "Half-Dragon*"
+                },
+                {
+                    odds: 1,
+                    result: "Half-Dryad"
+                },
+                {
+                    odds: 1,
+                    result: "Half-Giant*"
+                },
+                {
+                    odds: 1,
+                    result: "Harpy"
+                },
+                {
+                    odds: 1,
+                    result: "Icenewt"
+                },
+                {
+                    odds: 1,
+                    result: "Illithid"
+                },
+                {
+                    odds: 1,
+                    result: "Kor"
+                },
+                {
+                    odds: 1,
+                    result: "Kuo-toa"
+                },
+                {
+                    odds: 1,
+                    result: "Lamia"
+                },
+                {
+                    odds: 1,
+                    result: "Loxodon"
+                },
+                {
+                    odds: 1,
+                    result: "Medusa"
+                },
+                {
+                    odds: 1,
+                    result: "Merfolk"
+                },
+                {
+                    odds: 1,
+                    result: "Merperson"
+                },
+                {
+                    odds: 1,
+                    result: "Mimic"
+                },
+                {
+                    odds: 1,
+                    result: "Mind-Flayer"
+                },
+                {
+                    odds: 1,
+                    result: "Myconid"
+                },
+                {
+                    odds: 1,
+                    result: "Naga"
+                },
+                {
+                    odds: 1,
+                    result: "Nereid"
+                },
+                {
+                    odds: 1,
+                    result: "Nsoki"
+                },
+                {
+                    odds: 1,
+                    result: "Nymph"
+                },
+                {
+                    odds: 1,
+                    result: "Odenu"
+                },
+                {
+                    odds: 1,
+                    result: "Oni"
+                },
+                {
+                    odds: 1,
+                    result: "Ooze*"
+                },
+                {
+                    odds: 1,
+                    result: "Pixie"
+                },
+                {
+                    odds: 1,
+                    result: "Quickling"
+                },
+                {
+                    odds: 1,
+                    result: "Rakshasa"
+                },
+                {
+                    odds: 1,
+                    result: "Ratfolk"
+                },
+                {
+                    odds: 1,
+                    result: "Redcap"
+                },
+                {
+                    odds: 1,
+                    result: "Sahuagin"
+                },
+                {
+                    odds: 1,
+                    result: "Satyr"
+                },
+                {
+                    odds: 1,
+                    result: "Selkie"
+                },
+                {
+                    odds: 1,
+                    result: "Shardmind"
+                },
+                {
+                    odds: 1,
+                    result: "Simian"
+                },
+                {
+                    odds: 1,
+                    result: "Siren"
+                },
+                {
+                    odds: 1,
+                    result: "Slaad*"
+                },
+                {
+                    odds: 1,
+                    result: "Spriggan"
+                },
+                {
+                    odds: 1,
+                    result: "Sprite"
+                },
+                {
+                    odds: 1,
+                    result: "Thri-Keen"
+                },
+                {
+                    odds: 1,
+                    result: "Tlincalli"
+                },
+                {
+                    odds: 1,
+                    result: "Troglodyte"
+                },
+                {
+                    odds: 1,
+                    result: "Vampire"
+                },
+                {
+                    odds: 1,
+                    result: "Vedalken"
+                },
+                {
+                    odds: 1,
+                    result: "Vegepygmy"
+                },
+                {
+                    odds: 1,
+                    result: "Wilkoss"
+                },
+                {
+                    odds: 1,
+                    result: "Wood Woad"
+                },
+                {
+                    odds: 1,
+                    result: "Yeti"
+                },
+                {
+                    odds: 1,
+                    result: "Yuan-Ti (non-pureblood of player's choice)"
+                },
+                {
+                    odds: 19,
+                    result: "Reroll"
+                },
+                {
+                    odds: 1,
+                    result: "DM chooses"
+                }
+            ]
+        },
+    ],
     otherTables: {
         animals: [
             {

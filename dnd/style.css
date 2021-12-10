@@ -67,7 +67,7 @@ iframe[name="mainFrame"] {
 }
 
 .background {
-	background-image: url('https://maxquest.neocities.org/img/textures/Scroll.png');
+	background-image: url("/img/textures/Scroll.png");
 	background-repeat: repeat;
 }
 

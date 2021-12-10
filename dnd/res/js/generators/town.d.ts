@@ -1,17 +1,32 @@
 declare type CitySizes = "empty" | "micro" | "tiny" | "small" | "medium" | "large" | "huge";
-interface ITown {
+declare type CityPointOfInterestType = "bar" | "place" | "shop" | "worship";
+interface ISettlementData {
     alignment: Alignment;
+    commerce: string;
+    defense: string;
+    government: string;
+    maxItemRarity: ItemRarity;
+    name: string;
+    organizations: string;
+    pointsOfInterest: ISettlementPointOfInterestData[];
     population: number;
     populationPercentages: string;
     primaryCulture: keyof typeof racesWeighted;
-    type: string;
-    government: string;
-    defense: string;
-    commerce: string;
-    organizations: string;
     qualities: string[];
-    maxItemRarity: ItemRarity;
     size: CitySizes;
+    type: string;
+}
+interface ISettlementPointOfInterestData {
+    description: string;
+    name: string;
+    subtype?: string;
+    type: CityPointOfInterestType;
+}
+declare class SettlementPointOfInterestData implements ISettlementPointOfInterestData {
+    description: string;
+    name: string;
+    subtype?: string | undefined;
+    type: CityPointOfInterestType;
 }
 declare const townTotaledWeights: {
     governmentTypes: number;
@@ -126,25 +141,17 @@ declare const numOfShops: {
  * @param size The size of the target city
  */
 declare function getPopulation(size: CitySizes): number;
-declare function clearOutput(): void;
 /**
  * Generates a random city/town name.
  */
-declare function getCityName(town: ITown): string;
-declare function printPanel(town: ITown): void;
+declare function getCityName(town: ISettlementData): string;
 declare function getTavernName(): string;
-declare function genWateringHole(): string;
-declare function genPlaceOfWorship(alignment: string): string;
-declare function genStore(): string;
-declare function genPlaceOfInterest(): string;
-/**
- * Returns a consistently formatted HTML string to display a place of interest
- * @param name The name of the place of interest
- * @param description A description of the location
- */
-declare function getPlaceOfInterestHTML(name: string, description: string): string;
+declare function genWateringHole(): SettlementPointOfInterestData;
+declare function genPlaceOfWorship(alignment: string): SettlementPointOfInterestData;
+declare function genStore(): SettlementPointOfInterestData;
+declare function genPlaceOfInterest(): SettlementPointOfInterestData;
 declare function sortNumber(a: number, b: number): number;
 declare function removeElement(array: any[], element: any): any[];
 declare function popPercentages(population: number, primarySpecies: string): string;
-declare function generateSettlement(): void;
+declare function generateCity(citySize?: CitySizes, itemRarity?: ItemRarity): ISettlementData;
 declare function initializeTownGen(): void;

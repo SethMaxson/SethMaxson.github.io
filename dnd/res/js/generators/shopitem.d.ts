@@ -3,13 +3,20 @@ declare const itemData: {
     rarity: string;
     name: (type: string) => any;
 }[];
-declare class ShopItem {
+interface IShopItem {
+    count: number;
+    rarity: ItemRarities;
+    type: string;
+    name: string;
+    price: number;
+}
+declare class ShopItem implements IShopItem {
     count: number;
     rarity: ItemRarities;
     type: string;
     name: string;
     price: number;
     itemIndex: number;
-    constructor(name: string | undefined, rarity: ItemRarities, type: string, price?: number, count?: number);
+    constructor(name: string | undefined, rarity?: ItemRarities, type?: string, count?: number);
 }
-declare function generateItems(rarity: string, type: string, count: number, number: number): ShopItem[];
+declare function generateItems(rarity: string | undefined, type: string | undefined, count: number, number: number): ShopItem[];

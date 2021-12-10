@@ -1,4 +1,7 @@
 "use strict";
+function isOfTypeGuildMenuTab(keyInput) {
+    return ["guilds", "mercenaries"].includes(keyInput);
+}
 class GuildName extends React.Component {
     render() {
         if (this.props.tagline.length > 0) {
@@ -22,13 +25,14 @@ class GuildView extends React.Component {
         super(props);
     }
     render() {
-        return (React.createElement("div", { className: "h-100 overflow-auto p-3 px-lg-5" },
-            React.createElement("div", { className: "name" }, this.props.JsonObject.name),
-            React.createElement("p", { className: "ps-1 text-secondary" },
-                React.createElement("i", null, this.props.JsonObject.tagline)),
-            React.createElement("div", { className: "ps-2 ps-lg-5" },
-                (this.props.JsonObject.image && this.props.JsonObject.image.length > 0) && React.createElement(GuildSymbol, { image: this.props.JsonObject.image }),
-                this.props.JsonObject.information.map((paragraph, index) => React.createElement(ParagraphFromRawHTML, { text: paragraph, key: index })))));
+        return (React.createElement("div", { className: "overflow-auto card mt-2 mt-lg-3 bg-body" },
+            React.createElement("div", { className: "card-body p-1 p-lg-3" },
+                React.createElement("div", { className: "name" }, this.props.JsonObject.name),
+                React.createElement("p", { className: "ps-1 text-secondary border-bottom" },
+                    React.createElement("i", null, this.props.JsonObject.tagline)),
+                React.createElement("div", { className: "ps-2 ps-lg-3" },
+                    (this.props.JsonObject.image && this.props.JsonObject.image.length > 0) && React.createElement(GuildSymbol, { image: this.props.JsonObject.image }),
+                    this.props.JsonObject.information.map((paragraph, index) => React.createElement(ParagraphFromRawHTML, { text: paragraph, key: index }))))));
     }
 }
 class GuildViewer extends React.Component {
@@ -43,20 +47,42 @@ class GuildViewer extends React.Component {
         let selectedGuild = matchingGuilds.length > 0 ? matchingGuilds[0] : this.props.guilds[0];
         this.state = {
             selectedGuild: selectedGuild,
-            selectedIndex: 0
+            selectedIndex: 0,
+            viewingItem: false,
         };
     }
     render() {
         let filterableItems = this.props.guilds.map(a => { return { text: a.name, tags: [] }; });
         return (React.createElement("div", { className: "bg-dark bg-gradient", style: { padding: "0px", height: "100%" } },
-            React.createElement(FilterPanel, { items: filterableItems, selectedIndex: this.state.selectedIndex, onChange: this.changeGuild }),
-            React.createElement(FilterPanelToggleButton, null),
-            React.createElement("div", { className: "container-sm bg-body d-flex flex-column", style: { padding: "0px", height: "100%", overflowY: "hidden" } },
-                React.createElement(FilterPanelToggleButtonMobile, null),
-                React.createElement(GuildView, { JsonObject: this.state.selectedGuild }))));
+            React.createElement("div", { className: "container-sm bg-body d-flex flex-column position-relative", style: { padding: "0px", height: "100%", overflowY: "hidden" } },
+                React.createElement(FilterPanel, { className: "position-absolute top-0 start-0 w-100 h-100", items: filterableItems, selectedIndex: this.state.selectedIndex, onChange: this.changeGuild }),
+                this.state.viewingItem &&
+                    React.createElement("div", { className: "position-absolute top-0 start-0 w-100 h-100 bg-secondary d-flex flex-column p-2 p-lg-3", style: { zIndex: 10 } },
+                        React.createElement("div", { className: "text-start" },
+                            React.createElement("button", { className: "btn btn-light", onClick: () => { this.setState({ viewingItem: false }); } }, "< Back to Guild Select")),
+                        React.createElement(GuildView, { JsonObject: this.state.selectedGuild })))));
     }
     changeGuild(index) {
-        this.setState({ selectedGuild: this.props.guilds[index], selectedIndex: index });
+        this.setState({ selectedGuild: this.props.guilds[index], selectedIndex: index, viewingItem: true });
+    }
+}
+class OrganizationViewer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedTab: "guilds",
+        };
+    }
+    render() {
+        return (React.createElement("div", { className: "bg-dark bg-gradient d-flex flex-column", style: { padding: "0px", height: "100%" } },
+            React.createElement("ul", { className: "nav nav-tabs" },
+                React.createElement("li", { className: "nav-item" },
+                    React.createElement("button", { className: "nav-link" + (this.state.selectedTab == "guilds" ? " active" : ""), type: "button", onClick: () => this.setState({ selectedTab: "guilds" }) }, "Guilds")),
+                React.createElement("li", { className: "nav-item" },
+                    React.createElement("button", { className: "nav-link" + (this.state.selectedTab == "mercenaries" ? " active" : ""), type: "button", onClick: () => this.setState({ selectedTab: "mercenaries" }) }, "Mercenary Groups"))),
+            this.state.selectedTab == "guilds" ?
+                React.createElement(GuildViewer, { guilds: GUILDS.sort((a, b) => a.name > b.name && 1 || -1) }) :
+                React.createElement(MercenariesTestPage, null)));
     }
 }
 const GUILDS = [
@@ -165,9 +191,9 @@ const GUILDS = [
         image: "",
         dmNotes: [],
         information: [
-            "The Society for the Collection and Preservation of History is an organization of likeminded historians and archaeologists who wish to preserve history as thoroughly as possible. Established in 1520 AE."
+            "The Society for the Collection and Preservation of History is an organization of like-minded historians and archaeologists who wish to preserve history as thoroughly as possible. Established in 1520 AE."
         ]
     },
 ];
-ReactDOM.render(React.createElement(GuildViewer, { guilds: GUILDS.sort((a, b) => a.name > b.name && 1 || -1) }), document.getElementById("viewer-panel"));
+ReactDOM.render(React.createElement(OrganizationViewer, null), document.getElementById("viewer-panel"));
 //# sourceMappingURL=guilds.js.map

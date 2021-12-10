@@ -174,16 +174,12 @@ const itemData = [
     }
 ];
 class ShopItem {
-    constructor(name, rarity, type, price, count = Math.ceil(Math.random() * 20)) {
+    constructor(name, rarity = randomize(["common", "uncommon", "rare"]), type = randomize(["armor", "potion", "ring", "scroll", "weapon", "wondrous item"]), count = Math.ceil(Math.random() * 20)) {
         this.itemIndex = -1;
         var item;
         this.count = count;
-        rarity = rarity || "any";
-        if (rarity != "common" && rarity != "uncommon" && rarity != "rare" && rarity != "very rare" && rarity != "legendary") {
-            rarity = randomize(["common", "uncommon", "rare"]);
-        }
         this.rarity = rarity;
-        this.type = type || randomize(["armor", "potion", "ring", "scroll", "weapon", "wondrous item"]);
+        this.type = type;
         for (let i = 0; i < itemData.length; i++) {
             const el = itemData[i];
             if (el.rarity == this.rarity) {
@@ -227,7 +223,7 @@ function generateItems(rarity, type, count, number) {
         var newItem;
         var repeat = 0;
         do {
-            newItem = new ShopItem(undefined, rarity.toLowerCase(), type, undefined, undefined);
+            newItem = new ShopItem(undefined, rarity?.toLowerCase(), type, undefined);
             repeat++;
         } while (itemNames.includes(newItem.name) && repeat < 10);
         itemNames.push(newItem.name);

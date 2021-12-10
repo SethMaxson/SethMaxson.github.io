@@ -180,6 +180,7 @@ class MapContainer extends React.Component {
                         React.createElement("h1", null, "Culture."),
                         React.createElement("p", null, "Visitors of any nationality and species are welcome in Osta M\u00FC\u00FC Turul, as long as they abide by its rules."))),
                 React.createElement(MapLabel, { fontSize: "110px", labelType: "continent", name: "Seiklus Ocean", position: { left: "27%", top: "40%" } }),
+                React.createElement(MapLabel, { fontSize: "110px", labelType: "continent", name: "Nyr Ocean", position: { left: "74%", top: "40%" } }),
                 this.props.overlays.map((overlay, index) => this.props.overlayDisplay[index] ? React.createElement(Overlay, { key: index, image: overlay.image, zIndex: overlay.zIndex, opacity: overlay.opacity, display: "default" }) : null))));
     }
 }

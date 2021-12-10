@@ -12,4 +12,7 @@ dnd/res/js/interfaces
 # dnd/res/js/world-data/
 # dnd/res/js/world-map-viewer/
 # **/*.js.map
-# *.js.map
+dnd/res/js/**/*.d.ts
+dnd/res/js/**/*.js.map
+sf/res/js/**/*.d.ts
+sf/res/js/**/*.js.map

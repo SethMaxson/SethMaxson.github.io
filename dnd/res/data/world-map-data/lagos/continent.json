@@ -1,0 +1,31 @@
+{
+	"name": "Lagos",
+	"x" : -100,
+	"y" : -100,
+	"inhabitants": [
+		"Human"
+	],
+	"nations": [
+		"Amarillo"
+	],
+	"regions": [
+		"Crown Fields",
+		"Notriv's Valley",
+		"East Barrens",
+		"Moonfire Mountains",
+		"Firelake",
+		"Sky Isle",
+		"The Wetwood",
+		"Verdant Isle",
+		"Scorchwind Desert",
+		"Flatlands",
+		"Lake Hettal"
+	],
+	"notes": [
+		"Astevint (DoF 4)",
+		"Athaeum (SFS 01-11)",
+		"Icefront (SFS 01-13)",
+		"Varkulon 4 (Skitter Crash)",
+		"Rax (SFS 01-34)"
+	]
+}

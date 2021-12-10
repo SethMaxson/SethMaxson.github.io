@@ -51,6 +51,7 @@ interface IReincarnationTables {
         fiend: IRollableTableRowData[];
         necrotic: IRollableTableRowData[];
     };
+    mistakes: ISlimReincarnationTableData[];
     otherTables: {
         animals: IRollableTableRowData[];
         lycanthropy: IRollableTableRowData[];

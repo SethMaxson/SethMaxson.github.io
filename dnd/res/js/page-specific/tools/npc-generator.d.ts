@@ -94,36 +94,4 @@ declare class NpcRow extends React.Component<INpcRowProps, INpcRowState> {
     render(): JSX.Element;
     CopyMapDescription: () => void;
 }
-interface IMultiSelectProps {
-    LabelWhenEmpty: string;
-    Options: {
-        label: string;
-        value: string;
-    }[];
-    OnChange: {
-        (value: string[]): void;
-    };
-    /**Controls whether or not the search bar is displayed. */
-    Search: boolean;
-    /**Controls whether or not the "Select All" button is displayed. */
-    SelectAll: boolean;
-    Value: string[];
-}
-interface IMultiSelectState {
-    expanded: boolean;
-    searchString: string;
-}
-declare class MultiSelect extends React.Component<IMultiSelectProps, IMultiSelectState> {
-    static defaultProps: {
-        LabelWhenEmpty: string;
-        Search: boolean;
-        SelectAll: boolean;
-    };
-    constructor(props: IMultiSelectProps);
-    render(): JSX.Element;
-    handleCheck: (value: string, adding: boolean) => void;
-    selectAll: () => void;
-    toggleExpand: () => void;
-    unselectAll: () => void;
-}
-declare function compareRaceJsonObjects(a: IRace, b: IRace): 1 | 0 | -1;
+declare function compareRaceJsonObjects(a: IRace, b: IRace): 0 | 1 | -1;

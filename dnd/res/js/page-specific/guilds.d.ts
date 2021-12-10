@@ -1,4 +1,6 @@
 /// <reference types="react" />
+declare type OrganizationViewerTab = "guilds" | "mercenaries";
+declare function isOfTypeGuildMenuTab(keyInput: string): keyInput is OrganizationViewerTab;
 interface IGuildNameProps {
     name: string;
     tagline: string;
@@ -34,10 +36,20 @@ interface IGuildViewerProps {
 interface IGuildViewerState {
     selectedGuild: IGuild;
     selectedIndex: number;
+    viewingItem: boolean;
 }
 declare class GuildViewer extends React.Component<IGuildViewerProps, IGuildViewerState> {
     constructor(props: IGuildViewerProps);
     render(): JSX.Element;
     changeGuild(index: number): void;
+}
+interface IOrganizationViewerProps {
+}
+interface IOrganizationViewerState {
+    selectedTab: OrganizationViewerTab;
+}
+declare class OrganizationViewer extends React.Component<IOrganizationViewerProps, IOrganizationViewerState> {
+    constructor(props: IOrganizationViewerProps);
+    render(): JSX.Element;
 }
 declare const GUILDS: IGuild[];

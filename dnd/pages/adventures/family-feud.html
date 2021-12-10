@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Family Feud</title>
+		<link rel="stylesheet" href="/dnd/res/css/page-specific/adventures/family-feud.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+
+		<script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
+		<script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
+		<!-- <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin="anonymous"></script> -->
+
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://cdn.rawgit.com/nnattawat/flip/v1.0.18/dist/jquery.flip.min.js" crossorigin></script>
+		<script src="/dnd/res/js/mechanics.js"></script>
+		<script>
+			$(".card").flip({
+  axis: 'x',
+  speed: 300
+});
+
+var correctBuzzer = document.createElement('audio');
+correctBuzzer.setAttribute('src', 'http://www.qwizx.com/gssfx/usa/ff-clang.wav');
+
+var wrongBuzzer = document.createElement('audio');
+wrongBuzzer.setAttribute('src', 'http://www.qwizx.com/gssfx/usa/ff-strike.wav')
+
+$(".card").click(function() {
+  $(this).flip(true);
+  correctBuzzer.play();
+  var toAdd = $(this).find(".score").text();
+  //  alert(toAdd);
+  if ($("#double").hasClass("active"))
+    toAdd = toAdd * 2;
+  else if ($("#triple").hasClass("active"))
+    toAdd = toAdd * 3;
+  //  alert(toAdd);
+  $("#score").text(
+    parseInt($("#score").text()) + parseInt(toAdd)
+  );
+});
+
+$(".multiplier").click(function() {
+  $(".multiplier").removeClass("active");
+  $(this).addClass("active");
+});
+
+$("#flip-all").click(function() {
+  $(".card").flip(true);
+});
+
+$("#unflip-all").click(function() {
+  $(".card").flip(false);
+  $("#score").text(0);
+});
+
+$("#wrong-answer").click(function() {
+  $("h1").prepend("<div id=\"red-x\">X</div>")
+  setTimeout(function() {
+    $("#red-x").remove()
+  }, 2000);
+  wrongBuzzer.play();
+});
+		</script>
+	</head>
+
+	<body class="bg-dark overflow-hidden">
+		<main id="killing-game-panel" class="h-100 w-100 overflow-hidden" style="background-color: #080808;">
+
+			<h1>Family Feud!</h1>
+			<h3>Round Score: <span id="score">0</span></h3>
+
+			<div class="multiplier-wrapper">
+				<span class="multiplier active" id="single">SINGLE</span>
+				<span class="multiplier" id="double">DOUBLE</span>
+				<span class="multiplier" id="triple">TRIPLE</span>
+			</div>
+
+			<div class="board">
+				<div class="card left">
+					<div class="front">1</div>
+					<div class="back">
+						<div class="answer">Tony!</div>
+						<div class="score">55</div>
+					</div>
+				</div>
+				<div class="card right">
+					<div class="front">6</div>
+					<div class="back">
+						<div class="answer">sports</div>
+						<div class="score">55</div>
+					</div>
+				</div>
+				<div class="card left">
+					<div class="front">2</div>
+					<div class="back">
+						<div class="answer">cars</div>
+						<div class="score">55</div>
+					</div>
+				</div>
+				<div class="card right">
+					<div class="front">7</div>
+					<div class="back">
+						<div class="answer">chicken</div>
+						<div class="score">55</div>
+					</div>
+				</div>
+				<div class="card left">
+					<div class="front">3</div>
+					<div class="back">
+						<div class="answer">meatloaf</div>
+						<div class="score">55</div>
+					</div>
+				</div>
+				<div class="card right">
+					<div class="front">8</div>
+					<div class="back">
+						<div class="answer">hondas</div>
+						<div class="score">55</div>
+					</div>
+				</div>
+				<div class="card left">
+					<div class="front">4</div>
+					<div class="back">
+						<div class="answer">motorcycles</div>
+						<div class="score">55</div>
+					</div>
+				</div>
+				<div class="card right">
+					<div class="front">9</div>
+					<div class="back">
+						<div class="answer">dates</div>
+						<div class="score">55</div>
+					</div>
+				</div>
+				<div class="card left">
+					<div class="front">5</div>
+					<div class="back">
+						<div class="answer">movies</div>
+						<div class="score">55</div>
+					</div>
+				</div>
+				<div class="card right">
+					<div class="front">10</div>
+					<div class="back">
+						<div class="answer">dealerships</div>
+						<div class="score">55</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- <div id="card">
+  <div class="front">
+    Hi from the front!
+  </div>
+  <div class="back">
+    Hi from the back!
+  </div>
+</div> -->
+
+			<div class="helpful-buttons">
+				<button id="flip-all">Flip All</button>
+				<button id="unflip-all">Unflip All</button>
+				<br>
+				<button id="wrong-answer">Wrong answer!</button>
+			</div>
+
+		</main>
+	</body>
+
+</html>

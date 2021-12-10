@@ -11,6 +11,7 @@ interface IFilterCategory {
     multiSelect: boolean;
 }
 interface IFilterPanelProps {
+    className?: string;
     filters: IFilterCategory[];
     items: IFilterableItemObject[];
     onChange: {
@@ -24,6 +25,17 @@ interface IFilterPanelState {
     searchString: string;
 }
 declare class FilterPanel extends React.Component<IFilterPanelProps, IFilterPanelState> {
+    static defaultProps: {
+        filters: never[];
+    };
+    constructor(props: IFilterPanelProps);
+    render(): JSX.Element;
+    search(searchString: string): void;
+    updateDisplay(): void;
+    updateFilter(index: number, activeValues: string[]): void;
+    displayAll(): void;
+}
+declare class FilterPanelOffCanvas extends React.Component<IFilterPanelProps, IFilterPanelState> {
     static defaultProps: {
         filters: never[];
     };

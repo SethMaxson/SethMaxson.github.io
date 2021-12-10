@@ -1,3 +1,11 @@
+type OrganizationViewerTab = "guilds" | "mercenaries";
+
+function isOfTypeGuildMenuTab (keyInput: string): keyInput is OrganizationViewerTab {
+	return ["guilds", "mercenaries"].includes(keyInput);
+}
+
+
+
 interface IGuildNameProps
 {
 	name: string;
@@ -59,14 +67,16 @@ class GuildView extends React.Component<IGuildViewProps, IGuildViewState> {
 	render()
 	{
 		return (
-			<div className="h-100 overflow-auto p-3 px-lg-5">
-				<div className="name">{this.props.JsonObject.name}</div>
-				<p className="ps-1 text-secondary"><i>{this.props.JsonObject.tagline}</i></p>
-				<div className="ps-2 ps-lg-5">
-					{(this.props.JsonObject.image && this.props.JsonObject.image.length > 0) && <GuildSymbol image={this.props.JsonObject.image} />}
-					{this.props.JsonObject.information.map((paragraph, index: number) =>
-						<ParagraphFromRawHTML text={paragraph} key={index} />
-					)}
+			<div className="overflow-auto card mt-2 mt-lg-3 bg-body">
+				<div className="card-body p-1 p-lg-3">
+					<div className="name">{this.props.JsonObject.name}</div>
+					<p className="ps-1 text-secondary border-bottom"><i>{this.props.JsonObject.tagline}</i></p>
+					<div className="ps-2 ps-lg-3">
+						{(this.props.JsonObject.image && this.props.JsonObject.image.length > 0) && <GuildSymbol image={this.props.JsonObject.image} />}
+						{this.props.JsonObject.information.map((paragraph, index: number) =>
+							<ParagraphFromRawHTML text={paragraph} key={index} />
+						)}
+					</div>
 				</div>
 			</div>
 		)
@@ -82,6 +92,7 @@ interface IGuildViewerState
 {
 	selectedGuild: IGuild;
 	selectedIndex: number;
+	viewingItem: boolean;
 }
 class GuildViewer extends React.Component<IGuildViewerProps, IGuildViewerState> {
 	constructor(props: IGuildViewerProps)
@@ -97,19 +108,31 @@ class GuildViewer extends React.Component<IGuildViewerProps, IGuildViewerState> 
 
 		this.state = {
 			selectedGuild: selectedGuild,
-			selectedIndex: 0
+			selectedIndex: 0,
+			viewingItem: false,
 		};
 	}
 	render()
 	{
 		let filterableItems: IFilterableItemObject[] = this.props.guilds.map(a => { return { text: a.name, tags: [] } });
 		return (
-			<div className="bg-dark bg-gradient" style={{ padding: "0px", height: "100%"}}>
-				<FilterPanel items={filterableItems} selectedIndex={this.state.selectedIndex} onChange={this.changeGuild} />
-				<FilterPanelToggleButton />
-				<div className="container-sm bg-body d-flex flex-column" style={{ padding: "0px", height: "100%", overflowY: "hidden"}}>
-					<FilterPanelToggleButtonMobile />
-					<GuildView JsonObject={this.state.selectedGuild} />
+			<div className="bg-dark bg-gradient" style={{ padding: "0px", height: "100%" }}>
+				<div className="container-sm bg-body d-flex flex-column position-relative" style={{ padding: "0px", height: "100%", overflowY: "hidden" }}>
+					<FilterPanel
+						className="position-absolute top-0 start-0 w-100 h-100"
+						items={filterableItems}
+						selectedIndex={this.state.selectedIndex}
+						onChange={this.changeGuild}
+					/>
+					{
+						this.state.viewingItem &&
+						<div className="position-absolute top-0 start-0 w-100 h-100 bg-secondary d-flex flex-column p-2 p-lg-3" style={{ zIndex: 10 }}>
+							<div className="text-start">
+								<button className="btn btn-light" onClick={() => { this.setState({ viewingItem: false }) }}>&lt; Back to Guild Select</button>
+							</div>
+							<GuildView JsonObject={this.state.selectedGuild} />
+						</div>
+					}
 				</div>
 			</div>
 
@@ -117,7 +140,56 @@ class GuildViewer extends React.Component<IGuildViewerProps, IGuildViewerState> 
 	}
 	changeGuild(index: number)
 	{
-		this.setState({ selectedGuild: this.props.guilds[index], selectedIndex: index});
+		this.setState({ selectedGuild: this.props.guilds[index], selectedIndex: index, viewingItem: true });
+	}
+}
+
+interface IOrganizationViewerProps { }
+interface IOrganizationViewerState
+{
+	selectedTab: OrganizationViewerTab;
+}
+class OrganizationViewer extends React.Component<IOrganizationViewerProps, IOrganizationViewerState> {
+	constructor(props: IOrganizationViewerProps)
+	{
+		super(props);
+
+		this.state = {
+			selectedTab: "guilds",
+		};
+	}
+	render()
+	{
+		return (
+			<div className="bg-dark bg-gradient d-flex flex-column" style={{ padding: "0px", height: "100%" }}>
+				<ul className="nav nav-tabs">
+					<li className="nav-item">
+						<button
+							className={"nav-link" + (this.state.selectedTab == "guilds" ? " active" : "")}
+							type="button"
+							onClick={() => this.setState({ selectedTab: "guilds" })}
+						>
+							Guilds
+						</button>
+					</li>
+					<li className="nav-item">
+						<button
+							className={"nav-link" + (this.state.selectedTab == "mercenaries" ? " active" : "")}
+							type="button"
+							onClick={() => this.setState({ selectedTab: "mercenaries" })}
+						>
+							Mercenary Groups
+						</button>
+					</li>
+				</ul>
+				{
+					this.state.selectedTab == "guilds" ?
+						<GuildViewer guilds={GUILDS.sort((a, b) => a.name > b.name && 1 || -1)} /> :
+						<MercenariesTestPage />
+				}
+			</div>
+
+		);
 	}
 }
 
@@ -227,12 +299,12 @@ const GUILDS: IGuild[] = [
 		image: "",
 		dmNotes: [],
 		information: [
-			"The Society for the Collection and Preservation of History is an organization of likeminded historians and archaeologists who wish to preserve history as thoroughly as possible. Established in 1520 AE."
+			"The Society for the Collection and Preservation of History is an organization of like-minded historians and archaeologists who wish to preserve history as thoroughly as possible. Established in 1520 AE."
 		]
 	},
 ];
 
 ReactDOM.render(
-	<GuildViewer guilds={GUILDS.sort((a, b) => a.name > b.name && 1 || -1)} />,
+	<OrganizationViewer />,
 	document.getElementById("viewer-panel")
 );

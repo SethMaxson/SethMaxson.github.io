@@ -17,6 +17,85 @@ class FilterPanel extends React.Component {
         };
     }
     render() {
+        return (React.createElement("div", { className: "bg-secondary d-flex flex-column p-2 h-100" + (this.props.className ? (" " + this.props.className) : "") },
+            React.createElement("div", { className: "header mb-2" },
+                React.createElement("h5", { id: "filterable-panel-label", className: "d-none" }, "Filters"),
+                React.createElement(FilterSearch, { search: this.search }),
+                this.props.filters.length > 0 && React.createElement("a", { className: "btn btn-primary", "data-bs-toggle": "collapse", href: "#filterable-panel-filters", role: "button", "aria-expanded": "false", "aria-controls": "filterable-panel-filters" }, "Filters")),
+            React.createElement("div", { className: "container-fluid collapse flex-grow-0 flex-shrink-0 rounded bg-dark text-light", id: "filterable-panel-filters" }, this.props.filters.map((category, index) => React.createElement(FilterCategoryRow, { category: category, activeValues: this.state.activeFilters[index], index: index, onChange: this.updateFilter, key: index }))),
+            React.createElement(FilterableItemList, { items: this.props.items, itemDisplay: this.state.itemDisplay, onChange: this.props.onChange, selectedIndex: this.props.selectedIndex })));
+    }
+    search(searchString) {
+        this.setState({ searchString: searchString }, this.updateDisplay);
+    }
+    updateDisplay() {
+        if (this.state.searchString.length == -1) {
+            this.displayAll();
+        }
+        else {
+            let activeFilterValueCount = 0;
+            for (let i = 0; i < this.state.activeFilters.length; i++) {
+                activeFilterValueCount += this.state.activeFilters[i].length;
+            }
+            const newDisplay = this.state.itemDisplay.slice(); //copy the array
+            for (let i = 0; i < this.props.items.length; i++) //execute the manipulations
+             {
+                let item = this.props.items[i];
+                newDisplay[i] = ((this.state.searchString.length == 0 && activeFilterValueCount == 0) ||
+                    (this.state.searchString.length > 0 && fuzzySearch(this.state.searchString, item.text)) ||
+                    (this.props.filters.length == 0 &&
+                        item.tags.length > 0 &&
+                        fuzzySearch(this.state.searchString, item.tags.join(","))));
+                if (!newDisplay[i]) {
+                    const itemTags = "|" + item.tags.join("|").toLowerCase() + "|";
+                    for (let j = 0; j < this.state.activeFilters.length; j++) {
+                        for (let k = 0; k < this.state.activeFilters[j].length; k++) {
+                            const filterTag = "|" + this.state.activeFilters[j][k].toLowerCase() + "|";
+                            if (itemTags.includes(filterTag)) {
+                                newDisplay[i] = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            this.setState({ itemDisplay: newDisplay });
+        }
+    }
+    updateFilter(index, activeValues) {
+        const newFiltersState = this.state.activeFilters.slice(); //copy the array
+        newFiltersState[index] = activeValues;
+        this.setState({ activeFilters: newFiltersState }, this.updateDisplay);
+    }
+    displayAll() {
+        const newDisplay = this.state.itemDisplay.slice(); //copy the array
+        for (let i = 0; i < newDisplay.length; i++) { //execute the manipulations
+            newDisplay[i] = true;
+        }
+        this.setState({ itemDisplay: newDisplay });
+    }
+}
+FilterPanel.defaultProps = {
+    filters: [],
+};
+class FilterPanelOffCanvas extends React.Component {
+    constructor(props) {
+        super(props);
+        this.search = this.search.bind(this);
+        this.displayAll = this.displayAll.bind(this);
+        this.updateDisplay = this.updateDisplay.bind(this);
+        this.updateFilter = this.updateFilter.bind(this);
+        let activeFiltersArray = [];
+        for (let i = 0; i < this.props.filters.length; i++) {
+            activeFiltersArray.push([]);
+        }
+        this.state = {
+            activeFilters: activeFiltersArray,
+            itemDisplay: this.props.items.map(a => true),
+            searchString: ""
+        };
+    }
+    render() {
         return (React.createElement("div", { className: "offcanvas offcanvas-start bg-secondary show h-100", id: "filterable-panel", "aria-labelledby": "filterable-panel-label", "data-bs-scroll": "true", "data-bs-backdrop": "false" },
             React.createElement("div", { className: "offcanvas-header" },
                 React.createElement("h5", { id: "filterable-panel-label", className: "d-none" }, "Filters"),
@@ -77,7 +156,7 @@ class FilterPanel extends React.Component {
         this.setState({ itemDisplay: newDisplay });
     }
 }
-FilterPanel.defaultProps = {
+FilterPanelOffCanvas.defaultProps = {
     filters: [],
 };
 class FilterSearch extends React.Component {

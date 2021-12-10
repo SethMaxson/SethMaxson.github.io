@@ -175,7 +175,16 @@ const itemData = [
 	}
 ]
 
-class ShopItem
+interface IShopItem
+{
+	count: number;
+	rarity: ItemRarities;
+	type: string;
+	name: string;
+	price: number;
+}
+
+class ShopItem implements IShopItem
 {
 	count: number;
 	rarity: ItemRarities;
@@ -183,15 +192,17 @@ class ShopItem
 	name: string;
 	price: number;
 	itemIndex: number = -1;
-	constructor(name: string|undefined, rarity: ItemRarities, type: string, price?: number, count: number = Math.ceil(Math.random() * 20)) {
+	constructor(
+		name: string | undefined,
+		rarity: ItemRarities = randomize(["common", "uncommon", "rare"]),
+		type: string = randomize(["armor", "potion", "ring", "scroll", "weapon", "wondrous item"]),
+		count: number = Math.ceil(Math.random() * 20)
+	)
+	{
 		var item;
 		this.count = count;
-		rarity = rarity || "any";
-		if (rarity != "common" && rarity != "uncommon" && rarity != "rare" && rarity != "very rare" && rarity != "legendary") {
-			rarity = randomize(["common", "uncommon", "rare"]);
-		}
 		this.rarity = rarity;
-		this.type = type || randomize(["armor", "potion", "ring", "scroll", "weapon", "wondrous item"]);
+		this.type = type;
 		for (let i = 0; i < itemData.length; i++) {
 			const el = itemData[i];
 			if (el.rarity == this.rarity) {
@@ -230,7 +241,7 @@ class ShopItem
 	}
 }
 
-function generateItems(rarity: string, type: string, count: number, number: number) {
+function generateItems(rarity: string | undefined, type: string | undefined, count: number, number: number) {
 	var itemNames: string[] = [];
 	var items = [];
 
@@ -238,7 +249,7 @@ function generateItems(rarity: string, type: string, count: number, number: numb
 		var newItem;
 		var repeat = 0;
 		do {
-			newItem = new ShopItem(undefined, rarity.toLowerCase() as ItemRarities, type, undefined, undefined);
+			newItem = new ShopItem(undefined, rarity?.toLowerCase() as ItemRarities, type, undefined);
 			repeat++;
 		} while (itemNames.includes(newItem.name) && repeat < 10);
 		itemNames.push(newItem.name);

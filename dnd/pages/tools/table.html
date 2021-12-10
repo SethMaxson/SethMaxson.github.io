@@ -4,413 +4,47 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Knights of the Rectangle</title>
-
-		<style>
-			.chair {
-				width: 50px;
-				height:50px;
-				border:1px solid black;
-				background-color:#b25;
-			}
-
-			body .pedestrian {
-				width:48px;
-				height:48px;
-			}
-
-			.languages{
-				color:cyan;
-				font-weight: bold;
-				font-size:14pt;
-			}
-
-			.character {
-				background:#dedfdf;
-				border:1px solid #444;
-				border-radius:15px;
-				padding:5px;
-			}
-
-			div.header {
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-orient: horizontal;
-				-webkit-box-pack: end;
-				-ms-flex-pack: end;
-				justify-content: flex-end;
-				position:relative;
-				height:50px;
-			}
-			div.header>.name {
-				-ms-flex-preferred-size: 100%;
-				flex-basis: 100%;
-				flex:1;
-				font-size:15pt;
-				font-weight: 600;
-				color:#555;
-				position: absolute;
-				left: 65px;
-				top: 50%;
-				-webkit-transform: translate(0%, -50%);
-				transform: translate(0%, -50%);
-			}
-			div.header>img{
-				position:absolute;
-				top:0px;
-				left:0px;
-				height:50px;
-				width:50px;
-				image-rendering: pixelated;
-			}
-
-			div.stats {
-				margin-top:5px;
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-orient: horizontal;
-				-webkit-box-pack: end;
-				-ms-flex-pack: end;
-				justify-content: flex-end;
-			}
-
-			div.stats>div.senses {
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-orient: vertical;
-				-webkit-box-direction:normal;
-				-ms-flex-direction:column;
-				flex-direction: column;
-				-webkit-box-pack: end;
-				-ms-flex-pack: end;
-				justify-content: flex-end;
-				-ms-flex-preferred-size: 100%;
-				flex-basis: 100%;
-				flex:1;
-			}
-
-			div.passive-sense {
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-orient: horizontal;
-				-webkit-box-direction: reverse;
-				-ms-flex-direction: row-reverse;
-				flex-direction: row-reverse;
-				-webkit-box-pack: end;
-				-ms-flex-pack: end;
-				justify-content: flex-end;
-				-ms-flex-preferred-size: 100%;
-				flex-basis: 100%;
-			}
-
-			div.passive-sense input {
-				width: 30px;
-				height: 28px;
-				text-align: center;
-				border: 1px solid black;
-				border-radius: 10px;
-			}
-
-			div.label-container {
-				position: relative;
-				width: 100%;
-				height: 18px;
-				margin-top: 6px;
-				border: 1px solid black;
-				border-left: 0;
-				border-radius:0px 5px 5px 0px;
-				text-align: center;
-				background:hsl(180, 2%, 92%);
-			}
-
-			div.label-container>label {
-				position: absolute;
-				left: 0;
-				top: 50%;
-				-webkit-transform: translate(0%, -50%);
-				transform: translate(0%, -50%);
-				width: 100%;
-				font-size: 8pt;
-			}
-
-			input.armorclass {
-				height: 90px;
-				width: 90px;
-				text-align: center;
-				font-size: 30px;
-				background-image:url("/dnd/img/ac.png");
-				background-color:#dedfdf;
-				background-size:contain;
-				background-repeat: no-repeat;
-				background-position: center center;
-				border:none;
-			}
-
-			div.textblock {
-				display: -webkit-box;
-				display: -ms-flexbox;
-				display: flex;
-				-webkit-box-orient: vertical;
-				-webkit-box-direction: reverse;
-				-ms-flex-direction: column-reverse;
-				flex-direction: column-reverse;
-				width: 100%;
-				-webkit-box-align: center;
-				-ms-flex-align: center;
-				align-items: center;
-			}
-
-			div.textblock label {
-				text-align: center;
-				border: 1px solid black;
-				border-top: 0;
-				font-size: 10px;
-				width: calc(100% - 20px - 2px);
-				border-radius: 0 0 10px 10px;
-				padding: 4px 0;
-				font-weight: bold;
-				background:hsl(180, 2%, 92%);
-			}
-
-			div.textblock textarea {
-				border: 1px solid black;
-				height: 2em;
-			}
-			textarea {
-				font-size: 12px;
-				text-align: left;
-				width: calc(100% - 20px - 2px);
-				border-radius: 10px;
-				padding: 10px;
-				resize: none;
-				overflow: hidden;
-				height: 15em;
-			}
-		</style>
-		<link href="/style.css" rel="stylesheet" type="text/css" media="all">
-		<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/dnd/res/css/page-specific/tools/table.css" rel="stylesheet" type="text/css" media="all" />
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 	</head>
 
 	<body>
-		<div style="padding:1vh 1vw; overflow:hidden;">
-			<!-- <button id="NotesToggle">Player Version</button> -->
+		<div style="padding:1vh 1vw; overflow:hidden;" id="app">
 			<table style="width:98vw; height:98vh; box-sizing:border-box;">
 				<tr style="height:15%">
 					<td style="width:33%;">
 						&#160;
 					</td>
-					<td style="width:33%;" class="character">
-						<div class="header">
-							<img src="/dnd/img/maps/icons/Shamous.png" alt="image"/>
-							<div class="name">Shamous</div>
-						</div>
-						<div class="stats">
-							<input class="armorclass" placeholder="19" type="text" />
-							<div class="senses">
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Perception)</label>
-									</div>
-									<input name="passive" placeholder="21" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Insight)</label>
-									</div>
-									<input name="passive" placeholder="21" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Intelligence (Investigation)</label>
-									</div>
-									<input name="passive" placeholder="12" />
-								</div>
-							</div>
-						</div>
-						<div class="otherprofs box textblock">
-							<label for="otherprofs">Languages</label>
-							<textarea name="otherprofs">Common, Draconic, Druidic, Giant</textarea>
-						</div>
+					<td style="width:33%;">
+						<table-character :character="characters[0]" />
 					</td>
 					<td style="width:33%;">
 						&#160;
 					</td>
 				</tr>
 				<tr style="height:20%;">
-					<td class="character">
-						<div class="header">
-							<img src="/dnd/img/maps/icons/namfoodle.png" alt="image"/>
-							<div class="name">Namfoodle Blabberchat</div>
-						</div>
-						<div class="stats">
-							<input class="armorclass" placeholder="18" type="text" />
-							<div class="senses">
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Perception)</label>
-									</div>
-									<input name="passive" placeholder="11" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Insight)</label>
-									</div>
-									<input name="passive" placeholder="11" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Intelligence (Investigation)</label>
-									</div>
-									<input name="passive" placeholder="18" />
-								</div>
-							</div>
-						</div>
-						<div class="otherprofs box textblock">
-							<label for="otherprofs">Languages</label>
-							<textarea name="otherprofs">Common, Gnomish, Infernal</textarea>
-						</div>
+					<td>
+						<table-character :character="characters[1]" />
 					</td>
 					<td style="border:1px solid black; background:#333; border-radius:10px;" rowspan="2">
 						&#160;
 					</td>
-					<td class="character">
-						<div class="header">
-							<img src="/dnd/img/maps/icons/bud.png" alt="image"/>
-							<div class="name">Bud Smoak</div>
-						</div>
-						<div class="stats">
-							<input class="armorclass" placeholder="15" type="text" />
-							<div class="senses">
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Perception)</label>
-									</div>
-									<input name="passive" placeholder="10" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Insight)</label>
-									</div>
-									<input name="passive" placeholder="10" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Intelligence (Investigation)</label>
-									</div>
-									<input name="passive" placeholder="10" />
-								</div>
-							</div>
-						</div>
-						<div class="otherprofs box textblock">
-							<label for="otherprofs">Languages</label>
-							<textarea name="otherprofs">Celestial, Common, Druidic</textarea>
-						</div>
+					<td>
+						<table-character :character="characters[2]" />
 					</td>
 				</tr>
 				<tr style="height:20%;">
-					<td class="character">
-						<div class="header">
-							<img src="/dnd/img/maps/icons/redji.png" alt="image"/>
-							<div class="name">Redji Cloudtaker</div>
-						</div>
-						<div class="stats">
-							<input class="armorclass" placeholder="18" type="text" />
-							<div class="senses">
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Perception)</label>
-									</div>
-									<input name="passive" placeholder="12" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Insight)</label>
-									</div>
-									<input name="passive" placeholder="12" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Intelligence (Investigation)</label>
-									</div>
-									<input name="passive" placeholder="21" />
-								</div>
-							</div>
-						</div>
-						<div class="otherprofs box textblock">
-							<label for="otherprofs">Languages</label>
-							<textarea name="otherprofs">Abyssal, Common, Gnomish, Primordial</textarea>
-						</div>
+					<td>
+						<table-character :character="characters[3]" />
 					</td>
-					<td class="character">
-						<div class="header">
-							<img src="/dnd/img/maps/icons/jasper.png" alt="image"/>
-							<div class="name">Jasper</div>
-						</div>
-						<div class="stats">
-							<input class="armorclass" placeholder="21" type="text" />
-							<div class="senses">
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Perception)</label>
-									</div>
-									<input name="passive" placeholder="10" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Insight)</label>
-									</div>
-									<input name="passive" placeholder="10" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Intelligence (Investigation)</label>
-									</div>
-									<input name="passive" placeholder="14" />
-								</div>
-							</div>
-						</div>
-						<div class="otherprofs box textblock">
-							<label for="otherprofs">Languages</label>
-							<textarea name="otherprofs">Celestial, Common, Draconic, Elvish, Infernal, Primordial, Sylvan, Undercommon</textarea>
-						</div>
+					<td>
+						<table-character :character="characters[4]" />
 					</td>
 				</tr>
 				<tr style="height:20%;">
-					<td class="character">
-						<div class="header">
-							<img src="/dnd/img/maps/icons/teomyr.png" alt="image"/>
-							<div class="name">Teomyr</div>
-						</div>
-						<div class="stats">
-							<input class="armorclass" placeholder="21" type="text" />
-							<div class="senses">
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Perception)</label>
-									</div>
-									<input name="passive" placeholder="19" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Wisdom (Insight)</label>
-									</div>
-									<input name="passive" placeholder="14" />
-								</div>
-								<div class="passive-sense box">
-									<div class="label-container">
-										<label for="passive">Passive Intelligence (Investigation)</label>
-									</div>
-									<input name="passive" placeholder="10" />
-								</div>
-							</div>
-						</div>
-						<div class="otherprofs box textblock">
-							<label for="otherprofs">Languages</label>
-							<textarea name="otherprofs">Abyssal, Common, Giant</textarea>
-						</div>
+					<td>
+						<table-character :character="characters[5]" />
 					</td>
 					<td style="border:1px solid black; background-color:#a80; border-radius:45%">
 						&#160;
@@ -427,112 +61,8 @@
 					</td>
 				</tr>
 			</table>
-			<!-- <table style="width:350px;">
-				<tr>
-					<td style="width:54px;">
-						&#160;
-					</td>
-					<td style="width:54px;">
-						&#160;
-					</td>
-					<td align="center">
-						<div class="chair">
-							<div class="pedestrian pixels">
-								<img src="/dnd/img/maps/icons/Shamous.png" style="width:100%;" alt="image"/>
-								<span class="city-preview">
-									<h1>Shamous</h1>
-								</span>
-							</div>
-						</div>
-					</td>
-					<td style="width:54px;">
-						&#160;
-					</td>
-					<td style="width:54px;">
-						&#160;
-					</td>
-				</tr>
-				<tr style="height:120px;">
-					<td colspan="2" align="right">
-						<div class="chair">
-							<div class="pedestrian pixels">
-								<img src="/dnd/img/maps/icons/namfoodle.png" style="width:100%;" alt="image"/>
-								<span class="city-preview">
-									<h1>Namfoodle</h1>
-									<div class="languages">
-										Common, Infernal
-									</div>
-								</span>
-							</div>
-						</div>
-					</td>
-					<td style="border:1px solid black; background:#333; border-radius:10px;" rowspan="2">
-						&#160;
-					</td>
-					<td colspan="2">
-						<div class="chair">
-							<div class="pedestrian pixels">
-								<img src="/dnd/img/maps/icons/bud.png" style="width:100%;" alt="image"/>
-								<span class="city-preview">
-									<h1>Bud</h1>
-								</span>
-							</div>
-						</div>
-					</td>
-				</tr>
-				<tr style="height:120px;">
-					<td colspan="2" align="right">
-						<div class="chair">
-							<div class="pedestrian pixels">
-								<img src="/dnd/img/maps/icons/redji.png" style="width:100%;" alt="image"/>
-								<span class="city-preview">
-									<h1>Redji</h1>
-								</span>
-							</div>
-						</div>
-					</td>
-					<td colspan="2">
-						<div class="chair">
-							<div class="pedestrian pixels">
-								<img src="/dnd/img/maps/icons/jasper.png" style="width:100%;" alt="image"/>
-								<span class="city-preview">
-									<h1>Jasper</h1>
-									<div class="languages">
-										Celestial, Common, Draconic, Elvish, Infernal, Primordial, Sylvan,
-										Undercommon
-									</div>
-								</span>
-							</div>
-						</div>
-					</td>
-				</tr>
-				<tr style="height:120px;">
-					<td style="width:54px;" align="right">
-						<div class="chair">
-
-						</div>
-					</td>
-					<td style="border:1px solid black; background-color:#a80; border-radius:45%" colspan="3">
-						&#160;
-					</td>
-					<td style="width:54px;">
-						&#160;
-					</td>
-				</tr>
-				<tr style="height:10vh">
-					<td colspan="5" align="center">
-						<div class="chair">
-							<div class="pedestrian pixels">
-								<img src="/dnd/img/maps/icons/dm.png" style="width:100%;" alt="image"/>
-								<span class="city-preview">
-									<h1>DM</h1>
-								</span>
-							</div>
-						</div>
-					</td>
-				</tr>
-			</table> -->
 		</div>
+		<script type="module" src="/dnd/res/js/page-specific/tools/table.js"></script>
 	</body>
 
 </html>

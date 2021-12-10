@@ -66,6 +66,7 @@ class Nav extends React.Component<INavProps> {
 								<div className="dropdown-divider"></div>
 								<a className="dropdown-item" href="/dnd/pages/adventures/index.html" target="mainFrame">Adventures</a>
 								<a className="dropdown-item" href="/dnd/pages/tools/generators/index.html" target="mainFrame">Random Generators</a>
+								<a className="dropdown-item" href="/dnd/pages/tools/contracts.html" target="mainFrame">Bounty Board</a>
 								<div className="dropdown-divider"></div>
 								<h6 className="dropdown-header">Campaign I</h6>
 								<a className="dropdown-item" href="/dnd/pages/tools/militarystrength.html" target="mainFrame">Military Strength</a>
