@@ -250,6 +250,14 @@ class LocalStorageHelper
 	{
 		return parseFloat(localStorage.month);
 	}
+	public get showGMNotes()
+	{
+		return localStorage.showGMNotes == "true";
+	}
+	public set showGMNotes(value: boolean)
+	{
+		localStorage.showGMNotes = value;
+	}
 	public get userId()
 	{
 		return parseFloat(localStorage.userId);

@@ -43,6 +43,8 @@ declare class LocalStorageHelper {
     get isGM(): boolean;
     set isGM(value: boolean);
     get month(): number;
+    get showGMNotes(): boolean;
+    set showGMNotes(value: boolean);
     get userId(): number;
     set userId(value: number);
     get userName(): string;

@@ -44,8 +44,9 @@ declare class MapViewer extends React.Component<IMapViewerProps, IMapViewerState
         overlays: never[];
     };
     constructor(props: IMapViewerProps);
+    componentDidMount: () => void;
     render(): JSX.Element;
-    handleZoomChange(newZoom: number): void;
+    handleZoomChange: (newZoom: number) => void;
     setImageType(useVector: boolean): void;
     setOverlayDisplay(index: number, displayOverlay: boolean): void;
     centerMap(): void;
@@ -233,6 +234,10 @@ interface IMapPanData {
     mapPanBounds: IMapPanBounds;
     scale: number;
 }
-declare var __mapPan: IMapPanData;
+declare const __mapPan: IMapPanData;
+declare const __zoomBoxDimensions: {
+    height: number;
+    width: number;
+};
 declare const landmasses: ILandmassData[];
 declare const overlays: IMapOverlayData[];

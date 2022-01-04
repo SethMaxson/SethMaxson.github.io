@@ -203,6 +203,12 @@ class LocalStorageHelper {
     get month() {
         return parseFloat(localStorage.month);
     }
+    get showGMNotes() {
+        return localStorage.showGMNotes == "true";
+    }
+    set showGMNotes(value) {
+        localStorage.showGMNotes = value;
+    }
     get userId() {
         return parseFloat(localStorage.userId);
     }

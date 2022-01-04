@@ -1,380 +1,632 @@
 [
 	{
 		"name": "Vox Laudis",
+		"rank": "S",
 		"notes": {
-			"dm": [],
+			"dm": [
+				"Group of poser heroes that are secretly willing to do anything for the limelight. Part Homelander, part Gilderoy Lockheart. Led by Jason Knight.",
+				"Members:",
+				"- Jason Knight - "
+			],
 			"player": []
 		}
 	},
 	{
 		"name": "Pro Omnibus",
+		"rank": "S",
 		"notes": {
-			"dm": [],
+			"dm": [
+				"A group of heroes who genuinely wish to help people. Led by Maito Apollo (bootleg All-Might).",
+				"Members:",
+				"- Maito Apollo - "
+			],
 			"player": []
 		}
 	},
 	{
-		"name": "PWWF",
+		"name": "GGF",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Pact Worlds Wrestling Federation"
+				"Global Gladiator Federation",
+				"Members:"
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Verday",
+		"rank": "A",
 		"notes": {
 			"dm": [
-				"Green Day. Members:Enialis Faire, Seirgol, Koseemo"
+				"Green Day.",
+				"Members:",
+				"- Enialis Faire (Billie Joe) - LE Adult Male Halfelf. Threat level: medium. Intelligence level: average. An adult halfelf, who really knows how to party and comes from a travelling theatre company. He is gregarious and cocky, and has found work as a pickpocket.",
+				"- Peter Miner (Tré Cool) - CG Young adult Male Fire Genasi. Threat level: slightly high. Intelligence level: average. A young adult genasi, who is afraid of crossbows and comes from a small desert village. He is capricious and sadistic, and has found work as a comedian.",
+				"- Edyrm Archer (Mike Dirnt) - CE Adult Male Halfelf. Threat level: slightly low. Intelligence level: average. An adult halfelf, who doesn't understand the concept of politeness and comes from a military stronghold. He is cooperative and mischievous, and has found work as a bard."
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Darklight",
+		"rank": "A",
 		"notes": {
 			"dm": [
-				"Blackpink"
+				"Blackpink, but notorious mercenaries.",
+				"Members:",
+				"- Unae Payne - NG Young adult Female Halfelf. Threat level: slightly high. A young adult halfelf, who always keeps her promises and comes from a frozen wasteland. She is transparent and wasteful.",
+				"- Sisyrus Butcher - NE Young adult Female Halforc. Threat level: medium. A young adult halforc, who distrusts anyone taller than them and comes from a rural construction guild. She is condescending and rascally.",
+				"- Jhazaal Gan’duur - LE Young adult Female Hobgoblin. Threat level: very low. A young adult hobgoblin, who has a huge debt to pay back and comes from a small island. She is sympathetic and sarcastic, and was a gladiator before earning her freedom.",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
-		"name": "ET Bois",
+		"name": "Monstrous Men",
+		"rank": "A",
 		"notes": {
 			"dm": [
-				"Beastie Boys. Members:Altronus Rumbling River, Dexar, Enzo"
+				"Beastie Boys, but notorious mercenaries.",
+				"Members:",
+				"- Wendel Tallfellow (Adrock) - LG Young adult Male Halfling. Threat level: low. A young adult halfling, who would rather be farming than adventuring and comes from a strict, religious temple. He is mouthy and deceitful, and has found work as a monster hunter.",
+				"- Taredd Tellynnan (Mike D.) - CG Young adult Male Elf. Threat level: low. A young adult elf, who always looks his best and comes from a very religious family. He is slanderous and violent, and has found work as a haberdasher.",
+				"- Saabak Gan’duur (MCA) - LE Young adult Male Hobgoblin. Threat level: medium. A young adult hobgoblin, who lost his family in a dragon attack and comes from a mutinied prison ship. He is graceful and sensible, and has found work as a writer."
 			],
 			"player": []
 		}
 	},
 	{
-		"name": "The Murderers",
+		"name": "The Smiters",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"The Killers"
+				"The Killers. Pretty good at their job, but have the personality of a Wes Anderson movie.",
+				"Members:",
+				"- (Brandon Flowers) -",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Asthmatic",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Wheezer"
+				"Weezer",
+				"Members:",
+				"- (River) -",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Velox",
+		"rank": "A",
 		"notes": {
 			"dm": [
-				"Star Fox"
+				"Star Fox. Rivals with Canis Dirus.",
+				"Members:",
+				"- Haru Ikeda (Fox McCloud) - NG Adult Male Kitsune. Threat level: high.",
+				"- Rokaaw Stormtalon (Falco Lombardi) - CG Young adult Male Aarakocra. Threat level: high. Intelligence level: average. A young adult aarakocra, who lost his family in a dragon attack and comes from a backwater village. He is cocky and disrespectful, and is an exceptionally gifted pilot.",
+				"- (Slippy Toad)",
+				"- (Peppy Hare)",
+				"- (Krystal)"
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Canis Dirus",
+		"rank": "A",
 		"notes": {
 			"dm": [
-				"Star Wolf"
+				"Star Wolf. Rivals with Velox.",
+				"Members:",
+				"- (Wolf)",
+				"- (Leon)",
+				"- (Pigma)",
+				"- (Andrew Oikenny)",
+				"- (Panther)"
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Murder Inc.",
+		"rank": "D",
 		"notes": {
-			"dm": [],
+			"dm": [
+				"Members:"
+			],
 			"player": []
 		}
 	},
 	{
 		"name": "The Plague",
+		"rank": "D",
 		"notes": {
-			"dm": [],
+			"dm": [
+				"Members:"
+			],
 			"player": []
 		}
 	},
 	{
 		"name": "Nuclear Ninjas",
+		"rank": "D",
 		"notes": {
-			"dm": [],
+			"dm": [
+				"Members:"
+			],
 			"player": []
 		}
 	},
 	{
 		"name": "The Firm",
+		"rank": "D",
 		"notes": {
-			"dm": [],
+			"dm": [
+				"Members:"
+			],
 			"player": []
 		}
 	},
 	{
-		"name": "Space Cowboys",
+		"name": "Cloud Raiders",
+		"rank": "D",
 		"notes": {
-			"dm": [],
+			"dm": [
+				"Members:"
+			],
 			"player": []
 		}
 	},
 	{
 		"name": "The Disposables",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"The Expendables"
+				"The Expendables",
+				"Members:",
+				"- (Stallone)"
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Battlewugs",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Battletoads"
+				"Battletoads",
+				"Members:",
+				"- (Pimple)",
+				"- (Rash)",
+				"- (Zitz)"
 			],
 			"player": []
 		}
 	},
 	{
-		"name": "The Swarm",
-		"notes": {
-			"dm": [],
-			"player": []
-		}
-	},
-	{
 		"name": "12th Dimension",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"D12"
+				"D12",
+				"Members:",
+				"- (Eminem)",
+				"- (Proof)",
+				"- ",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Steel Balloon",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Led Zepplin"
+				"Led Zepplin",
+				"Members:",
+				"- ",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Legal Aliens",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Foreigner"
+				"Foreigner",
+				"Members:",
+				"- ",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Skalding Red Reaper",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Red Hot Chili Peppers"
+				"Red Hot Chili Peppers",
+				"Members:",
+				"- (Anthony Kiedis)",
+				"- (Flea)",
+				"- (Chad Smith)",
+				"- (John Frusciante)"
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Expedition",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Journey"
+				"Journey",
+				"Members:",
+				"- (Steve Perry)",
+				"- ",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Scarab",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"The Beatles"
+				"The Beatles",
+				"Members:",
+				"- (John Lennon)",
+				"- (Paul McCartney)",
+				"- (George Harrison)",
+				"- (Ringo Starr)"
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Our Elemental Friendship",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"MCR"
+				"MCR",
+				"Members:",
+				"- (Gerard Way)",
+				"- (Mikey Way)",
+				"- (Ray Toro)",
+				"- (Frank Iero)"
 			],
 			"player": []
 		}
 	},
 	{
-		"name": "Fear at the Dance Hall",
+		"name": "Terror! in the Ballroom",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Panic"
+				"Panic! at the Disco",
+				"Members:",
+				"- (Brendon Urie)",
+				"- (Ryan Ross)",
+				"- (Spencer Smith)",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Two Lefts",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"One Direction"
+				"One Direction.",
+				"All of the members of Two Lefts were chosen for their combination of natural talent and non-threateningly attractive presentation. The original versions of the roster are kept in vats, with the active roster being merely clones. Whenever they are lost or destroyed during a mission, they are quietly replaced with a new batch of clones. They themselves are unaware that they are clones.",
+				"Members:",
+				"- Rakkar - CN Young adult Male Bugbear. Threat level: very low. Intelligence level: low. A young adult bugbear, who believes dungeon crawling is just breaking and entering and comes from a large secluded dungeon. He is reserved and condescending, and has found work as a scholar.",
+				"- Secrecy - CG Young adult Male Tiefling. Threat level: slightly low. Intelligence level: average. A young adult tiefling, who knows his way around a workshop and comes from the remains of a sunken city. He is obsessive and fierce, and has found work as a monk.",
+				"- Zunis Mestoth - NG Young adult Male Triton. Threat level: low. Intelligence level: average. A young adult triton, who has a twin and constantly gets confused for them and comes from an ancient temple run by monks. He is insecure and sensitive, and has found work as a tailor.",
+				"- Boddynock \"Thunderbonk\" Glinckle - CN Young adult Male Gnome. Threat level: very low. Intelligence level: low. A young adult gnome, who hates crowds and comes from a depleted mine. He is elitist and apologetic, and has found work as a builder.",
+				"- Bertram Farmer - CN Young adult Male Human. Threat level: very low. Intelligence level: low. A young adult human, who has the loudest laugh in the room and comes from a frozen wasteland. He is aggressive and serene, and has found work as a chef."
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "BAD C",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"AC/DC"
+				"AC/DC",
+				"Members:",
+				"- (Bon Scott) ",
+				"- (Angus Young)",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Whipping Maggie",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Flogging Molly"
+				"Flogging Molly",
+				"Members:",
+				"- ",
+				"- ",
+				"- ",
+				"- ",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Peculiar Group",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Motlëy Crüe"
+				"Motlëy Crüe",
+				"Members:",
+				"- ",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Plastico",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Metallica"
+				"Metallica",
+				"Members:",
+				"- (Hetfield)",
+				"- (Lars Ulrich)",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Superlife",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Megadeth"
+				"Megadeth",
+				"Members:"
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Tower Major",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Fort Minor"
+				"Fort Minor",
+				"Members:"
 			],
 			"player": []
 		}
 	},
 	{
-		"name": "Jatimbe Park",
+		"name": "Tenebris Park",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Linkin Park"
+				"Linkin Park",
+				"Named for Tenebris Park in Aphotia.",
+				"Members:",
+				"- (Chester)",
+				"- (Shinoda)",
+				"- ",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Garlicnaut",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Italian Slipknot"
+				"Italian Slipknot",
+				"Members:"
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Pedestrian 12",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"21 pilots"
+				"21 pilots",
+				"Members:",
+				"- (Tyler Joseph)",
+				"- (Josh Dun)"
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Everything+Kitch",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"N-Sync"
+				"N-Sync",
+				"Members:",
+				"- (Justin Timberlake)",
+				"- ",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
-		"name": "Radioactive Men",
+		"name": "Aftershock",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"FOB"
+				"FOB",
+				"Members:",
+				"- (Patrick Stump)",
+				"- (Pete Wentz)",
+				"- (Joe)",
+				"- (Andy)"
 			],
 			"player": []
 		}
 	},
 	{
-		"name": "Dope and the Homies",
+		"name": "Goodly and the Fellows",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Kool and the Gang"
+				"Kool and the Gang",
+				"Members:",
+				"- Goodly - "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Sikk",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"KISS"
+				"KISS",
+				"Members:",
+				"- (Paul Stanley)",
+				"- (Gene Simmons)",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Blind Tiger",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Def Leppard"
+				"Def Leppard",
+				"Members:",
+				"- ",
+				"- ",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Pennyfront",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Nickelback"
+				"Nickelback",
+				"Members:",
+				"- (Chad Kroeger)",
+				"- ",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Royale",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Queen"
+				"Queen",
+				"Members:",
+				"- (Freddie Mercury)",
+				"- (Brian May)",
+				"- ",
+				"- "
 			],
 			"player": []
 		}
 	},
 	{
 		"name": "Blast Processing",
+		"rank": "D",
 		"notes": {
 			"dm": [
-				"Sonic the Hedgehog and friends. Members: Zoomer (Sonic), Boomer (Knuckles), (Amy), (Tails)"
+				"Sonic the Hedgehog and friends.",
+				"Members:",
+				"- Zoomer (Sonic)",
+				"- Boomer (Knuckles)",
+				"- (Amy)",
+				"- (Tails)"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Crossbows N' Daffodils",
+		"rank": "D",
+		"notes": {
+			"dm": [
+				"Guns N' Roses",
+				"Members:",
+				"- (Axl Rose)",
+				"- (Slash)",
+				"- (Duff McKagan)",
+				"- (Dizzy Reed)"
+			],
+			"player": []
+		}
+	},
+	{
+		"name": "Mobile Boulder",
+		"rank": "D",
+		"notes": {
+			"dm": [
+				"Rolling Stones",
+				"Members:",
+				"- (Mick Jagger)",
+				"- (Keith Richards)",
+				"- (Ronnie Wood)"
 			],
 			"player": []
 		}

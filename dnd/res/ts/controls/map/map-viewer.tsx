@@ -38,7 +38,6 @@ class MapViewer extends React.Component<IMapViewerProps, IMapViewerState> {
 	{
 		super(props);
 		this.centerMap = this.centerMap.bind(this);
-		this.handleZoomChange = this.handleZoomChange.bind(this);
 		this.setImageType = this.setImageType.bind(this);
 		this.setOverlayDisplay = this.setOverlayDisplay.bind(this);
 
@@ -56,6 +55,12 @@ class MapViewer extends React.Component<IMapViewerProps, IMapViewerState> {
 		};
 		__mapPan.scale = this.state.zoom.currentZoom;
 		// __mapPan.mapPanBounds.left = -this.props.width;
+	}
+	componentDidMount = () =>
+	{
+		__zoomBoxDimensions.width = window.innerWidth;
+		__zoomBoxDimensions.height = window.innerHeight;
+		this.handleZoomChange(this.state.zoom.currentZoom);
 	}
 	render() {
 		return (
@@ -80,17 +85,43 @@ class MapViewer extends React.Component<IMapViewerProps, IMapViewerState> {
 			</div>
 		);
 	}
-	handleZoomChange(newZoom: number): void
+	handleZoomChange = (newZoom: number): void =>
 	{
 		let prevZoom = this.state.zoom.currentZoom;
 		newZoom = Math.min(newZoom, this.state.zoom.maxZoom);
 		newZoom = Math.max(newZoom, this.state.zoom.minZoom);
+		const windowHeight = window.innerHeight;
+		const windowWidth = window.innerWidth;
+		const mapIsTallerThanScreen = (this.props.height * newZoom) > windowHeight;
+		const mapIsWiderThanScreen = (this.props.width * newZoom) > windowWidth;
+		const zoomBoxHeight = __zoomBoxDimensions.height * newZoom;
+		const zoomBoxWidth = __zoomBoxDimensions.width * newZoom;
+
+		const maxX = -((windowWidth - zoomBoxWidth) / 2) / newZoom;
+		// const minX = -(((windowWidth + zoomBoxWidth) / 2) / newZoom) - zoomBoxWidth - (this.props.width * newZoom);
+		const minX = -this.props.width + (((windowWidth + zoomBoxWidth) / 2) / newZoom);
+		console.log(`newZoom: ${newZoom}`);
+		console.log(`windowWidth: ${windowWidth}`);
+		console.log(`mapIsWiderThanScreen: ${mapIsWiderThanScreen}`);
+		console.log(`zoomBoxWidth: ${zoomBoxWidth}`);
+		console.log(`newZoom: ${newZoom}`);
+		console.log(`this.props.width: ${this.props.width}`);
+		console.log(`minX: ${minX}`);
 		this.setState(prevState =>
 		{
 			let zoom = Object.assign({}, prevState.zoom);	// creating copy of state variable
 			zoom.currentZoom = newZoom;						// update the property, assign a new value
 			zoom.previousZoom = prevZoom;
 			__mapPan.scale = newZoom;
+			if (mapIsWiderThanScreen) {
+				__mapPan.mapPanBounds.left = maxX;
+				__mapPan.mapPanBounds.right = minX;
+			}
+			else
+			{
+				__mapPan.mapPanBounds.left = minX;
+				__mapPan.mapPanBounds.right = maxX;
+			}
 			updateMapCSSForZoom(newZoom);
 			return { zoom };								// return new object
 		});
@@ -322,6 +353,7 @@ class MapContainer extends React.Component<IMapContainerProps, IMapContainerStat
 	render() {
 		return (
 			<div
+				id="zoom-box"
 				style={{ width: "100%", height: "100%", textAlign: "center", transformOrigin: "center center", position: "absolute", transform: `scale(${this.props.zoom.currentZoom})` }}
 				onWheelCapture={this.handleChange.bind(this)}
 			>
@@ -485,16 +517,20 @@ interface IMapPanData
 	mapPanBounds: IMapPanBounds;
 	scale: number;
 }
-var __mapPan: IMapPanData = {
+const __mapPan: IMapPanData = {
 	dx: 0,
 	dy: 0,
 	mapPanBounds: {
 		bottom: 0,
-		left: 0,
+		left: -99999999,
 		right: 0,
 		top: 0
 	},
 	scale: 0.5
+};
+const __zoomBoxDimensions = {
+	height: 0,
+	width: 0
 };
 
 
@@ -507,8 +543,10 @@ $(document).ready(function ()
 			//resize bug fix ui drag `enter code here`
 			__mapPan.dx = ui.position.left - ui.originalPosition.left;
 			__mapPan.dy = ui.position.top - ui.originalPosition.top;
-			ui.position.left = ui.originalPosition.left + ( __mapPan.dx/__mapPan.scale);
-			// ui.position.left = Math.max(ui.originalPosition.left + ( __mapPan.dx/__mapPan.scale), __mapPan.mapPanBounds.left);
+			// ui.position.left = ui.originalPosition.left + ( __mapPan.dx/__mapPan.scale);
+			let newLeft = Math.min(ui.originalPosition.left + (__mapPan.dx / __mapPan.scale), __mapPan.mapPanBounds.left);
+			newLeft = Math.max(newLeft, __mapPan.mapPanBounds.right);
+			ui.position.left = newLeft;
 			ui.position.top = ui.originalPosition.top + ( __mapPan.dy/__mapPan.scale );
 			// ui.position.left = ui.originalPosition.left + (__dx);
 			// ui.position.top = ui.originalPosition.top + (__dy);

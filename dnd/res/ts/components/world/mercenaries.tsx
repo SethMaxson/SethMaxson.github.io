@@ -14,7 +14,7 @@ class MercenariesTestPage extends React.Component<IMercenariesTestPageProps, IMe
 			currentGroup: undefined,
 			displayType: "all",
 			groups: [],
-			showDmNotes: false,
+			showDmNotes: storage.showGMNotes,
 		};
 	}
 	render()
@@ -22,6 +22,55 @@ class MercenariesTestPage extends React.Component<IMercenariesTestPageProps, IMe
 		return (
 			<>
 				<div className="container bg-light">
+					<div className="p-1">
+						<div className="card bg-white" style={{ width: "18rem" }}>
+							<h5 className="card-header">Ranks</h5>
+							<ul className="list-group list-group-flush">
+								<li className="list-group-item bg-light fw-bold">
+									<div className="row">
+										<div className="col-3 text-center">Rank</div>
+										<div className="col">Quest Lvl.</div>
+										<div className="col text-end">Avg Pay</div>
+									</div>
+								</li>
+								<li className="list-group-item">
+									<div className="row">
+										<div className="col-3 text-center">D</div>
+										<div className="col text-center">Up to 2</div>
+										<div className="col text-end">5 gp</div>
+									</div>
+								</li>
+								<li className="list-group-item">
+									<div className="row">
+										<div className="col-3 text-center">C</div>
+										<div className="col text-center">Up to 5</div>
+										<div className="col text-end">14 gp</div>
+									</div>
+								</li>
+								<li className="list-group-item">
+									<div className="row">
+										<div className="col-3 text-center">B</div>
+										<div className="col text-center">Up to 8</div>
+										<div className="col text-end">26 gp</div>
+									</div>
+								</li>
+								<li className="list-group-item">
+									<div className="row">
+										<div className="col-3 text-center">A</div>
+										<div className="col text-center">Up to 11</div>
+										<div className="col text-end">98 gp</div>
+									</div>
+								</li>
+								<li className="list-group-item">
+									<div className="row">
+										<div className="col-3 text-center">S</div>
+										<div className="col text-center">Up to 20</div>
+										<div className="col text-end">2,250 gp</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
 					<div className="text-center p-1">
 						<input
 							type="radio"
@@ -63,7 +112,11 @@ class MercenariesTestPage extends React.Component<IMercenariesTestPageProps, IMe
 							type="checkbox"
 							id="dm-notes-switch"
 							checked={this.state.showDmNotes}
-							onChange={() => { this.setState({ showDmNotes: !this.state.showDmNotes }); }}
+							onChange={() =>
+							{
+								storage.showGMNotes = !this.state.showDmNotes;
+								this.setState({ showDmNotes: !this.state.showDmNotes });
+							}}
 						/>
 						<label className="form-check-label" htmlFor="dm-notes-switch">Show DM Notes</label>
 					</div>
@@ -73,13 +126,15 @@ class MercenariesTestPage extends React.Component<IMercenariesTestPageProps, IMe
 							<tr className="table-dark">
 								<th onClick={() => { }}>Row</th>
 								<th onClick={() => { }}>Name</th>
+								<th onClick={() => { }}>Rank</th>
 							</tr>
 						</thead>
 						<tbody>
-							{this.state.groups.map((quest, index: number) =>
+							{this.state.groups.map((mercGroup, index: number) =>
 								<tr key={index}>
-									<td>{index+1}</td>
-									<td><button className="btn btn-link lh-sm" onClick={() => { this.setState({ currentGroup: quest }) }}>{quest.name}</button></td>
+									<td>{index + 1}</td>
+									<td><button className="btn btn-link lh-sm" onClick={() => { this.setState({ currentGroup: mercGroup }) }}>{mercGroup.name}</button></td>
+									<td>{mercGroup.rank}</td>
 								</tr>
 							)}
 						</tbody>

@@ -63,7 +63,7 @@ const QuestGenerator = {
                 D = level 1-2
                 C = level 1-5
                 B = level 1-8
-                A = level 5-10
+                A = level 5-11
                 S = level 10+
         */
         var baseCredits = 0;
@@ -84,7 +84,7 @@ const QuestGenerator = {
                 break;
             case "A":
                 min = QuestGenerator.WealthPerEncounter["5"];
-                max = QuestGenerator.WealthPerEncounter["12"];
+                max = QuestGenerator.WealthPerEncounter["11"];
                 break;
             case "S":
                 min = QuestGenerator.WealthPerEncounter["10"];

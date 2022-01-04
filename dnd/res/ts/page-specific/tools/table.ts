@@ -1,3 +1,4 @@
+declare const Vue: any;
 interface ITableCharacter
 {
 	avatar: string;

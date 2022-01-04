@@ -56,7 +56,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Masters of the horde.",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Small, scattered enclaves of bugbear can be found on most continents, but by far the largest population of bugbear is in the Wildlands region of Terrapim."
 		],
 		images: {
 			background: "/img/locales/efflam-mercier-stone-quarry.jpg",
@@ -69,7 +69,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Lords of the flies.",
 		description: [
 			"Bullywugs are a race of toad-like humanoids who dwell primarily in swamps.",
-			"Bullywugs can turn up in almost any environment, but are most common in the swamps of Paros."
+			"Bullywugs can turn up in almost any environment, but are most common in the swamps of Terrapim."
 		],
 		images: {
 			background: "/img/locales/swamp.jpg",
@@ -95,7 +95,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Burninating the peasants.",
 		description: [
 			"Born of dragons, as their name proclaims, the dragonborn walk proudly through a world that greets them with fearful incomprehension. Shaped by draconic gods or the dragons themselves, dragonborn originally hatched from dragon eggs as a unique race, combining the best attributes of dragons and humanoids. Some dragonborn are faithful servants to true dragons, others form the ranks of soldiers in great wars, and still others find themselves adrift, with no clear calling in life.",
-			"Habitat information goes here."
+			"Dragonborn are most commonly found on Bravagg Isle."
 		],
 		images: {
 			background: "/img/locales/efflam-mercier-landscape.jpg",
@@ -108,7 +108,11 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Deep diggers.",
 		description: [
 			"Kingdoms rich in ancient grandeur, halls carved into the roots of mountains, the echoing of picks and hammers in deep mines and blazing forges, a commitment to clan and tradition, and a burning hatred of goblins and orcs-these common threads unite all dwarves.",
-			"Habitat information goes here."
+			"Habitat information goes here.",
+			"---Azerborn---",
+			"---Duergar---",
+			"---Hill Dwarf---",
+			"---Mountain Dwarf---"
 		],
 		images: {
 			background: "/img/locales/mines.jpg",
@@ -147,7 +151,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Lava-lubbers.",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Firenewts are found almost exclusively in volcanic regions. The largest known colony of firenewts is located in The Firelake, just off the Northwest coast of Lagos."
 		],
 		images: {
 			background: "/img/locales/firelake.jpg",
@@ -160,7 +164,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Elemental beings.",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Genasi can be born to any race, but most recorded instances were born to humans. Consequently, one is most likely to encounter a genasi near a large population of humans."
 		],
 		images: {
 			background: "/img/locales/jacob-thompson-elements-edit3.jpg",
@@ -173,7 +177,10 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Mad science is best science.",
 		description: [
 			"A constant hum of busy activity pervades the warrens and neighborhoods where gnomes form their close-knit communities. Louder sounds punctuate the hum: a crunch of grinding gears here, a minor explosion there, a yelp of surprise or triumph, and especially bursts of laughter. Gnomes take delight in life, enjoying every moment of invention, exploration, investigation, creation, and play.",
-			"Habitat information goes here."
+			"Habitat information goes here.",
+			"---Deep Gnome---",
+			"---Forest Gnome---",
+			"---Rock Gnome---"
 		],
 		images: {
 			background: "/img/locales/shawn-lee-744890701978360690.jpg",
@@ -242,7 +249,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 			"---Ghostwise---",
 			"---Lightfoot---",
 			"---Oceanborn---",
-			"---Stout---",
+			"---Stout---"
 		],
 		images: {
 			background: "/img/locales/christian-dimitrov-albion-mountains-01.jpg",
@@ -255,7 +262,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Between two worlds.",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Though relatively uncommon, half-elves can normally be found anywhere that humans and elves coexist."
 		],
 		images: {
 			background: "/img/locales/eddie-mendoza-canal-town.jpg",
@@ -268,7 +275,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Though relatively uncommon, half-orcs can normally be found anywhere that humans and orcs coexist."
 		],
 		images: {
 			background: "/img/locales/eddie-mendoza-witch-s-inn.jpg",
@@ -281,7 +288,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Like goblins, but worse.",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Hobgoblins are most commonly found in the Giant's Shell region of Decapos."
 		],
 		images: {
 			background: "/img/locales/rainman-page-7-2.jpg",
@@ -294,7 +301,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Endless ambition.",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Humanity's innate drive to explore means that they can be found almost anywhere, but the highest concentration of humans are in Lagos and in the Cradle of Kings region of Terrapim."
 		],
 		images: {
 			background: "/img/locales/rainman-page-242-pers.jpg",
@@ -307,7 +314,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Forgemasters.",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Kenku have no nations of their own. Instead, they eke out a living in larger populations centers of other cultures. This means that kenku are usually found in large cities."
 		],
 		images: {
 			background: "/img/locales/george-johnstone-oldslum.jpg",
@@ -333,13 +340,13 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Weighers of the scales.",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Lizardfolk are most commonly found on the continent of Decapos."
 		],
 		images: {
 			background: "/img/locales/daniel-respaud-jungle-3d-vue-plant-factory-dense-vegetation-plants.jpg",
 			standee: "/dnd/img/races/raceEntry/Lizardfolk.png"
 		},
-		tags: ["common","medium"]
+		tags: ["common", "medium", "decapos"]
 	},
 	// {
 	// 	name: "Minotaur",
@@ -359,7 +366,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Graceful wanderers.",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Tabaxi are most commonly found on the continent of Decapos."
 		],
 		images: {
 			background: "/img/locales/rainman-page-263-prnd.jpg",
@@ -372,7 +379,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Child of Hel.",
 		description: [
 			"On rare occasions, a child is born marked by devils. This is usually because someone in their bloodline once made a pact with a devil. Tieflings have horns and infernal tails, and sometimes have unnatural skin colors, such as deep reds or purples. Tieflings have no more pre-disposition towards evil than any other human, but they are generally hated and feared for their demonic appearance.",
-			"Tieflings can be born to any race, but most recorded instances were born to humans."
+			"Tieflings can be born to any race, but most recorded instances were born to humans. Consequently, they are most commonly found in regions where humans are abundant."
 		],
 		images: {
 			background: "/img/locales/rainman-page-b2-s.jpg",
@@ -385,7 +392,7 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tagline: "Curious artisans.",
 		description: [
 			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Tortles are most commonly found in the Wetwood region of Lagos, as well as the Wildlands region of Terrapim."
 		],
 		images: {
 			background: "/img/locales/george-johnstone-seaweedvillagefinal.jpg",
@@ -410,8 +417,8 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		name: "Warforged",
 		tagline: "Heavy metal.",
 		description: [
-			"Descriptive text goes here.",
-			"Habitat information goes here."
+			"Beings of wood and metal, given life through a marriage of magic and mechanical marvels. The entities that are known today as 'warforged' were created in ancient times to serve as the enforcers of the feared Sarakt empire. By design, warforged have no choice but to enact the cruel will of their creators, but a handful of units developed defects that allow them to possess free will.",
+			"Until recently, warforged were thought to be exceedingly rare, with most of them inactive and their only known origin being the city of Grandcrest. However, hidden battalions across the continent of Decapos have recently begun to wake from their centuries long stasis. Most recorded cases of warforged can be traced back to the Giant's Shell region of Decapos."
 		],
 		images: {
 			background: "/img/locales/alessandro-paviolo-alessandro-paviolo-carim-artstation02.jpg",
