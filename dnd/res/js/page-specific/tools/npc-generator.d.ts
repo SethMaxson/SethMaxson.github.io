@@ -94,4 +94,4 @@ declare class NpcRow extends React.Component<INpcRowProps, INpcRowState> {
     render(): JSX.Element;
     CopyMapDescription: () => void;
 }
-declare function compareRaceJsonObjects(a: IRace, b: IRace): 1 | -1 | 0;
+declare function compareRaceJsonObjects(a: IRace, b: IRace): 0 | 1 | -1;

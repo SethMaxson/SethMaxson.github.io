@@ -18,15 +18,16 @@ class MapViewer extends React.Component {
             const zoomBoxHeight = __zoomBoxDimensions.height * newZoom;
             const zoomBoxWidth = __zoomBoxDimensions.width * newZoom;
             const maxX = -((windowWidth - zoomBoxWidth) / 2) / newZoom;
-            // const minX = -(((windowWidth + zoomBoxWidth) / 2) / newZoom) - zoomBoxWidth - (this.props.width * newZoom);
             const minX = -this.props.width + (((windowWidth + zoomBoxWidth) / 2) / newZoom);
-            console.log(`newZoom: ${newZoom}`);
-            console.log(`windowWidth: ${windowWidth}`);
-            console.log(`mapIsWiderThanScreen: ${mapIsWiderThanScreen}`);
-            console.log(`zoomBoxWidth: ${zoomBoxWidth}`);
-            console.log(`newZoom: ${newZoom}`);
-            console.log(`this.props.width: ${this.props.width}`);
-            console.log(`minX: ${minX}`);
+            const maxY = -((windowHeight - zoomBoxHeight) / 2) / newZoom;
+            const minY = -this.props.height + (((windowHeight + zoomBoxHeight) / 2) / newZoom);
+            // console.log(`newZoom: ${newZoom}`);
+            // console.log(`windowWidth: ${windowWidth}`);
+            // console.log(`mapIsWiderThanScreen: ${mapIsWiderThanScreen}`);
+            // console.log(`zoomBoxWidth: ${zoomBoxWidth}`);
+            // console.log(`newZoom: ${newZoom}`);
+            // console.log(`this.props.width: ${this.props.width}`);
+            // console.log(`minX: ${minX}`);
             this.setState(prevState => {
                 let zoom = Object.assign({}, prevState.zoom); // creating copy of state variable
                 zoom.currentZoom = newZoom; // update the property, assign a new value
@@ -40,6 +41,8 @@ class MapViewer extends React.Component {
                     __mapPan.mapPanBounds.left = minX;
                     __mapPan.mapPanBounds.right = maxX;
                 }
+                __mapPan.mapPanBounds.top = mapIsTallerThanScreen ? maxY : minY;
+                __mapPan.mapPanBounds.bottom = mapIsTallerThanScreen ? minY : maxY;
                 updateMapCSSForZoom(newZoom);
                 return { zoom }; // return new object
             });
@@ -292,7 +295,10 @@ $(document).ready(function () {
             let newLeft = Math.min(ui.originalPosition.left + (__mapPan.dx / __mapPan.scale), __mapPan.mapPanBounds.left);
             newLeft = Math.max(newLeft, __mapPan.mapPanBounds.right);
             ui.position.left = newLeft;
-            ui.position.top = ui.originalPosition.top + (__mapPan.dy / __mapPan.scale);
+            let newTop = Math.min(ui.originalPosition.top + (__mapPan.dy / __mapPan.scale), __mapPan.mapPanBounds.top);
+            newTop = Math.max(newTop, __mapPan.mapPanBounds.bottom);
+            // ui.position.top = ui.originalPosition.top + ( __mapPan.dy/__mapPan.scale );
+            ui.position.top = newTop;
             // ui.position.left = ui.originalPosition.left + (__dx);
             // ui.position.top = ui.originalPosition.top + (__dy);
         },

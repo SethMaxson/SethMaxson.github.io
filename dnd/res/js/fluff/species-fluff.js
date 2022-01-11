@@ -11,7 +11,7 @@ const SpeciesFluff = [
             background: "/img/locales/mountaintop.jpg",
             standee: "/dnd/img/races/raceEntry/Aarakocra.png"
         },
-        tags: ["lagos", "medium"]
+        tags: ["lagos", "medium", "bird", "avian"]
     },
     {
         name: "Aasimar",
@@ -76,7 +76,7 @@ const SpeciesFluff = [
             background: "/img/locales/swamp.jpg",
             standee: "/dnd/img/races/raceEntry/Bullywug.png"
         },
-        tags: ["terrapim", "medium"]
+        tags: ["terrapim", "medium", "frog"]
     },
     // {
     // 	name: "Changeling",
@@ -89,7 +89,7 @@ const SpeciesFluff = [
     // 		background: "",
     // 		standee: "/dnd/img/races/raceEntry/Changeling.png"
     // 	},
-    // 	tags: ["rare","medium"]
+    // 	tags: ["rare", "medium"]
     // },
     {
         name: "Dragonborn",
@@ -102,7 +102,7 @@ const SpeciesFluff = [
             background: "/img/locales/efflam-mercier-landscape.jpg",
             standee: "/dnd/img/races/raceEntry/Dragonborn.png"
         },
-        tags: ["bravagg", "medium"]
+        tags: ["bravagg", "medium", "dragon", "reptile", "lizard"]
     },
     {
         name: "Dwarf",
@@ -158,7 +158,7 @@ const SpeciesFluff = [
             background: "/img/locales/firelake.jpg",
             standee: "/dnd/img/races/raceEntry/Firenewt.jpeg"
         },
-        tags: ["rare", "lagos", "firelake", "medium"]
+        tags: ["rare", "lagos", "firelake", "medium", "reptile", "lizard"]
     },
     {
         name: "Genasi",
@@ -226,7 +226,7 @@ const SpeciesFluff = [
             background: "/img/locales/redwood_forest.jpg",
             standee: "/dnd/img/races/raceEntry/Grippli.png"
         },
-        tags: ["rare", "lagos", "small"]
+        tags: ["rare", "lagos", "small", "frog"]
     },
     {
         name: "Grung",
@@ -239,15 +239,16 @@ const SpeciesFluff = [
             background: "/img/locales/jason-scheier-01bb.jpg",
             standee: "/dnd/img/races/raceEntry/Grung.png"
         },
-        tags: ["rare", "paros", "small"]
+        tags: ["rare", "paros", "small", "frog"]
     },
     {
         name: "Halfling",
         tagline: "Half the height, twice the heart.",
         description: [
-            "Halflings may very well be the closest humanoid approximation of a Golden Retriever. Chipper, optimistic, and loyal to a fault, halflings are delightful traveling companions. While their physical size is well below average, their personalities are often larger than life.",
+            "Chipper, optimistic, and loyal to a fault, halflings are delightful traveling companions. While their physical size is well below average, their personalities are often larger than life.",
             "Halflings can turn up nearly anywhere in the world, but are most commonly found in Decapos, Lagos, and Paros.",
             "---Ghostwise---",
+            "The least common of the known halfling varieties, Ghostwise halflings wield supernatural abilities garnered from a deep spiritual connection to nature.",
             "---Lightfoot---",
             "---Oceanborn---",
             "---Stout---"
@@ -286,10 +287,10 @@ const SpeciesFluff = [
     },
     {
         name: "Hobgoblin",
-        tagline: "Like goblins, but worse.",
+        tagline: "Duty. Honor. Tradition.",
         description: [
-            "Descriptive text goes here.",
-            "Hobgoblins are most commonly found in the Giant's Shell region of Decapos."
+            "Hobgoblins are red skinned humanoids with pointy ears and heavy features. They are almost identical to humans in both size and lifespan. Their society is incredibly militant, and places a heavy value on honor.",
+            "Hobgoblins are native to Decapos, and are most commonly found in the Giant's Shell region. Over the years, small communities of hobgoblins have begun to spring up on the southern coast of Lagos."
         ],
         images: {
             background: "/img/locales/rainman-page-7-2.jpg",
@@ -314,40 +315,40 @@ const SpeciesFluff = [
         name: "Kenku",
         tagline: "Forgemasters.",
         description: [
-            "Descriptive text goes here.",
+            "The Kenku are a birdlike people who bear some resemblance to ravens. Their wings and voices were taken from them by a curse millennia ago. They can flawlessly replicate almost any sound they have heard, but can only make noises they have heard with their own ears. Consequently, their speech tends to be an unsettling patchwork of sentences spoken in different voices.",
             "Kenku have no nations of their own. Instead, they eke out a living in larger populations centers of other cultures. This means that kenku are usually found in large cities."
         ],
         images: {
             background: "/img/locales/george-johnstone-oldslum.jpg",
             standee: "/dnd/img/races/raceEntry/Kenku.png"
         },
-        tags: ["common", "medium"]
+        tags: ["common", "medium", "bird", "avian"]
     },
     {
         name: "Kobold",
         tagline: "Fun-size dragons.",
         description: [
             "Descriptive text goes here.",
-            "Habitat information goes here."
+            "Kobolds are weak individually, but formidable in groups. For this reason they prefer to live in large, close-knit colonies. These communities can be found scattered across nearly any corner of the globe."
         ],
         images: {
             background: "/img/locales/caverns.jpg",
             standee: "/dnd/img/races/raceEntry/Kobold.png"
         },
-        tags: ["common", "small"]
+        tags: ["common", "small", "dragon", "reptile", "lizard"]
     },
     {
         name: "Lizardfolk",
         tagline: "Weighers of the scales.",
         description: [
-            "Descriptive text goes here.",
+            "Carnivorous, cold-blooded, and harshly utilitarian. They aren't inherently evil, but their tendency to eat anyone they don't find useful means they don't make many friends.",
             "Lizardfolk are most commonly found on the continent of Decapos."
         ],
         images: {
             background: "/img/locales/daniel-respaud-jungle-3d-vue-plant-factory-dense-vegetation-plants.jpg",
             standee: "/dnd/img/races/raceEntry/Lizardfolk.png"
         },
-        tags: ["common", "medium", "decapos"]
+        tags: ["common", "medium", "decapos", "reptile", "lizard"]
     },
     // {
     // 	name: "Minotaur",
@@ -360,7 +361,7 @@ const SpeciesFluff = [
     // 		background: "",
     // 		standee: ""
     // 	},
-    // 	tags: ["rare","medium"]
+    // 	tags: ["rare", "medium"]
     // },
     {
         name: "Tabaxi",
@@ -399,7 +400,7 @@ const SpeciesFluff = [
             background: "/img/locales/george-johnstone-seaweedvillagefinal.jpg",
             standee: "/dnd/img/races/raceEntry/Tortle.png"
         },
-        tags: ["rare", "lagos", "terrapim", "medium"]
+        tags: ["rare", "lagos", "terrapim", "medium", "reptile"]
     },
     {
         name: "Triton",
@@ -438,7 +439,7 @@ const SpeciesFluff = [
             background: "/img/locales/mohammx-qureshi-1.jpg",
             standee: "/dnd/img/races/raceEntry/Yuan-Ti.png"
         },
-        tags: ["rare", "medium"]
+        tags: ["rare", "medium", "reptile", "snake"]
     },
 ];
 //# sourceMappingURL=species-fluff.js.map
