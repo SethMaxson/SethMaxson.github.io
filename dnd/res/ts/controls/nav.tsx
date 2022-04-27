@@ -23,7 +23,7 @@ class Nav extends React.Component<INavProps> {
 								<a className="dropdown-item" href="/dnd/pages/world/races.html" target="mainFrame">Races</a>
 								<a className="dropdown-item" href="/dnd/pages/world/guilds.html" target="mainFrame">Guilds</a>
 								<a className="dropdown-item" href="/dnd/pages/world/census-data-viewer.html" target="mainFrame">Census Data</a>
-								<a className="dropdown-item" href="/dnd/pages/maps/index.html" target="mainFrame">Maps</a>
+								<a className="dropdown-item" href="/dnd/pages/maps/" target="mainFrame">Maps</a>
 								<a className="dropdown-item" href="/dnd/wiki" target="mainFrame">Wiki</a>
 								{loggedIn && <a className="dropdown-item" href="/dnd/pages/world/wiki.html" target="mainFrame">Wiki (WIP)</a>}
 							</div>
@@ -59,13 +59,12 @@ class Nav extends React.Component<INavProps> {
 							</a>
 							<div className="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarToolDropdown">
 								<a className="dropdown-item" href="/dnd/pages/world/moods/mood-viewer.html" target="mainFrame">Moods</a>
-								<a className="dropdown-item" href="/dnd/pages/tools/random-tables.html" target="mainFrame">Random Tables</a>
 								<a className="dropdown-item" href="/dnd/pages/tools/table.html" target="mainFrame">Table</a>
 								<a className="dropdown-item" href="/dnd/pages/tools/travel-calculator.html" target="mainFrame">Travel Calculator</a>
 								<a className="dropdown-item disabled" href="/dnd/pages/tools/charactercreation.html" target="mainFrame">Character Creation</a>
 								<div className="dropdown-divider"></div>
-								<a className="dropdown-item" href="/dnd/pages/adventures/index.html" target="mainFrame">Adventures</a>
-								<a className="dropdown-item" href="/dnd/pages/tools/generators/index.html" target="mainFrame">Random Generators</a>
+								<a className="dropdown-item" href="/dnd/pages/adventures/" target="mainFrame">Adventures</a>
+								<a className="dropdown-item" href="/dnd/pages/tools/generators/" target="mainFrame">Random Generators</a>
 								<a className="dropdown-item" href="/dnd/pages/tools/contracts.html" target="mainFrame">Bounty Board</a>
 								<div className="dropdown-divider"></div>
 								<h6 className="dropdown-header">Campaign I</h6>

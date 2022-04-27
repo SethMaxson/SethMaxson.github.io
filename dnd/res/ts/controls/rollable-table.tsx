@@ -14,11 +14,6 @@ class RollableTable extends React.Component<IRollableTableProps> {
 	public static defaultProps = {
 		resultColumnLabel: "Result"
     };
-	constructor(props: IRollableTableProps)
-	{
-		super(props);
-		this.roll = this.roll.bind(this);
-	}
 	render()
 	{
 		let die = 0;
@@ -30,7 +25,15 @@ class RollableTable extends React.Component<IRollableTableProps> {
 			<table className="table table-dark table-striped">
 				<thead>
 					<tr>
-						<th onClick={this.roll}>1d{die}</th>
+						<th>
+							<button
+								type="button"
+								className="btn btn-link btm-sm m-0 p-0"
+								onClick={this.roll}
+							>
+								1d{die}
+							</button>
+						</th>
 						<th>{this.props.resultColumnLabel}</th>
 					</tr>
 				</thead>
@@ -51,7 +54,7 @@ class RollableTable extends React.Component<IRollableTableProps> {
 			</table>
 		);
 	}
-	roll(): string | undefined
+	roll = (): string | undefined =>
 	{
 		var result: string | undefined;
 		var totalWeight = 0;

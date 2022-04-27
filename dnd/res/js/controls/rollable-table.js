@@ -1,9 +1,27 @@
 "use strict";
 /**A table where each row describes a possible outcome and the associated odds in terms of dice result. The header of the dice result column can be clicked to automatically roll. */
 class RollableTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.roll = this.roll.bind(this);
+    constructor() {
+        super(...arguments);
+        this.roll = () => {
+            var result;
+            var totalWeight = 0;
+            for (let i = 0; i < this.props.rows.length; i++) {
+                totalWeight += this.props.rows[i].odds;
+            }
+            var rand = Math.ceil(Math.random() * totalWeight);
+            var currentWeight = 0;
+            for (let i = 0; i <= this.props.rows.length; i++) {
+                const row = this.props.rows[i];
+                currentWeight += row.odds;
+                if (rand <= currentWeight) {
+                    result = row.result;
+                    break;
+                }
+            }
+            alert(rand + ".\n" + result);
+            return result;
+        };
     }
     render() {
         let die = 0;
@@ -14,9 +32,10 @@ class RollableTable extends React.Component {
         return (React.createElement("table", { className: "table table-dark table-striped" },
             React.createElement("thead", null,
                 React.createElement("tr", null,
-                    React.createElement("th", { onClick: this.roll },
-                        "1d",
-                        die),
+                    React.createElement("th", null,
+                        React.createElement("button", { type: "button", className: "btn btn-link btm-sm m-0 p-0", onClick: this.roll },
+                            "1d",
+                            die)),
                     React.createElement("th", null, this.props.resultColumnLabel))),
             React.createElement("tbody", null, this.props.rows.map((row, index) => {
                 let oddsRange = row.odds > 1 ? (lastRollCutoff + "-" + (lastRollCutoff + row.odds - 1)) : lastRollCutoff;
@@ -25,25 +44,6 @@ class RollableTable extends React.Component {
                     React.createElement("td", null, oddsRange),
                     React.createElement("td", null, row.result)));
             }))));
-    }
-    roll() {
-        var result;
-        var totalWeight = 0;
-        for (let i = 0; i < this.props.rows.length; i++) {
-            totalWeight += this.props.rows[i].odds;
-        }
-        var rand = Math.ceil(Math.random() * totalWeight);
-        var currentWeight = 0;
-        for (let i = 0; i <= this.props.rows.length; i++) {
-            const row = this.props.rows[i];
-            currentWeight += row.odds;
-            if (rand <= currentWeight) {
-                result = row.result;
-                break;
-            }
-        }
-        alert(rand + ".\n" + result);
-        return result;
     }
 }
 RollableTable.defaultProps = {

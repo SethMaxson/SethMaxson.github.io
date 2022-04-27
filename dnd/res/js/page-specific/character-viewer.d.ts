@@ -64,6 +64,7 @@ interface ICharacterViewerProps {
 interface ICharacterViewerState {
     selectedCharacter: ICharacterSlideObject;
     selectedIndex: number;
+    viewingItem: boolean;
 }
 declare class CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterViewerState> {
     constructor(props: ICharacterViewerProps);

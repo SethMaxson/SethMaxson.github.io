@@ -12,7 +12,6 @@ declare class RollableTable extends React.Component<IRollableTableProps> {
     static defaultProps: {
         resultColumnLabel: string;
     };
-    constructor(props: IRollableTableProps);
     render(): JSX.Element;
-    roll(): string | undefined;
+    roll: () => string | undefined;
 }

@@ -26,21 +26,17 @@ class CharacterName extends React.Component<ICharacterNameProps> {
     };
 	render()
 	{
-		if (this.props.tagline.length > 0)
-		{
-			return (
-				<div className="name">{this.props.name}
-					{this.props.status !== "Fine" && (" (" + this.props.status + ")")}
-					&#160;|&#160; <span className="tagline">{this.props.tagline}</span>
-				</div>
-			);
-		}
-		else
-		{
-			return (
-				<div className="name">{this.props.name}</div>
-			);
-		}
+		return (
+			<div className="name">
+				{this.props.name}
+				{this.props.status && this.props.status !== "Fine" && (" (" + this.props.status + ")")}
+				{this.props.tagline && this.props.tagline.length > 0 &&
+					<>
+						&#160;|&#160; <span className="tagline">{this.props.tagline}</span>
+					</>
+				}
+			</div>
+		);
 	}
 }
 
@@ -116,26 +112,28 @@ class CharacterView extends React.Component<ICharacterViewProps, ICharacterViewS
 	render()
 	{
 		return (
-			<div style={{ height: "100%", overflow: "auto", padding: "1em"}}>
-				<CharacterName
-					name={this.props.JsonObject.name}
-					status={this.props.JsonObject.status}
-					tagline={this.props.JsonObject.tagline}
-				/>
-				<CharacterProperties
-					alignment={this.props.JsonObject.alignment}
-					race={this.props.JsonObject.race}
-					class={this.props.JsonObject.class}
-					firstAppearance={this.props.JsonObject.firstAppearance}
-					totalAppearances={this.props.JsonObject.totalAppearances}
-				/>
-				<CharacterTitles titles={this.props.JsonObject.titles} />
-				<div>
-					<CharacterPortrait image={this.props.JsonObject.image} />
-					<ParagraphFromRawHTML text={this.props.JsonObject.description} />
-					{this.props.JsonObject.information.map((paragraph, index: number) =>
-						<ParagraphFromRawHTML text={paragraph} key={index} />
-					)}
+			<div className="overflow-auto card mt-2 mt-lg-1 bg-body">
+				<div className="card-body p-1 p-lg-3">
+					<CharacterName
+						name={this.props.JsonObject.name}
+						status={this.props.JsonObject.status}
+						tagline={this.props.JsonObject.tagline}
+					/>
+					<CharacterProperties
+						alignment={this.props.JsonObject.alignment}
+						race={this.props.JsonObject.race}
+						class={this.props.JsonObject.class}
+						firstAppearance={this.props.JsonObject.firstAppearance}
+						totalAppearances={this.props.JsonObject.totalAppearances}
+					/>
+					<CharacterTitles titles={this.props.JsonObject.titles} />
+					<div>
+						<CharacterPortrait image={this.props.JsonObject.image} />
+						<ParagraphFromRawHTML text={this.props.JsonObject.description} />
+						{this.props.JsonObject.information.map((paragraph, index: number) =>
+							<ParagraphFromRawHTML text={paragraph} key={index} />
+						)}
+					</div>
 				</div>
 			</div>
 		)
@@ -151,6 +149,7 @@ interface ICharacterViewerState
 {
 	selectedCharacter: ICharacterSlideObject;
 	selectedIndex: number;
+	viewingItem: boolean;
 }
 class CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterViewerState> {
 	constructor(props: ICharacterViewerProps)
@@ -166,7 +165,8 @@ class CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterV
 
 		this.state = {
 			selectedCharacter: selectedCharacter,
-			selectedIndex: 0
+			selectedIndex: 0,
+			viewingItem: false
 		};
 	}
 	render()
@@ -174,11 +174,33 @@ class CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterV
 		let filterableItems: IFilterableItemObject[] = this.props.characters.map(a => { return { text: a.name, tags: [] } });
 		return (
 			<div className="bg-dark bg-gradient" style={{ padding: "0px", height: "100%"}}>
-				<FilterPanelOffCanvas items={filterableItems} selectedIndex={this.state.selectedIndex} onChange={this.changeCharacter} />
+				{/* <FilterPanelOffCanvas
+					items={filterableItems}
+					selectedIndex={this.state.selectedIndex}
+					onChange={this.changeCharacter}
+				/>
 				<FilterPanelToggleButton />
 				<div className="container bg-body d-flex flex-column" style={{ padding: "0px", height: "100%", overflowY: "hidden"}}>
 					<FilterPanelToggleButtonMobile />
 					<CharacterView JsonObject={this.state.selectedCharacter} />
+				</div> */}
+
+				<div className="container-sm bg-body d-flex flex-column position-relative" style={{ padding: "0px", height: "100%", overflowY: "hidden" }}>
+					<FilterPanel
+						className="position-absolute top-0 start-0 w-100 h-100"
+						items={filterableItems}
+						selectedIndex={this.state.selectedIndex}
+						onChange={this.changeCharacter}
+					/>
+					{
+						this.state.viewingItem &&
+						<div className="position-absolute top-0 start-0 w-100 h-100 bg-secondary d-flex flex-column p-2 pt-1 p-lg-3 pt-lg-1" style={{ zIndex: 10 }}>
+							<div className="text-start">
+								<button className="btn btn-light" onClick={() => { this.setState({ viewingItem: false }) }}>&lt; Back</button>
+							</div>
+							<CharacterView JsonObject={this.state.selectedCharacter} />
+						</div>
+					}
 				</div>
 			</div>
 
@@ -186,7 +208,7 @@ class CharacterViewer extends React.Component<ICharacterViewerProps, ICharacterV
 	}
 	changeCharacter(index: number)
 	{
-		this.setState({ selectedCharacter: this.props.characters[index], selectedIndex: index});
+		this.setState({ selectedCharacter: this.props.characters[index], selectedIndex: index, viewingItem: true });
 	}
 }
 

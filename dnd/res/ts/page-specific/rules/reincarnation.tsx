@@ -1161,14 +1161,6 @@ const ReincarnationTables: IReincarnationTables = {
 			rows: [
 				{
 					odds: 1,
-					result: "Aetherborn"
-				},
-				{
-					odds: 1,
-					result:"Aven"
-				},
-				{
-					odds: 1,
 					result:"Awakened Golem*"
 				},
 				{
@@ -1181,14 +1173,10 @@ const ReincarnationTables: IReincarnationTables = {
 				},
 				{
 					odds: 1,
-					result:"Beholder"
-				},
-				{
-					odds: 1,
 					result:"Blight*"
 				},
 				{
-					odds: 1,
+					odds: 2,
 					result:"Bloodfin"
 				},
 				{
@@ -1200,12 +1188,8 @@ const ReincarnationTables: IReincarnationTables = {
 					result:"Brokkos"
 				},
 				{
-					odds: 1,
+					odds: 2,
 					result:"Bullywug"
-				},
-				{
-					odds: 1,
-					result:"Cambion"
 				},
 				{
 					odds: 1,
@@ -1214,14 +1198,6 @@ const ReincarnationTables: IReincarnationTables = {
 				{
 					odds: 1,
 					result:"Deep Scion"
-				},
-				{
-					odds: 1,
-					result:"Demon*"
-				},
-				{
-					odds: 1,
-					result:"Devil*"
 				},
 				{
 					odds: 1,
@@ -1244,7 +1220,7 @@ const ReincarnationTables: IReincarnationTables = {
 					result:"Elemental*"
 				},
 				{
-					odds: 1,
+					odds: 2,
 					result:"Firenewt"
 				},
 				{
@@ -1265,10 +1241,6 @@ const ReincarnationTables: IReincarnationTables = {
 				},
 				{
 					odds: 1,
-					result:"Giant*"
-				},
-				{
-					odds: 1,
 					result:"Giff"
 				},
 				{
@@ -1276,7 +1248,7 @@ const ReincarnationTables: IReincarnationTables = {
 					result:"Gnoll"
 				},
 				{
-					odds: 1,
+					odds: 5,
 					result:"Grung*"
 				},
 				{
@@ -1297,11 +1269,11 @@ const ReincarnationTables: IReincarnationTables = {
 				},
 				{
 					odds: 1,
-					result:"Half-Dryad"
+					result:"Half-Giant*"
 				},
 				{
-					odds: 1,
-					result:"Half-Giant*"
+					odds: 5,
+					result:"Harengon"
 				},
 				{
 					odds: 1,
@@ -1316,11 +1288,7 @@ const ReincarnationTables: IReincarnationTables = {
 					result:"Illithid"
 				},
 				{
-					odds: 1,
-					result:"Kor"
-				},
-				{
-					odds: 1,
+					odds: 2,
 					result:"Kuo-toa"
 				},
 				{
@@ -1328,7 +1296,15 @@ const ReincarnationTables: IReincarnationTables = {
 					result:"Lamia"
 				},
 				{
-					odds: 1,
+					odds: 5,
+					result:"Leonin"
+				},
+				{
+					odds: 5,
+					result:"Locathah"
+				},
+				{
+					odds: 5,
 					result:"Loxodon"
 				},
 				{
@@ -1336,20 +1312,12 @@ const ReincarnationTables: IReincarnationTables = {
 					result:"Medusa"
 				},
 				{
-					odds: 1,
+					odds: 5,
 					result:"Merfolk"
 				},
 				{
 					odds: 1,
-					result:"Merperson"
-				},
-				{
-					odds: 1,
 					result:"Mimic"
-				},
-				{
-					odds: 1,
-					result:"Mind-Flayer"
 				},
 				{
 					odds: 1,
@@ -1365,7 +1333,7 @@ const ReincarnationTables: IReincarnationTables = {
 				},
 				{
 					odds: 1,
-					result:"Nsoki"
+					result:"Nsoki (Tome of Beasts, page 306)"
 				},
 				{
 					odds: 1,
@@ -1385,19 +1353,7 @@ const ReincarnationTables: IReincarnationTables = {
 				},
 				{
 					odds: 1,
-					result:"Pixie"
-				},
-				{
-					odds: 1,
 					result:"Quickling"
-				},
-				{
-					odds: 1,
-					result:"Rakshasa"
-				},
-				{
-					odds: 1,
-					result:"Ratfolk"
 				},
 				{
 					odds: 1,
@@ -1408,16 +1364,12 @@ const ReincarnationTables: IReincarnationTables = {
 					result:"Sahuagin"
 				},
 				{
-					odds: 1,
+					odds: 5,
 					result:"Satyr"
 				},
 				{
 					odds: 1,
 					result:"Selkie"
-				},
-				{
-					odds: 1,
-					result:"Shardmind"
 				},
 				{
 					odds: 1,
@@ -1436,12 +1388,8 @@ const ReincarnationTables: IReincarnationTables = {
 					result:"Spriggan"
 				},
 				{
-					odds: 1,
-					result:"Sprite"
-				},
-				{
-					odds: 1,
-					result:"Thri-Keen"
+					odds: 2,
+					result:"Thri-Kreen"
 				},
 				{
 					odds: 1,
@@ -1452,11 +1400,7 @@ const ReincarnationTables: IReincarnationTables = {
 					result:"Troglodyte"
 				},
 				{
-					odds: 1,
-					result:"Vampire"
-				},
-				{
-					odds: 1,
+					odds: 2,
 					result:"Vedalken"
 				},
 				{
@@ -1469,19 +1413,11 @@ const ReincarnationTables: IReincarnationTables = {
 				},
 				{
 					odds: 1,
-					result:"Wood Woad"
-				},
-				{
-					odds: 1,
 					result:"Yeti"
 				},
 				{
 					odds: 1,
 					result:"Yuan-Ti (non-pureblood of player's choice)"
-				},
-				{
-					odds: 19,
-					result:"Reroll"
 				},
 				{
 					odds: 1,
@@ -1630,7 +1566,11 @@ const ReincarnationTables: IReincarnationTables = {
 			result: "Elf*",
 		},
 		{
-			odds: 4,
+			odds: 1,
+			result: "Fairy",
+		},
+		{
+			odds: 3,
 			result: "Firbolg",
 		},
 		{
@@ -1650,7 +1590,7 @@ const ReincarnationTables: IReincarnationTables = {
 			result: "Goblinoid*",
 		},
 		{
-			odds: 4,
+			odds: 3,
 			result: "Goliath",
 		},
 		{
@@ -1670,7 +1610,7 @@ const ReincarnationTables: IReincarnationTables = {
 			result: "Human",
 		},
 		{
-			odds: 4,
+			odds: 3,
 			result: "Kenku",
 		},
 		{
@@ -1690,6 +1630,14 @@ const ReincarnationTables: IReincarnationTables = {
 			result: "Orc",
 		},
 		{
+			odds: 1,
+			result:"Owlin"
+		},
+		{
+			odds: 2,
+			result:"Ratfolk"
+		},
+		{
 			odds: 4,
 			result: "Tabaxi",
 		},
@@ -1698,7 +1646,7 @@ const ReincarnationTables: IReincarnationTables = {
 			result: "Tiefling*",
 		},
 		{
-			odds: 4,
+			odds: 3,
 			result: "Tortle",
 		},
 		{

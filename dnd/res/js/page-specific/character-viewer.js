@@ -7,16 +7,13 @@ class CharacterPortrait extends React.Component {
 }
 class CharacterName extends React.Component {
     render() {
-        if (this.props.tagline.length > 0) {
-            return (React.createElement("div", { className: "name" },
-                this.props.name,
-                this.props.status !== "Fine" && (" (" + this.props.status + ")"),
-                "\u00A0|\u00A0 ",
-                React.createElement("span", { className: "tagline" }, this.props.tagline)));
-        }
-        else {
-            return (React.createElement("div", { className: "name" }, this.props.name));
-        }
+        return (React.createElement("div", { className: "name" },
+            this.props.name,
+            this.props.status && this.props.status !== "Fine" && (" (" + this.props.status + ")"),
+            this.props.tagline && this.props.tagline.length > 0 &&
+                React.createElement(React.Fragment, null,
+                    "\u00A0|\u00A0 ",
+                    React.createElement("span", { className: "tagline" }, this.props.tagline))));
     }
 }
 CharacterName.defaultProps = {
@@ -51,14 +48,15 @@ class CharacterView extends React.Component {
         super(props);
     }
     render() {
-        return (React.createElement("div", { style: { height: "100%", overflow: "auto", padding: "1em" } },
-            React.createElement(CharacterName, { name: this.props.JsonObject.name, status: this.props.JsonObject.status, tagline: this.props.JsonObject.tagline }),
-            React.createElement(CharacterProperties, { alignment: this.props.JsonObject.alignment, race: this.props.JsonObject.race, class: this.props.JsonObject.class, firstAppearance: this.props.JsonObject.firstAppearance, totalAppearances: this.props.JsonObject.totalAppearances }),
-            React.createElement(CharacterTitles, { titles: this.props.JsonObject.titles }),
-            React.createElement("div", null,
-                React.createElement(CharacterPortrait, { image: this.props.JsonObject.image }),
-                React.createElement(ParagraphFromRawHTML, { text: this.props.JsonObject.description }),
-                this.props.JsonObject.information.map((paragraph, index) => React.createElement(ParagraphFromRawHTML, { text: paragraph, key: index })))));
+        return (React.createElement("div", { className: "overflow-auto card mt-2 mt-lg-1 bg-body" },
+            React.createElement("div", { className: "card-body p-1 p-lg-3" },
+                React.createElement(CharacterName, { name: this.props.JsonObject.name, status: this.props.JsonObject.status, tagline: this.props.JsonObject.tagline }),
+                React.createElement(CharacterProperties, { alignment: this.props.JsonObject.alignment, race: this.props.JsonObject.race, class: this.props.JsonObject.class, firstAppearance: this.props.JsonObject.firstAppearance, totalAppearances: this.props.JsonObject.totalAppearances }),
+                React.createElement(CharacterTitles, { titles: this.props.JsonObject.titles }),
+                React.createElement("div", null,
+                    React.createElement(CharacterPortrait, { image: this.props.JsonObject.image }),
+                    React.createElement(ParagraphFromRawHTML, { text: this.props.JsonObject.description }),
+                    this.props.JsonObject.information.map((paragraph, index) => React.createElement(ParagraphFromRawHTML, { text: paragraph, key: index }))))));
     }
 }
 class CharacterViewer extends React.Component {
@@ -73,20 +71,23 @@ class CharacterViewer extends React.Component {
         let selectedCharacter = matchingCharacters.length > 0 ? matchingCharacters[0] : this.props.characters[0];
         this.state = {
             selectedCharacter: selectedCharacter,
-            selectedIndex: 0
+            selectedIndex: 0,
+            viewingItem: false
         };
     }
     render() {
         let filterableItems = this.props.characters.map(a => { return { text: a.name, tags: [] }; });
         return (React.createElement("div", { className: "bg-dark bg-gradient", style: { padding: "0px", height: "100%" } },
-            React.createElement(FilterPanelOffCanvas, { items: filterableItems, selectedIndex: this.state.selectedIndex, onChange: this.changeCharacter }),
-            React.createElement(FilterPanelToggleButton, null),
-            React.createElement("div", { className: "container bg-body d-flex flex-column", style: { padding: "0px", height: "100%", overflowY: "hidden" } },
-                React.createElement(FilterPanelToggleButtonMobile, null),
-                React.createElement(CharacterView, { JsonObject: this.state.selectedCharacter }))));
+            React.createElement("div", { className: "container-sm bg-body d-flex flex-column position-relative", style: { padding: "0px", height: "100%", overflowY: "hidden" } },
+                React.createElement(FilterPanel, { className: "position-absolute top-0 start-0 w-100 h-100", items: filterableItems, selectedIndex: this.state.selectedIndex, onChange: this.changeCharacter }),
+                this.state.viewingItem &&
+                    React.createElement("div", { className: "position-absolute top-0 start-0 w-100 h-100 bg-secondary d-flex flex-column p-2 pt-1 p-lg-3 pt-lg-1", style: { zIndex: 10 } },
+                        React.createElement("div", { className: "text-start" },
+                            React.createElement("button", { className: "btn btn-light", onClick: () => { this.setState({ viewingItem: false }); } }, "< Back")),
+                        React.createElement(CharacterView, { JsonObject: this.state.selectedCharacter })))));
     }
     changeCharacter(index) {
-        this.setState({ selectedCharacter: this.props.characters[index], selectedIndex: index });
+        this.setState({ selectedCharacter: this.props.characters[index], selectedIndex: index, viewingItem: true });
     }
 }
 const CHARACTERS = [
