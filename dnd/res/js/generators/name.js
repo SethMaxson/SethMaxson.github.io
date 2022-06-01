@@ -1977,6 +1977,7 @@ const NameGenerator = {
                         "Gimble",
                         "Glim",
                         "Glint",
+                        "Gnomez",
                         "Gurnik",
                         "Jebodah",
                         "Jebeddo",

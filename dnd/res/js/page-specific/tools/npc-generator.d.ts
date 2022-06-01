@@ -24,11 +24,22 @@ declare class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGener
     /** Creates a deep clone version of the specified NPCManager, for use in updating state. */
     CloneNPCManager: (npcManager: NPCManager) => NPCManager;
     DeleteNPC: (id: string, isRandomCollection: boolean) => void;
+    UpdateNpc: (id: string, isRandomCollection: boolean, updateSteps: (npc: INPC) => void) => void;
+    UpdateNpcCollection: (npcCollection: NPCManager, isRandomCollection: boolean) => void;
     GenerateNPCs: (race: string | string[] | undefined, gender: string | undefined, age: AgeCategory[] | undefined, alignment: Alignment[], number: number) => void;
     GetRelativeNumericAge: (npc: NPC) => number;
     RemoveNPCFromManager: (manager: NPCManager, id: string) => void;
     SaveNPCs: () => void;
     TransferNPCBetweenManagers: (moveToRandomCollection: boolean, id: string) => void;
+}
+interface INPCGeneratorSortProps {
+    sortMethod: string;
+    onChange: {
+        (e: React.ChangeEvent<HTMLSelectElement>): void;
+    };
+}
+declare class NPCGeneratorSort extends React.Component<INPCGeneratorSortProps> {
+    render(): JSX.Element;
 }
 interface INPCGeneratorSettingsProps {
     Species: IRace[];
@@ -69,6 +80,11 @@ interface INpcCollectionDisplayProps {
     TransferNPCBetweenManagers: {
         (moveToRandomCollection: boolean, id: string): void;
     };
+    UpdateNpc: {
+        (id: string, isRandomCollection: boolean, updateSteps: {
+            (npc: INPC): void;
+        }): void;
+    };
 }
 interface INpcCollectionDisplayState {
 }
@@ -76,6 +92,7 @@ declare class NpcCollectionDisplay extends React.Component<INpcCollectionDisplay
     render(): JSX.Element;
     Delete: (id: string) => void;
     Transfer: (id: string) => void;
+    Update: (id: string, updateSteps: (npc: INPC) => void) => void;
 }
 interface INpcRowProps {
     NPC: NPC;
@@ -86,6 +103,11 @@ interface INpcRowProps {
     };
     Transfer: {
         (id: string): void;
+    };
+    Update: {
+        (id: string, updateSteps: {
+            (npc: INPC): void;
+        }): void;
     };
 }
 interface INpcRowState {

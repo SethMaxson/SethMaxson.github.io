@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Calendar</title>
+		<!-- <link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all"> -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+		<script src="/dnd/res/js/mechanics.js"></script>
+		<script src="/dnd/res/js/objects/calendar.js"></script>
+		<script src="/dnd/res/js/page-specific/world/calendar.js"></script>
+	</head>
+
+	<body class="bg-dark vh-100">
+		<div class="container bg-body h-100 px-lg-5 py-lg-3">
+			<div class="mb-3 text-center" id="Calendar"></div>
+			<button class="btn btn-primary" id="calculate" onclick="calendarGetStuff()">GetDaysSinceBeginningOfYear</button>
+			<div class="row mt-3">
+				<div class="col-auto" id="TripDistance"></div>
+				<div class="col-auto" id="TripTime"></div>
+				<div class="col" id="MoonPhase"></div>
+			</div>
+		</div>
+	</body>
+
+</html>

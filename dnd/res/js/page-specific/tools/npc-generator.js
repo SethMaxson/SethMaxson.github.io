@@ -65,7 +65,7 @@ const NPCCollectionHelpers = {
         collection.relativeAges = [];
     },
     SortNPCsByProperty(npcCollection, property = "name", desc = false) {
-        if (npcCollection[0].hasOwnProperty(property)) {
+        if (npcCollection.length > 0 && npcCollection[0].hasOwnProperty(property)) {
             if (desc) {
                 // Descending
                 npcCollection.sort((a, b) => {
@@ -109,6 +109,17 @@ class NPCGenerator extends React.Component {
         this.DeleteNPC = (id, isRandomCollection) => {
             let npcCollection = this.CloneNPCManager(isRandomCollection ? this.state.randomNPCs : this.state.loadedNPCs);
             this.RemoveNPCFromManager(npcCollection, id);
+            this.UpdateNpcCollection(npcCollection, isRandomCollection);
+        };
+        this.UpdateNpc = (id, isRandomCollection, updateSteps) => {
+            let npcCollection = this.CloneNPCManager(isRandomCollection ? this.state.randomNPCs : this.state.loadedNPCs);
+            const allIndex = npcCollection.all.findIndex(npc => npc.id === id);
+            const filteredIndex = npcCollection.filtered.findIndex(npc => npc.id === id);
+            updateSteps(npcCollection.all[allIndex]);
+            updateSteps(npcCollection.filtered[filteredIndex]);
+            this.UpdateNpcCollection(npcCollection, isRandomCollection);
+        };
+        this.UpdateNpcCollection = (npcCollection, isRandomCollection) => {
             if (isRandomCollection) {
                 this.setState({ randomNPCs: npcCollection });
             }
@@ -184,20 +195,12 @@ class NPCGenerator extends React.Component {
                                     React.createElement("div", { className: "row noprint" },
                                         React.createElement("label", { className: "col-auto col-form-label", htmlFor: "loaded-sort-select" }, "Sort by:"),
                                         React.createElement("div", { className: "col-auto" },
-                                            React.createElement("select", { className: "form-select", onChange: e => {
+                                            React.createElement(NPCGeneratorSort, { sortMethod: this.state.sortLoaded, onChange: e => {
                                                     this.setState({ sortLoaded: e.target.value });
-                                                }, value: this.state.sortLoaded },
-                                                React.createElement("option", { value: "unsorted" }, "Unsorted"),
-                                                React.createElement("option", { value: "name" }, "Name"),
-                                                React.createElement("option", { value: "race" }, "Race"),
-                                                React.createElement("option", { value: "gender" }, "Gender"),
-                                                React.createElement("option", { value: "age" }, "Age"),
-                                                React.createElement("option", { value: "alignment" }, "Alignment"),
-                                                React.createElement("option", { value: "threat" }, "Threat"),
-                                                React.createElement("option", { value: "intelligence" }, "Intelligence"))))),
+                                                } })))),
                                 React.createElement("div", { className: "col-auto" },
                                     React.createElement("button", { className: "btn btn-primary", onClick: this.SaveNPCs }, "Save!"))),
-                            React.createElement(NpcCollectionDisplay, { IsRandomCollection: false, NpcCollection: this.state.loadedNPCs.filtered, SortProperty: this.state.sortLoaded, DeleteNPC: this.DeleteNPC, GetRelativeNumericAge: this.GetRelativeNumericAge, TransferNPCBetweenManagers: this.TransferNPCBetweenManagers })))),
+                            React.createElement(NpcCollectionDisplay, { IsRandomCollection: false, NpcCollection: this.state.loadedNPCs.filtered, SortProperty: this.state.sortLoaded, DeleteNPC: this.DeleteNPC, GetRelativeNumericAge: this.GetRelativeNumericAge, TransferNPCBetweenManagers: this.TransferNPCBetweenManagers, UpdateNpc: this.UpdateNpc })))),
                 React.createElement("div", { className: "accordion-item" },
                     React.createElement("h2", { className: "accordion-header noprint", id: "headingTwo" },
                         React.createElement("button", { className: "accordion-button", type: "button", "data-bs-toggle": "collapse", "data-bs-target": "#collapseTwo", "aria-expanded": "true", "aria-controls": "collapseTwo" }, "Random NPCs")),
@@ -207,18 +210,10 @@ class NPCGenerator extends React.Component {
                             React.createElement("div", { className: "mb-3 row noprint d-print-none" },
                                 React.createElement("label", { className: "col-sm-1 col-form-label", htmlFor: "random-sort-select" }, "Sort by:"),
                                 React.createElement("div", { className: "col-sm-11" },
-                                    React.createElement("select", { className: "form-select", onChange: e => {
+                                    React.createElement(NPCGeneratorSort, { sortMethod: this.state.sortRandom, onChange: e => {
                                             this.setState({ sortRandom: e.target.value });
-                                        }, value: this.state.sortRandom },
-                                        React.createElement("option", { value: "unsorted" }, "Unsorted"),
-                                        React.createElement("option", { value: "name" }, "Name"),
-                                        React.createElement("option", { value: "race" }, "Race"),
-                                        React.createElement("option", { value: "gender" }, "Gender"),
-                                        React.createElement("option", { value: "age" }, "Age"),
-                                        React.createElement("option", { value: "alignment" }, "Alignment"),
-                                        React.createElement("option", { value: "threat" }, "Threat"),
-                                        React.createElement("option", { value: "intelligence" }, "Intelligence")))),
-                            React.createElement(NpcCollectionDisplay, { IsRandomCollection: true, NpcCollection: this.state.randomNPCs.filtered, SortProperty: this.state.sortRandom, DeleteNPC: this.DeleteNPC, GetRelativeNumericAge: this.GetRelativeNumericAge, TransferNPCBetweenManagers: this.TransferNPCBetweenManagers })))))));
+                                        } }))),
+                            React.createElement(NpcCollectionDisplay, { IsRandomCollection: true, NpcCollection: this.state.randomNPCs.filtered, SortProperty: this.state.sortRandom, DeleteNPC: this.DeleteNPC, GetRelativeNumericAge: this.GetRelativeNumericAge, TransferNPCBetweenManagers: this.TransferNPCBetweenManagers, UpdateNpc: this.UpdateNpc })))))));
     }
     componentDidMount() {
         const self = this;
@@ -263,6 +258,19 @@ class NPCGenerator extends React.Component {
             });
             self.GenerateNPCs(undefined, undefined, undefined, [], 20);
         });
+    }
+}
+class NPCGeneratorSort extends React.Component {
+    render() {
+        return (React.createElement("select", { className: "form-select", onChange: this.props.onChange, value: this.props.sortMethod },
+            React.createElement("option", { value: "unsorted" }, "Unsorted"),
+            React.createElement("option", { value: "name" }, "Name"),
+            React.createElement("option", { value: "race" }, "Race"),
+            React.createElement("option", { value: "gender" }, "Gender"),
+            React.createElement("option", { value: "age" }, "Age"),
+            React.createElement("option", { value: "alignment" }, "Alignment"),
+            React.createElement("option", { value: "threat" }, "Threat"),
+            React.createElement("option", { value: "intelligence" }, "Intelligence")));
     }
 }
 class NPCGeneratorSettings extends React.Component {
@@ -390,6 +398,9 @@ class NpcCollectionDisplay extends React.Component {
         this.Transfer = (id) => {
             this.props.TransferNPCBetweenManagers(!this.props.IsRandomCollection, id);
         };
+        this.Update = (id, updateSteps) => {
+            this.props.UpdateNpc(id, this.props.IsRandomCollection, updateSteps);
+        };
     }
     render() {
         const NPCs = this.props.SortProperty == "unsorted" ? this.props.NpcCollection : NPCCollectionHelpers.SortNPCsByProperty(this.props.NpcCollection.slice(), this.props.SortProperty);
@@ -401,7 +412,7 @@ class NpcCollectionDisplay extends React.Component {
                         React.createElement("th", { className: "description" }, "Description"),
                         React.createElement("th", { className: "token" }, "Token"),
                         React.createElement("th", { className: "controls d-print-none" }, "Controls"))),
-                React.createElement("tbody", null, NPCs.map((npc, index) => React.createElement(NpcRow, { Delete: this.Delete, TransferLabel: this.props.IsRandomCollection ? "Add" : "Remove", Transfer: this.Transfer, NPC: npc, RelativeNumericAge: this.props.GetRelativeNumericAge(npc), key: index }))))));
+                React.createElement("tbody", null, NPCs.map((npc, index) => React.createElement(NpcRow, { Delete: this.Delete, TransferLabel: this.props.IsRandomCollection ? "Add" : "Remove", Transfer: this.Transfer, Update: this.Update, NPC: npc, RelativeNumericAge: this.props.GetRelativeNumericAge(npc), key: index }))))));
     }
 }
 class NpcRow extends React.Component {
@@ -427,8 +438,9 @@ class NpcRow extends React.Component {
                         " (",
                         this.props.NPC.age,
                         " years) "),
-                    this.props.NPC.gender,
-                    " ",
+                    React.createElement("span", { onClick: () => this.props.Update(this.props.NPC.id, (npc) => { npc.gender = npc.gender == "female" ? "male" : "female"; }) },
+                        this.props.NPC.gender,
+                        " "),
                     this.props.NPC.race),
                 "Threat Level: ",
                 this.props.NPC.threat,
@@ -449,10 +461,12 @@ function compareRaceJsonObjects(a, b) {
     if (a.name < b.name) {
         return -1;
     }
-    if (a.name > b.name) {
+    else if (a.name > b.name) {
         return 1;
     }
-    return 0;
+    else {
+        return 0;
+    }
 }
 ReactDOM.render(React.createElement(NPCGenerator, null), document.getElementById("react-container"));
 //# sourceMappingURL=npc-generator.js.map

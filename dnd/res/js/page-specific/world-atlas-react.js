@@ -56,5 +56,169 @@ $(document).ready(() => {
         console.log(`Total cities loaded:${_totalLoadedCities}`);
     });
 });
-ReactDOM.render(React.createElement(MapViewer, { height: 11250, width: 18750, overlays: overlays }), document.getElementById("map-goes-here"));
+//#region temporarily hardcoded data
+const worldMapLandmasses = [
+    {
+        id: "lagos",
+        image: {
+            raster: "/dnd/img/maps/landmasses/Lagos.png",
+            vector: "/dnd/img/maps/landmasses/Lagos.svg"
+        },
+        labelPosition: {
+            left: "1040px",
+            top: "1130px"
+        },
+        name: "Lagos",
+        translateLabel: false
+    },
+    {
+        id: "paros",
+        image: {
+            raster: "/dnd/img/maps/landmasses/Paros.png",
+            vector: "/dnd/img/maps/landmasses/Paros.svg"
+        },
+        labelPosition: {
+            left: "2540px",
+            top: "2230px"
+        },
+        name: "Paros",
+        translateLabel: false
+    },
+    {
+        id: "peku",
+        image: {
+            raster: "/dnd/img/maps/landmasses/Peku.png"
+        },
+        labelPosition: {
+            left: "50%",
+            top: "50%"
+        },
+        name: "Peku",
+        translateLabel: true
+    },
+    {
+        id: "bravagg",
+        image: {
+            raster: "/dnd/img/maps/landmasses/Bravagg.svg",
+            vector: "/dnd/img/maps/landmasses/Bravagg.svg"
+        },
+        labelPosition: {
+            left: "50%",
+            top: "50%"
+        },
+        name: "Bravagg Isle",
+        translateLabel: true
+    },
+    {
+        id: "terrapim",
+        image: {
+            raster: "/dnd/img/maps/landmasses/Terrapim.png",
+            vector: "/dnd/img/maps/landmasses/Terrapim.svg"
+        },
+        labelPosition: {
+            left: "50%",
+            top: "50%"
+        },
+        name: "Terrapim",
+        translateLabel: true
+    },
+    {
+        id: "decapos",
+        image: {
+            raster: "/dnd/img/maps/landmasses/Decapos.png",
+            vector: "/dnd/img/maps/landmasses/Decapos.svg"
+        },
+        labelPosition: {
+            left: "50%",
+            top: "50%"
+        },
+        name: "Decapos",
+        translateLabel: true
+    },
+    {
+        id: "notre",
+        image: {
+            raster: "/dnd/img/maps/landmasses/Notre.png"
+        },
+        labelPosition: {
+            left: "50%",
+            top: "50%"
+        },
+        name: "Notre",
+        translateLabel: true
+    },
+    {
+        id: "sutre",
+        image: {
+            raster: "/dnd/img/maps/landmasses/Sutre.png"
+        },
+        labelPosition: {
+            left: "50%",
+            top: "50%"
+        },
+        name: "Sutre",
+        translateLabel: true
+    }
+];
+const worldMapOverlays = [
+    {
+        displayedByDefault: false,
+        image: "/dnd/img/maps/world-map-overlays/corruptionmap.png",
+        name: "Corruption Map",
+        opacity: 0.6,
+        zIndex: 2,
+    },
+    {
+        displayedByDefault: false,
+        image: "/dnd/img/maps/world-map-overlays/Climate_Zones.png",
+        name: "Climate Zones",
+        opacity: 0.6,
+        zIndex: 2,
+    },
+    {
+        displayedByDefault: false,
+        image: "/dnd/img/maps/world-map-overlays/Possible_Islands.png",
+        name: "Possible Islands",
+        opacity: 0.6,
+        zIndex: 2,
+    },
+    {
+        displayedByDefault: false,
+        image: "/dnd/img/maps/Globe.svg",
+        name: "Globe",
+        opacity: 0.6,
+        zIndex: 2,
+    },
+    {
+        displayedByDefault: true,
+        image: "/dnd/img/maps/world-map-overlays/Definite_Islands.png",
+        name: "Definite Islands",
+        opacity: 1,
+        zIndex: 0,
+    },
+    {
+        displayedByDefault: false,
+        image: "/dnd/img/maps/Tectonic_Plates.png",
+        name: "Tectonic Plates",
+        opacity: 1,
+        zIndex: 0,
+    }
+];
+//#endregion temporarily hardcoded data
+ReactDOM.render(React.createElement(MapViewer, { height: 11250, width: 18750, landmasses: worldMapLandmasses, overlays: worldMapOverlays, config: { showGridlines: true } },
+    React.createElement("a", { href: "/dnd/pages/maps/noseyus.html", className: "smith metropolis", style: { "position": "absolute", "top": "4200px", "left": "15000px", "fontSize": "80px", "zIndex": 6 } },
+        "Noseyus Island",
+        React.createElement("span", { className: "city-preview" },
+            React.createElement("h1", null, "Noseyus Island"),
+            React.createElement("p", null, "A small, perfectly circular island. This does not appear on any maps or charts."))),
+    React.createElement("a", { href: "#", className: "point-of-interest smith metropolis", style: { "left": "calc(38.6% - 12.5px)", "top": "calc(38% - 12.5px)", "fontSize": "40px", zIndex: 6 } },
+        React.createElement("div", { className: "map-marker-icon marker-city" }, "\u00A0"),
+        React.createElement("span", { className: "map-marker-name", style: { "position": "absolute", "top": "100%", "left": "0%", "transform": "translate(16px, -50%)" } }, "Osta M\u00FC\u00FC Turul"),
+        React.createElement("span", { className: "city-preview" },
+            React.createElement("h1", null, "Osta M\u00FC\u00FC Turul"),
+            React.createElement("p", null, "Osta M\u00FC\u00FC Turul is a city covering a small island roughly midway between Paros, Lagos, and Decapos. The city is a massive trade hub where merchants from each continent can meet and conduct business. Security is tight, and the island has the highest known concentration of airship docks in the world."),
+            React.createElement("h1", null, "Culture."),
+            React.createElement("p", null, "Visitors of any nationality and species are welcome in Osta M\u00FC\u00FC Turul, as long as they abide by its rules."))),
+    React.createElement(MapLabel, { fontSize: "110px", labelType: "continent", name: "Seiklus Ocean", position: { left: "27%", top: "40%" } }),
+    React.createElement(MapLabel, { fontSize: "110px", labelType: "continent", name: "Nyr Ocean", position: { left: "74%", top: "40%" } })), document.getElementById("map-goes-here"));
 //# sourceMappingURL=world-atlas-react.js.map

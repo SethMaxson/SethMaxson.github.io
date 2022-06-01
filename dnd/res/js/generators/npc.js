@@ -24,6 +24,7 @@ var AgeCategory;
 var races = [];
 class NPCDeepGenerator {
     constructor() {
+        //#region private properties
         this.totaledWeights = {
             Age: -1,
             Race: -1,
@@ -1520,6 +1521,7 @@ class NPCDeepGenerator {
             ]
         };
     }
+    //#endregion private properties
     /**
      * Determines which word is correct for the specified pronoun based on an array of possible values
      * @param pronoun The pronoun from which to determine the correct word
@@ -1663,6 +1665,18 @@ class NPCDeepGenerator {
         }
         return pronoun;
     }
+    getNPCGender(racialTraits) {
+        return randomize(racialTraits.genders);
+    }
+    getNPCRace() {
+        if (this.totaledWeights.Race < 0) {
+            this.initializeNPCGen();
+        }
+        return weightedRandom(this.racesWeighted, this.totaledWeights.Race);
+    }
+    getRacialTraits(race) {
+        return getRacialTraits(race);
+    }
     resolvePlaceholders(npc, stringToFix) {
         stringToFix = stringToFix.replaceAll("{GenderPronoun}", this.getPronoun(npc.gender))
             .replaceAll("{HisHer}", this.getPronoun(npc.gender, ["their", "her", "his"]))
@@ -1692,9 +1706,9 @@ class NPCDeepGenerator {
         if (this.totaledWeights.Race < 0) {
             this.initializeNPCGen();
         }
-        npc.race = race ? race : weightedRandom(this.racesWeighted, this.totaledWeights.Race);
-        let rt = getRacialTraits(npc.race);
-        npc.gender = gender || randomize(rt.genders);
+        npc.race = race ? race : this.getNPCRace();
+        let rt = this.getRacialTraits(npc.race);
+        npc.gender = gender || this.getNPCGender(rt);
         this.getNPCAge(npc, rt, age);
         npc.name = NameGenerator.full(npc.race, npc.gender, npc.relativeAge);
         npc.alignment = alignment || randomize(rt.alignments);

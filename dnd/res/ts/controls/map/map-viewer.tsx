@@ -19,8 +19,19 @@ interface IMapPanBounds {
 	top: number;
 }
 
-interface IMapViewerProps {
+interface IMapViewerConfig
+{
+	initialZoom?: number;
+	maxZoom?: number;
+	minZoom?: number;
+	showGridlines?: boolean;
+	zoomStep?: number;
+}
+interface IMapViewerProps
+{
+	config: IMapViewerConfig;
 	height: number;
+	landmasses: ILandmassData[];
 	overlays: IMapOverlayData[];
 	width: number;
 }
@@ -32,25 +43,22 @@ interface IMapViewerState
 }
 class MapViewer extends React.Component<IMapViewerProps, IMapViewerState> {
 	public static defaultProps = {
+		config: {},
 		overlays: []
     };
 	constructor(props: IMapViewerProps)
 	{
 		super(props);
-		this.centerMap = this.centerMap.bind(this);
-		this.setImageType = this.setImageType.bind(this);
-		this.setOverlayDisplay = this.setOverlayDisplay.bind(this);
-
 		this.state = {
 			overlayDisplay: this.props.overlays.map(({ displayedByDefault }) => displayedByDefault),
 			useVectorImages: false,
 			zoom: {
-				currentZoom: 0.5,
+				currentZoom: props.config.initialZoom || 0.5,
 				onZoom: this.handleZoomChange,
-				maxZoom: 1.25,
-				minZoom: 0.10,
-				previousZoom: 0.5,
-				step: 0.01
+				maxZoom: props.config.maxZoom || 1.25,
+				minZoom: props.config.minZoom || 0.10,
+				previousZoom: props.config.initialZoom || 0.5,
+				step: props.config.zoomStep || 0.01
 			}
 		};
 		__mapPan.scale = this.state.zoom.currentZoom;
@@ -73,14 +81,19 @@ class MapViewer extends React.Component<IMapViewerProps, IMapViewerState> {
 					setOverlayDisplay={this.setOverlayDisplay}
 					zoom={this.state.zoom}
 				/>
-				<MapContainer
-					landmasses={landmasses}
-					overlayDisplay={this.state.overlayDisplay}
-					overlays={this.props.overlays}
-					size={{ height: this.props.height, width: this.props.width }}
-					useVectorImages={this.state.useVectorImages}
-					zoom={this.state.zoom}
-				/>
+				<div className="map-window">
+					<MapContainer
+						landmasses={this.props.landmasses}
+						overlayDisplay={this.state.overlayDisplay}
+						overlays={this.props.overlays}
+						showGridlines={this.props.config.showGridlines}
+						size={{ height: this.props.height, width: this.props.width }}
+						useVectorImages={this.state.useVectorImages}
+						zoom={this.state.zoom}
+					>
+						{this.props.children}
+					</MapContainer>
+				</div>
 				{/* <CityBlurbOffCanvas /> */}
 			</div>
 		);
@@ -90,17 +103,20 @@ class MapViewer extends React.Component<IMapViewerProps, IMapViewerState> {
 		let prevZoom = this.state.zoom.currentZoom;
 		newZoom = Math.min(newZoom, this.state.zoom.maxZoom);
 		newZoom = Math.max(newZoom, this.state.zoom.minZoom);
-		const windowHeight = window.innerHeight;
-		const windowWidth = window.innerWidth;
-		const mapIsTallerThanScreen = (this.props.height * newZoom) > windowHeight;
-		const mapIsWiderThanScreen = (this.props.width * newZoom) > windowWidth;
+		// const mapWindowHeight = window.innerHeight;
+		const mapWindowHeight = $(".map-window").innerHeight() || 0;
+		// const mapWindowWidth = window.innerWidth;
+		const mapWindowWidth = $(".map-window").innerWidth() || 0;
+
+		const mapIsTallerThanScreen = (this.props.height * newZoom) > mapWindowHeight;
+		const mapIsWiderThanScreen = (this.props.width * newZoom) > mapWindowWidth;
 		const zoomBoxHeight = __zoomBoxDimensions.height * newZoom;
 		const zoomBoxWidth = __zoomBoxDimensions.width * newZoom;
 
-		const maxX = -((windowWidth - zoomBoxWidth) / 2) / newZoom;
-		const minX = -this.props.width + (((windowWidth + zoomBoxWidth) / 2) / newZoom);
-		const maxY = -((windowHeight - zoomBoxHeight) / 2) / newZoom;
-		const minY = -this.props.height + (((windowHeight + zoomBoxHeight) / 2) / newZoom);
+		const maxX = -((mapWindowWidth - zoomBoxWidth) / 2) / newZoom;
+		const minX = -this.props.width + (((mapWindowWidth + zoomBoxWidth) / 2) / newZoom);
+		const maxY = -((mapWindowHeight - zoomBoxHeight) / 2) / newZoom;
+		const minY = -this.props.height + (((mapWindowHeight + zoomBoxHeight) / 2) / newZoom);
 		// console.log(`newZoom: ${newZoom}`);
 		// console.log(`windowWidth: ${windowWidth}`);
 		// console.log(`mapIsWiderThanScreen: ${mapIsWiderThanScreen}`);
@@ -129,17 +145,17 @@ class MapViewer extends React.Component<IMapViewerProps, IMapViewerState> {
 			return { zoom };								// return new object
 		});
 	}
-	setImageType(useVector: boolean): void
+	setImageType = (useVector: boolean): void =>
 	{
 		this.setState({ useVectorImages: useVector});
 	}
-	setOverlayDisplay(index: number, displayOverlay: boolean): void
+	setOverlayDisplay = (index: number, displayOverlay: boolean): void =>
 	{
 		const newDisplay = this.state.overlayDisplay.slice();	//copy the array
 		newDisplay[index] = displayOverlay;						//execute the manipulations
 		this.setState({ overlayDisplay: newDisplay });			//set the new state
 	}
-	centerMap(): void
+	centerMap = (): void =>
 	{
 		$("#map-container").css({
 			left: -Math.round(this.props.width / 2) + "px",
@@ -337,6 +353,7 @@ interface IMapContainerProps
 	landmasses: ILandmassData[];
 	overlayDisplay: boolean[];
 	overlays: IMapOverlayData[];
+	showGridlines?: boolean;
 	size: Size2D;
 	useVectorImages: boolean;
 	zoom: IMapZoom;
@@ -361,34 +378,11 @@ class MapContainer extends React.Component<IMapContainerProps, IMapContainerStat
 				onWheelCapture={this.handleChange.bind(this)}
 			>
 				<div id="map-container" className="map draggable" style={{ width: this.props.size.width + "px", height: this.props.size.height + "px", textAlign: "center", transformOrigin: "center center", position: "relative", left: "-50%", top: "-50%" }}>
-					<div className="grid-lines stay-visible"></div>
+					{this.props.showGridlines && <div className="grid-lines stay-visible"></div>}
 					{this.props.landmasses.map((landmass, index: number) =>
 						<Landmass key={index} className={"map-" + landmass.id} fileName={landmass.name + ".html"} image={this.props.useVectorImages && landmass.image.vector ? landmass.image.vector : landmass.image.raster} name={landmass.name} labelPosition={{ left: landmass.labelPosition.left, top: landmass.labelPosition.top }} translateLabel={landmass.translateLabel} />
 					)}
-
-					<a href="/dnd/pages/maps/noseyus.html" className="smith metropolis" style={{ "position": "absolute", "top": "4200px", "left": "15000px", "fontSize": "80px", "zIndex": 6 }}>
-						Noseyus Island
-						<span className="city-preview">
-							<h1>Noseyus Island</h1>
-							<p>
-								A small, perfectly circular island. This does not appear on any maps or charts.
-							</p>
-						</span>
-					</a>
-					<a href="#" className="point-of-interest smith metropolis" style={{ "left": "calc(38.6% - 12.5px)", "top": "calc(38% - 12.5px)", "fontSize": "40px", zIndex: 6 }}>
-						<div className="map-marker-icon marker-city">&nbsp;</div>
-						<span className="map-marker-name" style={{ "position": "absolute", "top": "100%", "left": "0%", "transform": "translate(16px, -50%)" }}>Osta Müü Turul</span>
-						<span className="city-preview">
-							<h1>Osta Müü Turul</h1>
-							<p>Osta Müü Turul is a city covering a small island roughly midway between Paros, Lagos, and Decapos. The city is a massive trade hub where merchants from each continent can meet and conduct business. Security is tight, and the island has the highest known concentration of airship docks in the world.</p>
-							<h1>Culture.</h1>
-							<p>
-								Visitors of any nationality and species are welcome in Osta Müü Turul, as long as they abide by its rules.
-							</p>
-						</span>
-					</a>
-					<MapLabel fontSize="110px" labelType="continent" name="Seiklus Ocean" position={{ left: "27%", top: "40%" }} />
-					<MapLabel fontSize="110px" labelType="continent" name="Nyr Ocean" position={{ left: "74%", top: "40%" }} />
+					{this.props.children}
 
 					{this.props.overlays.map((overlay, index: number) =>
 						this.props.overlayDisplay[index]? <Overlay key={index} image={overlay.image} zIndex={overlay.zIndex} opacity={overlay.opacity} display="default" /> : null
@@ -573,156 +567,3 @@ $(document).ready(function ()
 		}
 	});
 });
-
-
-
-//#region temporarily hardcoded data
-const landmasses: ILandmassData[] = [
-	{
-		id: "lagos",
-		image: {
-			raster: "/dnd/img/maps/landmasses/Lagos.png",
-			vector: "/dnd/img/maps/landmasses/Lagos.svg"
-		},
-		labelPosition: {
-			left: "1040px",
-			top: "1130px"
-		},
-		name: "Lagos",
-		translateLabel: false
-	},
-	{
-		id: "paros",
-		image: {
-			raster: "/dnd/img/maps/landmasses/Paros.png",
-			vector: "/dnd/img/maps/landmasses/Paros.svg"
-		},
-		labelPosition: {
-			left: "2540px",
-			top: "2230px"
-		},
-		name: "Paros",
-		translateLabel: false
-	},
-	{
-		id: "peku",
-		image: {
-			raster: "/dnd/img/maps/landmasses/Peku.png"
-		},
-		labelPosition: {
-			left: "50%",
-			top: "50%"
-		},
-		name: "Peku",
-		translateLabel: true
-	},
-	{
-		id: "bravagg",
-		image: {
-			raster: "/dnd/img/maps/landmasses/Bravagg.svg",
-			vector: "/dnd/img/maps/landmasses/Bravagg.svg"
-		},
-		labelPosition: {
-			left: "50%",
-			top: "50%"
-		},
-		name: "Bravagg Isle",
-		translateLabel: true
-	},
-	{
-		id: "terrapim",
-		image: {
-			raster: "/dnd/img/maps/landmasses/Terrapim.png",
-			vector: "/dnd/img/maps/landmasses/Terrapim.svg"
-		},
-		labelPosition: {
-			left: "50%",
-			top: "50%"
-		},
-		name: "Terrapim",
-		translateLabel: true
-	},
-	{
-		id: "decapos",
-		image: {
-			raster: "/dnd/img/maps/landmasses/Decapos.png",
-			vector: "/dnd/img/maps/landmasses/Decapos.svg"
-		},
-		labelPosition: {
-			left: "50%",
-			top: "50%"
-		},
-		name: "Decapos",
-		translateLabel: true
-	},
-	{
-		id: "notre",
-		image: {
-			raster: "/dnd/img/maps/landmasses/Notre.png"
-		},
-		labelPosition: {
-			left: "50%",
-			top: "50%"
-		},
-		name: "Notre",
-		translateLabel: true
-	},
-	{
-		id: "sutre",
-		image: {
-			raster: "/dnd/img/maps/landmasses/Sutre.png"
-		},
-		labelPosition: {
-			left: "50%",
-			top: "50%"
-		},
-		name: "Sutre",
-		translateLabel: true
-	}
-];
-
-const overlays: IMapOverlayData[] = [
-	{
-		displayedByDefault: false,
-		image: "/dnd/img/maps/world-map-overlays/corruptionmap.png",
-		name: "Corruption Map",
-		opacity: 0.6,
-		zIndex: 2,
-	},
-	{
-		displayedByDefault: false,
-		image: "/dnd/img/maps/world-map-overlays/Climate_Zones.png",
-		name: "Climate Zones",
-		opacity: 0.6,
-		zIndex: 2,
-	},
-	{
-		displayedByDefault: false,
-		image: "/dnd/img/maps/world-map-overlays/Possible_Islands.png",
-		name: "Possible Islands",
-		opacity: 0.6,
-		zIndex: 2,
-	},
-	{
-		displayedByDefault: false,
-		image: "/dnd/img/maps/Globe.svg",
-		name: "Globe",
-		opacity: 0.6,
-		zIndex: 2,
-	},
-	{
-		displayedByDefault: true,
-		image: "/dnd/img/maps/world-map-overlays/Definite_Islands.png",
-		name: "Definite Islands",
-		opacity: 1,
-		zIndex: 0,
-	},
-	{
-		displayedByDefault: false,
-		image: "/dnd/img/maps/Tectonic_Plates.png",
-		name: "Tectonic Plates",
-		opacity: 1,
-		zIndex: 0,
-	}
-];
-//#endregion

@@ -109,8 +109,8 @@
 				"dmNotes": [],
 				"url": "#",
 				"position": {
-					"left": "42.75%",
-					"top": "64.25%"
+					"left": "48.2%",
+					"top": "63%"
 				},
 				"marker": "town"
 			}
@@ -247,7 +247,7 @@
 				],
 				"culture": [
 					"The climate displaced center of Graisham is home to the goddess Graisum and a small handful of carefully chosen followers. They are fiercely protective of this territory and the plant life within it. While most people are unable to survive within the circle, small farms pepper the outlying area. The largest cluster of civilization lies at the base of one of the ridges, and is populated by devout followers of Graisum.",
-					"Most people who travel to Graisham do so during a religious pilgrimage. The vast majority wish to make an offering to Graisum in exchange for blessings upon their harvest, but there are some who make offerings to Tordanei. While Tordenei is seldom seen in Graisham, it is said that she returns frequently to keep up the climate zones for her sister.",
+					"Most people who travel to Graisham do so during a religious pilgrimage. The vast majority wish to make an offering to Graisum in exchange for blessings upon their harvest, but there are some who make offerings to Tordanei. While Tordanei is seldom seen in Graisham, it is said that she returns frequently to keep up the climate zones for her sister.",
 					"Nearly all races are welcome on the outskirts of the climate circle, so long as they respect nature. All Graishamites detest destruction of plants, but none so much as Graisum's chosen followers. Many an adventurer has entered the climate circle, only to be slain as punishment for treading on a sacred blade of grass."
 				],
 				"dmNotes": [],
@@ -414,10 +414,12 @@
 				"name": "Isevaras",
 				"nameLocation": "right",
 				"type": "village",
-				"description": [],
+				"description": [
+					"A quiet port town founded centuries ago by elves."
+				],
 				"culture": [],
 				"dmNotes": [
-					"A small city that has been governed by an elven baronness for decades."
+					"A small city that has been governed by an elven baroness for decades."
 				],
 				"url": "#",
 				"position": {
@@ -661,7 +663,7 @@
 				"nameLocation": "top",
 				"type": "village",
 				"description": [
-					"One could argue that Thorntoft is more of a glorified mine than a town. Regardless of how you categorize the settlement, its residents love nothing more than digging holes.",
+					"One could argue that Thorintoft is more of a glorified mine than a town. Regardless of how you categorize the settlement, its residents love nothing more than digging holes.",
 					"The population of Thorintoft is mostly Dwarf, but there is a surprising number of Kobold citizens. While Dwarves and Kobolds are already adept at underground ventures, rumors suggest they have a different secret to success."
 				],
 				"culture": [],

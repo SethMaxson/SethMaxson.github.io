@@ -71,6 +71,9 @@ declare class NPCDeepGenerator {
      * @param wordForms Possible word forms. Must have 3 entries. The first index is for 'they', the second for 'she', and the third for 'he'.
      */
     getPronoun(gender: string, wordForms?: string[]): string;
+    getNPCGender(racialTraits: IRacialTraitSet): string;
+    getNPCRace(): string;
+    getRacialTraits(race: string): IRacialTraitSet;
     resolvePlaceholders(npc: NPC, stringToFix: string): string;
     initializeNPCGen(): void;
     randomizeNPC(npc: NPC, race?: string, gender?: string, age?: AgeCategory | AgeCategory[], alignment?: string): void;

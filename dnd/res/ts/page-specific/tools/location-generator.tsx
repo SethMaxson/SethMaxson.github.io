@@ -266,6 +266,7 @@ class RollableTableAccordionContainer extends React.Component<IRollableTableAcco
 }
 
 
+//TODO: Make actual tables for generating islands.
 interface ILocationGeneratorTables
 {
 	distortions: {

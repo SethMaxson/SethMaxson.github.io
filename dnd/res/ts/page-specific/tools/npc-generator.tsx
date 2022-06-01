@@ -62,7 +62,7 @@ const NPCCollectionHelpers = {
 	},
 	SortNPCsByProperty(npcCollection: NPC[], property: string = "name", desc: boolean = false)
 	{
-		if (npcCollection[0].hasOwnProperty(property)) {
+		if (npcCollection.length > 0 && npcCollection[0].hasOwnProperty(property)) {
 			if (desc) {
 				// Descending
 				npcCollection.sort((a, b) =>
@@ -131,23 +131,13 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 										<div className="row noprint">
 											<label className="col-auto col-form-label" htmlFor="loaded-sort-select">Sort by:</label>
 											<div className="col-auto">
-												<select
-													className="form-select"
+												<NPCGeneratorSort
+													sortMethod={this.state.sortLoaded}
 													onChange={e =>
 													{
 														this.setState({ sortLoaded: e.target.value });
 													}}
-													value={this.state.sortLoaded}
-												>
-													<option value="unsorted">Unsorted</option>
-													<option value="name">Name</option>
-													<option value="race">Race</option>
-													<option value="gender">Gender</option>
-													<option value="age">Age</option>
-													<option value="alignment">Alignment</option>
-													<option value="threat">Threat</option>
-													<option value="intelligence">Intelligence</option>
-												</select>
+												/>
 											</div>
 										</div>
 									</div>
@@ -162,6 +152,7 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 									DeleteNPC={this.DeleteNPC}
 									GetRelativeNumericAge={this.GetRelativeNumericAge}
 									TransferNPCBetweenManagers={this.TransferNPCBetweenManagers}
+									UpdateNpc={this.UpdateNpc}
 								/>
 							</div>
 						</div>
@@ -182,23 +173,13 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 								<div className="mb-3 row noprint d-print-none">
 									<label className="col-sm-1 col-form-label" htmlFor="random-sort-select">Sort by:</label>
 									<div className="col-sm-11">
-										<select
-											className="form-select"
+										<NPCGeneratorSort
+											sortMethod={this.state.sortRandom}
 											onChange={e =>
 											{
 												this.setState({ sortRandom: e.target.value });
 											}}
-											value={this.state.sortRandom}
-										>
-											<option value="unsorted">Unsorted</option>
-											<option value="name">Name</option>
-											<option value="race">Race</option>
-											<option value="gender">Gender</option>
-											<option value="age">Age</option>
-											<option value="alignment">Alignment</option>
-											<option value="threat">Threat</option>
-											<option value="intelligence">Intelligence</option>
-										</select>
+										/>
 									</div>
 								</div>
 								<NpcCollectionDisplay
@@ -208,6 +189,7 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 									DeleteNPC={this.DeleteNPC}
 									GetRelativeNumericAge={this.GetRelativeNumericAge}
 									TransferNPCBetweenManagers={this.TransferNPCBetweenManagers}
+									UpdateNpc={this.UpdateNpc}
 								/>
 							</div>
 						</div>
@@ -289,6 +271,17 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 	DeleteNPC = (id: string, isRandomCollection: boolean) => {
 		let npcCollection = this.CloneNPCManager(isRandomCollection ? this.state.randomNPCs : this.state.loadedNPCs);
 		this.RemoveNPCFromManager(npcCollection, id);
+		this.UpdateNpcCollection(npcCollection, isRandomCollection);
+	}
+	UpdateNpc = (id: string, isRandomCollection: boolean, updateSteps: { (npc: INPC): void }) => {
+		let npcCollection = this.CloneNPCManager(isRandomCollection ? this.state.randomNPCs : this.state.loadedNPCs);
+		const allIndex = npcCollection.all.findIndex(npc => npc.id === id);
+		const filteredIndex = npcCollection.filtered.findIndex(npc => npc.id === id);
+		updateSteps(npcCollection.all[allIndex]);
+		updateSteps(npcCollection.filtered[filteredIndex]);
+		this.UpdateNpcCollection(npcCollection, isRandomCollection);
+	}
+	UpdateNpcCollection = (npcCollection: NPCManager, isRandomCollection: boolean) => {
 		if (isRandomCollection) {
 			this.setState({ randomNPCs: npcCollection });
 		}
@@ -348,6 +341,33 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 			loadedNPCs: loadedNPCs,
 			randomNPCs: randomNPCs,
 		});
+	}
+}
+
+interface INPCGeneratorSortProps
+{
+	sortMethod: string;
+	onChange: { (e: React.ChangeEvent<HTMLSelectElement>): void }
+}
+class NPCGeneratorSort extends React.Component<INPCGeneratorSortProps> {
+	render()
+	{
+		return (
+			<select
+				className="form-select"
+				onChange={this.props.onChange}
+				value={this.props.sortMethod}
+			>
+				<option value="unsorted">Unsorted</option>
+				<option value="name">Name</option>
+				<option value="race">Race</option>
+				<option value="gender">Gender</option>
+				<option value="age">Age</option>
+				<option value="alignment">Alignment</option>
+				<option value="threat">Threat</option>
+				<option value="intelligence">Intelligence</option>
+			</select>
+		);
 	}
 }
 
@@ -558,6 +578,7 @@ interface INpcCollectionDisplayProps
 	DeleteNPC: { (id: string, isRandomCollection: boolean): void };
 	GetRelativeNumericAge: { (npc: NPC): number }
 	TransferNPCBetweenManagers: { (moveToRandomCollection: boolean, id: string): void };
+	UpdateNpc: { (id: string, isRandomCollection: boolean, updateSteps: { (npc: INPC): void }): void };
 }
 interface INpcCollectionDisplayState { }
 class NpcCollectionDisplay extends React.Component<INpcCollectionDisplayProps, INpcCollectionDisplayState> {
@@ -582,6 +603,7 @@ class NpcCollectionDisplay extends React.Component<INpcCollectionDisplayProps, I
 								Delete={this.Delete}
 								TransferLabel={this.props.IsRandomCollection? "Add" : "Remove"}
 								Transfer={this.Transfer}
+								Update={this.Update}
 								NPC={npc}
 								RelativeNumericAge={this.props.GetRelativeNumericAge(npc)}
 								key={index}
@@ -600,6 +622,10 @@ class NpcCollectionDisplay extends React.Component<INpcCollectionDisplayProps, I
 	{
 		this.props.TransferNPCBetweenManagers(!this.props.IsRandomCollection, id);
 	}
+	Update = (id: string, updateSteps: { (npc: INPC): void }) =>
+	{
+		this.props.UpdateNpc(id, this.props.IsRandomCollection, updateSteps);
+	}
 }
 
 interface INpcRowProps
@@ -609,6 +635,7 @@ interface INpcRowProps
 	TransferLabel: string;
 	Delete: { (id: string): void };
 	Transfer: { (id: string): void };
+	Update: { (id: string, updateSteps: { (npc: INPC): void }): void };
 }
 interface INpcRowState { }
 class NpcRow extends React.Component<INpcRowProps, INpcRowState> {
@@ -626,7 +653,8 @@ class NpcRow extends React.Component<INpcRowProps, INpcRowState> {
 					<div style={{ fontStyle: "italic" }}>
 						{this.props.NPC.alignment}
 						<span style={{ color: ageColor }}> {this.props.NPC.relativeAge} ({this.props.NPC.age} years) </span>
-						{this.props.NPC.gender} {this.props.NPC.race}
+						<span onClick={() => this.props.Update(this.props.NPC.id, (npc) => { npc.gender = npc.gender == "female"? "male" : "female" })}>{this.props.NPC.gender} </span>
+						{this.props.NPC.race}
 					</div>
 					Threat Level: {this.props.NPC.threat}<br />
 					Intelligence Level: {this.props.NPC.intelligence}
@@ -653,17 +681,20 @@ class NpcRow extends React.Component<INpcRowProps, INpcRowState> {
 	}
 }
 
-function compareRaceJsonObjects(a: IRace, b: IRace)
+function compareRaceJsonObjects(a: IRace, b: IRace): 1 | 0 | -1
 {
 	if (a.name < b.name)
 	{
 		return -1;
 	}
-	if (a.name > b.name)
+	else if (a.name > b.name)
 	{
 		return 1;
 	}
-	return 0;
+	else
+	{
+		return 0;
+	}
 }
 
 ReactDOM.render(

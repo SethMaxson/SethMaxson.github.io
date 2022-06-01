@@ -29,8 +29,17 @@ interface IMapPanBounds {
     right: number;
     top: number;
 }
+interface IMapViewerConfig {
+    initialZoom?: number;
+    maxZoom?: number;
+    minZoom?: number;
+    showGridlines?: boolean;
+    zoomStep?: number;
+}
 interface IMapViewerProps {
+    config: IMapViewerConfig;
     height: number;
+    landmasses: ILandmassData[];
     overlays: IMapOverlayData[];
     width: number;
 }
@@ -41,15 +50,16 @@ interface IMapViewerState {
 }
 declare class MapViewer extends React.Component<IMapViewerProps, IMapViewerState> {
     static defaultProps: {
+        config: {};
         overlays: never[];
     };
     constructor(props: IMapViewerProps);
     componentDidMount: () => void;
     render(): JSX.Element;
     handleZoomChange: (newZoom: number) => void;
-    setImageType(useVector: boolean): void;
-    setOverlayDisplay(index: number, displayOverlay: boolean): void;
-    centerMap(): void;
+    setImageType: (useVector: boolean) => void;
+    setOverlayDisplay: (index: number, displayOverlay: boolean) => void;
+    centerMap: () => void;
 }
 interface IMapControlsProps {
     zoom: IMapZoom;
@@ -137,6 +147,7 @@ interface IMapContainerProps {
     landmasses: ILandmassData[];
     overlayDisplay: boolean[];
     overlays: IMapOverlayData[];
+    showGridlines?: boolean;
     size: Size2D;
     useVectorImages: boolean;
     zoom: IMapZoom;
@@ -239,5 +250,3 @@ declare const __zoomBoxDimensions: {
     height: number;
     width: number;
 };
-declare const landmasses: ILandmassData[];
-declare const overlays: IMapOverlayData[];

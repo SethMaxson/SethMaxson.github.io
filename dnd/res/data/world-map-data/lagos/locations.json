@@ -6,6 +6,12 @@
 		"type": "town"
 	},
 	{
+		"name":"Averton",
+		"left": "38.72%",
+		"top": "87.01%",
+		"type": "town"
+	},
+	{
 		"name":"Azure Vault",
 		"left": "54.36%",
 		"top": "48.21%",
