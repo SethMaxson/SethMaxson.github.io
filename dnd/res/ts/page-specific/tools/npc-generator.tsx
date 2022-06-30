@@ -63,23 +63,16 @@ const NPCCollectionHelpers = {
 	SortNPCsByProperty(npcCollection: NPC[], property: string = "name", desc: boolean = false)
 	{
 		if (npcCollection.length > 0 && npcCollection[0].hasOwnProperty(property)) {
-			if (desc) {
-				// Descending
-				npcCollection.sort((a, b) =>
-				{
-					if (a[property] == b[property]) {
-						return 0;
-					}
-					return (a[property] > b[property]) ? -1 : 1;
-				})
-			} else {
-				npcCollection.sort((a, b) =>
-				{
-					if (a[property] == b[property]) {
-						return 0;
-					}
-					return (a[property] > b[property]) ? 1 : -1;
-				})
+			const sortMod = desc ? -1 : 1;
+			switch (property) {
+				case "intelligence":
+				case "threat":
+					npcCollection.sort((a, b) => (npcSortOrders[property].indexOf(a[property]) - npcSortOrders[property].indexOf(b[property])) * sortMod);
+					break;
+
+				default:
+					npcCollection.sort((a, b) => (a[property] == b[property]? 0 : ((a[property] > b[property]) ? 1 : -1) * sortMod));
+					break;
 			}
 		}
 		return npcCollection;

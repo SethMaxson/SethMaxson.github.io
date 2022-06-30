@@ -2,6 +2,13 @@ function getNPCs() {
 	return $.ajax({ crossDomain: true, url: "/dnd/res/data/npcs.json", dataType: 'json' });
 }
 
+const npcSortOrders = {
+	/** A constant used for sorting NPC objects by their intelligence rating. */
+	intelligence: ["very low", "low", "average", "high", "very high"],
+	/** A constant used for sorting NPC objects by their threat rating. */
+	threat: ["very low", "low", "slightly low", "medium", "slightly high", "high", "very high"]
+};
+
 interface INPC
 {
 	id: string;
@@ -136,16 +143,25 @@ class NPCManager{
 		});
 	}
 	sort(property: string = "name", desc: boolean = false) {
-		if (this.all[0].hasOwnProperty(property)) {
-			if (desc) {
-				// Descending
-				this.all.sort((a, b) => (a[property] > b[property]) ? -1 : 1)
-				this.filtered.sort((a, b) => (a[property] > b[property]) ? -1 : 1)
-			} else {
-				this.all.sort((a, b) => (a[property] > b[property]) ? 1 : -1)
-				this.filtered.sort((a, b) => (a[property] > b[property]) ? 1 : -1)
+		if (this.all[0].hasOwnProperty(property))
+		{
+			const sortMod = desc ? -1 : 1;
+			switch (property) {
+				case "intelligence":
+				case "threat":
+					this.doSort((a, b) => (npcSortOrders[property].indexOf(a[property]) - npcSortOrders[property].indexOf(b[property])) * sortMod);
+					break;
+
+				default:
+					this.doSort((a, b) => ((a[property] > b[property]) ? 1 : -1) * sortMod);
+					break;
 			}
 		}
+	}
+	private doSort(compareFn: ((a: NPC, b: NPC) => number)): void
+	{
+		this.all.sort(compareFn);
+		this.filtered.sort(compareFn);
 	}
 	get json() {
 		return JSON.stringify(this.all);

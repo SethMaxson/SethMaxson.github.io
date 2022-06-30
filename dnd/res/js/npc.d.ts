@@ -1,6 +1,12 @@
 /// <reference types="jquery" />
 /// <reference types="jqueryui" />
 declare function getNPCs(): JQuery.jqXHR<any>;
+declare const npcSortOrders: {
+    /** A constant used for sorting NPC objects by their intelligence rating. */
+    intelligence: string[];
+    /** A constant used for sorting NPC objects by their threat rating. */
+    threat: string[];
+};
 interface INPC {
     id: string;
     name: any;
@@ -53,6 +59,7 @@ declare class NPCManager {
     /** Converts raw JSON to JavaScript objects. Only needed when loading NPCs from a JSON file. */
     parse(): void;
     sort(property?: string, desc?: boolean): void;
+    private doSort;
     get json(): string;
     save(): void;
     add(npc: NPC): void;
