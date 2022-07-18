@@ -4369,6 +4369,7 @@ const NameGenerator = {
 					"Cook",
 					"Crier",
 					"Crowe",
+					"Darrow",
 					"Dyer",
 					"Everly",
 					"Faire",
