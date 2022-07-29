@@ -6,7 +6,9 @@ enum NPCGenFilterCategory
 	Intelligence = "intelligence",
 	PersonalityTags = "personality tags",
 	Profession = "profession",
-	Species = "species"
+	Species = "species",
+	/** TODO: Filter for this is not implemented yet */
+	Subspecies = "subspecies"
 }
 
 enum NPCGenFilterType
@@ -38,6 +40,7 @@ interface IFilterableWeightedKeyList
 }
 
 var races: string[] = [];
+var raceImages: string[] = [];
 
 class NPCDeepGenerator
 {
@@ -1716,22 +1719,24 @@ class NPCDeepGenerator
 		return pronoun;
 	}
 
+	/**
+	 * Randomly determine this NPC's gender
+	 * @param racialTraits The racial traits object for this NPC's species
+	 */
 	getNPCGender(racialTraits: IRacialTraitSet): string
 	{
 		return randomize(racialTraits.genders);
 	}
 
+	/**
+	 * Randomly determine this NPC's species
+	 */
 	getNPCRace(): string
 	{
 		if (this.totaledWeights.Race < 0) {
 			this.initializeNPCGen();
 		}
 		return weightedRandom(this.racesWeighted, this.totaledWeights.Race);
-	}
-
-	getRacialTraits(race: string): IRacialTraitSet
-	{
-		return getRacialTraits(race);
 	}
 
 	resolvePlaceholders(npc: NPC, stringToFix: string): string
@@ -1777,7 +1782,7 @@ class NPCDeepGenerator
 			this.initializeNPCGen();
 		}
 		npc.race = race ? race : this.getNPCRace();
-		let rt = this.getRacialTraits(npc.race);
+		let rt = getRacialTraits(npc.race);
 		npc.gender = gender || this.getNPCGender(rt);
 		this.getNPCAge(npc, rt, age);
 		npc.name = NameGenerator.full(npc.race, npc.gender, npc.relativeAge);

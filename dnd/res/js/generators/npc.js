@@ -8,6 +8,8 @@ var NPCGenFilterCategory;
     NPCGenFilterCategory["PersonalityTags"] = "personality tags";
     NPCGenFilterCategory["Profession"] = "profession";
     NPCGenFilterCategory["Species"] = "species";
+    /** TODO: Filter for this is not implemented yet */
+    NPCGenFilterCategory["Subspecies"] = "subspecies";
 })(NPCGenFilterCategory || (NPCGenFilterCategory = {}));
 var NPCGenFilterType;
 (function (NPCGenFilterType) {
@@ -22,6 +24,7 @@ var AgeCategory;
     AgeCategory["Old"] = "old";
 })(AgeCategory || (AgeCategory = {}));
 var races = [];
+var raceImages = [];
 class NPCDeepGenerator {
     constructor() {
         //#region private properties
@@ -1665,17 +1668,21 @@ class NPCDeepGenerator {
         }
         return pronoun;
     }
+    /**
+     * Randomly determine this NPC's gender
+     * @param racialTraits The racial traits object for this NPC's species
+     */
     getNPCGender(racialTraits) {
         return randomize(racialTraits.genders);
     }
+    /**
+     * Randomly determine this NPC's species
+     */
     getNPCRace() {
         if (this.totaledWeights.Race < 0) {
             this.initializeNPCGen();
         }
         return weightedRandom(this.racesWeighted, this.totaledWeights.Race);
-    }
-    getRacialTraits(race) {
-        return getRacialTraits(race);
     }
     resolvePlaceholders(npc, stringToFix) {
         stringToFix = stringToFix.replaceAll("{GenderPronoun}", this.getPronoun(npc.gender))
@@ -1707,7 +1714,7 @@ class NPCDeepGenerator {
             this.initializeNPCGen();
         }
         npc.race = race ? race : this.getNPCRace();
-        let rt = this.getRacialTraits(npc.race);
+        let rt = getRacialTraits(npc.race);
         npc.gender = gender || this.getNPCGender(rt);
         this.getNPCAge(npc, rt, age);
         npc.name = NameGenerator.full(npc.race, npc.gender, npc.relativeAge);

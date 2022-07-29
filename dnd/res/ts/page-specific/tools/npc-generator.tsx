@@ -1,4 +1,5 @@
 declare var races: string[];
+declare var raceImages: string[];
 
 const NPCCollectionHelpers = {
 	AddNpcToCollection(collection: NPCManager, npc: NPC) {
@@ -241,6 +242,16 @@ class NPCGenerator extends React.Component<INPCGeneratorProps, INPCGeneratorStat
 				self.setState({ loadedNPCs: loadedNPCs });
 			});
 			self.GenerateNPCs(undefined, undefined, undefined, [], 20);
+		});
+
+		$.ajax({
+			crossDomain: true,
+			url: "/dnd/res/data/directory/img/races/snes.json",
+			dataType: 'json'
+		}).done(function (returnedData: string[])
+		{
+			console.log(returnedData);
+			raceImages = returnedData;
 		});
 	}
 	ClearRandomNPCs = () =>

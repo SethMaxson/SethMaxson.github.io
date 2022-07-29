@@ -251,6 +251,14 @@ class NPCGenerator extends React.Component {
             });
             self.GenerateNPCs(undefined, undefined, undefined, [], 20);
         });
+        $.ajax({
+            crossDomain: true,
+            url: "/dnd/res/data/directory/img/races/snes.json",
+            dataType: 'json'
+        }).done(function (returnedData) {
+            console.log(returnedData);
+            raceImages = returnedData;
+        });
     }
 }
 class NPCGeneratorSort extends React.Component {

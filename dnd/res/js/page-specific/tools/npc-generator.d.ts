@@ -1,5 +1,6 @@
 /// <reference types="react" />
 declare var races: string[];
+declare var raceImages: string[];
 declare const NPCCollectionHelpers: {
     AddNpcToCollection(collection: NPCManager, npc: NPC): void;
     ApplyFilters(collection: NPCManager, races?: string[] | undefined, genders?: string[] | undefined, alignments?: string[] | undefined): NPC[];

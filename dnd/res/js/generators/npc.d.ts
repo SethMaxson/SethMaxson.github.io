@@ -5,7 +5,9 @@ declare enum NPCGenFilterCategory {
     Intelligence = "intelligence",
     PersonalityTags = "personality tags",
     Profession = "profession",
-    Species = "species"
+    Species = "species",
+    /** TODO: Filter for this is not implemented yet */
+    Subspecies = "subspecies"
 }
 declare enum NPCGenFilterType {
     Exclude = "exclude",
@@ -28,6 +30,7 @@ interface IFilterableWeightedKeyList {
     specific: IFilterableWeightedKeyListEntry[];
 }
 declare var races: string[];
+declare var raceImages: string[];
 declare class NPCDeepGenerator {
     totaledWeights: {
         Age: number;
@@ -71,9 +74,15 @@ declare class NPCDeepGenerator {
      * @param wordForms Possible word forms. Must have 3 entries. The first index is for 'they', the second for 'she', and the third for 'he'.
      */
     getPronoun(gender: string, wordForms?: string[]): string;
+    /**
+     * Randomly determine this NPC's gender
+     * @param racialTraits The racial traits object for this NPC's species
+     */
     getNPCGender(racialTraits: IRacialTraitSet): string;
+    /**
+     * Randomly determine this NPC's species
+     */
     getNPCRace(): string;
-    getRacialTraits(race: string): IRacialTraitSet;
     resolvePlaceholders(npc: NPC, stringToFix: string): string;
     initializeNPCGen(): void;
     randomizeNPC(npc: NPC, race?: string, gender?: string, age?: AgeCategory | AgeCategory[], alignment?: string): void;
