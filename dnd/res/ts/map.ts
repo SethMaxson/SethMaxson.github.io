@@ -422,6 +422,7 @@ function FlyingThing(left: string = "50%", top: string = "50%", name: string | s
 function partyDrag(event: JQueryEventObject, ui: JQueryUI.DraggableEventUIParams, speed: number) {
 	dragging = true;
 	var zoom = $("#map-zoom").val() as number * 0.01;
+	var speed = ui.helper.attr("speed")? parseFloat(ui.helper.attr("speed") as string) : speed;
 	if (ctrlkey) {
 		ui.position.left = dragStartX;
 		ui.position.top = dragStartY;

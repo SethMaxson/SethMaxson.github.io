@@ -672,6 +672,7 @@ class NpcRow extends React.Component<INpcRowProps, INpcRowState> {
 				<td className="noprint">
 					<button className="btn btn-secondary m-1" onClick={() => this.props.Transfer(this.props.NPC.id)}>{this.props.TransferLabel}</button>
 					<button className="btn btn-secondary m-1" onClick={this.CopyMapDescription}>Copy description</button>
+					<button className="btn btn-secondary m-1" onClick={this.CopyDescriptionForTiddlyWiki}>Copy TW5 description</button>
 					<button className="btn btn-secondary m-1" onClick={() => alert(HairGenerator.color(this.props.NPC.race, this.props.NPC.gender, this.props.NPC.relativeAge))}>Hair</button>
 					<button className="btn btn-danger m-1" onClick={() => this.props.Delete(this.props.NPC.id)}>Delete</button>
 				</td>
@@ -681,6 +682,11 @@ class NpcRow extends React.Component<INpcRowProps, INpcRowState> {
 	CopyMapDescription = () =>
 	{
 		const mapPageDescription = `${this.props.NPC.name} - ${this.props.NPC.alignment} ${this.props.NPC.relativeAge.capitalize()} ${this.props.NPC.gender.capitalize()} ${this.props.NPC.race.capitalize()}. Threat level: ${this.props.NPC.threat}. Intelligence level: ${this.props.NPC.intelligence}. ${this.props.NPC.description}`;
+		navigator.clipboard.writeText(mapPageDescription);
+	}
+	CopyDescriptionForTiddlyWiki = () =>
+	{
+		const mapPageDescription = `; ${this.props.NPC.name}\n: ${this.props.NPC.alignment} ${this.props.NPC.relativeAge.capitalize()} (${this.props.NPC.age} years) ${this.props.NPC.gender.capitalize()} ${this.props.NPC.race.capitalize()}. Threat level: ${this.props.NPC.threat}. Intelligence level: ${this.props.NPC.intelligence}. ${this.props.NPC.description}`;
 		navigator.clipboard.writeText(mapPageDescription);
 	}
 }
