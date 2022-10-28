@@ -8,7 +8,6 @@
     "cannon": "^0.6.2",
     "crypto-js": "^4.1.1",
     "react": "^17.0.2",
-    "react-bootstrap": "^1.6.1",
     "three": "^0.114.0",
     "vue": "^2.6.14"
   },
