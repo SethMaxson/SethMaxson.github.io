@@ -390,6 +390,7 @@ function FlyingThing(left = "50%", top = "50%", name = "Party", image = "/dnd/im
 function partyDrag(event, ui, speed) {
     dragging = true;
     var zoom = $("#map-zoom").val() * 0.01;
+    var speed = ui.helper.attr("speed") ? parseFloat(ui.helper.attr("speed")) : speed;
     if (ctrlkey) {
         ui.position.left = dragStartX;
         ui.position.top = dragStartY;

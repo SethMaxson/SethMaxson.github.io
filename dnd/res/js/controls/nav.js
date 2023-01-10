@@ -48,7 +48,8 @@ class Nav extends React.Component {
                             React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/tools/contracts.html", target: "mainFrame" }, "Bounty Board"),
                             React.createElement("div", { className: "dropdown-divider" }),
                             React.createElement("h6", { className: "dropdown-header" }, "Campaign I"),
-                            React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/tools/militarystrength.html", target: "mainFrame" }, "Military Strength")))),
+                            React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/tools/militarystrength.html", target: "mainFrame" }, "Military Strength"),
+                            React.createElement("a", { className: "dropdown-item", href: "/dnd/pages/tools/table-campaign-1.html", target: "mainFrame" }, "Table")))),
                 React.createElement(LoginButton, null))));
     }
 }

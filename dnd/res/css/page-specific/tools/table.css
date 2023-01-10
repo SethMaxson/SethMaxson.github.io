@@ -1,15 +1,3 @@
-.chair {
-	width: 50px;
-	height:50px;
-	border:1px solid black;
-	background-color:#b25;
-}
-
-body .pedestrian {
-	width:48px;
-	height:48px;
-}
-
 .languages{
 	color:cyan;
 	font-weight: bold;
@@ -34,6 +22,7 @@ div.header {
 	position:relative;
 	height:50px;
 }
+
 div.header>.name {
 	-ms-flex-preferred-size: 100%;
 	flex-basis: 100%;
@@ -50,6 +39,7 @@ div.header>.name {
 	-webkit-transform: translate(0%, -50%);
 	transform: translate(0%, -50%);
 }
+
 div.header>img{
 	position:absolute;
 	top:0px;
@@ -177,6 +167,7 @@ div.textblock textarea {
 	border: 1px solid black;
 	height: 2em;
 }
+
 textarea {
 	font-size: 12px;
 	text-align: left;

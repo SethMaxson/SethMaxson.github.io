@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html style="zoom:100%; transform:scale(1);">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Knights of the Rectangle</title>
+		<link href="/dnd/style.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="/dnd/res/css/page-specific/tools/table-campaign-1.css" rel="stylesheet" type="text/css" media="all" />
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+		<script type="module" src="/dnd/res/js/page-specific/tools/table-campaign-1.js"></script>
+	</head>
+
+	<body>
+		<div style="padding:1vh 1vw; overflow:hidden;" id="app">
+			<table style="width:98vw; height:98vh; box-sizing:border-box;">
+				<tr style="height:15%">
+					<td style="width:33%;">
+						&#160;
+					</td>
+					<td style="width:33%;">
+						<table-character :character="characters[0]" />
+					</td>
+					<td style="width:33%;">
+						&#160;
+					</td>
+				</tr>
+				<tr style="height:20%;">
+					<td>
+						<table-character :character="characters[1]" />
+					</td>
+					<td style="border:1px solid black; background:#333; border-radius:10px;" rowspan="2">
+						&#160;
+					</td>
+					<td>
+						<table-character :character="characters[2]" />
+					</td>
+				</tr>
+				<tr style="height:20%;">
+					<td>
+						<table-character :character="characters[3]" />
+					</td>
+					<td>
+						<table-character :character="characters[4]" />
+					</td>
+				</tr>
+				<tr style="height:20%;">
+					<td>
+						<table-character :character="characters[5]" />
+					</td>
+					<td style="border:1px solid black; background-color:#a80; border-radius:45%">
+						&#160;
+					</td>
+					<td>
+						&#160;
+					</td>
+				</tr>
+				<tr style="height:15%">
+					<td colspan="3" align="center">
+						<div class="chair pixels">
+							<img src="/dnd/img/maps/icons/dm.png" style="width:100%;" alt="image"/>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

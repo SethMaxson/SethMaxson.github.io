@@ -3,19 +3,27 @@ let CalendarPageCalendar: GeossCalendar;
 $(document).ready(function ()
 {
 	if (localStorage.year !== undefined) {
-		CalendarPageCalendar = new GeossCalendar(parseFloat(localStorage.year), parseFloat(localStorage.month), parseFloat(localStorage.day), parseFloat(localStorage.hour), parseFloat(localStorage.minute));
+		updateCalendarStuff(parseFloat(localStorage.year), parseFloat(localStorage.month), parseFloat(localStorage.day), parseFloat(localStorage.hour), parseFloat(localStorage.minute));
 	} else {
-		CalendarPageCalendar = new GeossCalendar(2368, 9, 27);
+		updateCalendarStuff(2368, 9, 27);
 	}
 
-	$("#Calendar").text(CalendarPageCalendar.getTime() + ' ' + CalendarPageCalendar.getDisplayDate());
 
-	$("#travel-method").on("change", function ()
+	$("#date-picker").on("change", function ()
 	{
-		let speed = parseFloat($("#travel-method").val() as string);
-		$("#travel-speed").val(speed);
+		const dateParts = ($("#date-picker").val() as string).split("-");
+		const year = parseInt(dateParts[0]);
+		const month = parseInt(dateParts[1]);
+		const day = parseInt(dateParts[2]);
+		updateCalendarStuff(year, month, day);
 	});
 })
+
+function updateCalendarStuff(year: number, month: number, day: number, hour?: number, minute?: number) {
+	CalendarPageCalendar = new GeossCalendar(year, month, day, hour, minute);
+	$("#Calendar").text(CalendarPageCalendar.getTime() + ' ' + CalendarPageCalendar.getDisplayDate());
+	calendarGetStuff();
+}
 
 function calendarGetStuff()
 {

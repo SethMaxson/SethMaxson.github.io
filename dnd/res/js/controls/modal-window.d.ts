@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jquery" />
 /// <reference types="jqueryui" />
 /// <reference types="react" />
 declare class ModalWindow {

@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jquery" />
 /// <reference types="jqueryui" />
 declare function getNPCs(): JQuery.jqXHR<any>;
 declare const npcSortOrders: {

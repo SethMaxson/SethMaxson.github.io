@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jquery" />
 /// <reference types="jqueryui" />
 import * as THREE from '../../../node_modules/three/src/Three.js';
 import { OutlineEffect } from '../../../node_modules/three/examples/jsm/effects/OutlineEffect.js';

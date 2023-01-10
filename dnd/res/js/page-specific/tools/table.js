@@ -50,29 +50,29 @@ var app = new Vue({
     data: {
         characters: [
             {
-                avatar: "/dnd/img/maps/icons/Shamous.png",
-                ac: 19,
-                name: "Shamous",
+                avatar: "/dnd/img/maps/icons/campaigns/wednesday-warriors/pc/guidos.png",
+                ac: 14,
+                name: "Guidos",
                 passives: {
                     insight: 21,
                     investigation: 12,
                     perception: 21
                 },
                 languages: [
-                    "Common", "Draconic", "Druidic", "Giant"
+                    "Common", "Gnomish"
                 ]
             },
             {
-                avatar: "/dnd/img/maps/icons/namfoodle.png",
-                ac: 18,
-                name: "Namfoodle Blabberchat",
+                avatar: "/dnd/img/maps/icons/campaigns/wednesday-warriors/pc/murica.png",
+                ac: 17,
+                name: "Murica Bigbrain",
                 passives: {
                     insight: 11,
                     investigation: 18,
                     perception: 11
                 },
                 languages: [
-                    "Common", "Gnomish", "Infernal"
+                    "Common"
                 ]
             },
             {

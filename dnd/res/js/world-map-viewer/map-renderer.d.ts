@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jquery" />
 /// <reference types="jqueryui" />
 declare var _totalLoadedCities: number;
 declare function getCitiesByContinent(destinationElement: JQuery<HTMLElement>, continentName: string, specialTreatmentForHyperLinks?: boolean): Promise<unknown>;

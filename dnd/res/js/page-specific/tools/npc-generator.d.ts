@@ -3,7 +3,7 @@ declare var races: string[];
 declare var raceImages: string[];
 declare const NPCCollectionHelpers: {
     AddNpcToCollection(collection: NPCManager, npc: NPC): void;
-    ApplyFilters(collection: NPCManager, races?: string[] | undefined, genders?: string[] | undefined, alignments?: string[] | undefined): NPC[];
+    ApplyFilters(collection: NPCManager, races?: string[], genders?: string[], alignments?: string[]): NPC[];
     ResetFilters(collection: NPCManager): void;
     SortNPCsByProperty(npcCollection: NPC[], property?: string, desc?: boolean): NPC[];
 };
@@ -116,5 +116,6 @@ interface INpcRowState {
 declare class NpcRow extends React.Component<INpcRowProps, INpcRowState> {
     render(): JSX.Element;
     CopyMapDescription: () => void;
+    CopyDescriptionForTiddlyWiki: () => void;
 }
 declare function compareRaceJsonObjects(a: IRace, b: IRace): 1 | 0 | -1;

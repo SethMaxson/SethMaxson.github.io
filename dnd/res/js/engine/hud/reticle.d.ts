@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+/// <reference types="jquery" />
 /// <reference types="jqueryui" />
 import { HUD } from "./hud.js";
 import { Attitude } from "./../engine.js";

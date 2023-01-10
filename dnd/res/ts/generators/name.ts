@@ -4358,6 +4358,7 @@ const NameGenerator = {
 					"Baker",
 					"Barber",
 					"Becket",
+					"Best",
 					"Blackwood",
 					"Brewer",
 					"Butcher",

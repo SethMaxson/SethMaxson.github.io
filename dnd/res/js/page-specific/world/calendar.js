@@ -2,17 +2,24 @@
 let CalendarPageCalendar;
 $(document).ready(function () {
     if (localStorage.year !== undefined) {
-        CalendarPageCalendar = new GeossCalendar(parseFloat(localStorage.year), parseFloat(localStorage.month), parseFloat(localStorage.day), parseFloat(localStorage.hour), parseFloat(localStorage.minute));
+        updateCalendarStuff(parseFloat(localStorage.year), parseFloat(localStorage.month), parseFloat(localStorage.day), parseFloat(localStorage.hour), parseFloat(localStorage.minute));
     }
     else {
-        CalendarPageCalendar = new GeossCalendar(2368, 9, 27);
+        updateCalendarStuff(2368, 9, 27);
     }
-    $("#Calendar").text(CalendarPageCalendar.getTime() + ' ' + CalendarPageCalendar.getDisplayDate());
-    $("#travel-method").on("change", function () {
-        let speed = parseFloat($("#travel-method").val());
-        $("#travel-speed").val(speed);
+    $("#date-picker").on("change", function () {
+        const dateParts = $("#date-picker").val().split("-");
+        const year = parseInt(dateParts[0]);
+        const month = parseInt(dateParts[1]);
+        const day = parseInt(dateParts[2]);
+        updateCalendarStuff(year, month, day);
     });
 });
+function updateCalendarStuff(year, month, day, hour, minute) {
+    CalendarPageCalendar = new GeossCalendar(year, month, day, hour, minute);
+    $("#Calendar").text(CalendarPageCalendar.getTime() + ' ' + CalendarPageCalendar.getDisplayDate());
+    calendarGetStuff();
+}
 function calendarGetStuff() {
     $("#TripDistance").text('Days since epoch:' + CalendarPageCalendar.getDaysSinceEpoch());
     $("#TripTime").text('Days since New Moon:' + CalendarPageCalendar.getDaysSinceEpoch() % 29);
