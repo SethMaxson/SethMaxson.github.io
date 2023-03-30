@@ -8,6 +8,7 @@ declare function roll(dice: string): number;
 declare function rollDie(size?: number, modifier?: number, advantage?: number): number;
 declare function getRandomInt(start: number, end: number): number;
 declare function chance(percent?: number): boolean;
+declare function getProperty<T, K extends keyof T>(o: T, propertyName: K): T[K];
 declare function GetURLParameter(sParam: string): string | null;
 declare function arrayAppend(array: any, item: any): Array<any>;
 declare function saveJSON(json: JSON | Object, fileName: string): void;

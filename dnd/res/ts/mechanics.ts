@@ -54,6 +54,10 @@ function chance(percent: number = 50): boolean {
 	return rolledResult;
 }
 
+function getProperty<T, K extends keyof T>(o: T, propertyName: K): T[K] {
+    return o[propertyName]; // o[propertyName] is of type T[K]
+}
+
 function GetURLParameter(sParam: string)
 {
 	var sPageURL = window.location.search.substring(1);

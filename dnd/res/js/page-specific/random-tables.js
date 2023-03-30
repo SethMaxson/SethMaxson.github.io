@@ -65,7 +65,7 @@ $(document).ready(function () {
     $("#roll-it").click(function () {
         var die = $("#random-table tr").length;
         var result = rollDie(die);
-        const el = $("#random-table tr")[result - 1];
+        const el = $("#random-table tr")[result];
         $("#result").html(result + ".<br/>" + el.children[1].innerText);
     });
 });

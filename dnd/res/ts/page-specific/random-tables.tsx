@@ -71,7 +71,7 @@ $(document).ready(function ()
 	$("#roll-it").click(function(){
 		var die = $("#random-table tr").length;
 		var result = rollDie(die);
-		const el = $("#random-table tr")[result-1] as HTMLTableRowElement;
+		const el = $("#random-table tr")[result] as HTMLTableRowElement;
 		$("#result").html(result + ".<br/>" + (el.children[1] as HTMLTableCellElement).innerText);
 	})
 })

@@ -39,6 +39,9 @@ function chance(percent = 50) {
     }
     return rolledResult;
 }
+function getProperty(o, propertyName) {
+    return o[propertyName]; // o[propertyName] is of type T[K]
+}
 function GetURLParameter(sParam) {
     var sPageURL = window.location.search.substring(1);
     var sURLVariables = sPageURL.split('&');
