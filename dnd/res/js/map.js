@@ -99,6 +99,10 @@ function initializeMap() {
     $(".map-container").draggable({
         drag: function (event, ui) {
             // ui.offset.top = 5625;
+            // const element = $(event.target);
+            // let newLeft = Math.min(getOriginInPx(element.css('transform-origin').split(' ')[0], element.width() || 0) + (__mapPan.dx / __mapPan.scale), __mapPan.mapPanBounds.left);
+            // $(event.target).css({ 'transform-origin': `${newLeft} center`});
+            // ui.position.left = ui.originalPosition.left;
             var zoom = $("#map-zoom").val() * 0.01;
             const heightMod = -1 * (ui.helper[0].clientHeight / 2);
             const widthMod = -1 * (ui.helper[0].clientWidth / 2);
@@ -143,6 +147,13 @@ function initializeMap() {
         scroll: false,
     });
     $("#map-zoom").change();
+}
+function getOriginInPx(preSplitOriginPart, length) {
+    preSplitOriginPart = preSplitOriginPart.replace("px", "");
+    if (preSplitOriginPart == 'center') {
+        return length / 2;
+    }
+    return parseFloat(preSplitOriginPart);
 }
 function Airship(left, top, name, image, crew) {
     crew = crew || ["Namfoodle", "Thunder", "Teomyr", "Redji", "Zenrya", "Bud"];

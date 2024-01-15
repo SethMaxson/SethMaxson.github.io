@@ -197,7 +197,7 @@ class MapContainer extends React.Component {
         return (React.createElement("div", { id: "zoom-box", style: { width: "100%", height: "100%", textAlign: "center", transformOrigin: "center center", position: "absolute", transform: `scale(${this.props.zoom.currentZoom})` }, onWheelCapture: this.handleChange.bind(this) },
             React.createElement("div", { id: "map-container", className: "map draggable", style: { width: this.props.size.width + "px", height: this.props.size.height + "px", textAlign: "center", transformOrigin: "center center", position: "relative", left: "-50%", top: "-50%" } },
                 this.props.showGridlines && React.createElement("div", { className: "grid-lines stay-visible" }),
-                this.props.landmasses.map((landmass, index) => React.createElement(Landmass, { key: index, className: "map-" + landmass.id, fileName: landmass.name + ".html", image: this.props.useVectorImages && landmass.image.vector ? landmass.image.vector : landmass.image.raster, name: landmass.name, labelPosition: { left: landmass.labelPosition.left, top: landmass.labelPosition.top }, translateLabel: landmass.translateLabel })),
+                this.props.landmasses.map((landmass, index) => React.createElement(Landmass, { key: index, className: "map-" + landmass.id, fileName: landmass.id + ".html", image: this.props.useVectorImages && landmass.image.vector ? landmass.image.vector : landmass.image.raster, name: landmass.name, labelPosition: { left: landmass.labelPosition.left, top: landmass.labelPosition.top }, translateLabel: landmass.translateLabel })),
                 this.props.children,
                 this.props.overlays.map((overlay, index) => this.props.overlayDisplay[index] ? React.createElement(Overlay, { key: index, image: overlay.image, zIndex: overlay.zIndex, opacity: overlay.opacity, display: "default" }) : null))));
     }
@@ -278,7 +278,6 @@ $(document).ready(function () {
             //resize bug fix ui drag `enter code here`
             __mapPan.dx = ui.position.left - ui.originalPosition.left;
             __mapPan.dy = ui.position.top - ui.originalPosition.top;
-            // ui.position.left = ui.originalPosition.left + ( __mapPan.dx/__mapPan.scale);
             let newLeft = Math.min(ui.originalPosition.left + (__mapPan.dx / __mapPan.scale), __mapPan.mapPanBounds.left);
             newLeft = Math.max(newLeft, __mapPan.mapPanBounds.right);
             ui.position.left = newLeft;

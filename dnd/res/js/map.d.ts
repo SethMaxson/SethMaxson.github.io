@@ -12,6 +12,7 @@ declare const keys: {
 };
 declare var centerX: any;
 declare function initializeMap(): void;
+declare function getOriginInPx(preSplitOriginPart: string, length: number): number;
 declare function Airship(left: string, top: string, name?: string, image?: string, crew?: string[]): void;
 declare function Pedestrian(left?: string, top?: string, name?: string | string[], image?: string | string[]): void;
 declare function PedestrianNPC(left?: string, top?: string, name?: string | string[], image?: string | string[]): void;

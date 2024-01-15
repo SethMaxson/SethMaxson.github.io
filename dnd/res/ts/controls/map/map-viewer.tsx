@@ -380,7 +380,7 @@ class MapContainer extends React.Component<IMapContainerProps, IMapContainerStat
 				<div id="map-container" className="map draggable" style={{ width: this.props.size.width + "px", height: this.props.size.height + "px", textAlign: "center", transformOrigin: "center center", position: "relative", left: "-50%", top: "-50%" }}>
 					{this.props.showGridlines && <div className="grid-lines stay-visible"></div>}
 					{this.props.landmasses.map((landmass, index: number) =>
-						<Landmass key={index} className={"map-" + landmass.id} fileName={landmass.name + ".html"} image={this.props.useVectorImages && landmass.image.vector ? landmass.image.vector : landmass.image.raster} name={landmass.name} labelPosition={{ left: landmass.labelPosition.left, top: landmass.labelPosition.top }} translateLabel={landmass.translateLabel} />
+						<Landmass key={index} className={"map-" + landmass.id} fileName={landmass.id + ".html"} image={this.props.useVectorImages && landmass.image.vector ? landmass.image.vector : landmass.image.raster} name={landmass.name} labelPosition={{ left: landmass.labelPosition.left, top: landmass.labelPosition.top }} translateLabel={landmass.translateLabel} />
 					)}
 					{this.props.children}
 
@@ -540,7 +540,6 @@ $(document).ready(function ()
 			//resize bug fix ui drag `enter code here`
 			__mapPan.dx = ui.position.left - ui.originalPosition.left;
 			__mapPan.dy = ui.position.top - ui.originalPosition.top;
-			// ui.position.left = ui.originalPosition.left + ( __mapPan.dx/__mapPan.scale);
 			let newLeft = Math.min(ui.originalPosition.left + (__mapPan.dx / __mapPan.scale), __mapPan.mapPanBounds.left);
 			newLeft = Math.max(newLeft, __mapPan.mapPanBounds.right);
 			ui.position.left = newLeft;

@@ -110,6 +110,12 @@ function initializeMap()
 	$(".map-container").draggable({
 		drag: function(event, ui) {
 			// ui.offset.top = 5625;
+
+			// const element = $(event.target);
+			// let newLeft = Math.min(getOriginInPx(element.css('transform-origin').split(' ')[0], element.width() || 0) + (__mapPan.dx / __mapPan.scale), __mapPan.mapPanBounds.left);
+			// $(event.target).css({ 'transform-origin': `${newLeft} center`});
+			// ui.position.left = ui.originalPosition.left;
+
 			var zoom = $("#map-zoom").val() as number * 0.01;
 			const heightMod = -1 * (ui.helper[0].clientHeight / 2);
 			const widthMod = -1 * (ui.helper[0].clientWidth / 2);
@@ -162,6 +168,16 @@ function initializeMap()
 	});
 
 	$("#map-zoom").change();
+}
+
+function getOriginInPx(preSplitOriginPart: string, length: number): number {
+	preSplitOriginPart = preSplitOriginPart.replace("px", "");
+
+	if (preSplitOriginPart == 'center') {
+		return length/2;
+	}
+
+	return parseFloat(preSplitOriginPart);
 }
 
 function Airship(left: string, top: string, name?: string, image?: string, crew?: string[]) {
@@ -584,7 +600,7 @@ $(document).ready(function(){
 	});
 });
 
-function SortByY(a: HTMLElement, b: HTMLElement){
+function SortByY(a: HTMLElement, b: HTMLElement): 1 | 0 | -1 {
 	var aTop = parseFloat($(a).css("top"));
 	var bTop = parseFloat($(b).css("top"));
 	return ((aTop < bTop) ? -1 : ((aTop > bTop) ? 1 : 0));
