@@ -17,11 +17,16 @@ enum NPCGenFilterType
 	Include = "include"
 }
 
+/** The rough life-stages available for characters. */
 enum AgeCategory
 {
+	/** Newborn through adolescence */
 	Child = 'child',
+	/** Equivalent of 18-31 for humans */
 	YoungAdult = 'young adult',
+	/** Equivalent of 32-60 for humans */
 	Adult = 'adult',
+	/** Equivalent of 60+ for humans */
 	Old = 'old'
 }
 
@@ -113,6 +118,7 @@ class NPCDeepGenerator
 			"Artist": 30,
 			"Assassin": 15,
 			"Banker": 50,
+			"Barber": 50,
 			"Bard": 100,
 			"Barkeep": 100,
 			"Blacksmith": 100,
@@ -127,6 +133,7 @@ class NPCDeepGenerator
 			"Cobbler": 100,
 			"Comedian": 40,
 			"Cook": 100,
+			"Court Wizard": 10,
 			"Courtesan": 60,
 			"Counselor": 40,
 			"Dancer": 80,
@@ -154,7 +161,7 @@ class NPCDeepGenerator
 			"Jester": 50,
 			"Jeweler": 80,
 			"Judge": 20,
-			"Knight": 80,
+			"Knight": 60,
 			"Lady": 2,
 			"Lawyer": 50,
 			"Librarian": 40,
@@ -171,6 +178,7 @@ class NPCDeepGenerator
 			"Orator": 10,
 			"Philosopher": 30,
 			"Planeswalker": 5,
+			"Playwright": 15,
 			"Plumber": 80,
 			"Poet": 50,
 			"Politician": 20,
@@ -182,7 +190,9 @@ class NPCDeepGenerator
 			"Scribe": 15,
 			"Seer": 20,
 			"Shepherd": 80,
+			"Shipwright": 60,
 			"Snake Farmer": 10,
+			"Soldier": 100,
 			"Spy": 10,
 			"Squire": 100,
 			"Starving Artist": 90,
@@ -1442,7 +1452,7 @@ class NPCDeepGenerator
 			"wants to one day own {HisHer} own airship": 10,
 			"wants to open {HisHer} own bar": 10,
 			"wants to settle down and have a family": 10,
-			"was born the opposite of their current gender": 5,
+			"was born the opposite of {HisHer} current gender": 5,
 			"was grown in a vat and has no family": 5,
 			"was once a completely different race": 5,
 			"was once very wealthy but lost everything": 10,
@@ -1786,7 +1796,7 @@ class NPCDeepGenerator
 		npc.gender = gender || this.getNPCGender(rt);
 		this.getNPCAge(npc, rt, age);
 		npc.name = NameGenerator.full(npc.race, npc.gender, npc.relativeAge);
-		npc.alignment = alignment || randomize(rt.alignments);
+		npc.alignment = alignment || randomize(rt.data.alignments);
 		npc.threat = weightedRandom(this.threatLevels, this.totaledWeights.Threat);
 		npc.intelligence = filteredWeightedRandom(npc, this.intelligenceLevels);
 		this.getNPCPersonalityTags(npc);

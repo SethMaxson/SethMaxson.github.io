@@ -6,7 +6,7 @@ class MercenariesTestPage extends React.Component {
             currentGroup: undefined,
             displayType: "all",
             groups: [],
-            showDmNotes: storage.showGMNotes,
+            showDmNotes: Sc.LocalStorage.showGMNotes,
         };
     }
     render() {
@@ -55,7 +55,7 @@ class MercenariesTestPage extends React.Component {
                     React.createElement("label", { className: "btn btn-secondary mx-1", htmlFor: "reg-not-req" }, "Registration Not Required")),
                 React.createElement("div", { className: "form-check form-switch ms-2" },
                     React.createElement("input", { className: "form-check-input", type: "checkbox", id: "dm-notes-switch", checked: this.state.showDmNotes, onChange: () => {
-                            storage.showGMNotes = !this.state.showDmNotes;
+                            Sc.LocalStorage.showGMNotes = !this.state.showDmNotes;
                             this.setState({ showDmNotes: !this.state.showDmNotes });
                         } }),
                     React.createElement("label", { className: "form-check-label", htmlFor: "dm-notes-switch" }, "Show DM Notes")),

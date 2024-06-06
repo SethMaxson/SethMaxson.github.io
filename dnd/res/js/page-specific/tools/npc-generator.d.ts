@@ -51,6 +51,11 @@ interface INPCGeneratorSettingsProps {
         (race: string | string[] | undefined, gender: string | undefined, age: AgeCategory[] | undefined, alignment: Alignment[], number: number): void;
     };
 }
+interface ISpeciesFilters {
+    misc: FilterTrinary;
+    dnd: FilterTrinary;
+    pf: FilterTrinary;
+}
 interface INPCGeneratorSettingsState {
     ages: AgeCategory[];
     alignments: Alignment[];
@@ -58,6 +63,7 @@ interface INPCGeneratorSettingsState {
     numberToGenerate: number;
     race: string[];
     restrictRacesByAlignment: boolean;
+    speciesFilter: ISpeciesFilters;
 }
 declare class NPCGeneratorSettings extends React.Component<INPCGeneratorSettingsProps, INPCGeneratorSettingsState> {
     constructor(props: INPCGeneratorSettingsProps);
@@ -67,6 +73,8 @@ declare class NPCGeneratorSettings extends React.Component<INPCGeneratorSettings
     generateNPCs: () => void;
     restoreDefaultSettings: () => void;
     updateNumberToGenerate: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    getFilterTrinaryNextState(currentState: FilterTrinary): FilterTrinary;
+    filterSpecies(filters?: ISpeciesFilters): void;
 }
 interface INpcCollectionDisplayProps {
     IsRandomCollection: boolean;

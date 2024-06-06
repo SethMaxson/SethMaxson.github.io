@@ -6,6 +6,9 @@ interface ISettlementData
 	commerce: string;
 	defense: string;
 	government: string;
+	/** The level of the settlement (only used in PF). */
+	level: number;
+	/** The max rarity of items that can be found in the settlement (only used in 5e). */
 	maxItemRarity: ItemRarity;
 	name: string;
 	organizations: string;
@@ -986,6 +989,7 @@ function generateCity(
 		commerce: "",
 		defense: "",
 		government: "",
+		level: 0,
 		maxItemRarity: itemRarity,
 		name: "",
 		organizations: "",
@@ -1020,7 +1024,7 @@ function generateCity(
 	town.populationPercentages = popPercentages(town.population, town.primaryCulture);
 
 	//alignment
-	town.alignment = randomize(getRacialTraits(town.primaryCulture).alignments);
+	town.alignment = randomize(getRacialTraits(town.primaryCulture).data.alignments);
 
 	//government
 	town.government = weightedRandom(governmentTypes, townTotaledWeights.governmentTypes);

@@ -31,6 +31,7 @@ class MultiSelect extends React.Component<IMultiSelectProps, IMultiSelectState> 
 	}
 	render()
 	{
+		let extraFilterButtons: any[] = [];
 		let headerLabel = this.props.LabelWhenEmpty;
 		if (this.props.Value.length > 5)
 		{
@@ -46,6 +47,14 @@ class MultiSelect extends React.Component<IMultiSelectProps, IMultiSelectState> 
 				headerLabel = selectedLabels.join(", ");
 			}
 		}
+		React.Children.forEach(this.props.children, (child) => {
+			if (!React.isValidElement(child)) {
+				return;
+			}
+			else {
+				extraFilterButtons.push(child);
+			}
+		});
 		return (
 			<div className="card">
 				<div
@@ -74,7 +83,7 @@ class MultiSelect extends React.Component<IMultiSelectProps, IMultiSelectState> 
 							</li>
 						}
 						{
-							this.props.SelectAll &&
+							(this.props.SelectAll || this.props.children) &&
 							<li className="list-group-item">
 								{
 									(this.props.Value.length != this.props.Options.length) ?
@@ -85,6 +94,7 @@ class MultiSelect extends React.Component<IMultiSelectProps, IMultiSelectState> 
 											<button type="button" className="btn btn-outline-primary btn-sm" onClick={this.unselectAll}>Unselect All</button>
 										)
 								}
+								{extraFilterButtons}
 							</li>
 						}
 						{

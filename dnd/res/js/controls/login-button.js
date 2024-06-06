@@ -4,7 +4,7 @@ class LoginButton extends React.Component {
         super(props);
         this.logout = this.logout.bind(this);
         this.state = {
-            loggedIn: (storage.userId != undefined && storage.userId > 0)
+            loggedIn: (Sc.LocalStorage.userId != undefined && Sc.LocalStorage.userId > 0)
         };
     }
     render() {
@@ -13,7 +13,7 @@ class LoginButton extends React.Component {
                 React.createElement("button", { className: "nav-link bg-transparent border-0", onClick: this.logout },
                     React.createElement("i", null,
                         "Logged in as ",
-                        storage.userName,
+                        Sc.LocalStorage.userName,
                         ". "),
                     "Log out")));
         }
@@ -22,8 +22,8 @@ class LoginButton extends React.Component {
         }
     }
     logout() {
-        storage.userId = -1;
-        storage.userName = "";
+        Sc.LocalStorage.userId = -1;
+        Sc.LocalStorage.userName = "";
         this.setState({ loggedIn: false });
     }
 }

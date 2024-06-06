@@ -95,10 +95,16 @@ const NameDatabase = {
             "Airswimmer",
             "Breezehopper",
             "Cloudwalker",
+            "Flurryrider",
             "Galerunner",
             "Gustfeather",
+            "Proudbeak",
             "Skyherald",
+            "Squallchaser",
             "Stormtalon",
+            "Stormspear",
+            "Surgeglider",
+            "Tailwind",
             "Thunderwing",
             "Windfeather"
         ]
@@ -167,10 +173,99 @@ const NameDatabase = {
         first: {
             convention: "gendered",
             neutral: [],
-            feminine: [],
-            masculine: []
+            feminine: [
+                "Amandina",
+                "Angiola",
+                "Angioletta",
+                "Angiolina",
+                "Catalina",
+                "Cicilia",
+                "Cristina",
+                "Edvige",
+                "Elodia",
+                "Ghjenuveffa",
+                "Gnese",
+                "Laurenza",
+                "Laurenzia",
+                "Lisabetta",
+                "Lisandra",
+                "Lucia",
+                "Maria",
+                "Martina",
+                "Orsula",
+                "Rita",
+                "Teresia",
+                "Saveria",
+                "Sofia",
+                "Stefania"
+            ],
+            masculine: [
+                "Adalbertu",
+                "Alesiu",
+                "Ambrosgiu",
+                "Andria",
+                "Antone",
+                "Biasgiu",
+                "Baltazaru",
+                "Benghjaminu",
+                "Bernardu",
+                "Boaris",
+                "Borisu",
+                "Calistu",
+                "Carlu",
+                "Conradu",
+                "Cristofanu",
+                "Danelu",
+                "Francescu",
+                "Gasparu",
+                "Giacumu",
+                "Ghjaseppu",
+                "Larenzu",
+                "Lisandru",
+                "Martinu",
+                "Melchioru",
+                "Niculaiu",
+                "Petru",
+                "Raimondu",
+                "Saveriu",
+                "Silvestru",
+                "Simone",
+                "Tumasgiu",
+                "Volfgangu"
+            ]
         },
-        last: []
+        last: {
+            convention: "age",
+            /*
+                name | role | color
+                Aiutatu - helper, assists with any role that has insufficient Brokkos
+                Cuocu - cook/chef
+                Doto - healer
+                Fermia - childcare
+                Guardia - guard
+                Maestru - teacher
+                Produ - maker, craftsman
+                Raccogli - gatherer/forager
+                Scavo - digger
+                Zitellu - fledgling
+            */
+            child: [
+                "Zitellu (Fledgling)"
+            ],
+            adult: [
+                "Aiutatu (Helper)",
+                "Cuocu (Cook)",
+                "Doto (Healer)",
+                "Fermia (Childcare)",
+                "Guardia (Warrior)",
+                "Maestru (Teacher)",
+                "Produ (Craftsman)",
+                "Raccogli (Forager)",
+                "Scavo (Digger)"
+            ],
+            overrideYoungAdult: AgeCategory.Adult,
+            overrideOld: AgeCategory.Adult
+        }
     },
     dragonborn: {
         first: {
@@ -3586,74 +3681,6 @@ const NameGenerator = {
                     ]);
                     break;
                 //#endregion Bloodfin
-                //#region Brokkos
-                case "brokkos":
-                    if (gender == "male") {
-                        name += randomize([
-                            "Adalbertu",
-                            "Alesiu",
-                            "Ambrosgiu",
-                            "Andria",
-                            "Antone",
-                            "Biasgiu",
-                            "Baltazaru",
-                            "Benghjaminu",
-                            "Bernardu",
-                            "Boaris",
-                            "Borisu",
-                            "Calistu",
-                            "Carlu",
-                            "Conradu",
-                            "Cristofanu",
-                            "Danelu",
-                            "Francescu",
-                            "Gasparu",
-                            "Giacumu",
-                            "Ghjaseppu",
-                            "Larenzu",
-                            "Lisandru",
-                            "Martinu",
-                            "Melchioru",
-                            "Niculaiu",
-                            "Petru",
-                            "Raimondu",
-                            "Saveriu",
-                            "Silvestru",
-                            "Simone",
-                            "Tumasgiu",
-                            "Volfgangu"
-                        ]);
-                    }
-                    else {
-                        name += randomize([
-                            "Amandina",
-                            "Angiola",
-                            "Angioletta",
-                            "Angiolina",
-                            "Catalina",
-                            "Cicilia",
-                            "Cristina",
-                            "Edvige",
-                            "Elodia",
-                            "Ghjenuveffa",
-                            "Gnese",
-                            "Laurenza",
-                            "Laurenzia",
-                            "Lisabetta",
-                            "Lisandra",
-                            "Lucia",
-                            "Maria",
-                            "Martina",
-                            "Orsula",
-                            "Rita",
-                            "Teresia",
-                            "Saveria",
-                            "Sofia",
-                            "Stefania"
-                        ]);
-                    }
-                    break;
-                //#endregion Brokkos
                 //#region Bugbear
                 case "bugbear":
                     let nameParts = ["bug", "bar", "ber", "krag", "hak", "kar", "rak", "dos", "gro", "umsch"];
@@ -4471,49 +4498,16 @@ const NameGenerator = {
     },
     last: function (species = "human", gender = "female", age = "adult") {
         var name = "";
-        //@ts-ignore
-        if (species in NameDatabase && getProperty(NameDatabase, species).last?.length > 0) {
-            //@ts-ignore
-            return randomize(getProperty(NameDatabase, species).last);
+        const lastNameBlock = species in NameDatabase && getProperty(NameDatabase, species).last;
+        let lastNames = [];
+        if (lastNameBlock && Array.isArray(lastNameBlock)) {
+            lastNames = lastNameBlock;
         }
-        else {
-            switch (species) {
-                //#region Brokkos
-                case "brokkos":
-                    /*
-                        name | role | color
-                        Aiutatu - helper, assists with any role that has insufficient Brokkos
-                        Cuocu - cook/chef
-                        Doto - healer
-                        Fermia - childcare
-                        Guardia - guard
-                        Maestru - teacher
-                        Produ - maker, craftsman
-                        Raccogli - gatherer/forager
-                        Scavo - digger
-                        Zitellu - fledgling
-                    */
-                    if (age == "child") {
-                        name = "Zitellu (Fledgling)";
-                    }
-                    else {
-                        name = randomize([
-                            "Aiutatu (Helper)",
-                            "Cuocu (Cook)",
-                            "Doto (Healer)",
-                            "Fermia (Childcare)",
-                            "Guardia (Warrior)",
-                            "Maestru (Teacher)",
-                            "Produ (Craftsman)",
-                            "Raccogli (Forager)",
-                            "Scavo (Digger)"
-                        ]);
-                    }
-                    break;
-                //#endregion Brokkos
-                default:
-                    break;
-            }
+        else if (lastNameBlock && NameDataHelperMethods.TypeCheckers.isAge(lastNameBlock)) {
+            lastNames = NameDataHelperMethods.CollectionHelpers.getPossibleNamesForAge(lastNameBlock, age);
+        }
+        if (lastNames && lastNames.length > 0) {
+            name = randomize(lastNames);
         }
         return name;
     },
@@ -4594,18 +4588,108 @@ function getNameFromBlock(gender, age, block) {
     }
 }
 const NameDataHelperMethods = {
+    CollectionHelpers: {
+        getPossibleNamesForAge(nameData, age) {
+            if (nameData && NameDataHelperMethods.TypeCheckers.isAge(nameData)) {
+                if (age == AgeCategory.Child) {
+                    return (nameData.overrideChild ? this.getAgeNameCollectionFromOverride(nameData, nameData.overrideChild) : nameData.child) || [];
+                }
+                else if (age == AgeCategory.YoungAdult) {
+                    return (nameData.overrideYoungAdult ? this.getAgeNameCollectionFromOverride(nameData, nameData.overrideYoungAdult) : nameData.youngAdult) || [];
+                }
+                else if (age == AgeCategory.Adult) {
+                    return (nameData.overrideAdult ? this.getAgeNameCollectionFromOverride(nameData, nameData.overrideAdult) : nameData.adult) || [];
+                }
+                else if (age == AgeCategory.Old) {
+                    return (nameData.overrideOld ? this.getAgeNameCollectionFromOverride(nameData, nameData.overrideOld) : nameData.old) || [];
+                }
+                else {
+                    return [];
+                }
+            }
+            else {
+                return [];
+            }
+        },
+        getAgeNameCollectionFromOverride(nameData, override) {
+            switch (override) {
+                case AgeCategory.Child:
+                    return nameData.child || [];
+                case AgeCategory.YoungAdult:
+                    return nameData.youngAdult || [];
+                case AgeCategory.Adult:
+                    return nameData.adult || [];
+                case AgeCategory.Old:
+                    return nameData.old || [];
+                default:
+                    return nameData.adult || [];
+            }
+        }
+    },
     Counters: {
         FirstName: {
             total: function (cultureBlock) {
-                let first = cultureBlock.first;
-                if (first && NameDataHelperMethods.TypeCheckers.isGendered(first)) {
-                    return first.neutral.length + first.feminine.length + first.masculine.length;
+                let names = cultureBlock.first;
+                if (names && NameDataHelperMethods.TypeCheckers.isGendered(names)) {
+                    return names.neutral.length + names.feminine.length + names.masculine.length;
                 }
                 return 0;
+            },
+            totalReportRow: function (cultureBlock) {
+                let names = cultureBlock.first;
+                if (names && NameDataHelperMethods.TypeCheckers.isGendered(names)) {
+                    return `Neutral: ${names.neutral.length}, Feminine: ${names.feminine.length}, Masculine: ${names.masculine.length}`;
+                }
+                return `Sadboy: Convention [${names.convention}] not yet implemented`;
+            }
+        },
+        LastName: {
+            total: function (cultureBlock) {
+                let names = cultureBlock.last;
+                if (Array.isArray(names)) {
+                    return names.length;
+                }
+                else if (names && NameDataHelperMethods.TypeCheckers.isGendered(names)) {
+                    return names.neutral.length + names.feminine.length + names.masculine.length;
+                }
+                else if (names && NameDataHelperMethods.TypeCheckers.isAge(names)) {
+                    return (names.child?.length || 0)
+                        + (names.youngAdult?.length || 0)
+                        + (names.adult?.length || 0)
+                        + (names.old?.length || 0);
+                }
+                else {
+                    return 0;
+                }
+            },
+            totalReportRow: function (cultureBlock) {
+                let names = cultureBlock.last;
+                if (Array.isArray(names)) {
+                    return `Surname: ${names.length}`;
+                }
+                else if (names && NameDataHelperMethods.TypeCheckers.isGendered(names)) {
+                    return `Neutral: ${names.neutral.length}, Feminine: ${names.feminine.length}, Masculine: ${names.masculine.length}`;
+                }
+                else if (names && NameDataHelperMethods.TypeCheckers.isAge(names)) {
+                    return `Child: ${NameDataHelperMethods.CollectionHelpers.getPossibleNamesForAge(names, AgeCategory.Child).length},
+						Young Adult: ${NameDataHelperMethods.CollectionHelpers.getPossibleNamesForAge(names, AgeCategory.YoungAdult).length},
+						Adult: ${NameDataHelperMethods.CollectionHelpers.getPossibleNamesForAge(names, AgeCategory.Adult).length},
+						Old: ${NameDataHelperMethods.CollectionHelpers.getPossibleNamesForAge(names, AgeCategory.Old).length}`;
+                }
+                return `Sadboy: Convention [${names.convention}] not yet implemented`;
+            }
+        },
+        FullName: {
+            /** Doesn't factor in possible restrictions preventing some combinations of surname and given name, so this is really only a rough estimate */
+            combinedTotal: function (cultureBlock) {
+                return Math.max(NameDataHelperMethods.Counters.FirstName.total(cultureBlock), 1) * Math.max(NameDataHelperMethods.Counters.LastName.total(cultureBlock), 1);
             }
         }
     },
     TypeCheckers: {
+        isAge: function (dataBlock) {
+            return dataBlock.convention == "age";
+        },
         isGendered: function (dataBlock) {
             return dataBlock.convention == "gendered";
         }

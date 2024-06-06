@@ -30,6 +30,7 @@ class MultiSelect extends React.Component {
         };
     }
     render() {
+        let extraFilterButtons = [];
         let headerLabel = this.props.LabelWhenEmpty;
         if (this.props.Value.length > 5) {
             headerLabel = `${this.props.Value.length} selected`;
@@ -44,6 +45,14 @@ class MultiSelect extends React.Component {
                 headerLabel = selectedLabels.join(", ");
             }
         }
+        React.Children.forEach(this.props.children, (child) => {
+            if (!React.isValidElement(child)) {
+                return;
+            }
+            else {
+                extraFilterButtons.push(child);
+            }
+        });
         return (React.createElement("div", { className: "card" },
             React.createElement("div", { className: "card-header bg-white position-relative user-select-none" + ((this.props.Value.length > 0) ? "" : " text-muted"), style: { cursor: "pointer", textOverflow: "truncate" }, onClick: this.toggleExpand },
                 headerLabel,
@@ -53,10 +62,12 @@ class MultiSelect extends React.Component {
                     this.props.Search &&
                         React.createElement("li", { className: "list-group-item" },
                             React.createElement("input", { className: "form-control mb-1", placeholder: "Search", type: "text", value: this.state.searchString, onChange: e => this.setState({ searchString: e.target.value }) })),
-                    this.props.SelectAll &&
-                        React.createElement("li", { className: "list-group-item" }, (this.props.Value.length != this.props.Options.length) ?
-                            (React.createElement("button", { type: "button", className: "btn btn-outline-primary btn-sm", onClick: this.selectAll }, "Select All")) :
-                            (React.createElement("button", { type: "button", className: "btn btn-outline-primary btn-sm", onClick: this.unselectAll }, "Unselect All"))),
+                    (this.props.SelectAll || this.props.children) &&
+                        React.createElement("li", { className: "list-group-item" },
+                            (this.props.Value.length != this.props.Options.length) ?
+                                (React.createElement("button", { type: "button", className: "btn btn-outline-primary btn-sm", onClick: this.selectAll }, "Select All")) :
+                                (React.createElement("button", { type: "button", className: "btn btn-outline-primary btn-sm", onClick: this.unselectAll }, "Unselect All")),
+                            extraFilterButtons),
                     this.props.Options.map((option, index) => {
                         if (this.state.searchString.length == 0 || option.label.toLowerCase().includes(this.state.searchString.toLowerCase())) {
                             return (React.createElement("li", { className: "list-group-item list-group-item-action", key: index, onClick: () => this.handleCheck(option.value, !this.props.Value.includes(option.value)) },

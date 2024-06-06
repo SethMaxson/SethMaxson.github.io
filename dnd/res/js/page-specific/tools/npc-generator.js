@@ -303,17 +303,55 @@ class NPCGeneratorSettings extends React.Component {
             numberToGenerate: 20,
             race: [],
             restrictRacesByAlignment: false,
+            speciesFilter: {
+                misc: FilterTrinary.Include,
+                dnd: FilterTrinary.Include,
+                pf: FilterTrinary.Include
+            }
         };
     }
     render() {
         return (React.createElement("div", { className: "generator-settings noprint bg-light rounded p-2 border border-1 mb-3" },
             React.createElement("button", { className: "btn btn-secondary", onClick: this.restoreDefaultSettings }, "Default Settings"),
-            React.createElement("div", { className: "mb-3 row" },
+            React.createElement("button", { type: "button", className: "btn btn-primary ms-1", "data-bs-toggle": "modal", "data-bs-target": "#nameReportModal" }, "View Name Counts"),
+            React.createElement("div", { className: "modal fade", id: "nameReportModal", tabIndex: -1, "aria-labelledby": "nameReportModalLabel", "aria-hidden": "true" },
+                React.createElement("div", { className: "modal-dialog modal-xl modal-dialog-scrollable modal-fullscreen vh-100" },
+                    React.createElement("div", { className: "modal-content" },
+                        React.createElement("div", { className: "modal-header" },
+                            React.createElement("h1", { className: "modal-title fs-5", id: "nameReportModalLabel" }, "Name Counts"),
+                            React.createElement("button", { type: "button", className: "btn-close", "data-bs-dismiss": "modal", "aria-label": "Close" })),
+                        React.createElement("div", { className: "modal-body" },
+                            React.createElement("ul", { className: "list-group" }, this.props.Species.map((species, index) => React.createElement("li", { className: "list-group-item d-flex justify-content-between align-items-center", key: species.ID },
+                                React.createElement("h6", { className: "w60 flex-grow-1" }, species.name),
+                                React.createElement("div", { className: "w40" },
+                                    React.createElement("div", null, species.ID in NameDatabase && "Given Names: " + NameDataHelperMethods.Counters.FirstName.totalReportRow(getProperty(NameDatabase, species.ID))),
+                                    React.createElement("div", null, species.ID in NameDatabase && NameDataHelperMethods.Counters.LastName.totalReportRow(getProperty(NameDatabase, species.ID))),
+                                    React.createElement("div", { className: "fw-bold" }, species.ID in NameDatabase && "Estimated Possible Unique Names: " + NameDataHelperMethods.Counters.FullName.combinedTotal(getProperty(NameDatabase, species.ID)))))))),
+                        React.createElement("div", { className: "modal-footer" },
+                            React.createElement("button", { type: "button", className: "btn btn-secondary", "data-bs-dismiss": "modal" }, "Close"))))),
+            React.createElement("div", { className: "mb-3 mt-3 row" },
                 React.createElement("label", { className: "col-sm-2 col-form-label", htmlFor: "race-select" }, "Species:"),
                 React.createElement("div", { className: "col-sm-10" },
                     React.createElement(MultiSelect, { OnChange: (value) => this.setState({ race: value }), Options: this.props.Species.map(species => {
                             return { value: species.ID, label: species.name };
-                        }), Search: true, SelectAll: true, Value: this.state.race }))),
+                        }), Search: true, SelectAll: true, Value: this.state.race },
+                        React.createElement("button", { type: "button", className: "btn btn-outline-secondary btn-sm", onClick: () => this.filterSpecies({
+                                misc: FilterTrinary.Include,
+                                dnd: FilterTrinary.Include,
+                                pf: FilterTrinary.Include,
+                            }) }, "Select All Sources"),
+                        React.createElement("button", { type: "button", className: "btn btn-sm" + (this.state.speciesFilter.misc == FilterTrinary.Include ? " bg-secondary" : (this.state.speciesFilter.misc == FilterTrinary.Exclude ? " bg-danger" : " btn-outline-secondary")), onClick: () => this.filterSpecies({
+                                ...this.state.speciesFilter,
+                                misc: this.getFilterTrinaryNextState(this.state.speciesFilter.misc)
+                            }) }, "Misc"),
+                        React.createElement("button", { type: "button", className: "btn btn-sm" + (this.state.speciesFilter.dnd == FilterTrinary.Include ? " bg-secondary" : (this.state.speciesFilter.dnd == FilterTrinary.Exclude ? " bg-danger" : " btn-outline-secondary")), onClick: () => this.filterSpecies({
+                                ...this.state.speciesFilter,
+                                dnd: this.getFilterTrinaryNextState(this.state.speciesFilter.dnd)
+                            }) }, "DND 5e"),
+                        React.createElement("button", { type: "button", className: "btn btn-sm" + (this.state.speciesFilter.pf == FilterTrinary.Include ? " bg-secondary" : (this.state.speciesFilter.pf == FilterTrinary.Exclude ? " bg-danger" : " btn-outline-secondary")), onClick: () => this.filterSpecies({
+                                ...this.state.speciesFilter,
+                                pf: this.getFilterTrinaryNextState(this.state.speciesFilter.pf)
+                            }) }, "Pathfinder")))),
             React.createElement("div", { className: "mb-3 row" },
                 React.createElement("label", { className: "col-sm-2 col-form-label", htmlFor: "gender-select" }, "Gender:"),
                 React.createElement("div", { className: "col-sm-10" },
@@ -388,6 +426,42 @@ class NPCGeneratorSettings extends React.Component {
             race = getRaceByAlignment(this.state.alignments);
         }
         return race;
+    }
+    getFilterTrinaryNextState(currentState) {
+        switch (currentState) {
+            case FilterTrinary.Exclude:
+                return FilterTrinary.Neutral;
+            case FilterTrinary.Include:
+                return FilterTrinary.Exclude;
+            default:
+                return FilterTrinary.Include;
+        }
+    }
+    filterSpecies(filters = this.state.speciesFilter) {
+        let filtered = [];
+        // handle inclusions
+        this.props.Species.forEach(s => {
+            const rt = getRacialTraits(s.ID);
+            if (filters.dnd == FilterTrinary.Include && rt.data.rpgSystem.includes('5e')) {
+                arrayAppend(filtered, s.ID, true);
+            }
+            if (filters.pf == FilterTrinary.Include && rt.data.rpgSystem.includes('PF2e')) {
+                arrayAppend(filtered, s.ID, true);
+            }
+            if (filters.misc == FilterTrinary.Include && rt.data.rpgSystem.includes('all')) {
+                arrayAppend(filtered, s.ID, true);
+            }
+        });
+        // handle exclusions
+        filtered = filtered.filter(s => {
+            const rt = getRacialTraits(s);
+            if (!(filters.dnd == FilterTrinary.Exclude && rt.data.rpgSystem.includes('5e')) &&
+                !(filters.pf == FilterTrinary.Exclude && rt.data.rpgSystem.includes('PF2e')) &&
+                !(filters.misc == FilterTrinary.Exclude && rt.data.rpgSystem.includes('all'))) {
+                return true;
+            }
+        });
+        this.setState({ speciesFilter: filters, race: filtered });
     }
 }
 class NpcCollectionDisplay extends React.Component {

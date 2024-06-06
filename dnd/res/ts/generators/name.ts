@@ -1,12 +1,13 @@
-type NameDataBlockConvention = "gendered" | "parts";
+type NameDataBlockConvention = "age" | "gendered" | "parts";
 
 /** A block of data using a gendered convention */
 interface INameDataBlock {
 	/** Indicates what convention is used for this block. */
-	convention: string;
+	convention: NameDataBlockConvention;
 }
 /** A block of data using a gendered convention */
 interface IGenderedNameData extends INameDataBlock {
+	convention: "gendered";
 	/**gender neutral names */
 	neutral: string[];
 	feminine: string[];
@@ -19,14 +20,32 @@ interface INamePartData extends INameDataBlock {
 	/** the number of syllables to add from each array of phonemes */
 	repeats: number;
 }
+/** A block of data using an age-based convention */
+interface IAgeNameData extends INameDataBlock {
+	convention: "age";
+	child?: string[];
+	youngAdult?: string[];
+	adult?: string[];
+	old?: string[];
+	/** Force the Child age to use the names from a different age. */
+	overrideChild?: AgeCategory;
+	/** Force the Young Adult age to use the names from a different age. */
+	overrideYoungAdult?: AgeCategory;
+	/** Force the Adult age to use the names from a different age. */
+	overrideAdult?: AgeCategory;
+	/** Force the Old age to use the names from a different age. */
+	overrideOld?: AgeCategory;
+}
 /** A collection of data blocks listing names for a culture */
 interface INameDataCultureBlock {
-	first: INameDataBlock;
+	first: INameDataBlock | IGenderedNameData | INamePartData;
 	nickname?: INameDataBlock;
-	last: string[];
+	last: string[] | INameDataBlock | IAgeNameData;
 }
 
-const NameDatabase = {
+const NameDatabase: {
+	[key: string]: INameDataCultureBlock;
+} = {
 	aarakocra: {
 		first: {
 			convention: "gendered",
@@ -122,10 +141,16 @@ const NameDatabase = {
 			"Airswimmer",
 			"Breezehopper",
 			"Cloudwalker",
+			"Flurryrider",
 			"Galerunner",
 			"Gustfeather",
+			"Proudbeak",
 			"Skyherald",
+			"Squallchaser",
 			"Stormtalon",
+			"Stormspear",
+			"Surgeglider",
+			"Tailwind",
 			"Thunderwing",
 			"Windfeather"
 		]
@@ -194,10 +219,99 @@ const NameDatabase = {
 		first: {
 			convention: "gendered",
 			neutral: [],
-			feminine: [],
-			masculine: []
+			feminine: [
+				"Amandina",
+				"Angiola",
+				"Angioletta",
+				"Angiolina",
+				"Catalina",
+				"Cicilia",
+				"Cristina",
+				"Edvige",
+				"Elodia",
+				"Ghjenuveffa",
+				"Gnese",
+				"Laurenza",
+				"Laurenzia",
+				"Lisabetta",
+				"Lisandra",
+				"Lucia",
+				"Maria",
+				"Martina",
+				"Orsula",
+				"Rita",
+				"Teresia",
+				"Saveria",
+				"Sofia",
+				"Stefania"
+			],
+			masculine: [
+				"Adalbertu",
+				"Alesiu",
+				"Ambrosgiu",
+				"Andria",
+				"Antone",
+				"Biasgiu",
+				"Baltazaru",
+				"Benghjaminu",
+				"Bernardu",
+				"Boaris",
+				"Borisu",
+				"Calistu",
+				"Carlu",
+				"Conradu",
+				"Cristofanu",
+				"Danelu",
+				"Francescu",
+				"Gasparu",
+				"Giacumu",
+				"Ghjaseppu",
+				"Larenzu",
+				"Lisandru",
+				"Martinu",
+				"Melchioru",
+				"Niculaiu",
+				"Petru",
+				"Raimondu",
+				"Saveriu",
+				"Silvestru",
+				"Simone",
+				"Tumasgiu",
+				"Volfgangu"
+			]
 		},
-		last: []
+		last: {
+			convention: "age",
+			/*
+				name | role | color
+				Aiutatu - helper, assists with any role that has insufficient Brokkos
+				Cuocu - cook/chef
+				Doto - healer
+				Fermia - childcare
+				Guardia - guard
+				Maestru - teacher
+				Produ - maker, craftsman
+				Raccogli - gatherer/forager
+				Scavo - digger
+				Zitellu - fledgling
+			*/
+			child: [
+				"Zitellu (Fledgling)"
+			],
+			adult: [
+				"Aiutatu (Helper)",
+				"Cuocu (Cook)",
+				"Doto (Healer)",
+				"Fermia (Childcare)",
+				"Guardia (Warrior)",
+				"Maestru (Teacher)",
+				"Produ (Craftsman)",
+				"Raccogli (Forager)",
+				"Scavo (Digger)"
+			],
+			overrideYoungAdult: AgeCategory.Adult,
+			overrideOld: AgeCategory.Adult
+		}
 	},
 	dragonborn: {
 		first: {
@@ -2796,6 +2910,7 @@ const NameDatabase = {
 				"Liam",
 				"Lionel",
 				"Lucan",
+				"Luther",
 				"Manfred",
 				"Mark",
 				"Martin",
@@ -2873,6 +2988,7 @@ const NameDatabase = {
 			"Gardener",
 			"Glover",
 			"Hammond",
+			"Hawke",
 			"Hill",
 			"Hunt",
 			"Jenkins",
@@ -2880,6 +2996,7 @@ const NameDatabase = {
 			"Knight",
 			"Law",
 			"Livingstone",
+			"Martin",
 			"Mason",
 			"Miller",
 			"Miner",
@@ -2892,11 +3009,14 @@ const NameDatabase = {
 			"Potter",
 			"Priest",
 			"Quinn",
+			"Reed",
+			"Richards",
 			"Rolfe",
 			"Sawyer",
 			"Scribe",
 			"Shepherd",
 			"Shepherdson",
+			"Short",
 			"Singer",
 			"Skinner",
 			"Slater",
@@ -2910,6 +3030,7 @@ const NameDatabase = {
 			"Ward",
 			"Weaver",
 			"West",
+			"Wolfe",
 			"Wood",
 			"Woods",
 			"Wright"
@@ -3553,7 +3674,7 @@ const NameGenerator = {
 		//@ts-ignore
 		let dataBlock = species in NameDatabase && getProperty(NameDatabase, species);
 		if (dataBlock && NameDataHelperMethods.Counters.FirstName.total(dataBlock) > 0) {
-			return getNameFromBlock(gender, age, dataBlock.first);
+			return getNameFromBlock(gender, age, dataBlock.first as IGenderedNameData);
 		}
 		else {
 			switch (species)
@@ -3615,73 +3736,6 @@ const NameGenerator = {
 					]);
 					break;
 				//#endregion Bloodfin
-				//#region Brokkos
-				case "brokkos":
-					if (gender == "male") {
-						name += randomize([
-							"Adalbertu",
-							"Alesiu",
-							"Ambrosgiu",
-							"Andria",
-							"Antone",
-							"Biasgiu",
-							"Baltazaru",
-							"Benghjaminu",
-							"Bernardu",
-							"Boaris",
-							"Borisu",
-							"Calistu",
-							"Carlu",
-							"Conradu",
-							"Cristofanu",
-							"Danelu",
-							"Francescu",
-							"Gasparu",
-							"Giacumu",
-							"Ghjaseppu",
-							"Larenzu",
-							"Lisandru",
-							"Martinu",
-							"Melchioru",
-							"Niculaiu",
-							"Petru",
-							"Raimondu",
-							"Saveriu",
-							"Silvestru",
-							"Simone",
-							"Tumasgiu",
-							"Volfgangu"
-						]);
-					} else {
-						name += randomize([
-							"Amandina",
-							"Angiola",
-							"Angioletta",
-							"Angiolina",
-							"Catalina",
-							"Cicilia",
-							"Cristina",
-							"Edvige",
-							"Elodia",
-							"Ghjenuveffa",
-							"Gnese",
-							"Laurenza",
-							"Laurenzia",
-							"Lisabetta",
-							"Lisandra",
-							"Lucia",
-							"Maria",
-							"Martina",
-							"Orsula",
-							"Rita",
-							"Teresia",
-							"Saveria",
-							"Sofia",
-							"Stefania"
-						]);
-					}
-					break;
-				//#endregion Brokkos
 				//#region Bugbear
 				case "bugbear":
 					let nameParts = ["bug", "bar", "ber", "krag", "hak", "kar", "rak", "dos", "gro", "umsch"];
@@ -3855,6 +3909,7 @@ const NameGenerator = {
 						"Palm",
 						"Poplar",
 						"Redwood",
+						"Reed",
 						"Rosewood",
 						"Sequoia",
 						"Spruce",
@@ -3898,7 +3953,7 @@ const NameGenerator = {
 				//#region Goliath
 				case "goliath":
 					// goliath birth names
-					name = getNameFromBlock(gender, age, NameDatabase.goliath.first);
+					name = getNameFromBlock(gender, age, NameDatabase.goliath.first as IGenderedNameData);
 					// nicknames
 					name += " " + randomize([
 						"Bearkiller",
@@ -4492,51 +4547,19 @@ const NameGenerator = {
 	},
 	last: function(species: string = "human", gender: string = "female", age: string = "adult"): string {
 		var name = "";
-		//@ts-ignore
-		if (species in NameDatabase && getProperty(NameDatabase, species).last?.length > 0) {
-			//@ts-ignore
-			return randomize(getProperty(NameDatabase, species).last);
+		const lastNameBlock = species in NameDatabase && getProperty(NameDatabase, species).last;
+		let lastNames: string[] = [];
+		if (lastNameBlock && Array.isArray(lastNameBlock)) {
+			lastNames = lastNameBlock;
 		}
-		else {
-			switch (species) {
-				//#region Brokkos
-				case "brokkos":
-					/*
-						name | role | color
-						Aiutatu - helper, assists with any role that has insufficient Brokkos
-						Cuocu - cook/chef
-						Doto - healer
-						Fermia - childcare
-						Guardia - guard
-						Maestru - teacher
-						Produ - maker, craftsman
-						Raccogli - gatherer/forager
-						Scavo - digger
-						Zitellu - fledgling
-					*/
-					if (age == "child") {
-						name = "Zitellu (Fledgling)";
-					}
-					else
-					{
-						name = randomize([
-							"Aiutatu (Helper)",
-							"Cuocu (Cook)",
-							"Doto (Healer)",
-							"Fermia (Childcare)",
-							"Guardia (Warrior)",
-							"Maestru (Teacher)",
-							"Produ (Craftsman)",
-							"Raccogli (Forager)",
-							"Scavo (Digger)"
-						]);
-					}
-					break;
-				//#endregion Brokkos
-				default:
-					break;
-			}
+		else if (lastNameBlock && NameDataHelperMethods.TypeCheckers.isAge(lastNameBlock)) {
+			lastNames = NameDataHelperMethods.CollectionHelpers.getPossibleNamesForAge(lastNameBlock, age as AgeCategory);
 		}
+
+		if (lastNames && lastNames.length > 0) {
+			name = randomize(lastNames);
+		}
+
 		return name;
 	},
 	full: function(species: string = "human", gender: string = "female", age: string = "adult"): string {
@@ -4622,18 +4645,108 @@ function getNameFromBlock(gender: string, age: string, block: IGenderedNameData)
 }
 
 const NameDataHelperMethods = {
+	CollectionHelpers: {
+		getPossibleNamesForAge(nameData: IAgeNameData, age: AgeCategory): string[] {
+			if (nameData && NameDataHelperMethods.TypeCheckers.isAge(nameData)) {
+				if (age == AgeCategory.Child) {
+					return (nameData.overrideChild ? this.getAgeNameCollectionFromOverride(nameData, nameData.overrideChild) : nameData.child) || [];
+				}
+				else if (age == AgeCategory.YoungAdult) {
+					return (nameData.overrideYoungAdult ? this.getAgeNameCollectionFromOverride(nameData, nameData.overrideYoungAdult) : nameData.youngAdult) || [];
+				}
+				else if (age == AgeCategory.Adult) {
+					return (nameData.overrideAdult ? this.getAgeNameCollectionFromOverride(nameData, nameData.overrideAdult) : nameData.adult) || [];
+				}
+				else if (age == AgeCategory.Old) {
+					return (nameData.overrideOld ? this.getAgeNameCollectionFromOverride(nameData, nameData.overrideOld) : nameData.old) || [];
+				}
+				else {
+					return [];
+				}
+			}
+			else {
+				return [];
+			}
+		},
+		getAgeNameCollectionFromOverride(nameData: IAgeNameData, override: AgeCategory): string[] {
+			switch (override) {
+				case AgeCategory.Child:
+					return nameData.child || [];
+				case AgeCategory.YoungAdult:
+					return nameData.youngAdult || [];
+				case AgeCategory.Adult:
+					return nameData.adult || [];
+				case AgeCategory.Old:
+					return nameData.old || [];
+				default:
+					return nameData.adult || [];
+			}
+		}
+	},
 	Counters: {
 		FirstName: {
 			total: function(cultureBlock: INameDataCultureBlock): number {
-				let first = cultureBlock.first;
-				if (first && NameDataHelperMethods.TypeCheckers.isGendered(first)) {
-					return first.neutral.length + first.feminine.length + first.masculine.length;
+				let names = cultureBlock.first;
+				if (names && NameDataHelperMethods.TypeCheckers.isGendered(names)) {
+					return names.neutral.length + names.feminine.length + names.masculine.length;
 				}
 				return 0;
+			},
+			totalReportRow: function(cultureBlock: INameDataCultureBlock): string {
+				let names = cultureBlock.first;
+				if (names && NameDataHelperMethods.TypeCheckers.isGendered(names)) {
+					return `Neutral: ${names.neutral.length}, Feminine: ${names.feminine.length}, Masculine: ${names.masculine.length}`;
+				}
+				return `Sadboy: Convention [${names.convention}] not yet implemented`;
+			}
+		},
+		LastName: {
+			total: function(cultureBlock: INameDataCultureBlock): number {
+				let names = cultureBlock.last;
+				if	(Array.isArray(names)) {
+					return names.length;
+				}
+				else if (names && NameDataHelperMethods.TypeCheckers.isGendered(names)) {
+					return names.neutral.length + names.feminine.length + names.masculine.length;
+				}
+				else if (names && NameDataHelperMethods.TypeCheckers.isAge(names)) {
+					return (names.child?.length || 0)
+						+ (names.youngAdult?.length || 0)
+						+ (names.adult?.length || 0)
+						+ (names.old?.length || 0);
+				}
+				else {
+					return 0;
+				}
+			},
+			totalReportRow: function(cultureBlock: INameDataCultureBlock): string {
+				let names = cultureBlock.last;
+				if	(Array.isArray(names)) {
+					return `Surname: ${names.length}`;
+				}
+				else if (names && NameDataHelperMethods.TypeCheckers.isGendered(names)) {
+					return `Neutral: ${names.neutral.length}, Feminine: ${names.feminine.length}, Masculine: ${names.masculine.length}`;
+				}
+				else if (names && NameDataHelperMethods.TypeCheckers.isAge(names)) {
+					return `Child: ${NameDataHelperMethods.CollectionHelpers.getPossibleNamesForAge(names, AgeCategory.Child).length},
+						Young Adult: ${NameDataHelperMethods.CollectionHelpers.getPossibleNamesForAge(names, AgeCategory.YoungAdult).length},
+						Adult: ${NameDataHelperMethods.CollectionHelpers.getPossibleNamesForAge(names, AgeCategory.Adult).length},
+						Old: ${NameDataHelperMethods.CollectionHelpers.getPossibleNamesForAge(names, AgeCategory.Old).length}`;
+				}
+				return `Sadboy: Convention [${names.convention}] not yet implemented`;
+			}
+		},
+		FullName: {
+			/** Doesn't factor in possible restrictions preventing some combinations of surname and given name, so this is really only a rough estimate */
+			combinedTotal: function(cultureBlock: INameDataCultureBlock): number {
+				return Math.max(NameDataHelperMethods.Counters.FirstName.total(cultureBlock), 1) * Math.max(NameDataHelperMethods.Counters.LastName.total(cultureBlock), 1);
 			}
 		}
 	},
 	TypeCheckers: {
+		isAge: function(dataBlock: INameDataBlock): dataBlock is IAgeNameData {
+			return dataBlock.convention == "age";
+		},
 		isGendered: function(dataBlock: INameDataBlock): dataBlock is IGenderedNameData {
 			return dataBlock.convention == "gendered";
 		}

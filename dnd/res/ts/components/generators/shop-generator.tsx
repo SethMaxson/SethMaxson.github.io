@@ -33,14 +33,14 @@ class ShopGenerator extends React.Component<IShopGeneratorProps, IShopGeneratorS
 				<div className="card">
 					<div className="card-body">
 						<div className="mb-3 row">
-							<label className="col-sm-1 col-form-label">Max Item Rarity:</label>
+							<label className="col-sm-1 col-form-label">Max Item {Sc.Terminology.Item.Level}:</label>
 							<div className="col-sm-11">
 								<select
 									className="form-select"
 									onChange={e => this.setState({ maxItemRarity: e.target.value as ItemRarity})}
 									value={this.state.maxItemRarity}
 								>
-									<option value="null">Any max item rarity</option>
+									<option value="null">Any max item {Sc.Terminology.Item.Level.toLocaleLowerCase()}</option>
 									<option disabled={true}>--------------</option>
 									<option value="None">None</option>
 									<option value="Common">Common</option>
@@ -86,7 +86,7 @@ class ShopGenerator extends React.Component<IShopGeneratorProps, IShopGeneratorS
 						<tr>
 							<th>Name</th>
 							<th>Type</th>
-							<th>Rarity</th>
+							<th>{Sc.Terminology.Item.Level}</th>
 							<th>Price</th>
 							<th>Count</th>
 						</tr>

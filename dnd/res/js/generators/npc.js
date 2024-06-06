@@ -16,11 +16,16 @@ var NPCGenFilterType;
     NPCGenFilterType["Exclude"] = "exclude";
     NPCGenFilterType["Include"] = "include";
 })(NPCGenFilterType || (NPCGenFilterType = {}));
+/** The rough life-stages available for characters. */
 var AgeCategory;
 (function (AgeCategory) {
+    /** Newborn through adolescence */
     AgeCategory["Child"] = "child";
+    /** Equivalent of 18-31 for humans */
     AgeCategory["YoungAdult"] = "young adult";
+    /** Equivalent of 32-60 for humans */
     AgeCategory["Adult"] = "adult";
+    /** Equivalent of 60+ for humans */
     AgeCategory["Old"] = "old";
 })(AgeCategory || (AgeCategory = {}));
 var races = [];
@@ -92,6 +97,7 @@ class NPCDeepGenerator {
                 "Artist": 30,
                 "Assassin": 15,
                 "Banker": 50,
+                "Barber": 50,
                 "Bard": 100,
                 "Barkeep": 100,
                 "Blacksmith": 100,
@@ -106,6 +112,7 @@ class NPCDeepGenerator {
                 "Cobbler": 100,
                 "Comedian": 40,
                 "Cook": 100,
+                "Court Wizard": 10,
                 "Courtesan": 60,
                 "Counselor": 40,
                 "Dancer": 80,
@@ -133,7 +140,7 @@ class NPCDeepGenerator {
                 "Jester": 50,
                 "Jeweler": 80,
                 "Judge": 20,
-                "Knight": 80,
+                "Knight": 60,
                 "Lady": 2,
                 "Lawyer": 50,
                 "Librarian": 40,
@@ -150,6 +157,7 @@ class NPCDeepGenerator {
                 "Orator": 10,
                 "Philosopher": 30,
                 "Planeswalker": 5,
+                "Playwright": 15,
                 "Plumber": 80,
                 "Poet": 50,
                 "Politician": 20,
@@ -161,7 +169,9 @@ class NPCDeepGenerator {
                 "Scribe": 15,
                 "Seer": 20,
                 "Shepherd": 80,
+                "Shipwright": 60,
                 "Snake Farmer": 10,
+                "Soldier": 100,
                 "Spy": 10,
                 "Squire": 100,
                 "Starving Artist": 90,
@@ -1718,7 +1728,7 @@ class NPCDeepGenerator {
         npc.gender = gender || this.getNPCGender(rt);
         this.getNPCAge(npc, rt, age);
         npc.name = NameGenerator.full(npc.race, npc.gender, npc.relativeAge);
-        npc.alignment = alignment || randomize(rt.alignments);
+        npc.alignment = alignment || randomize(rt.data.alignments);
         npc.threat = weightedRandom(this.threatLevels, this.totaledWeights.Threat);
         npc.intelligence = filteredWeightedRandom(npc, this.intelligenceLevels);
         this.getNPCPersonalityTags(npc);

@@ -4,7 +4,7 @@ interface INavProps
 class Nav extends React.Component<INavProps> {
 	render()
 	{
-		const loggedIn = (storage.userId != undefined && storage.userId > 0);
+		const loggedIn = (Sc.LocalStorage.userId != undefined && Sc.LocalStorage.userId > 0);
 		return (
 			<div className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
 				<a className="navbar-brand" target="mainFrame" href="/dnd/pages/maps/worldatlas.html">Geoss</a>

@@ -16,9 +16,9 @@ function login()
 		const a = accounts[i];
 		let decryptedUn = CryptoJS.AES.decrypt(a.u, pass).toString(CryptoJS.enc.Utf8);
 		if (decryptedUn.length > 1 && decryptedUn == un) {
-			storage.isGM = a.gm;
-			storage.userId = a.id;
-			storage.userName = decryptedUn;
+			Sc.LocalStorage.isGM = a.gm;
+			Sc.LocalStorage.userId = a.id;
+			Sc.LocalStorage.userName = decryptedUn;
 			window.location.href = redirectUrl? redirectUrl : "/dnd/index.html";
 		}
 	}

@@ -182,7 +182,7 @@ interface IKillingGameCharacterPageProps
 }
 class KillingGameCharacterPage extends React.Component<IKillingGameCharacterPageProps> {
 	public static defaultProps = {
-		friendshipLevel: storage.isGM? 6 : 1
+		friendshipLevel: Sc.LocalStorage.isGM? 6 : 1
     };
 	render()
 	{

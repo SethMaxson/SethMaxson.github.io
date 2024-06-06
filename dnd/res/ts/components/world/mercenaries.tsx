@@ -14,7 +14,7 @@ class MercenariesTestPage extends React.Component<IMercenariesTestPageProps, IMe
 			currentGroup: undefined,
 			displayType: "all",
 			groups: [],
-			showDmNotes: storage.showGMNotes,
+			showDmNotes: Sc.LocalStorage.showGMNotes,
 		};
 	}
 	render()
@@ -114,7 +114,7 @@ class MercenariesTestPage extends React.Component<IMercenariesTestPageProps, IMe
 							checked={this.state.showDmNotes}
 							onChange={() =>
 							{
-								storage.showGMNotes = !this.state.showDmNotes;
+								Sc.LocalStorage.showGMNotes = !this.state.showDmNotes;
 								this.setState({ showDmNotes: !this.state.showDmNotes });
 							}}
 						/>

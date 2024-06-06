@@ -1,3 +1,9 @@
+enum FilterTrinary {
+	Neutral = 'n',
+	Exclude = 'e',
+	Include = 'i'
+};
+
 interface String
 {
 	capitalize(): string;
@@ -6,6 +12,9 @@ interface String
 
 type Alignment = "CG" | "NG" | "LG" | "CN" | "N" | "LN" | "CE" | "NE" | "LE";
 type ItemRarity = "None" | "Common" | "Uncommon" | "Rare" | "Very Rare" | "Legendary" | "Artifact";
+type RpgSystem = "all" | "5e" | "PF2e";
+/** Used for the ruleSet property in local storage. Influences how some pages display and function. */
+type RuleSet = "5e" | "PF2e";
 
 // declare interface Array<T> {
 // 	capitalize(): string;
@@ -73,14 +82,18 @@ function GetURLParameter(sParam: string)
 	return null;
 };
 
-function arrayAppend(array: any, item: any): Array<any> {
+function arrayAppend(array: any, item: any, unique = false): Array<any> {
 	if (array !== undefined && array !== null) {
 		if (array.constructor === Array) {
-			array.push(item);
+			if (!unique || !array.includes(item)) {
+				array.push(item);
+			}
 		}
 		else
 		{
-			array = [array, item];
+			if (!unique || array != item) {
+				array = [array, item];
+			}
 		}
 		return array;
 	} else {
@@ -254,6 +267,16 @@ class LocalStorageHelper
 	{
 		return parseFloat(localStorage.month);
 	}
+	/** Influences how some pages display and function. */
+	public get ruleSet(): RuleSet
+	{
+		return localStorage.ruleSet || "PF2e";
+	}
+	/** Influences how some pages display and function. */
+	public set ruleSet(value: RuleSet)
+	{
+		localStorage.ruleSet = value;
+	}
 	public get showGMNotes()
 	{
 		return localStorage.showGMNotes == "true";
@@ -284,4 +307,47 @@ class LocalStorageHelper
 	}
 }
 
-const storage = new LocalStorageHelper();
+/** Helps present correct terminology for different RPG rule sets. All strings are returned in title case unless otherwise noted. */
+class TerminologyHelper
+{
+	Item = {
+		get Level() {
+			return Sc.Terminology.is5e ? "Rarity" : "Level";
+		}
+	}
+	System = {
+		/** The generally accepted community abbreviation for the system (e.g. '5e', 'PF2e') */
+		get Abbreviation() {
+			return Sc.Terminology.is5e ? "5e" : "PF2e";
+		},
+		get EditionAbbreviation() {
+			return Sc.Terminology.is5e ? "5e" : "2e";
+		},
+		get GameAbbreviation() {
+			return Sc.Terminology.is5e ? "D&D" : "PF";
+		},
+		get GameFullName() {
+			return Sc.Terminology.is5e ? "Dungeons & Dragons" : "Pathfinder";
+		}
+	}
+	public get is5e(): boolean {
+		return Sc.LocalStorage.ruleSet == "5e";
+	}
+	public get isPF2e(): boolean {
+		return Sc.LocalStorage.ruleSet == "PF2e";
+	}
+}
+
+/** A wrapper for generic things that will likely be needed all over the place. */
+class SethCommon
+{
+	LocalStorage = new LocalStorageHelper();
+	Terminology = new TerminologyHelper();
+}
+
+//#region Global Constants
+/**Global constant for SethCommon. */
+const Sc = new SethCommon();
+/**Global constant for LocalStorageHelper. */
+const storage = Sc.LocalStorage;
+//#endregion Global Constants

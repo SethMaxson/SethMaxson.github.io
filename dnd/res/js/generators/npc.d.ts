@@ -13,10 +13,15 @@ declare enum NPCGenFilterType {
     Exclude = "exclude",
     Include = "include"
 }
+/** The rough life-stages available for characters. */
 declare enum AgeCategory {
+    /** Newborn through adolescence */
     Child = "child",
+    /** Equivalent of 18-31 for humans */
     YoungAdult = "young adult",
+    /** Equivalent of 32-60 for humans */
     Adult = "adult",
+    /** Equivalent of 60+ for humans */
     Old = "old"
 }
 interface IFilterableWeightedKeyListEntry {

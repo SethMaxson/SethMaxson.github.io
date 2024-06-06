@@ -1,11 +1,14 @@
+interface ICityGeneratorCityWrapper {
+	editing: boolean;
+	expanded: boolean;
+	city: ISettlementData;
+};
 interface ICityGeneratorProps { }
 interface ICityGeneratorState
 {
-	cities: {
-		expanded: boolean;
-		city: ISettlementData;
-	}[];
+	cities: ICityGeneratorCityWrapper[];
 	citySize: CitySizes[];
+	maxItemLevel: number;
 	maxItemRarity: ItemRarity | "null";
 }
 class CityGenerator extends React.Component<ICityGeneratorProps, ICityGeneratorState> {
@@ -16,6 +19,7 @@ class CityGenerator extends React.Component<ICityGeneratorProps, ICityGeneratorS
 		this.state = {
 			cities: [],
 			citySize: [],
+			maxItemLevel: -1,
 			maxItemRarity: "null",
 		};
 	}
@@ -71,14 +75,14 @@ class CityGenerator extends React.Component<ICityGeneratorProps, ICityGeneratorS
 						</div>
 					</div>
 					<div className="mb-3 row">
-						<label className="col-sm-1 col-form-label">Max Item Rarity:</label>
+						<label className="col-sm-1 col-form-label">Max Item {Sc.Terminology.Item.Level}:</label>
 						<div className="col-sm-11">
 							<select
 								className="form-select"
 								onChange={e => this.setState({ maxItemRarity: e.target.value as ItemRarity})}
 								value={this.state.maxItemRarity}
 							>
-								<option value="null">Any max item rarity</option>
+								<option value="null">Any max item {Sc.Terminology.Item.Level.toLocaleLowerCase()}</option>
 								<option disabled={true}>--------------</option>
 								<option value="None">None</option>
 								<option value="Common">Common</option>
@@ -90,7 +94,7 @@ class CityGenerator extends React.Component<ICityGeneratorProps, ICityGeneratorS
 							</select>
 						</div>
 					</div>
-					<button type="button" onClick={this.generateSettlement} className="btn btn-primary m-1">Generate</button>
+					<button type="button" onClick={this.generateCity} className="btn btn-primary m-1">Generate</button>
 					<button type="button" onClick={this.clear} className="btn btn-danger m-1">Clear</button>
 				</div>
 
@@ -98,9 +102,12 @@ class CityGenerator extends React.Component<ICityGeneratorProps, ICityGeneratorS
 					{this.state.cities.map((city, index: number) =>
 						<CityDataDisplay
 							City={city.city}
+							Editing={city.editing}
 							Expanded={city.expanded}
-							Delete={() => this.deleteSettlement(index)}
-							ToggleExpand={() => this.updateSettlementExpanded(index)}
+							Delete={() => this.deleteCity(index)}
+							ToggleEditing={() => this.toggleCityEditing(index)}
+							ToggleExpand={() => this.toggleCityExpanded(index)}
+							UpdateCity={(city) => this.saveCityAndEndEditing(city, index)}
 							key={index}
 						/>
 					)}
@@ -112,27 +119,53 @@ class CityGenerator extends React.Component<ICityGeneratorProps, ICityGeneratorS
 	{
 		this.setState({ cities: [] });
 	}
-	deleteSettlement = (index: number) =>
+	deleteCity = (index: number) =>
 	{
 		let newCityArray = this.state.cities.slice();
 		newCityArray.splice(index, 1);
 		this.setState({ cities: newCityArray });
 	}
-	generateSettlement = () =>
+	generateCity = () =>
 	{
 		const citySize = this.state.citySize.length > 0 ? randomize(this.state.citySize) : undefined;
 		const itemRarity = this.state.maxItemRarity == "null" ? undefined : this.state.maxItemRarity;
 		const newCityArray = this.state.cities.slice();
 		newCityArray.push({
 			city: generateCity(citySize, itemRarity),
+			editing: false,
 			expanded: true
 		});
 		this.setState({ cities: newCityArray });
 	}
-	updateSettlementExpanded = (index: number) =>
+	getMutableCityArray = (): ICityGeneratorCityWrapper[] =>
 	{
-		const newArray = this.state.cities.slice();
-		const newCity = JSON.parse(JSON.stringify(newArray[index]));
+		return this.state.cities.slice();
+	}
+	getMutableCity = (mutableArray: ICityGeneratorCityWrapper[], index: number): ICityGeneratorCityWrapper =>
+	{
+		return JSON.parse(JSON.stringify(mutableArray[index]));
+	}
+	saveCityAndEndEditing = (city: ISettlementData, index: number) =>
+	{
+		const newArray = this.getMutableCityArray();
+		const newCity = this.getMutableCity(newArray, index);
+		newCity.city = JSON.parse(JSON.stringify(city));
+		newCity.editing = false;
+		newArray[index] = newCity;
+		this.setState({ cities: newArray });
+	}
+	toggleCityEditing = (index: number) =>
+	{
+		const newArray = this.getMutableCityArray();
+		const newCity = this.getMutableCity(newArray, index);
+		newCity.editing = !newCity.editing;
+		newArray[index] = newCity;
+		this.setState({ cities: newArray });
+	}
+	toggleCityExpanded = (index: number) =>
+	{
+		const newArray = this.getMutableCityArray();
+		const newCity = this.getMutableCity(newArray, index);
 		newCity.expanded = !newCity.expanded;
 		newArray[index] = newCity;
 		this.setState({ cities: newArray });
@@ -143,88 +176,209 @@ interface ICityDataDisplayProps
 {
 	City: ISettlementData;
 	Expanded: boolean;
+	Editing: boolean;
 	Delete: { (): void };
 	ToggleExpand: { (): void };
+	ToggleEditing: { (): void };
+	UpdateCity: { (updatedCity: ISettlementData): void };
 }
-class CityDataDisplay extends React.Component<ICityDataDisplayProps> {
+interface ICityDataDisplayState
+{
+	modifiedCity: ISettlementData;
+}
+class CityDataDisplay extends React.Component<ICityDataDisplayProps, ICityDataDisplayState> {
+	constructor(props: ICityDataDisplayProps)
+	{
+		super(props);
+
+		this.state = {
+			modifiedCity: JSON.parse(JSON.stringify(props.City))
+		};
+	}
 	render()
 	{
 		return (
 			<>
-				<div className="card">
-					<div
-						className={"accordion-button card-header position-relative user-select-none" + (this.props.Expanded? "" : " collapsed")}
-						style={{ cursor: "pointer", textOverflow: "truncate" }}
-						onClick={this.props.ToggleExpand}
-					>
-						{
-							this.props.Expanded ?
-								this.props.City.name
-								:
-								<>
-									{this.props.City.name}
-									<span className="fs-6 text text-muted ms-2 fst-italic">{this.props.City.alignment + " " + this.props.City.type}</span>
-								</>
-						}
-					</div>
-					{
-						this.props.Expanded &&
-						<div className="card-body">
-							<h1>{this.props.City.name}</h1>
-							<h4>
-								{this.props.City.alignment + " " + this.props.City.type}
-							</h4>
-							<CityAttribute
-								Label="Population"
-								Value={this.props.City.populationPercentages}
-							/>
-							<CityAttribute
-								Label="Government"
-								Value={this.props.City.government}
-							/>
-							<CityAttribute
-								Label="Defense"
-								Value={this.props.City.defense}
-							/>
-							<CityAttribute
-								Label="Commerce"
-								Value={this.props.City.commerce}
-							/>
-							<CityAttribute
-								Label="Organizations"
-								Value={this.props.City.organizations}
-							/>
-							<br />
-							<CityAttribute
-								Label="Qualities"
-								SeparatorCharacter=":"
-								Value={this.props.City.qualities.join(', ').toLowerCase()}
-							/>
-							<CityAttribute
-								Label="Maximum Item Level"
-								SeparatorCharacter=":"
-								Value={this.props.City.maxItemRarity}
-							/>
-
+				{
+					this.props.Editing?
+					<>
+						<form className="card" onSubmit={this.handleSubmit}>
+							<div
+								className={"accordion-button card-header position-relative user-select-none" + (this.props.Expanded? "" : " collapsed")}
+								style={{ cursor: "pointer", textOverflow: "truncate" }}
+								onClick={this.props.ToggleExpand}
+							>
+								{
+									this.props.Expanded ?
+										this.props.City.name
+										:
+										<>
+											{this.props.City.name}
+											<span className="fs-6 text text-muted ms-2 fst-italic">{this.props.City.alignment + " " + this.props.City.type}</span>
+										</>
+								}
+							</div>
 							{
-								(this.props.City.pointsOfInterest.length > 0) &&
-								<>
-									<h4 className="mt-5">Points of Interest</h4>
-									{this.props.City.pointsOfInterest.map((poi, index: number) =>
-										<SettlementPointOfInterest
-											POI={poi}
-											key={index}
-										/>
-									)}
-								</>
+								this.props.Expanded &&
+								<div className="card-body">
+									<div>
+										<h1 className="d-inline">
+											<input name="name" type="text" defaultValue={this.props.City.name} />
+										</h1>
+										<button type="submit" className="btn btn-secondary m-1">Save</button>
+										<button type="reset" className="btn btn-secondary m-1">Reset</button>
+										<button type="button" onClick={this.props.ToggleEditing} className="btn btn-danger m-1">Cancel</button>
+									</div>
+									<h4>
+										{this.props.City.alignment + " " + this.props.City.type}
+									</h4>
+									<CityAttribute
+										Label="Population"
+										Value={this.props.City.populationPercentages}
+									/>
+									<CityAttribute
+										Label="Government"
+										Value={this.props.City.government}
+									/>
+									<CityAttribute
+										Label="Defense"
+										Value={this.props.City.defense}
+									/>
+									<CityAttribute
+										Label="Commerce"
+										Value={this.props.City.commerce}
+									/>
+									<CityAttribute
+										Label="Organizations"
+										Value={this.props.City.organizations}
+									/>
+									<br />
+									<CityAttribute
+										Label="Qualities"
+										SeparatorCharacter=":"
+										Value={this.props.City.qualities.join(', ').toLowerCase()}
+									/>
+									<CityAttribute
+										Label="Maximum Item Level"
+										SeparatorCharacter=":"
+										Value={this.props.City.maxItemRarity}
+									/>
+
+									{
+										(this.props.City.pointsOfInterest.length > 0) &&
+										<>
+											<h4 className="mt-5">Points of Interest</h4>
+											{this.props.City.pointsOfInterest.map((poi, index: number) =>
+												<CityPointOfInterest
+													POI={poi}
+													key={index}
+												/>
+											)}
+										</>
+									}
+									<button type="button" onClick={this.props.Delete} className="btn btn-danger m-1">Remove</button>
+								</div>
 							}
-							<button type="button" onClick={this.props.Delete} className="btn btn-danger m-1">Remove</button>
+						</form>
+					</>
+					:
+					<>
+						<div className="card">
+							<div
+								className={"accordion-button card-header position-relative user-select-none" + (this.props.Expanded? "" : " collapsed")}
+								style={{ cursor: "pointer", textOverflow: "truncate" }}
+								onClick={this.props.ToggleExpand}
+							>
+								{
+									this.props.Expanded ?
+										this.props.City.name
+										:
+										<>
+											{this.props.City.name}
+											<span className="fs-6 text text-muted ms-2 fst-italic">{this.props.City.alignment + " " + this.props.City.type}</span>
+										</>
+								}
+							</div>
+							{
+								this.props.Expanded &&
+								<div className="card-body">
+									<div>
+										<h1 className="d-inline">{this.props.City.name}</h1>
+										<button type="button" onClick={this.props.ToggleEditing} className="btn btn-secondary m-1">Edit</button>
+									</div>
+									<h4>
+										{this.props.City.alignment + " " + this.props.City.type}
+									</h4>
+									<CityAttribute
+										Label="Population"
+										Value={this.props.City.populationPercentages}
+									/>
+									<CityAttribute
+										Label="Government"
+										Value={this.props.City.government}
+									/>
+									<CityAttribute
+										Label="Defense"
+										Value={this.props.City.defense}
+									/>
+									<CityAttribute
+										Label="Commerce"
+										Value={this.props.City.commerce}
+									/>
+									<CityAttribute
+										Label="Organizations"
+										Value={this.props.City.organizations}
+									/>
+									<br />
+									<CityAttribute
+										Label="Qualities"
+										SeparatorCharacter=":"
+										Value={this.props.City.qualities.join(', ').toLowerCase()}
+									/>
+									<CityAttribute
+										Label="Maximum Item Level"
+										SeparatorCharacter=":"
+										Value={this.props.City.maxItemRarity}
+									/>
+
+									{
+										(this.props.City.pointsOfInterest.length > 0) &&
+										<>
+											<h4 className="mt-5">Points of Interest</h4>
+											{this.props.City.pointsOfInterest.map((poi, index: number) =>
+												<CityPointOfInterest
+													POI={poi}
+													key={index}
+												/>
+											)}
+										</>
+									}
+									<button type="button" onClick={this.props.Delete} className="btn btn-danger m-1">Remove</button>
+								</div>
+							}
 						</div>
-					}
-				</div>
+					</>
+				}
 			</>
 		);
 	}
+	handleSubmit= (e: any) => {
+		// Prevent the browser from reloading the page
+		e.preventDefault();
+	
+		// Read the form data
+		const form = e.target;
+		const formData = new FormData(form);
+
+		// Get a mutable copy of the city data object
+		const mutableCity = JSON.parse(JSON.stringify(this.props.City)) as ISettlementData;
+
+		// Update the properties of the city
+		mutableCity.name = formData.get("name")?.toString() || mutableCity.name;
+	
+		// Update the city in the parent container
+		this.props.UpdateCity(mutableCity);
+	  }
 }
 
 interface ICityAttributeProps
@@ -245,11 +399,11 @@ class CityAttribute extends React.Component<ICityAttributeProps> {
 	}
 }
 
-interface ISettlementPointOfInterestProps
+interface ICityPointOfInterestProps
 {
 	POI: ISettlementPointOfInterestData;
 }
-class SettlementPointOfInterest extends React.Component<ISettlementPointOfInterestProps> {
+class CityPointOfInterest extends React.Component<ICityPointOfInterestProps> {
 	render()
 	{
 		return (

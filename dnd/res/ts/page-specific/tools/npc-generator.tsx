@@ -1,6 +1,7 @@
 declare var races: string[];
 declare var raceImages: string[];
 
+
 const NPCCollectionHelpers = {
 	AddNpcToCollection(collection: NPCManager, npc: NPC) {
 		// if the item doesn't have an ID, generate one
@@ -382,6 +383,12 @@ interface INPCGeneratorSettingsProps
 	ClearRandomNPCs: { (): void };
 	GenerateNPCs: { (race: string|string[]|undefined, gender: string|undefined, age: AgeCategory[]|undefined, alignment: Alignment[], number: number): void }
 }
+interface ISpeciesFilters
+{
+	misc: FilterTrinary;
+	dnd: FilterTrinary;
+	pf: FilterTrinary;
+}
 interface INPCGeneratorSettingsState
 {
 	ages: AgeCategory[];
@@ -390,6 +397,7 @@ interface INPCGeneratorSettingsState
 	numberToGenerate: number;
 	race: string[];
 	restrictRacesByAlignment: boolean;
+	speciesFilter: ISpeciesFilters;
 }
 class NPCGeneratorSettings extends React.Component<INPCGeneratorSettingsProps, INPCGeneratorSettingsState> {
 	// public static defaultProps = {
@@ -406,6 +414,11 @@ class NPCGeneratorSettings extends React.Component<INPCGeneratorSettingsProps, I
 			numberToGenerate: 20,
 			race: [],
 			restrictRacesByAlignment: false,
+			speciesFilter: {
+				misc: FilterTrinary.Include,
+				dnd: FilterTrinary.Include,
+				pf: FilterTrinary.Include
+			}
 		};
 	}
 	render()
@@ -413,7 +426,55 @@ class NPCGeneratorSettings extends React.Component<INPCGeneratorSettingsProps, I
 		return (
 			<div className="generator-settings noprint bg-light rounded p-2 border border-1 mb-3">
 				<button className="btn btn-secondary" onClick={this.restoreDefaultSettings}>Default Settings</button>
-				<div className="mb-3 row">
+
+				{/* Button trigger modal */}
+				<button type="button" className="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#nameReportModal">
+					View Name Counts
+				</button>
+
+				{/* Modal */}
+				<div className="modal fade" id="nameReportModal" tabIndex={-1} aria-labelledby="nameReportModalLabel" aria-hidden="true">
+					<div className="modal-dialog modal-xl modal-dialog-scrollable modal-fullscreen vh-100">
+						<div className="modal-content">
+							<div className="modal-header">
+								<h1 className="modal-title fs-5" id="nameReportModalLabel">Name Counts</h1>
+								<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div className="modal-body">
+								<ul className="list-group">
+								{this.props.Species.map((species, index: number) =>
+									<li
+										className="list-group-item d-flex justify-content-between align-items-center"
+										key={species.ID}
+									>
+										<h6 className="w60 flex-grow-1">{species.name}</h6>
+										<div className="w40">
+											<div>
+												{species.ID in NameDatabase && "Given Names: " + NameDataHelperMethods.Counters.FirstName.totalReportRow(getProperty(NameDatabase, species.ID))
+												}
+											</div>
+											<div>
+												{species.ID in NameDatabase && NameDataHelperMethods.Counters.LastName.totalReportRow(getProperty(NameDatabase, species.ID))}
+											</div>
+											<div className="fw-bold">
+												{species.ID in NameDatabase && "Estimated Possible Unique Names: " + NameDataHelperMethods.Counters.FullName.combinedTotal(getProperty(NameDatabase, species.ID))
+												}
+											</div>
+										</div>
+									</li>
+								)}
+								</ul>
+							</div>
+							<div className="modal-footer">
+								<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								{/* <button type="button" className="btn btn-primary">Save changes</button> */}
+							</div>
+						</div>
+					</div>
+				</div>
+				{/* /Modal */}
+
+				<div className="mb-3 mt-3 row">
 					<label className="col-sm-2 col-form-label" htmlFor="race-select">Species:</label>
 					<div className="col-sm-10">
 						<MultiSelect
@@ -424,7 +485,49 @@ class NPCGeneratorSettings extends React.Component<INPCGeneratorSettingsProps, I
 							Search={true}
 							SelectAll={true}
 							Value={this.state.race}
-						/>
+						>
+							<button
+								type="button"
+								className="btn btn-outline-secondary btn-sm"
+								onClick={() =>
+									this.filterSpecies({
+										misc: FilterTrinary.Include,
+										dnd: FilterTrinary.Include,
+										pf: FilterTrinary.Include,
+									})
+								}
+							>Select All Sources</button>
+							<button
+								type="button"
+								className={"btn btn-sm" + (this.state.speciesFilter.misc == FilterTrinary.Include ? " bg-secondary" : (this.state.speciesFilter.misc == FilterTrinary.Exclude ? " bg-danger" : " btn-outline-secondary"))}
+								onClick={() =>
+									this.filterSpecies({
+										...this.state.speciesFilter,
+										misc: this.getFilterTrinaryNextState(this.state.speciesFilter.misc)
+									})
+								}
+							>Misc</button>
+							<button
+								type="button"
+								className={"btn btn-sm" + (this.state.speciesFilter.dnd == FilterTrinary.Include ? " bg-secondary" : (this.state.speciesFilter.dnd == FilterTrinary.Exclude ? " bg-danger" : " btn-outline-secondary"))}
+								onClick={() =>
+									this.filterSpecies({
+										...this.state.speciesFilter,
+										dnd: this.getFilterTrinaryNextState(this.state.speciesFilter.dnd)
+									})
+								}
+							>DND 5e</button>
+							<button
+								type="button"
+								className={"btn btn-sm" + (this.state.speciesFilter.pf == FilterTrinary.Include ? " bg-secondary" : (this.state.speciesFilter.pf == FilterTrinary.Exclude ? " bg-danger" : " btn-outline-secondary"))}
+								onClick={() =>
+									this.filterSpecies({
+										...this.state.speciesFilter,
+										pf: this.getFilterTrinaryNextState(this.state.speciesFilter.pf)
+									})
+								}
+							>Pathfinder</button>
+						</MultiSelect>
 					</div>
 				</div>
 				<div className="mb-3 row">
@@ -571,6 +674,45 @@ class NPCGeneratorSettings extends React.Component<INPCGeneratorSettingsProps, I
 	updateNumberToGenerate = (e: React.ChangeEvent<HTMLInputElement>) =>
 	{
 		this.setState({ numberToGenerate: e.target.valueAsNumber })
+	}
+	getFilterTrinaryNextState(currentState: FilterTrinary) : FilterTrinary {
+		switch (currentState) {
+			case FilterTrinary.Exclude:
+				return FilterTrinary.Neutral;
+			case FilterTrinary.Include:
+				return FilterTrinary.Exclude;
+			default:
+				return FilterTrinary.Include;
+		}
+	}
+	filterSpecies(filters: ISpeciesFilters = this.state.speciesFilter) {
+		let filtered: string[] = [];
+		// handle inclusions
+		this.props.Species.forEach(s => {
+			const rt = getRacialTraits(s.ID);
+			if (filters.dnd == FilterTrinary.Include && rt.data.rpgSystem.includes('5e')) {
+				arrayAppend(filtered, s.ID, true);
+			}
+			if (filters.pf == FilterTrinary.Include && rt.data.rpgSystem.includes('PF2e')) {
+				arrayAppend(filtered, s.ID, true);
+			}
+			if (filters.misc == FilterTrinary.Include && rt.data.rpgSystem.includes('all')) {
+				arrayAppend(filtered, s.ID, true);
+			}
+		});
+		// handle exclusions
+		filtered = filtered.filter(s => {
+			const rt = getRacialTraits(s);
+			if (
+				!(filters.dnd == FilterTrinary.Exclude && rt.data.rpgSystem.includes('5e')) &&
+				!(filters.pf == FilterTrinary.Exclude && rt.data.rpgSystem.includes('PF2e')) &&
+				!(filters.misc == FilterTrinary.Exclude && rt.data.rpgSystem.includes('all'))
+				) {
+				return true;
+			}
+		});
+
+		this.setState({ speciesFilter: filters, race: filtered });
 	}
 }
 

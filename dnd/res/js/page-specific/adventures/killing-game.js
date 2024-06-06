@@ -132,7 +132,7 @@ class KillingGameCharacterPage extends React.Component {
     }
 }
 KillingGameCharacterPage.defaultProps = {
-    friendshipLevel: storage.isGM ? 6 : 1
+    friendshipLevel: Sc.LocalStorage.isGM ? 6 : 1
 };
 class KillingGameCharacterIndex extends React.Component {
     render() {

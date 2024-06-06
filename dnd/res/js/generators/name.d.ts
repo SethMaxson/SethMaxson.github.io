@@ -1,11 +1,12 @@
-declare type NameDataBlockConvention = "gendered" | "parts";
+declare type NameDataBlockConvention = "age" | "gendered" | "parts";
 /** A block of data using a gendered convention */
 interface INameDataBlock {
     /** Indicates what convention is used for this block. */
-    convention: string;
+    convention: NameDataBlockConvention;
 }
 /** A block of data using a gendered convention */
 interface IGenderedNameData extends INameDataBlock {
+    convention: "gendered";
     /**gender neutral names */
     neutral: string[];
     feminine: string[];
@@ -18,202 +19,30 @@ interface INamePartData extends INameDataBlock {
     /** the number of syllables to add from each array of phonemes */
     repeats: number;
 }
+/** A block of data using an age-based convention */
+interface IAgeNameData extends INameDataBlock {
+    convention: "age";
+    child?: string[];
+    youngAdult?: string[];
+    adult?: string[];
+    old?: string[];
+    /** Force the Child age to use the names from a different age. */
+    overrideChild?: AgeCategory;
+    /** Force the Young Adult age to use the names from a different age. */
+    overrideYoungAdult?: AgeCategory;
+    /** Force the Adult age to use the names from a different age. */
+    overrideAdult?: AgeCategory;
+    /** Force the Old age to use the names from a different age. */
+    overrideOld?: AgeCategory;
+}
 /** A collection of data blocks listing names for a culture */
 interface INameDataCultureBlock {
-    first: INameDataBlock;
+    first: INameDataBlock | IGenderedNameData | INamePartData;
     nickname?: INameDataBlock;
-    last: string[];
+    last: string[] | INameDataBlock | IAgeNameData;
 }
 declare const NameDatabase: {
-    aarakocra: {
-        first: {
-            convention: string;
-            neutral: string[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    anime: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    brokkos: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: never[];
-            masculine: never[];
-        };
-        last: never[];
-    };
-    dragonborn: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    drow: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    dwarf: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    elf: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    gnome: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: never[];
-            masculine: never[];
-        };
-        last: string[];
-    };
-    goliath: {
-        first: {
-            convention: string;
-            neutral: string[];
-            feminine: never[];
-            masculine: never[];
-        };
-        last: string[];
-    };
-    halfling: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    hobgoblin: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    human: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    kenku: {
-        first: {
-            convention: string;
-            neutral: string[];
-            feminine: never[];
-            masculine: never[];
-        };
-        last: never[];
-    };
-    kobold: {
-        first: {
-            convention: string;
-            neutral: string[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: never[];
-    };
-    lizardfolk: {
-        first: {
-            convention: string;
-            neutral: string[];
-            feminine: never[];
-            masculine: never[];
-        };
-        last: never[];
-    };
-    orc: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: never[];
-    };
-    ratfolk: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    tabaxi: {
-        first: {
-            convention: string;
-            neutral: string[];
-            feminine: never[];
-            masculine: never[];
-        };
-        last: string[];
-    };
-    tortle: {
-        first: {
-            convention: string;
-            neutral: string[];
-            feminine: never[];
-            masculine: never[];
-        };
-        last: never[];
-    };
-    triton: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: string[];
-            masculine: string[];
-        };
-        last: string[];
-    };
-    default: {
-        first: {
-            convention: string;
-            neutral: never[];
-            feminine: never[];
-            masculine: never[];
-        };
-        last: never[];
-    };
+    [key: string]: INameDataCultureBlock;
 };
 declare const NameGenerator: {
     first: (species?: string, gender?: string, age?: string) => string;
@@ -223,12 +52,26 @@ declare const NameGenerator: {
 declare function getNameFromGender(gender: string, genderNeutralNames: string[], feminineNames: string[], masculineNames: string[]): string;
 declare function getNameFromBlock(gender: string, age: string, block: IGenderedNameData): string;
 declare const NameDataHelperMethods: {
+    CollectionHelpers: {
+        getPossibleNamesForAge(nameData: IAgeNameData, age: AgeCategory): string[];
+        getAgeNameCollectionFromOverride(nameData: IAgeNameData, override: AgeCategory): string[];
+    };
     Counters: {
         FirstName: {
             total: (cultureBlock: INameDataCultureBlock) => number;
+            totalReportRow: (cultureBlock: INameDataCultureBlock) => string;
+        };
+        LastName: {
+            total: (cultureBlock: INameDataCultureBlock) => number;
+            totalReportRow: (cultureBlock: INameDataCultureBlock) => string;
+        };
+        FullName: {
+            /** Doesn't factor in possible restrictions preventing some combinations of surname and given name, so this is really only a rough estimate */
+            combinedTotal: (cultureBlock: INameDataCultureBlock) => number;
         };
     };
     TypeCheckers: {
+        isAge: (dataBlock: INameDataBlock) => dataBlock is IAgeNameData;
         isGendered: (dataBlock: INameDataBlock) => dataBlock is IGenderedNameData;
     };
 };

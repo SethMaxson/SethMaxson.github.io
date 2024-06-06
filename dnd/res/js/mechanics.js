@@ -1,4 +1,11 @@
 "use strict";
+var FilterTrinary;
+(function (FilterTrinary) {
+    FilterTrinary["Neutral"] = "n";
+    FilterTrinary["Exclude"] = "e";
+    FilterTrinary["Include"] = "i";
+})(FilterTrinary || (FilterTrinary = {}));
+;
 // declare interface Array<T> {
 // 	capitalize(): string;
 // 	replaceAll(search: string, replacement: string): string;
@@ -54,13 +61,17 @@ function GetURLParameter(sParam) {
     return null;
 }
 ;
-function arrayAppend(array, item) {
+function arrayAppend(array, item, unique = false) {
     if (array !== undefined && array !== null) {
         if (array.constructor === Array) {
-            array.push(item);
+            if (!unique || !array.includes(item)) {
+                array.push(item);
+            }
         }
         else {
-            array = [array, item];
+            if (!unique || array != item) {
+                array = [array, item];
+            }
         }
         return array;
     }
@@ -206,6 +217,14 @@ class LocalStorageHelper {
     get month() {
         return parseFloat(localStorage.month);
     }
+    /** Influences how some pages display and function. */
+    get ruleSet() {
+        return localStorage.ruleSet || "PF2e";
+    }
+    /** Influences how some pages display and function. */
+    set ruleSet(value) {
+        localStorage.ruleSet = value;
+    }
     get showGMNotes() {
         return localStorage.showGMNotes == "true";
     }
@@ -228,5 +247,48 @@ class LocalStorageHelper {
         return parseFloat(localStorage.year);
     }
 }
-const storage = new LocalStorageHelper();
+/** Helps present correct terminology for different RPG rule sets. All strings are returned in title case unless otherwise noted. */
+class TerminologyHelper {
+    constructor() {
+        this.Item = {
+            get Level() {
+                return Sc.Terminology.is5e ? "Rarity" : "Level";
+            }
+        };
+        this.System = {
+            /** The generally accepted community abbreviation for the system (e.g. '5e', 'PF2e') */
+            get Abbreviation() {
+                return Sc.Terminology.is5e ? "5e" : "PF2e";
+            },
+            get EditionAbbreviation() {
+                return Sc.Terminology.is5e ? "5e" : "2e";
+            },
+            get GameAbbreviation() {
+                return Sc.Terminology.is5e ? "D&D" : "PF";
+            },
+            get GameFullName() {
+                return Sc.Terminology.is5e ? "Dungeons & Dragons" : "Pathfinder";
+            }
+        };
+    }
+    get is5e() {
+        return Sc.LocalStorage.ruleSet == "5e";
+    }
+    get isPF2e() {
+        return Sc.LocalStorage.ruleSet == "PF2e";
+    }
+}
+/** A wrapper for generic things that will likely be needed all over the place. */
+class SethCommon {
+    constructor() {
+        this.LocalStorage = new LocalStorageHelper();
+        this.Terminology = new TerminologyHelper();
+    }
+}
+//#region Global Constants
+/**Global constant for SethCommon. */
+const Sc = new SethCommon();
+/**Global constant for LocalStorageHelper. */
+const storage = Sc.LocalStorage;
+//#endregion Global Constants
 //# sourceMappingURL=mechanics.js.map

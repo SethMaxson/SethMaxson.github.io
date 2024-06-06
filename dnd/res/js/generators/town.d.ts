@@ -5,6 +5,9 @@ interface ISettlementData {
     commerce: string;
     defense: string;
     government: string;
+    /** The level of the settlement (only used in PF). */
+    level: number;
+    /** The max rarity of items that can be found in the settlement (only used in 5e). */
     maxItemRarity: ItemRarity;
     name: string;
     organizations: string;

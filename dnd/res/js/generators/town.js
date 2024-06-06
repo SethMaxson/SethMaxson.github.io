@@ -906,6 +906,7 @@ function generateCity(citySize = randomize(["empty", "micro", "tiny", "small", "
         commerce: "",
         defense: "",
         government: "",
+        level: 0,
         maxItemRarity: itemRarity,
         name: "",
         organizations: "",
@@ -935,7 +936,7 @@ function generateCity(citySize = randomize(["empty", "micro", "tiny", "small", "
     town.population = getPopulation(town.size);
     town.populationPercentages = popPercentages(town.population, town.primaryCulture);
     //alignment
-    town.alignment = randomize(getRacialTraits(town.primaryCulture).alignments);
+    town.alignment = randomize(getRacialTraits(town.primaryCulture).data.alignments);
     //government
     town.government = weightedRandom(governmentTypes, townTotaledWeights.governmentTypes);
     //name

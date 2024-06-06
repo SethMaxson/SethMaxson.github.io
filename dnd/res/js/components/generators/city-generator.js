@@ -1,28 +1,51 @@
 "use strict";
+;
 class CityGenerator extends React.Component {
     constructor(props) {
         super(props);
         this.clear = () => {
             this.setState({ cities: [] });
         };
-        this.deleteSettlement = (index) => {
+        this.deleteCity = (index) => {
             let newCityArray = this.state.cities.slice();
             newCityArray.splice(index, 1);
             this.setState({ cities: newCityArray });
         };
-        this.generateSettlement = () => {
+        this.generateCity = () => {
             const citySize = this.state.citySize.length > 0 ? randomize(this.state.citySize) : undefined;
             const itemRarity = this.state.maxItemRarity == "null" ? undefined : this.state.maxItemRarity;
             const newCityArray = this.state.cities.slice();
             newCityArray.push({
                 city: generateCity(citySize, itemRarity),
+                editing: false,
                 expanded: true
             });
             this.setState({ cities: newCityArray });
         };
-        this.updateSettlementExpanded = (index) => {
-            const newArray = this.state.cities.slice();
-            const newCity = JSON.parse(JSON.stringify(newArray[index]));
+        this.getMutableCityArray = () => {
+            return this.state.cities.slice();
+        };
+        this.getMutableCity = (mutableArray, index) => {
+            return JSON.parse(JSON.stringify(mutableArray[index]));
+        };
+        this.saveCityAndEndEditing = (city, index) => {
+            const newArray = this.getMutableCityArray();
+            const newCity = this.getMutableCity(newArray, index);
+            newCity.city = JSON.parse(JSON.stringify(city));
+            newCity.editing = false;
+            newArray[index] = newCity;
+            this.setState({ cities: newArray });
+        };
+        this.toggleCityEditing = (index) => {
+            const newArray = this.getMutableCityArray();
+            const newCity = this.getMutableCity(newArray, index);
+            newCity.editing = !newCity.editing;
+            newArray[index] = newCity;
+            this.setState({ cities: newArray });
+        };
+        this.toggleCityExpanded = (index) => {
+            const newArray = this.getMutableCityArray();
+            const newCity = this.getMutableCity(newArray, index);
             newCity.expanded = !newCity.expanded;
             newArray[index] = newCity;
             this.setState({ cities: newArray });
@@ -30,6 +53,7 @@ class CityGenerator extends React.Component {
         this.state = {
             cities: [],
             citySize: [],
+            maxItemLevel: -1,
             maxItemRarity: "null",
         };
     }
@@ -72,10 +96,15 @@ class CityGenerator extends React.Component {
                                 }
                             ], Search: true, SelectAll: true, Value: this.state.citySize }))),
                 React.createElement("div", { className: "mb-3 row" },
-                    React.createElement("label", { className: "col-sm-1 col-form-label" }, "Max Item Rarity:"),
+                    React.createElement("label", { className: "col-sm-1 col-form-label" },
+                        "Max Item ",
+                        Sc.Terminology.Item.Level,
+                        ":"),
                     React.createElement("div", { className: "col-sm-11" },
                         React.createElement("select", { className: "form-select", onChange: e => this.setState({ maxItemRarity: e.target.value }), value: this.state.maxItemRarity },
-                            React.createElement("option", { value: "null" }, "Any max item rarity"),
+                            React.createElement("option", { value: "null" },
+                                "Any max item ",
+                                Sc.Terminology.Item.Level.toLocaleLowerCase()),
                             React.createElement("option", { disabled: true }, "--------------"),
                             React.createElement("option", { value: "None" }, "None"),
                             React.createElement("option", { value: "Common" }, "Common"),
@@ -84,38 +113,91 @@ class CityGenerator extends React.Component {
                             React.createElement("option", { value: "Very Rare" }, "Very Rare"),
                             React.createElement("option", { value: "Legendary" }, "Legendary"),
                             React.createElement("option", { value: "Artifact" }, "Artifact")))),
-                React.createElement("button", { type: "button", onClick: this.generateSettlement, className: "btn btn-primary m-1" }, "Generate"),
+                React.createElement("button", { type: "button", onClick: this.generateCity, className: "btn btn-primary m-1" }, "Generate"),
                 React.createElement("button", { type: "button", onClick: this.clear, className: "btn btn-danger m-1" }, "Clear")),
-            React.createElement("div", { className: "output-area" }, this.state.cities.map((city, index) => React.createElement(CityDataDisplay, { City: city.city, Expanded: city.expanded, Delete: () => this.deleteSettlement(index), ToggleExpand: () => this.updateSettlementExpanded(index), key: index })))));
+            React.createElement("div", { className: "output-area" }, this.state.cities.map((city, index) => React.createElement(CityDataDisplay, { City: city.city, Editing: city.editing, Expanded: city.expanded, Delete: () => this.deleteCity(index), ToggleEditing: () => this.toggleCityEditing(index), ToggleExpand: () => this.toggleCityExpanded(index), UpdateCity: (city) => this.saveCityAndEndEditing(city, index), key: index })))));
     }
 }
 class CityDataDisplay extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleSubmit = (e) => {
+            // Prevent the browser from reloading the page
+            e.preventDefault();
+            // Read the form data
+            const form = e.target;
+            const formData = new FormData(form);
+            // Get a mutable copy of the city data object
+            const mutableCity = JSON.parse(JSON.stringify(this.props.City));
+            // Update the properties of the city
+            mutableCity.name = formData.get("name")?.toString() || mutableCity.name;
+            // Update the city in the parent container
+            this.props.UpdateCity(mutableCity);
+        };
+        this.state = {
+            modifiedCity: JSON.parse(JSON.stringify(props.City))
+        };
+    }
     render() {
-        return (React.createElement(React.Fragment, null,
-            React.createElement("div", { className: "card" },
-                React.createElement("div", { className: "accordion-button card-header position-relative user-select-none" + (this.props.Expanded ? "" : " collapsed"), style: { cursor: "pointer", textOverflow: "truncate" }, onClick: this.props.ToggleExpand }, this.props.Expanded ?
-                    this.props.City.name
-                    :
-                        React.createElement(React.Fragment, null,
-                            this.props.City.name,
-                            React.createElement("span", { className: "fs-6 text text-muted ms-2 fst-italic" }, this.props.City.alignment + " " + this.props.City.type))),
-                this.props.Expanded &&
-                    React.createElement("div", { className: "card-body" },
-                        React.createElement("h1", null, this.props.City.name),
-                        React.createElement("h4", null, this.props.City.alignment + " " + this.props.City.type),
-                        React.createElement(CityAttribute, { Label: "Population", Value: this.props.City.populationPercentages }),
-                        React.createElement(CityAttribute, { Label: "Government", Value: this.props.City.government }),
-                        React.createElement(CityAttribute, { Label: "Defense", Value: this.props.City.defense }),
-                        React.createElement(CityAttribute, { Label: "Commerce", Value: this.props.City.commerce }),
-                        React.createElement(CityAttribute, { Label: "Organizations", Value: this.props.City.organizations }),
-                        React.createElement("br", null),
-                        React.createElement(CityAttribute, { Label: "Qualities", SeparatorCharacter: ":", Value: this.props.City.qualities.join(', ').toLowerCase() }),
-                        React.createElement(CityAttribute, { Label: "Maximum Item Level", SeparatorCharacter: ":", Value: this.props.City.maxItemRarity }),
-                        (this.props.City.pointsOfInterest.length > 0) &&
+        return (React.createElement(React.Fragment, null, this.props.Editing ?
+            React.createElement(React.Fragment, null,
+                React.createElement("form", { className: "card", onSubmit: this.handleSubmit },
+                    React.createElement("div", { className: "accordion-button card-header position-relative user-select-none" + (this.props.Expanded ? "" : " collapsed"), style: { cursor: "pointer", textOverflow: "truncate" }, onClick: this.props.ToggleExpand }, this.props.Expanded ?
+                        this.props.City.name
+                        :
                             React.createElement(React.Fragment, null,
-                                React.createElement("h4", { className: "mt-5" }, "Points of Interest"),
-                                this.props.City.pointsOfInterest.map((poi, index) => React.createElement(SettlementPointOfInterest, { POI: poi, key: index }))),
-                        React.createElement("button", { type: "button", onClick: this.props.Delete, className: "btn btn-danger m-1" }, "Remove")))));
+                                this.props.City.name,
+                                React.createElement("span", { className: "fs-6 text text-muted ms-2 fst-italic" }, this.props.City.alignment + " " + this.props.City.type))),
+                    this.props.Expanded &&
+                        React.createElement("div", { className: "card-body" },
+                            React.createElement("div", null,
+                                React.createElement("h1", { className: "d-inline" },
+                                    React.createElement("input", { name: "name", type: "text", defaultValue: this.props.City.name })),
+                                React.createElement("button", { type: "submit", className: "btn btn-secondary m-1" }, "Save"),
+                                React.createElement("button", { type: "reset", className: "btn btn-secondary m-1" }, "Reset"),
+                                React.createElement("button", { type: "button", onClick: this.props.ToggleEditing, className: "btn btn-danger m-1" }, "Cancel")),
+                            React.createElement("h4", null, this.props.City.alignment + " " + this.props.City.type),
+                            React.createElement(CityAttribute, { Label: "Population", Value: this.props.City.populationPercentages }),
+                            React.createElement(CityAttribute, { Label: "Government", Value: this.props.City.government }),
+                            React.createElement(CityAttribute, { Label: "Defense", Value: this.props.City.defense }),
+                            React.createElement(CityAttribute, { Label: "Commerce", Value: this.props.City.commerce }),
+                            React.createElement(CityAttribute, { Label: "Organizations", Value: this.props.City.organizations }),
+                            React.createElement("br", null),
+                            React.createElement(CityAttribute, { Label: "Qualities", SeparatorCharacter: ":", Value: this.props.City.qualities.join(', ').toLowerCase() }),
+                            React.createElement(CityAttribute, { Label: "Maximum Item Level", SeparatorCharacter: ":", Value: this.props.City.maxItemRarity }),
+                            (this.props.City.pointsOfInterest.length > 0) &&
+                                React.createElement(React.Fragment, null,
+                                    React.createElement("h4", { className: "mt-5" }, "Points of Interest"),
+                                    this.props.City.pointsOfInterest.map((poi, index) => React.createElement(CityPointOfInterest, { POI: poi, key: index }))),
+                            React.createElement("button", { type: "button", onClick: this.props.Delete, className: "btn btn-danger m-1" }, "Remove"))))
+            :
+                React.createElement(React.Fragment, null,
+                    React.createElement("div", { className: "card" },
+                        React.createElement("div", { className: "accordion-button card-header position-relative user-select-none" + (this.props.Expanded ? "" : " collapsed"), style: { cursor: "pointer", textOverflow: "truncate" }, onClick: this.props.ToggleExpand }, this.props.Expanded ?
+                            this.props.City.name
+                            :
+                                React.createElement(React.Fragment, null,
+                                    this.props.City.name,
+                                    React.createElement("span", { className: "fs-6 text text-muted ms-2 fst-italic" }, this.props.City.alignment + " " + this.props.City.type))),
+                        this.props.Expanded &&
+                            React.createElement("div", { className: "card-body" },
+                                React.createElement("div", null,
+                                    React.createElement("h1", { className: "d-inline" }, this.props.City.name),
+                                    React.createElement("button", { type: "button", onClick: this.props.ToggleEditing, className: "btn btn-secondary m-1" }, "Edit")),
+                                React.createElement("h4", null, this.props.City.alignment + " " + this.props.City.type),
+                                React.createElement(CityAttribute, { Label: "Population", Value: this.props.City.populationPercentages }),
+                                React.createElement(CityAttribute, { Label: "Government", Value: this.props.City.government }),
+                                React.createElement(CityAttribute, { Label: "Defense", Value: this.props.City.defense }),
+                                React.createElement(CityAttribute, { Label: "Commerce", Value: this.props.City.commerce }),
+                                React.createElement(CityAttribute, { Label: "Organizations", Value: this.props.City.organizations }),
+                                React.createElement("br", null),
+                                React.createElement(CityAttribute, { Label: "Qualities", SeparatorCharacter: ":", Value: this.props.City.qualities.join(', ').toLowerCase() }),
+                                React.createElement(CityAttribute, { Label: "Maximum Item Level", SeparatorCharacter: ":", Value: this.props.City.maxItemRarity }),
+                                (this.props.City.pointsOfInterest.length > 0) &&
+                                    React.createElement(React.Fragment, null,
+                                        React.createElement("h4", { className: "mt-5" }, "Points of Interest"),
+                                        this.props.City.pointsOfInterest.map((poi, index) => React.createElement(CityPointOfInterest, { POI: poi, key: index }))),
+                                React.createElement("button", { type: "button", onClick: this.props.Delete, className: "btn btn-danger m-1" }, "Remove"))))));
     }
 }
 class CityAttribute extends React.Component {
@@ -131,7 +213,7 @@ class CityAttribute extends React.Component {
 CityAttribute.defaultProps = {
     SeparatorCharacter: "."
 };
-class SettlementPointOfInterest extends React.Component {
+class CityPointOfInterest extends React.Component {
     render() {
         return (React.createElement("p", null,
             React.createElement("div", { className: "fw-bold" }, this.props.POI.name),

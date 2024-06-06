@@ -1,9 +1,18 @@
+declare type AncestryTag = "amphibian" | "animal" | "aquatic" | "cute" | "fur" | "humanlike" | "pretty" | "reptile" | "subterranean" | "tail" | "wings";
+declare type CreatureSize = "Tiny" | "Small" | "Medium" | "Large";
+interface IAncestryFilterableTraits {
+    alignments: string[];
+    /**The typical size(s) for this ancestry */
+    size: CreatureSize[];
+    rpgSystem: RpgSystem[];
+    tags: AncestryTag[];
+}
 interface IRacialTraitSet {
     genders: string[];
     adultAge: number;
     maxAge: number;
-    alignments: string[];
     spawnFrequency: number;
+    data: IAncestryFilterableTraits;
 }
 declare const RacialTraits: {
     misc: IRacialTraitSet;
