@@ -102,7 +102,7 @@
 		"type": "Humanoid"
 	},
 	{
-		"name": "Grippli",
+		"name": "Grippli/Tripkee",
 		"ID": "grippli",
 		"size": "Small",
 		"type": "Humanoid (Grippli)",

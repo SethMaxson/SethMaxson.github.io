@@ -77,6 +77,19 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		},
 		tags: ["terrapim", "medium", "frog"]
 	},
+	{
+		name: "Catfolk/Tabaxi",
+		tagline: "Graceful wanderers.",
+		description: [
+			"Descriptive text goes here.",
+			"Tabaxi are most commonly found on the continent of Decapos."
+		],
+		images: {
+			background: "/img/locales/rainman-page-263-prnd.jpg",
+			standee: "/dnd/img/races/raceEntry/Tabaxi.png"
+		},
+		tags: ["decapos", "medium"]
+	},
 	// {
 	// 	name: "Changeling",
 	// 	tagline: "Unknowable wanderers.",
@@ -215,19 +228,6 @@ const SpeciesFluff: ISpeciesFluff[] = [
 		tags: ["rare", "lagos", "medium"]
 	},
 	{
-		name: "Grippli",
-		tagline: "The good folk.",
-		description: [
-			"Grippli are simple folk. They look like frogs, live in trees, and mostly keep to themselves. The majority of grippli go their entire lives without ever leaving their home forest, but it is not uncommon for a grippli to decide to broaden their horizons.",
-			"Most grippli seldom stray far from the treeline, but grippli adventurers can turn up at any corner of the world."
-		],
-		images: {
-			background: "/img/locales/redwood_forest.jpg",
-			standee: "/dnd/img/races/raceEntry/Grippli.png"
-		},
-		tags: ["rare", "lagos", "small", "frog"]
-	},
-	{
 		name: "Grung",
 		tagline: "A rainbow of death.",
 		description: [
@@ -363,19 +363,6 @@ const SpeciesFluff: ISpeciesFluff[] = [
 	// 	tags: ["rare", "medium"]
 	// },
 	{
-		name: "Tabaxi",
-		tagline: "Graceful wanderers.",
-		description: [
-			"Descriptive text goes here.",
-			"Tabaxi are most commonly found on the continent of Decapos."
-		],
-		images: {
-			background: "/img/locales/rainman-page-263-prnd.jpg",
-			standee: "/dnd/img/races/raceEntry/Tabaxi.png"
-		},
-		tags: ["decapos", "medium"]
-	},
-	{
 		name: "Tiefling",
 		tagline: "Child of Hel.",
 		description: [
@@ -400,6 +387,19 @@ const SpeciesFluff: ISpeciesFluff[] = [
 			standee: "/dnd/img/races/raceEntry/Tortle.png"
 		},
 		tags: ["rare", "lagos", "terrapim", "medium", "reptile"]
+	},
+	{
+		name: "Tripkee/Grippli",
+		tagline: "The good folk.",
+		description: [
+			"Grippli are simple folk. They look like frogs, live in trees, and mostly keep to themselves. The majority of grippli go their entire lives without ever leaving their home forest, but it is not uncommon for a grippli to decide to broaden their horizons.",
+			"Most grippli seldom stray far from the treeline, but grippli adventurers can turn up at any corner of the world."
+		],
+		images: {
+			background: "/img/locales/redwood_forest.jpg",
+			standee: "/dnd/img/races/raceEntry/Grippli.png"
+		},
+		tags: ["rare", "lagos", "small", "frog"]
 	},
 	{
 		name: "Triton",

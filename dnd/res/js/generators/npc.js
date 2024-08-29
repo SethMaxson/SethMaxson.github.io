@@ -1421,7 +1421,7 @@ class NPCDeepGenerator {
                 "wants to one day own {HisHer} own airship": 10,
                 "wants to open {HisHer} own bar": 10,
                 "wants to settle down and have a family": 10,
-                "was born the opposite of their current gender": 5,
+                "was born the opposite of {HisHer} current gender": 5,
                 "was grown in a vat and has no family": 5,
                 "was once a completely different race": 5,
                 "was once very wealthy but lost everything": 10,
